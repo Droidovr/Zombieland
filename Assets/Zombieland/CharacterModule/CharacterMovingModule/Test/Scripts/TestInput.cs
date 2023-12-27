@@ -6,7 +6,10 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
     {
         private ICharacterMovingController _characterMovingController;
 
-        private void Start() => _characterMovingController = GetComponent<ICharacterMovingController>();
+        private void Start()
+        {
+            _characterMovingController = GetComponent<ICharacterMovingController>();
+        }
 
         private void FixedUpdate()
         {

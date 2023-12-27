@@ -1,40 +1,48 @@
+using System;
 using UnityEngine;
+using Zombieland.CharacterModule.CharacterDataModule;
+using Zombieland.RootModule;
 
 namespace Zombieland.CharacterModule.CharacterMovingModule
 {
-    [RequireComponent(typeof(Rigidbody))]
-    public class CharacterMoovingController : MonoBehaviour, ICharacterMovingController
+    public class CharacterMoovingController : IController, ICharacterMovingController
     {
-        // змінні будуть заповнюватись з 
-        private float _moveSpeed = 500f;
-        private float _rotationSpeed = 5f;
+        public bool IsActive { get; private set; }
+        public event Action<string, IController> OnReady;
 
-        private Rigidbody _rigidbody;
+        //private ICharacterController _characterController;
+        private CharacterPhysicMoving _physicBasedMoving;
+        private PhysicCharacterProperties _physicCharacterProperties;
 
-        private void Awake() => _rigidbody = GetComponent<Rigidbody>();
-
-        private void Start()
+        public void Disable()
         {
-            // маємо підгрузити з зовні параметри _moveSpeed та _rotationSpeed
+            IsActive = false;
+            OnReady?.Invoke(String.Empty, this);
+        }
+
+        public void Initialize<T>(T parentController)
+        {
+            //_characterController = parentController as ICharacterController;
+            // _physicBasedMoving = получить ссылку
+
+
+            // Get Data & filling PhysicCharacterProperties
+
+            if (SetPhysicCharacterProperties())
+            {
+                IsActive = true;
+            }
+            OnReady?.Invoke(String.Empty, this);
         }
 
         public void Move(Vector2 direction)
         {
-            Vector3 movement = new Vector3(direction.x, 0f, direction.y);
-
-            _rigidbody.velocity = movement * _moveSpeed * Time.fixedDeltaTime;
-
-            Quaternion toRotation = Quaternion.LookRotation(movement.normalized, Vector3.up);
-            _rigidbody.MoveRotation(Quaternion.Slerp(_rigidbody.rotation, toRotation, _rotationSpeed * Time.fixedDeltaTime));
+            _physicBasedMoving.Move(direction);
         }
 
-        #if UNITY_EDITOR
-        private void OnDrawGizmos()
+        private bool SetPhysicCharacterProperties()
         {
-            Gizmos.color = Color.green;
-            float lengthLineDraw = 5f;
-            Gizmos.DrawLine(transform.position, transform.position + transform.forward * lengthLineDraw);
+            return true;
         }
-        #endif
     }
 }
