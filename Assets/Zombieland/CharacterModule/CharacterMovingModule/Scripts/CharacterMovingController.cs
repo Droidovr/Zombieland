@@ -18,48 +18,48 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
                 _directionMove = value;
             }
         }
-        public PhysicCharacterProperties PhysicCharacterProperties 
-        {
-            get { return _physicCharacterProperties; } 
-        }
+
 
         public event Action<string, IController> OnReady;
 
 
         private Vector2 _directionMove;
         private ITestCharacterController _testCharacterController;
-        private GameObject _prefabCharacter;
-        private PhysicCharacterProperties _physicCharacterProperties;
+        private IController _testVisualBodyController;
+        private GameObject _character;
 
         public void Disable()
         {
-            IsActive = false;
-            OnReady?.Invoke(String.Empty, this);
+            SetSystemsActivity(false);
         }
 
         public void Initialize<T>(T parentController)
         {
             _testCharacterController = parentController as ITestCharacterController;
-            //_prefabCharacter = _testCharacterController.GetPrefab();
+            _testVisualBodyController = _testCharacterController.TestVisualBodyController as IController;
 
-            if (SetPhysicCharacterProperties() && InitCharacterMove())
-            {
-                IsActive = true;
-            }
-            OnReady?.Invoke(String.Empty, this);
+            _testVisualBodyController.OnReady += PhysicsInitializer;
         }
 
-        private bool SetPhysicCharacterProperties()
+        private void PhysicsInitializer(string arg1, IController controller)
         {
-            return true;
+            _character = _testCharacterController.TestVisualBodyController.GetCharacter();
+
+            CharacterPhysicsInitializer.AddRigidbodyComponent(_character);
+            CharacterPhysicsInitializer.AddColliderComponent(_character);
+
+            SetSystemsActivity(true);
         }
 
-        private bool InitCharacterMove()
+        private void SetPhysicCharacterProperties()
         {
-            _prefabCharacter.AddComponent<CharacterPhysicMoving>();
-            // Додаємо фізичні властивості, якщо потрібно
             
-            return true;
+        }
+
+        private void SetSystemsActivity(bool isActive)
+        {
+            IsActive = isActive;
+            OnReady?.Invoke(String.Empty, this);
         }
     }
 }

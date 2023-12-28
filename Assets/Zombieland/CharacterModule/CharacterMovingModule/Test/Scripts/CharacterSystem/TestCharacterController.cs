@@ -9,6 +9,7 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
     {
         public bool IsActive { get; private set; }
         public ICharacterMovingController CharacterMovingController { get; private set; }
+        public ITestVisualBodyController TestVisualBodyController { get; private set; }
 
 
         public event Action<string, IController> OnReady;
@@ -43,6 +44,9 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
             //TODO : Add required subsystems here
             CharacterMovingController = new CharacterMoovingController();
             _controllers.Add(CharacterMovingController as IController);
+
+            TestVisualBodyController = new TestVisualBodyController();
+            _controllers.Add(TestVisualBodyController as IController);
 
             SetSubsystemsActivity(false);
         }
