@@ -6,29 +6,38 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
     [RequireComponent(typeof(Rigidbody))]
     public class CharacterPhysicMoving : MonoBehaviour
     { 
-        private float _moveSpeed = 500f;
-        private float _rotationSpeed = 5f;
-
         private Rigidbody _rigidbody;
+        private CharacterMoovingController _characterMovingController;
+        private Vector2 _directionJoustik;
+        private PhysicCharacterProperties _physicCharacterProperties;
 
-        private void Awake()
+        private float _minDirectionJoustikMagnitude = 0.01f;
+
+        public bool Initialize(CharacterMoovingController parentController)
         {
-            _rigidbody = GetComponent<Rigidbody>();
+            _characterMovingController = parentController;
+            _directionJoustik = parentController.DirectionMove;
+            _physicCharacterProperties = parentController.PhysicCharacterProperties;
+
+            if (_characterMovingController != null && _directionJoustik != null)
+            { 
+                
+            }
+
+            return true;
         }
 
-        void Start()
+        private void FixedUpdate()
         {
-            // we have to load the _moveSpeed and _rotationSpeed
-        }
+            if (_directionJoustik.magnitude < _minDirectionJoustikMagnitude)
+                return;
 
-        public void Move(Vector2 direction)
-        {
-            Vector3 movement = new Vector3(direction.x, 0f, direction.y);
+            Vector3 movement = new Vector3(_directionJoustik.x, 0f, _directionJoustik.y);
 
-            _rigidbody.velocity = movement * _moveSpeed * Time.fixedDeltaTime;
+            _rigidbody.velocity = movement * _physicCharacterProperties.MovingSpeed;
 
             Quaternion toRotation = Quaternion.LookRotation(movement.normalized, Vector3.up);
-            _rigidbody.MoveRotation(Quaternion.Slerp(_rigidbody.rotation, toRotation, _rotationSpeed * Time.fixedDeltaTime));
+            _rigidbody.MoveRotation(Quaternion.Slerp(_rigidbody.rotation, toRotation, _physicCharacterProperties.MovingRotation));
         }
 
         #if UNITY_EDITOR

@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using Zombieland.CharacterModule.CharacterDataModule;
 using Zombieland.RootModule;
 
 namespace Zombieland.CharacterModule.CharacterMovingModule
@@ -8,10 +7,28 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
     public class CharacterMoovingController : IController, ICharacterMovingController
     {
         public bool IsActive { get; private set; }
+        public Vector2 DirectionMove
+        {
+            get
+            {
+                return _directionMove;
+            }
+            set
+            {
+                _directionMove = value;
+            }
+        }
+        public PhysicCharacterProperties PhysicCharacterProperties 
+        {
+            get { return _physicCharacterProperties; } 
+        }
+
         public event Action<string, IController> OnReady;
 
-        //private ICharacterController _characterController;
-        private CharacterPhysicMoving _physicBasedMoving;
+
+        private Vector2 _directionMove;
+        private ITestCharacterController _testCharacterController;
+        private GameObject _prefabCharacter;
         private PhysicCharacterProperties _physicCharacterProperties;
 
         public void Disable()
@@ -22,26 +39,26 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
 
         public void Initialize<T>(T parentController)
         {
-            //_characterController = parentController as ICharacterController;
-            // _physicBasedMoving = получить ссылку
+            _testCharacterController = parentController as ITestCharacterController;
+            //_prefabCharacter = _testCharacterController.GetPrefab();
 
-
-            // Get Data & filling PhysicCharacterProperties
-
-            if (SetPhysicCharacterProperties())
+            if (SetPhysicCharacterProperties() && InitCharacterMove())
             {
                 IsActive = true;
             }
             OnReady?.Invoke(String.Empty, this);
         }
 
-        public void Move(Vector2 direction)
-        {
-            _physicBasedMoving.Move(direction);
-        }
-
         private bool SetPhysicCharacterProperties()
         {
+            return true;
+        }
+
+        private bool InitCharacterMove()
+        {
+            _prefabCharacter.AddComponent<CharacterPhysicMoving>();
+            // Додаємо фізичні властивості, якщо потрібно
+            
             return true;
         }
     }

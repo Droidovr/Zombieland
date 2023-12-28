@@ -15,8 +15,8 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
         {
             Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             
-            if (moveInput.magnitude > 0.1f)
-                _characterMovingController.Move(moveInput);
+            //if (moveInput.magnitude > 0.1f)
+            //    _characterMovingController.Move(moveInput);
         }
     }
 }
