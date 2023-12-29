@@ -43,7 +43,7 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
 
         private void PhysicsInitializer(string arg1, IController controller)
         {
-            _character = _testCharacterController.TestVisualBodyController.GetCharacter();
+            _character = _testCharacterController.TestVisualBodyController.GetCharacterGameobject();
 
             CharacterPhysicsInitializer.AddRigidbodyComponent(_character);
             CharacterPhysicsInitializer.AddColliderComponent(_character);

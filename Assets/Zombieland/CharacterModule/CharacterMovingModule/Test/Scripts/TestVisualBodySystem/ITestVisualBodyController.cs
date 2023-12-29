@@ -4,6 +4,6 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
 {
     public interface ITestVisualBodyController
     {
-        GameObject GetCharacter();
+        GameObject GetCharacterGameobject();
     }
 }
