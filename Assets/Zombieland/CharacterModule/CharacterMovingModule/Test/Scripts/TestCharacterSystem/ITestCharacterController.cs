@@ -4,6 +4,8 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
     {
         ICharacterMovingController CharacterMovingController { get; }
         ITestVisualBodyController TestVisualBodyController { get; }
+        ITestCharacterDataController TestCharacterDataController { get; }
+        ITestUIController TestUIController { get; }
 
         //TODO : Add Properties or Method other System
     }

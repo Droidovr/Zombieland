@@ -14,17 +14,23 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
         private Vector3 _positionInstantiatePrefab = new Vector3(0, 1f, 0);
         private GameObject _characterGameObject;
 
+        public void Disable()
+        {
+            SetSystemsActivity(false);
+        }
+
         public void Initialize<T>(T parentController)
         {
             _prefab = Resources.Load<GameObject>(_prefabName);
             
             _characterGameObject = Instantiate(_prefab, _positionInstantiatePrefab, Quaternion.identity);
 
+            Camera.main.GetComponent<MyCamera>().Character = _characterGameObject;
+
             if (_characterGameObject != null)
             {
-                IsActive = true;
+                SetSystemsActivity(true);
             }
-            OnReady?.Invoke(String.Empty, this);
         }
 
         public GameObject GetCharacterGameobject()
@@ -32,9 +38,10 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
             return _characterGameObject;
         }
 
-        public void Disable()
+        private void SetSystemsActivity(bool isActive)
         {
-            throw new NotImplementedException();
+            IsActive = isActive;
+            OnReady?.Invoke(String.Empty, this);
         }
     }
 }

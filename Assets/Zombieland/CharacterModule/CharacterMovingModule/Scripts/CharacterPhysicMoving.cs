@@ -4,48 +4,70 @@ using UnityEngine;
 namespace Zombieland.CharacterModule.CharacterMovingModule
 {
     public class CharacterPhysicMoving : MonoBehaviour
-    { 
-        //private Rigidbody _rigidbody;
-        //private CharacterMoovingController _characterMovingController;
-        //private Vector2 _directionJoustik;
-        //private PhysicCharacterProperties _physicCharacterProperties;
+    {
+        public float MovingSpeed
+        {
+            set
+            {
+                if (value >= 0)
+                { 
+                    _movingSpeed = value;
+                }
+            }
+        }
+        public float MovingRotation 
+        {
+            set
+            {
+                if (value >= 0)
+                { 
+                    _movingRotation = value;
+                }
+            }
+        }
+        public CharacterMovingController CharacterMovingController
+        { 
+            get { return _characterMovingController; }
+            set { _characterMovingController = value; }
+        }
 
-        //private float _minDirectionJoustikMagnitude = 0.01f;
 
-        //public bool Initialize(CharacterMoovingController parentController)
-        //{
-        //    _characterMovingController = parentController;
-        //    _directionJoustik = parentController.DirectionMove;
-        //    _physicCharacterProperties = parentController.PhysicCharacterProperties;
+        private float _movingSpeed;
+        private float _movingRotation;
 
-        //    if (_characterMovingController != null && _directionJoustik != null)
-        //    { 
-                
-        //    }
+        private Rigidbody _rigidbody;
+        private CharacterMovingController _characterMovingController;
 
-        //    return true;
-        //}
+        private float _minDirectionJoustikMagnitude = 0.01f;
 
-        //private void FixedUpdate()
-        //{
-        //    if (_directionJoustik.magnitude < _minDirectionJoustikMagnitude)
-        //        return;
 
-        //    Vector3 movement = new Vector3(_directionJoustik.x, 0f, _directionJoustik.y);
+        private void Awake()
+        {
+            _rigidbody = GetComponent<Rigidbody>();
+        }
 
-        //    _rigidbody.velocity = movement * _physicCharacterProperties.MovingSpeed;
+        private void FixedUpdate()
+        {
+            if (CharacterMovingController.DirectionMove.magnitude < _minDirectionJoustikMagnitude)
+                return;
 
-        //    Quaternion toRotation = Quaternion.LookRotation(movement.normalized, Vector3.up);
-        //    _rigidbody.MoveRotation(Quaternion.Slerp(_rigidbody.rotation, toRotation, _physicCharacterProperties.MovingRotation));
-        //}
+            Vector3 movement = new Vector3(CharacterMovingController.DirectionMove.x, 0f, CharacterMovingController.DirectionMove.y);
 
-        //#if UNITY_EDITOR
-        //private void OnDrawGizmos()
-        //{
-        //    Gizmos.color = Color.green;
-        //    float lengthLineDraw = 5f;
-        //    Gizmos.DrawLine(transform.position, transform.position + transform.forward * lengthLineDraw);
-        //}
-        //#endif
+            _rigidbody.velocity = movement * _movingSpeed;
+
+            Quaternion toRotation = Quaternion.LookRotation(movement.normalized, Vector3.up);
+            _rigidbody.MoveRotation(Quaternion.Slerp(_rigidbody.rotation, toRotation, _movingRotation));
+
+            _rigidbody.angularVelocity = Vector3.zero;
+        }
+
+#if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            float lengthLineDraw = 5f;
+            Gizmos.DrawLine(transform.position, transform.position + transform.forward * lengthLineDraw);
+        }
+#endif
     }
 }

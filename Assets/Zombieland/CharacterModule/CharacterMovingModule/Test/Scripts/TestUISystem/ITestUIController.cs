@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace Zombieland.CharacterModule.CharacterMovingModule
 {
-    public interface ICharacterMovingController
+    public interface ITestUIController
     {
-        Vector2 DirectionMove { get; }
+        Vector2 GetVectorInput();
     }
 }

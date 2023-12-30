@@ -10,7 +10,8 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
         public bool IsActive { get; private set; }
         public ICharacterMovingController CharacterMovingController { get; private set; }
         public ITestVisualBodyController TestVisualBodyController { get; private set; }
-
+        public ITestCharacterDataController TestCharacterDataController { get; private set; }
+        public ITestUIController TestUIController { get; private set; }
 
         public event Action<string, IController> OnReady;
 
@@ -23,6 +24,7 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
             Initialize<ITestCharacterController>(null);
         }
         #endregion
+
 
         #region PUBLIC
         public void Initialize<T>(T parentController)
@@ -42,11 +44,17 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
         private void CreateSubsystems()
         {
             //TODO : Add required subsystems here
-            CharacterMovingController = new CharacterMoovingController();
+            CharacterMovingController = new CharacterMovingController();
             _controllers.Add(CharacterMovingController as IController);
 
             TestVisualBodyController = new TestVisualBodyController();
             _controllers.Add(TestVisualBodyController as IController);
+
+            TestCharacterDataController = new TestCharacterDataController();
+            _controllers.Add(TestCharacterDataController as IController);
+
+            TestUIController = new TestUIController();
+            _controllers.Add(TestUIController as IController);
 
             SetSubsystemsActivity(false);
         }

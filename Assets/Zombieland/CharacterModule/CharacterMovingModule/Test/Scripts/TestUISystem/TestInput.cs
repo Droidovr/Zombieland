@@ -4,19 +4,16 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
 {
     public class TestInput : MonoBehaviour
     {
-        private ICharacterMovingController _characterMovingController;
-
-        private void Start()
-        {
-            _characterMovingController = GetComponent<ICharacterMovingController>();
+        public Vector2 InputVectorMove 
+        { 
+            get { return _inputVectorMove; } 
         }
 
-        private void FixedUpdate()
+        private Vector2 _inputVectorMove;
+
+        private void Update()
         {
-            Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            
-            //if (moveInput.magnitude > 0.1f)
-            //    _characterMovingController.Move(moveInput);
+            _inputVectorMove = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         }
     }
 }
