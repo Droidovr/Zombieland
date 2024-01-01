@@ -10,64 +10,100 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
             set
             {
                 if (value >= 0)
-                { 
+                {
                     _movingSpeed = value;
                 }
             }
         }
-        public float MovingRotation 
+        public float MovingRotation
         {
             set
             {
                 if (value >= 0)
-                { 
+                {
                     _movingRotation = value;
                 }
             }
         }
+        public float Gravity
+        {
+            set
+            {
+                if (value >= 0)
+                {
+                    _gravity = value;
+                }
+            }
+        }
         public CharacterMovingController CharacterMovingController
-        { 
-            get { return _characterMovingController; }
-            set { _characterMovingController = value; }
+        {
+            set 
+            {
+                _characterMovingController = value; 
+            }
         }
 
 
         private float _movingSpeed;
         private float _movingRotation;
-
-        private Rigidbody _rigidbody;
+        private float _gravity;
+        private Vector2 _vectorMove;
+        private float _verticalSpeed;
         private CharacterMovingController _characterMovingController;
+        private CharacterController _characterController;
 
-        private float _minDirectionJoustikMagnitude = 0.01f;
+        private float _smoothTime = 0.1f;
 
 
-        private void Awake()
-        {
-            _rigidbody = GetComponent<Rigidbody>();
-        }
-
+        #region MONOBEHAVIOUR
         private void FixedUpdate()
         {
-            if (CharacterMovingController.DirectionMove.magnitude < _minDirectionJoustikMagnitude)
-                return;
+            CalculateGravity();
 
-            Vector3 movement = new Vector3(CharacterMovingController.DirectionMove.x, 0f, CharacterMovingController.DirectionMove.y);
+            if (_vectorMove.magnitude >= 0.1f)
+            {
+                Vector3 direction = new Vector3(_vectorMove.x, 0f, _vectorMove.y).normalized;
 
-            _rigidbody.velocity = movement * _movingSpeed;
+                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _movingRotation, _smoothTime);
 
-            Quaternion toRotation = Quaternion.LookRotation(movement.normalized, Vector3.up);
-            _rigidbody.MoveRotation(Quaternion.Slerp(_rigidbody.rotation, toRotation, _movingRotation));
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
-            _rigidbody.angularVelocity = Vector3.zero;
+                moveDirection.y += _verticalSpeed;
+                _characterController.Move(moveDirection * _movingSpeed * Time.fixedDeltaTime);
+            }
+
         }
+        #endregion
 
-#if UNITY_EDITOR
-        private void OnDrawGizmos()
+
+        #region PUBLIC
+        public void Initialize()
         {
-            Gizmos.color = Color.red;
-            float lengthLineDraw = 5f;
-            Gizmos.DrawLine(transform.position, transform.position + transform.forward * lengthLineDraw);
+            _characterController = GetComponent<CharacterController>();
+            _characterMovingController.OnJoustickMoved += HandleJoystickMoved;
         }
-#endif
+        #endregion PUBLIC
+
+
+        #region PRIVATE
+        private void HandleJoystickMoved(Vector2 joystickPosition)
+        {
+            _vectorMove = joystickPosition;
+        }
+
+        private void CalculateGravity() 
+        {
+            if (!_characterController.isGrounded)
+            {
+                _verticalSpeed -= _gravity * Time.fixedDeltaTime;
+            }
+            else
+            { 
+                _verticalSpeed = -_gravity * Time.fixedDeltaTime;
+            }
+        }
+        #endregion PRIVATE
     }
 }

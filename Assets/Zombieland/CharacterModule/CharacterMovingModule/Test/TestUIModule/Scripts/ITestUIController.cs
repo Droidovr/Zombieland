@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Zombieland.CharacterModule.CharacterMovingModule
 {
-    public interface ICharacterMovingController
+    public interface ITestUIController
     {
         event Action<Vector2> OnJoustickMoved;
     }
