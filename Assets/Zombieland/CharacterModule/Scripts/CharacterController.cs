@@ -1,49 +1,32 @@
 using System;
 using Zombieland.RootModule;
 
-namespace Zombieland.GameDataModule
+namespace Zombieland.CharacterModule
 {
-    public class GameDataController : IController, IGameDataController
+    public class CharacterController : IController, ICharacterController
     {
         public bool IsReady { get; private set; }
         public event Action<string, IController> OnReady;
-
+        
         private IRootController _rootController;
-        private IStorage _storage;
-
+        
         
         public void Initialize<T>(T parentController)
         {
             _rootController = parentController as IRootController;
             CreateSubsystems();
         }
-        
+
         public void Disable()
         {
             IsReady = false;
             OnReady?.Invoke(String.Empty, this);
         }
-
-        public void SaveDada<T>(string name, T data)
-        {
-            _storage.SaveDada(name, data);
-        }
-
-        public T GetData<T>(string name)
-        {
-            return _storage.GetData<T>(name);
-        }
-
+        
         
         private void CreateSubsystems()
         {
-#if UNITY_EDITOR
-            _storage = new ResourcesStorage();
-#else
-            _storage = new PlayerPrefsStorage();
-#endif
-            IsReady = true;
-            OnReady?.Invoke(String.Empty, this);
+            throw new NotImplementedException();
         }
     }
 }

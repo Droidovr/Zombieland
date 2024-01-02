@@ -5,7 +5,8 @@ namespace Zombieland.RootModule
 {
     public interface IController
     {
-        bool IsActive { get; }
+        bool IsReady { get;}
+
         /// <summary>
         /// arg0 - ERROR message or empty string.
         /// arg1 - this controller.
