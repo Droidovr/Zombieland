@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Zombieland/RootModule/SampleScenes/RootModuleSampleScene.unity
-    guid: 79bc14e30df0908489e4cc3fa5628782
+    path: Assets/Zombieland/GameScene0/Scenes/GameScene0.unity
+    guid: 99992a38653556947878f7740077b29d
   m_configObjects: {}
