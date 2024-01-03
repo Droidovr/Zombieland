@@ -10,6 +10,7 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
         public event Action<string, IController> OnReady;
 
         private GameObject _prefab;
+        //private string _prefabName = "Policewoman";
         private string _prefabName = "Character";
         private Vector3 _positionInstantiatePrefab = new Vector3(0, 1f, 0);
         private GameObject _characterGameObject;
