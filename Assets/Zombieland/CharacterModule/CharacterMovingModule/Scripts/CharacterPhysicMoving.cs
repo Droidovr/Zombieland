@@ -56,12 +56,16 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
 
 
         #region MONOBEHAVIOUR
+
+        // змінити на Update()
         private void FixedUpdate()
         {
             CalculateGravity();
 
+            // іф через ретурн
             if (_vectorMove.magnitude >= 0.1f)
             {
+                // викинути в метод мув.
                 Vector3 direction = new Vector3(_vectorMove.x, 0f, _vectorMove.y).normalized;
 
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
