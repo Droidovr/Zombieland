@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 
 
-namespace Zombieland.CharacterModule.CharacterMovingModule
+namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 {
     public class CharacterPhysicMoving : MonoBehaviour
     {
@@ -9,37 +10,44 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
         {
             set
             {
-                if (value >= 0)
+                if (value < 0)
                 {
-                    _movingSpeed = value;
+                    throw new ArgumentException("Moving speed cannot be negative.", nameof(MovingSpeed));
                 }
+
+                _movingSpeed = value;
             }
         }
         public float MovingRotation
         {
             set
             {
-                if (value >= 0)
+                if (value < 0)
                 {
-                    _movingRotation = value;
+                    throw new ArgumentException("Moving rotation cannot be negative.", nameof(MovingRotation));
                 }
+
+                _movingRotation = value;
             }
         }
         public float Gravity
         {
             set
             {
-                if (value >= 0)
+                if (value < 0)
                 {
-                    _gravity = value;
+                    throw new ArgumentException("Gravity cannot be negative.", nameof(Gravity));
                 }
+
+                _gravity = value;
+
             }
         }
         public CharacterMovingController CharacterMovingController
         {
-            set 
+            set
             {
-                _characterMovingController = value; 
+                _characterMovingController = value;
             }
         }
 
@@ -50,34 +58,21 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
         private Vector2 _vectorMove;
         private float _verticalSpeed;
         private CharacterMovingController _characterMovingController;
-        private CharacterController _characterController;
+        private UnityEngine.CharacterController _characterController;
 
         private float _smoothTime = 0.1f;
 
 
         #region MONOBEHAVIOUR
 
-        // змінити на Update()
-        private void FixedUpdate()
+        private void Update()
         {
             CalculateGravity();
 
-            // іф через ретурн
-            if (_vectorMove.magnitude >= 0.1f)
-            {
-                // викинути в метод мув.
-                Vector3 direction = new Vector3(_vectorMove.x, 0f, _vectorMove.y).normalized;
+            if (_vectorMove.magnitude < _smoothTime)
+                return;
 
-                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _movingRotation, _smoothTime);
-
-                transform.rotation = Quaternion.Euler(0f, angle, 0f);
-                Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
-                moveDirection.y += _verticalSpeed;
-                _characterController.Move(moveDirection * _movingSpeed * Time.fixedDeltaTime);
-            }
-
+            Movement();
         }
         #endregion
 
@@ -85,7 +80,7 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
         #region PUBLIC
         public void Initialize()
         {
-            _characterController = GetComponent<CharacterController>();
+            _characterController = GetComponent<UnityEngine.CharacterController>();
             _characterMovingController.OnJoustickMoved += HandleJoystickMoved;
         }
         #endregion PUBLIC
@@ -97,16 +92,30 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
             _vectorMove = joystickPosition;
         }
 
-        private void CalculateGravity() 
+        private void CalculateGravity()
         {
             if (!_characterController.isGrounded)
             {
-                _verticalSpeed -= _gravity * Time.fixedDeltaTime;
+                _verticalSpeed -= _gravity * Time.deltaTime;
             }
             else
-            { 
-                _verticalSpeed = -_gravity * Time.fixedDeltaTime;
+            {
+                _verticalSpeed = -_gravity * Time.deltaTime;
             }
+        }
+
+        private void Movement()
+        {
+            Vector3 direction = new Vector3(_vectorMove.x, 0f, _vectorMove.y).normalized;
+
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _movingRotation, _smoothTime);
+
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+
+            moveDirection.y += _verticalSpeed;
+            _characterController.Move(moveDirection * _movingSpeed * Time.deltaTime);
         }
         #endregion PRIVATE
     }

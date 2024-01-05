@@ -1,48 +1,32 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
-using Zombieland.RootModule;
 
-namespace Zombieland.CharacterModule.CharacterMovingModule
+
+namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 {
-    public class TestVisualBodyController : MonoBehaviour, IController, ITestVisualBodyController
+    public class TestVisualBodyController : Controller, ITestVisualBodyController
     {
-        public bool IsActive { get; private set; }
-        public event Action<string, IController> OnReady;
+        public ICharacterController CharacterController { get; }
 
-        private GameObject _prefab;
-        //private string _prefabName = "Policewoman";
-        //private Vector3 _positionInstantiatePrefab = new Vector3(0, 0, 0);
-        private string _prefabName = "Character";
-        private Vector3 _positionInstantiatePrefab = new Vector3(0, 1f, 0);
-        private GameObject _characterGameObject;
+        private CreateCharacterGameobject _characterGameobject;
 
-        public void Disable()
+        public TestVisualBodyController(IController parentController) 
         {
-            SetSystemsActivity(false);
-        }
-
-        public void Initialize<T>(T parentController)
-        {
-            _prefab = Resources.Load<GameObject>(_prefabName);
-            _characterGameObject = Instantiate(_prefab, _positionInstantiatePrefab, Quaternion.identity);
-
-            Camera.main.GetComponent<MovingCamera>().Character = _characterGameObject;
-
-            if (_characterGameObject != null)
-            {
-                SetSystemsActivity(true);
-            }
+            Debug.Log("<color=blue>" + parentController.GetType() + "</color>");
+            CharacterController = (ICharacterController) parentController;
         }
 
         public GameObject GetCharacterGameobject()
         {
-            return _characterGameObject;
+            return _characterGameobject.CharacterGameobject;
         }
 
-        private void SetSystemsActivity(bool isActive)
+        protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            IsActive = isActive;
-            OnReady?.Invoke(String.Empty, this);
+            Debug.Log("TestVisualBodyController CreateSubsystems");
+            
+            _characterGameobject = new CreateCharacterGameobject();
+            _characterGameobject.Init();
         }
     }
 }

@@ -1,70 +1,54 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
-using Zombieland.RootModule;
 
-namespace Zombieland.CharacterModule.CharacterMovingModule
+namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 {
-    public class CharacterMovingController : IController, ICharacterMovingController
+    public class CharacterMovingController : Controller, ICharacterMovingController
     {
-        public bool IsActive { get; private set; }
+        public ICharacterController CharacterController { get; }
 
-        public event Action<string, IController> OnReady;
         public event Action<Vector2> OnJoustickMoved;
 
-        private ITestCharacterController _testCharacterController;
-        private IController _testVisualBodyController;
-        private IController _testCharacterDataController;
-        private IController _testUIController;
+        private ITestVisualBodyController _testVisualBodyController;
+        private ITestCharacterDataController _testCharacterDataController;
+        private ITestUIController _testUIController;
+
         private GameObject _character;
-        private TestCharacterData _testCharacterData;
 
-        private bool _visualBodyControllerReady;
-        private bool _characterDataControllerReady;
-        private bool _uiControllerReady;
-
-        #region PUBLIC
-        public void Disable()
-        {
-            SetSystemsActivity(false);
+        public CharacterMovingController(IController parentController)
+        { 
+            CharacterController = (ICharacterController) parentController;
         }
 
-        public void Initialize<T>(T parentController)
+        protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            _testCharacterController = parentController as ITestCharacterController;
-            _testVisualBodyController = _testCharacterController.TestVisualBodyController as IController;
-            _testCharacterDataController = _testCharacterController.TestCharacterDataController as IController;
-            _testUIController = _testCharacterController.TestUIController as IController;
+            InitTestSystem();
 
-            _testVisualBodyController.OnReady += PhysicsInitializer;
-            _testCharacterDataController.OnReady += SetPhysicCharacterProperties;
-            _testUIController.OnReady += InputInitializer;
-        }
-        #endregion PUBLIC
+            if (GetDependentSystemsActivity())
+            {
+                _character = _testVisualBodyController.GetCharacterGameobject();
+                
+                _character.AddComponent<CharacterPhysicMoving>();
 
+                CharacterPhysicMoving characterPhysicMoving = _character.GetComponent<CharacterPhysicMoving>();
 
-        #region PRIVATE
-        private void PhysicsInitializer(string arg1, IController controller)
-        {
-            _character = _testCharacterController.TestVisualBodyController.GetCharacterGameobject();
-
-            _visualBodyControllerReady = true;
-            OnControllerReady();
+                characterPhysicMoving.MovingSpeed = _testCharacterDataController.GetCharacterData().SpeedMoving;
+                characterPhysicMoving.MovingRotation = _testCharacterDataController.GetCharacterData().SpeedRotation;
+                characterPhysicMoving.Gravity = _testCharacterDataController.GetCharacterData().Gravity;
+                characterPhysicMoving.CharacterMovingController = this;
+                characterPhysicMoving.Initialize();
+            }
         }
 
-        private void SetPhysicCharacterProperties(string arg1, IController controller)
+        private void InitTestSystem()
         {
-            _testCharacterData = _testCharacterController.TestCharacterDataController.GetCharacterData();
-
-            _characterDataControllerReady = true;
-            OnControllerReady();
-        }
-
-        private void InputInitializer(string arg1, IController controller)
-        {
-            (controller as ITestUIController).OnJoustickMoved += HandheldJoystickMoved;
-
-            _uiControllerReady = true;
-            OnControllerReady();
+            _testVisualBodyController = new TestVisualBodyController(this);
+            
+            _testCharacterDataController = new TestCharacterDataController(this);
+            
+            _testUIController = new TestUIController(this);
+            _testUIController.OnJoustickMoved += HandheldJoystickMoved;
         }
 
         private void HandheldJoystickMoved(Vector2 joystickPosition)
@@ -72,29 +56,16 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
             OnJoustickMoved?.Invoke(joystickPosition);
         }
 
-        private void OnControllerReady()
+        private bool GetDependentSystemsActivity()
         {
-            if (_visualBodyControllerReady && _characterDataControllerReady && _uiControllerReady)
+            if (_testVisualBodyController != null && _testCharacterDataController != null && _testUIController != null)
             {
-                _character.AddComponent<CharacterPhysicMoving>();
-
-                CharacterPhysicMoving characterPhysicMoving = _character.GetComponent<CharacterPhysicMoving>();
-
-                characterPhysicMoving.MovingSpeed = _testCharacterData.SpeedMoving;
-                characterPhysicMoving.MovingRotation = _testCharacterData.SpeedRotation;
-                characterPhysicMoving.Gravity = _testCharacterData.Gravity;
-                characterPhysicMoving.CharacterMovingController = this;
-                characterPhysicMoving.Initialize();
-
-                SetSystemsActivity(true);
+                return true;
+            }
+            else 
+            { 
+                return false; 
             }
         }
-
-        private void SetSystemsActivity(bool isActive)
-        {
-            IsActive = isActive;
-            OnReady?.Invoke(String.Empty, this);
-        }
-        #endregion PRIVATE
     }
 }

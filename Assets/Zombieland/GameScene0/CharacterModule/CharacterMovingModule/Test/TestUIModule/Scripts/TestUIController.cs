@@ -1,53 +1,31 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
-using Zombieland.RootModule;
 
-namespace Zombieland.CharacterModule.CharacterMovingModule
+namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 {
-    public class TestUIController : MonoBehaviour, IController, ITestUIController
+    public class TestUIController : Controller, ITestUIController
     {
-        public bool IsActive { get; private set; }
+        public ICharacterController CharacterController { get; }
 
-        public event Action<string, IController> OnReady;
         public event Action<Vector2> OnJoustickMoved;
 
-        private GameObject _prefab;
-        private string _prefabName = "InputSystem";
-        private GameObject _inputSystemGameObject;
-        private InputSystem _inputSystem;
+        private CreateInputGameobject _inputSystem;
 
-        #region PUBLIC
-        public void Disable()
+        public TestUIController(IController parentController)
         {
-            SetSystemsActivity(false);
+            //CharacterController = (ICharacterController)parentController;
         }
 
-        public void Initialize<T>(T parentController)
+        protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            _prefab = Resources.Load<GameObject>(_prefabName);
-            _inputSystemGameObject = Instantiate(_prefab);
-
-            Canvas canvasComponent = FindObjectOfType<Canvas>();
-            _inputSystemGameObject.transform.SetParent(canvasComponent.transform);
-
-            _inputSystem = _inputSystemGameObject.GetComponent<InputSystem>();
-            _inputSystem.OnJoustickMoved += HandleJoustickMoved;
-
-            SetSystemsActivity(true);
+            _inputSystem = new CreateInputGameobject();
+            _inputSystem.InputSystem.OnJoustickMoved += OnJoustickMoved;
         }
-        #endregion PUBLIC
 
-        #region PRIVATE
         private void HandleJoustickMoved(Vector2 joystickPosition)
         {
             OnJoustickMoved?.Invoke(joystickPosition);
         }
-
-        private void SetSystemsActivity(bool isActive)
-        {
-            IsActive = isActive;
-            OnReady?.Invoke(String.Empty, this);
-        }
-        #endregion PRIVATE
     }
 }

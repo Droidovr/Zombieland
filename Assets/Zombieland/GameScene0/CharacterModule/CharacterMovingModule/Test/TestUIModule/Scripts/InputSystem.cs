@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Zombieland.CharacterModule.CharacterMovingModule
+namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 {
     public class InputSystem : MonoBehaviour
     {
@@ -16,8 +16,18 @@ namespace Zombieland.CharacterModule.CharacterMovingModule
             _inputSystemControls.Main.Move.canceled += context => Move();
         }
 
-        private void OnEnable() => _inputSystemControls.Enable();
-        private void OnDisable() => _inputSystemControls.Disable();
+        private void OnEnable()
+        {
+            _inputSystemControls.Enable();
+            _inputSystemControls.Main.Move.performed += context => Move();
+            _inputSystemControls.Main.Move.canceled += context => Move();
+        }
+        private void OnDisable()
+        {
+            _inputSystemControls.Disable();
+            _inputSystemControls.Main.Move.performed -= context => Move();
+            _inputSystemControls.Main.Move.canceled -= context => Move();
+        }
         
         private void Move()
         {

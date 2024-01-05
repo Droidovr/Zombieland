@@ -1,40 +1,26 @@
-using System;
-using Zombieland.RootModule;
+using System.Collections.Generic;
 
-namespace Zombieland.CharacterModule.CharacterMovingModule
+namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 {
-    public class TestCharacterDataController : IController, ITestCharacterDataController
+    public class TestCharacterDataController : Controller, ITestCharacterDataController
     {
-        public bool IsActive { get; private set; }
-        public event Action<string, IController> OnReady;
+        public ICharacterController CharacterController { get; }
 
         private TestCharacterData _testCharacterData;
 
-        #region PUBLIC
-        public void Disable()
+        public TestCharacterDataController(IController parentController) 
         {
-            SetSystemsActivity(false);
+            //CharacterController = (ICharacterController)parentController;
         }
 
-        public void Initialize<T>(T parentController)
-        {
-            _testCharacterData = new TestCharacterData();
-
-            SetSystemsActivity(true);
-        }
         public TestCharacterData GetCharacterData()
         {
             return _testCharacterData;
         }
-        #endregion PUBLIC
 
-
-        #region PRIVATE
-        private void SetSystemsActivity(bool isActive)
+        protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            IsActive = isActive;
-            OnReady?.Invoke(String.Empty, this);
+            _testCharacterData = new TestCharacterData();
         }
-        #endregion PRIVATE
     }
 }

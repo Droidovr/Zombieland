@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Zombieland.CharacterModule.CharacterMovingModule
+namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 {
     public interface ITestUIController
     {
