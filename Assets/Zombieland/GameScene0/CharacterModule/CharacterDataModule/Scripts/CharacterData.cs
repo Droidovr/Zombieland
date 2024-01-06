@@ -7,5 +7,11 @@ namespace Zombieland.CharacterModule.CharacterDataModule
     {
         public float MaxSpeed;
         public float MaxAcceleration;
+        
+
+        public void Init()
+        {
+            
+        }
     }
 }

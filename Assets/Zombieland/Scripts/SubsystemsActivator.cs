@@ -10,7 +10,8 @@ namespace Zombieland
 {
     public sealed class SubsystemsActivator : ISubsystemsActivator
     {
-        public bool IsReady => _currentActivity == _targetActivity;
+        public bool IsActive => _currentActivity;
+        public event Action<string> OnReady;
         public List<IController> SubsystemsControllers { get; set; }
 
         private readonly IController _parentController;
@@ -21,7 +22,7 @@ namespace Zombieland
         private bool _targetActivity;
         private bool _currentActivity;
         private CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
-        private const int ControlTime = 2000; //in millisecond
+        private const int ControlTime = 5000; //in millisecond
 
 
         public SubsystemsActivator(IController parentController)
@@ -33,23 +34,24 @@ namespace Zombieland
 
         public void SetSubsystemsActivity(bool isActive)
         {
+            _targetActivity = isActive;
+
             if (SubsystemsControllers.Count == 0)
             {
                 _cancellationTokenSource.Cancel();
                 ShowControllersState();
-                _parentController.OnSystemReadyHandler(String.Empty);
+                OnReady?.Invoke(String.Empty);
             }
             else
             {
                 StartCountdownCfControlTime();
-                _targetActivity = isActive;
-                _currentActivity = !isActive;
+
                 _preparedControllerNames.Clear();
                 _counter = SubsystemsControllers.Count;
             
                 for (int i = 0; i < SubsystemsControllers.Count; i++)
                 {
-                    SubsystemsControllers[i].OnReady += OnSubsystemsReadinessHandler;
+                    SubsystemsControllers[i].OnReady += OnSubsystemReadinessHandler;
                 }
 
                 if (isActive)
@@ -79,33 +81,37 @@ namespace Zombieland
             });
         }
 
-        private void OnSubsystemsReadinessHandler(string errorMessage, IController reportingController)
+        private void OnSubsystemReadinessHandler(string errorMessage, IController reportingController)
         {
-            reportingController.OnReady -= OnSubsystemsReadinessHandler;
+            reportingController.OnReady -= OnSubsystemReadinessHandler;
             if (string.IsNullOrEmpty(errorMessage))
             {
                 _preparedControllerNames.Add(reportingController.GetType().Name);
                 _counter--;
                 if (_counter == 0)
                 {
-                    OnSystemReadyHandler(string.Empty);
+                    OnAllSubsystemsReadinessHandler(string.Empty);
                 }
             }
             else
             {
                 for (int i = 0; i < SubsystemsControllers.Count; i++)
                 {
-                    SubsystemsControllers[i].OnReady -= OnSubsystemsReadinessHandler;
+                    SubsystemsControllers[i].OnReady -= OnSubsystemReadinessHandler;
                 }
-                OnSystemReadyHandler($"{this.GetType().Name}: Report from {reportingController.GetType().Name}. System preparation failure! Error message: {errorMessage}");
+                OnAllSubsystemsReadinessHandler($"{this.GetType().Name}: Report from {reportingController.GetType().Name}. System preparation failure! Error message: {errorMessage}");
             }
         }
 
-        private void OnSystemReadyHandler(string errorMessage)
+        private void OnAllSubsystemsReadinessHandler(string errorMessage)
         {
+            if (String.IsNullOrEmpty(errorMessage))
+            {
+                _currentActivity = _targetActivity;
+            }
             ShowControllersState();
             _cancellationTokenSource.Cancel();
-            _parentController.OnSystemReadyHandler(errorMessage);
+            OnReady?.Invoke(errorMessage);
         }
 
         // Disabling startup after time has elapsed.

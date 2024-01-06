@@ -7,7 +7,7 @@ namespace Zombieland
         /// <summary>
         /// Is the enable or disable process complete successfully?
         /// </summary>
-        bool IsReady { get; }
+        bool IsActive { get; }
         /// <summary>
         /// arg0 - ERROR message or empty string.
         /// arg1 - this controller.
@@ -17,6 +17,5 @@ namespace Zombieland
 
         void Enable();
         void Disable();
-        void OnSystemReadyHandler(string errorMessage);
     }
 }
