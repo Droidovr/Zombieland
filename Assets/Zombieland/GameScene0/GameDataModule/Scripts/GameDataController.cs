@@ -1,17 +1,16 @@
-
 using System.Collections.Generic;
-using UnityEngine;
 using Zombieland.GameScene0.RootModule;
 
 namespace Zombieland.GameScene0.GameDataModule
 {
     public class GameDataController : Controller, IGameDataController
     {
-        private IStorage _storage;
         public IRootController RootController { get; }
 
+        private IStorage _storage;
 
-        public GameDataController(IController parentController)
+
+        public GameDataController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             RootController = parentController as IRootController;
         }
@@ -25,15 +24,20 @@ namespace Zombieland.GameScene0.GameDataModule
         {
             return _storage.GetData<T>(name);
         }
-        
 
-        protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
+
+        protected override void CreateHelpersScripts()
         {
 #if UNITY_EDITOR
             _storage = new ResourcesStorage();
 #else
             _storage = new PlayerPrefsStorage();
 #endif
+        }
+
+        protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
+        {
+            // This controller doesn’t have any subsystems at the moment.
         }
     }
 }
