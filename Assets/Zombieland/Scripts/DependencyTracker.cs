@@ -12,7 +12,7 @@ namespace Zombieland
 
         private readonly IController _parentController;
         private List<IController> _requiredControllers;
-        private List<IController> _notPreparedRequiredControllers;
+        private List<IController> _notActiveRequiredControllers;
         private int _counter;
         private CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
         private const int ControlTime = 100; //in millisecond
@@ -26,22 +26,23 @@ namespace Zombieland
 
         public void Init()
         {
-            Debug.Log($"<color=gray>{_parentController.GetType().FullName} Init!</color>");
+            Debug.Log($"{_parentController.GetType().Name} Init!");
             TrackRequiredControllerCreation();
         }
 
         public void Deinit()
         {
             _cancellationTokenSource.Cancel();
-            for (int i = 0; i < _notPreparedRequiredControllers.Count; i++)
+            for (int i = 0; i < _notActiveRequiredControllers.Count; i++)
             {
-                _notPreparedRequiredControllers[i].OnReady -= OnRequiredControllerReadyHandler;
+                _notActiveRequiredControllers[i].OnReady -= OnRequiredControllerReadyHandler;
             }
         }
 
         private void TrackRequiredControllerCreation()
         {
-            Task.Delay(ControlTime, _cancellationTokenSource.Token).ContinueWith(task => {
+            Task.Delay(ControlTime, _cancellationTokenSource.Token).ContinueWith(task =>
+            {
                 if (!task.IsCanceled)
                 {
                     OnPassedTimeHandler();
@@ -52,50 +53,33 @@ namespace Zombieland
         private void OnPassedTimeHandler()
         {
             _cancellationTokenSource.Cancel();
-            // Debug.Log($"<color=gray>{_parentController.GetType().FullName}  OnTimedEvent.</color>");
-            _counter = _requiredControllers.Count;
-            for (int i = 0; i < _requiredControllers.Count; i++)
-            {
-                if (_requiredControllers[i] != null)
-                {
-                    _counter--;
-                     // Debug.Log($"<color=gray>{_parentController.GetType().Name} Controller {_requiredControllers[i].GetType().Name} != null = {_requiredControllers[i] != null}  Counter = {_counter}!</color>");
-                }
-                else
-                {
-                    // Debug.Log($"<color=gray>{_parentController.GetType().Name} Controller {_requiredControllers[i].GetType().Name} != null = {_requiredControllers[i] != null}  Counter = {_counter}!</color>");
-                }
-            }
-            Debug.Log($"<color=gray>{_parentController.GetType().FullName}  OnTimedEvent. Counter of unprepared controllers = {_counter}!</color>");
-            if (_counter == 0)
-            {
-                Debug.Log($"<color=gray>{_parentController.GetType().FullName}  OnTimedEvent. All the required controllers have been created!</color>");
-                CheckRequiredControllersReadiness();
-            }
+            CheckRequiredControllersReadiness();
         }
 
         private void CheckRequiredControllersReadiness()
         {
-            _notPreparedRequiredControllers = new List<IController>();
-            Debug.Log($"<color=gray>{_parentController.GetType().FullName} _requiredControllers.Count = {_requiredControllers.Count}</color>");
+            _notActiveRequiredControllers = new List<IController>();
+            Debug.Log($"{_parentController.GetType().Name}:   Number of dependencies = {_requiredControllers.Count}:");
+
             for (int i = 0; i < _requiredControllers.Count; i++)
             {
-                Debug.Log($"<color=gray>{_parentController.GetType().FullName} _requiredControllers[i] == null = {_requiredControllers[i] == null }</color>");
-                if (!_requiredControllers[i].IsActive)
+                if (_requiredControllers[i] != null && !_requiredControllers[i].IsActive)
                 {
-                    _notPreparedRequiredControllers.Add(_requiredControllers[i]);
+                    Debug.Log($"{_parentController.GetType().Name}:   Required controller -{_requiredControllers[i].GetType().Name}- {(_requiredControllers[i].IsActive ? "Is Active!" : "Is not Active!")}");
+                    _notActiveRequiredControllers.Add(_requiredControllers[i]);
                 }
             }
 
-            if (_notPreparedRequiredControllers.Count == 0)
+            if (_notActiveRequiredControllers.Count == 0)
             {
                 OnDependencysReadyHandler(string.Empty);
             }
             else
             {
-                for (int i = 0; i < _notPreparedRequiredControllers.Count; i++)
+                for (int i = 0; i < _notActiveRequiredControllers.Count; i++)
                 {
-                    _notPreparedRequiredControllers[i].OnReady += OnRequiredControllerReadyHandler;
+                    Debug.Log($"{_parentController.GetType().Name}:   We are waiting activation of -{_notActiveRequiredControllers[i].GetType().Name}-");
+                    _notActiveRequiredControllers[i].OnReady += OnRequiredControllerReadyHandler;
                 }
             }
         }
@@ -105,25 +89,37 @@ namespace Zombieland
             reportingController.OnReady -= OnRequiredControllerReadyHandler;
             if (string.IsNullOrEmpty(errorMessage))
             {
-                var id = _notPreparedRequiredControllers.IndexOf(reportingController);
-                _notPreparedRequiredControllers.RemoveAt(id);
-                if (_notPreparedRequiredControllers.Count == 0)
+                var id = _notActiveRequiredControllers.IndexOf(reportingController);
+                _notActiveRequiredControllers.RemoveAt(id);
+                if (_notActiveRequiredControllers.Count == 0)
                 {
                     OnDependencysReadyHandler(string.Empty);
                 }
             }
             else
             {
-                for (int i = 0; i < _notPreparedRequiredControllers.Count; i++)
+                for (int i = 0; i < _notActiveRequiredControllers.Count; i++)
                 {
-                    _notPreparedRequiredControllers[i].OnReady -= OnRequiredControllerReadyHandler;
+                    _notActiveRequiredControllers[i].OnReady -= OnRequiredControllerReadyHandler;
                 }
-                OnDependencysReadyHandler($"{this.GetType().Name}: Report from {reportingController.GetType().FullName}. Required controller {reportingController.GetType().Name} is crashed!");
+
+                OnDependencysReadyHandler(
+                    $"{this.GetType().Name}: Report from {reportingController.GetType().Name}. Required controller {reportingController.GetType().Name} is crashed!");
             }
         }
 
         private void OnDependencysReadyHandler(string errorMessage)
         {
+            if (string.IsNullOrEmpty(errorMessage))
+            {
+                Debug.Log($"<color=green>{_parentController.GetType().Name} All dependencies are ready!</color>");
+            }
+            else
+            {
+                Debug.Log(
+                    $"<color=red>{_parentController.GetType().Name} Not all dependencies are ready! {errorMessage}</color>");
+            }
+
             OnReady?.Invoke(errorMessage);
         }
     }

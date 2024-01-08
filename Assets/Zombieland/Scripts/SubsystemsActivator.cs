@@ -22,7 +22,7 @@ namespace Zombieland
         private bool _targetActivity;
         private bool _currentActivity;
         private CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
-        private const int ControlTime = 5000; //in millisecond
+        private const int ControlTime = 10000; //in millisecond
 
 
         public SubsystemsActivator(IController parentController)
@@ -127,16 +127,19 @@ namespace Zombieland
         private void ShowControllersState()
         {
             var unpreparedControllerNames = _controllerNames.Except(_preparedControllerNames).ToList();
+            if (_controllerNames.Length > 0)
+            {
+                Debug.Log($"Report from {_parentController.GetType().FullName} : All subcontrollers: <color=green>{GetCombinedNamesOf(_controllerNames.ToList())}</color>");
+            }
+            
             if (_preparedControllerNames.Count > 0)
             {
-                Debug.Log(
-                    $"Report from {_parentController.GetType().FullName} : Prepared controllers: <color=green>{GetCombinedNamesOf(_preparedControllerNames)}</color>");
+                Debug.Log($"Report from {_parentController.GetType().FullName} : Prepared controllers: <color=green>{GetCombinedNamesOf(_preparedControllerNames)}</color>");
             }
 
             if (unpreparedControllerNames.Count > 0)
             {
-                Debug.Log(
-                    $"Report from {_parentController.GetType().FullName} : Unprepared controllers: <color=red>{GetCombinedNamesOf(unpreparedControllerNames)}</color>");
+                Debug.Log($"Report from {_parentController.GetType().FullName} : Unprepared controllers: <color=red>{GetCombinedNamesOf(unpreparedControllerNames)}</color>");
             }
         }
 

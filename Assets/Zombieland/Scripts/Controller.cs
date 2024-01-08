@@ -78,17 +78,16 @@ namespace Zombieland
         private void OnSystemReadyHandler(string errorMessage)
         {
             _subsystemsActivator.OnReady -= OnSystemReadyHandler;
-            if (string.IsNullOrEmpty(errorMessage))
+            IsActive = string.IsNullOrEmpty(errorMessage);
+            if (IsActive)
             {
-                Debug.Log($"{this.GetType().FullName} subsystems are ready!");
+                Debug.Log($"<color=green>{this.GetType().Name} subsystems are ready!</color>");
             }
             else
             {
-                Debug.Log($"<color=red> {this.GetType().FullName} System are not ready! </color>");
+                Debug.Log($"<color=red> {this.GetType().Name} System are not ready! </color>");
                 Debug.LogError(errorMessage);
             }
-
-            IsActive = _subsystemsActivator.IsActive;
             OnReady?.Invoke(errorMessage, this);
         }
     }

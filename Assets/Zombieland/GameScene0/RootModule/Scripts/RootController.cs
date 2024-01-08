@@ -12,11 +12,12 @@ namespace Zombieland.GameScene0.RootModule
         public IEnvironmentController EnvironmentController { get; private set; }
 
 
-        public RootController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
+        public RootController(IController parentController, List<IController> requiredControllers) : base(
+            parentController, requiredControllers)
         {
             // This class’s constructor doesn’t have any content yet.
         }
-        
+
         protected override void CreateHelpersScripts()
         {
             // This controller doesn’t have any helpers scripts at the moment.
@@ -24,14 +25,13 @@ namespace Zombieland.GameScene0.RootModule
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            GameDataController = new GameDataController(this, null);
-            subsystemsControllers.Add((IController)GameDataController);
-            
-            EnvironmentController = new EnvironmentController(this, new List<IController> {(IController) GameDataController});
-            subsystemsControllers.Add((IController)EnvironmentController);
-            
             CharacterController = new CharacterController(this, new List<IController> {(IController) EnvironmentController, (IController) GameDataController});
-            subsystemsControllers.Add((IController)CharacterController);
+            GameDataController = new GameDataController(this, null);
+            EnvironmentController = new EnvironmentController(this, new List<IController> {(IController) GameDataController});
+
+            subsystemsControllers.Add((IController) CharacterController);
+            subsystemsControllers.Add((IController) GameDataController);
+            subsystemsControllers.Add((IController) EnvironmentController);
         }
     }
 }
