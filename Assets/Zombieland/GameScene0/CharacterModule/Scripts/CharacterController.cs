@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using Zombieland.CharacterModule.CharacterDataModule;
-using Zombieland.CharacterModule.WeaponModule;
+using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
+using Zombieland.GameScene0.CharacterModule.WeaponModule;
 using Zombieland.GameScene0.RootModule;
 
 namespace Zombieland.GameScene0.CharacterModule

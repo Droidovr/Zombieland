@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace Zombieland.CharacterModule.WeaponModule
+namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
     public class WeaponController : Controller, IWeaponController
     {

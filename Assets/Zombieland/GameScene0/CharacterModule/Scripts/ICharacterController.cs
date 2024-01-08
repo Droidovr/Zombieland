@@ -1,5 +1,5 @@
-﻿using Zombieland.CharacterModule.CharacterDataModule;
-using Zombieland.CharacterModule.WeaponModule;
+﻿using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
+using Zombieland.GameScene0.CharacterModule.WeaponModule;
 
 namespace Zombieland.GameScene0.CharacterModule
 {

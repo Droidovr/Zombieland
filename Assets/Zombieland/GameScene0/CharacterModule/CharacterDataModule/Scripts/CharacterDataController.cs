@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Zombieland.CharacterModule.CharacterDataModule
+namespace Zombieland.GameScene0.CharacterModule.CharacterDataModule
 {
     public class CharacterDataController : Controller, ICharacterDataController
     {
