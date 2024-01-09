@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Zombieland.GameScene0.UIModule
+{
+    public class UIController : Controller, IUIController
+    {
+        public event Action<Vector2> OnJoystickMoved;
+
+        private CreateInputSystem _inputSystem;
+
+        public UIController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
+        {
+            // This class’s constructor doesn’t have any content yet.
+        }
+
+        protected override void CreateHelpersScripts()
+        {
+            //Debug.Log("<color=red>UI CreateHelpersScripts</color>");
+            //_inputSystem = new CreateInputSystem();
+            //_inputSystem.Init();
+            //_inputSystem.InputSystem.OnJoystickMoved += HandleJoystickMoved;
+        }
+
+        protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
+        {
+            // This controller doesn’t have any subsystems at the moment.
+        }
+
+        private void HandleJoystickMoved(Vector2 joystickPosition)
+        {
+            OnJoystickMoved?.Invoke(joystickPosition);
+            Debug.Log(joystickPosition);
+        }
+    }
+}
