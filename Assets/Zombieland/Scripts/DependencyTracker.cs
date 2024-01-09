@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Zombieland
@@ -27,7 +26,7 @@ namespace Zombieland
         public void Init()
         {
             Debug.Log($"{_parentController.GetType().Name} Init!");
-            TrackRequiredControllerCreation();
+            CheckRequiredControllersReadiness();
         }
 
         public void Deinit()
@@ -38,23 +37,7 @@ namespace Zombieland
                 _notActiveRequiredControllers[i].OnReady -= OnRequiredControllerReadyHandler;
             }
         }
-
-        private void TrackRequiredControllerCreation()
-        {
-            Task.Delay(ControlTime, _cancellationTokenSource.Token).ContinueWith(task =>
-            {
-                if (!task.IsCanceled)
-                {
-                    OnPassedTimeHandler();
-                }
-            });
-        }
-
-        private void OnPassedTimeHandler()
-        {
-            _cancellationTokenSource.Cancel();
-            CheckRequiredControllersReadiness();
-        }
+        
 
         private void CheckRequiredControllersReadiness()
         {

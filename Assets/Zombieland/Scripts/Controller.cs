@@ -9,9 +9,10 @@ namespace Zombieland
         public bool IsActive { get; private set; }
         public event Action<string, IController> OnReady;
 
-        protected readonly IController _parentController;
-        private readonly ISubsystemsActivator _subsystemsActivator;
-        private readonly IDependencyTracker _dependencyTracker;
+        protected  IController _parentController;
+        private  ISubsystemsActivator _subsystemsActivator;
+        private  IDependencyTracker _dependencyTracker;
+        private List<IController> _requiredControllers;
 
 /// <summary>
 /// 
@@ -21,19 +22,15 @@ namespace Zombieland
         public Controller(IController parentController, List<IController> requiredControllers)
         {
             _parentController = parentController;
-            _dependencyTracker = new DependencyTracker(this, requiredControllers);
-            _subsystemsActivator = new SubsystemsActivator(this);
+            _requiredControllers = requiredControllers;
         }
 
         public virtual void Enable()
         {
+            _dependencyTracker = new DependencyTracker(this, _requiredControllers);
+            _subsystemsActivator = new SubsystemsActivator(this);
             _dependencyTracker.OnReady += OnDependencysReadyHandler;
             _dependencyTracker.Init();
-        }
-
-        public virtual void Enable(List<IController> subsystemsControllers)
-        {
-            _subsystemsActivator.SetSubsystemsActivity(true);
         }
 
         public virtual void Disable()
