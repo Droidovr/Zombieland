@@ -13,7 +13,6 @@ namespace Zombieland.GameScene0.UIModule
         public UIController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             // This class’s constructor doesn’t have any content yet.
-            CreateInputSystem();
         }
 
         public override void Disable()
@@ -23,23 +22,20 @@ namespace Zombieland.GameScene0.UIModule
 
         protected override void CreateHelpersScripts()
         {
-            //CreateInputSystem();
+            //GameObject emptyGameobject = new GameObject();
+            //emptyGameobject.AddComponent<InitializerJoystick>();
+
+            //_initializerJoystick = emptyGameobject.GetComponent<InitializerJoystick>();
+
+            //_initializerJoystick.Init();
+
+
+            //_initializerJoystick.InputSystem.OnJoystickMoved += HandleJoystickMoved;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
             // This controller doesn’t have any subsystems at the moment.
-        }
-
-        private void CreateInputSystem()
-        {
-            GameObject emptyGameobject = new GameObject();
-            emptyGameobject.AddComponent<InitializerJoystick>();
-
-            _initializerJoystick = emptyGameobject.GetComponent<InitializerJoystick>();
-
-            _initializerJoystick.Init();
-            _initializerJoystick.InputSystem.OnJoystickMoved += HandleJoystickMoved;
         }
 
         private void HandleJoystickMoved(Vector2 joystickPosition)
