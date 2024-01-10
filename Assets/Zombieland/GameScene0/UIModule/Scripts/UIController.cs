@@ -1,61 +1,42 @@
-using System;
 using System.Collections.Generic;
-using UnityEngine;
+using Zombieland.GameScene0.RootModule;
 
 namespace Zombieland.GameScene0.UIModule
 {
     public class UIController : Controller, IUIController
     {
-        public event Action<Vector2> OnJoystickMoved;
+        public IUIMobileController UIMobileController { get; private set; }
+        public IUIPCController UIPCController { get; private set; }
 
-        private InitializerJoystick _initializerJoystick;
+        /// Mobile controllerSelection = 0
+        /// PC controllerSelection = 1
+        private int _controllerSelection = 1;
 
-        #region PUBLIC
+        private readonly IRootController _rootController;
+
         public UIController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
-            // This class’s constructor doesn’t have any content yet.
+            _rootController = parentController as IRootController;
         }
 
-        public override void Disable()
-        {
-            if (_initializerJoystick != null)
-            {
-                _initializerJoystick.InputManager.OnJoystickMoved -= HandleJoystickMoved;
-            }
-        }
-        #endregion PUBLIC
-
-
-
-
-        #region PROTECTED
         protected override void CreateHelpersScripts()
         {
-            CreateJoystick();
+            // This controller does not have helpers scripts.
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            // This controller doesn’t have any subsystems at the moment.
+            if (_controllerSelection == 0)
+            {
+                UIMobileController = new UIMobileController(this, null);
+                subsystemsControllers.Add((IController)UIMobileController);
+            }
+
+            if (_controllerSelection == 1)
+            {
+                UIPCController = new UIPCController(this, null);
+                subsystemsControllers.Add((IController)UIPCController);
+            }
         }
-        #endregion PROTECTED
-
-
-
-
-        #region PRIVATE
-        private void CreateJoystick()
-        {
-            _initializerJoystick = new InitializerJoystick();
-            _initializerJoystick.Init();
-            _initializerJoystick.InputManager.OnJoystickMoved += HandleJoystickMoved;
-        }
-
-        private void HandleJoystickMoved(Vector2 joystickPosition)
-        {
-            OnJoystickMoved?.Invoke(joystickPosition);
-            Debug.Log(joystickPosition);
-        }
-        #endregion PRIVATE
     }
 }

@@ -4,9 +4,9 @@ using Zombieland.GameScene0.UIModule;
 
 public class Creator
 {
-    public InputManager InputSystem => _inputSystem;
+    public InputMobileManager InputSystem => _inputSystem;
 
-    private InputManager _inputSystem;
+    private InputMobileManager _inputSystem;
 
 
     public void Create()
@@ -21,6 +21,6 @@ public class Creator
         GameObject _inputSystemGameobject = GameObject.Instantiate(_prefab, canvas.transform);
 
         Debug.Log("444444444");
-        _inputSystem = _inputSystemGameobject.GetComponent<InputManager>();
+        _inputSystem = _inputSystemGameobject.GetComponent<InputMobileManager>();
     }
 }

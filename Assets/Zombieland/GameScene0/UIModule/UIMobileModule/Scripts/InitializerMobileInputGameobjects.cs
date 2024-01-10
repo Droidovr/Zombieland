@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Zombieland.GameScene0.UIModule
 {
-    public class InitializerJoystick
+    public class InitializerMobileInputGameobjects
     {
-        public InputManager InputManager { get; private set; }
+        public InputMobileManager InputMobileManager { get; private set; }
 
         private const string JOYSTICK_PREFAB_NAME = "Input";        
 
@@ -12,12 +12,11 @@ namespace Zombieland.GameScene0.UIModule
         {
             var _prefab = Resources.Load<GameObject>(JOYSTICK_PREFAB_NAME);
 
-            Canvas canvas = GameObject.FindWithTag("InputSystem").GetComponent<Canvas>();
+            Canvas canvas = GameObject.FindWithTag("Input").GetComponent<Canvas>();
 
             GameObject _inputSystemGameobject = GameObject.Instantiate(_prefab, canvas.transform);
 
-            InputManager = _inputSystemGameobject.GetComponent<InputManager>();
-            //InputManager = new InputManager();
+            InputMobileManager = _inputSystemGameobject.GetComponent<InputMobileManager>();
         }
     }
 }
