@@ -10,6 +10,7 @@ namespace Zombieland.GameScene0.UIModule
 
         private InitializerJoystick _initializerJoystick;
 
+        #region PUBLIC
         public UIController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             // This class’s constructor doesn’t have any content yet.
@@ -17,25 +18,37 @@ namespace Zombieland.GameScene0.UIModule
 
         public override void Disable()
         {
-            //_initializerJoystick.InputSystem.OnJoystickMoved -= HandleJoystickMoved;
+            if (_initializerJoystick != null)
+            {
+                _initializerJoystick.InputManager.OnJoystickMoved -= HandleJoystickMoved;
+            }
         }
+        #endregion PUBLIC
 
+
+
+
+        #region PROTECTED
         protected override void CreateHelpersScripts()
         {
-            //GameObject emptyGameobject = new GameObject();
-            //emptyGameobject.AddComponent<InitializerJoystick>();
-
-            //_initializerJoystick = emptyGameobject.GetComponent<InitializerJoystick>();
-
-            //_initializerJoystick.Init();
-
-
-            //_initializerJoystick.InputSystem.OnJoystickMoved += HandleJoystickMoved;
+            CreateJoystick();
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
             // This controller doesn’t have any subsystems at the moment.
+        }
+        #endregion PROTECTED
+
+
+
+
+        #region PRIVATE
+        private void CreateJoystick()
+        {
+            _initializerJoystick = new InitializerJoystick();
+            _initializerJoystick.Init();
+            _initializerJoystick.InputManager.OnJoystickMoved += HandleJoystickMoved;
         }
 
         private void HandleJoystickMoved(Vector2 joystickPosition)
@@ -43,5 +56,6 @@ namespace Zombieland.GameScene0.UIModule
             OnJoystickMoved?.Invoke(joystickPosition);
             Debug.Log(joystickPosition);
         }
+        #endregion PRIVATE
     }
 }

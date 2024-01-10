@@ -2,22 +2,22 @@ using UnityEngine;
 
 namespace Zombieland.GameScene0.UIModule
 {
-    public class InitializerJoystick : MonoBehaviour
+    public class InitializerJoystick
     {
-        public InputSystem InputSystem => _inputSystem;
+        public InputManager InputManager { get; private set; }
 
-        private string _prefabName = "Joystick";
-        private InputSystem _inputSystem;
+        private const string JOYSTICK_PREFAB_NAME = "Input";        
 
         public void Init()
         {
-            GameObject _prefab = Resources.Load<GameObject>(_prefabName);
+            var _prefab = Resources.Load<GameObject>(JOYSTICK_PREFAB_NAME);
 
             Canvas canvas = GameObject.FindWithTag("InputSystem").GetComponent<Canvas>();
 
-            GameObject _inputSystemGameobject = Instantiate(_prefab, canvas.transform);
+            GameObject _inputSystemGameobject = GameObject.Instantiate(_prefab, canvas.transform);
 
-            _inputSystem = _inputSystemGameobject.GetComponent<InputSystem>();
+            InputManager = _inputSystemGameobject.GetComponent<InputManager>();
+            //InputManager = new InputManager();
         }
     }
 }
