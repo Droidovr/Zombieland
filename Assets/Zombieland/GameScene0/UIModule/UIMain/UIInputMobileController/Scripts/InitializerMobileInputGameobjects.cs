@@ -4,7 +4,7 @@ namespace Zombieland.GameScene0.UIModule
 {
     public class InitializerMobileInputGameobjects
     {
-        public InputMobileManager InputMobileManager { get; private set; }
+        public InputMobile InputMobile { get; private set; }
 
         private const string JOYSTICK_PREFAB_NAME = "Input";        
 
@@ -16,7 +16,7 @@ namespace Zombieland.GameScene0.UIModule
 
             GameObject _inputSystemGameobject = GameObject.Instantiate(_prefab, canvas.transform);
 
-            InputMobileManager = _inputSystemGameobject.GetComponent<InputMobileManager>();
+            InputMobile = _inputSystemGameobject.GetComponent<InputMobile>();
         }
     }
 }

@@ -4,16 +4,15 @@ using UnityEngine;
 
 namespace Zombieland.GameScene0.UIModule
 {
-    public class UIMobileController : Controller, IUIMobileController
+    public class UIInputMobileController : Controller, IUIMainController
     {
-        public event Action<Vector2> OnJoystickMoved;
-        public event Action OnFire;
+        public event Action<Vector2> OnMoved;
+        public event Action<string> OnButtonClick;
 
         private InitializerMobileInputGameobjects _initializerInputGameobjects;
 
-
         #region PUBLIC
-        public UIMobileController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
+        public UIInputMobileController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             // This class’s constructor doesn’t have any content yet.
         }
@@ -22,14 +21,11 @@ namespace Zombieland.GameScene0.UIModule
         {
             if (_initializerInputGameobjects != null)
             {
-                _initializerInputGameobjects.InputMobileManager.OnJoystickMoved -= HandleJoystickMoved;
-                _initializerInputGameobjects.InputMobileManager.OnFire -= HandleFire;
+                UnSubscriptionToEvent();
             }
         }
         #endregion PUBLIC
 
-
-        #region PROTECTED
         protected override void CreateHelpersScripts()
         {
             CreateInputGameobjects();
@@ -39,28 +35,36 @@ namespace Zombieland.GameScene0.UIModule
         {
             // This controller doesn’t have any subsystems at the moment.
         }
-        #endregion PROTECTED
-
 
         #region PRIVATE
         private void CreateInputGameobjects()
         {
             _initializerInputGameobjects = new InitializerMobileInputGameobjects();
             _initializerInputGameobjects.Init();
-            _initializerInputGameobjects.InputMobileManager.OnJoystickMoved += HandleJoystickMoved;
-            _initializerInputGameobjects.InputMobileManager.OnFire += HandleFire;
+
+            SubscriptionToEvent();
+        }
+
+        private void SubscriptionToEvent()
+        {
+            _initializerInputGameobjects.InputMobile.OnJoystickMoved += HandleJoystickMoved;
+            _initializerInputGameobjects.InputMobile.OnButtonClick += HandleButtonClick;
+        }
+
+        private void UnSubscriptionToEvent()
+        {
+            _initializerInputGameobjects.InputMobile.OnJoystickMoved -= HandleJoystickMoved;
+            _initializerInputGameobjects.InputMobile.OnButtonClick -= HandleButtonClick;
         }
 
         private void HandleJoystickMoved(Vector2 joystickPosition)
         {
-            OnJoystickMoved?.Invoke(joystickPosition);
-            Debug.Log(joystickPosition);
+            OnMoved?.Invoke(joystickPosition);
         }
 
-        private void HandleFire()
+        private void HandleButtonClick(string nameButton)
         {
-            OnFire?.Invoke();
-            Debug.Log("Pif-Paf ... Pif-Paf ... Pif-Paf !!!!");
+            OnButtonClick?.Invoke(nameButton);
         }
         #endregion PRIVATE
     }

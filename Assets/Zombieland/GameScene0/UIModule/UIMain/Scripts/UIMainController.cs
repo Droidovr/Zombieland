@@ -4,23 +4,23 @@ using UnityEngine;
 
 namespace Zombieland.GameScene0.UIModule
 {
-    public class UIController : Controller, IUIController
+    public class UIMainController : Controller, IUIMainController
     {
         public event Action<Vector2> OnMoved;
-        public event Action<string> OnMainButtonClick;
-        public event Action OnInventoryButtonClick;
+        public event Action<string> OnButtonClick;
 
-        private UIMainController _uIMainController;
+        private UIInputMobileController _uIInputMobileController;
+
 
         #region PUBLIC
-        public UIController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
+        public UIMainController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             // This class’s constructor doesn’t have any content yet.
         }
 
         public override void Disable()
         {
-            if (_uIMainController != null)
+            if (_uIInputMobileController != null)
             {
                 UnSubscriptionToEvent();
             }
@@ -31,13 +31,15 @@ namespace Zombieland.GameScene0.UIModule
         #region PROTECTED
         protected override void CreateHelpersScripts()
         {
-            // This controller doesn’t have any helpers scripts at the moment.
+            // This controller does not have helpers scripts.
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            _uIMainController = new UIMainController(this, null);
-            subsystemsControllers.Add((IController)_uIMainController);
+            // It is necessary to organize the logic of which control system to load depending on the platform
+
+            _uIInputMobileController = new UIInputMobileController(this, null);
+            subsystemsControllers.Add((IController)_uIInputMobileController);
 
             SubscriptionToEvent();
         }
@@ -47,26 +49,24 @@ namespace Zombieland.GameScene0.UIModule
         #region PRIVATE
         private void SubscriptionToEvent()
         {
-            _uIMainController.OnMoved += HandleMoved;
-            _uIMainController.OnButtonClick += HandleMainButtonClick;
+            _uIInputMobileController.OnMoved += HandleMoved;
+            _uIInputMobileController.OnButtonClick += HandleMainButtonClick;
         }
 
         private void UnSubscriptionToEvent()
         {
-            _uIMainController.OnMoved -= HandleMoved;
-            _uIMainController.OnButtonClick -= HandleMainButtonClick;
+            _uIInputMobileController.OnMoved -= HandleMoved;
+            _uIInputMobileController.OnButtonClick -= HandleMainButtonClick;
         }
 
         private void HandleMoved(Vector2 vectorMove)
         {
             OnMoved?.Invoke(vectorMove);
-            Debug.Log(vectorMove);
         }
 
         private void HandleMainButtonClick(string nameButton)
         {
-            OnMainButtonClick?.Invoke(nameButton);
-            Debug.Log(nameButton);
+            OnButtonClick?.Invoke(nameButton);
         }
         #endregion PRIVATE
     }
