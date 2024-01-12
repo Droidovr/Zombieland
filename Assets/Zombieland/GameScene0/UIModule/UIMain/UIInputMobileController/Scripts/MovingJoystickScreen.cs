@@ -1,37 +1,32 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.OnScreen;
 
 namespace Zombieland.GameScene0.UIModule
 {
     public class MovingJoystickScreen : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
-        public delegate void TouchStarted(Vector2 touchPosition);
-        public event TouchStarted OnTouchStarted;
+        [SerializeField] private RectTransform _rectTransform;
+        [SerializeField] private OnScreenStick _onScreenStick;
 
-        public delegate void TouchEnded();
-        public event TouchEnded OnTouchEnded;
+        private Vector2 _startPosition;
 
-        private void OnPointerDown(PointerEventData eventData)
+        private void Start()
         {
-            // Обработка начала касания
-            Vector2 touchPosition = eventData.position;
-            OnTouchStarted?.Invoke(touchPosition);
+            _startPosition = _rectTransform.position;
         }
 
-        private void OnPointerUp(PointerEventData eventData)
+        public void OnPointerDown(PointerEventData eventData)
         {
-            // Обработка завершения касания
-            OnTouchEnded?.Invoke();
+            _rectTransform.position = eventData.position;
+            _onScreenStick.OnPointerDown(eventData);
+            Debug.Log(eventData.position);
         }
 
-        void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
+        public void OnPointerUp(PointerEventData eventData)
         {
-            
-        }
-
-        void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
-        {
-            
+            _rectTransform.position = _startPosition;
+            Debug.Log(eventData.position);
         }
     }
 }
