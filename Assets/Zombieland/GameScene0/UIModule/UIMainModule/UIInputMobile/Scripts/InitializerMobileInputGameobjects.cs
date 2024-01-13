@@ -6,11 +6,11 @@ namespace Zombieland.GameScene0.UIModule
     {
         public InputMobile InputMobile { get; private set; }
 
-        private const string JOYSTICK_PREFAB_NAME = "Input";        
+        private const string INPUT_PREFAB_NAME = "InputMobile";        
 
         public void Init()
         {
-            GameObject prefab = Resources.Load<GameObject>(JOYSTICK_PREFAB_NAME);
+            GameObject prefab = Resources.Load<GameObject>(INPUT_PREFAB_NAME);
 
             Canvas canvas = GameObject.FindWithTag("Input").GetComponent<Canvas>();
 
