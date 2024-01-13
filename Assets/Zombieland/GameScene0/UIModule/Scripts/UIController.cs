@@ -22,7 +22,8 @@ namespace Zombieland.GameScene0.UIModule
         {
             if (_uIMainController != null)
             {
-                UnSubscriptionToEvent();
+                _uIMainController.OnMoved -= HandleMoved;
+                _uIMainController.OnButtonClick -= HandleMainButtonClick;
             }
         }
         #endregion PUBLIC
@@ -39,24 +40,13 @@ namespace Zombieland.GameScene0.UIModule
             _uIMainController = new UIMainController(this, null);
             subsystemsControllers.Add((IController)_uIMainController);
 
-            SubscriptionToEvent();
+            _uIMainController.OnMoved += HandleMoved;
+            _uIMainController.OnButtonClick += HandleMainButtonClick;
         }
         #endregion PROTECTED
 
 
         #region PRIVATE
-        private void SubscriptionToEvent()
-        {
-            _uIMainController.OnMoved += HandleMoved;
-            _uIMainController.OnButtonClick += HandleMainButtonClick;
-        }
-
-        private void UnSubscriptionToEvent()
-        {
-            _uIMainController.OnMoved -= HandleMoved;
-            _uIMainController.OnButtonClick -= HandleMainButtonClick;
-        }
-
         private void HandleMoved(Vector2 vectorMove)
         {
             OnMoved?.Invoke(vectorMove);

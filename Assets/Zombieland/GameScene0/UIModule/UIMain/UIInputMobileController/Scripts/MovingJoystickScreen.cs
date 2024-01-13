@@ -4,29 +4,33 @@ using UnityEngine.InputSystem.OnScreen;
 
 namespace Zombieland.GameScene0.UIModule
 {
-    public class MovingJoystickScreen : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+    public class MovingJoystickScreen : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
     {
-        [SerializeField] private RectTransform _rectTransform;
-        [SerializeField] private OnScreenStick _onScreenStick;
+        [SerializeField] private RectTransform _rectTransformJoystik;
+        [SerializeField] private OnScreenStick _onScreenStickJoystick;
 
         private Vector2 _startPosition;
 
         private void Start()
         {
-            _startPosition = _rectTransform.position;
+            _startPosition = _rectTransformJoystik.localPosition;
         }
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            _rectTransform.position = eventData.position;
-            _onScreenStick.OnPointerDown(eventData);
-            Debug.Log(eventData.position);
+            _rectTransformJoystik.position = eventData.position;
+            _onScreenStickJoystick.OnPointerDown(eventData);
+        }
+
+        public void OnDrag(PointerEventData eventData)
+        {
+            _onScreenStickJoystick.OnDrag(eventData);
         }
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            _rectTransform.position = _startPosition;
-            Debug.Log(eventData.position);
+            _rectTransformJoystik.localPosition = _startPosition;
+            _onScreenStickJoystick.OnPointerUp(eventData);
         }
     }
 }

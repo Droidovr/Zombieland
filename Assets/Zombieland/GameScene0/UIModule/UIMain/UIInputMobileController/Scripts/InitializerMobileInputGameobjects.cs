@@ -10,13 +10,13 @@ namespace Zombieland.GameScene0.UIModule
 
         public void Init()
         {
-            var _prefab = Resources.Load<GameObject>(JOYSTICK_PREFAB_NAME);
+            GameObject prefab = Resources.Load<GameObject>(JOYSTICK_PREFAB_NAME);
 
             Canvas canvas = GameObject.FindWithTag("Input").GetComponent<Canvas>();
 
-            GameObject _inputSystemGameobject = GameObject.Instantiate(_prefab, canvas.transform);
+            GameObject inputSystemGameobject = GameObject.Instantiate(prefab, canvas.transform);
 
-            InputMobile = _inputSystemGameobject.GetComponent<InputMobile>();
+            InputMobile = inputSystemGameobject.GetComponent<InputMobile>();
         }
     }
 }

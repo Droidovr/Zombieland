@@ -10,6 +10,7 @@ namespace Zombieland.GameScene0.UIModule
         public event Action<string> OnButtonClick;
 
         private InitializerMobileInputGameobjects _initializerInputGameobjects;
+        private InputMobile _inputMobile;
 
         #region PUBLIC
         public UIInputMobileController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
@@ -21,42 +22,33 @@ namespace Zombieland.GameScene0.UIModule
         {
             if (_initializerInputGameobjects != null)
             {
-                UnSubscriptionToEvent();
+                _inputMobile.OnJoystickMoved -= HandleJoystickMoved;
+                _inputMobile.OnButtonClick -= HandleButtonClick;
             }
         }
         #endregion PUBLIC
 
+
+        #region PROTECTED
         protected override void CreateHelpersScripts()
         {
-            CreateInputGameobjects();
+            _initializerInputGameobjects = new InitializerMobileInputGameobjects();
+            _initializerInputGameobjects.Init();
+
+            _inputMobile = _initializerInputGameobjects.InputMobile;
+
+            _inputMobile.OnJoystickMoved += HandleJoystickMoved;
+            _inputMobile.OnButtonClick += HandleButtonClick;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
             // This controller doesn’t have any subsystems at the moment.
         }
+        #endregion PROTECTED
+
 
         #region PRIVATE
-        private void CreateInputGameobjects()
-        {
-            _initializerInputGameobjects = new InitializerMobileInputGameobjects();
-            _initializerInputGameobjects.Init();
-
-            SubscriptionToEvent();
-        }
-
-        private void SubscriptionToEvent()
-        {
-            _initializerInputGameobjects.InputMobile.OnJoystickMoved += HandleJoystickMoved;
-            _initializerInputGameobjects.InputMobile.OnButtonClick += HandleButtonClick;
-        }
-
-        private void UnSubscriptionToEvent()
-        {
-            _initializerInputGameobjects.InputMobile.OnJoystickMoved -= HandleJoystickMoved;
-            _initializerInputGameobjects.InputMobile.OnButtonClick -= HandleButtonClick;
-        }
-
         private void HandleJoystickMoved(Vector2 joystickPosition)
         {
             OnMoved?.Invoke(joystickPosition);
