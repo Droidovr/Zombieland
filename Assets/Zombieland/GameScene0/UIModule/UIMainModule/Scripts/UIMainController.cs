@@ -28,8 +28,11 @@ namespace Zombieland.GameScene0.UIModule
                 _uIInputMobileController.OnButtonClick -= HandleMainButtonClick;
             }
 
-            //_uIInputPCController.OnMoved -= HandleMoved;
-            //_uIInputPCController.OnButtonClick -= HandleMainButtonClick;
+            if (_platformType == PlatformType.PC && _uIInputPCController != null)
+            {
+                _uIInputPCController.OnMoved -= HandleMoved;
+                _uIInputPCController.OnButtonClick -= HandleMainButtonClick;
+            }
         }
         #endregion PUBLIC
 
@@ -39,36 +42,32 @@ namespace Zombieland.GameScene0.UIModule
         {
             _platformType = PlatformDetection.GetPlatformType();
 
-            Debug.Log("<color=red>" + _platformType.ToString() + "</color>");
+            Debug.Log("<color=red>PlatformDetection - Type Platform: " + _platformType.ToString() + "</color>");
 
-            //if (_platformType == PlatformType.Unknown)
-            //{
-            //    throw new InvalidOperationException("The platform type could not be determined.");
-            //}
+            if (_platformType == PlatformType.Unknown)
+            {
+                throw new InvalidOperationException("The platform type could not be determined.");
+            }
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            //if (_platformType == PlatformType.Mobile)
-            //{
+            if (_platformType == PlatformType.Mobile)
+            {
                 _uIInputMobileController = new UIInputMobileController(this, null);
                 subsystemsControllers.Add((IController)_uIInputMobileController);
 
                 _uIInputMobileController.OnMoved += HandleMoved;
                 _uIInputMobileController.OnButtonClick += HandleMainButtonClick;
-            //}
+            }
+            else if (_platformType == PlatformType.PC)
+            {
+                _uIInputPCController = new UIInputPCController(this, null);
+                subsystemsControllers.Add((IController)_uIInputPCController);
 
-            //_uIInputPCController = new UIInputPCController(this, null);
-            //subsystemsControllers.Add((IController)_uIInputPCController);
-
-            //_uIInputPCController.OnMoved += HandleMoved;
-            //_uIInputPCController.OnButtonClick += HandleMainButtonClick;
-
-        }
-
-        private void _uIInputPCController_OnMoved(Vector2 obj)
-        {
-            throw new NotImplementedException();
+                _uIInputPCController.OnMoved += HandleMoved;
+                _uIInputPCController.OnButtonClick += HandleMainButtonClick;
+            }
         }
         #endregion PROTECTED
 

@@ -21,10 +21,15 @@ namespace Zombieland.GameScene0.UIModule
                 case RuntimePlatform.MetroPlayerX64:
                 case RuntimePlatform.MetroPlayerARM:
                     return PlatformType.Mobile;
-
+                
                 case RuntimePlatform.PS4:
                 case RuntimePlatform.XboxOne:
                     return PlatformType.Console;
+
+                case RuntimePlatform.WindowsEditor:
+                case RuntimePlatform.OSXEditor:
+                case RuntimePlatform.LinuxEditor:
+                    return PlatformType.PC;
 
                 default:
                     return PlatformType.Unknown;
