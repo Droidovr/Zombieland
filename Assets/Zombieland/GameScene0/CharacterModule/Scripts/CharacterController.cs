@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
+using Zombieland.GameScene0.CharacterModule.CharacterMovingModule;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
 using Zombieland.GameScene0.RootModule;
 
@@ -9,6 +10,7 @@ namespace Zombieland.GameScene0.CharacterModule
     {
         public ICharacterDataController CharacterDataController { get; private set; }
         public IWeaponController WeaponController { get; private set; }
+        public ICharacterMovingController CharacterMovingController { get; private set; }
 
         private readonly IRootController _rootController;
 
@@ -30,6 +32,14 @@ namespace Zombieland.GameScene0.CharacterModule
 
             WeaponController = new WeaponController(this, new List<IController> { (IController)CharacterDataController });
             subsystemsControllers.Add((IController)WeaponController);
+
+            //CharacterMovingController = new CharacterMovingController(this, new List<IController> 
+            //                                                                {
+            //                                                                    (IController) _rootController.UIController,
+            //                                                                    (IController) CharacterDataController,
+            //                                                                    (IController)VisualBodyController 
+            //                                                                });
+            //subsystemsControllers.Add((IController)CharacterMovingController);
         }
     }
 }

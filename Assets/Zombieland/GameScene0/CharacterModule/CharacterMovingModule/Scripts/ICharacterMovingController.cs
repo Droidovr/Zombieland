@@ -5,8 +5,6 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 {
     public interface ICharacterMovingController
     {
-        ICharacterController CharacterController { get; }
-
-        event Action<Vector2> OnJoustickMoved;
+        event Action<Vector2> OnMoved;
     }
 }
