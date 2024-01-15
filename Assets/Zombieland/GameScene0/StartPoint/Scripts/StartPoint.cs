@@ -1,7 +1,6 @@
 using UnityEngine;
 using Zombieland.GameScene0.RootModule;
 
-
 namespace Zombieland.GameScene0.StartPoint
 {
     public class StartPoint : MonoBehaviour
@@ -10,7 +9,7 @@ namespace Zombieland.GameScene0.StartPoint
         
         void Start()
         {
-            _rootController = new RootController();
+            _rootController = new RootController(null, null);
             _rootController.Enable();
         }
 

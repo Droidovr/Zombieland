@@ -1,9 +1,7 @@
-﻿using Zombieland.GameScene0.CharacterModule;
-
-namespace Zombieland.CharacterModule.CharacterDataModule
+﻿namespace Zombieland.GameScene0.CharacterModule.CharacterDataModule
 {
     public interface ICharacterDataController
     {
-        ICharacterController CharacterController { get; }
+        
     }
 }

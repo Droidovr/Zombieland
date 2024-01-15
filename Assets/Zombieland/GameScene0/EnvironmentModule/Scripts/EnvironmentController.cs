@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace Zombieland.GameScene0.CharacterModule.CharacterDataModule
+namespace Zombieland.GameScene0.EnvironmentModule
 {
-    public class CharacterDataController : Controller, ICharacterDataController
+    public class EnvironmentController : Controller, IEnvironmentController
     {
-        public CharacterDataController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
+        public EnvironmentController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             // This class’s constructor doesn’t have any content yet.
         }

@@ -1,6 +1,6 @@
 using System;
 
-namespace Zombieland.CharacterModule.CharacterDataModule
+namespace Zombieland.GameScene0.CharacterModule.CharacterDataModule
 {
     [Serializable]
     public class CharacterData

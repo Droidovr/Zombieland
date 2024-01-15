@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using UnityEngine;
-using Zombieland.GameScene0.RootModule;
 
 namespace Zombieland.GameScene0.GameDataModule
 {
