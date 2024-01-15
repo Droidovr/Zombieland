@@ -1,22 +1,33 @@
 ﻿using System.Collections.Generic;
+using Zombieland.GameScene0.RootModule;
 
 namespace Zombieland.GameScene0.EnvironmentModule
 {
     public class EnvironmentController : Controller, IEnvironmentController
     {
+        private IRootController _rootController;
+
+        private InitializerEnvironment _initializerEnvironment;
+
         public EnvironmentController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
-            // This class’s constructor doesn’t have any content yet.
+            _rootController = parentController as IRootController;
         }
 
         protected override void CreateHelpersScripts()
         {
-            // This controller doesn’t have any helpers scripts at the moment.
+            CreateEnvironmentObjects();
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
             // This controller doesn’t have any subsystems at the moment.
+        }
+
+        private void CreateEnvironmentObjects()
+        {
+            _initializerEnvironment = new InitializerEnvironment();
+            _initializerEnvironment.Init();
         }
     }
 }
