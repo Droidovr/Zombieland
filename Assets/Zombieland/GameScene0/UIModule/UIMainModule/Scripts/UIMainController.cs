@@ -9,12 +9,12 @@ namespace Zombieland.GameScene0.UIModule
         public event Action<Vector2> OnMoved;
         public event Action<string> OnButtonClick;
 
-        private InitializerInputGameobjects _initializerInputGameobjects;
+        private InitializerInputPrefab _initializerInputGameobjects;
 
         #region PUBLIC
         public UIMainController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
-
+            // This class’s constructor doesn’t have any content yet.
         }
 
         public override void Disable()
@@ -31,7 +31,7 @@ namespace Zombieland.GameScene0.UIModule
         #region PROTECTED
         protected override void CreateHelpersScripts()
         {
-            _initializerInputGameobjects = new InitializerInputGameobjects();
+            _initializerInputGameobjects = new InitializerInputPrefab();
             _initializerInputGameobjects.Init();
 
             _initializerInputGameobjects.Input.OnMoved += HandleMoved;
@@ -40,7 +40,7 @@ namespace Zombieland.GameScene0.UIModule
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-
+            // This controller doesn’t have any subsystems at the moment.
         }
         #endregion PROTECTED
 
