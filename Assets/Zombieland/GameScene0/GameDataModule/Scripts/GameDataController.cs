@@ -28,7 +28,7 @@ namespace Zombieland.GameScene0.GameDataModule
 
         protected override void CreateHelpersScripts()
         {
-#if UNITY_EDITOR
+#if PLATFORM_STANDALONE_WIN
             _storage = new ResourcesStorage();
 #else
             _storage = new PlayerPrefsStorage();
