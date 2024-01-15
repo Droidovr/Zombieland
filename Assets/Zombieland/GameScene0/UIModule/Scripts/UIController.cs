@@ -8,7 +8,7 @@ namespace Zombieland.GameScene0.UIModule
     {
         public event Action<Vector2> OnMoved;
         public event Action<string> OnMainButtonClick;
-        public event Action OnInventoryButtonClick;
+        public event Action<string> OnInventoryButtonClick;
 
         private UIMainController _uIMainController;
 

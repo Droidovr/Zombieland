@@ -9,10 +9,7 @@ namespace Zombieland.GameScene0.UIModule
         public event Action<Vector2> OnMoved;
         public event Action<string> OnButtonClick;
 
-        private UIInputMobileController _uIInputMobileController;
-        private UIInputPCController _uIInputPCController;
-        private PlatformType _platformType;
-
+        private InitializerInputGameobjects _initializerInputGameobjects;
 
         #region PUBLIC
         public UIMainController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
@@ -22,16 +19,10 @@ namespace Zombieland.GameScene0.UIModule
 
         public override void Disable()
         {
-            if (_platformType == PlatformType.Mobile && _uIInputMobileController != null)
+            if (_initializerInputGameobjects != null)
             {
-                _uIInputMobileController.OnMoved -= HandleMoved;
-                _uIInputMobileController.OnButtonClick -= HandleMainButtonClick;
-            }
-
-            if (_platformType == PlatformType.PC && _uIInputPCController != null)
-            {
-                _uIInputPCController.OnMoved -= HandleMoved;
-                _uIInputPCController.OnButtonClick -= HandleMainButtonClick;
+                _initializerInputGameobjects.Input.OnMoved -= HandleMoved;
+                _initializerInputGameobjects.Input.OnButtonClick -= HandleButtonClick;
             }
         }
         #endregion PUBLIC
@@ -40,34 +31,16 @@ namespace Zombieland.GameScene0.UIModule
         #region PROTECTED
         protected override void CreateHelpersScripts()
         {
-            _platformType = PlatformDetection.GetPlatformType();
+            _initializerInputGameobjects = new InitializerInputGameobjects();
+            _initializerInputGameobjects.Init();
 
-            Debug.Log("<color=red>PlatformDetection - Type Platform: " + _platformType.ToString() + "</color>");
-
-            if (_platformType == PlatformType.Unknown)
-            {
-                throw new InvalidOperationException("The platform type could not be determined.");
-            }
+            _initializerInputGameobjects.Input.OnMoved += HandleMoved;
+            _initializerInputGameobjects.Input.OnButtonClick += HandleButtonClick;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            if (_platformType == PlatformType.Mobile)
-            {
-                _uIInputMobileController = new UIInputMobileController(this, null);
-                subsystemsControllers.Add((IController)_uIInputMobileController);
 
-                _uIInputMobileController.OnMoved += HandleMoved;
-                _uIInputMobileController.OnButtonClick += HandleMainButtonClick;
-            }
-            else if (_platformType == PlatformType.PC)
-            {
-                _uIInputPCController = new UIInputPCController(this, null);
-                subsystemsControllers.Add((IController)_uIInputPCController);
-
-                _uIInputPCController.OnMoved += HandleMoved;
-                _uIInputPCController.OnButtonClick += HandleMainButtonClick;
-            }
         }
         #endregion PROTECTED
 
@@ -78,7 +51,7 @@ namespace Zombieland.GameScene0.UIModule
             OnMoved?.Invoke(vectorMove);
         }
 
-        private void HandleMainButtonClick(string nameButton)
+        private void HandleButtonClick(string nameButton)
         {
             OnButtonClick?.Invoke(nameButton);
         }
