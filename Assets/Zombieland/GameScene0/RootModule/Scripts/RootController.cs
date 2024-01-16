@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Zombieland.GameScene0.CharacterModule;
 using Zombieland.GameScene0.EnvironmentModule;
 using Zombieland.GameScene0.GameDataModule;
+using Zombieland.GameScene0.UIModule;
 
 namespace Zombieland.GameScene0.RootModule
 {
@@ -10,7 +11,7 @@ namespace Zombieland.GameScene0.RootModule
         public ICharacterController CharacterController { get; private set; }
         public IGameDataController GameDataController { get; private set; }
         public IEnvironmentController EnvironmentController { get; private set; }
-
+        public IUIController UIController { get; private set; }
 
         public RootController(IController parentController, List<IController> requiredControllers) : base(
             parentController, requiredControllers)
@@ -25,13 +26,15 @@ namespace Zombieland.GameScene0.RootModule
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            CharacterController = new CharacterController(this, new List<IController> {(IController) EnvironmentController, (IController) GameDataController});
+            CharacterController = new CharacterController(this, new List<IController> {(IController) EnvironmentController, (IController) GameDataController, (IController) UIController});
             GameDataController = new GameDataController(this, null);
             EnvironmentController = new EnvironmentController(this, new List<IController> {(IController) GameDataController});
+            UIController = new UIController(this, null);
 
             subsystemsControllers.Add((IController) CharacterController);
             subsystemsControllers.Add((IController) GameDataController);
             subsystemsControllers.Add((IController) EnvironmentController);
+            subsystemsControllers.Add((IController) UIController);
         }
     }
 }
