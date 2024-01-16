@@ -47,18 +47,12 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         {
             GameObject character = CharacterController.VisualBodyController.CharacterPrefab;
 
-
             UnityEngine.CharacterController unityCharacterController = character.AddComponent<UnityEngine.CharacterController>();
             unityCharacterController.center = new Vector3(0, 1f, 0);
             
             character.AddComponent<CharacterPhysicMoving>();
-
             CharacterPhysicMoving characterPhysicMoving = character.GetComponent<CharacterPhysicMoving>();
-            characterPhysicMoving.MovingSpeed = _movingSpeed;
-            characterPhysicMoving.MovingRotation = _movingRotation;
-            characterPhysicMoving.Gravity = _gravity;
-            characterPhysicMoving.CharacterMovingController = this;
-            characterPhysicMoving.Initialize();
+            characterPhysicMoving.Initialize(this, _movingSpeed, _movingRotation, _gravity);
         }
         private void HandleMoved(Vector2 vectorMove)
         {

@@ -7,68 +7,12 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 {
     public class CharacterPhysicMoving : MonoBehaviour
     {
-        public float MovingSpeed
-        {
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Moving speed cannot be negative.", nameof(MovingSpeed));
-                }
-
-                _movingSpeed = value;
-            }
-        }
-        public float MovingRotation
-        {
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Moving rotation cannot be negative.", nameof(MovingRotation));
-                }
-
-                _movingRotation = value;
-            }
-        }
-        public float Gravity
-        {
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Gravity cannot be negative.", nameof(Gravity));
-                }
-
-                _gravity = value;
-
-            }
-        }
-        public CharacterMovingController CharacterMovingController
-        {
-            set
-            {
-                _characterMovingController = value;
-            }
-        }
-
-
         private float _movingSpeed;
         private float _movingRotation;
         private float _gravity;
         private Vector2 _vectorMove;
         private float _verticalSpeed;
-        private CharacterMovingController _characterMovingController;
         private UnityEngine.CharacterController _characterController;
-
-        // Test visual in Editor
-        //[SerializeField] private float _movingSpeed;
-        //[SerializeField] private float _movingRotation;
-        //[SerializeField] private float _gravity;
-        //[SerializeField] private Vector2 _vectorMove;
-        //[SerializeField] private float _verticalSpeed;
-        //[SerializeField] private CharacterMovingController _characterMovingController;
-        //[SerializeField] private UnityEngine.CharacterController _characterController;
 
         private float _smoothTime = 0.1f;
 
@@ -79,19 +23,23 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         {
             CalculateGravity();
 
-            if (_vectorMove.magnitude < _smoothTime)
-                return;
-
-            Movement();
+            if (_vectorMove.magnitude > _smoothTime)
+            {
+                Movement();
+            }
         }
         #endregion
 
 
         #region PUBLIC
-        public void Initialize()
+        public void Initialize(CharacterMovingController characterMovingController, float movingSpeed,float movingRotation, float gravity)
         {
             _characterController = GetComponent<UnityEngine.CharacterController>();
-            _characterMovingController.OnMoved += HandleMoved;
+            characterMovingController.OnMoved += HandleMoved;
+
+            _movingSpeed = movingSpeed;
+            _movingRotation = movingRotation;
+            _gravity = gravity;
         }
         #endregion PUBLIC
 
@@ -104,17 +52,8 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void CalculateGravity()
         {
-            if (!_characterController.isGrounded)
-            {
-                _verticalSpeed -= _gravity * Time.deltaTime;
-            }
-            else
-            {
-                _verticalSpeed = -_gravity * Time.deltaTime;
-            }
-
-            Vector3 moveDirection = new Vector3(0, _verticalSpeed, 0);
-            _characterController.Move(moveDirection * Time.deltaTime);
+            _verticalSpeed += _characterController.isGrounded ? _gravity : -_gravity;
+            _characterController.Move(Vector3.up * _verticalSpeed * Time.deltaTime);
         }
 
         private void Movement()
