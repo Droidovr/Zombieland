@@ -9,18 +9,15 @@ namespace Zombieland.GameScene0.CharacterModule
 {
     public class CharacterController : Controller, ICharacterController
     {
+        public IRootController RootController { get; private set; }
         public ICharacterDataController CharacterDataController { get; private set; }
         public IWeaponController WeaponController { get; private set; }
         public IVisualBodyController VisualBodyController { get; private set; }
         public ICharacterMovingController CharacterMovingController { get; private set; }
 
-
-        private readonly IRootController _rootController;
-
-
         public CharacterController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
-            _rootController = parentController as IRootController;
+            RootController = parentController as IRootController;
         }
 
         protected override void CreateHelpersScripts()
@@ -30,18 +27,18 @@ namespace Zombieland.GameScene0.CharacterModule
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            CharacterDataController = new CharacterDataController(this, new List<IController> { (IController)_rootController.GameDataController });
+            CharacterDataController = new CharacterDataController(this, new List<IController> { (IController)RootController.GameDataController });
             subsystemsControllers.Add((IController)CharacterDataController);
 
             WeaponController = new WeaponController(this, new List<IController> { (IController)CharacterDataController });
             subsystemsControllers.Add((IController)WeaponController);
 
-            VisualBodyController = new VisualBodyController(this, new List<IController> { (IController)_rootController.EnvironmentController });
+            VisualBodyController = new VisualBodyController(this, new List<IController> { (IController)RootController.EnvironmentController });
             subsystemsControllers.Add((IController)VisualBodyController);
 
             CharacterMovingController = new CharacterMovingController(this, new List<IController> 
                                                                             {
-                                                                                (IController) _rootController.UIController,
+                                                                                (IController) RootController.UIController,                                                                                
                                                                                 (IController) CharacterDataController,
                                                                                 (IController) VisualBodyController 
                                                                             });
