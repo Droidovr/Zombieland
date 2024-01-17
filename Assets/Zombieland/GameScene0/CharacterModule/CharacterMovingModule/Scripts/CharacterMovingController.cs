@@ -23,9 +23,9 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         public override void Disable()
         {
-            base.Disable();
-
             CharacterController.RootController.UIController.OnMoved -= HandleMoved;
+
+            base.Disable();
         }
         #endregion PUBLIC
 
