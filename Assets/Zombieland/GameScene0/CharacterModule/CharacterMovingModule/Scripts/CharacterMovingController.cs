@@ -20,6 +20,13 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         {
             CharacterController = parentController as ICharacterController;
         }
+
+        public override void Disable()
+        {
+            base.Disable();
+
+            CharacterController.RootController.UIController.OnMoved -= HandleMoved;
+        }
         #endregion PUBLIC
 
 
