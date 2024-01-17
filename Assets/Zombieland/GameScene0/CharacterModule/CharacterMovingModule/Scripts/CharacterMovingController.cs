@@ -6,7 +6,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 {
     public class CharacterMovingController : Controller, ICharacterMovingController
     {
-        public event Action<Vector2> OnMoved;
+        //public event Action<Vector2> OnMoved;
 
         public readonly ICharacterController CharacterController;
 
@@ -23,7 +23,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         public override void Disable()
         {
-            CharacterController.RootController.UIController.OnMoved -= HandleMoved;
+            //CharacterController.RootController.UIController.OnMoved -= HandleMoved;
 
             base.Disable();
         }
@@ -33,7 +33,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         #region PROTECTED
         protected override void CreateHelpersScripts()
         {
-            CharacterController.RootController.UIController.OnMoved += HandleMoved;
+            //CharacterController.RootController.UIController.OnMoved += HandleMoved;
 
             GetDataFromCharacterData();
 
@@ -53,7 +53,9 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             // Get Data CharacterDataController
             _movingSpeed = 5f;
             _movingRotation = 5f;
-            _gravity = 9.8f;                
+            _gravity = 9.8f;
+            // беру постоянно из CharacterData данные в CharacterPhysicMoving
+            // 
         }
 
         private void Customization()
@@ -63,10 +65,10 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             CharacterPhysicMoving characterPhysicMoving = character.GetComponent<CharacterPhysicMoving>();
             characterPhysicMoving.Initialize(this, _movingSpeed, _movingRotation, _gravity);
         }
-        private void HandleMoved(Vector2 vectorMove)
-        {
-            OnMoved?.Invoke(vectorMove);
-        }
+        //private void HandleMoved(Vector2 vectorMove)
+        //{
+        //    OnMoved?.Invoke(vectorMove);
+        //}
         #endregion
     }
 }

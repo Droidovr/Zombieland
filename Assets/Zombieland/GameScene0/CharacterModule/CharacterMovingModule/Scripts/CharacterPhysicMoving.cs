@@ -11,6 +11,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         private Vector2 _vectorMove;
         private float _verticalSpeed;
         private UnityEngine.CharacterController _characterController;
+        private CharacterMovingController _characterMovingController;
 
         private float _smoothTime = 0.1f;
 
@@ -26,6 +27,11 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
                 Movement();
             }
         }
+
+        private void OnDestroy()
+        {
+            _characterMovingController.CharacterController.RootController.UIController.OnMoved -= HandleMoved;
+        }
         #endregion
 
 
@@ -33,7 +39,9 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         public void Initialize(CharacterMovingController characterMovingController, float movingSpeed,float movingRotation, float gravity)
         {
             _characterController = GetComponent<UnityEngine.CharacterController>();
-            characterMovingController.OnMoved += HandleMoved;
+            //characterMovingController.OnMoved += HandleMoved;
+            _characterMovingController = characterMovingController;
+            _characterMovingController.CharacterController.RootController.UIController.OnMoved += HandleMoved;
 
             _movingSpeed = movingSpeed;
             _movingRotation = movingRotation;
