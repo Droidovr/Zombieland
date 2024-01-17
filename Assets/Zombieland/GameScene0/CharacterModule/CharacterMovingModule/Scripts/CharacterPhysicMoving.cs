@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 
 namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule

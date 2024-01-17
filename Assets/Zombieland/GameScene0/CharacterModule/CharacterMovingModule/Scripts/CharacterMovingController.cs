@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Zombieland.GameScene0.RootModule;
 
 namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 {
@@ -15,11 +14,16 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         private float _movingRotation;
         private float _gravity;
 
+
+        #region PUBLIC
         public CharacterMovingController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             CharacterController = parentController as ICharacterController;
         }
+        #endregion PUBLIC
 
+
+        #region PROTECTED
         protected override void CreateHelpersScripts()
         {
             CharacterController.RootController.UIController.OnMoved += HandleMoved;
@@ -31,8 +35,10 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            
+            // This controller doesn’t have any subsystems at the moment.
         }
+        #endregion PROTECTED
+
 
         #region PRIVATE
         private void GetDataFromCharacterData()
@@ -47,10 +53,6 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         {
             GameObject character = CharacterController.VisualBodyController.CharacterPrefab;
 
-            UnityEngine.CharacterController unityCharacterController = character.AddComponent<UnityEngine.CharacterController>();
-            unityCharacterController.center = new Vector3(0, 1f, 0);
-            
-            character.AddComponent<CharacterPhysicMoving>();
             CharacterPhysicMoving characterPhysicMoving = character.GetComponent<CharacterPhysicMoving>();
             characterPhysicMoving.Initialize(this, _movingSpeed, _movingRotation, _gravity);
         }
