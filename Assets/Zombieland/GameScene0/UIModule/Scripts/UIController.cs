@@ -25,6 +25,8 @@ namespace Zombieland.GameScene0.UIModule
                 _uIMainController.OnMoved -= HandleMoved;
                 _uIMainController.OnButtonClick -= HandleMainButtonClick;
             }
+
+            base.Disable();
         }
         #endregion PUBLIC
 
