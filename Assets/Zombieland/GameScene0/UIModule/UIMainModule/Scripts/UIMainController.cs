@@ -24,6 +24,8 @@ namespace Zombieland.GameScene0.UIModule
                 _initializerInputGameobjects.Input.OnMoved -= HandleMoved;
                 _initializerInputGameobjects.Input.OnButtonClick -= HandleButtonClick;
             }
+
+            base.Disable();
         }
         #endregion PUBLIC
 
