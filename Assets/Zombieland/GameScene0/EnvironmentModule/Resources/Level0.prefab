@@ -881,7 +881,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1579684785402879579}
   m_Layer: 0
-  m_Name: Level
+  m_Name: Level0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -956,7 +956,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 6156a4dc6ef2b324bbacf8622d0d5b67, type: 2}
+  sharedProfile: {fileID: 11400000, guid: f41f1a57688bf674396540f99a4e7e74, type: 2}
 --- !u!1 &7382728205077280021
 GameObject:
   m_ObjectHideFlags: 0
