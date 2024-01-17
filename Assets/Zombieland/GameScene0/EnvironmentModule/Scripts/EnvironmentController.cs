@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using Zombieland.GameScene0.RootModule;
+using System;
 
 namespace Zombieland.GameScene0.EnvironmentModule
 {
@@ -27,7 +29,8 @@ namespace Zombieland.GameScene0.EnvironmentModule
         private void CreateEnvironmentObjects()
         {
             _initializerEnvironment = new InitializerEnvironment();
-            _initializerEnvironment.Init();
+            var environmentData = _rootController.GameDataController.GetData<EnvironmentData>("TestCharacterData");
+            _initializerEnvironment.Init(environmentData);
         }
     }
 }

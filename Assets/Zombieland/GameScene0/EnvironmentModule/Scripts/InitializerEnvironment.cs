@@ -4,11 +4,9 @@ namespace Zombieland.GameScene0.EnvironmentModule
 {
     public class InitializerEnvironment
     {
-        private const string ENVIRONMENT_PREFAB_NAME = "Level0";
-
-        public void Init()
+        public void Init(EnvironmentData environmentData)
         {
-            GameObject prefab = Resources.Load<GameObject>(ENVIRONMENT_PREFAB_NAME);
+            GameObject prefab = Resources.Load<GameObject>(environmentData.CurrentLevelName);
             GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity);
         }
     }
