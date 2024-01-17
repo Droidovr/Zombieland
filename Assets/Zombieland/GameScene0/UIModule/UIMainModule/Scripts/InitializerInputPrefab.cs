@@ -4,7 +4,7 @@ using UnityEngine.InputSystem.UI;
 
 namespace Zombieland.GameScene0.UIModule
 {
-    public class InitializerInputGameobjects
+    public class InitializerInputPrefab
     {
         public Input Input { get; private set; }
 

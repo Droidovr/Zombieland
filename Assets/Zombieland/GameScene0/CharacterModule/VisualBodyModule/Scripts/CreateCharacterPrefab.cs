@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Zombieland.GameScene0.VisualBodyModule
 {
-    public class CreateCharacterGameobject
+    public class CreateCharacterPrefab
     {
         private const string CHARACTER_PREFAB_NAME = "PoliceWoman";
 
