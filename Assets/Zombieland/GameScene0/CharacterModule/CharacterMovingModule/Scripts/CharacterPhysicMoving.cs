@@ -6,6 +6,9 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 {
     public class CharacterPhysicMoving : MonoBehaviour
     {
+        public float RealMovingSpeed { get; private set; } // реализовать
+
+        // GameData
         private const float GRAVITY = 9.8f;
 
         private float _movingSpeed;
@@ -30,7 +33,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             }
         }
 
-        private void OnDestroy()
+        public void Disable()
         {
             _uIController.OnMoved -= HandleMoved;
         }
@@ -74,7 +77,8 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void HandleMoved(Vector2 joystickPosition)
         {
-            _vectorMove = joystickPosition;
+            //_vectorMove = joystickPosition;
+            _vectorMove = new Vector2(-joystickPosition.x, -joystickPosition.y);
         }
         #endregion PRIVATE
     }

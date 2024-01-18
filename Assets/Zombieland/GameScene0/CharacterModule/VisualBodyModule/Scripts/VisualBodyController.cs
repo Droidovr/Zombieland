@@ -5,7 +5,7 @@ namespace Zombieland.GameScene0.VisualBodyModule
 {
     public class VisualBodyController : Controller, IVisualBodyController
     {
-        public GameObject CharacterPrefab { get; private set; }
+        public GameObject CharacterInScene { get; private set; }
 
         public VisualBodyController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
@@ -28,7 +28,7 @@ namespace Zombieland.GameScene0.VisualBodyModule
             Vector3 spawnPositionCharacter = new Vector3(4f, 6.1f, 10f);
 
             CreateCharacterPrefab createCharacterGameobject = new CreateCharacterPrefab();
-            CharacterPrefab = createCharacterGameobject.CreateCharacter(spawnPositionCharacter);
+            CharacterInScene = createCharacterGameobject.CreateCharacter(spawnPositionCharacter);
         }
     }
 }

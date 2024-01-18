@@ -7,6 +7,9 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
     public class CharacterMovingController : Controller, ICharacterMovingController
     {
         public ICharacterController CharacterController { get; private set; }
+        public float RealMovingSpeed => _characterPhysicMoving.RealMovingSpeed;
+
+        private CharacterPhysicMoving _characterPhysicMoving;
 
 
         #region PUBLIC
@@ -14,16 +17,23 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         {
             CharacterController = parentController as ICharacterController;
         }
+
+        public override void Disable()
+        {
+            _characterPhysicMoving.Disable();
+
+            base.Disable();
+        }
         #endregion PUBLIC
 
 
         #region PROTECTED
         protected override void CreateHelpersScripts()
         {
-            GameObject character = CharacterController.VisualBodyController.CharacterPrefab;
+            GameObject character = CharacterController.VisualBodyController.CharacterInScene;
 
-            CharacterPhysicMoving characterPhysicMoving = character.GetComponent<CharacterPhysicMoving>();
-            characterPhysicMoving.Initialize(this);
+            _characterPhysicMoving = character.GetComponent<CharacterPhysicMoving>();
+            _characterPhysicMoving.Initialize(this);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)

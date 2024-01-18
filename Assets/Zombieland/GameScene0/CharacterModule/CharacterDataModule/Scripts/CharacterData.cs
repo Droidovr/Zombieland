@@ -5,7 +5,8 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterDataModule
     [Serializable]
     public class CharacterData
     {
-        public float MaxSpeed;
-        public float MaxAcceleration;
+        public float MaxMovingSpeed;
+        public float MaxRotationSpeed;
+        public float Gravity;
     }
 }
