@@ -1,10 +1,11 @@
 using System;
 using UnityEngine;
+using Zombieland.GameScene0.RootModule;
 
 namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 {
     public interface ICharacterMovingController
     {
-        //event Action<Vector2> OnMoved;
+        ICharacterController CharacterController { get; }
     }
 }

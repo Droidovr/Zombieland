@@ -790,7 +790,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &996662439
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1309,6 +1309,7 @@ GameObject:
   - component: {fileID: 1696696016}
   - component: {fileID: 1696696015}
   - component: {fileID: 1696696014}
+  - component: {fileID: 1696696017}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1416,6 +1417,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1696696017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696696013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8cde78b45e32a43aeea33fed5b83c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1722678752
 GameObject:
   m_ObjectHideFlags: 0
@@ -1431,7 +1444,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1722678753
 Transform:
   m_ObjectHideFlags: 0
@@ -1716,7 +1729,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1791462558
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1784,13 +1797,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1791462557}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20912322, y: -0.4334118, z: 0.0968418, w: 0.87123096}
-  m_LocalPosition: {x: 14.130869, y: 7.999998, z: -7.5060387}
+  m_LocalRotation: {x: 0.25332525, y: 0.37225512, z: -0.1293604, w: 0.88346946}
+  m_LocalPosition: {x: -0.7, y: 14.9, z: 4.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 26.637, y: -53.088, z: -0.803}
+  m_LocalEulerAnglesHint: {x: 32.951, y: 44.889, z: -2.73}
 --- !u!114 &1791462561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1847,7 +1860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c32e87723b3fbeb41852123e0d05ca82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Character: {fileID: 0}
+  characterObjectName: PoliceWoman(Clone)
 --- !u!1 &2121244841
 GameObject:
   m_ObjectHideFlags: 0

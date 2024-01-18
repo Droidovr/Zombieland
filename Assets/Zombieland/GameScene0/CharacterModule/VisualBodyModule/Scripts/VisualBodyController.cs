@@ -25,7 +25,7 @@ namespace Zombieland.GameScene0.VisualBodyModule
         private void CreateCharacterGameobject()
         {
             // Get SpawnPosition from GameManager or Gamedata && Add a dependency System in Character for VisualBodyController
-            Vector3 spawnPositionCharacter = new Vector3(0, 1f, 0);
+            Vector3 spawnPositionCharacter = new Vector3(4f, 6.1f, 10f);
 
             CreateCharacterPrefab createCharacterGameobject = new CreateCharacterPrefab();
             CharacterPrefab = createCharacterGameobject.CreateCharacter(spawnPositionCharacter);
