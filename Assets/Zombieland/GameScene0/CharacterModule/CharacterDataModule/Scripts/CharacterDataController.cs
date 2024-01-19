@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
+
 
 namespace Zombieland.GameScene0.CharacterModule.CharacterDataModule
 {
@@ -40,7 +42,9 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterDataModule
         {
             CharacterData characterData = CharacterController.RootController.GameDataController.GetData<CharacterData>("CharacterData");
             MaxMovingSpeed = characterData.MaxMovingSpeed;
+            DesignMovingSpeed = MaxMovingSpeed;
             MaxRotationSpeed = characterData.MaxRotationSpeed;
+            DesignRotationSpeed = MaxRotationSpeed;
             Gravity = characterData.Gravity;
         }
     }

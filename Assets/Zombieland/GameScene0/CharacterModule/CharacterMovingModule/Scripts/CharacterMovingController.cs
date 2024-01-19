@@ -6,8 +6,8 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 {
     public class CharacterMovingController : Controller, ICharacterMovingController
     {
-        public ICharacterController CharacterController { get; private set; }
         public float RealMovingSpeed => _characterPhysicMoving.RealMovingSpeed;
+        public ICharacterController CharacterController { get; private set; }
 
         private CharacterPhysicMoving _characterPhysicMoving;
 
@@ -31,7 +31,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         protected override void CreateHelpersScripts()
         {
             GameObject character = CharacterController.VisualBodyController.CharacterInScene;
-
+            character.AddComponent<CharacterPhysicMoving>();
             _characterPhysicMoving = character.GetComponent<CharacterPhysicMoving>();
             _characterPhysicMoving.Initialize(this);
         }
