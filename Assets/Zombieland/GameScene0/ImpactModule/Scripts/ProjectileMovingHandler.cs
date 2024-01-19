@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Zombieland.GameScene0.ProjectileModule
+namespace Zombieland.GameScene0.ImpactModule
 {
     public class ProjectileMovingHandler : MonoBehaviour
     {

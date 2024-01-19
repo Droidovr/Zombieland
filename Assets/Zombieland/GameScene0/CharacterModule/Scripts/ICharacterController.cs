@@ -3,7 +3,6 @@ using Zombieland.GameScene0.CharacterModule.EquipmentModule;
 using Zombieland.GameScene0.CharacterModule.SensorModule;
 using Zombieland.GameScene0.CharacterModule.TakeDamageModule;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
-using Zombieland.GameScene0.ProjectileModule;
 using Zombieland.GameScene0.VisualBodyModule;
 
 namespace Zombieland.GameScene0.CharacterModule
@@ -16,7 +15,5 @@ namespace Zombieland.GameScene0.CharacterModule
         ISensorController SensorController { get; }
         ITakeDamageController TakeDamageController { get; }
         IEquipmentController EquipmentController { get; }
-
-        public void TakeDamage(IProjectileController projectileController);
     }
 }

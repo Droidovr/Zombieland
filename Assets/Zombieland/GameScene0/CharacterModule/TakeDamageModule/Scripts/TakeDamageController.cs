@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Zombieland.GameScene0.ProjectileModule;
+using Zombieland.GameScene0.ImpactModule;
 
 namespace Zombieland.GameScene0.CharacterModule.TakeDamageModule.Scripts
 {
@@ -21,7 +21,7 @@ namespace Zombieland.GameScene0.CharacterModule.TakeDamageModule.Scripts
             // This controller doesn’t have any subsystems at the moment.
         }
 
-        public void ProcessDamage(IProjectileController projectileController)
+        public void ProcessDamage(IImpactController impactController)
         {
             // This method doesn't have any realization at the moment.
         }

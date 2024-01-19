@@ -1,9 +1,9 @@
-using Zombieland.GameScene0.ProjectileModule;
+using Zombieland.GameScene0.ImpactModule;
 
 namespace Zombieland.GameScene0.CharacterModule.TakeDamageModule
 {
     public interface ITakeDamageController
     {
-        public void ProcessDamage(IProjectileController projectileController);
+        public void ProcessDamage(IImpactController impactController);
     }
 }

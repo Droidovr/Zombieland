@@ -47,7 +47,7 @@
               </e>
               <e p="SensorModule" t="Include">
                 <e p="Scripts" t="Include">
-                  <e p="DamageDetectionSensor.cs" t="Include" />
+                  <e p="ImpactDetectionSensor.cs" t="Include" />
                   <e p="ISensorController.cs" t="Include" />
                   <e p="SensorController.cs" t="Include" />
                 </e>
@@ -96,10 +96,11 @@
               <e p="GameManager.cs" t="Include" />
               <e p="IGameManager.cs" t="Include" />
             </e>
-            <e p="ProjectileModule" t="Include">
+            <e p="ImpactModule" t="Include">
               <e p="Scripts" t="Include">
-                <e p="IProjectileController.cs" t="Include" />
-                <e p="ProjectileController.cs" t="Include" />
+                <e p="IImpactable.cs" t="Include" />
+                <e p="IImpactController.cs" t="Include" />
+                <e p="ImpactController.cs" t="Include" />
                 <e p="ProjectileMovingHandler.cs" t="Include" />
               </e>
             </e>

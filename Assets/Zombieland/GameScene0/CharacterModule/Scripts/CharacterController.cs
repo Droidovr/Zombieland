@@ -5,13 +5,13 @@ using Zombieland.GameScene0.CharacterModule.SensorModule;
 using Zombieland.GameScene0.CharacterModule.TakeDamageModule;
 using Zombieland.GameScene0.CharacterModule.TakeDamageModule.Scripts;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
-using Zombieland.GameScene0.ProjectileModule;
+using Zombieland.GameScene0.ImpactModule;
 using Zombieland.GameScene0.RootModule;
 using Zombieland.GameScene0.VisualBodyModule;
 
 namespace Zombieland.GameScene0.CharacterModule
 {
-    public class CharacterController : Controller, ICharacterController
+    public class CharacterController : Controller, ICharacterController, IImpactable
     {
         public ICharacterDataController CharacterDataController { get; private set; }
         public IWeaponController WeaponController { get; private set; }
@@ -53,9 +53,13 @@ namespace Zombieland.GameScene0.CharacterModule
             subsystemsControllers.Add((IController)EquipmentController);
         }
         
-        public void TakeDamage(IProjectileController projectileController)
+        public void ApplyImpact(IImpactController impactController)
         {
-            TakeDamageController.ProcessDamage(projectileController);
+            // if its direct damage
+            TakeDamageController.ProcessDamage(impactController);
+            
+            // if its buffs/debuffs
+            // BuffDebuffController.ProcessEffect
         }
     }
 }

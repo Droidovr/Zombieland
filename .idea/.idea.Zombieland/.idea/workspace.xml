@@ -7,16 +7,19 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/IImpactable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeDamageModule/Scripts/ITakeDamageController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ProjectileModule/Scripts/ProjectileMovingHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/IImpactController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ProjectileModule/IProjectileController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ProjectileModule/ProjectileController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeDamageModule/Scripts/ITakeDamageController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ProjectileModule/Scripts/ProjectileMovingHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ProjectileModule/Scripts/IProjectileController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ProjectileModule/Scripts/ProjectileController.cs" />
@@ -24,15 +27,36 @@
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SensorModule/DamageDetector.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SensorModule/DamageDetectionSensor.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SensorModule/SensorController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeDamageModule/Scripts/TakeDamageController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/InventoryBodyModule/EquipmentController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SensorModule/Scripts/ISensorController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/EquipmentModule/IEquipmentController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/EquipmentModule/EquipmentController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/Scripts/CharacterController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SensorModule/Scripts/DamageDetectionSensor.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/Scripts/ICharacterController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/IDamageable.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SensorModule/Scripts/ImpuctDetectionSensor.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SensorModule/Scripts/ImpactDetectionSensor.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SensorModule/Scripts/SensorController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/IImpactController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/ImpactController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/ProjectileMovingHandler.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/Scripts/CharacterController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/IImpactable.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeDamageModule/Scripts/ITakeDamageController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeDamageModule/Scripts/TakeDamageController.cs" />
       </list>
     </option>
+  </component>
+  <component name="ProjectId" id="2bBMIt96jmhy7VGWdQC7DVmRt4h" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
@@ -54,15 +78,31 @@
       <method v="2" />
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="907d7957-8796-4ab4-a556-102ecf85e7d2" name="Default Changelist" comment="" />
+      <created>1705683945138</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1705683945138</updated>
+      <workItem from="1705683957964" duration="6544000" />
+    </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="4531" y="605" key="RiderGenerateDialog" timestamp="1705613391525">
-      <screen x="3840" y="349" width="1920" height="1020" />
+    <state x="921" y="351" key="RiderGenerateDialog" timestamp="1705688118513">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
+    <state x="921" y="351" key="RiderGenerateDialog/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1705688118513" />
     <state x="4531" y="605" key="RiderGenerateDialog/3840.349.1920.1020/0.0.2560.1400@3840.349.1920.1020" timestamp="1705613391525" />
   </component>
 </project>
