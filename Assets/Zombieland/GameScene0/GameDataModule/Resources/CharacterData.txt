@@ -1,1 +1,1 @@
-{"MaxMovingSpeed":5.0,"MaxRotationSpeed":5.0,"Gravity":9.8}
+{"MaxMovingSpeed":5.0,"DesignMovingSpeed":0,"MaxRotationSpeed":5.0,"DesignRotationSpeed":0}
