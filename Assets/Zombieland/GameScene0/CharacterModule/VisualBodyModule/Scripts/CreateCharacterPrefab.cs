@@ -4,7 +4,7 @@ namespace Zombieland.GameScene0.VisualBodyModule
 {
     public class CreateCharacterPrefab
     {
-        private const string CHARACTER_PREFAB_NAME = "PoliceWoman";
+        private const string CHARACTER_PREFAB_NAME = "Character0";
 
         public GameObject CreateCharacter(Vector3 spawnPosition, Quaternion spawnRotation)
         {

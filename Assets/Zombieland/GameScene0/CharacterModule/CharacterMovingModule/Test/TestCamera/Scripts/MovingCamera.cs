@@ -4,7 +4,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 {
     public class MovingCamera : MonoBehaviour
     {
-        [SerializeField] private string characterObjectName = "PoliceWoman(Clone)";
+        [SerializeField] private string characterObjectName = "Character0(Clone)";
         private GameObject _character;
 
         private float _smoothSpeedCamera = 0.1f;

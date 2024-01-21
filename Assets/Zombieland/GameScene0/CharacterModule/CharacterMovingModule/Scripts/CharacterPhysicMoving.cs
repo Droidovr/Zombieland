@@ -21,7 +21,6 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
 
         #region MONOBEHAVIOUR
-
         private void Update()
         {
             CalculateGravity();
@@ -31,15 +30,15 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
                 Movement();
             }
         }
-
-        public void Disable()
-        {
-            _uIController.OnMoved -= HandleMoved;
-        }
         #endregion
 
 
         #region PUBLIC
+        public void Disable()
+        {
+            _uIController.OnMoved -= HandleMoved;
+        }
+
         public void Initialize(ICharacterMovingController characterMovingController)
         {
             _characterController = GetComponent<UnityEngine.CharacterController>();
