@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using Zombieland.GameScene0.ImpactModule;
 
-namespace Zombieland.GameScene0.CharacterModule.TakeDamageModule.Scripts
+namespace Zombieland.GameScene0.CharacterModule.TakeImpactModule
 {
-    public class TakeDamageController : Controller, ITakeDamageController
+    public class TakeImpactController : Controller, ITakeImpactController
     {
-        public TakeDamageController(IController parentController, List<IController> requiredControllers) 
+        public TakeImpactController(IController parentController, List<IController> requiredControllers) 
             : base(parentController, requiredControllers)
         {
             // This class’s constructor doesn’t have any content yet.
@@ -21,7 +21,7 @@ namespace Zombieland.GameScene0.CharacterModule.TakeDamageModule.Scripts
             // This controller doesn’t have any subsystems at the moment.
         }
 
-        public void ProcessDamage(IImpactController impactController)
+        public void ProcessImpact(IImpactController impactController)
         {
             // This method doesn't have any realization at the moment.
         }

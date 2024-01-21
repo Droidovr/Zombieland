@@ -52,10 +52,10 @@
                   <e p="SensorController.cs" t="Include" />
                 </e>
               </e>
-              <e p="TakeDamageModule" t="Include">
+              <e p="TakeImpactModule" t="Include">
                 <e p="Scripts" t="Include">
-                  <e p="ITakeDamageController.cs" t="Include" />
-                  <e p="TakeDamageController.cs" t="Include" />
+                  <e p="ITakeImpactController.cs" t="Include" />
+                  <e p="TakeImpactController.cs" t="Include" />
                 </e>
               </e>
               <e p="VisualBodyModule" t="Include">

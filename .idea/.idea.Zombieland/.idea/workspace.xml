@@ -11,8 +11,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/ITakeImpactController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/IImpactable.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeDamageModule/Scripts/ITakeDamageController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/IImpactController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -32,7 +32,6 @@
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/EquipmentModule/IEquipmentController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/EquipmentModule/EquipmentController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SensorModule/Scripts/DamageDetectionSensor.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/Scripts/ICharacterController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/IDamageable.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SensorModule/Scripts/ImpuctDetectionSensor.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SensorModule/Scripts/ImpactDetectionSensor.cs" />
@@ -40,10 +39,14 @@
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/IImpactController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/ImpactController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/ProjectileMovingHandler.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/Scripts/CharacterController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/IImpactable.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeDamageModule/Scripts/ITakeDamageController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeDamageModule/Scripts/TakeDamageController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeDamageModule/Scripts/TakeImpactController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/ITakeImpactController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/Scripts/CharacterController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/TakeImpactController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/Scripts/ICharacterController.cs" />
       </list>
     </option>
   </component>
@@ -87,6 +90,7 @@
       <option name="presentableId" value="Default" />
       <updated>1705683945138</updated>
       <workItem from="1705683957964" duration="6544000" />
+      <workItem from="1705776932648" duration="1710000" />
     </task>
     <servers />
   </component>

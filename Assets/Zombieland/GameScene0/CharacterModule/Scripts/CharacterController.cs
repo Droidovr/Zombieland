@@ -2,8 +2,7 @@ using System.Collections.Generic;
 using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
 using Zombieland.GameScene0.CharacterModule.EquipmentModule;
 using Zombieland.GameScene0.CharacterModule.SensorModule;
-using Zombieland.GameScene0.CharacterModule.TakeDamageModule;
-using Zombieland.GameScene0.CharacterModule.TakeDamageModule.Scripts;
+using Zombieland.GameScene0.CharacterModule.TakeImpactModule;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
 using Zombieland.GameScene0.ImpactModule;
 using Zombieland.GameScene0.RootModule;
@@ -17,7 +16,7 @@ namespace Zombieland.GameScene0.CharacterModule
         public IWeaponController WeaponController { get; private set; }
         public IVisualBodyController VisualBodyController { get; private set; }
         public ISensorController SensorController { get; private set; }
-        public ITakeDamageController TakeDamageController { get; private set;}
+        public ITakeImpactController TakeImpactController { get; private set;}
         public IEquipmentController EquipmentController { get; private set;}
 
         private readonly IRootController _rootController;
@@ -46,8 +45,8 @@ namespace Zombieland.GameScene0.CharacterModule
             SensorController = new SensorController(this, new List<IController>{(IController)VisualBodyController});
             subsystemsControllers.Add((IController)SensorController);
             
-            TakeDamageController = new TakeDamageController(this, null);
-            subsystemsControllers.Add((IController)TakeDamageController);
+            TakeImpactController = new TakeImpactController(this, null);
+            subsystemsControllers.Add((IController)TakeImpactController);
             
             EquipmentController = new EquipmentController(this, new List<IController>{(IController)CharacterDataController});
             subsystemsControllers.Add((IController)EquipmentController);
@@ -56,10 +55,8 @@ namespace Zombieland.GameScene0.CharacterModule
         public void ApplyImpact(IImpactController impactController)
         {
             // if its direct damage
-            TakeDamageController.ProcessDamage(impactController);
-            
-            // if its buffs/debuffs
-            // BuffDebuffController.ProcessEffect
+            TakeImpactController.ProcessImpact(impactController);
+
         }
     }
 }
