@@ -14,7 +14,7 @@ namespace Zombieland.GameScene0.UIModule
         #region PUBLIC
         public UIMainController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
-            // This class’s constructor doesn’t have any content yet.
+            // This class's constructor doesn't have any content yet.
         }
 
         public override void Disable()
@@ -42,7 +42,7 @@ namespace Zombieland.GameScene0.UIModule
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            // This controller doesn’t have any subsystems at the moment.
+            // This controller doesn't have any subsystems at the moment.
         }
         #endregion PROTECTED
 
