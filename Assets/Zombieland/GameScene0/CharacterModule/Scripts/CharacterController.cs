@@ -65,7 +65,11 @@ namespace Zombieland.GameScene0.CharacterModule
             EquipmentController = new EquipmentController(this, new List<IController>{(IController)CharacterDataController});
             subsystemsControllers.Add((IController)EquipmentController);
 
-            AnimationController = new AnimationController(this, new List<IController> {(IController)CharacterMovingController});
+            AnimationController = new AnimationController(this, new List<IController> 
+                                                                    {
+                                                                        (IController)CharacterMovingController,
+                                                                        (IController) VisualBodyController
+                                                                    });
             subsystemsControllers.Add ((IController)AnimationController);
         }
         

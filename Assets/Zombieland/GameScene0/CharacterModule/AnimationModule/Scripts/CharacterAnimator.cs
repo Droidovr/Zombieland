@@ -12,11 +12,9 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         private void Update()
         {
-            float speed = _characterController.CharacterMovingController.RealMovingSpeed;
+            _animator.SetFloat("RealMovingSpeed", _characterController.CharacterMovingController.RealMovingSpeed, DAMP_TIME, Time.deltaTime);
 
-            _animator.SetFloat("RealMovingSpeed", speed, DAMP_TIME, Time.deltaTime);
-
-            if (speed > 0)
+            if (_characterController.CharacterMovingController.RealMovingSpeed > 0)
             {
                 _animator.SetBool("IsMoving", true);
             }
