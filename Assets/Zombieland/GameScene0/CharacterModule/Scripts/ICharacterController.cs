@@ -6,6 +6,7 @@ using Zombieland.GameScene0.CharacterModule.TakeImpactModule;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
 using Zombieland.GameScene0.RootModule;
 using Zombieland.GameScene0.VisualBodyModule;
+using Zombieland.GameScene0.CharacterModule.AnimationModule;
 
 namespace Zombieland.GameScene0.CharacterModule
 {
@@ -19,5 +20,6 @@ namespace Zombieland.GameScene0.CharacterModule
         ISensorController SensorController { get; }
         ITakeImpactController TakeImpactController { get; }
         IEquipmentController EquipmentController { get; }
+        IAnimationController AnimationController { get; }
     }
 }

@@ -7,10 +7,9 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 {
     public class CharacterPhysicMoving : MonoBehaviour
     {
-        public float RealMovingSpeed => _characterController.velocity.magnitude;
+        public float RealMovingSpeed { get; private set; }
 
         private const float GRAVITY = 9.8f;
-        private const float MIN_VECTORMOVE_MAGNITUDE = 0.1f;
         private const float ROTATION_SMOOTH_TIME = 0.03f;
 
         private Vector2 _vectorMove;
@@ -25,10 +24,9 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         {
             CalculateGravity();
 
-            if (_vectorMove.magnitude > MIN_VECTORMOVE_MAGNITUDE)
-            {
-                Movement();
-            }
+            CalculeteRealMovingSpeed();
+
+            CalculeteRotation();
         }
         #endregion
 
@@ -58,7 +56,13 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             _characterController.Move(Vector3.up * _verticalSpeed * Time.deltaTime);
         }
 
-        private void Movement()
+        private void CalculeteRealMovingSpeed()
+        {
+            Vector3 movementDirection = new Vector3(_vectorMove.x, 0f, _vectorMove.y);
+            RealMovingSpeed = Mathf.Clamp01(movementDirection.magnitude) * _characterDataController.CharacterData.DesignMovingSpeed;
+        }
+
+        private void CalculeteRotation()
         {
             Vector3 direction = new Vector3(_vectorMove.x, 0f, _vectorMove.y).normalized;
 
@@ -67,14 +71,12 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSpeed, ROTATION_SMOOTH_TIME);
 
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
-            _characterController.Move(moveDirection * _characterDataController.CharacterData.DesignMovingSpeed * Time.deltaTime);
         }
 
         private void HandleMoved(Vector2 joystickPosition)
         {
-            _vectorMove = joystickPosition;
+            //_vectorMove = joystickPosition;
+            _vectorMove = new Vector2(-joystickPosition.x, -joystickPosition.y);
         }
         #endregion PRIVATE
     }

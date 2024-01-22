@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Zombieland.GameScene0.CharacterModule.AnimationModule;
+using Zombieland.GameScene0.CharacterModule.AnumatorModule;
 using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
 using Zombieland.GameScene0.CharacterModule.CharacterMovingModule;
 using Zombieland.GameScene0.CharacterModule.EquipmentModule;
@@ -21,6 +23,7 @@ namespace Zombieland.GameScene0.CharacterModule
         public ISensorController SensorController { get; private set; }
         public ITakeImpactController TakeImpactController { get; private set;}
         public IEquipmentController EquipmentController { get; private set;}
+        public IAnimationController AnimationController { get; private set; }
 
         private readonly IRootController _rootController;
 
@@ -61,6 +64,9 @@ namespace Zombieland.GameScene0.CharacterModule
             
             EquipmentController = new EquipmentController(this, new List<IController>{(IController)CharacterDataController});
             subsystemsControllers.Add((IController)EquipmentController);
+
+            AnimationController = new AnimationController(this, new List<IController> {(IController)CharacterMovingController});
+            subsystemsControllers.Add ((IController)AnimationController);
         }
         
         public void ApplyImpact(IImpactController impactController)
