@@ -7,6 +7,8 @@ namespace Zombieland.GameScene0.VisualBodyModule
     {
         public GameObject CharacterInScene { get; private set; }
 
+        public Collider SensorCollider { get; private set; }
+
         public VisualBodyController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             // This class’s constructor doesn’t have any content yet.
@@ -30,6 +32,8 @@ namespace Zombieland.GameScene0.VisualBodyModule
 
             CreateCharacterPrefab createCharacterGameobject = new CreateCharacterPrefab();
             CharacterInScene = createCharacterGameobject.CreateCharacter(spawnPositionCharacter, spawnRotationCharacter);
+
+            SensorCollider = CharacterInScene.GetComponent<BoxCollider>() as Collider;
         }
     }
 }
