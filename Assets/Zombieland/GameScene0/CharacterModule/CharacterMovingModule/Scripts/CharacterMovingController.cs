@@ -38,7 +38,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            // This controller doesn’t have any subsystems at the moment.
+            // This controller doesn't have any subsystems at the moment.
         }
         #endregion PROTECTED
     }

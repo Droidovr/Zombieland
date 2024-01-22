@@ -15,7 +15,7 @@ namespace Zombieland.GameScene0.UIModule
         #region PUBLIC
         public UIController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
-            // This class’s constructor doesn’t have any content yet.
+            // This class's constructor doesn't have any content yet.
         }
 
         public override void Disable()
@@ -34,7 +34,7 @@ namespace Zombieland.GameScene0.UIModule
         #region PROTECTED
         protected override void CreateHelpersScripts()
         {
-            // This controller doesn’t have any helpers scripts at the moment.
+            // This controller doesn't have any helpers scripts at the moment.
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -52,13 +52,13 @@ namespace Zombieland.GameScene0.UIModule
         private void HandleMoved(Vector2 vectorMove)
         {
             OnMoved?.Invoke(vectorMove);
-            Debug.Log(vectorMove);
+            // Debug.Log(vectorMove);
         }
 
         private void HandleMainButtonClick(string nameButton)
         {
             OnMainButtonClick?.Invoke(nameButton);
-            Debug.Log(nameButton);
+            // Debug.Log(nameButton);
         }
         #endregion PRIVATE
     }

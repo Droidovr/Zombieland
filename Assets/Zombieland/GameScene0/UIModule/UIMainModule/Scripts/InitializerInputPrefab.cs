@@ -18,13 +18,13 @@ namespace Zombieland.GameScene0.UIModule
             eventSystem.AddComponent<EventSystem>();
             eventSystem.AddComponent<InputSystemUIInputModule>();
 
-//#if UNITY_STANDALONE || UNITY_EDITOR
-//            GameObject prefab = Resources.Load<GameObject>(INPUT_PC_PREFAB_NAME);
-//            GameObject inputSystemGameobject = GameObject.Instantiate(prefab);
-//#else
+#if UNITY_STANDALONE// || UNITY_EDITOR
+            GameObject prefab = Resources.Load<GameObject>(INPUT_PC_PREFAB_NAME);
+            GameObject inputSystemGameobject = GameObject.Instantiate(prefab);
+#else
             GameObject prefab = Resources.Load<GameObject>(INPUT_MOBILE_PREFAB_NAME);
             GameObject inputSystemGameobject = GameObject.Instantiate(prefab);
-//#endif
+#endif
             Input = inputSystemGameobject.GetComponentInChildren<Input>();
         }
     }
