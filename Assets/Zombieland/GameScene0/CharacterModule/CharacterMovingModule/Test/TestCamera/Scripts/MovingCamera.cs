@@ -22,8 +22,6 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
                 _character = GameObject.Find(characterObjectName);
                 yield return null;
             }
-
-            // ≈сли персонаж найден, вычисл€ем смещение
             _offsetFromCharacter = transform.position - _character.transform.position;
         }
 

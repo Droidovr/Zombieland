@@ -14,16 +14,24 @@ namespace Zombieland.GameScene0.GameDataModule
         public T GetData<T>(string name)
         {
             T data = default;
-            if (PlayerPrefs.HasKey(name))
+            if (!PlayerPrefs.HasKey(name))
             {
-                var json = PlayerPrefs.GetString(name);
-                data = JsonUtility.FromJson<T>(json);
+                SaveDada(name, GetDataFromResources<T>(name));
             }
-            else
+            var json = PlayerPrefs.GetString(name);
+            data = JsonUtility.FromJson<T>(json);
+            return data;
+        }
+        
+        private T GetDataFromResources<T>(string name)
+        {
+            TextAsset textAsset = Resources.Load<TextAsset>(name);
+            if (textAsset == null)
             {
-                Debug.LogError($"There is no save with the name {name}!");
+                Debug.LogError("Cannot find file at " + name);
+                return default;
             }
-            
+            T data = JsonUtility.FromJson<T>(textAsset.text);
             return data;
         }
     }

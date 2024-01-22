@@ -11,7 +11,7 @@ namespace Zombieland.GameScene0.VisualBodyModule
 
         public VisualBodyController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
-            // This class’s constructor doesn’t have any content yet.
+            // This class's constructor doesn't have any content yet.
         }
 
         protected override void CreateHelpersScripts()
@@ -21,7 +21,7 @@ namespace Zombieland.GameScene0.VisualBodyModule
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            // This controller doesn’t have any subsystems at the moment.
+            // This controller doesn't have any subsystems at the moment.
         }
 
         private void CreateCharacterGameobject()

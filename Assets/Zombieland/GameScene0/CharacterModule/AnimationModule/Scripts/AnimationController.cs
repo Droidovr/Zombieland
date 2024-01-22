@@ -25,7 +25,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnumatorModule
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            // This controller doesn’t have any subsystems at the moment.
+            // This controller doesn't have any subsystems at the moment.
         }
     }
 }
