@@ -11,6 +11,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private const float GRAVITY = 9.8f;
         private const float ROTATION_SMOOTH_TIME = 0.03f;
+        private const float MIN_VECTORMOVE_MAGITUDE = 0.1f;
 
         private Vector2 _vectorMove;
         private float _verticalSpeed;
@@ -26,7 +27,10 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
             CalculeteRealMovingSpeed();
 
-            CalculeteRotation();
+            if (_vectorMove.magnitude > MIN_VECTORMOVE_MAGITUDE)
+            {
+                CalculeteRotation();
+            }
         }
         #endregion
 
