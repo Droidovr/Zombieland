@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Zombieland.GameScene0.CameraModule;
 using Zombieland.GameScene0.CharacterModule;
 using Zombieland.GameScene0.EnvironmentModule;
 using Zombieland.GameScene0.GameDataModule;
@@ -12,6 +13,7 @@ namespace Zombieland.GameScene0.RootModule
         public IGameDataController GameDataController { get; private set; }
         public IEnvironmentController EnvironmentController { get; private set; }
         public IUIController UIController { get; private set; }
+        public ICameraController CameraController { get; private set; }
 
         public RootController(IController parentController, List<IController> requiredControllers) : base(
             parentController, requiredControllers)
@@ -30,11 +32,13 @@ namespace Zombieland.GameScene0.RootModule
             GameDataController = new GameDataController(this, null);
             EnvironmentController = new EnvironmentController(this, new List<IController> {(IController) GameDataController});
             UIController = new UIController(this, null);
+            CameraController = new CameraController(this, new List<IController> {(IController)CharacterController});
 
             subsystemsControllers.Add((IController) CharacterController);
             subsystemsControllers.Add((IController) GameDataController);
             subsystemsControllers.Add((IController) EnvironmentController);
             subsystemsControllers.Add((IController) UIController);
+            subsystemsControllers.Add((IController)CameraController);
         }
     }
 }
