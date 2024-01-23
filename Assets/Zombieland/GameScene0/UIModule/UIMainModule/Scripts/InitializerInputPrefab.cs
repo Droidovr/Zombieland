@@ -18,7 +18,7 @@ namespace Zombieland.GameScene0.UIModule
             eventSystem.AddComponent<EventSystem>();
             eventSystem.AddComponent<InputSystemUIInputModule>();
 
-#if UNITY_STANDALONE || UNITY_EDITOR
+#if UNITY_STANDALONE// || UNITY_EDITOR
             GameObject prefab = Resources.Load<GameObject>(INPUT_PC_PREFAB_NAME);
             GameObject inputSystemGameobject = GameObject.Instantiate(prefab);
 #else

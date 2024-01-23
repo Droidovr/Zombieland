@@ -4,6 +4,7 @@ namespace Zombieland.GameScene0.VisualBodyModule
 {
     public interface IVisualBodyController
     {
-        GameObject CharacterPrefab { get; }
+        GameObject CharacterInScene { get; }
+        Collider SensorCollider { get; }
     }
 }

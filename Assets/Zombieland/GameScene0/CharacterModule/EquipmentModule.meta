@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Zombieland/GameScene0/CharacterModule/CharacterMovingModule.meta
+guid: a3598fe957a61a84eb78cf58fb4f179f
+========
+guid: f09dcf1b505cb9b4098559dc5300afd9
+>>>>>>>> develop:Assets/Zombieland/GameScene0/CharacterModule/EquipmentModule.meta
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

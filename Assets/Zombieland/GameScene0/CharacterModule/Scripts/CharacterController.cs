@@ -1,23 +1,35 @@
 using System.Collections.Generic;
+using Zombieland.GameScene0.CharacterModule.AnimationModule;
+using Zombieland.GameScene0.CharacterModule.AnumatorModule;
 using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
+using Zombieland.GameScene0.CharacterModule.CharacterMovingModule;
+using Zombieland.GameScene0.CharacterModule.EquipmentModule;
+using Zombieland.GameScene0.CharacterModule.SensorModule;
+using Zombieland.GameScene0.CharacterModule.TakeImpactModule;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
+using Zombieland.GameScene0.ImpactModule;
 using Zombieland.GameScene0.RootModule;
 using Zombieland.GameScene0.VisualBodyModule;
 
 namespace Zombieland.GameScene0.CharacterModule
 {
-    public class CharacterController : Controller, ICharacterController
+    public class CharacterController : Controller, ICharacterController, IImpactable
     {
+        public IRootController RootController { get; private set; }
         public ICharacterDataController CharacterDataController { get; private set; }
         public IWeaponController WeaponController { get; private set; }
         public IVisualBodyController VisualBodyController { get; private set; }
+        public ICharacterMovingController CharacterMovingController { get; private set; }
+        public ISensorController SensorController { get; private set; }
+        public ITakeImpactController TakeImpactController { get; private set;}
+        public IEquipmentController EquipmentController { get; private set;}
+        public IAnimationController AnimationController { get; private set; }
 
         private readonly IRootController _rootController;
-        
-        
+
         public CharacterController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
-            _rootController = parentController as IRootController;
+            RootController = parentController as IRootController;
         }
 
         protected override void CreateHelpersScripts()
@@ -27,14 +39,44 @@ namespace Zombieland.GameScene0.CharacterModule
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            CharacterDataController = new CharacterDataController(this, new List<IController>{(IController)_rootController.GameDataController});
+            CharacterDataController = new CharacterDataController(this, new List<IController> { (IController)RootController.GameDataController });
             subsystemsControllers.Add((IController)CharacterDataController);
 
-            WeaponController = new WeaponController(this, new List<IController>{(IController)CharacterDataController});
+            WeaponController = new WeaponController(this, new List<IController> { (IController)CharacterDataController });
             subsystemsControllers.Add((IController)WeaponController);
 
-            VisualBodyController = new VisualBodyController(this, new List<IController> { (IController)_rootController.EnvironmentController });
+            VisualBodyController = new VisualBodyController(this, new List<IController> { (IController)RootController.EnvironmentController });
             subsystemsControllers.Add((IController)VisualBodyController);
+
+            CharacterMovingController = new CharacterMovingController(this, new List<IController> 
+                                                                            {
+                                                                                (IController) RootController.UIController,                                                                                
+                                                                                (IController) CharacterDataController,
+                                                                                (IController) VisualBodyController 
+                                                                            });
+            subsystemsControllers.Add((IController)CharacterMovingController);
+
+            SensorController = new SensorController(this, new List<IController>{(IController)VisualBodyController});
+            subsystemsControllers.Add((IController)SensorController);
+            
+            TakeImpactController = new TakeImpactController(this, null);
+            subsystemsControllers.Add((IController)TakeImpactController);
+            
+            EquipmentController = new EquipmentController(this, new List<IController>{(IController)CharacterDataController});
+            subsystemsControllers.Add((IController)EquipmentController);
+
+            AnimationController = new AnimationController(this, new List<IController> 
+                                                                    {
+                                                                        (IController)CharacterMovingController,
+                                                                        (IController) VisualBodyController
+                                                                    });
+            subsystemsControllers.Add ((IController)AnimationController);
+        }
+        
+        public void ApplyImpact(IImpactController impactController)
+        {
+            // if its direct damage
+            TakeImpactController.ProcessImpact(impactController);
         }
     }
 }

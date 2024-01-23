@@ -2,6 +2,7 @@
 {
     public interface ICharacterDataController
     {
-        
+        CharacterData CharacterData { get; }
+        ICharacterController CharacterController { get; }
     }
 }
