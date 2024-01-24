@@ -38,7 +38,7 @@ namespace Zombieland.GameScene0.RootModule
             subsystemsControllers.Add((IController) GameDataController);
             subsystemsControllers.Add((IController) EnvironmentController);
             subsystemsControllers.Add((IController) UIController);
-            subsystemsControllers.Add((IController)CameraController);
+            subsystemsControllers.Add((IController) CameraController);
         }
     }
 }

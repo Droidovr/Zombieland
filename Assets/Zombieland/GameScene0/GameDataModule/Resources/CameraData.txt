@@ -1,0 +1,1 @@
+{"CameraPivot0RotationY":220,"CameraPivot1LocalPositionY":9,"CameraPivot1LocalPositionZ":-10,"CameraLocalRotationX":40,"CameraSize":6}
