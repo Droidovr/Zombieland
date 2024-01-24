@@ -25,14 +25,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5789871286081271773}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.9396927, z: -0, w: -0.3420201}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2076431605479839251}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 220, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &380013925750075020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,6 +48,7 @@ MonoBehaviour:
   <CameraPivot0>k__BackingField: {fileID: 2221338316937860436}
   <CameraPivot1>k__BackingField: {fileID: 2076431605479839251}
   <MainCamera>k__BackingField: {fileID: 6749218387190233717}
+  _cameraSmoothSpeed: 0.125
 --- !u!1 &6803417498736509346
 GameObject:
   m_ObjectHideFlags: 0
