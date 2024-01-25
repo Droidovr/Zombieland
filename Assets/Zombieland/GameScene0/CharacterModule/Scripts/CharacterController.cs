@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.AnimationModule;
 using Zombieland.GameScene0.CharacterModule.AnumatorModule;
 using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
@@ -24,6 +25,8 @@ namespace Zombieland.GameScene0.CharacterModule
         public ITakeImpactController TakeImpactController { get; private set;}
         public IEquipmentController EquipmentController { get; private set;}
         public IAnimationController AnimationController { get; private set; }
+
+        public Transform CharacterTransform => VisualBodyController.CharacterInScene.transform;
 
         private readonly IRootController _rootController;
 

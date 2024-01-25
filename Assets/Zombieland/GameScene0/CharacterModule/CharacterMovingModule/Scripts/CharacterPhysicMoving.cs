@@ -79,8 +79,8 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void HandleMoved(Vector2 joystickPosition)
         {
-            //_vectorMove = joystickPosition;
-            _vectorMove = new Vector2(-joystickPosition.x, -joystickPosition.y);
+            _vectorMove = joystickPosition;
+            //_vectorMove = new Vector2(-joystickPosition.x, -joystickPosition.y);
         }
         #endregion PRIVATE
     }
