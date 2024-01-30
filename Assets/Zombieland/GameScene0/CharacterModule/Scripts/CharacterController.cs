@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.AnimationModule;
-using Zombieland.GameScene0.CharacterModule.AnumatorModule;
 using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
 using Zombieland.GameScene0.CharacterModule.CharacterMovingModule;
 using Zombieland.GameScene0.CharacterModule.EquipmentModule;

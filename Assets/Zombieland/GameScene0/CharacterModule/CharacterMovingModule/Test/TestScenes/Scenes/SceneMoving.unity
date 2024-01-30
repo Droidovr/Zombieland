@@ -335,6 +335,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character0Ragdoll
       objectReference: {fileID: 0}
+    - target: {fileID: 310744569574224249, guid: 6aa85c195cd8c0549b758664b9bd0bb2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1082038355415935939, guid: 6aa85c195cd8c0549b758664b9bd0bb2,
         type: 3}
       propertyPath: m_LocalPosition.x
