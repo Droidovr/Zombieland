@@ -57,7 +57,9 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         private void CalculateGravity()
         {
             _verticalSpeed += _characterController.isGrounded ? GRAVITY : -GRAVITY;
-            _characterController.Move(Vector3.up * _verticalSpeed * Time.deltaTime);
+            
+            if (_characterController.enabled)
+                _characterController.Move(Vector3.up * _verticalSpeed * Time.deltaTime);
         }
 
         private void CalculeteRealMovingSpeed()

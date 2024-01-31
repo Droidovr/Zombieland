@@ -34,7 +34,8 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private void OnAnimatorMove()
         {
             Vector3 velocity = _animator.deltaPosition;
-            _unityEngineCharacterController.Move(velocity);
+            if (_unityEngineCharacterController.enabled)
+                _unityEngineCharacterController.Move(velocity);
         }
     }
 }

@@ -41,6 +41,11 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
                     }
                 }
             }
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                _ragdoll.StandUp();
+            }
         }
     }
 }
