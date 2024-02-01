@@ -8,11 +8,18 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 {
     public class Ragdoll
     {
+        private const string STAND_UP_BACK_NAME_ANIMATION = "StandUpBack";
+        private const string STAND_UP_FRONT_NAME_ANIMATION = "StandUpFont";
+        private const int DEFAULT_LAYER_ANIMATOR = -1;
+
         private Animator _animator;
         private UnityEngine.CharacterController _unityCharacterController;
         private List<Rigidbody> _rigidbodies;
         private Transform _parent;
         private Transform _hipsBone;
+
+        private RigAdjusterForAnimation _rigAdjusterForBackStandingUpAnimation;
+        private RigAdjusterForAnimation _rigAdjusterForFrontStandingUpAnimation;
 
         public Ragdoll(GameObject gameObject)
         {
@@ -51,11 +58,11 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
             if (IsFrontUp())
             {
-                _animator.Play("Stand Up", -1, 0f);
+                _animator.Play(STAND_UP_BACK_NAME_ANIMATION, DEFAULT_LAYER_ANIMATOR, 0f);
             }
             else
             {
-                _animator.Play("Standing Up", -1, 0f);
+                _animator.Play(STAND_UP_FRONT_NAME_ANIMATION, DEFAULT_LAYER_ANIMATOR, 0f);
             }
         }
 
