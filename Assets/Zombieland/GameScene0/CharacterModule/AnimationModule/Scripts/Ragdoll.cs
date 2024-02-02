@@ -12,11 +12,15 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private const string STAND_UP_FRONT_NAME_ANIMATION = "StandUpFont";
         private const int DEFAULT_LAYER_ANIMATOR = -1;
 
+        private Action<string> action;
+
         private Animator _animator;
         private UnityEngine.CharacterController _unityCharacterController;
         private List<Rigidbody> _rigidbodies;
         private Transform _parent;
         private Transform _hipsBone;
+
+        private GameObject _gameObject;
 
         private RigAdjusterForAnimation _rigAdjusterForBackStandingUpAnimation;
         private RigAdjusterForAnimation _rigAdjusterForFrontStandingUpAnimation;
@@ -33,6 +37,12 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
             _hipsBone = _animator.GetBoneTransform(HumanBodyBones.Hips);
 
+            _gameObject = gameObject;
+
+            //action += Stand;
+
+            //RigAdjusterForAnimation rigAdjusterForAnimation = new RigAdjusterForAnimation(_gameObject, _animator, "StandUpBack");
+
             RagdollHandler(true);
         }
 
@@ -40,8 +50,12 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         {
             RagdollHandler(false);
 
+            // Get Rigidbody on which the collision event occurred
             Rigidbody injuredRigidbody = _rigidbodies.OrderBy(rigidbody => Vector3.Distance(rigidbody.position, hitPosition)).First();
             injuredRigidbody.AddForceAtPosition(force, hitPosition, ForceMode.Impulse);
+
+            AdjustParentPositionToHipsBone();
+            AdjustParentRorationToHipsBone();
 
             //await Task.Delay(300);
 
@@ -50,20 +64,32 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         public void StandUp()
         {
-            RagdollHandler(true);
-
-            AdjustParentPositionToHipsBone();
-            AdjustParentRorationToHipsBone();
-
+            string nameAnimationStandUp = null;
 
             if (IsFrontUp())
             {
-                _animator.Play(STAND_UP_BACK_NAME_ANIMATION, DEFAULT_LAYER_ANIMATOR, 0f);
+                nameAnimationStandUp = STAND_UP_BACK_NAME_ANIMATION;
             }
             else
             {
-                _animator.Play(STAND_UP_FRONT_NAME_ANIMATION, DEFAULT_LAYER_ANIMATOR, 0f);
+                nameAnimationStandUp = STAND_UP_FRONT_NAME_ANIMATION;
             }
+
+            Stand(nameAnimationStandUp);
+
+            //RigAdjusterForAnimation rigAdjusterForAnimation = new RigAdjusterForAnimation(_gameObject, _animator, nameAnimationStandUp);
+
+            //rigAdjusterForAnimation.Adjust(action);
+
+        }
+
+        private void Stand(string nameAnimationStandUp)
+        {
+            Debug.Log(nameAnimationStandUp);
+            
+            RagdollHandler(true);
+
+            _animator.Play(nameAnimationStandUp, DEFAULT_LAYER_ANIMATOR, 0f);
         }
 
         private void RagdollHandler(bool isDisabled)
@@ -113,7 +139,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         }
 
         private bool IsFrontUp()
-        {
+        { 
             return Vector3.Dot(_hipsBone.up, Vector3.up) > 0;
         }
     }

@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 {
@@ -9,85 +11,80 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
     {
         private const float TIME_TO_SHIFT_BONES_TO_START_ANIMATION = 0.5f;
 
+        private GameObject _gameObject;
         private AnimationClip _clip;
-        private MonoBehaviour _view;
 
-        private List<Transform> _bones;
+        private List<Transform> _bonesStart = new List<Transform>();
+        private List<Transform> _bonesFinish = new List<Transform>();
+
+
+
         private BoneTransformData[] _bonesBeaforeAnimation;
         private BoneTransformData[] _bonesAtStartAnimation;
 
-        private Coroutine _shiftBonesToStandingUpAnimation;
 
-        public RigAdjusterForAnimation(AnimationClip clip, IEnumerable<Transform> bones, MonoBehaviour view)
+        public RigAdjusterForAnimation(GameObject gameObject, Animator animator, string clipName)
         {
-            _clip = clip;
-            _view = view;
-            _bones = new List<Transform>(bones);
+            Debug.Log("<color=red>Constructor RigAdjusterForAnimation</color>");
+            
+            _gameObject = gameObject;
+            _clip = GetAnimationClip(animator, clipName);
 
-            _bonesBeaforeAnimation = new BoneTransformData[_bones.Count];
-            _bonesAtStartAnimation = new BoneTransformData[_bones.Count];
+            GetCurrentBonesInStateRagdoll(gameObject);
+            GetBonesStartFrameAnimation(_clip);
 
-            for (int i = 0; i < _bones.Count; i++)
+            foreach (var item in _bonesStart)
             {
-                _bonesBeaforeAnimation[i] = new BoneTransformData();
-                _bonesAtStartAnimation[i] = new BoneTransformData();
+                Debug.Log($"<color=blue>Start: {item.name}, {item.position}</color>");
             }
 
-            SaveBonesDataFromStartAnimation();
-        }
-
-        public void Adjust(Action callback)
-        {
-            SaveCurrentBonesDataTo(_bonesBeaforeAnimation);
-
-            if (_shiftBonesToStandingUpAnimation != null)
-            { 
-                _view.StopCoroutine(_shiftBonesToStandingUpAnimation );
+            foreach (var item in _bonesFinish)
+            {
+                Debug.Log($"<color=green>Start: {item.name}, {item.position}</color>");
             }
-
-            _shiftBonesToStandingUpAnimation = _view.StartCoroutine(ShiftBonesToAnimation(callback));
         }
 
-        private IEnumerator ShiftBonesToAnimation(Action callback)
+        private AnimationClip GetAnimationClip(Animator animator, string clipName)
         {
-            float progress = 0;
-
-            while (progress < TIME_TO_SHIFT_BONES_TO_START_ANIMATION)
-            { 
-                progress += Time.deltaTime;
-                float progressInPercantage = progress / TIME_TO_SHIFT_BONES_TO_START_ANIMATION;
-
-                for (int i = 0; i < _bones.Count; i++)
+            foreach (AnimationClip clip in animator.runtimeAnimatorController.animationClips)
+            {
+                if (clip.name == clipName)
                 {
-                    _bones[i].localPosition = Vector3.Lerp(_bonesBeaforeAnimation[i].Position, _bonesAtStartAnimation[i].Position, progressInPercantage);
-                    _bones[i].localRotation = Quaternion.Lerp(_bonesBeaforeAnimation[i].Rotation, _bonesAtStartAnimation[i].Rotation, progressInPercantage);
+                    return clip;
                 }
-
-                yield return null;
             }
 
-            callback.Invoke();
+            return null;
         }
 
-        private void SaveCurrentBonesDataTo(BoneTransformData[] bones)
+        private void GetCurrentBonesInStateRagdoll(GameObject gameObject)
         {
-            for (int i = 0; i < bones.Length; i++)
+            Transform[] allChildren = gameObject.GetComponentsInChildren<Transform>();
+
+            foreach (Transform child in allChildren)
             {
-                bones[i].Position = _bones[i].localPosition;
-                bones[i].Rotation = _bones[i].localRotation;
+                if (child != gameObject.transform && child.GetComponent<SkinnedMeshRenderer>() == null)
+                {
+                    _bonesStart.Add(child);
+                }
             }
         }
 
-        private void SaveBonesDataFromStartAnimation()
-        {
-            Vector3 initPosition = _view.transform.position;
-            Quaternion initQuaternion = _view.transform.rotation;
+        private void GetBonesStartFrameAnimation(AnimationClip clip)
+        { 
+            Vector3 initPosition = _gameObject.transform.position;
+            Quaternion initRotation = _gameObject.transform.rotation;
 
-            _clip.SampleAnimation(_view.gameObject, 0);
-            SaveCurrentBonesDataTo(_bonesAtStartAnimation);
+            float frameTimeAnimationClip = 0;
+            _clip.SampleAnimation(_gameObject, frameTimeAnimationClip);
 
-            _view.transform.position = initPosition;
-            _view.transform.rotation = initQuaternion;
+            for (int i = 0; i < _bonesStart.Count; i++)
+            {
+                _bonesFinish.Add(_bonesStart[i]);
+            }
+
+            _gameObject.transform.position = initPosition;
+            _gameObject.transform.rotation = initRotation;
         }
     }
 }
