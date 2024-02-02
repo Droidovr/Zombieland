@@ -17,6 +17,18 @@
             <e p="SyntyStudios_Triplanar_ObjectSpace.shader" t="Include" />
           </e>
         </e>
+        <e p="QuickOutline" t="Include">
+          <e p="Readme.txt" t="Include" />
+          <e p="Resources" t="Include">
+            <e p="Shaders" t="Include">
+              <e p="OutlineFill.shader" t="Include" />
+              <e p="OutlineMask.shader" t="Include" />
+            </e>
+          </e>
+          <e p="Scripts" t="Include">
+            <e p="Outline.cs" t="Include" />
+          </e>
+        </e>
         <e p="TutorialInfo" t="Include">
           <e p="Scripts" t="Include">
             <e p="Editor" t="Include">
@@ -27,12 +39,43 @@
         </e>
         <e p="Zombieland" t="Include">
           <e p="GameScene0" t="Include">
+            <e p="CameraModule" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="CameraController.cs" t="Include" />
+                <e p="CameraData.cs" t="Include" />
+                <e p="CameraFollow.cs" t="Include" />
+                <e p="ICameraController.cs" t="Include" />
+                <e p="InitializerCamera.cs" t="Include" />
+              </e>
+            </e>
             <e p="CharacterModule" t="Include">
+              <e p="AnimationModule" t="Include">
+                <e p="Scripts" t="Include">
+                  <e p="AnimationController.cs" t="Include" />
+                  <e p="CharacterAnimator.cs" t="Include" />
+                  <e p="IAnimationController.cs" t="Include" />
+                </e>
+              </e>
               <e p="CharacterDataModule" t="Include">
                 <e p="Scripts" t="Include">
                   <e p="CharacterData.cs" t="Include" />
                   <e p="CharacterDataController.cs" t="Include" />
                   <e p="ICharacterDataController.cs" t="Include" />
+                </e>
+              </e>
+              <e p="CharacterMovingModule" t="Include">
+                <e p="Scripts" t="Include">
+                  <e p="CharacterMovingController.cs" t="Include" />
+                  <e p="CharacterPhysicMoving.cs" t="Include" />
+                  <e p="ICharacterMovingController.cs" t="Include" />
+                </e>
+                <e p="Test" t="Include">
+                  <e p="TestCamera" t="Include">
+                    <e p="Scripts" t="Include">
+                      <e p="CameraSetup.cs" t="Include" />
+                      <e p="MovingCamera.cs" t="Include" />
+                    </e>
+                  </e>
                 </e>
               </e>
               <e p="EquipmentModule" t="Include">
@@ -82,6 +125,8 @@
             </e>
             <e p="GameDataModule" t="Include">
               <e p="Resources" t="Include">
+                <e p="CameraData.txt" t="Include" />
+                <e p="CharacterData.txt" t="Include" />
                 <e p="TestCharacterData.txt" t="Include" />
               </e>
               <e p="Scripts" t="Include">
@@ -106,7 +151,7 @@
             </e>
             <e p="RootModule" t="Include">
               <e p="Scripts" t="Include">
-                <e p="IRootController.cs" t="Include" />
+                <e p="ICharacterController.cs" t="Include" />
                 <e p="RootController.cs" t="Include" />
               </e>
             </e>

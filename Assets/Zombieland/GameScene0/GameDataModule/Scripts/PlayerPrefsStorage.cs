@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Newtonsoft.Json;
+using UnityEngine;
 
 namespace Zombieland.GameScene0.GameDataModule
 {
@@ -6,20 +7,21 @@ namespace Zombieland.GameScene0.GameDataModule
     {
         public void SaveDada<T>(string name, T data)
         {
-            var json = JsonUtility.ToJson(data);
+            var settings = new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.Auto};
+            var json = JsonConvert.SerializeObject(data, settings);
             PlayerPrefs.SetString(name, json);
             PlayerPrefs.Save();
         }
 
         public T GetData<T>(string name)
         {
-            T data = default;
             if (!PlayerPrefs.HasKey(name))
             {
                 SaveDada(name, GetDataFromResources<T>(name));
             }
             var json = PlayerPrefs.GetString(name);
-            data = JsonUtility.FromJson<T>(json);
+            var settings = new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.Auto};
+            var data = JsonConvert.DeserializeObject<T>(json, settings);
             return data;
         }
         
@@ -31,7 +33,8 @@ namespace Zombieland.GameScene0.GameDataModule
                 Debug.LogError("Cannot find file at " + name);
                 return default;
             }
-            T data = JsonUtility.FromJson<T>(textAsset.text);
+            var settings = new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.Auto};
+            var data = JsonConvert.DeserializeObject<T>(textAsset.text, settings);
             return data;
         }
     }
