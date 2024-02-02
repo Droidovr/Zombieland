@@ -35,6 +35,11 @@ namespace Zombieland
         {
             // This controller doesn’t have any subsystems at the moment.
         }
+        
+    - 5 Для того, чтобы работал GameData Module нужно установить Newton Json
+        Ссылка на сайт: https://docs.unity3d.com/Packages/com.unity.nuget.newtonsoft-json@3.2/manual/index.html
+        Инструкция для установки: https://www.youtube.com/watch?v=3H6xkl_EsvQ
+        После установки нужно перезагрузить Unity    
  */
     }
 }

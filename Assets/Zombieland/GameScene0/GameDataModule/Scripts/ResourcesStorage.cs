@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Zombieland.GameScene0.GameDataModule
@@ -11,7 +12,8 @@ namespace Zombieland.GameScene0.GameDataModule
             var fileName = name + ".txt";
             var filePath = Path.Combine(Application.dataPath, "Zombieland/GameScene0/GameDataModule/Resources", fileName);
             Debug.Log($"<color=blue>Save data to filepath: {filePath}</color>");
-            var json = JsonUtility.ToJson(data);
+            var settings = new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.Auto};
+            var json = JsonConvert.SerializeObject(data, settings);
             File.WriteAllText(filePath, json);
 #endif
         }
@@ -24,7 +26,8 @@ namespace Zombieland.GameScene0.GameDataModule
                 Debug.LogError("Cannot find file at " + name);
                 return default;
             }
-            T data = JsonUtility.FromJson<T>(textAsset.text);
+            var settings = new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.Auto};
+            var data = JsonConvert.DeserializeObject<T>(textAsset.text, settings);
             return data;
         }
     }
