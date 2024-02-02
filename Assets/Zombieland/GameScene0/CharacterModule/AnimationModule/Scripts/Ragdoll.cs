@@ -9,7 +9,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
     public class Ragdoll
     {
         private const string STAND_UP_BACK_NAME_ANIMATION = "StandUpBack";
-        private const string STAND_UP_FRONT_NAME_ANIMATION = "StandUpFont";
+        private const string STAND_UP_FRONT_NAME_ANIMATION = "StandUpFront";
         private const int DEFAULT_LAYER_ANIMATOR = -1;
 
         private Action<string> action;
@@ -21,6 +21,8 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private Transform _hipsBone;
 
         private GameObject _gameObject;
+
+        private RigAdjusterForAnimation _rigAdjusterForAnimation;
 
         private RigAdjusterForAnimation _rigAdjusterForBackStandingUpAnimation;
         private RigAdjusterForAnimation _rigAdjusterForFrontStandingUpAnimation;
@@ -41,7 +43,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
             //action += Stand;
 
-            //RigAdjusterForAnimation rigAdjusterForAnimation = new RigAdjusterForAnimation(_gameObject, _animator, "StandUpBack");
+            _rigAdjusterForAnimation = new RigAdjusterForAnimation(_gameObject, _animator, "StandUpBack");
 
             RagdollHandler(true);
         }
@@ -68,12 +70,14 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
             if (IsFrontUp())
             {
-                nameAnimationStandUp = STAND_UP_BACK_NAME_ANIMATION;
+                nameAnimationStandUp = STAND_UP_FRONT_NAME_ANIMATION;
             }
             else
             {
-                nameAnimationStandUp = STAND_UP_FRONT_NAME_ANIMATION;
+                nameAnimationStandUp = STAND_UP_BACK_NAME_ANIMATION;
             }
+
+            _rigAdjusterForAnimation.RigAdjuster();
 
             Stand(nameAnimationStandUp);
 
@@ -89,7 +93,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             
             RagdollHandler(true);
 
-            _animator.Play(nameAnimationStandUp, DEFAULT_LAYER_ANIMATOR, 0f);
+            _animator.Play(nameAnimationStandUp, DEFAULT_LAYER_ANIMATOR);
         }
 
         private void RagdollHandler(bool isDisabled)

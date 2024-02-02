@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 {
-    public class RigAdjusterForAnimation
+    public class RigAdjusterForAnimation : MonoBehaviour
     {
         private const float TIME_TO_SHIFT_BONES_TO_START_ANIMATION = 0.5f;
 
@@ -29,19 +29,12 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             
             _gameObject = gameObject;
             _clip = GetAnimationClip(animator, clipName);
+        }
 
-            GetCurrentBonesInStateRagdoll(gameObject);
-            GetBonesStartFrameAnimation(_clip);
-
-            foreach (var item in _bonesStart)
-            {
-                Debug.Log($"<color=blue>Start: {item.name}, {item.position}</color>");
-            }
-
-            foreach (var item in _bonesFinish)
-            {
-                Debug.Log($"<color=green>Start: {item.name}, {item.position}</color>");
-            }
+        public void RigAdjuster()
+        {
+            GetCurrentBonesInStateRagdoll();
+            GetBonesStartFrameAnimation();
         }
 
         private AnimationClip GetAnimationClip(Animator animator, string clipName)
@@ -57,20 +50,20 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             return null;
         }
 
-        private void GetCurrentBonesInStateRagdoll(GameObject gameObject)
+        private void GetCurrentBonesInStateRagdoll()
         {
-            Transform[] allChildren = gameObject.GetComponentsInChildren<Transform>();
+            Transform[] allChildren = _gameObject.GetComponentsInChildren<Transform>();
 
             foreach (Transform child in allChildren)
             {
-                if (child != gameObject.transform && child.GetComponent<SkinnedMeshRenderer>() == null)
+                if (child != _gameObject.transform && child.GetComponent<SkinnedMeshRenderer>() == null)
                 {
                     _bonesStart.Add(child);
                 }
             }
         }
 
-        private void GetBonesStartFrameAnimation(AnimationClip clip)
+        private void GetBonesStartFrameAnimation()
         { 
             Vector3 initPosition = _gameObject.transform.position;
             Quaternion initRotation = _gameObject.transform.rotation;
@@ -78,9 +71,14 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             float frameTimeAnimationClip = 0;
             _clip.SampleAnimation(_gameObject, frameTimeAnimationClip);
 
-            for (int i = 0; i < _bonesStart.Count; i++)
+            Transform[] allChildren = _gameObject.GetComponentsInChildren<Transform>();
+
+            foreach (Transform child in allChildren)
             {
-                _bonesFinish.Add(_bonesStart[i]);
+                if (child != _gameObject.transform && child.GetComponent<SkinnedMeshRenderer>() == null)
+                {
+                    _bonesFinish.Add(child);
+                }
             }
 
             _gameObject.transform.position = initPosition;
