@@ -13,15 +13,6 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private void Update()
         {
             _animator.SetFloat("RealMovingSpeed", _characterController.CharacterMovingController.RealMovingSpeed, DAMP_TIME, Time.deltaTime);
-
-            if (_characterController.CharacterMovingController.RealMovingSpeed > 0)
-            {
-                _animator.SetBool("IsMoving", true);
-            }
-            else 
-            {
-                _animator.SetBool("IsMoving", false);
-            }
         }
 
         public void Init(ICharacterController CharacterController)
@@ -33,9 +24,10 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         private void OnAnimatorMove()
         {
-            Vector3 velocity = _animator.deltaPosition;
             if (_unityEngineCharacterController.enabled)
-                _unityEngineCharacterController.Move(velocity);
+            {
+                _unityEngineCharacterController.Move(_animator.deltaPosition);
+            }
         }
     }
 }

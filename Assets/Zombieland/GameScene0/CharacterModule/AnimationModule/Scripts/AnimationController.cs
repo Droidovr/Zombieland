@@ -6,9 +6,6 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
     public class AnimationController : Controller, IAnimationController
     {
         public ICharacterController CharacterController { get; private set; }
-        public Ragdoll Ragdoll { get; private set; }
-
-        private CharacterAnimator _characterAnimator;
 
         public AnimationController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
@@ -18,16 +15,14 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         protected override void CreateHelpersScripts()
         {
             GameObject character = CharacterController.VisualBodyController.CharacterInScene;
-            
-            character.AddComponent<CharacterAnimator>();
-            _characterAnimator = character.GetComponent<CharacterAnimator>();
-            _characterAnimator.Init(CharacterController);
 
-            Ragdoll = new Ragdoll(character);
+            CharacterAnimator characterAnimator = character.AddComponent<CharacterAnimator>();
+            characterAnimator.Init(CharacterController);
 
-            character.AddComponent<TestShooter>();
-            TestShooter testShooter = character.GetComponent<TestShooter>();
-            testShooter.Init(Ragdoll);
+            CharacterRagdoll characterRagdoll = character.AddComponent<CharacterRagdoll>();
+
+            TestShooter testShooter = character.AddComponent<TestShooter>();
+            testShooter.Init(characterRagdoll);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
