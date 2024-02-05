@@ -30,12 +30,8 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             {
                 Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
 
-                Debug.Log(Input.mousePosition);
-
                 if (Physics.Raycast(ray, out RaycastHit hit))
                 {
-                    Debug.Log(hit.transform.name);
-
                     if (_characterRagdoll != null)
                     {
                         Vector3 forceDirection = (hit.point - _camera.transform.position).normalized;

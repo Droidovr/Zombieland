@@ -9,9 +9,9 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
     {
         private const string STAND_UP_FRONT = "StandUpFront";
         private const string STAND_UP_BACK = "StandUpBack";
-        private const float RAGDOLL_TO_MECANIM_BLEND_TIME = 0.5f;
+        private const float RAGDOLL_TO_MECANIM_BLEND_TIME = 1f;
 
-        private readonly List<RagdollComponent> _ragdollComponets = new List<RagdollComponent>();
+        private readonly List<RagdollComponent> _ragdollComponents = new List<RagdollComponent>();
 
         private Animator _animator;
         private UnityEngine.CharacterController _unityCharacterController;
@@ -31,7 +31,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
                 Transform boneTransform = _animator.GetBoneTransform((HumanBodyBones)i);
                 if (boneTransform != null)
                 {
-                    _ragdollComponets.Add(new RagdollComponent(boneTransform));
+                    _ragdollComponents.Add(new RagdollComponent(boneTransform));
                 }
             }
 
@@ -44,7 +44,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             {
                 float ragdollBlendAmount = 1f - Mathf.InverseLerp(_ragdollingEndTime, _ragdollingEndTime + RAGDOLL_TO_MECANIM_BLEND_TIME, Time.time);
 
-                foreach (RagdollComponent ragdollComponent in _ragdollComponets)
+                foreach (RagdollComponent ragdollComponent in _ragdollComponents)
                 {
                     if (ragdollComponent.PrivRotation != ragdollComponent.Transform.localRotation)
                     {
@@ -68,38 +68,32 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         public void Hit(Vector3 forceDirection, Vector3 hitPosition)
         {
-            ActivateRagdollParts(true);
-            _ragdollState = RagdollState.Ragdolled;
+            foreach (RagdollComponent component in _ragdollComponents)
+            {
+                Collider collider = component.Collider;
 
-            //foreach (var ragdollComponent in _ragdollComponets)
-            //{
-            //    if (ragdollComponent.RigidBody != null && ragdollComponent.Collider != null)
-            //    {
-            //        // Проверяем, содержит ли коллайдер точку hitPosition
-            //        if (ragdollComponent.Collider.bounds.Contains(hitPosition))
-            //        {
-            //            Debug.Log("<color=red>" + ragdollComponent.Transform.name + "</color>");
-            //            ragdollComponent.RigidBody.AddForceAtPosition(forceDirection, hitPosition, ForceMode.Impulse);
-            //            break; // Прерываем цикл после обнаружения первого соответствующего коллайдера
-            //        }
-            //    }
-            //}
+                if (collider != null)
+                {
+                    if (collider.bounds.Contains(hitPosition))
+                    {
+                        ActivateRagdollParts(true);
+                        _ragdollState = RagdollState.Ragdolled;
 
-            RagdollComponent injuredRagdollComponent = _ragdollComponets
-                                                            .Where(ragdollComponent => ragdollComponent.RigidBody != null)
-                                                            .OrderBy(ragdollComponent => Vector3.Distance(ragdollComponent.RigidBody.position, hitPosition))
-                                                            .FirstOrDefault();
+                        component.RigidBody.AddForceAtPosition(forceDirection, hitPosition, ForceMode.Impulse);
 
-            //Debug.Log("<color=red>" + injuredRagdollComponent.Transform.name + "</color>");
-
-            //if (injuredRagdollComponent != null)
-            //{
-            //    injuredRagdollComponent.RigidBody.AddForceAtPosition(forceDirection, hitPosition, ForceMode.Impulse);
-            //}
+                        break;
+                    }
+                }
+            }
         }
 
         public void GetUp()
         {
+            if (_ragdollState != RagdollState.Ragdolled)
+            {
+                return;
+            }
+            
             _ragdollingEndTime = Time.time;
             _ragdollState = RagdollState.BlendToAnimation;
 
@@ -108,7 +102,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
             MoveNodeWithoutChildren(shiftPos);
 
-            foreach (RagdollComponent ragdollComponent in _ragdollComponets)
+            foreach (RagdollComponent ragdollComponent in _ragdollComponents)
             {
                 ragdollComponent.StoredRotation = ragdollComponent.Transform.localRotation;
                 ragdollComponent.PrivRotation = ragdollComponent.Transform.localRotation;
@@ -184,7 +178,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             _unityCharacterController.enabled = !activate;
             _animator.enabled = !activate;
 
-            foreach (var ragdollComponet in _ragdollComponets)
+            foreach (var ragdollComponet in _ragdollComponents)
             {
                 ragdollComponet.IsKinematikBone(!activate);
 
