@@ -9,7 +9,6 @@ namespace Zombieland.GameScene0.GameDataModule
 
         private IStorage _storage;
 
-
         public GameDataController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             RootController = parentController as IRootController;
@@ -28,11 +27,11 @@ namespace Zombieland.GameScene0.GameDataModule
 
         protected override void CreateHelpersScripts()
         {
-#if PLATFORM_STANDALONE_WIN
+//#if PLATFORM_STANDALONE_WIN
             _storage = new ResourcesStorage();
-#else
-            _storage = new PlayerPrefsStorage();
-#endif
+//#else
+//          _storage = new PlayerPrefsStorage();
+//#endif
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
