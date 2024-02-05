@@ -30,17 +30,17 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             {
                 Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
 
+                Debug.Log(Input.mousePosition);
+
                 if (Physics.Raycast(ray, out RaycastHit hit))
                 {
+                    Debug.Log(hit.transform.name);
+
                     if (_characterRagdoll != null)
                     {
                         Vector3 forceDirection = (hit.point - _camera.transform.position).normalized;
                         forceDirection.y = 0;
-
-                        if (hit.collider.name == _characterRagdoll.name)
-                        {
-                            _characterRagdoll.Hit(forceDirection * _force, hit.point);
-                        }
+                        _characterRagdoll.Hit(forceDirection * _force, hit.point);
                     }
                 }
             }
