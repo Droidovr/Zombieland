@@ -8,6 +8,8 @@ namespace Zombieland.GameScene0.UIModule
     {
         public event Action<Vector2> OnMoved;
         public event Action<string> OnButtonClick;
+        public event Action OnButtonFireDown;
+        public event Action OnButtonFireUp;
 
         private InitializerInputPrefab _initializerInputGameobjects;
 
