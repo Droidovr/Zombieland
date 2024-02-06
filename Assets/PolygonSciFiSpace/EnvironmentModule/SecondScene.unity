@@ -24151,6 +24151,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level1
       objectReference: {fileID: 0}
+    - target: {fileID: 5113731523758058282, guid: 2fa9c18cfdcb49349864a230ec39cee4,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113731523758058282, guid: 2fa9c18cfdcb49349864a230ec39cee4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9a759ef40a5ebca488ea065a5721034c, type: 2}
+    - target: {fileID: 5113731523758058282, guid: 2fa9c18cfdcb49349864a230ec39cee4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9a759ef40a5ebca488ea065a5721034c, type: 2}
     - target: {fileID: 8610906646174483152, guid: 2fa9c18cfdcb49349864a230ec39cee4,
         type: 3}
       propertyPath: m_LocalPosition.x
