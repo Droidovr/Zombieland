@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Zombieland.GameScene0.CharacterModule.AnimationModule
@@ -68,6 +67,9 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         public void Hit(Vector3 forceDirection, Vector3 hitPosition)
         {
+            Debug.Log(forceDirection);
+            Debug.Log(hitPosition);
+
             foreach (RagdollComponent component in _ragdollComponents)
             {
                 Collider collider = component.Collider;
@@ -93,7 +95,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             {
                 return;
             }
-            
+
             _ragdollingEndTime = Time.time;
             _ragdollState = RagdollState.BlendToAnimation;
 
@@ -111,9 +113,9 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
                 ragdollComponent.PrivPosition = ragdollComponent.Transform.localPosition;
             }
 
+            ActivateRagdollParts(false);
             string getUpAnimation = CheckIfLieOnBack() ? STAND_UP_FRONT : STAND_UP_BACK;
             _animator.Play(getUpAnimation, 0, 0);
-            ActivateRagdollParts(false);
         }
 
         private float GetDistanceToFloor(float currentY)
@@ -133,6 +135,8 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         private void MoveNodeWithoutChildren(Vector3 shiftPos)
         {
+            //StartCoroutine(SmoothMoveNode(shiftPos, 0.5f));
+
             Vector3 ragdollDirection = GetRagdollDirection();
 
             _hipsTransform.position -= shiftPos;
@@ -140,6 +144,32 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
             transform.rotation = Quaternion.FromToRotation(transform.forward, ragdollDirection) * transform.rotation;
             _hipsTransform.rotation = Quaternion.FromToRotation(ragdollDirection, transform.forward) * _hipsTransform.rotation;
+        }
+
+        private IEnumerator SmoothMoveNode(Vector3 shiftPos, float duration)
+        {
+            Vector3 startPosition = transform.position;
+            Quaternion startRotation = transform.rotation;
+
+            Vector3 endPosition = startPosition + shiftPos;
+            Quaternion endRotation = Quaternion.FromToRotation(transform.forward, GetRagdollDirection()) * startRotation;
+
+            float startTime = Time.time;
+            float elapsedTime = 0f;
+
+            while (elapsedTime < duration)
+            {
+                float t = (Time.time - startTime) / duration;
+                transform.position = Vector3.Lerp(startPosition, endPosition, t);
+                transform.rotation = Quaternion.Slerp(startRotation, endRotation, t);
+
+                yield return null;
+                elapsedTime += Time.deltaTime;
+            }
+
+            // Убедитесь, что объект достигает конечной позиции и поворота точно
+            transform.position = endPosition;
+            transform.rotation = endRotation;
         }
 
         private Vector3 GetRagdollDirection()
@@ -158,17 +188,17 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         private bool CheckIfLieOnBack()
         {
-            var left = _animator.GetBoneTransform(HumanBodyBones.LeftUpperLeg).position;
-            var right = _animator.GetBoneTransform(HumanBodyBones.RightUpperLeg).position;
-            var hipsPos = _hipsTransform.position;
+            Vector3 leftUpperLegPosition = _animator.GetBoneTransform(HumanBodyBones.LeftUpperLeg).position;
+            Vector3 rightUpperLegPosition = _animator.GetBoneTransform(HumanBodyBones.RightUpperLeg).position;
+            Vector3 hipsPosition = _hipsTransform.position;
 
-            left -= hipsPos;
-            left.y = 0f;
-            right -= hipsPos;
-            right.y = 0f;
+            leftUpperLegPosition -= hipsPosition;
+            leftUpperLegPosition.y = 0f;
+            rightUpperLegPosition -= hipsPosition;
+            rightUpperLegPosition.y = 0f;
 
-            var q = Quaternion.FromToRotation(left, Vector3.right);
-            var t = q * right;
+            Quaternion rotationFromLeftToRight = Quaternion.FromToRotation(leftUpperLegPosition, Vector3.right);
+            Vector3 t = rotationFromLeftToRight * rightUpperLegPosition;
 
             return t.z < 0f;
         }
@@ -178,65 +208,69 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             _unityCharacterController.enabled = !activate;
             _animator.enabled = !activate;
 
-            foreach (var ragdollComponet in _ragdollComponents)
+            foreach (RagdollComponent ragdollComponet in _ragdollComponents)
             {
                 ragdollComponet.IsKinematikBone(!activate);
 
                 if (activate)
                 {
-                    StartCoroutine(FixTransformAndEnableJoint(ragdollComponet));
+                    StartCoroutine(FixTransformAndEnableJoint(ragdollComponet.Joint));
                 }
             }
         }
 
-        private IEnumerator FixTransformAndEnableJoint(RagdollComponent joint)
+        private IEnumerator FixTransformAndEnableJoint(CharacterJoint joint)
         {
-            if (joint.Joint == null || !joint.Joint.autoConfigureConnectedAnchor)
+            if (joint == null || !joint.autoConfigureConnectedAnchor)
             {
                 yield break;
             }
 
-            SoftJointLimit highTwistLimit = joint.Joint.highTwistLimit;
-            SoftJointLimit lowTwistLimit = joint.Joint.lowTwistLimit;
-            SoftJointLimit swing1Limit = joint.Joint.swing1Limit;
-            SoftJointLimit swing2Limit = joint.Joint.swing2Limit;
+            SoftJointLimit highTwistLimit = joint.highTwistLimit;
+            SoftJointLimit lowTwistLimit = joint.lowTwistLimit;
+            SoftJointLimit swing1Limit = joint.swing1Limit;
+            SoftJointLimit swing2Limit = joint.swing2Limit;
 
             SoftJointLimit curHighTwistLimit = highTwistLimit;
             SoftJointLimit curLowTwistLimit = lowTwistLimit;
             SoftJointLimit curSwing1Limit = swing1Limit;
             SoftJointLimit curSwing2Limit = swing2Limit;
 
-            float aTime = 0.3f;
-            Vector3 startConnectedPosition = joint.Joint.connectedBody.transform.InverseTransformVector(joint.Joint.transform.position - joint.Joint.connectedBody.transform.position);
+            Vector3 startConnectedPosition = joint.connectedBody.transform.InverseTransformVector(joint.transform.position - joint.connectedBody.transform.position);
 
-            joint.Joint.autoConfigureConnectedAnchor = false;
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
+            float jointParameterChangeDurationTime = 0.3f;
+            float timeElapsedStart = 0f;
+            float timeElapsedEnd = 1f;
+            float maxRotationLimit = 177f;
+
+            joint.autoConfigureConnectedAnchor = false;
+            for (float timeElapsed = timeElapsedStart; timeElapsed < timeElapsedEnd; timeElapsed += Time.deltaTime / jointParameterChangeDurationTime)
             {
-                Vector3 newConPosition = Vector3.Lerp(startConnectedPosition, joint.ConnectedAnchorDefault, t);
-                joint.Joint.connectedAnchor = newConPosition;
+                Vector3 newConPosition = Vector3.Lerp(startConnectedPosition, joint.connectedAnchor, timeElapsed);
+                joint.connectedAnchor = newConPosition;
 
-                curHighTwistLimit.limit = Mathf.Lerp(177, highTwistLimit.limit, t);
-                curLowTwistLimit.limit = Mathf.Lerp(-177, lowTwistLimit.limit, t);
-                curSwing1Limit.limit = Mathf.Lerp(177, swing1Limit.limit, t);
-                curSwing2Limit.limit = Mathf.Lerp(177, swing2Limit.limit, t);
+                curHighTwistLimit.limit = Mathf.Lerp(maxRotationLimit, highTwistLimit.limit, timeElapsed);
+                curLowTwistLimit.limit = Mathf.Lerp(-maxRotationLimit, lowTwistLimit.limit, timeElapsed);
+                curSwing1Limit.limit = Mathf.Lerp(maxRotationLimit, swing1Limit.limit, timeElapsed);
+                curSwing2Limit.limit = Mathf.Lerp(maxRotationLimit, swing2Limit.limit, timeElapsed);
 
-                joint.Joint.highTwistLimit = curHighTwistLimit;
-                joint.Joint.lowTwistLimit = curLowTwistLimit;
-                joint.Joint.swing1Limit = curSwing1Limit;
-                joint.Joint.swing2Limit = curSwing2Limit;
+                joint.highTwistLimit = curHighTwistLimit;
+                joint.lowTwistLimit = curLowTwistLimit;
+                joint.swing1Limit = curSwing1Limit;
+                joint.swing2Limit = curSwing2Limit;
 
 
                 yield return null;
             }
-            joint.Joint.connectedAnchor = joint.ConnectedAnchorDefault;
+            joint.connectedAnchor = joint.connectedAnchor;
             yield return new WaitForFixedUpdate();
-            joint.Joint.autoConfigureConnectedAnchor = true;
+            joint.autoConfigureConnectedAnchor = true;
 
 
-            joint.Joint.highTwistLimit = highTwistLimit;
-            joint.Joint.lowTwistLimit = lowTwistLimit;
-            joint.Joint.swing1Limit = swing1Limit;
-            joint.Joint.swing2Limit = swing2Limit;
+            joint.highTwistLimit = highTwistLimit;
+            joint.lowTwistLimit = lowTwistLimit;
+            joint.swing1Limit = swing1Limit;
+            joint.swing2Limit = swing2Limit;
         }
     }
 }

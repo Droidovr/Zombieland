@@ -15,7 +15,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private Vector2 _vectorMove;
         private float _verticalSpeed;
-        private UnityEngine.CharacterController _characterController;
+        private UnityEngine.CharacterController _unityCharacterController;
         private IUIMain _uIController;
         private ICharacterDataController _characterDataController;
 
@@ -43,7 +43,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         public void Initialize(ICharacterMovingController characterMovingController)
         {
-            _characterController = GetComponent<UnityEngine.CharacterController>();
+            _unityCharacterController = GetComponent<UnityEngine.CharacterController>();
 
             _uIController = characterMovingController.CharacterController.RootController.UIController;
             _uIController.OnMoved += HandleMoved;
@@ -56,10 +56,11 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         #region PRIVATE
         private void CalculateGravity()
         {
-            _verticalSpeed += _characterController.isGrounded ? GRAVITY : -GRAVITY;
-            
-            if (_characterController.enabled)
-                _characterController.Move(Vector3.up * _verticalSpeed * Time.deltaTime);
+            if (_unityCharacterController.enabled)
+            {
+                _verticalSpeed += _unityCharacterController.isGrounded ? GRAVITY : -GRAVITY;
+                _unityCharacterController.Move(Vector3.up * _verticalSpeed * Time.deltaTime);
+            }
         }
 
         private void CalculeteRealMovingSpeed()
@@ -82,7 +83,6 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         private void HandleMoved(Vector2 joystickPosition)
         {
             _vectorMove = joystickPosition;
-            //_vectorMove = new Vector2(-joystickPosition.x, -joystickPosition.y);
         }
         #endregion PRIVATE
     }
