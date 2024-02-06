@@ -67,9 +67,6 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         public void Hit(Vector3 forceDirection, Vector3 hitPosition)
         {
-            Debug.Log(forceDirection);
-            Debug.Log(hitPosition);
-
             foreach (RagdollComponent component in _ragdollComponents)
             {
                 Collider collider = component.Collider;
@@ -135,15 +132,15 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         private void MoveNodeWithoutChildren(Vector3 shiftPos)
         {
-            //StartCoroutine(SmoothMoveNode(shiftPos, 0.5f));
+            StartCoroutine(SmoothMoveNode(shiftPos, 0.5f));
 
-            Vector3 ragdollDirection = GetRagdollDirection();
+            //Vector3 ragdollDirection = GetRagdollDirection();
 
-            _hipsTransform.position -= shiftPos;
-            transform.position += shiftPos;
+            //_hipsTransform.position -= shiftPos;
+            //transform.position += shiftPos;
 
-            transform.rotation = Quaternion.FromToRotation(transform.forward, ragdollDirection) * transform.rotation;
-            _hipsTransform.rotation = Quaternion.FromToRotation(ragdollDirection, transform.forward) * _hipsTransform.rotation;
+            //transform.rotation = Quaternion.FromToRotation(transform.forward, ragdollDirection) * transform.rotation;
+            //_hipsTransform.rotation = Quaternion.FromToRotation(ragdollDirection, transform.forward) * _hipsTransform.rotation;
         }
 
         private IEnumerator SmoothMoveNode(Vector3 shiftPos, float duration)
@@ -181,9 +178,13 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             ragdollDirection = ragdollDirection.normalized;
 
             if (CheckIfLieOnBack())
+            {
                 return ragdollDirection;
+            }
             else
+            {
                 return -ragdollDirection;
+            }
         }
 
         private bool CheckIfLieOnBack()
@@ -198,9 +199,9 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             rightUpperLegPosition.y = 0f;
 
             Quaternion rotationFromLeftToRight = Quaternion.FromToRotation(leftUpperLegPosition, Vector3.right);
-            Vector3 t = rotationFromLeftToRight * rightUpperLegPosition;
+            Vector3 relativePositionToHips = rotationFromLeftToRight * rightUpperLegPosition;
 
-            return t.z < 0f;
+            return relativePositionToHips.z < 0f;
         }
 
         private void ActivateRagdollParts(bool activate)
