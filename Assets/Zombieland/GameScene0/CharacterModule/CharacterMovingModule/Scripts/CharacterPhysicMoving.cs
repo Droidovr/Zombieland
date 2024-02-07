@@ -18,6 +18,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         private UnityEngine.CharacterController _unityCharacterController;
         private IUIMain _uIController;
         private ICharacterDataController _characterDataController;
+        private Animator _animator;
 
 
         #region MONOBEHAVIOUR
@@ -32,6 +33,14 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
                 CalculeteRotation();
             }
         }
+
+        private void OnAnimatorMove()
+        {
+            if (_animator.enabled)
+            {
+                _unityCharacterController.Move(_animator.deltaPosition);
+            }
+        }
         #endregion
 
 
@@ -41,8 +50,12 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             _uIController.OnMoved -= HandleMoved;
         }
 
-        public void Initialize(ICharacterMovingController characterMovingController)
+        public void Init(ICharacterMovingController characterMovingController)
         {
+            //_animator = characterMovingController.CharacterController.AnimationController.Animator;
+
+            _animator = GetComponent<Animator>();
+
             _unityCharacterController = GetComponent<UnityEngine.CharacterController>();
 
             _uIController = characterMovingController.CharacterController.RootController.UIController;

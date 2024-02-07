@@ -6,6 +6,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
     public class AnimationController : Controller, IAnimationController
     {
         public ICharacterController CharacterController { get; private set; }
+        public Animator Animator { get; private set; } 
 
         public AnimationController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
@@ -17,6 +18,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             GameObject character = CharacterController.VisualBodyController.CharacterInScene;
 
             CharacterAnimator characterAnimator = character.AddComponent<CharacterAnimator>();
+            Animator = characterAnimator.Animator;
             characterAnimator.Init(CharacterController);
 
             CharacterRagdoll characterRagdoll = character.AddComponent<CharacterRagdoll>();

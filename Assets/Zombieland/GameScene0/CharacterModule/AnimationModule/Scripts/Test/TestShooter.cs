@@ -7,7 +7,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
     {
         public event Action OnShoot;
 
-        private float _force = 50f;
+        private float _force = 10f;
         private Camera _camera;
 
         private CharacterRagdoll _characterRagdoll;
@@ -37,13 +37,14 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
                         Vector3 forceDirection = (hit.point - _camera.transform.position).normalized;
                         forceDirection.y = 0;
                         _characterRagdoll.Hit(forceDirection * _force, hit.point);
+                        //_characterRagdoll.ActivateRagdoll();
                     }
                 }
             }
 
             if (Input.GetKeyDown(KeyCode.F))
             {
-                _characterRagdoll.GetUp();
+                //_characterRagdoll.GetUp();
             }
         }
     }
