@@ -7,7 +7,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
     {
         public event Action OnShoot;
 
-        private float _force = 10f;
+        private float _force = 20f;
         private Camera _camera;
 
         private CharacterRagdoll _characterRagdoll;
@@ -44,7 +44,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
             if (Input.GetKeyDown(KeyCode.F))
             {
-                //_characterRagdoll.GetUp();
+                _characterRagdoll.DeactivateRagdoll();
             }
         }
     }
