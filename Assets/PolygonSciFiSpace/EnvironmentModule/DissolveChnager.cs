@@ -7,8 +7,8 @@ public class DissolveChnager : MonoBehaviour
     [SerializeField] private MeshRenderer[] _meshrenderers;
     [SerializeField] private float _dissolveChangeSpeed;
     private bool _isHiddden = false;
-    private float _minDissolve = 1.5f;
-    private float _maxDissolve = 5f;
+    [SerializeField] private float _minDissolve = 6.5f;
+    [SerializeField] private float _maxDissolve = 12f;
     private float _currentDissolveValue;
 
     private void Start()
