@@ -28,7 +28,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
             CalculeteRealMovingSpeed();
 
-            if (_vectorMove.magnitude > MIN_VECTORMOVE_MAGITUDE)
+            if (_vectorMove.magnitude > MIN_VECTORMOVE_MAGITUDE && _unityCharacterController.enabled)
             {
                 CalculeteRotation();
             }
@@ -36,7 +36,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void OnAnimatorMove()
         {
-            if (_animator.enabled)
+            if (_animator.enabled && _unityCharacterController.enabled)
             {
                 _unityCharacterController.Move(_animator.deltaPosition);
             }

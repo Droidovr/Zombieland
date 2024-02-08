@@ -75,6 +75,9 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
                 {
                     if (collider.bounds.Contains(hitPosition))
                     {
+                        _unityCharacterController.enabled = false;
+                        _animator.enabled = false;
+                        
                         ActivateRagdollParts(true);
                         _ragdollState = RagdollState.Ragdolled;
 
@@ -94,6 +97,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             }
 
             _ragdollingEndTime = Time.time;
+            _animator.enabled = true;
             _ragdollState = RagdollState.BlendToAnimation;
 
             Vector3 shiftPos = _hipsTransform.position - transform.position;
@@ -110,9 +114,10 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
                 ragdollComponent.PrivPosition = ragdollComponent.Transform.localPosition;
             }
 
-            ActivateRagdollParts(false);
             string getUpAnimation = CheckIfLieOnBack() ? STAND_UP_FRONT : STAND_UP_BACK;
             _animator.Play(getUpAnimation, 0, 0);
+            ActivateRagdollParts(false);
+            _unityCharacterController.enabled = true;
         }
 
         private float GetDistanceToFloor(float currentY)
@@ -132,56 +137,14 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         private void MoveNodeWithoutChildren(Vector3 shiftPos)
         {
-            Vector3 hipsPosition = _hipsTransform.position;
+            Vector3 ragdollDirection = GetRagdollDirection();
 
-            transform.position = hipsPosition;
+            _hipsTransform.position -= shiftPos;
+            transform.position += shiftPos;
 
-            _hipsTransform.position = hipsPosition;
-
-
-            //StartCoroutine(SmoothMoveNode(shiftPos, 0.5f));
-
-            //Vector3 ragdollDirection = GetRagdollDirection();
-
-            //_hipsTransform.position -= shiftPos;
-            //transform.position += shiftPos;
-
-            //Vector3 dirProection = Vector3.ProjectOnPlane(ragdollDirection, Vector3.up);
-            //transform.eulerAngles = dirProection;
-            ////if (CheckIfLieOnBack())
-            //    transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y - 180f, transform.eulerAngles.z);
-
-            ////Debug.LogError("Stop 1");
-
-
-            //transform.rotation = Quaternion.FromToRotation(transform.forward, ragdollDirection) * transform.rotation;
-            //_hipsTransform.rotation = Quaternion.FromToRotation(ragdollDirection, transform.forward) * _hipsTransform.rotation;
-        }
-
-        private IEnumerator SmoothMoveNode(Vector3 shiftPos, float duration)
-        {
-            Vector3 startPosition = transform.position;
-            Quaternion startRotation = transform.rotation;
-
-            Vector3 endPosition = startPosition + shiftPos;
-            Quaternion endRotation = Quaternion.FromToRotation(transform.forward, GetRagdollDirection()) * startRotation;
-
-            float startTime = Time.time;
-            float elapsedTime = 0f;
-
-            while (elapsedTime < duration)
-            {
-                float t = (Time.time - startTime) / duration;
-                transform.position = Vector3.Lerp(startPosition, endPosition, t);
-                transform.rotation = Quaternion.Slerp(startRotation, endRotation, t);
-
-                yield return null;
-                elapsedTime += Time.deltaTime;
-            }
-
-            // Убедитесь, что объект достигает конечной позиции и поворота точно
-            transform.position = endPosition;
-            transform.rotation = endRotation;
+            Vector3 forward = transform.forward;
+            transform.rotation = Quaternion.FromToRotation(forward, ragdollDirection) * transform.rotation;
+            _hipsTransform.rotation = Quaternion.FromToRotation(ragdollDirection, forward) * _hipsTransform.rotation;
         }
 
         private Vector3 GetRagdollDirection()
@@ -221,9 +184,6 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         private void ActivateRagdollParts(bool activate)
         {
-            _unityCharacterController.enabled = !activate;
-            _animator.enabled = !activate;
-
             foreach (RagdollComponent ragdollComponet in _ragdollComponents)
             {
                 ragdollComponet.IsKinematikBone(!activate);
