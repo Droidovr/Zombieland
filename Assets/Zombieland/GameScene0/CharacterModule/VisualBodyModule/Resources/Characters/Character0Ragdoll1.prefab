@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 16abff6e1f677bf4da1d7bda20e4d585,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16abff6e1f677bf4da1d7bda20e4d585,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16abff6e1f677bf4da1d7bda20e4d585,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16abff6e1f677bf4da1d7bda20e4d585,
         type: 3}
@@ -393,7 +393,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -447,7 +447,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -461,31 +461,31 @@ CharacterJoint:
   m_ConnectedBody: {fileID: 32635808613205663}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: -0.13500476, y: -0.00028020144, z: -0.99084485}
+  m_Axis: {x: -0.048719015, y: -0.000000037252903, z: -0.3570898}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0.22391069, y: 0.258282, z: -0.0054629114}
   serializedVersion: 2
-  m_SwingAxis: {x: -0.9908091, y: 0.00855889, z: 0.13499746}
+  m_SwingAxis: {x: -0.99079835, y: 0.0067596585, z: 0.13517818}
   m_TwistLimitSpring:
     spring: 0
     damper: 0
   m_LowTwistLimit:
-    limit: -35
+    limit: -30
     bounciness: 0
     contactDistance: 0
   m_HighTwistLimit:
-    limit: 50
+    limit: 100
     bounciness: 0
     contactDistance: 0
   m_SwingLimitSpring:
     spring: 0
     damper: 0
   m_Swing1Limit:
-    limit: 75
+    limit: 100
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
-    limit: 35
+    limit: 45
     bounciness: 0
     contactDistance: 0
   m_EnableProjection: 1
@@ -516,7 +516,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.08110943
+  m_Radius: 0.0736033
   m_Height: 0.30033842
   m_Direction: 1
   m_Center: {x: -0.000000017753337, y: 0.15016921, z: 0.000000011175871}
@@ -549,7 +549,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -563,31 +563,31 @@ CharacterJoint:
   m_ConnectedBody: {fileID: 8926484205521430400}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: -0.99985564, y: -0.016973527, z: -0.0008647521}
+  m_Axis: {x: -0.9998557, y: -0.016973594, z: -0.0008656746}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: -0.0000000037252903, y: 0.40111715, z: 0.0000000020954758}
   serializedVersion: 2
-  m_SwingAxis: {x: 0.000060311475, y: -0.054424345, z: 0.99851793}
+  m_SwingAxis: {x: 0.000059436134, y: -0.054426823, z: 0.99851775}
   m_TwistLimitSpring:
     spring: 0
     damper: 0
   m_LowTwistLimit:
-    limit: -40
+    limit: -120
     bounciness: 0
     contactDistance: 0
   m_HighTwistLimit:
-    limit: -0
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_SwingLimitSpring:
     spring: 0
     damper: 0
   m_Swing1Limit:
-    limit: 0
+    limit: 10
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
-    limit: 0
+    limit: 20
     bounciness: 0
     contactDistance: 0
   m_EnableProjection: 1
@@ -618,7 +618,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.08912063
+  m_Radius: 0.086951636
   m_Height: 0.3238895
   m_Direction: 1
   m_Center: {x: 0.0000000023283064, y: 0.16194475, z: 0.000000007450581}
@@ -651,7 +651,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -665,11 +665,11 @@ CharacterJoint:
   m_ConnectedBody: {fileID: 1714159754384054841}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: -0.998112, y: -0.061420094, z: 1.6952442e-10}
+  m_Axis: {x: -0.9981121, y: -0.061420217, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: -0.084734805, y: -0.062749445, z: -0.021715865}
   serializedVersion: 2
-  m_SwingAxis: {x: 0.0002148, y: -0.0034906212, z: 0.99999386}
+  m_SwingAxis: {x: 0.00021479493, y: -0.0034905348, z: 0.99999386}
   m_TwistLimitSpring:
     spring: 0
     damper: 0
@@ -678,14 +678,14 @@ CharacterJoint:
     bounciness: 0
     contactDistance: 0
   m_HighTwistLimit:
-    limit: 40
+    limit: 120
     bounciness: 0
     contactDistance: 0
   m_SwingLimitSpring:
     spring: 0
     damper: 0
   m_Swing1Limit:
-    limit: 25
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
@@ -720,10 +720,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.108150356
+  m_Radius: 0.086951636
   m_Height: 0.40111715
   m_Direction: 1
-  m_Center: {x: 0.025061697, y: 0.20210083, z: 0.0000000040163286}
+  m_Center: {x: -0.0000000018626451, y: 0.20055857, z: 0.0000000010477379}
 --- !u!1 &3251937692432294185 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2715566404302941441, guid: 16abff6e1f677bf4da1d7bda20e4d585,
@@ -753,7 +753,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -767,31 +767,31 @@ CharacterJoint:
   m_ConnectedBody: {fileID: 4906326752016527807}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: -0.18782352, y: 0.07037097, z: -0.97967863}
+  m_Axis: {x: -0.041841697, y: 0.015681028, z: -0.21826017}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: -0.000000074505806, y: 0.31588283, z: 0.000000040978193}
   serializedVersion: 2
-  m_SwingAxis: {x: -0.97973144, y: -0.08413582, z: 0.18179013}
+  m_SwingAxis: {x: -0.9797319, y: -0.08416673, z: 0.18177316}
   m_TwistLimitSpring:
     spring: 0
     damper: 0
   m_LowTwistLimit:
-    limit: -0
+    limit: -90
     bounciness: 0
     contactDistance: 0
   m_HighTwistLimit:
-    limit: 0
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_SwingLimitSpring:
     spring: 0
     damper: 0
   m_Swing1Limit:
-    limit: 0
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
-    limit: 0
+    limit: 45
     bounciness: 0
     contactDistance: 0
   m_EnableProjection: 1
@@ -853,7 +853,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -867,31 +867,31 @@ CharacterJoint:
   m_ConnectedBody: {fileID: 4798086116438747720}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: 0.15103069, y: 0.110718414, z: -0.98230916}
+  m_Axis: {x: 0.033872496, y: 0.024831142, z: -0.22030674}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: -0.0000000037252903, y: 0.31548876, z: 0.00000008195639}
   serializedVersion: 2
-  m_SwingAxis: {x: 0.98652905, y: -0.08006293, z: 0.14265539}
+  m_SwingAxis: {x: 0.986529, y: -0.080062784, z: 0.14265625}
   m_TwistLimitSpring:
     spring: 0
     damper: 0
   m_LowTwistLimit:
-    limit: -0
+    limit: -90
     bounciness: 0
     contactDistance: 0
   m_HighTwistLimit:
-    limit: 0
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_SwingLimitSpring:
     spring: 0
     damper: 0
   m_Swing1Limit:
-    limit: 0
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
-    limit: 0
+    limit: 45
     bounciness: 0
     contactDistance: 0
   m_EnableProjection: 1
@@ -953,7 +953,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -967,31 +967,31 @@ CharacterJoint:
   m_ConnectedBody: {fileID: 4661246342882115479}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: 0.14951237, y: 0.000000029802322, z: -0.9887599}
+  m_Axis: {x: 0.056546763, y: -0.00000008568168, z: -0.37395594}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: -0.000000017695129, y: 0.30030784, z: 0.00000016018748}
   serializedVersion: 2
-  m_SwingAxis: {x: 0.9877687, y: 0.04476586, z: 0.14936244}
+  m_SwingAxis: {x: 0.9877687, y: 0.044765912, z: 0.14936277}
   m_TwistLimitSpring:
     spring: 0
     damper: 0
   m_LowTwistLimit:
-    limit: -35
+    limit: -120
     bounciness: 0
     contactDistance: 0
   m_HighTwistLimit:
-    limit: 30
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_SwingLimitSpring:
     spring: 0
     damper: 0
   m_Swing1Limit:
-    limit: 30
+    limit: 10
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
-    limit: 30
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_EnableProjection: 1
@@ -1055,7 +1055,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1069,31 +1069,31 @@ CharacterJoint:
   m_ConnectedBody: {fileID: 6677459212470201043}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: -0.9998556, y: 0.016978787, z: 0.0006543889}
+  m_Axis: {x: -0.99985564, y: 0.01697867, z: 0.00065435865}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0.0000000037252903, y: 0.40113527, z: 0.0000000023283064}
   serializedVersion: 2
-  m_SwingAxis: {x: -0.00017282952, y: -0.04867354, z: 0.99881476}
+  m_SwingAxis: {x: -0.00017285408, y: -0.048673544, z: 0.99881476}
   m_TwistLimitSpring:
     spring: 0
     damper: 0
   m_LowTwistLimit:
-    limit: -40
+    limit: -120
     bounciness: 0
     contactDistance: 0
   m_HighTwistLimit:
-    limit: -0
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_SwingLimitSpring:
     spring: 0
     damper: 0
   m_Swing1Limit:
-    limit: 0
+    limit: 10
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
-    limit: 0
+    limit: 20
     bounciness: 0
     contactDistance: 0
   m_EnableProjection: 1
@@ -1124,7 +1124,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.08912063
+  m_Radius: 0.086954266
   m_Height: 0.32379353
   m_Direction: 1
   m_Center: {x: -4.656613e-10, y: 0.16189677, z: -9.313226e-10}
@@ -1157,7 +1157,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1171,11 +1171,11 @@ CharacterJoint:
   m_ConnectedBody: {fileID: 1714159754384054841}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: -0.99811214, y: 0.061417542, z: -0.000000018402346}
+  m_Axis: {x: -0.9981122, y: 0.061417427, z: 5.820766e-11}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0.084734805, y: -0.062749445, z: -0.022126894}
   serializedVersion: 2
-  m_SwingAxis: {x: -0.00062478165, y: -0.010153187, z: 0.99994826}
+  m_SwingAxis: {x: -0.00062480633, y: -0.010153907, z: 0.99994826}
   m_TwistLimitSpring:
     spring: 0
     damper: 0
@@ -1184,14 +1184,14 @@ CharacterJoint:
     bounciness: 0
     contactDistance: 0
   m_HighTwistLimit:
-    limit: 40
+    limit: 120
     bounciness: 0
     contactDistance: 0
   m_SwingLimitSpring:
     spring: 0
     damper: 0
   m_Swing1Limit:
-    limit: 25
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
@@ -1226,10 +1226,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.108150356
+  m_Radius: 0.086954266
   m_Height: 0.40113527
   m_Direction: 1
-  m_Center: {x: -0.016369037, y: 0.20157489, z: 0.000000003958121}
+  m_Center: {x: 0.0000000018626451, y: 0.20056763, z: 0.0000000011641532}
 --- !u!1 &7755154068125468828 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2084811680363313996, guid: 16abff6e1f677bf4da1d7bda20e4d585,
@@ -1259,7 +1259,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1273,31 +1273,31 @@ CharacterJoint:
   m_ConnectedBody: {fileID: 4551170464246969838}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: -0.95534223, y: -0.24609232, z: -0.16358453}
+  m_Axis: {x: -0.9553423, y: -0.24609248, z: -0.16358452}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0.000000004656613, y: 0.3238895, z: 0.000000014901161}
   serializedVersion: 2
-  m_SwingAxis: {x: -0.29373613, y: 0.7304245, z: 0.61660284}
+  m_SwingAxis: {x: -0.29373625, y: 0.7304245, z: 0.6166028}
   m_TwistLimitSpring:
     spring: 0
     damper: 0
   m_LowTwistLimit:
-    limit: 0
+    limit: -70
     bounciness: 0
     contactDistance: 0
   m_HighTwistLimit:
-    limit: 0
+    limit: 70
     bounciness: 0
     contactDistance: 0
   m_SwingLimitSpring:
     spring: 0
     damper: 0
   m_Swing1Limit:
-    limit: 0
+    limit: 45
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
-    limit: 0
+    limit: 20
     bounciness: 0
     contactDistance: 0
   m_EnableProjection: 1
@@ -1359,7 +1359,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1373,7 +1373,7 @@ CharacterJoint:
   m_ConnectedBody: {fileID: 32635808613205663}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: 0.99999994, y: -0.00000011920929, z: 0}
+  m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0.42756224, z: 0.037361145}
   serializedVersion: 2
@@ -1382,22 +1382,22 @@ CharacterJoint:
     spring: 0
     damper: 0
   m_LowTwistLimit:
-    limit: -15
+    limit: -45
     bounciness: 0
     contactDistance: 0
   m_HighTwistLimit:
-    limit: 10
+    limit: 20
     bounciness: 0
     contactDistance: 0
   m_SwingLimitSpring:
     spring: 0
     damper: 0
   m_Swing1Limit:
-    limit: 10
+    limit: 20
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
-    limit: 10
+    limit: 20
     bounciness: 0
     contactDistance: 0
   m_EnableProjection: 1
@@ -1459,7 +1459,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1473,31 +1473,31 @@ CharacterJoint:
   m_ConnectedBody: {fileID: 32635808613205663}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: 0.14016487, y: 0.0000044107437, z: -0.9901284}
+  m_Axis: {x: 0.050510217, y: 0.00000020489097, z: -0.35678822}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: -0.22391069, y: 0.25824755, z: -0.005049084}
   serializedVersion: 2
-  m_SwingAxis: {x: 0.9900633, y: -0.011449456, z: 0.14015564}
+  m_SwingAxis: {x: 0.9900625, y: -0.011445489, z: 0.14016224}
   m_TwistLimitSpring:
     spring: 0
     damper: 0
   m_LowTwistLimit:
-    limit: -35
+    limit: -100
     bounciness: 0
     contactDistance: 0
   m_HighTwistLimit:
-    limit: 50
+    limit: 30
     bounciness: 0
     contactDistance: 0
   m_SwingLimitSpring:
     spring: 0
     damper: 0
   m_Swing1Limit:
-    limit: 75
+    limit: 100
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
-    limit: 35
+    limit: 45
     bounciness: 0
     contactDistance: 0
   m_EnableProjection: 1
@@ -1528,7 +1528,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.08110943
+  m_Radius: 0.07359298
   m_Height: 0.30030784
   m_Direction: 1
   m_Center: {x: -0.0000000088475645, y: 0.15015392, z: 0.00000008009374}
@@ -1561,7 +1561,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1575,31 +1575,31 @@ CharacterJoint:
   m_ConnectedBody: {fileID: 1563266064021288902}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: -0.15222825, y: -0.000021964312, z: -0.98834527}
+  m_Axis: {x: -0.057457317, y: 0.000000048428774, z: -0.3730913}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: -0.000000035506673, y: 0.30033842, z: 0.000000022351742}
   serializedVersion: 2
-  m_SwingAxis: {x: -0.98424613, y: 0.090987206, z: 0.1515949}
+  m_SwingAxis: {x: -0.9842554, y: 0.09091431, z: 0.15157874}
   m_TwistLimitSpring:
     spring: 0
     damper: 0
   m_LowTwistLimit:
-    limit: -35
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_HighTwistLimit:
-    limit: 30
+    limit: 120
     bounciness: 0
     contactDistance: 0
   m_SwingLimitSpring:
     spring: 0
     damper: 0
   m_Swing1Limit:
-    limit: 30
+    limit: 10
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
-    limit: 30
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_EnableProjection: 1
@@ -1663,7 +1663,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1677,7 +1677,7 @@ CharacterJoint:
   m_ConnectedBody: {fileID: 1714159754384054841}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: 0.99999994, y: -0.000000118798766, z: -0.000000009884755}
+  m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0.24495548, z: -0.020381736}
   serializedVersion: 2
@@ -1686,22 +1686,22 @@ CharacterJoint:
     spring: 0
     damper: 0
   m_LowTwistLimit:
-    limit: -20
+    limit: -45
     bounciness: 0
     contactDistance: 0
   m_HighTwistLimit:
-    limit: 5
+    limit: 20
     bounciness: 0
     contactDistance: 0
   m_SwingLimitSpring:
     spring: 0
     damper: 0
   m_Swing1Limit:
-    limit: 10
+    limit: 20
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
-    limit: 0
+    limit: 20
     bounciness: 0
     contactDistance: 0
   m_EnableProjection: 1
@@ -1763,7 +1763,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1777,31 +1777,31 @@ CharacterJoint:
   m_ConnectedBody: {fileID: 7150613231616792890}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: -0.95553356, y: 0.24520099, z: 0.16380474}
+  m_Axis: {x: -0.9555337, y: 0.2452007, z: 0.16380464}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: -9.313226e-10, y: 0.32379353, z: -0.0000000018626451}
   serializedVersion: 2
-  m_SwingAxis: {x: 0.29329652, y: 0.7327437, z: 0.6140553}
+  m_SwingAxis: {x: 0.2932962, y: 0.7327436, z: 0.6140556}
   m_TwistLimitSpring:
     spring: 0
     damper: 0
   m_LowTwistLimit:
-    limit: -15
+    limit: -70
     bounciness: 0
     contactDistance: 0
   m_HighTwistLimit:
-    limit: 0
+    limit: 70
     bounciness: 0
     contactDistance: 0
   m_SwingLimitSpring:
     spring: 0
     damper: 0
   m_Swing1Limit:
-    limit: 0
+    limit: 45
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
-    limit: 0
+    limit: 20
     bounciness: 0
     contactDistance: 0
   m_EnableProjection: 1

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 {
-    public class CharacterRagdollOld : MonoBehaviour
+    public class CharacterRagdoll : MonoBehaviour
     {
         private const string STAND_UP_FRONT = "StandUpFront";
         private const string STAND_UP_BACK = "StandUpBack";
@@ -132,21 +132,28 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         private void MoveNodeWithoutChildren(Vector3 shiftPos)
         {
+            Vector3 hipsPosition = _hipsTransform.position;
+
+            transform.position = hipsPosition;
+
+            _hipsTransform.position = hipsPosition;
+
+
             //StartCoroutine(SmoothMoveNode(shiftPos, 0.5f));
 
-            Vector3 ragdollDirection = GetRagdollDirection();
+            //Vector3 ragdollDirection = GetRagdollDirection();
 
-            _hipsTransform.position -= shiftPos;
-            transform.position += shiftPos;
+            //_hipsTransform.position -= shiftPos;
+            //transform.position += shiftPos;
 
             //Vector3 dirProection = Vector3.ProjectOnPlane(ragdollDirection, Vector3.up);
             //transform.eulerAngles = dirProection;
-            //if (CheckIfLieOnBack())
+            ////if (CheckIfLieOnBack())
             //    transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y - 180f, transform.eulerAngles.z);
 
-            //Debug.LogError("Stop 1");
-            
-            
+            ////Debug.LogError("Stop 1");
+
+
             //transform.rotation = Quaternion.FromToRotation(transform.forward, ragdollDirection) * transform.rotation;
             //_hipsTransform.rotation = Quaternion.FromToRotation(ragdollDirection, transform.forward) * _hipsTransform.rotation;
         }
