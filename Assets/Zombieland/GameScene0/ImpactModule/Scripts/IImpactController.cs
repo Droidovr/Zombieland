@@ -1,10 +1,19 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 namespace Zombieland.GameScene0.ImpactModule
 {
-    public interface IImpactController 
+    public interface IImpactController
     {
-        public float Speed { get; set; }
-        public int Damage { get; set; }
-        public float LifeTime { get; set; }
-        public void ActivateObject();
+        public Vector3 TargetPosition { get; set; }
+        public Transform TargetTransform { get; set; }
+        public List<IImpactable> TargetImpactableList { get; set; }
+
+        public void Activate();
+        public void Activate(Vector3 targetPosition);
+        public void Activate(Transform targetTransform);
+        public void Activate(List<IImpactable> targetImpactableList);
+
+        public void Deactivate();
     }
 }

@@ -142,11 +142,39 @@
               <e p="IGameManager.cs" t="Include" />
             </e>
             <e p="ImpactModule" t="Include">
+              <e p="Resources" t="Include">
+                <e p="ImpactDataTest.txt" t="Include" />
+              </e>
               <e p="Scripts" t="Include">
-                <e p="IImpactable.cs" t="Include" />
+                <e p="DeliveryMethods" t="Include">
+                  <e p="FollowTargetHandler.cs" t="Include" />
+                  <e p="ImpactInstantTeleporter.cs" t="Include" />
+                  <e p="MovingForwardHandler.cs" t="Include" />
+                  <e p="ObjectPositionSetter.cs" t="Include" />
+                </e>
+                <e p="Detectors" t="Include">
+                  <e p="CollisionHandler.cs" t="Include" />
+                  <e p="SphereDetector.cs" t="Include" />
+                  <e p="TouchColliderDetector.cs" t="Include" />
+                  <e p="UpfrontRayDetector.cs" t="Include" />
+                </e>
                 <e p="IImpactController.cs" t="Include" />
                 <e p="ImpactController.cs" t="Include" />
-                <e p="ProjectileMovingHandler.cs" t="Include" />
+                <e p="ImpactData.cs" t="Include" />
+                <e p="Impacts" t="Include">
+                  <e p="DirectDamage.cs" t="Include" />
+                  <e p="HealingAbsolute.cs" t="Include" />
+                </e>
+                <e p="Interfaces" t="Include">
+                  <e p="IDetectorCommand.cs" t="Include" />
+                  <e p="IImpactable.cs" t="Include" />
+                  <e p="IImpactCommand.cs" t="Include" />
+                </e>
+                <e p="Updater.cs" t="Include" />
+              </e>
+              <e p="Test" t="Include">
+                <e p="ImapactDataManagerEditor.cs" t="Include" />
+                <e p="ImpactDataManager.cs" t="Include" />
               </e>
             </e>
             <e p="RootModule" t="Include">
@@ -191,6 +219,7 @@
           <e p="Scripts" t="Include">
             <e p="Controller.cs" t="Include" />
             <e p="DependencyTracker.cs" t="Include" />
+            <e p="ICommand.cs" t="Include" />
             <e p="IController.cs" t="Include" />
             <e p="IDependencyTracker.cs" t="Include" />
             <e p="ISubsystemsActivator.cs" t="Include" />

@@ -1,23 +1,62 @@
+using System.Collections.Generic;
 using UnityEngine;
+using Zombieland.GameScene0.RootModule;
 
 namespace Zombieland.GameScene0.ImpactModule
 {
-    public class ImpactController : MonoBehaviour, IImpactController
+    
+    public class ImpactController : IImpactController
     {
-        public float Speed { get; set; }
-        public int Damage { get; set; }
-        public float LifeTime { get; set; }
+        public Vector3 TargetPosition { get; set; }
+        public Transform TargetTransform { get; set; }
+        public List<IImpactable> TargetImpactableList { get; set; }
 
-        public void ActivateObject()
+        private readonly IRootController _rootController;
+        private readonly ImpactData _impactData;
+
+        public ImpactController(string impactName, IRootController rootController)
         {
-            // Set active, start moving
+            _rootController = rootController;
+            _impactData = _rootController.GameDataController.GetData<ImpactData>(impactName);
+            _impactData.DeliveryHandler.ImpactController = this;
+            _impactData.DeliveryHandler.Init();
         }
 
-        private void OnTriggerEnter(Collider collider)
+        /// <summary>
+        /// Use for projectiles, that are moving straight forward
+        /// </summary>
+        public void Activate()
         {
-            // raycast
-            // get objects with IImpactable
-            // call IImpactable.ApplyImpact(this)
+            
+        }
+        
+        /// <summary>
+        /// Use for objects, that should appear at the certain position
+        /// </summary>
+        public void Activate(Vector3 targetPosition)
+        {
+            
+        }
+        
+        /// <summary>
+        /// Use for projectiles, that should follow the target
+        /// </summary>
+        public void Activate(Transform targetTransform)
+        {
+            
+        }
+        
+        /// <summary>
+        /// Use to apply instant impact on the selected targets
+        /// </summary>
+        public void Activate(List<IImpactable> targetImpactableList)
+        {
+            
+        }
+
+        public void Deactivate()
+        {
+            
         }
     }
 }
