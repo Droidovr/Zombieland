@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Zombieland.GameScene0.CharacterModule.AnimationModule
@@ -24,6 +27,8 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             _animator = GetComponent<Animator>();
             _unityCharacterController = GetComponent<UnityEngine.CharacterController>();
             _hipsTransform = _animator.GetBoneTransform(HumanBodyBones.Hips);
+            SetAnimationEvent(STAND_UP_FRONT);
+            SetAnimationEvent(STAND_UP_BACK);
 
             for (int i = 0; i < (int)HumanBodyBones.LastBone; i++)
             {
@@ -33,8 +38,6 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
                     _ragdollComponents.Add(new RagdollComponent(boneTransform));
                 }
             }
-
-            ActivateRagdollParts(false);
         }
 
         void LateUpdate()
@@ -65,7 +68,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             }
         }
 
-        public void Hit(Vector3 forceDirection, Vector3 hitPosition)
+        public async void Hit(Vector3 forceDirection, Vector3 hitPosition, bool isDeath)
         {
             foreach (RagdollComponent component in _ragdollComponents)
             {
@@ -81,9 +84,27 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
                         ActivateRagdollParts(true);
                         _ragdollState = RagdollState.Ragdolled;
 
+                        if (!isDeath)
+                        {
+                            forceDirection /= 10;
+                        }
+
                         component.RigidBody.AddForceAtPosition(forceDirection, hitPosition, ForceMode.Impulse);
 
-                        break;
+                        if (isDeath)
+                        {
+                            break;
+                        }
+
+                        await Task.Delay(100);
+
+                        foreach (RagdollComponent ragdollComponet in _ragdollComponents)
+                        {
+                            ragdollComponet.IsKinematikBone(true);
+                        }
+
+                        _animator.enabled = true;
+                        _unityCharacterController.enabled = true;
                     }
                 }
             }
@@ -117,6 +138,38 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             string getUpAnimation = CheckIfLieOnBack() ? STAND_UP_FRONT : STAND_UP_BACK;
             _animator.Play(getUpAnimation, 0, 0);
             ActivateRagdollParts(false);
+        }
+
+        private void SetAnimationEvent(string nameAnimationClip)
+        {
+            AnimationClip animationClip = GetAnimationClip(nameAnimationClip);
+            AnimationEvent animationEvent = new AnimationEvent();
+            animationEvent.functionName = "ActiveUnityCharacterController";
+            animationEvent.time = animationClip.length;
+
+            animationClip.AddEvent(animationEvent);
+        }
+
+        private AnimationClip GetAnimationClip(string nameAnimationClip)
+        {
+            RuntimeAnimatorController controller = _animator.runtimeAnimatorController;
+            if (controller != null)
+            {
+                for (int i = 0; i < controller.animationClips.Length; i++)
+                {
+                    AnimationClip clip = controller.animationClips[i];
+                    if (clip.name == nameAnimationClip)
+                    {
+                        return clip;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        private void ActiveUnityCharacterController()
+        {
             _unityCharacterController.enabled = true;
         }
 
