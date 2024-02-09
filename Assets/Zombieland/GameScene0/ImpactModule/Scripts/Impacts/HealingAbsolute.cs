@@ -15,7 +15,7 @@ namespace Zombieland.GameScene0.ImpactModule
         {
         }
         
-        public void Execute()
+        public void Activate()
         {
             Debug.Log("HealingAbsolute - " + HealingPoints);
         }

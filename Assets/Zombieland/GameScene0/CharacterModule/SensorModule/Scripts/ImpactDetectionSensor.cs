@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zombieland.GameScene0.ImpactModule;
 
 namespace Zombieland.GameScene0.CharacterModule.SensorModule
 {

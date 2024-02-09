@@ -6,68 +6,64 @@ using UnityEngine;
 namespace Zombieland.GameScene0.ImpactModule
 {
     [Serializable]
-    public class MovingForwardHandler : IImpactCommand
+    public class MovingForwardHandler : IDeliveryCommand
     {
         [JsonIgnore]
         public IImpactController ImpactController { get; set; }
+        [JsonIgnore]
+        public GameObject ImpactObject { get; set; }
         public string PrefabName { get; set; }
         public float MaxDistance { get; set; }
         public float ProjectileSpeed { get; set; }
 
-        public IDetectorCommand TargetObjectsDetector { get; set; }
-        public List<IImpactCommand> ImpactsList { get; set; }
-
-        private GameObject _impactObject;
-        private CollisionHandler _collisionHandler;
+        public IImpactCommand Detector { get; set; }
+        public List<IImpactCommand> ImpactsExecutionList{ get; set; }
+        
         private Updater _updater;
-
-        private Vector3 _objectSpawnPosition;
 
         public void Init()
         {
             var impactObjectPrefab = Resources.Load<GameObject>(PrefabName);
-            _impactObject = GameObject.Instantiate(impactObjectPrefab);
-            _impactObject.SetActive(false);
-            
-            TargetObjectsDetector.ImpactController = ImpactController;
-            TargetObjectsDetector.ImpactObjectTransform = _impactObject.transform;
+            ImpactObject = GameObject.Instantiate(impactObjectPrefab);
+            ImpactObject.SetActive(false);
+            _updater = ImpactObject.AddComponent<Updater>();
 
-            foreach (var impact in ImpactsList)
+            Detector.ImpactController = ImpactController;
+            Detector.Init();
+            
+            foreach (var impact in ImpactsExecutionList)
             {
                 impact.ImpactController = ImpactController;
                 impact.Init();
             }
-            
-            _collisionHandler = _impactObject.AddComponent<CollisionHandler>();
-            _collisionHandler.Init(ProcessCollision);
-            _updater = _impactObject.AddComponent<Updater>();
         }
 
-        public void Execute()
+        public void Activate()
         {
-            _impactObject.SetActive(true);
-            _objectSpawnPosition = _impactObject.transform.position;
+            ImpactObject.SetActive(true);
+            Detector.Activate();
             _updater.SubscribeToUpdate(MoveObject);
         }
         
-        public void Deactivate()
+        public void ApplyImpactOnDelivery()
         {
-            _impactObject.SetActive(false);
-            _updater.UnsubscribeFromUpdate(MoveObject);
-        }
-
-        private void ProcessCollision(Collider targetObjectCollider)
-        {
-            TargetObjectsDetector.TargetObjectCollider = targetObjectCollider;
-            TargetObjectsDetector.Execute();
-            // Impacts Execution
+            foreach (var impact in ImpactsExecutionList)
+            {
+                impact.Activate();
+            }
             ImpactController.Deactivate();
         }
 
+        public void Deactivate()
+        {
+            ImpactObject.SetActive(false);
+            _updater.UnsubscribeFromUpdate(MoveObject);
+        }
+   
         private void MoveObject()
         {
-            _impactObject.transform.Translate(Vector3.forward * (ProjectileSpeed * Time.deltaTime));
-            if (Vector3.Distance(_objectSpawnPosition, _impactObject.transform.position) >= MaxDistance)
+            ImpactObject.transform.Translate(Vector3.forward * (ProjectileSpeed * Time.deltaTime));
+            if (Vector3.Distance(ImpactController.SpawnPosition, ImpactObject.transform.position) >= MaxDistance)
                 ImpactController.Deactivate();
         }
     }

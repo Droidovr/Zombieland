@@ -6,30 +6,41 @@ using UnityEngine;
 namespace Zombieland.GameScene0.ImpactModule
 {
     [Serializable]
-    public class ImpactInstantTeleporter : IImpactCommand
+    public class ImpactInstantTeleporter : IDeliveryCommand
     {
         [JsonIgnore]
         public IImpactController ImpactController { get; set; }
-        public string PrefabName { get; set; }
+        [JsonIgnore]
+        public GameObject ImpactObject { get; set; }
 
-        public List<IImpactCommand> ImpactsList { get; set; }
+        public List<IImpactCommand> ImpactsExecutionList { get; set; }
 
         public void Init()
         {
-            foreach (var impact in ImpactsList)
+            foreach (var impact in ImpactsExecutionList)
             {
                 impact.ImpactController = ImpactController;
                 impact.Init();
             }
         }
         
-        public void Execute()
+        public void Activate()
         {
-            // Impacts Execution
+            ApplyImpactOnDelivery();
+        }
+        
+        public void ApplyImpactOnDelivery()
+        {
+            foreach (var impact in ImpactsExecutionList)
+            {
+                impact.Activate();
+            }
+            ImpactController.Deactivate();
         }
 
         public void Deactivate()
         {
+            // Has no implementation
         }
     }
 }

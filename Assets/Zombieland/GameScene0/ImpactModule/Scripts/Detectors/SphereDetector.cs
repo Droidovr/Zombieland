@@ -6,22 +6,35 @@ using UnityEngine;
 namespace Zombieland.GameScene0.ImpactModule
 {
     [Serializable]
-    public class SphereDetector : IDetectorCommand
+    public class SphereDetector : IImpactCommand
     {
         [JsonIgnore]
         public IImpactController ImpactController { get; set; }
-        [JsonIgnore]
-        public Transform ImpactObjectTransform { get; set; }
-        [JsonIgnore]
-        public Collider TargetObjectCollider { get; set; }
+        public bool ExecuteOnActivation { get; set; }
         public float DetectionRadius { get; set; }
 
-        public void Init()
-        { }
+        private GameObject _impactObject;
+        private CollisionHandler _collisionHandler;
 
-        public void Execute()
+        public void Init()
         {
-            var overlapColliders = Physics.OverlapSphere(ImpactObjectTransform.position, DetectionRadius);
+            _impactObject = ImpactController.ImpactData.DeliveryHandler.ImpactObject;
+            if(ExecuteOnActivation) return;
+            _collisionHandler = _impactObject.AddComponent<CollisionHandler>();
+            _collisionHandler.Init(ProcessCollision);
+        }
+
+        public void Activate()
+        {
+            if (ExecuteOnActivation)
+            {
+                ProcessCollision();
+            }
+        }
+
+        public void ProcessCollision()
+        {
+            var overlapColliders = Physics.OverlapSphere(_impactObject.transform.position, DetectionRadius);
             if(overlapColliders.Length <= 0) return;
             var impactableObjects = new List<IImpactable>();
             foreach (var overlapCollider in overlapColliders)
@@ -30,6 +43,7 @@ namespace Zombieland.GameScene0.ImpactModule
                     impactableObjects.Add(impactableObject);
             }
             ImpactController.TargetImpactableList = impactableObjects;
+            ImpactController.ImpactData.DeliveryHandler.ApplyImpactOnDelivery();
         }
     }
 }

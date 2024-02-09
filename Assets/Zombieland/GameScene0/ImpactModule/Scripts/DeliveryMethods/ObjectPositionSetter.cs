@@ -6,53 +6,52 @@ using UnityEngine;
 namespace Zombieland.GameScene0.ImpactModule
 {
     [Serializable]
-    public class ObjectPositionSetter : IImpactCommand
+    public class ObjectPositionSetter : IDeliveryCommand
     {
         [JsonIgnore]
         public IImpactController ImpactController { get; set; }
+        [JsonIgnore]
+        public GameObject ImpactObject { get; set; }
         public string PrefabName { get; set; }
 
-        public IDetectorCommand TargetObjectsDetector { get; set; }
-        public List<IImpactCommand> ImpactsList { get; set; }
-        
-        private GameObject _impactObject;
-        private CollisionHandler _collisionHandler;
+        public IImpactCommand Detector { get; set; }
+        public List<IImpactCommand> ImpactsExecutionList { get; set; }
 
         public void Init()
         {
             var impactObjectPrefab = Resources.Load<GameObject>(PrefabName);
-            _impactObject = GameObject.Instantiate(impactObjectPrefab);
-            _impactObject.SetActive(false);
+            ImpactObject = GameObject.Instantiate(impactObjectPrefab);
+            ImpactObject.SetActive(false);
             
-            TargetObjectsDetector.ImpactController = ImpactController;
-            TargetObjectsDetector.ImpactObjectTransform = _impactObject.transform;
+            Detector.ImpactController = ImpactController;
+            Detector.Init();
 
-            foreach (var impact in ImpactsList)
+            foreach (var impact in ImpactsExecutionList)
             {
                 impact.ImpactController = ImpactController;
                 impact.Init();
             }
-            
-            _collisionHandler = _impactObject.AddComponent<CollisionHandler>();
-            _collisionHandler.Init(ProcessCollision);
         }
         
-        public void Execute()
+        public void Activate()
         {
-            _impactObject.SetActive(true);
+            ImpactObject.transform.position = ImpactController.SpawnPosition;
+            ImpactObject.SetActive(true);
+            Detector.Activate();
+        }
+        
+        public void ApplyImpactOnDelivery()
+        {
+            foreach (var impact in ImpactsExecutionList)
+            {
+                impact.Activate();
+            }
+            ImpactController.Deactivate();
         }
 
         public void Deactivate()
         {
-            _impactObject.SetActive(false);
-        }
-        
-        private void ProcessCollision(Collider targetObjectCollider)
-        {
-            TargetObjectsDetector.TargetObjectCollider = targetObjectCollider;
-            TargetObjectsDetector.Execute();
-            // Impacts Execution
-            ImpactController.Deactivate();
+            ImpactObject.SetActive(false);
         }
     }
 }

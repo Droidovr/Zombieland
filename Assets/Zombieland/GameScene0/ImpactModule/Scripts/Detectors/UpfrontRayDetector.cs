@@ -6,30 +6,46 @@ using UnityEngine;
 namespace Zombieland.GameScene0.ImpactModule
 {
     [Serializable]
-    public class UpfrontRayDetector : IDetectorCommand
+    public class UpfrontRayDetector : IImpactCommand
     {
         [JsonIgnore]
         public IImpactController ImpactController { get; set; }
-        [JsonIgnore]
-        public Transform ImpactObjectTransform { get; set; }
-        [JsonIgnore]
-        public Collider TargetObjectCollider { get; set; }
+        public bool ExecuteOnActivation { get; set; }
         public float DetectionRayDistance { get; set; }
 
-        public void Init()
-        { }
+        private GameObject _impactObject;
+        private CollisionHandler _collisionHandler;
 
-        public void Execute()
+        public void Init()
         {
-            var raycastHits = Physics.RaycastAll(ImpactObjectTransform.position, Vector3.forward, DetectionRayDistance);
+            _impactObject = ImpactController.ImpactData.DeliveryHandler.ImpactObject;
+            if(ExecuteOnActivation) return;
+            _collisionHandler = _impactObject.AddComponent<CollisionHandler>();
+            _collisionHandler.Init(ProcessCollision);
+        }
+
+        public void Activate()
+        {
+            if (ExecuteOnActivation)
+            {
+                ProcessCollision();
+            }
+        }
+
+        private void ProcessCollision()
+        {
+            var raycastHits = Physics.RaycastAll(_impactObject.transform.position, Vector3.forward, DetectionRayDistance);
             if(raycastHits.Length <= 0) return;
             var impactableObjects = new List<IImpactable>();
             foreach (var raycastHit in raycastHits)
             {
-                if(raycastHit.collider.TryGetComponent<IImpactable>(out var impactableObject))
+                if (raycastHit.collider.TryGetComponent<IImpactable>(out var impactableObject))
+                {
                     impactableObjects.Add(impactableObject);
+                }
             }
             ImpactController.TargetImpactableList = impactableObjects;
+            ImpactController.ImpactData.DeliveryHandler.ApplyImpactOnDelivery();
         }
     }
 }

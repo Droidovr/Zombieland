@@ -10,15 +10,14 @@ namespace Zombieland.GameScene0.ImpactModule
     {
         [JsonIgnore]
         public IImpactController ImpactController { get; set; }
+        public GameObject ImpactObject { get; set; }
         public string PrefabName { get; set; }
         public float MaxDistance { get; set; }
         public float ProjectileSpeed { get; set; }
+        
+        public IImpactCommand Detector { get; set; }
+        public List<IImpactCommand> ImpactsExecutionList{ get; set; }
 
-        public IDetectorCommand TargetObjectsDetector { get; set; }
-        public List<IImpactCommand> ImpactsList { get; set; }
-
-        private GameObject _impactObject;
-        private CollisionHandler _collisionHandler;
         private Updater _updater;
 
         private Transform _targetTransform;
@@ -28,50 +27,49 @@ namespace Zombieland.GameScene0.ImpactModule
         public void Init()
         {
             var impactObjectPrefab = Resources.Load<GameObject>(PrefabName);
-            _impactObject = GameObject.Instantiate(impactObjectPrefab);
-            _impactObject.SetActive(false);
-            
-            TargetObjectsDetector.ImpactController = ImpactController;
-            TargetObjectsDetector.ImpactObjectTransform = _impactObject.transform;
+            ImpactObject = GameObject.Instantiate(impactObjectPrefab);
+            ImpactObject.SetActive(false);
+            _updater = ImpactObject.AddComponent<Updater>();
 
-            foreach (var impact in ImpactsList)
+            Detector.ImpactController = ImpactController;
+            Detector.Init();
+
+            foreach (var impact in ImpactsExecutionList)
             {
                 impact.ImpactController = ImpactController;
                 impact.Init();
             }
             
-            _collisionHandler = _impactObject.AddComponent<CollisionHandler>();
-            _collisionHandler.Init(ProcessCollision);
-            _updater = _impactObject.AddComponent<Updater>();
-
             _targetTransform = ImpactController.TargetTransform;
             _lifeTime = MaxDistance / ProjectileSpeed;
         }
 
-        public void Execute()
+        public void Activate()
         {
-            _impactObject.SetActive(true);
+            ImpactObject.SetActive(true);
+            Detector.Activate();
             _currentTime = _lifeTime;
             _updater.SubscribeToUpdate(MoveObject);
         }
         
-        public void Deactivate()
+        public void ApplyImpactOnDelivery()
         {
-            _impactObject.SetActive(false);
-            _updater.UnsubscribeFromUpdate(MoveObject);
+            foreach (var impact in ImpactsExecutionList)
+            {
+                impact.Activate();
+            }
+            ImpactController.Deactivate();
         }
 
-        private void ProcessCollision(Collider targetObjectCollider)
+        public void Deactivate()
         {
-            TargetObjectsDetector.TargetObjectCollider = targetObjectCollider;
-            TargetObjectsDetector.Execute();
-            // Impacts Execution
-            ImpactController.Deactivate();
+            ImpactObject.SetActive(false);
+            _updater.UnsubscribeFromUpdate(MoveObject);
         }
 
         private void MoveObject()
         {
-            _impactObject.transform.position = Vector3.MoveTowards(_impactObject.transform.position,
+            ImpactObject.transform.position = Vector3.MoveTowards(ImpactObject.transform.position,
                 _targetTransform.position, ProjectileSpeed * Time.deltaTime);
             
             _currentTime -= Time.deltaTime;

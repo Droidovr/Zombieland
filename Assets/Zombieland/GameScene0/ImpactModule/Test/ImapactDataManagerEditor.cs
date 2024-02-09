@@ -35,7 +35,7 @@ namespace Zombieland.GameScene0.ImpactModule.Test
         
             if (GUILayout.Button("Impact Execute"))
             {
-                impactDataManager.ImpactData.DeliveryHandler.Execute();
+                impactDataManager.ImpactData.DeliveryHandler.Activate();
 
             }
         }

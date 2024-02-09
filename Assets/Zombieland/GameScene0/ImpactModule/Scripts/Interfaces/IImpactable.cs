@@ -1,6 +1,7 @@
-using Zombieland.GameScene0.ImpactModule;
-
-public interface IImpactable
+namespace Zombieland.GameScene0.ImpactModule
 {
-    public void ApplyImpact(IImpactController impactController);
+    public interface IImpactable
+    {
+        public void ApplyImpact(IImpactController impactController);
+    }
 }
