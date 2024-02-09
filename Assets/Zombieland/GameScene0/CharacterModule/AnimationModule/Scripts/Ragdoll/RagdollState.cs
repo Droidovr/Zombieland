@@ -5,6 +5,5 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         Animated,
         BlendToAnimation,
         Ragdolled,
-        WaitStablePosition
     }
 }

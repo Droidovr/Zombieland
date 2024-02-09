@@ -18,11 +18,12 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             GameObject character = CharacterController.VisualBodyController.CharacterInScene;
 
             CharacterAnimator characterAnimator = character.AddComponent<CharacterAnimator>();
-            Animator = characterAnimator.Animator;
             characterAnimator.Init(CharacterController);
+            Animator = characterAnimator.Animator;
 
             CharacterRagdoll characterRagdoll = character.AddComponent<CharacterRagdoll>();
 
+            //Test
             TestShooter testShooter = character.AddComponent<TestShooter>();
             testShooter.Init(characterRagdoll);
         }
