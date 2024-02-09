@@ -1,5 +1,8 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace Zombieland.GameScene0.UIModule
 {
@@ -21,12 +24,14 @@ namespace Zombieland.GameScene0.UIModule
             _inputSystemControls.Main.Move.performed += context => Move();
             _inputSystemControls.Main.Move.canceled += context => Move();
             _inputSystemControls.Main.Fire.performed += context => ButtonClick(NameButton.Fire);
+            _inputSystemControls.Main.Stealth.performed += context => ButtonClick(NameButton.Stealth);
         }
         private void OnDisable()
         {
             _inputSystemControls.Main.Move.performed -= context => Move();
             _inputSystemControls.Main.Move.canceled -= context => Move();
             _inputSystemControls.Main.Fire.performed -= context => ButtonClick(NameButton.Fire);
+            _inputSystemControls.Main.Stealth.performed -= context => ButtonClick(NameButton.Stealth);
             _inputSystemControls.Disable();
         }
         
@@ -40,6 +45,13 @@ namespace Zombieland.GameScene0.UIModule
         private void ButtonClick(NameButton nameButton)
         {
             OnButtonClick?.Invoke(nameButton.ToString());
+
+            if (nameButton == NameButton.Stealth)
+            {
+                //GameObject clickedButton = EventSystem.current.currentSelectedGameObject;
+                //Image image = clickedButton.GetComponent<Image>();
+                //Debug.Log(image.name);
+            }
         }
     }
 }
