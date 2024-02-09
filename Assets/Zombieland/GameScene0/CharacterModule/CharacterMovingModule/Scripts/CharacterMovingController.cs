@@ -6,15 +6,27 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 {
     public class CharacterMovingController : Controller, ICharacterMovingController
     {
-        public float RealMovingSpeed => _characterPhysicMoving.RealMovingSpeed;
+        public float RealMovingSpeed { get; set; }
         public ICharacterController CharacterController { get; private set; }
 
-        private CharacterPhysicMoving _characterPhysicMoving;
+        private CharacterPhysicMoving _characterPhysicMoving; 
 
 
         public CharacterMovingController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             CharacterController = parentController as ICharacterController;
+        }
+
+        public void ActivateMoving(bool isActive)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Disable()
+        {
+            _characterPhysicMoving.Disable();
+
+            base.Disable();
         }
 
         protected override void CreateHelpersScripts()
