@@ -5,5 +5,6 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
         ICharacterController Controller { get; }
 
         void Execute();
+        IImpact HandleImpact(Impact impact);
     }
 }

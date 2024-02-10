@@ -22,6 +22,14 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
             await Task.Delay(TimeSpan.FromSeconds(LifeTime));
 
             _buffDebuffController.Buffs.Remove(Name);
+
+            // вызов VFX - повесить префаб по координатам из  VFX-контроллера (универсальный размер)
+        }
+
+        public IImpact HandleImpact(Impact impact)
+        {
+            // обработать параметри impact и преобразовать их
+            return new Impact();
         }
     }
 }
