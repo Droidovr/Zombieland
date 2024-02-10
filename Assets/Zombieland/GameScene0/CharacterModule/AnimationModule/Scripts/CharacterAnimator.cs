@@ -1,5 +1,4 @@
 using System;
-using TMPro;
 using UnityEngine;
 
 namespace Zombieland.GameScene0.CharacterModule.AnimationModule

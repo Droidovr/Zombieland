@@ -34,10 +34,11 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             _characterAnimator.OnAnimatorMoveHandler += OnAnimatorMoveHandler;
 
             CharacterRagdoll characterRagdoll = character.AddComponent<CharacterRagdoll>();
+            characterRagdoll.Init(this);
 
             //Test
-            TestShooter testShooter = character.AddComponent<TestShooter>();
-            testShooter.Init(characterRagdoll);
+            //TestShooter testShooter = character.AddComponent<TestShooter>();
+            //testShooter.Init(characterRagdoll);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)

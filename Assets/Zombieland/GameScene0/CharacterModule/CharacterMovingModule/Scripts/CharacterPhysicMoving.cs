@@ -17,6 +17,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         private IUIMain _uIController;
         private ICharacterDataController _characterDataController;
         private ICharacterMovingController _characterMovingController;
+        public bool _isActive;
 
 
         #region PUBLIC
@@ -37,6 +38,14 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             _uIController.OnMoved += MovedHandler;
 
             _characterDataController = characterMovingController.CharacterController.CharacterDataController;
+
+            _isActive = true;
+        }
+
+        public void ActivateMoving(bool isActive)
+        {
+            _unityCharacterController.enabled = isActive;
+            _isActive = isActive;
         }
         #endregion PUBLIC
 
@@ -44,11 +53,14 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         #region MONOBEHAVIOUR
         private void Update()
         {
+            if (!_isActive)
+                return;
+
             CalculateGravity();
 
             CalculeteRealMovingSpeed();
 
-            if (_vectorMove.magnitude > MIN_VECTORMOVE_MAGITUDE && _unityCharacterController.enabled)
+            if (_vectorMove.magnitude > MIN_VECTORMOVE_MAGITUDE)
             {
                 CalculeteRotation();
             }
@@ -59,7 +71,10 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         #region PRIVATE
         private void OnAnimatorMoveHandler(Vector3 animatorDeltaPosition)
         {
-            _unityCharacterController.Move(animatorDeltaPosition);
+            if (_unityCharacterController.enabled)
+            {
+                _unityCharacterController.Move(animatorDeltaPosition);
+            }
         }
 
         private void MovedHandler(Vector2 joystickPosition)

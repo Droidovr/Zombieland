@@ -19,7 +19,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         public void ActivateMoving(bool isActive)
         {
-            throw new NotImplementedException();
+            _characterPhysicMoving.ActivateMoving(isActive);
         }
 
         public override void Disable()
