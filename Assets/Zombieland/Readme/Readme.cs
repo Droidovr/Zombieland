@@ -48,6 +48,5 @@ namespace Zombieland
 
             - 6  Для создания регдола - можно использовать плагин Ragdoll Helper.
             Для открытия окна настройки Ragdoll Helper - открываем в меню Windows -> BzSoft -> Ragdoll Helper
-        */
     }
 }
