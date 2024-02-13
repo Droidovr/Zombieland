@@ -10,14 +10,15 @@ namespace Zombieland.GameScene0.ImpactModule
     {
         [JsonIgnore]
         public IImpactController ImpactController { get; set; }
-        [JsonIgnore]
-        public GameObject ImpactObject { get; set; }
         public string PrefabName { get; set; }
         public float MaxDistance { get; set; }
         public float ProjectileSpeed { get; set; }
 
-        public IImpactCommand Detector { get; set; }
+        public IDetectorCommand Detector { get; set; }
         public List<IImpactCommand> ImpactsExecutionList{ get; set; }
+        
+        [JsonIgnore]
+        public GameObject ImpactObject { get; set; }
         
         private Updater _updater;
 

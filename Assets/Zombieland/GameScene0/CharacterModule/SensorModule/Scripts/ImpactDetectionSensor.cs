@@ -3,7 +3,7 @@ using Zombieland.GameScene0.ImpactModule;
 
 namespace Zombieland.GameScene0.CharacterModule.SensorModule
 {
-    public class ImpactDetectionSensor : MonoBehaviour
+    public class ImpactDetectionSensor : MonoBehaviour, IImpactable
     {
         private IImpactable _characterController;
 
@@ -12,9 +12,10 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule
             _characterController = characterController;
         }
 
-       public IImpactable GetDamageableObject()
+        public void ApplyImpact(IImpactController impactController)
        {
-           return _characterController;
+           var hitEffect = Resources.Load<GameObject>("Hit");
+           Instantiate(hitEffect, transform);
        }
     }
 }

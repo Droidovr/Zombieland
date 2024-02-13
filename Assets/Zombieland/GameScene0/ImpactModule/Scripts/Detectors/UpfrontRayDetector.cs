@@ -6,12 +6,12 @@ using UnityEngine;
 namespace Zombieland.GameScene0.ImpactModule
 {
     [Serializable]
-    public class UpfrontRayDetector : IImpactCommand
+    public class UpfrontRayDetector : IDetectorCommand
     {
         [JsonIgnore]
         public IImpactController ImpactController { get; set; }
         public bool ExecuteOnActivation { get; set; }
-        public float DetectionRayDistance { get; set; }
+        public float DetectionRadius { get; set; }
 
         private GameObject _impactObject;
         private CollisionHandler _collisionHandler;
@@ -32,9 +32,14 @@ namespace Zombieland.GameScene0.ImpactModule
             }
         }
 
+        public void Deactivate()
+        {
+            // Has no implementation
+        }
+
         private void ProcessCollision()
         {
-            var raycastHits = Physics.RaycastAll(_impactObject.transform.position, Vector3.forward, DetectionRayDistance);
+            var raycastHits = Physics.RaycastAll(_impactObject.transform.position, Vector3.forward, DetectionRadius);
             if(raycastHits.Length <= 0) return;
             var impactableObjects = new List<IImpactable>();
             foreach (var raycastHit in raycastHits)

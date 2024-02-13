@@ -5,10 +5,12 @@ using UnityEngine;
 namespace Zombieland.GameScene0.ImpactModule
 {
     [Serializable]
-    public class TouchColliderDetector : IImpactCommand
+    public class TouchColliderDetector : IDetectorCommand
     {
         [JsonIgnore]
         public IImpactController ImpactController { get; set; }
+        public bool ExecuteOnActivation { get; set; }
+        public float DetectionRadius { get; set; }
 
         public void Init()
         {
@@ -17,6 +19,11 @@ namespace Zombieland.GameScene0.ImpactModule
         }
         
         public void Activate()
+        {
+            // Has no implementation
+        }
+
+        public void Deactivate()
         {
             // Has no implementation
         }

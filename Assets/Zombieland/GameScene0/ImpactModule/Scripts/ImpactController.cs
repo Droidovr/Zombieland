@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using UnityEngine;
 using Zombieland.GameScene0.RootModule;
 
@@ -17,19 +18,28 @@ namespace Zombieland.GameScene0.ImpactModule
         public ImpactController(string impactName, IRootController rootController)
         {
             _rootController = rootController;
-            ImpactData = _rootController.GameDataController.GetData<ImpactData>(impactName);
+            
+            //ImpactData = _rootController.GameDataController.GetData<ImpactData>(impactName);
+            //Test Implementation
+            var textAsset = Resources.Load<TextAsset>(impactName);
+            if (textAsset == null)
+                Debug.LogError("Cannot find file at " + impactName);
+            var settings = new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.Auto};
+            ImpactData = JsonConvert.DeserializeObject<ImpactData>(textAsset.text, settings);
+
             ImpactData.DeliveryHandler.ImpactController = this;
             ImpactData.DeliveryHandler.Init();
         }
 
         public void Activate()
         {
-            
+            ImpactData.DeliveryHandler.Activate();
         }
 
         public void Deactivate()
         {
-            
+            ImpactData.DeliveryHandler.Deactivate();
+            // Return to pool Logic
         }
     }
 }

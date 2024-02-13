@@ -9,7 +9,7 @@ namespace Zombieland.GameScene0.ImpactModule
     {
         [JsonIgnore]
         public IImpactController ImpactController { get; set; }
-        public float DamagePoints { get; set; }
+        public float Points { get; set; }
 
         public void Init()
         {
@@ -17,7 +17,12 @@ namespace Zombieland.GameScene0.ImpactModule
         
         public void Activate()
         {
-            Debug.Log("DirectDamage - " + DamagePoints);
+            foreach (var impactableObject in ImpactController.TargetImpactableList)
+            {
+                impactableObject.ApplyImpact(ImpactController);
+            }
+            
+            Debug.Log("DirectDamage - " + Points);
         }
 
         public void Deactivate()

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Zombieland.GameScene0.ImpactModule
 {
     [Serializable]
-    public class SphereDetector : IImpactCommand
+    public class SphereDetector : IDetectorCommand
     {
         [JsonIgnore]
         public IImpactController ImpactController { get; set; }
@@ -30,6 +30,11 @@ namespace Zombieland.GameScene0.ImpactModule
             {
                 ProcessCollision();
             }
+        }
+
+        public void Deactivate()
+        {
+            // Has no implementation
         }
 
         public void ProcessCollision()

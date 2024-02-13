@@ -6,31 +6,24 @@ using UnityEngine;
 namespace Zombieland.GameScene0.ImpactModule
 {
     [Serializable]
-    public class FollowTargetHandler : IImpactCommand
+    public class ObjectInstantTeleporter : IDeliveryCommand
     {
         [JsonIgnore]
         public IImpactController ImpactController { get; set; }
-        public GameObject ImpactObject { get; set; }
         public string PrefabName { get; set; }
-        public float MaxDistance { get; set; }
-        public float ProjectileSpeed { get; set; }
-        
-        public IImpactCommand Detector { get; set; }
-        public List<IImpactCommand> ImpactsExecutionList{ get; set; }
 
-        private Updater _updater;
-
-        private Transform _targetTransform;
-        private float _lifeTime;
-        private float _currentTime;
+        public IDetectorCommand Detector { get; set; }
+        public List<IImpactCommand> ImpactsExecutionList { get; set; }
         
+        [JsonIgnore]
+        public GameObject ImpactObject { get; set; }
+
         public void Init()
         {
             var impactObjectPrefab = Resources.Load<GameObject>(PrefabName);
             ImpactObject = GameObject.Instantiate(impactObjectPrefab);
             ImpactObject.SetActive(false);
-            _updater = ImpactObject.AddComponent<Updater>();
-
+            
             Detector.ImpactController = ImpactController;
             Detector.Init();
 
@@ -39,17 +32,13 @@ namespace Zombieland.GameScene0.ImpactModule
                 impact.ImpactController = ImpactController;
                 impact.Init();
             }
-            
-            _targetTransform = ImpactController.TargetTransform;
-            _lifeTime = MaxDistance / ProjectileSpeed;
         }
-
+        
         public void Activate()
         {
+            ImpactObject.transform.position = ImpactController.SpawnPosition;
             ImpactObject.SetActive(true);
             Detector.Activate();
-            _currentTime = _lifeTime;
-            _updater.SubscribeToUpdate(MoveObject);
         }
         
         public void ApplyImpactOnDelivery()
@@ -64,17 +53,6 @@ namespace Zombieland.GameScene0.ImpactModule
         public void Deactivate()
         {
             ImpactObject.SetActive(false);
-            _updater.UnsubscribeFromUpdate(MoveObject);
-        }
-
-        private void MoveObject()
-        {
-            ImpactObject.transform.position = Vector3.MoveTowards(ImpactObject.transform.position,
-                _targetTransform.position, ProjectileSpeed * Time.deltaTime);
-            
-            _currentTime -= Time.deltaTime;
-            if(_currentTime <= 0)
-                ImpactController.Deactivate();
         }
     }
 }

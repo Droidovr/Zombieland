@@ -1,3 +1,5 @@
+using System;
+
 namespace Zombieland.GameScene0.ImpactModule
 {
     public interface IImpactable

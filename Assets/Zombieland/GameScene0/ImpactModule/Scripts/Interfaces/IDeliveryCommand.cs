@@ -6,6 +6,5 @@ namespace Zombieland.GameScene0.ImpactModule
     {
         public GameObject ImpactObject { get; set; }
         public void ApplyImpactOnDelivery();
-        public void Deactivate();
     }
 }

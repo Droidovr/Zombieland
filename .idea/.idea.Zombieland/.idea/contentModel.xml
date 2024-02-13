@@ -147,10 +147,10 @@
               </e>
               <e p="Scripts" t="Include">
                 <e p="DeliveryMethods" t="Include">
-                  <e p="FollowTargetHandler.cs" t="Include" />
+                  <e p="FollowingTargetHandler.cs" t="Include" />
                   <e p="ImpactInstantTeleporter.cs" t="Include" />
                   <e p="MovingForwardHandler.cs" t="Include" />
-                  <e p="ObjectPositionSetter.cs" t="Include" />
+                  <e p="ObjectInstantTeleporter.cs" t="Include" />
                 </e>
                 <e p="Detectors" t="Include">
                   <e p="CollisionHandler.cs" t="Include" />
@@ -166,16 +166,17 @@
                   <e p="HealingAbsolute.cs" t="Include" />
                 </e>
                 <e p="Interfaces" t="Include">
-                  <e p="ICommand.cs" t="Include" />
                   <e p="IDeliveryCommand.cs" t="Include" />
+                  <e p="IDetectorCommand.cs" t="Include" />
                   <e p="IImpactable.cs" t="Include" />
                   <e p="IImpactCommand.cs" t="Include" />
                 </e>
                 <e p="Updater.cs" t="Include" />
               </e>
               <e p="Test" t="Include">
-                <e p="ImapactDataManagerEditor.cs" t="Include" />
-                <e p="ImpactDataManager.cs" t="Include" />
+                <e p="TestFireHandler.cs" t="Include" />
+                <e p="TestImapactCreatorEditor.cs" t="Include" />
+                <e p="TestImpactCreator.cs" t="Include" />
               </e>
             </e>
             <e p="RootModule" t="Include">
