@@ -8,7 +8,7 @@ namespace Zombieland.GameScene0.ImpactModule.Test
     [CustomEditor(typeof(TestImpactCreator))]
     public class TestImapactCreatorEditor : Editor
     {
-        private string _fileName = "ImpactDataTest";
+        private string _fileName = "ImpactData";
     
         public override void OnInspectorGUI()
         {

@@ -1,0 +1,25 @@
+{
+  "Name": null,
+  "ID": null,
+  "DeliveryHandler": {
+    "$type": "Zombieland.GameScene0.ImpactModule.MovingForwardHandler, Assembly-CSharp",
+    "PrefabName": "Bullet",
+    "MaxDistance": 10.0,
+    "ProjectileSpeed": 5.0,
+    "Detector": {
+      "$type": "Zombieland.GameScene0.ImpactModule.UpfrontRayDetector, Assembly-CSharp",
+      "ExecuteOnActivation": false,
+      "DetectionRadius": 5.0
+    },
+    "ImpactsExecutionList": [
+      {
+        "$type": "Zombieland.GameScene0.ImpactModule.HealingAbsolute, Assembly-CSharp",
+        "Points": 10.0
+      },
+      {
+        "$type": "Zombieland.GameScene0.ImpactModule.CollisionEffect, Assembly-CSharp",
+        "EffectPrefabName": "HitEffect"
+      }
+    ]
+  }
+}

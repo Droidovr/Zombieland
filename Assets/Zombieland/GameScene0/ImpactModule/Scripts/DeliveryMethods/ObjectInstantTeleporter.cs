@@ -12,7 +12,7 @@ namespace Zombieland.GameScene0.ImpactModule
         public IImpactController ImpactController { get; set; }
         public string PrefabName { get; set; }
 
-        public IDetectorCommand Detector { get; set; }
+        public IImpactCommand Detector { get; set; }
         public List<IImpactCommand> ImpactsExecutionList { get; set; }
         
         [JsonIgnore]
@@ -37,6 +37,7 @@ namespace Zombieland.GameScene0.ImpactModule
         public void Activate()
         {
             ImpactObject.transform.position = ImpactController.SpawnPosition;
+            ImpactObject.transform.rotation = ImpactController.InitialRotation;
             ImpactObject.SetActive(true);
             Detector.Activate();
         }

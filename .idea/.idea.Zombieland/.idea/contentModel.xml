@@ -143,7 +143,7 @@
             </e>
             <e p="ImpactModule" t="Include">
               <e p="Resources" t="Include">
-                <e p="ImpactDataTest.txt" t="Include" />
+                <e p="ImpactData.txt" t="Include" />
               </e>
               <e p="Scripts" t="Include">
                 <e p="DeliveryMethods" t="Include">
@@ -162,18 +162,19 @@
                 <e p="ImpactController.cs" t="Include" />
                 <e p="ImpactData.cs" t="Include" />
                 <e p="Impacts" t="Include">
+                  <e p="CollisionEffect.cs" t="Include" />
                   <e p="DirectDamage.cs" t="Include" />
                   <e p="HealingAbsolute.cs" t="Include" />
                 </e>
                 <e p="Interfaces" t="Include">
                   <e p="IDeliveryCommand.cs" t="Include" />
-                  <e p="IDetectorCommand.cs" t="Include" />
                   <e p="IImpactable.cs" t="Include" />
                   <e p="IImpactCommand.cs" t="Include" />
                 </e>
                 <e p="Updater.cs" t="Include" />
               </e>
               <e p="Test" t="Include">
+                <e p="TestEnemyCircleMoving.cs" t="Include" />
                 <e p="TestFireHandler.cs" t="Include" />
                 <e p="TestImapactCreatorEditor.cs" t="Include" />
                 <e p="TestImpactCreator.cs" t="Include" />

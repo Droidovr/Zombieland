@@ -9,6 +9,7 @@ namespace Zombieland.GameScene0.ImpactModule
     public class ImpactController : IImpactController
     {
         public Vector3 SpawnPosition { get; set; }
+        public Quaternion InitialRotation { get; set; }
         public Transform TargetTransform { get; set; }
         public List<IImpactable> TargetImpactableList { get; set; }
         public ImpactData ImpactData { get; set; }
@@ -18,6 +19,7 @@ namespace Zombieland.GameScene0.ImpactModule
         public ImpactController(string impactName, IRootController rootController)
         {
             _rootController = rootController;
+            TargetImpactableList = new List<IImpactable>();
             
             //ImpactData = _rootController.GameDataController.GetData<ImpactData>(impactName);
             //Test Implementation

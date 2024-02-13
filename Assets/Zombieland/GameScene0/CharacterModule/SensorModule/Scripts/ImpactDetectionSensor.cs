@@ -5,6 +5,7 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule
 {
     public class ImpactDetectionSensor : MonoBehaviour, IImpactable
     {
+        public Transform ImpactObjectTransform => transform;
         private IImpactable _characterController;
 
         public void Init(IImpactable characterController)
@@ -14,8 +15,7 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule
 
         public void ApplyImpact(IImpactController impactController)
        {
-           var hitEffect = Resources.Load<GameObject>("Hit");
-           Instantiate(hitEffect, transform);
+
        }
     }
 }

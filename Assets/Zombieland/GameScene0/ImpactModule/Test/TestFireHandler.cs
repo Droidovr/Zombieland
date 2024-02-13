@@ -1,24 +1,32 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Zombieland.GameScene0.CharacterModule.SensorModule;
 
 namespace Zombieland.GameScene0.ImpactModule
 {
     public class TestFireHandler : MonoBehaviour
     {
         public string ImpactName;
-        public Vector3 SpawnPosition;
+        public Transform SpawnPositionTransform;
         public Transform TargetTransform;
         [SerializeReference]
-        public List<IImpactable> TargetImpactableList;
+        public List<ImpactDetectionSensor> TargetImpactableList;
 
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 var impactController = new ImpactController(ImpactName, null);
-                impactController.SpawnPosition = SpawnPosition;
+                impactController.SpawnPosition = SpawnPositionTransform.position;
+                impactController.InitialRotation = SpawnPositionTransform.rotation;
                 impactController.TargetTransform = TargetTransform;
-                impactController.TargetImpactableList = TargetImpactableList;
+                if (TargetImpactableList.Count != 0)
+                {
+                    var list = TargetImpactableList.Cast<IImpactable>().ToList();
+                    impactController.TargetImpactableList = list;
+                }
+                
                 impactController.Activate();
             }
         }

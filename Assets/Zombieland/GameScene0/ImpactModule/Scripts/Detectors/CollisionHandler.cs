@@ -1,25 +1,36 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-public class CollisionHandler : MonoBehaviour
+namespace Zombieland.GameScene0.ImpactModule
 {
-    private Action _objectCollided;
-    private Action<Collider> _objectCollidedRef;
+    [RequireComponent(typeof(Rigidbody))]
+    public class CollisionHandler : MonoBehaviour
+    {
+        private Collider _objectCollider;
+        public event Action<Collider> OnObjectCollision;
 
-    public void Init(Action objectCollided)
-    {
-        _objectCollided = objectCollided;
-    }
-    
-    public void Init(Action<Collider> objectCollidedRef)
-    {
-        _objectCollidedRef = objectCollidedRef;
-    }
+        private bool _isInitialCollisionExcluded;
 
-    private void OnTriggerEnter(Collider targetObjectCollider)
-    {
-        _objectCollided?.Invoke();
-        _objectCollidedRef?.Invoke(targetObjectCollider);
+        private void Awake()
+        {
+            _objectCollider = GetComponent<Collider>();
+        }
+
+        public void Init(Action<Collider> onObjectCollision)
+        {
+            OnObjectCollision += onObjectCollision;
+        }
+
+        private void OnTriggerEnter(Collider targetObjectCollider)
+        {
+            if (!_isInitialCollisionExcluded)
+            {
+                Physics.IgnoreCollision(_objectCollider, targetObjectCollider, true);
+                _isInitialCollisionExcluded = true;
+                return;
+            }
+        
+            OnObjectCollision?.Invoke(targetObjectCollider);
+        }
     }
 }

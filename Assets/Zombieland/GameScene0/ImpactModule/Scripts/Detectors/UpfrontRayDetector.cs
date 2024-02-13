@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Zombieland.GameScene0.ImpactModule
 {
     [Serializable]
-    public class UpfrontRayDetector : IDetectorCommand
+    public class UpfrontRayDetector : IImpactCommand
     {
         [JsonIgnore]
         public IImpactController ImpactController { get; set; }
@@ -16,19 +16,27 @@ namespace Zombieland.GameScene0.ImpactModule
         private GameObject _impactObject;
         private CollisionHandler _collisionHandler;
 
+        private float _castSphereRadius;
+        private const float MinCastSphereRadius = 0.2f;
+
+
         public void Init()
         {
             _impactObject = ImpactController.ImpactData.DeliveryHandler.ImpactObject;
             if(ExecuteOnActivation) return;
             _collisionHandler = _impactObject.AddComponent<CollisionHandler>();
             _collisionHandler.Init(ProcessCollision);
+
+            _castSphereRadius = _impactObject.TryGetComponent<SphereCollider>(out var sphereCollider) 
+                ? sphereCollider.radius 
+                : MinCastSphereRadius;
         }
 
         public void Activate()
         {
             if (ExecuteOnActivation)
             {
-                ProcessCollision();
+                ProcessCollision(null);
             }
         }
 
@@ -37,9 +45,9 @@ namespace Zombieland.GameScene0.ImpactModule
             // Has no implementation
         }
 
-        private void ProcessCollision()
+        private void ProcessCollision(Collider targetObjectCollider)
         {
-            var raycastHits = Physics.RaycastAll(_impactObject.transform.position, Vector3.forward, DetectionRadius);
+            var raycastHits = Physics.SphereCastAll(_impactObject.transform.position, _castSphereRadius, _impactObject.transform.forward, DetectionRadius);
             if(raycastHits.Length <= 0) return;
             var impactableObjects = new List<IImpactable>();
             foreach (var raycastHit in raycastHits)
@@ -49,6 +57,7 @@ namespace Zombieland.GameScene0.ImpactModule
                     impactableObjects.Add(impactableObject);
                 }
             }
+            
             ImpactController.TargetImpactableList = impactableObjects;
             ImpactController.ImpactData.DeliveryHandler.ApplyImpactOnDelivery();
         }

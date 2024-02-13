@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Zombieland.GameScene0.ImpactModule
 {
     [Serializable]
-    public class SphereDetector : IDetectorCommand
+    public class SphereDetector : IImpactCommand
     {
         [JsonIgnore]
         public IImpactController ImpactController { get; set; }
@@ -28,7 +28,7 @@ namespace Zombieland.GameScene0.ImpactModule
         {
             if (ExecuteOnActivation)
             {
-                ProcessCollision();
+                ProcessCollision(null);
             }
         }
 
@@ -37,7 +37,7 @@ namespace Zombieland.GameScene0.ImpactModule
             // Has no implementation
         }
 
-        public void ProcessCollision()
+        public void ProcessCollision(Collider targetObjectCollider)
         {
             var overlapColliders = Physics.OverlapSphere(_impactObject.transform.position, DetectionRadius);
             if(overlapColliders.Length <= 0) return;

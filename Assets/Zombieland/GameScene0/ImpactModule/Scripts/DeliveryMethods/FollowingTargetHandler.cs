@@ -14,7 +14,7 @@ namespace Zombieland.GameScene0.ImpactModule
         public float MaxDistance { get; set; }
         public float ProjectileSpeed { get; set; }
         
-        public IDetectorCommand Detector { get; set; }
+        public IImpactCommand Detector { get; set; }
         public List<IImpactCommand> ImpactsExecutionList{ get; set; }
 
         [JsonIgnore]
@@ -22,9 +22,10 @@ namespace Zombieland.GameScene0.ImpactModule
 
         private Updater _updater;
 
-        private Transform _targetTransform;
         private float _lifeTime;
         private float _currentTime;
+
+        private const float ProjectileRotationSpeed = 50f;
         
         public void Init()
         {
@@ -42,12 +43,13 @@ namespace Zombieland.GameScene0.ImpactModule
                 impact.Init();
             }
             
-            _targetTransform = ImpactController.TargetTransform;
             _lifeTime = MaxDistance / ProjectileSpeed;
         }
 
         public void Activate()
         {
+            ImpactObject.transform.position = ImpactController.SpawnPosition;
+            ImpactObject.transform.rotation = ImpactController.InitialRotation;
             ImpactObject.SetActive(true);
             Detector.Activate();
             _currentTime = _lifeTime;
@@ -72,8 +74,13 @@ namespace Zombieland.GameScene0.ImpactModule
         private void MoveObject()
         {
             ImpactObject.transform.position = Vector3.MoveTowards(ImpactObject.transform.position,
-                _targetTransform.position, ProjectileSpeed * Time.deltaTime);
-            
+                ImpactController.TargetTransform.position, ProjectileSpeed * Time.deltaTime);
+
+            var direction = ImpactController.TargetTransform.position - ImpactObject.transform.position;
+            var targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+            ImpactObject.transform.rotation = Quaternion.Lerp(ImpactObject.transform.rotation, targetRotation,
+                ProjectileRotationSpeed * Time.deltaTime);
+
             _currentTime -= Time.deltaTime;
             if(_currentTime <= 0)
                 ImpactController.Deactivate();
