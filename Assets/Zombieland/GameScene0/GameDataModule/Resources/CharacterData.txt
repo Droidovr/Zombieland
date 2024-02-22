@@ -1,1 +1,18 @@
-{"MaxMovingSpeed":0.7,"DesignMovingSpeed":0,"MaxRotationSpeed":4.0,"DesignRotationSpeed":0}
+{
+"MaxMovingSpeed":0.7,
+"DesignMovingSpeed":0,
+"MaxRotationSpeed":4.0,
+"DesignRotationSpeed":0, 
+
+
+ "SpawnMethod":
+ {
+ "$type":"SpawnInDefaultPosition, Assembly-CSharp",
+ "DefaultSpawnPosition": 
+     {
+     "X": 1.0,
+     "Y": 1.0,
+     "Z": 1.0
+     }
+ }
+}

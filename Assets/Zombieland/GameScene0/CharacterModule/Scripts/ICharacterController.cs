@@ -8,6 +8,7 @@ using Zombieland.GameScene0.RootModule;
 using Zombieland.GameScene0.VisualBodyModule;
 using Zombieland.GameScene0.CharacterModule.AnimationModule;
 using UnityEngine;
+using Zombieland.GameScene0.CharacterModule.SpawnDeathRespawmModule;
 
 namespace Zombieland.GameScene0.CharacterModule
 {
@@ -22,6 +23,8 @@ namespace Zombieland.GameScene0.CharacterModule
         ITakeImpactController TakeImpactController { get; }
         IEquipmentController EquipmentController { get; }
         IAnimationController AnimationController { get; }
+
+        ISpawnDeathRespawnController SpawnDeathRespawnController { get; }
 
         Transform CharacterTransform { get; }
     }

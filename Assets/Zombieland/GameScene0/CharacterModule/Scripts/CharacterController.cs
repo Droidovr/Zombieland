@@ -5,6 +5,8 @@ using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
 using Zombieland.GameScene0.CharacterModule.CharacterMovingModule;
 using Zombieland.GameScene0.CharacterModule.EquipmentModule;
 using Zombieland.GameScene0.CharacterModule.SensorModule;
+using Zombieland.GameScene0.CharacterModule.SpawnDeathRespawmModule;
+using Zombieland.GameScene0.CharacterModule.SpawnDeathRespawmModule.Scripts;
 using Zombieland.GameScene0.CharacterModule.TakeImpactModule;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
 using Zombieland.GameScene0.ImpactModule;
@@ -24,6 +26,8 @@ namespace Zombieland.GameScene0.CharacterModule
         public ITakeImpactController TakeImpactController { get; private set;}
         public IEquipmentController EquipmentController { get; private set;}
         public IAnimationController AnimationController { get; private set; }
+        
+        public ISpawnDeathRespawnController SpawnDeathRespawnController { get; private set;}
 
         public Transform CharacterTransform => VisualBodyController.CharacterInScene.transform;
 
@@ -70,6 +74,9 @@ namespace Zombieland.GameScene0.CharacterModule
 
             AnimationController = new AnimationController(this, new List<IController>{(IController)CharacterMovingController});
             subsystemsControllers.Add ((IController)AnimationController);
+
+            SpawnDeathRespawnController = new SpawnDeathRespawnController(this, new List<IController>{(IController) CharacterDataController});
+            subsystemsControllers.Add((IController)SpawnDeathRespawnController);
         }
         
         public void ApplyImpact(IImpactController impactController)
