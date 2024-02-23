@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.AnimationModule;
-using Zombieland.GameScene0.CharacterModule.AnumatorModule;
 using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
 using Zombieland.GameScene0.CharacterModule.CharacterMovingModule;
 using Zombieland.GameScene0.CharacterModule.EquipmentModule;
@@ -55,7 +54,8 @@ namespace Zombieland.GameScene0.CharacterModule
                                                                             {
                                                                                 (IController) RootController.UIController,                                                                                
                                                                                 (IController) CharacterDataController,
-                                                                                (IController) VisualBodyController 
+                                                                                (IController) VisualBodyController,
+                                                                                (IController) AnimationController
                                                                             });
             subsystemsControllers.Add((IController)CharacterMovingController);
 
@@ -68,11 +68,7 @@ namespace Zombieland.GameScene0.CharacterModule
             EquipmentController = new EquipmentController(this, new List<IController>{(IController)CharacterDataController});
             subsystemsControllers.Add((IController)EquipmentController);
 
-            AnimationController = new AnimationController(this, new List<IController> 
-                                                                    {
-                                                                        (IController)CharacterMovingController,
-                                                                        (IController) VisualBodyController
-                                                                    });
+            AnimationController = new AnimationController(this, new List<IController>{(IController)CharacterMovingController});
             subsystemsControllers.Add ((IController)AnimationController);
         }
         

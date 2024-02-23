@@ -1,7 +1,230 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="907d7957-8796-4ab4-a556-102ecf85e7d2" name="Default Changelist" comment="" />
+    <list default="true" id="907d7957-8796-4ab4-a556-102ecf85e7d2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/Character0@Brutal Assassination.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/Character0@Brutal Assassination.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/Character0@Dying (1).fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/Character0@Dying (1).fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/Character0@Dying (2).fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/Character0@Dying (2).fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/Character0@Dying.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/Character0@Dying.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/Character0@Fall Flat.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/Character0@Fall Flat.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/Character0@Zombie Stand Up.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/Character0@Zombie Stand Up.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/RPG.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/RPG/Models.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/RPG/Models/RPG-Character-Bones.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/RPG/Models/RPG-Character.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/RPG/Models/RPG-Character.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/RPG/RPG-Character@Unarmed-Getup1.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/RPG/RPG-Character@Unarmed-Getup1.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/RPG/RPG-Character@Unarmed-Knockdown1.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/RPG/RPG-Character@Unarmed-Knockdown1.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/RPG/RPG-Character@Unarmed-Stunned.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/RPG/RPG-Character@Unarmed-Stunned.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Healing.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Healing/Character0@Drinking.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Healing/Character0@Drinking.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Hit.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Hit/Character0@Zombie Reaction Hit.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Hit/Character0@Zombie Reaction Hit.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/StandUp.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/StandUp/Character0@StandUpBack.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/StandUp/Character0@StandUpBack.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/StandUp/Character0@StandUpFront.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/StandUp/Character0@StandUpFront.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Grenade.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Grenade/Character0@Grenade Throw (1).fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Grenade/Character0@Grenade Throw (1).fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Grenade/Character0@Grenade Throw (2).fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Grenade/Character0@Grenade Throw (2).fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Grenade/Character0@Grenade Throw.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Grenade/Character0@Grenade Throw.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Grenade/Character0@Run And Throw Grenade.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Grenade/Character0@Run And Throw Grenade.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Grenade/Character0@Throw Grenade.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Grenade/Character0@Throw Grenade.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Grenade/Character0@Toss Grenade.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Grenade/Character0@Toss Grenade.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Knife.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Knife/Character0@Knife Idle.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Knife/Character0@Knife Idle.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Knife/Character0@Stabbing_Knife.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Knife/Character0@Stabbing_Knife.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Knife/Character0@Stabbing_Knife_1.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Knife/Character0@Stabbing_Knife_1.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Knife/Character0@Stabbing_Knife_left.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Knife/Character0@Stabbing_Knife_left.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Knife/Character0@Standing Torch Melee Attack Stab.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Knife/Character0@Standing Torch Melee Attack Stab.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Mine.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Mine/Character0@Gathering Objects.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Mine/Character0@Gathering Objects.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Mine/Character0@Picking Up.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Mine/Character0@Picking Up.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Mine/Character0@Putting Down.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Mine/Character0@Putting Down.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Pistol.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Pistol/Character0@Pistol Idle.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Pistol/Character0@Pistol Idle.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Pistol/Character0@Pistol Run.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Pistol/Character0@Pistol Run.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Pistol/Character0@Shooting.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Pistol/Character0@Shooting.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Character0@Firing Rifle.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Character0@Firing Rifle.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Character0@Gunplay (1).fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Character0@Gunplay (1).fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Character0@Gunplay (2).fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Character0@Gunplay (2).fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Character0@Gunplay.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Character0@Gunplay.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Character0@Rifle Crouch Walk.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Character0@Rifle Crouch Walk.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Character0@Rifle Put Away (1).fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Character0@Rifle Put Away (1).fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Character0@Rifle Put Away.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Character0@Rifle Put Away.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Character0@Rifle Stand To Kneel.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Character0@Rifle Stand To Kneel.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Character0@Walk With Rifle.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Character0@Walk With Rifle.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Grab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Grab/Character0@Grab And Put Back Rifle.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Grab/Character0@Grab And Put Back Rifle.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Grab/Character0@Grab Rifle And Put Back.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Grab/Character0@Grab Rifle And Put Back.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Grab/Character0@Grab Rifle From Back.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Grab/Character0@Grab Rifle From Back.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Grab/Character0@Grab Rifle From Behind Shoulder.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Grab/Character0@Grab Rifle From Behind Shoulder.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Grab/Character0@Grab Rifle From The Side And Put Back.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Grab/Character0@Grab Rifle From The Side And Put Back.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Grab/Character0@Grab Rifle From The Side.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Grab/Character0@Grab Rifle From The Side.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Put.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Put/Character0@Grab And Put Back Rifle.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Put/Character0@Grab And Put Back Rifle.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Put/Character0@Grab Rifle And Put Back.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Put/Character0@Grab Rifle And Put Back.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Put/Character0@Grab Rifle From The Side And Put Back.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Put/Character0@Grab Rifle From The Side And Put Back.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Put/Character0@Put Back Rifle (1).fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Put/Character0@Put Back Rifle (1).fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Put/Character0@Put Back Rifle Behind Shoulder.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Put/Character0@Put Back Rifle Behind Shoulder.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Put/Character0@Put Back Rifle.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Put/Character0@Put Back Rifle.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Put/Character0@Rifle Put Away.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Weapon/Rifle/Put/Character0@Rifle Put Away.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Scripts/Ragdoll.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Scripts/Ragdoll/CharacterRagdoll.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Scripts/Ragdoll/CharacterRagdoll.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Scripts/Ragdoll/RagdollComponent.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Scripts/Ragdoll/RagdollComponent.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Scripts/Ragdoll/RagdollState.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Scripts/Ragdoll/RagdollState.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Scripts/Test.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Scripts/Test/TestShooter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Scripts/Test/TestShooter.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Materials.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Materials/PolygonApocalypse_Material_01_A.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Materials/PolygonApocalypse_Material_01_A.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Materials/RagdollPhysicMaterial.physicMaterial" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Materials/RagdollPhysicMaterial.physicMaterial.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Models/Character0/Character0_old.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Models/Character0/Character0_old.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Models/Wepon.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Models/Wepon/Knife0.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Models/Wepon/Knife0.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/PolygonApocalypse_Material_01_A.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/PolygonApocalypse_Material_01_A.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Resources/Characters.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Resources/Characters/Character0.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Resources/Characters/Character0Ragdoll.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Resources/Knife0.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Resources/Knife0.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Test/Resources.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Test/Resources/Character0 Variant.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Test/Resources/Character0 Variant.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Textures.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/CHANGELOG.md.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor/BoneHelper.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor/BoneHelper.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor/ColliderController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor/ColliderController.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor/ColliderHelper.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor/ColliderHelper.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor/JointController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor/JointController.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor/RagdollController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor/RagdollController.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor/RagdollPart.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor/RagdollPart.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor/RagdollProperties.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor/RagdollProperties.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor/Ragdoller.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor/Ragdoller.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor/RigidController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor/RigidController.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor/Unity.RagdollHelper.Editor.asmdef" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor/Unity.RagdollHelper.Editor.asmdef.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor/WeightCalculator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/Editor/WeightCalculator.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/LICENSE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/LICENSE.md.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/README.md.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/bz-soft.ragdoll-helper/package.json.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Zombieland/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Zombieland/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Zombieland/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Zombieland/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Zombieland/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Zombieland/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PolygonApocalypse/Materials/PolygonApocalypse_Material_03_A.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Materials/PolygonApocalypse_Material_03_A.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PolygonApocalypse/Materials/PolygonApocalypse_Material_03_A.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Materials/PolygonApocalypse_Material_03_A.mat.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PolygonApocalypse/Textures/Misc/PolygonApocalypse_Normal.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Textures/PolygonApocalypse_Normal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PolygonApocalypse/Textures/Misc/PolygonApocalypse_Normal.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Textures/PolygonApocalypse_Normal.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PolygonApocalypse/Textures/PolygonApocalypse_Texture_03_A.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Textures/PolygonApocalypse_Texture_03_A.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PolygonApocalypse/Textures/PolygonApocalypse_Texture_03_A.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Textures/PolygonApocalypse_Texture_03_A.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Character0@Idle.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Character0@Idle.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Character0@Running.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Character0@Running.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Character0@Walking.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Character0@Walking.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Character0Animator.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Character0Animator.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Scripts/AnimationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Scripts/AnimationController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Scripts/CharacterAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Scripts/CharacterAnimator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Scripts/IAnimationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Scripts/IAnimationController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/CharacterMovingModule/Scripts/CharacterMovingController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/CharacterMovingModule/Scripts/CharacterMovingController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/CharacterMovingModule/Scripts/CharacterPhysicMoving.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/CharacterMovingModule/Scripts/CharacterPhysicMoving.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/CharacterMovingModule/Scripts/ICharacterMovingController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/CharacterMovingModule/Scripts/ICharacterMovingController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/CharacterMovingModule/Test/TestScenes/Scenes/SceneMoving.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/CharacterMovingModule/Test/TestScenes/Scenes/SceneMoving.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/Scripts/CharacterController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/Scripts/CharacterController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Models/Character0/Character0.fbx" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Models/Character0/Character0.fbx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Models/Character0/Character0.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Models/Character0/Character0.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Models/Character0/Pers_dell.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Models/Character0/Pers_dell.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/AnimationModule/Animations/Death/RPG/Models/RPG-Character-Bones.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Resources/Character0.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Resources/Character0.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Resources/Characters/Character0.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Resources/PoliceWoman.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Resources/PoliceWoman.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Resources/Characters/Character0Ragdoll.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Scripts/CreateCharacterPrefab.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/VisualBodyModule/Scripts/CreateCharacterPrefab.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/EnvironmentModule/Resources/Level0.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/EnvironmentModule/Resources/Level0.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/GameDataModule/Resources/CharacterData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/GameDataModule/Resources/CharacterData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/GameDataModule/Scripts/GameDataController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/GameDataModule/Scripts/GameDataController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/GameDataModule/Scripts/PlayerPrefsStorage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/GameDataModule/Scripts/PlayerPrefsStorage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/GameDataModule/Scripts/ResourcesStorage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/GameDataModule/Scripts/ResourcesStorage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/Readme/Readme.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/Readme/Readme.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,8 +235,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/ITakeImpactController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/IImpactable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/IImpactController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/IImpactable.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -44,9 +267,13 @@
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeDamageModule/Scripts/TakeDamageController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeDamageModule/Scripts/TakeImpactController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/ITakeImpactController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/Scripts/CharacterController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/TakeImpactController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/GameDataModule/Scripts/PlayerPrefsStorage.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/Scripts/ICharacterController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/GameDataModule/Scripts/GameDataController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/GameDataModule/Scripts/ResourcesStorage.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/TakeImpactController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/Scripts/CharacterController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/Readme/Readme.cs" />
       </list>
     </option>
   </component>
@@ -91,6 +318,8 @@
       <updated>1705683945138</updated>
       <workItem from="1705683957964" duration="6544000" />
       <workItem from="1705776932648" duration="1710000" />
+      <workItem from="1706893308932" duration="4145000" />
+      <workItem from="1708681892293" duration="7000" />
     </task>
     <servers />
   </component>
@@ -108,5 +337,9 @@
     </state>
     <state x="921" y="351" key="RiderGenerateDialog/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1705688118513" />
     <state x="4531" y="605" key="RiderGenerateDialog/3840.349.1920.1020/0.0.2560.1400@3840.349.1920.1020" timestamp="1705613391525" />
+    <state x="3840" y="349" width="1936" height="1107" key="dock-window-1" timestamp="1706895569513">
+      <screen x="3840" y="349" width="1920" height="1020" />
+    </state>
+    <state x="3840" y="349" width="1936" height="1107" key="dock-window-1/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1706895569513" />
   </component>
 </project>
