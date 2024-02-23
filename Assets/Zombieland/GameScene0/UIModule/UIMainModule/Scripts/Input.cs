@@ -1,7 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Zombieland.GameScene0.UIModule
@@ -9,14 +7,14 @@ namespace Zombieland.GameScene0.UIModule
     public class Input : MonoBehaviour
     {
         public event Action<Vector2> OnMoved;
-        public event Action<string> OnButtonClick;
+        public event Action OnFire;
+        public bool IsClickedStealthOn = false;
 
         private const string NAME_SPRITE_STEALTH_ON = "StealthOn";
         private const string NAME_SPRITE_STEALTH_OFF = "StealthOff";
 
         private InputSystemControls _inputSystemControls;
         private Image _imageButtonStealth;
-        private bool isClickedStealthOn = false;
         private Sprite _spriteStealthOn;
         private Sprite _spriteStealthOff;
 
@@ -37,15 +35,15 @@ namespace Zombieland.GameScene0.UIModule
             _inputSystemControls.Enable();
             _inputSystemControls.Main.Move.performed += context => Move();
             _inputSystemControls.Main.Move.canceled += context => Move();
-            _inputSystemControls.Main.Fire.performed += context => ButtonClick(NameButton.Fire);
-            _inputSystemControls.Main.Stealth.performed += context => ButtonClick(NameButton.Stealth);
+            _inputSystemControls.Main.Fire.performed += context => FireClick();
+            _inputSystemControls.Main.Stealth.performed += context => StealthClick();
         }
         private void OnDisable()
         {
             _inputSystemControls.Main.Move.performed -= context => Move();
             _inputSystemControls.Main.Move.canceled -= context => Move();
-            _inputSystemControls.Main.Fire.performed -= context => ButtonClick(NameButton.Fire);
-            _inputSystemControls.Main.Stealth.performed -= context => ButtonClick(NameButton.Stealth);
+            _inputSystemControls.Main.Fire.performed -= context => FireClick();
+            _inputSystemControls.Main.Stealth.performed -= context => StealthClick();
             _inputSystemControls.Disable();
         }
         
@@ -56,16 +54,16 @@ namespace Zombieland.GameScene0.UIModule
             OnMoved?.Invoke(joistickPosition);
         }
 
-        private void ButtonClick(NameButton nameButton)
+        private void FireClick()
         {
-            OnButtonClick?.Invoke(nameButton.ToString());
+            OnFire?.Invoke();
+        }
 
-            if (nameButton == NameButton.Stealth)
-            {
-                isClickedStealthOn = !isClickedStealthOn;
+        private void StealthClick()
+        {
+            IsClickedStealthOn = !IsClickedStealthOn;
 
-                _imageButtonStealth.sprite = isClickedStealthOn ? _spriteStealthOn : _spriteStealthOff;
-            }
+            _imageButtonStealth.sprite = IsClickedStealthOn ? _spriteStealthOn : _spriteStealthOff;
         }
     }
 }
