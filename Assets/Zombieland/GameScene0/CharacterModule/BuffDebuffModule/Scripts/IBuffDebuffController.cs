@@ -4,7 +4,10 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 {
     public interface IBuffDebuffController
     {
-        void InjectBuffs(List<ICommand> buffs);
-        void InjectDebuffs(List<ICommand> debuffs);
+        void InjectBuffs(List<IBuffDebuffCommand> buffs);
+
+        void InjectDebuffs(List<IBuffDebuffCommand> debuffs);
+
+        float GetProcessedImpactValue(BuffDebuff buffDebuff);
     }
 }

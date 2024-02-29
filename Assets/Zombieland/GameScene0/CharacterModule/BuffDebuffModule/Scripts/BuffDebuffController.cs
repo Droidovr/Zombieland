@@ -4,15 +4,15 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 {
     public class BuffDebuffController : Controller, IBuffDebuffController
     {
-        public Dictionary<string, ICommand> Buffs;
-        public Dictionary<string, ICommand> Debuffs;
+        public Dictionary<string, IBuffDebuffCommand> Buffs;
+        public Dictionary<string, IBuffDebuffCommand> Debuffs;
 
         public BuffDebuffController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             // This class’s constructor doesn’t have any content yet.
         }
 
-        public void InjectBuffs(List<ICommand> buffs)
+        public void InjectBuffs(List<IBuffDebuffCommand> buffs)
         {
             foreach (var buff in buffs)
             {
@@ -23,7 +23,7 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
             }
         }
 
-        public void InjectDebuffs(List<ICommand> debuffs)
+        public void InjectDebuffs(List<IBuffDebuffCommand> debuffs)
         {
             foreach (var debuff in debuffs)
             {
@@ -32,6 +32,12 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
                     Debuffs.Add(debuff.Name, debuff);
                 }
             }
+        }
+
+        public float GetProcessedImpactValue(BuffDebuff buffDebuff)
+        {
+
+            return 5;
         }
 
         protected override void CreateHelpersScripts()

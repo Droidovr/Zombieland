@@ -2,9 +2,10 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 {
     public interface IBuffDebuffCommand : ICommand
     {
-        ICharacterController Controller { get; }
+        string Name { get; }
+        ICharacterController ImpactTarget { get; }
+        ICharacterController Owner { get; }
 
-        void Execute();
-        IImpact HandleImpact(Impact impact);
+        BuffDebuff ProcessImpact(BuffDebuff buffDebuff);
     }
 }

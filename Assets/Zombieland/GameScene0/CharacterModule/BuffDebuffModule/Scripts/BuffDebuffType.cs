@@ -1,7 +1,9 @@
 namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 {
-    public class IImpact
+    public enum BuffDebuffType
     {
-
+        Fire,
+        Poison,
+        Dark
     }
 }

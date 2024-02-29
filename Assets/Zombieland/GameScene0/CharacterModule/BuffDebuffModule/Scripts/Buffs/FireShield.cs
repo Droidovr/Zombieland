@@ -6,7 +6,8 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
     public class FireShield : IBuffDebuffCommand
     {
         public string Name { get; private set; }
-        public ICharacterController Controller { get; private set; }
+        public ICharacterController ImpactTarget { get; private set; }
+        public ICharacterController Owner { get; private set; }
 
         public float LifeTime = 20f;
 
@@ -26,10 +27,9 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
             // вызов VFX - повесить префаб по координатам из  VFX-контроллера (универсальный размер)
         }
 
-        public IImpact HandleImpact(Impact impact)
+        public BuffDebuff ProcessImpact(BuffDebuff buffDebuff)
         {
-            // обработать параметри impact и преобразовать их
-            return new Impact();
+            throw new NotImplementedException();
         }
     }
 }
