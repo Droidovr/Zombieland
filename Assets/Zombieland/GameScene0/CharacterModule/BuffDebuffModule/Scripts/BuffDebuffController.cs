@@ -19,6 +19,7 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
                 if (!Buffs.ContainsKey(buff.Name))
                 {
                     Buffs.Add(buff.Name, buff);
+                    buff.Execute();
                 }
             }
         }
@@ -30,6 +31,7 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
                 if (!Debuffs.ContainsKey(debuff.Name))
                 {
                     Debuffs.Add(debuff.Name, debuff);
+                    debuff.Execute();
                 }
             }
         }

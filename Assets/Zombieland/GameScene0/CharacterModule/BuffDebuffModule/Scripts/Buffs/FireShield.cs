@@ -29,7 +29,20 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 
         public BuffDebuff ProcessImpact(BuffDebuff buffDebuff)
         {
-            throw new NotImplementedException();
+            switch (buffDebuff.BuffDebuffType)
+            {
+                case BuffDebuffType.Fire:
+                    // Fire - вернуть обработанные аргументы
+                    return buffDebuff;
+
+                case BuffDebuffType.Poison:
+                    // Poison
+                    return buffDebuff;
+
+                default:
+                    // вернуть входящие аргументы
+                    return buffDebuff;
+            }
         }
     }
 }
