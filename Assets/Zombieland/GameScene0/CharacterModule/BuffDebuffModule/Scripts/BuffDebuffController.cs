@@ -36,10 +36,21 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
             }
         }
 
-        public float GetProcessedImpactValue(BuffDebuff buffDebuff)
+        public SingleImpact GetProcessedImpactValue(SingleImpact buffDebuff)
         {
+            SingleImpact localBuffDebuff = buffDebuff;
 
-            return 5;
+            foreach (var buff in Buffs.Values)
+            {
+                localBuffDebuff = buff.GetProcessedImpactValue(localBuffDebuff);
+            }
+
+            foreach (var debuff in Debuffs.Values)
+            {
+                localBuffDebuff = debuff.GetProcessedImpactValue(localBuffDebuff);
+            }
+
+            return localBuffDebuff;
         }
 
         protected override void CreateHelpersScripts()

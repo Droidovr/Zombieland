@@ -6,6 +6,6 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
         ICharacterController ImpactTarget { get; }
         ICharacterController Owner { get; }
 
-        BuffDebuff ProcessImpact(BuffDebuff buffDebuff);
+        SingleImpact GetProcessedImpactValue(SingleImpact buffDebuff);
     }
 }

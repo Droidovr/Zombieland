@@ -8,6 +8,6 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 
         void InjectDebuffs(List<IBuffDebuffCommand> debuffs);
 
-        float GetProcessedImpactValue(BuffDebuff buffDebuff);
+        SingleImpact GetProcessedImpactValue(SingleImpact buffDebuff);
     }
 }

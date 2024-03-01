@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 {
-    public class FireShield : IBuffDebuffCommand
+    public class ShiftOfMoon : IBuffDebuffCommand
     {
         public string Name { get; private set; }
         public ICharacterController ImpactTarget { get; private set; }
@@ -13,7 +13,7 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 
         private BuffDebuffController _buffDebuffController;
 
-        public FireShield(BuffDebuffController buffDebuffController)
+        public ShiftOfMoon(BuffDebuffController buffDebuffController)
         {
             _buffDebuffController = buffDebuffController;
         }
@@ -27,15 +27,15 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
             // вызов VFX - повесить префаб по координатам из  VFX-контроллера (универсальный размер)
         }
 
-        public BuffDebuff ProcessImpact(BuffDebuff buffDebuff)
+        public SingleImpact GetProcessedImpactValue(SingleImpact buffDebuff)
         {
-            switch (buffDebuff.BuffDebuffType)
+            switch (buffDebuff.Type)
             {
-                case BuffDebuffType.Fire:
+                case SingleImpactType.Fire:
                     // Fire - вернуть обработанные аргументы
                     return buffDebuff;
 
-                case BuffDebuffType.Poison:
+                case SingleImpactType.Poison:
                     // Poison
                     return buffDebuff;
 
