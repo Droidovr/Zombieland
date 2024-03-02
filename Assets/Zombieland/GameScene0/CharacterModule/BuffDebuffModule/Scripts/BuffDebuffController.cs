@@ -4,12 +4,14 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 {
     public class BuffDebuffController : Controller, IBuffDebuffController
     {
-        public Dictionary<string, IBuffDebuffCommand> Buffs;
-        public Dictionary<string, IBuffDebuffCommand> Debuffs;
+        public Dictionary<string, IBuffDebuffCommand> Buffs { get; set; }
+        public Dictionary<string, IBuffDebuffCommand> Debuffs { get; set; }
+
+        public ICharacterController CharacterController { get; private set; }
 
         public BuffDebuffController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
-            // This class’s constructor doesn’t have any content yet.
+            CharacterController = parentController as ICharacterController;
         }
 
         public void InjectBuffs(List<IBuffDebuffCommand> buffs)
@@ -19,6 +21,7 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
                 if (!Buffs.ContainsKey(buff.Name))
                 {
                     Buffs.Add(buff.Name, buff);
+                    buff.buffDebuffController = this;
                     buff.Execute();
                 }
             }
@@ -31,6 +34,7 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
                 if (!Debuffs.ContainsKey(debuff.Name))
                 {
                     Debuffs.Add(debuff.Name, debuff);
+                    debuff.buffDebuffController = this;
                     debuff.Execute();
                 }
             }

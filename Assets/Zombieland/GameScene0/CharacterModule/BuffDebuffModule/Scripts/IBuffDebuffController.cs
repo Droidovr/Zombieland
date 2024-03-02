@@ -4,7 +4,12 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 {
     public interface IBuffDebuffController
     {
-        void InjectBuffs(List<IBuffDebuffCommand> buffs);
+        Dictionary<string, IBuffDebuffCommand> Buffs { get; set; }
+        Dictionary<string, IBuffDebuffCommand> Debuffs { get; set; }
+        ICharacterController CharacterController { get; }
+    
+
+    void InjectBuffs(List<IBuffDebuffCommand> buffs);
 
         void InjectDebuffs(List<IBuffDebuffCommand> debuffs);
 
