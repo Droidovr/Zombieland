@@ -6,6 +6,6 @@ namespace Zombieland.GameScene0.UIModule
     public interface IUIMainController
     {
         event Action<Vector2> OnMoved;
-        event Action<string> OnButtonClick;
+        event Action OnFire;
     }
 }

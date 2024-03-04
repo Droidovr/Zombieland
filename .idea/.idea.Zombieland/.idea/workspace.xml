@@ -24,10 +24,8 @@
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/Interfaces/IDeliveryCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Test/TestFireHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/ITakeImpactController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9AC0682A-A4F7-4EE5-9EB5-D5C917C9F1C9/0a/81def0a5/JsonSerializerSettings.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Test/TestImpactCreator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/Updater.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Test/TestImapactCreatorEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/IImpactController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/IImpactable.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -71,18 +69,19 @@
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SensorModule/Scripts/ImpactDetectionSensor.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/ImpactData.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/ImpactController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/DeliveryMethods/MovingForwardHandler.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Test/TestEnemyCircleMoving.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Test/TestFireHandler.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/Detectors/CollisionHandler.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/Detectors/TouchColliderDetector.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/Impacts/CollisionEffect.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/Scripts/ICommand.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/Interfaces/IImpactCommand.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/Detectors/UpfrontRayDetector.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/Detectors/SphereDetector.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Resources/ImpactData.txt" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/DeliveryMethods/FollowingTargetHandler.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/ProjectileMovingHandler.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/IImpactable.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeDamageModule/Scripts/ITakeDamageController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeDamageModule/Scripts/TakeDamageController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeDamageModule/Scripts/TakeImpactController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/ITakeImpactController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/GameDataModule/Scripts/PlayerPrefsStorage.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/Scripts/ICharacterController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/GameDataModule/Scripts/GameDataController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/GameDataModule/Scripts/ResourcesStorage.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/TakeImpactController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/Scripts/CharacterController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/Readme/Readme.cs" />
       </list>
     </option>
   </component>
@@ -128,17 +127,8 @@
       <workItem from="1705683957964" duration="6544000" />
       <workItem from="1705776932648" duration="1710000" />
       <workItem from="1706893308932" duration="4145000" />
-      <workItem from="1707154654606" duration="11937000" />
-      <workItem from="1707239105010" duration="2706000" />
-      <workItem from="1707281107019" duration="1877000" />
-      <workItem from="1707414275939" duration="8817000" />
-      <workItem from="1707498315885" duration="8545000" />
-      <workItem from="1707794284384" duration="4078000" />
-      <workItem from="1707845294334" duration="9993000" />
-      <workItem from="1707879314382" duration="556000" />
-      <workItem from="1707930936259" duration="2272000" />
-      <workItem from="1708027336747" duration="4920000" />
-      <workItem from="1708104960655" duration="739000" />
+      <workItem from="1708681892293" duration="7000" />
+      <workItem from="1708690271171" duration="40000" />
     </task>
     <servers />
   </component>

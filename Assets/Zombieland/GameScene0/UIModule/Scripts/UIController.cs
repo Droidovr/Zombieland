@@ -7,7 +7,7 @@ namespace Zombieland.GameScene0.UIModule
     public class UIController : Controller, IUIController
     {
         public event Action<Vector2> OnMoved;
-        public event Action<string> OnMainButtonClick;
+        public event Action OnFire;
         public event Action<string> OnInventoryButtonClick;
 
         private UIMainController _uIMainController;
@@ -23,7 +23,7 @@ namespace Zombieland.GameScene0.UIModule
             if (_uIMainController != null)
             {
                 _uIMainController.OnMoved -= HandleMoved;
-                _uIMainController.OnButtonClick -= HandleMainButtonClick;
+                _uIMainController.OnFire -= HandleFireClick;
             }
 
             base.Disable();
@@ -43,7 +43,7 @@ namespace Zombieland.GameScene0.UIModule
             subsystemsControllers.Add((IController)_uIMainController);
 
             _uIMainController.OnMoved += HandleMoved;
-            _uIMainController.OnButtonClick += HandleMainButtonClick;
+            _uIMainController.OnFire += HandleFireClick;
         }
         #endregion PROTECTED
 
@@ -55,10 +55,10 @@ namespace Zombieland.GameScene0.UIModule
             // Debug.Log(vectorMove);
         }
 
-        private void HandleMainButtonClick(string nameButton)
+        private void HandleFireClick()
         {
-            OnMainButtonClick?.Invoke(nameButton);
-            // Debug.Log(nameButton);
+            OnFire?.Invoke();
+            Debug.Log("HandleFireClick");
         }
         #endregion PRIVATE
     }
