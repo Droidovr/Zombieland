@@ -1,7 +1,5 @@
 using System;
-using System.Threading;
-using System.Threading.Tasks;
-using UnityEngine;
+using System.Timers;
 
 namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 {
@@ -9,60 +7,54 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
     public class InfectedWound : IBuffDebuffCommand
     {
         public string Name { get; private set; }
-        public SingleImpact SingleImpact { get; private set; }
-        public IBuffDebuffController buffDebuffController { get; set; }
+        public DirectImpactSetting DirectImpactSetting { get; private set; }
         public ICharacterController ImpactTarget { get; set; }
         public ICharacterController Owner { get; set; }
 
-        public float LifeTime;
+        public int LifeTime;
+        public int Interval;
 
-        private float _cachedValue;
-        private CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
+        private PeriodicAction _periodicAction;
 
         public void Execute()
         {
-            Task.Run(() =>
-            {
-                for (int i = 0; i < LifeTime && !_cancellationTokenSource.IsCancellationRequested; i++)
-                {
-                    Task.Delay(1000, _cancellationTokenSource.Token).Wait();
-
-                    if (!_cancellationTokenSource.IsCancellationRequested)
-                    {
-                        buffDebuffController.CharacterController.CharacterDataController.CharacterData.HP -= SingleImpact.AbsoluteValue;
-                        _cachedValue += SingleImpact.AbsoluteValue;
-                    }
-                }
-            });
-
-            _cachedValue = 0;
-
-            DeleteFromDictionary();
+            _periodicAction = new PeriodicAction(LifeTime, Interval, DecreaseHP);
+            _periodicAction.OnFinished += OnFinishedHandler;
+            _periodicAction.Start();
         }
 
         public void Destroy()
         {
-            _cancellationTokenSource.Cancel();
-            buffDebuffController.CharacterController.CharacterDataController.CharacterData.HP += _cachedValue;
-            _cachedValue = 0;
-
-            DeleteFromDictionary();
+            _periodicAction?.Stop();
         }
 
-        public SingleImpact GetProcessedImpactValue(SingleImpact buffDebuff)
+        public DirectImpactSetting GetProcessedImpactValue(DirectImpactSetting buffDebuff)
         {
               return buffDebuff;
         }
 
-        private void DeleteFromDictionary()
+        private void OnFinishedHandler()
         {
-            foreach (var key in buffDebuffController.Debuffs.Keys)
+            _periodicAction.OnFinished -= OnFinishedHandler;
+            SelfDestroy();
+        }
+
+        private void SelfDestroy()
+        {
+            ImpactTarget.BuffDebuffController.Debuffs.Remove(Name);
+        }
+
+        private void DecreaseHP(object sender, ElapsedEventArgs e)
+        {
+            var HP = ImpactTarget.CharacterDataController.CharacterData.HP - DirectImpactSetting.AbsoluteValue;
+
+            if (HP > ImpactTarget.CharacterDataController.CharacterData.HPMax)
             {
-                if (buffDebuffController.Debuffs[key] is InfectedWound)
-                {
-                    buffDebuffController.Debuffs.Remove(key);
-                    break;
-                }
+                ImpactTarget.CharacterDataController.CharacterData.HP = HP;
+            }
+            else
+            {
+                ImpactTarget.CharacterDataController.CharacterData.HP = 0;
             }
         }
     }

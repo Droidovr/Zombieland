@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 {
@@ -15,69 +17,66 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 
         public override void Disable()
         {
-            if (Buffs != null)
+            var countBuffs = Buffs.Count - 1;
+            var buffs = Buffs.Values.ToArray();
+
+            for (int i = countBuffs; i >= 0; i--)
             {
-                foreach (var buff in Buffs.Values)
-                {
-                    buff.Destroy();
-                }
+                buffs[i].Destroy();
             }
 
-            if (Debuffs != null)
+            var countDebuffs = Debuffs.Count - 1;
+            var debuffs = Debuffs.Values.ToArray();
+
+            for (int i = countDebuffs; i >= 0; i--)
             {
-                foreach (var debuff in Debuffs.Values)
-                {
-                    debuff.Destroy();
-                }
+                debuffs[i].Destroy();
             }
+
+            Buffs.Clear();
+            Debuffs.Clear();
 
             base.Disable();
         }
 
         public void InjectBuffs(List<IBuffDebuffCommand> buffs)
         {
-            foreach (var buff in buffs)
+            for (int i = 0; i < buffs.Count; i++)
             {
-                if (!Buffs.ContainsKey(buff.Name))
+                if (!Buffs.ContainsKey(buffs[i].Name))
                 {
-                    Buffs.Add(buff.Name, buff);
-                    buff.buffDebuffController = this;
-                    buff.Execute();
+                    Buffs.Add(buffs[i].Name, buffs[i]);
+                    buffs[i].Execute();
                 }
             }
         }
 
         public void InjectDebuffs(List<IBuffDebuffCommand> debuffs)
         {
-            foreach (var debuff in debuffs)
+            for (int i = 0; i < debuffs.Count; i++)
             {
-                if (!Debuffs.ContainsKey(debuff.Name))
+                if (!Buffs.ContainsKey(debuffs[i].Name))
                 {
-                    Debuffs.Add(debuff.Name, debuff);
-                    debuff.buffDebuffController = this;
-                    debuff.Execute();
+                    Buffs.Add(debuffs[i].Name, debuffs[i]);
+                    debuffs[i].Execute();
                 }
             }
         }
 
-        public SingleImpact GetProcessedImpactValue(SingleImpact buffDebuff)
+        public DirectImpactSetting GetProcessedImpactValue(DirectImpactSetting buffDebuff)
         {
-            SingleImpact localBuffDebuff = buffDebuff;
+            DirectImpactSetting localBuffDebuff = buffDebuff;
 
-            if (Buffs != null)
+            for (int i = 0; i < Buffs.Count; i++)
             {
-                foreach (var buff in Buffs.Values)
-                {
-                    localBuffDebuff = buff.GetProcessedImpactValue(localBuffDebuff);
-                }
+                var pair = Buffs.ElementAt(i);
+                localBuffDebuff = pair.Value.GetProcessedImpactValue(localBuffDebuff);
             }
 
-            if (Debuffs != null)
+            for (int i = 0; i < Debuffs.Count; i++)
             {
-                foreach (var debuff in Debuffs.Values)
-                {
-                    localBuffDebuff = debuff.GetProcessedImpactValue(localBuffDebuff);
-                }
+                var pair = Debuffs.ElementAt(i);
+                localBuffDebuff = pair.Value.GetProcessedImpactValue(localBuffDebuff);
             }
 
             return localBuffDebuff;

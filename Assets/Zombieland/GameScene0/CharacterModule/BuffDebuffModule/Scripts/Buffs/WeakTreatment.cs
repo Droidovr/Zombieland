@@ -1,13 +1,10 @@
 using System;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Timers;
-using UnityEngine;
 
 namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 {
     [Serializable]
-    public class Slowdown : IBuffDebuffCommand
+    public class WeakTreatment : IBuffDebuffCommand
     {
         public string Name { get; private set; }
         public DirectImpactSetting DirectImpactSetting { get; private set; }
@@ -18,14 +15,10 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
         public int Interval;
 
         private PeriodicAction _periodicAction;
-        private float _chacheMaxMovingSpeed;
 
         public void Execute()
         {
-            _chacheMaxMovingSpeed = ImpactTarget.CharacterDataController.CharacterData.MaxMovingSpeed;
-            ImpactTarget.CharacterDataController.CharacterData.MaxMovingSpeed = _chacheMaxMovingSpeed * DirectImpactSetting.PercentageValue / 100;
-
-            _periodicAction = new PeriodicAction(LifeTime, Interval, DeSlowdown);
+            _periodicAction = new PeriodicAction(LifeTime, Interval, IncreaseHP);
             _periodicAction.OnFinished += OnFinishedHandler;
             _periodicAction.Start();
         }
@@ -48,12 +41,21 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 
         private void SelfDestroy()
         {
-            ImpactTarget.BuffDebuffController.Debuffs.Remove(Name);
+            ImpactTarget.BuffDebuffController.Buffs.Remove(Name);
         }
 
-        private void DeSlowdown(object sender, ElapsedEventArgs e)
+        private void IncreaseHP(object sender, ElapsedEventArgs e)
         {
-            ImpactTarget.CharacterDataController.CharacterData.MaxMovingSpeed = _chacheMaxMovingSpeed;
+            var HP = ImpactTarget.CharacterDataController.CharacterData.HP + DirectImpactSetting.AbsoluteValue;
+
+            if (HP <= ImpactTarget.CharacterDataController.CharacterData.HPMax)
+            {
+                ImpactTarget.CharacterDataController.CharacterData.HP = HP;
+            }
+            else
+            {
+                ImpactTarget.CharacterDataController.CharacterData.HP = ImpactTarget.CharacterDataController.CharacterData.HPMax;
+            }
         }
     }
 }

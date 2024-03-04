@@ -1,6 +1,6 @@
 namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 {
-    public enum SingleImpactType
+    public enum DirectImpactType
     {
         NotType,
         Poison

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Zombieland.GameScene0.CameraModule;
 using Zombieland.GameScene0.CharacterModule;
@@ -19,6 +20,7 @@ namespace Zombieland.GameScene0.RootModule
             parentController, requiredControllers)
         {
             // This class’s constructor doesn’t have any content yet.
+            OnReady += TestBuffDebuffSystem;
         }
 
         protected override void CreateHelpersScripts()
@@ -39,6 +41,11 @@ namespace Zombieland.GameScene0.RootModule
             subsystemsControllers.Add((IController) EnvironmentController);
             subsystemsControllers.Add((IController) UIController);
             subsystemsControllers.Add((IController) CameraController);
+        }
+
+        private void TestBuffDebuffSystem(string errorMessage, IController controller)
+        {
+            //CharacterController.BuffDebuffController.InjectDebuffs();
         }
     }
 }
