@@ -36,17 +36,34 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
             });
 
             _cachedValue = 0;
+
+            DeleteFromDictionary();
         }
 
         public void Destroy()
         {
             _cancellationTokenSource.Cancel();
             buffDebuffController.CharacterController.CharacterDataController.CharacterData.HP -= _cachedValue;
+            _cachedValue = 0;
+
+            DeleteFromDictionary();
         }
 
         public SingleImpact GetProcessedImpactValue(SingleImpact buffDebuff)
         {
             return buffDebuff;
+        }
+
+        private void DeleteFromDictionary()
+        {
+            foreach (var key in buffDebuffController.Buffs.Keys)
+            {
+                if (buffDebuffController.Buffs[key] is PoorTreatment)
+                {
+                    buffDebuffController.Buffs.Remove(key);
+                    break;
+                }
+            }
         }
     }
 }

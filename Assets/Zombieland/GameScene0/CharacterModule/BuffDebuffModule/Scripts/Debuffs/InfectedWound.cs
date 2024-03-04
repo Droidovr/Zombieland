@@ -36,6 +36,8 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
             });
 
             _cachedValue = 0;
+
+            DeleteFromDictionary();
         }
 
         public void Destroy()
@@ -43,11 +45,25 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
             _cancellationTokenSource.Cancel();
             buffDebuffController.CharacterController.CharacterDataController.CharacterData.HP += _cachedValue;
             _cachedValue = 0;
+
+            DeleteFromDictionary();
         }
 
         public SingleImpact GetProcessedImpactValue(SingleImpact buffDebuff)
         {
               return buffDebuff;
+        }
+
+        private void DeleteFromDictionary()
+        {
+            foreach (var key in buffDebuffController.Debuffs.Keys)
+            {
+                if (buffDebuffController.Debuffs[key] is InfectedWound)
+                {
+                    buffDebuffController.Debuffs.Remove(key);
+                    break;
+                }
+            }
         }
     }
 }

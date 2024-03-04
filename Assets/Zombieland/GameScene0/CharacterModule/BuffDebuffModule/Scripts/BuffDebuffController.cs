@@ -6,12 +6,32 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
     {
         public Dictionary<string, IBuffDebuffCommand> Buffs { get; set; }
         public Dictionary<string, IBuffDebuffCommand> Debuffs { get; set; }
-
         public ICharacterController CharacterController { get; private set; }
 
         public BuffDebuffController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             CharacterController = parentController as ICharacterController;
+        }
+
+        public override void Disable()
+        {
+            if (Buffs != null)
+            {
+                foreach (var buff in Buffs.Values)
+                {
+                    buff.Destroy();
+                }
+            }
+
+            if (Debuffs != null)
+            {
+                foreach (var debuff in Debuffs.Values)
+                {
+                    debuff.Destroy();
+                }
+            }
+
+            base.Disable();
         }
 
         public void InjectBuffs(List<IBuffDebuffCommand> buffs)
@@ -44,14 +64,20 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
         {
             SingleImpact localBuffDebuff = buffDebuff;
 
-            foreach (var buff in Buffs.Values)
+            if (Buffs != null)
             {
-                localBuffDebuff = buff.GetProcessedImpactValue(localBuffDebuff);
+                foreach (var buff in Buffs.Values)
+                {
+                    localBuffDebuff = buff.GetProcessedImpactValue(localBuffDebuff);
+                }
             }
 
-            foreach (var debuff in Debuffs.Values)
+            if (Debuffs != null)
             {
-                localBuffDebuff = debuff.GetProcessedImpactValue(localBuffDebuff);
+                foreach (var debuff in Debuffs.Values)
+                {
+                    localBuffDebuff = debuff.GetProcessedImpactValue(localBuffDebuff);
+                }
             }
 
             return localBuffDebuff;
