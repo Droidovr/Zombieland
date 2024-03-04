@@ -222,6 +222,7 @@
           <e p="Scripts" t="Include">
             <e p="Controller.cs" t="Include" />
             <e p="DependencyTracker.cs" t="Include" />
+            <e p="ICommand.cs" t="Include" />
             <e p="IController.cs" t="Include" />
             <e p="IDependencyTracker.cs" t="Include" />
             <e p="ISubsystemsActivator.cs" t="Include" />

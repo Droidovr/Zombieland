@@ -35,7 +35,7 @@ namespace Zombieland.GameScene0.ImpactModule
 
         public void Activate()
         {
-            ImpactData.DeliveryHandler.Activate();
+            ImpactData.DeliveryHandler.Execute();
         }
 
         public void Deactivate()

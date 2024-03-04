@@ -39,12 +39,12 @@ namespace Zombieland.GameScene0.ImpactModule
             }
         }
 
-        public void Activate()
+        public void Execute()
         {
             ImpactObject.transform.position = ImpactController.SpawnPosition;
             ImpactObject.transform.rotation = ImpactController.InitialRotation;
             ImpactObject.SetActive(true);
-            Detector.Activate();
+            Detector.Execute();
             _updater.SubscribeToUpdate(MoveObject);
         }
         
@@ -52,7 +52,7 @@ namespace Zombieland.GameScene0.ImpactModule
         {
             foreach (var impact in ImpactsExecutionList)
             {
-                impact.Activate();
+                impact.Execute();
             }
             ImpactController.Deactivate();
         }

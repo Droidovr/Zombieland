@@ -9,16 +9,16 @@
     "Detector": {
       "$type": "Zombieland.GameScene0.ImpactModule.UpfrontRayDetector, Assembly-CSharp",
       "ExecuteOnActivation": false,
-      "DetectionRadius": 5.0
+      "DetectionRadius": 1.0
     },
     "ImpactsExecutionList": [
       {
-        "$type": "Zombieland.GameScene0.ImpactModule.HealingAbsolute, Assembly-CSharp",
+        "$type": "Zombieland.GameScene0.ImpactModule.DirectDamage, Assembly-CSharp",
         "Points": 10.0
       },
       {
         "$type": "Zombieland.GameScene0.ImpactModule.CollisionEffect, Assembly-CSharp",
-        "EffectPrefabName": "HitEffect"
+        "EffectPrefabName": "HealEffect"
       }
     ]
   }

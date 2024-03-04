@@ -24,7 +24,7 @@ namespace Zombieland.GameScene0.ImpactModule
             _collisionHandler.Init(ProcessCollision);
         }
 
-        public void Activate()
+        public void Execute()
         {
             if (ExecuteOnActivation)
             {
@@ -40,14 +40,16 @@ namespace Zombieland.GameScene0.ImpactModule
         public void ProcessCollision(Collider targetObjectCollider)
         {
             var overlapColliders = Physics.OverlapSphere(_impactObject.transform.position, DetectionRadius);
-            if(overlapColliders.Length <= 0) return;
-            var impactableObjects = new List<IImpactable>();
-            foreach (var overlapCollider in overlapColliders)
+            if (overlapColliders.Length > 0)
             {
-                if(overlapCollider.TryGetComponent<IImpactable>(out var impactableObject))
-                    impactableObjects.Add(impactableObject);
+                var impactableObjects = new List<IImpactable>();
+                foreach (var overlapCollider in overlapColliders)
+                {
+                    if(overlapCollider.TryGetComponent<IImpactable>(out var impactableObject))
+                        impactableObjects.Add(impactableObject);
+                }
+                ImpactController.TargetImpactableList = impactableObjects;
             }
-            ImpactController.TargetImpactableList = impactableObjects;
             ImpactController.ImpactData.DeliveryHandler.ApplyImpactOnDelivery();
         }
     }

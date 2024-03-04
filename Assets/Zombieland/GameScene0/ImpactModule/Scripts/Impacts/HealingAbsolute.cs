@@ -15,7 +15,7 @@ namespace Zombieland.GameScene0.ImpactModule
         {
         }
         
-        public void Activate()
+        public void Execute()
         {
             foreach (var impactableObject in ImpactController.TargetImpactableList)
             {

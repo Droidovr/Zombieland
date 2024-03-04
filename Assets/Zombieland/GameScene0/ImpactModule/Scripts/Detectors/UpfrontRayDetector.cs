@@ -32,7 +32,7 @@ namespace Zombieland.GameScene0.ImpactModule
                 : MinCastSphereRadius;
         }
 
-        public void Activate()
+        public void Execute()
         {
             if (ExecuteOnActivation)
             {
@@ -48,17 +48,18 @@ namespace Zombieland.GameScene0.ImpactModule
         private void ProcessCollision(Collider targetObjectCollider)
         {
             var raycastHits = Physics.SphereCastAll(_impactObject.transform.position, _castSphereRadius, _impactObject.transform.forward, DetectionRadius);
-            if(raycastHits.Length <= 0) return;
-            var impactableObjects = new List<IImpactable>();
-            foreach (var raycastHit in raycastHits)
+            if (raycastHits.Length > 0)
             {
-                if (raycastHit.collider.TryGetComponent<IImpactable>(out var impactableObject))
+                var impactableObjects = new List<IImpactable>();
+                foreach (var raycastHit in raycastHits)
                 {
-                    impactableObjects.Add(impactableObject);
+                    if (raycastHit.collider.TryGetComponent<IImpactable>(out var impactableObject))
+                    {
+                        impactableObjects.Add(impactableObject);
+                    }
                 }
+                ImpactController.TargetImpactableList = impactableObjects;
             }
-            
-            ImpactController.TargetImpactableList = impactableObjects;
             ImpactController.ImpactData.DeliveryHandler.ApplyImpactOnDelivery();
         }
     }

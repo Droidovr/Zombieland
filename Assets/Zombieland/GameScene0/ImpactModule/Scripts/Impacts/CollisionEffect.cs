@@ -16,7 +16,7 @@ namespace Zombieland.GameScene0.ImpactModule
             // has no implementation
         }
 
-        public void Activate()
+        public void Execute()
         {
             var effectPrefab = Resources.Load<GameObject>(EffectPrefabName);
             foreach (var impactableObject in ImpactController.TargetImpactableList)

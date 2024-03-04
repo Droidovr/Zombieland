@@ -16,7 +16,7 @@ namespace Zombieland.GameScene0.ImpactModule
             collisionHandler.Init(ProcessCollision);
         }
         
-        public void Activate()
+        public void Execute()
         {
             // Has no implementation
         }

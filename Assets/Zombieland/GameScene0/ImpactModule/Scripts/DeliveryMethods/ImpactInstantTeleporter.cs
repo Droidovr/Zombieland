@@ -24,7 +24,7 @@ namespace Zombieland.GameScene0.ImpactModule
             }
         }
         
-        public void Activate()
+        public void Execute()
         {
             ApplyImpactOnDelivery();
         }
@@ -33,7 +33,7 @@ namespace Zombieland.GameScene0.ImpactModule
         {
             foreach (var impact in ImpactsExecutionList)
             {
-                impact.Activate();
+                impact.Execute();
             }
             ImpactController.Deactivate();
         }
