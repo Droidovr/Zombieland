@@ -13,6 +13,9 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
         public BuffDebuffController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             CharacterController = parentController as ICharacterController;
+
+            Buffs = new Dictionary<string, IBuffDebuffCommand>();
+            Debuffs = new Dictionary<string, IBuffDebuffCommand>();
         }
 
         public override void Disable()

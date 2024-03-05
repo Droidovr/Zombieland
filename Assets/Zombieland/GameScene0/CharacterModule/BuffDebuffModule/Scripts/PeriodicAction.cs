@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
+using UnityEngine;
 
 namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 {
@@ -24,6 +25,7 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 
         public void Start()
         {
+            Debug.Log("Start");
             if (_interval > 0)
             {
                 _timer = new System.Timers.Timer(_interval);
@@ -48,6 +50,7 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 
         public void Stop()
         {
+            Debug.Log("Stop");
             _timer?.Stop();
             _cancellationTokenSource.Cancel();
             OnFinished?.Invoke();

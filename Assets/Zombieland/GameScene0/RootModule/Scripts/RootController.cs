@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Zombieland.GameScene0.CameraModule;
 using Zombieland.GameScene0.CharacterModule;
+using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 using Zombieland.GameScene0.EnvironmentModule;
 using Zombieland.GameScene0.GameDataModule;
 using Zombieland.GameScene0.UIModule;
@@ -45,7 +46,43 @@ namespace Zombieland.GameScene0.RootModule
 
         private void TestBuffDebuffSystem(string errorMessage, IController controller)
         {
-            //CharacterController.BuffDebuffController.InjectDebuffs();
+            Slowdown slowdown = new Slowdown();
+            slowdown.Name = "Slowdown";
+            DirectImpactSetting directImpactSettingSlowdown = new DirectImpactSetting();
+            directImpactSettingSlowdown.Type = DirectImpactType.Poison;
+            directImpactSettingSlowdown.PercentageValue = 50;
+            slowdown.DirectImpactSetting = directImpactSettingSlowdown;
+            slowdown.ImpactTarget = CharacterController;
+            slowdown.Owner = CharacterController;
+            slowdown.LifeTime = 30000;
+            //CharacterController.BuffDebuffController.InjectDebuffs(new List<IBuffDebuffCommand> { slowdown });
+
+
+            InfectedWound infectedWound = new InfectedWound();
+            infectedWound.Name = "InfectedWound";
+            DirectImpactSetting directImpactSettingInfectedWound = new DirectImpactSetting();
+            directImpactSettingInfectedWound.Type = DirectImpactType.Poison;
+            directImpactSettingInfectedWound.AbsoluteValue = 1;
+            infectedWound.DirectImpactSetting = directImpactSettingInfectedWound;
+            infectedWound.ImpactTarget = CharacterController;
+            infectedWound.Owner = CharacterController;
+            infectedWound.LifeTime = 20000;
+            infectedWound.Interval = 1000;
+            //CharacterController.BuffDebuffController.InjectDebuffs(new List<IBuffDebuffCommand> { infectedWound });
+
+            WeakTreatment weakTreatment = new WeakTreatment();
+            weakTreatment.Name = "WeakTreatment";
+            DirectImpactSetting directImpactSettingWeakTreatment = new DirectImpactSetting();
+            directImpactSettingWeakTreatment.Type = DirectImpactType.NotType;
+            directImpactSettingWeakTreatment.AbsoluteValue = 2;
+            weakTreatment.DirectImpactSetting = directImpactSettingInfectedWound;
+            weakTreatment.ImpactTarget = CharacterController;
+            weakTreatment.Owner = CharacterController;
+            weakTreatment.LifeTime = 10000;
+            weakTreatment.Interval = 3000;
+            //CharacterController.BuffDebuffController.InjectDebuffs(new List<IBuffDebuffCommand> { weakTreatment });
+
+            CharacterController.BuffDebuffController.InjectDebuffs(new List<IBuffDebuffCommand> { slowdown, infectedWound, weakTreatment });
         }
     }
 }

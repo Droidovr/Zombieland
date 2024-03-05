@@ -1,6 +1,4 @@
 using System;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Timers;
 using UnityEngine;
 
@@ -9,8 +7,8 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
     [Serializable]
     public class Slowdown : IBuffDebuffCommand
     {
-        public string Name { get; private set; }
-        public DirectImpactSetting DirectImpactSetting { get; private set; }
+        public string Name { get; set; }
+        public DirectImpactSetting DirectImpactSetting { get; set; }
         public ICharacterController ImpactTarget { get; set; }
         public ICharacterController Owner { get; set; }
 
@@ -22,6 +20,7 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 
         public void Execute()
         {
+            Debug.Log("Slowdown Execute");
             _chacheMaxMovingSpeed = ImpactTarget.CharacterDataController.CharacterData.MaxMovingSpeed;
             ImpactTarget.CharacterDataController.CharacterData.MaxMovingSpeed = _chacheMaxMovingSpeed * DirectImpactSetting.PercentageValue / 100;
 
@@ -53,6 +52,7 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 
         private void DeSlowdown(object sender, ElapsedEventArgs e)
         {
+            Debug.Log("DeSlowdown");
             ImpactTarget.CharacterDataController.CharacterData.MaxMovingSpeed = _chacheMaxMovingSpeed;
         }
     }
