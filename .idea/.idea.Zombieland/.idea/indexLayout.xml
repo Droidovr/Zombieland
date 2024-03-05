@@ -4,6 +4,7 @@
     <attachedFolders />
     <explicitIncludes>
       <Path>Library/PackageCache/com.unity.burst@1.8.11</Path>
+      <Path>Library/PackageCache/com.unity.burst@1.8.12</Path>
       <Path>Library/PackageCache/com.unity.collab-proxy@2.2.0</Path>
       <Path>Library/PackageCache/com.unity.device-simulator.devices@1.0.0</Path>
       <Path>Library/PackageCache/com.unity.ext.nunit@1.0.6</Path>
@@ -18,12 +19,12 @@
       <Path>Library/PackageCache/com.unity.textmeshpro@3.0.6</Path>
       <Path>Library/PackageCache/com.unity.timeline@1.7.6</Path>
       <Path>Library/PackageCache/com.unity.visualscripting@1.9.1</Path>
-      <Path>Packages</Path>
       <Path>ProjectSettings</Path>
     </explicitIncludes>
     <explicitExcludes>
       <Path>.git</Path>
       <Path>.idea</Path>
+      <Path>.vs</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
       <Path>Temp</Path>
