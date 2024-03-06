@@ -1,13 +1,35 @@
 ﻿
+using System;
 using System.Collections.Generic;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
     public class WeaponController : Controller, IWeaponController
     {
+        public event Action OnAmmoDepleted;
+        public event Action OnShotPerformed;
+        public event Action OnShotFailed;
+
+        public readonly ICharacterController CharacterController;
+
+        private Weapon _weapon;
+
         public WeaponController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
-            // This class’s constructor doesn’t have any content yet.
+            CharacterController = parentController as ICharacterController;
+
+            CharacterController.EquipmentController.OnWeaponChanged += SetWeapon;
+            CharacterController.RootController.UIController.OnFireDown += OnButtonFireDownHandler;
+            CharacterController.RootController.UIController.OnFireUp += OnButtonFireUpHandler;
+        }
+
+        public override void Disable()
+        {
+            CharacterController.EquipmentController.OnWeaponChanged -= SetWeapon;
+            CharacterController.RootController.UIController.OnFireDown -= OnButtonFireDownHandler;
+            CharacterController.RootController.UIController.OnFireUp -= OnButtonFireUpHandler;
+
+            base.Disable();
         }
 
         protected override void CreateHelpersScripts()
@@ -20,14 +42,19 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             // This controller doesn’t have any subsystems at the moment.
         }
 
-        public void ChangeWeapon()
+        private void SetWeapon(Weapon wepon)
         {
-           // throw new System.NotImplementedException();
+            _weapon = wepon;
         }
 
-        public void Fire()
-        {
-           // throw new System.NotImplementedException();
+        private void OnButtonFireDownHandler()
+        { 
+            // Логика обработки нажатия кнопки стрельбы
+        }
+
+        private void OnButtonFireUpHandler() 
+        { 
+            // Логика обработки отпускания кнопки стрельбы
         }
     }
 }

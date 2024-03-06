@@ -7,7 +7,8 @@ namespace Zombieland.GameScene0.UIModule
     public class Input : MonoBehaviour
     {
         public event Action<Vector2> OnMoved;
-        public event Action OnFire;
+        public event Action OnFireDown;
+        public event Action OnFireUp;
         public bool IsClickedStealthOn = false;
 
         private const string NAME_SPRITE_STEALTH_ON = "StealthOn";
@@ -35,14 +36,16 @@ namespace Zombieland.GameScene0.UIModule
             _inputSystemControls.Enable();
             _inputSystemControls.Main.Move.performed += context => Move();
             _inputSystemControls.Main.Move.canceled += context => Move();
-            _inputSystemControls.Main.Fire.performed += context => FireClick();
+            _inputSystemControls.Main.Fire.performed += context => FireClickDown();
+            _inputSystemControls.Main.Fire.canceled += context => FireClickUp();
             _inputSystemControls.Main.Stealth.performed += context => StealthClick();
         }
         private void OnDisable()
         {
             _inputSystemControls.Main.Move.performed -= context => Move();
             _inputSystemControls.Main.Move.canceled -= context => Move();
-            _inputSystemControls.Main.Fire.performed -= context => FireClick();
+            _inputSystemControls.Main.Fire.performed -= context => FireClickDown();
+            _inputSystemControls.Main.Fire.canceled -= context => FireClickUp();
             _inputSystemControls.Main.Stealth.performed -= context => StealthClick();
             _inputSystemControls.Disable();
         }
@@ -54,9 +57,14 @@ namespace Zombieland.GameScene0.UIModule
             OnMoved?.Invoke(joistickPosition);
         }
 
-        private void FireClick()
+        private void FireClickDown()
         {
-            OnFire?.Invoke();
+            OnFireDown?.Invoke();
+        }
+
+        private void FireClickUp()
+        {
+            OnFireUp?.Invoke();
         }
 
         private void StealthClick()

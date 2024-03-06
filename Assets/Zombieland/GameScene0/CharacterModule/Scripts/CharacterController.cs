@@ -10,6 +10,7 @@ using Zombieland.GameScene0.CharacterModule.TakeImpactModule;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
 using Zombieland.GameScene0.ImpactModule;
 using Zombieland.GameScene0.RootModule;
+using Zombieland.GameScene0.UIModule;
 using Zombieland.GameScene0.VisualBodyModule;
 
 namespace Zombieland.GameScene0.CharacterModule
@@ -46,19 +47,13 @@ namespace Zombieland.GameScene0.CharacterModule
             CharacterDataController = new CharacterDataController(this, new List<IController> { (IController)RootController.GameDataController });
             subsystemsControllers.Add((IController)CharacterDataController);
 
-            WeaponController = new WeaponController(this, new List<IController> { (IController)CharacterDataController });
+            WeaponController = new WeaponController(this, new List<IController> { (IController)CharacterDataController, (IController)EquipmentController ,(IController)RootController.UIController });
             subsystemsControllers.Add((IController)WeaponController);
 
             VisualBodyController = new VisualBodyController(this, new List<IController> { (IController)RootController.EnvironmentController });
             subsystemsControllers.Add((IController)VisualBodyController);
 
-            CharacterMovingController = new CharacterMovingController(this, new List<IController> 
-                                                                            {
-                                                                                (IController) RootController.UIController,                                                                                
-                                                                                (IController) CharacterDataController,
-                                                                                (IController) VisualBodyController,
-                                                                                (IController) AnimationController
-                                                                            });
+            CharacterMovingController = new CharacterMovingController(this, new List<IController> { (IController) RootController.UIController, (IController) CharacterDataController, (IController) VisualBodyController, (IController) AnimationController });
             subsystemsControllers.Add((IController)CharacterMovingController);
 
             SensorController = new SensorController(this, new List<IController>{(IController)VisualBodyController});

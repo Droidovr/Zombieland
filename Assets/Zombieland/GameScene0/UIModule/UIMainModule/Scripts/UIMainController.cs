@@ -7,7 +7,8 @@ namespace Zombieland.GameScene0.UIModule
     public class UIMainController : Controller, IUIMainController
     {
         public event Action<Vector2> OnMoved;
-        public event Action OnFire;
+        public event Action OnFireDown;
+        public event Action OnFireUp;
 
         private InitializerInputPrefab _initializerInputGameobjects;
 
@@ -22,7 +23,8 @@ namespace Zombieland.GameScene0.UIModule
             if (_initializerInputGameobjects != null)
             {
                 _initializerInputGameobjects.Input.OnMoved -= HandleMoved;
-                _initializerInputGameobjects.Input.OnFire -= HandleButtonClick;
+                _initializerInputGameobjects.Input.OnFireDown -= HandleButtonClickDown;
+                _initializerInputGameobjects.Input.OnFireUp -= HandleButtonClickUp;
             }
 
             base.Disable();
@@ -37,7 +39,8 @@ namespace Zombieland.GameScene0.UIModule
             _initializerInputGameobjects.Init();
 
             _initializerInputGameobjects.Input.OnMoved += HandleMoved;
-            _initializerInputGameobjects.Input.OnFire += HandleButtonClick;
+            _initializerInputGameobjects.Input.OnFireDown += HandleButtonClickDown;
+            _initializerInputGameobjects.Input.OnFireUp += HandleButtonClickUp;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -53,9 +56,14 @@ namespace Zombieland.GameScene0.UIModule
             OnMoved?.Invoke(vectorMove);
         }
 
-        private void HandleButtonClick()
+        private void HandleButtonClickDown()
         {
-            OnFire?.Invoke();
+            OnFireDown?.Invoke();
+        }
+
+        private void HandleButtonClickUp()
+        {
+            OnFireUp?.Invoke();
         }
         #endregion PRIVATE
     }
