@@ -13,8 +13,9 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule
             _characterController = characterController;
         }
 
-        public void ApplyImpact(IImpactController impactController)
+        public void ApplyImpact(IImpact impact)
        {
+           
 
        }
     }

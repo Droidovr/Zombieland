@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\User\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\User\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Zombieland.1029733466.00" t="ExcludeRecursive" />
-    <e p="D:\develop\Unity\Projects\Zombieland" t="IncludeRecursive">
+    <e p="C:\Users\crlku\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\crlku\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Zombieland.640643772.00" t="ExcludeRecursive" />
+    <e p="C:\Users\crlku\Desktop\Projects\Zombieland" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
@@ -151,35 +151,38 @@
             </e>
             <e p="ImpactModule" t="Include">
               <e p="Resources" t="Include">
-                <e p="ImpactData.txt" t="Include" />
+                <e p="Test.txt" t="Include" />
               </e>
               <e p="Scripts" t="Include">
-                <e p="DeliveryMethods" t="Include">
-                  <e p="FollowingTargetHandler.cs" t="Include" />
-                  <e p="ImpactInstantTeleporter.cs" t="Include" />
-                  <e p="MovingForwardHandler.cs" t="Include" />
-                  <e p="ObjectInstantTeleporter.cs" t="Include" />
+                <e p="00.Assembly" t="Include">
+                  <e p="ImpactAssembler.cs" t="Include" />
+                  <e p="ObjectAssembler.cs" t="Include" />
                 </e>
-                <e p="Detectors" t="Include">
+                <e p="01.Delivery" t="Include">
                   <e p="CollisionHandler.cs" t="Include" />
-                  <e p="SphereDetector.cs" t="Include" />
-                  <e p="TouchColliderDetector.cs" t="Include" />
-                  <e p="UpfrontRayDetector.cs" t="Include" />
+                  <e p="FollowingTargetHandler.cs" t="Include" />
+                  <e p="ImpactInstantTeleport.cs" t="Include" />
+                  <e p="MovingForwardHandler.cs" t="Include" />
+                  <e p="ObjectInstantTeleport.cs" t="Include" />
+                  <e p="Updater.cs" t="Include" />
                 </e>
-                <e p="IImpactController.cs" t="Include" />
-                <e p="ImpactController.cs" t="Include" />
-                <e p="ImpactData.cs" t="Include" />
-                <e p="Impacts" t="Include">
-                  <e p="CollisionEffect.cs" t="Include" />
-                  <e p="DirectDamage.cs" t="Include" />
-                  <e p="HealingAbsolute.cs" t="Include" />
+                <e p="02.InitialImpact" t="Include">
+                  <e p="DefaultImpact.cs" t="Include" />
+                  <e p="Detectors" t="Include">
+                    <e p="SphereDetector.cs" t="Include" />
+                    <e p="TouchColliderDetector.cs" t="Include" />
+                    <e p="UpfrontRayDetector.cs" t="Include" />
+                  </e>
+                  <e p="InitialImpact.cs" t="Include" />
                 </e>
-                <e p="Interfaces" t="Include">
-                  <e p="IDeliveryCommand.cs" t="Include" />
-                  <e p="IImpactable.cs" t="Include" />
-                  <e p="IImpactCommand.cs" t="Include" />
+                <e p="03.BuffDebuff" t="Include">
+                  <e p="BuffDebuffInjection.cs" t="Include" />
                 </e>
-                <e p="Updater.cs" t="Include" />
+                <e p="IDetector.cs" t="Include" />
+                <e p="IImpact.cs" t="Include" />
+                <e p="IImpactable.cs" t="Include" />
+                <e p="IImpactCommand.cs" t="Include" />
+                <e p="Impact.cs" t="Include" />
               </e>
               <e p="Test" t="Include">
                 <e p="TestEnemyCircleMoving.cs" t="Include" />
@@ -190,7 +193,7 @@
             </e>
             <e p="RootModule" t="Include">
               <e p="Scripts" t="Include">
-                <e p="ICharacterController.cs" t="Include" />
+                <e p="IRootController.cs" t="Include" />
                 <e p="RootController.cs" t="Include" />
               </e>
             </e>

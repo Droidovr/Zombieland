@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.Linq;
+using Newtonsoft.Json;
 using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.SensorModule;
 
@@ -10,6 +10,7 @@ namespace Zombieland.GameScene0.ImpactModule
         public string ImpactName;
         public Transform SpawnPositionTransform;
         public Transform TargetTransform;
+        public Transform MineSpawnPosition;
         [SerializeReference]
         public List<ImpactDetectionSensor> TargetImpactableList;
 
@@ -17,17 +18,32 @@ namespace Zombieland.GameScene0.ImpactModule
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                var impactController = new ImpactController(ImpactName, null);
-                impactController.SpawnPosition = SpawnPositionTransform.position;
-                impactController.InitialRotation = SpawnPositionTransform.rotation;
-                impactController.TargetTransform = TargetTransform;
-                if (TargetImpactableList.Count != 0)
+                var textAsset = Resources.Load<TextAsset>(ImpactName);
+                if (textAsset == null)
+                    Debug.LogError("Cannot find file at " + ImpactName);
+                var settings = new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.Auto};
+                var impact = JsonConvert.DeserializeObject<Impact>(textAsset.text, settings);
+                if (impact.Delivery is MovingForwardHandler movingForwardHandler)
                 {
-                    var list = TargetImpactableList.Cast<IImpactable>().ToList();
-                    impactController.TargetImpactableList = list;
+                    movingForwardHandler.ObjectSpawnPosition = SpawnPositionTransform.position; 
+                    movingForwardHandler.ObjectRotation = SpawnPositionTransform.rotation;
+                    movingForwardHandler.IgnoringColliders = new List<Collider>{GetComponent<Collider>()};
+                }
+                else if (impact.Delivery is FollowingTargetHandler followingTargetHandler)
+                {
+                    followingTargetHandler.ObjectSpawnPosition = SpawnPositionTransform.position; 
+                    followingTargetHandler.ObjectRotation = SpawnPositionTransform.rotation;
+                    followingTargetHandler.TargetTransform = TargetTransform;
+                    followingTargetHandler.IgnoringColliders = new List<Collider>{GetComponent<Collider>()};
+                }
+                else if (impact.Delivery is ObjectInstantTeleport objectInstantTeleport)
+                {
+                    objectInstantTeleport.ObjectSpawnPosition = MineSpawnPosition.position; 
+                    objectInstantTeleport.ObjectRotation = Quaternion.identity;
+                    objectInstantTeleport.IgnoringColliders = new List<Collider>{GetComponent<Collider>()};
                 }
                 
-                impactController.Activate();
+                impact.Activate();
             }
         }
     }

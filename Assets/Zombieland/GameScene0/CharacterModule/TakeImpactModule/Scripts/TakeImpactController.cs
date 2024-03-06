@@ -21,7 +21,7 @@ namespace Zombieland.GameScene0.CharacterModule.TakeImpactModule
             // This controller doesn’t have any subsystems at the moment.
         }
 
-        public void ProcessImpact(IImpactController impactController)
+        public void ProcessImpact(IImpact impact)
         {
             // This method doesn't have any realization at the moment.
         }

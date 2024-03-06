@@ -4,6 +4,6 @@ namespace Zombieland.GameScene0.CharacterModule.TakeImpactModule
 {
     public interface ITakeImpactController
     {
-        public void ProcessImpact(IImpactController impactController);
+        public void ProcessImpact(IImpact impact);
     }
 }
