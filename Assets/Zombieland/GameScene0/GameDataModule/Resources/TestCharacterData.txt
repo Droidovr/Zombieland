@@ -1,1 +1,1 @@
-{"MaxSpeed":5.0,"MaxAcceleration":0.10000000149011612,"CurrentLevelName":"Level1"}
+{"MaxSpeed":5.0,"MaxAcceleration":0.10000000149011612,"CurrentLevelName":"Level2"}
