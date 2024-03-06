@@ -7,13 +7,7 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
     [Serializable]
     public class Slowdown : IBuffDebuffCommand
     {
-        public string Name { get; set; }
-        public DirectImpactSetting DirectImpactSetting { get; set; }
-        public ICharacterController ImpactTarget { get; set; }
-        public ICharacterController Owner { get; set; }
-
-        public int LifeTime;
-        public int Interval;
+        public BuffDebuffData BuffDebuffData { get; set; }
 
         private PeriodicAction _periodicAction;
         private float _chacheMaxMovingSpeed;
@@ -21,10 +15,10 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
         public void Execute()
         {
             Debug.Log("Slowdown Execute");
-            _chacheMaxMovingSpeed = ImpactTarget.CharacterDataController.CharacterData.MaxMovingSpeed;
-            ImpactTarget.CharacterDataController.CharacterData.MaxMovingSpeed = _chacheMaxMovingSpeed * DirectImpactSetting.PercentageValue / 100;
+            _chacheMaxMovingSpeed = BuffDebuffData.ImpactTarget.CharacterDataController.CharacterData.MaxMovingSpeed;
+            BuffDebuffData.ImpactTarget.CharacterDataController.CharacterData.MaxMovingSpeed = _chacheMaxMovingSpeed * BuffDebuffData.DirectImpactData.PercentageValue / 100;
 
-            _periodicAction = new PeriodicAction(LifeTime, Interval, DeSlowdown);
+            _periodicAction = new PeriodicAction(BuffDebuffData.LifeTime, BuffDebuffData.Interval, DeSlowdown);
             _periodicAction.OnFinished += OnFinishedHandler;
             _periodicAction.Start();
         }
@@ -34,7 +28,7 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
             _periodicAction.Stop();
         }
 
-        public DirectImpactSetting GetProcessedImpactValue(DirectImpactSetting buffDebuff)
+        public DirectImpactData GetProcessedImpactValue(DirectImpactData buffDebuff)
         {
             return buffDebuff;
         }
@@ -47,13 +41,13 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 
         private void SelfDestroy()
         {
-            ImpactTarget.BuffDebuffController.Debuffs.Remove(Name);
+            BuffDebuffData.ImpactTarget.BuffDebuffController.Debuffs.Remove(BuffDebuffData.Name);
         }
 
         private void DeSlowdown(object sender, ElapsedEventArgs e)
         {
             Debug.Log("DeSlowdown");
-            ImpactTarget.CharacterDataController.CharacterData.MaxMovingSpeed = _chacheMaxMovingSpeed;
+            BuffDebuffData.ImpactTarget.CharacterDataController.CharacterData.MaxMovingSpeed = _chacheMaxMovingSpeed;
         }
     }
 }
