@@ -12,9 +12,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/ITakeImpactController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/IImpactable.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9AC0682A-A4F7-4EE5-9EB5-D5C917C9F1C9/0a/81def0a5/JsonSerializerSettings.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/IImpactController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/IImpactable.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -45,13 +44,13 @@
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeDamageModule/Scripts/TakeDamageController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeDamageModule/Scripts/TakeImpactController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/ITakeImpactController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/Readme/Readme.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/GameDataModule/Scripts/PlayerPrefsStorage.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/Scripts/ICharacterController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/GameDataModule/Scripts/GameDataController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/GameDataModule/Scripts/ResourcesStorage.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/TakeImpactController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/Scripts/CharacterController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/Readme/Readme.cs" />
       </list>
     </option>
   </component>
@@ -97,6 +96,8 @@
       <workItem from="1705683957964" duration="6544000" />
       <workItem from="1705776932648" duration="1710000" />
       <workItem from="1706893308932" duration="4145000" />
+      <workItem from="1708681892293" duration="7000" />
+      <workItem from="1708690271171" duration="40000" />
     </task>
     <servers />
   </component>

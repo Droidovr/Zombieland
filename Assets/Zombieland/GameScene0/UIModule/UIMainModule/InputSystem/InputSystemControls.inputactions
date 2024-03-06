@@ -1,5 +1,5 @@
 {
-    "name": "InputMobileSystemControls",
+    "name": "InputSystemControls",
     "maps": [
         {
             "name": "Main",
@@ -18,6 +18,15 @@
                     "name": "Fire",
                     "type": "Button",
                     "id": "79708dc9-0463-45de-af0d-88c45d98f218",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Stealth",
+                    "type": "Button",
+                    "id": "458a56b0-31e7-41d2-86b1-0fb5c70b3b61",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -165,6 +174,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6b8706b6-ff17-416e-9578-515bb36a7333",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Stealth",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "08e2b3c7-4ab3-48b8-8ae2-7ffcc87ce6e2",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Stealth",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

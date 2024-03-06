@@ -7,22 +7,55 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 {
     public class CharacterPhysicMoving : MonoBehaviour
     {
-        public float RealMovingSpeed { get; private set; }
-
         private const float GRAVITY = 9.8f;
         private const float ROTATION_SMOOTH_TIME = 0.03f;
         private const float MIN_VECTORMOVE_MAGITUDE = 0.1f;
 
         private Vector2 _vectorMove;
         private float _verticalSpeed;
-        private UnityEngine.CharacterController _characterController;
+        private UnityEngine.CharacterController _unityCharacterController;
         private IUIMain _uIController;
         private ICharacterDataController _characterDataController;
+        private ICharacterMovingController _characterMovingController;
+        public bool _isActive;
+
+
+        #region PUBLIC
+        public void Disable()
+        {
+            _uIController.OnMoved -= MovedHandler;
+            _characterMovingController.CharacterController.AnimationController.OnAnimatorMove -= OnAnimatorMoveHandler;
+        }
+
+        public void Init(ICharacterMovingController characterMovingController)
+        {
+            _unityCharacterController = GetComponent<UnityEngine.CharacterController>();
+
+            _characterMovingController = characterMovingController;
+            _characterMovingController.CharacterController.AnimationController.OnAnimatorMove += OnAnimatorMoveHandler;
+
+            _uIController = characterMovingController.CharacterController.RootController.UIController;
+            _uIController.OnMoved += MovedHandler;
+
+            _characterDataController = characterMovingController.CharacterController.CharacterDataController;
+
+            _isActive = true;
+        }
+
+        public void ActivateMoving(bool isActive)
+        {
+            _unityCharacterController.enabled = isActive;
+            _isActive = isActive;
+        }
+        #endregion PUBLIC
 
 
         #region MONOBEHAVIOUR
         private void Update()
         {
+            if (!_isActive)
+                return;
+
             CalculateGravity();
 
             CalculeteRealMovingSpeed();
@@ -35,35 +68,34 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         #endregion
 
 
-        #region PUBLIC
-        public void Disable()
-        {
-            _uIController.OnMoved -= HandleMoved;
-        }
-
-        public void Initialize(ICharacterMovingController characterMovingController)
-        {
-            _characterController = GetComponent<UnityEngine.CharacterController>();
-
-            _uIController = characterMovingController.CharacterController.RootController.UIController;
-            _uIController.OnMoved += HandleMoved;
-
-            _characterDataController = characterMovingController.CharacterController.CharacterDataController;
-        }
-        #endregion PUBLIC
-
-
         #region PRIVATE
+        private void OnAnimatorMoveHandler(Vector3 animatorDeltaPosition)
+        {
+            if (_unityCharacterController.enabled)
+            {
+                _unityCharacterController.Move(animatorDeltaPosition);
+            }
+        }
+
+        private void MovedHandler(Vector2 joystickPosition)
+        {
+            _vectorMove = joystickPosition;
+        }
+
         private void CalculateGravity()
         {
-            _verticalSpeed += _characterController.isGrounded ? GRAVITY : -GRAVITY;
-            _characterController.Move(Vector3.up * _verticalSpeed * Time.deltaTime);
+            if (_unityCharacterController.enabled)
+            {
+                _verticalSpeed += _unityCharacterController.isGrounded ? GRAVITY : -GRAVITY;
+                _unityCharacterController.Move(Vector3.up * _verticalSpeed * Time.deltaTime);
+            }
         }
 
         private void CalculeteRealMovingSpeed()
         {
             Vector3 movementDirection = new Vector3(_vectorMove.x, 0f, _vectorMove.y);
-            RealMovingSpeed = Mathf.Clamp01(movementDirection.magnitude) * _characterDataController.CharacterData.DesignMovingSpeed;
+
+            _characterMovingController.RealMovingSpeed = Mathf.Clamp01(movementDirection.magnitude) * _characterDataController.CharacterData.DesignMovingSpeed;
         }
 
         private void CalculeteRotation()
@@ -75,12 +107,6 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSpeed, ROTATION_SMOOTH_TIME);
 
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
-        }
-
-        private void HandleMoved(Vector2 joystickPosition)
-        {
-            _vectorMove = joystickPosition;
-            //_vectorMove = new Vector2(-joystickPosition.x, -joystickPosition.y);
         }
         #endregion PRIVATE
     }
