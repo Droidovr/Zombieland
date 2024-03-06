@@ -9,5 +9,8 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterDataModule
         public float DesignMovingSpeed;
         public float MaxRotationSpeed;
         public float DesignRotationSpeed;
+        public float HP;
+        public float HPMax;
+        public float HPDefault;
     }
 }

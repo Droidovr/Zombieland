@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.AnimationModule;
+using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
 using Zombieland.GameScene0.CharacterModule.CharacterMovingModule;
 using Zombieland.GameScene0.CharacterModule.EquipmentModule;
@@ -23,6 +24,7 @@ namespace Zombieland.GameScene0.CharacterModule
         public ITakeImpactController TakeImpactController { get; private set;}
         public IEquipmentController EquipmentController { get; private set;}
         public IAnimationController AnimationController { get; private set; }
+        public IBuffDebuffController BuffDebuffController { get; private set; }
 
         public Transform CharacterTransform => VisualBodyController.CharacterInScene.transform;
 
@@ -69,6 +71,9 @@ namespace Zombieland.GameScene0.CharacterModule
 
             AnimationController = new AnimationController(this, new List<IController>{(IController)CharacterMovingController});
             subsystemsControllers.Add ((IController)AnimationController);
+
+            BuffDebuffController = new BuffDebuffController(this, null);
+            subsystemsControllers.Add((IController)BuffDebuffController);
         }
     }
 }
