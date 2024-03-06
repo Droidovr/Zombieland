@@ -1,6 +1,6 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
+
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
@@ -12,20 +12,33 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         public readonly ICharacterController CharacterController;
 
+        public string CurrentImpactName;
+        //public Dictionary<string, Impact> Impacts { get; set; }
+
         private Weapon _weapon;
+
 
         public WeaponController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
-            CharacterController = parentController as ICharacterController;
+            //Impacts = new Dictionary<string, Impact>();
 
+            CharacterController = parentController as ICharacterController;
+        }
+
+        public override void Enable()
+        {
             CharacterController.EquipmentController.OnWeaponChanged += SetWeapon;
+            CharacterController.EquipmentController.OnAmmoChanged += OnAmmoChangedHandler;
             CharacterController.RootController.UIController.OnFireDown += OnButtonFireDownHandler;
             CharacterController.RootController.UIController.OnFireUp += OnButtonFireUpHandler;
+
+            base.Enable();
         }
 
         public override void Disable()
         {
             CharacterController.EquipmentController.OnWeaponChanged -= SetWeapon;
+            CharacterController.EquipmentController.OnAmmoChanged -= OnAmmoChangedHandler;
             CharacterController.RootController.UIController.OnFireDown -= OnButtonFireDownHandler;
             CharacterController.RootController.UIController.OnFireUp -= OnButtonFireUpHandler;
 
@@ -42,19 +55,34 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             // This controller doesn’t have any subsystems at the moment.
         }
 
-        private void SetWeapon(Weapon wepon)
+        private void SetWeapon(Weapon weapon)
         {
-            _weapon = wepon;
+            _weapon = weapon;
+        }
+
+        private void OnAmmoChangedHandler(string impactName)
+        {
+            // Subscribe to OnAmmoChanged in EquipmentSystem
+
+            //if (!Impacts.ContainsKey(impactName))
+            //{
+            //    Impact impact = ДесериализуемИмпакт(impactName);
+            //    Impacts.Add(impactName, impact);
+            //}
+
+            CurrentImpactName = impactName;
         }
 
         private void OnButtonFireDownHandler()
-        { 
-            // Логика обработки нажатия кнопки стрельбы
+        {
+            // Start Fire attempts
+            _weapon.ShotHandler.Execute();
         }
 
         private void OnButtonFireUpHandler() 
-        { 
-            // Логика обработки отпускания кнопки стрельбы
+        {
+            // Stop Fire attempts
+            _weapon.ShotHandler.Stop();
         }
     }
 }

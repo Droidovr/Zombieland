@@ -47,7 +47,7 @@ namespace Zombieland.GameScene0.CharacterModule
             CharacterDataController = new CharacterDataController(this, new List<IController> { (IController)RootController.GameDataController });
             subsystemsControllers.Add((IController)CharacterDataController);
 
-            WeaponController = new WeaponController(this, new List<IController> { (IController)CharacterDataController, (IController)EquipmentController ,(IController)RootController.UIController });
+            WeaponController = new WeaponController(this, new List<IController> { (IController)CharacterDataController, (IController)EquipmentController, (IController)RootController.UIController });
             subsystemsControllers.Add((IController)WeaponController);
 
             VisualBodyController = new VisualBodyController(this, new List<IController> { (IController)RootController.EnvironmentController });
@@ -70,6 +70,9 @@ namespace Zombieland.GameScene0.CharacterModule
 
             BuffDebuffController = new BuffDebuffController(this, null);
             subsystemsControllers.Add((IController)BuffDebuffController);
+
+            //WeaponController = new WeaponController(this, new List<IController> { (IController)CharacterDataController, (IController)EquipmentController, (IController)RootController.UIController });
+            //subsystemsControllers.Add((IController)WeaponController);
         }
         
         public void ApplyImpact(IImpactController impactController)
