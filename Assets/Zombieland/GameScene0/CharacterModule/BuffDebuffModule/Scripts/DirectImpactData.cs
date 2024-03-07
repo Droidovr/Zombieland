@@ -1,6 +1,6 @@
 namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 {
-    public struct DirectImpactSetting
+    public struct DirectImpactData
     {
         public DirectImpactType Type;
         public float AbsoluteValue;

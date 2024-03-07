@@ -7,20 +7,14 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
     [Serializable]
     public class InfectedWound : IBuffDebuffCommand
     {
-        public string Name { get; set; }
-        public DirectImpactSetting DirectImpactSetting { get; set; }
-        public ICharacterController ImpactTarget { get; set; }
-        public ICharacterController Owner { get; set; }
-
-        public int LifeTime;
-        public int Interval;
+        public BuffDebuffData BuffDebuffData { get; set; }
 
         private PeriodicAction _periodicAction;
 
         public void Execute()
         {
             Debug.Log("InfectedWound Execute");
-            _periodicAction = new PeriodicAction(LifeTime, Interval, DecreaseHP);
+            _periodicAction = new PeriodicAction(BuffDebuffData.LifeTime, BuffDebuffData.Interval, DecreaseHP);
             _periodicAction.OnFinished += OnFinishedHandler;
             _periodicAction.Start();
         }
@@ -30,7 +24,7 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
             _periodicAction?.Stop();
         }
 
-        public DirectImpactSetting GetProcessedImpactValue(DirectImpactSetting buffDebuff)
+        public DirectImpactData GetProcessedImpactValue(DirectImpactData buffDebuff)
         {
               return buffDebuff;
         }
@@ -43,21 +37,21 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 
         private void SelfDestroy()
         {
-            ImpactTarget.BuffDebuffController.Debuffs.Remove(Name);
+            BuffDebuffData.ImpactTarget.BuffDebuffController.Debuffs.Remove(BuffDebuffData.Name);
         }
 
         private void DecreaseHP(object sender, ElapsedEventArgs e)
         {
             Debug.Log("DecreaseHP");
-            var HP = ImpactTarget.CharacterDataController.CharacterData.HP - DirectImpactSetting.AbsoluteValue;
+            var HP = BuffDebuffData.ImpactTarget.CharacterDataController.CharacterData.HP - BuffDebuffData.DirectImpactData.AbsoluteValue;
 
-            if (HP > ImpactTarget.CharacterDataController.CharacterData.HPMax)
+            if (HP > BuffDebuffData.ImpactTarget.CharacterDataController.CharacterData.HPMax)
             {
-                ImpactTarget.CharacterDataController.CharacterData.HP = HP;
+                BuffDebuffData.ImpactTarget.CharacterDataController.CharacterData.HP = HP;
             }
             else
             {
-                ImpactTarget.CharacterDataController.CharacterData.HP = 0;
+                BuffDebuffData.ImpactTarget.CharacterDataController.CharacterData.HP = 0;
             }
         }
     }
