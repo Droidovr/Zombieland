@@ -8,25 +8,24 @@ namespace Zombieland.GameScene0.ImpactModule
     [Serializable]
     public class FollowingTargetHandler : IImpactCommand
     {
-        public float MovingSpeed { get; set; }
-        public float Range { get; set; }
-        public float Lifetime { get; set; }
-
         [JsonIgnore] public IImpact Impact { get; set; }
         [JsonIgnore] public Vector3 ObjectSpawnPosition { get; set; }
         [JsonIgnore] public Quaternion ObjectRotation { get; set; }
         [JsonIgnore] public Transform TargetTransform { get; set; }
         [JsonIgnore] public List<Collider> IgnoringColliders { get; set; }
+        public float MovingSpeed { get; set; }
+        public float Range { get; set; }
+        public float Lifetime { get; set; }
 
         private GameObject _impactObject;
         private Updater _updater;
         private bool _isLifetimeRelated;
         
-        private const float ProjectileRotationSpeed = 50f;
+        private const float PROJECTILE_ROTATION_SPEED = 50f;
         
         public void Execute()
         {
-            _impactObject = ((ObjectAssembler) Impact.Assembler).ImpactObject;
+            _impactObject = Impact.ImpactObject;
             _impactObject.transform.position = ObjectSpawnPosition;
             _impactObject.transform.rotation = ObjectRotation;
 
@@ -47,7 +46,7 @@ namespace Zombieland.GameScene0.ImpactModule
             var direction = TargetTransform.position - _impactObject.transform.position;
             var targetRotation = Quaternion.LookRotation(direction, Vector3.up);
             _impactObject.transform.rotation = Quaternion.Lerp(_impactObject.transform.rotation, targetRotation,
-                ProjectileRotationSpeed * Time.deltaTime);
+                PROJECTILE_ROTATION_SPEED * Time.deltaTime);
 
             if(_isLifetimeRelated)
                 CheckLifetime();

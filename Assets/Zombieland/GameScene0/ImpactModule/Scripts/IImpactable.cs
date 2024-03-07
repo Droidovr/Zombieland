@@ -1,10 +1,11 @@
 using UnityEngine;
+using Zombieland.GameScene0.CharacterModule;
 
 namespace Zombieland.GameScene0.ImpactModule
 {
     public interface IImpactable
     {
-        public Transform ImpactObjectTransform { get; }
-        public void ApplyImpact(IImpact impact);
+        public ICharacterController Owner { get; set; }
+        public Transform Transform  { get; }
     }
 }

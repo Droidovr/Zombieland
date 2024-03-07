@@ -7,22 +7,20 @@ namespace Zombieland.GameScene0.ImpactModule
     [Serializable]
     public class ObjectAssembler : IImpactCommand
     {
-        public string PrefabName { get; set; }
-        
         [JsonIgnore] public IImpact Impact { get; set; }
-        [JsonIgnore] public GameObject ImpactObject { get; private set; }
+        public string PrefabID { get; set; }
 
         public void Execute()
         {
-            var prefab = Resources.Load<GameObject>(PrefabName);
-            ImpactObject = GameObject.Instantiate(prefab);
+            var impactObjectPrefab = Resources.Load<GameObject>(PrefabID);
+            Impact.ImpactObject = GameObject.Instantiate(impactObjectPrefab);
             
             Impact.Delivery.Execute();
         }
 
         public void Deactivate()
         {
-            GameObject.Destroy(ImpactObject);
+            GameObject.Destroy(Impact.ImpactObject);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Zombieland.GameScene0.ImpactModule
         public Transform TargetTransform;
         public Transform MineSpawnPosition;
         [SerializeReference]
-        public List<ImpactDetectionSensor> TargetImpactableList;
+        public List<ImpactSensor> TargetImpactableList;
 
         void Update()
         {

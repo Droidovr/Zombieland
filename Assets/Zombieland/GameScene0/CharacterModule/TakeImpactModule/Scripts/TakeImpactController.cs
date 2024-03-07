@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Zombieland.GameScene0.ImpactModule;
+using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 
 namespace Zombieland.GameScene0.CharacterModule.TakeImpactModule
 {
@@ -21,7 +21,7 @@ namespace Zombieland.GameScene0.CharacterModule.TakeImpactModule
             // This controller doesn’t have any subsystems at the moment.
         }
 
-        public void ProcessImpact(IImpact impact)
+        public void ApplyImpact(List<DirectImpactData> directImpactDataList)
         {
             // This method doesn't have any realization at the moment.
         }

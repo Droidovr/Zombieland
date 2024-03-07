@@ -8,14 +8,13 @@ namespace Zombieland.GameScene0.ImpactModule
     [Serializable]
     public class MovingForwardHandler : IImpactCommand
     {
-        public float MovingSpeed { get; set; }
-        public float Range { get; set; }
-        public float Lifetime { get; set; }
-
         [JsonIgnore] public IImpact Impact { get; set; }
         [JsonIgnore] public Vector3 ObjectSpawnPosition { get; set; }
         [JsonIgnore] public Quaternion ObjectRotation { get; set; }
         [JsonIgnore] public List<Collider> IgnoringColliders { get; set; }
+        public float MovingSpeed { get; set; }
+        public float Range { get; set; }
+        public float Lifetime { get; set; }
 
         private GameObject _impactObject;
         private Updater _updater;
@@ -23,7 +22,7 @@ namespace Zombieland.GameScene0.ImpactModule
 
         public void Execute()
         {
-            _impactObject = ((ObjectAssembler) Impact.Assembler).ImpactObject;
+            _impactObject = Impact.ImpactObject;
             _impactObject.transform.position = ObjectSpawnPosition;
             _impactObject.transform.rotation = ObjectRotation;
 
@@ -44,7 +43,6 @@ namespace Zombieland.GameScene0.ImpactModule
             else
                 CheckDistance();
         }
-
 
         private void CheckDistance()
         {

@@ -8,7 +8,6 @@ namespace Zombieland.GameScene0.ImpactModule
     public class ImpactAssembler : IImpactCommand
     {
         [JsonIgnore] public IImpact Impact { get; set; }
-        [JsonIgnore] public List<IImpactable> Targets { get; set; }
 
         public void Execute()
         {
