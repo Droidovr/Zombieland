@@ -5,32 +5,28 @@ using UnityEngine;
 namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 {
     [Serializable]
-    public class Slowdown : IBuffDebuffCommand
+    public class Debuff_InfectedWound : IBuffDebuffCommand
     {
         public BuffDebuffData BuffDebuffData { get; set; }
 
         private PeriodicAction _periodicAction;
-        private float _chacheMaxMovingSpeed;
 
         public void Execute()
         {
-            Debug.Log("Slowdown Execute");
-            _chacheMaxMovingSpeed = BuffDebuffData.ImpactTarget.CharacterDataController.CharacterData.MaxMovingSpeed;
-            BuffDebuffData.ImpactTarget.CharacterDataController.CharacterData.MaxMovingSpeed = _chacheMaxMovingSpeed * BuffDebuffData.DirectImpactData.PercentageValue / 100;
-
-            _periodicAction = new PeriodicAction(BuffDebuffData.LifeTime, BuffDebuffData.Interval, DeSlowdown);
+            Debug.Log("InfectedWound Execute");
+            _periodicAction = new PeriodicAction(BuffDebuffData.LifeTime, BuffDebuffData.Interval, DecreaseHP);
             _periodicAction.OnFinished += OnFinishedHandler;
             _periodicAction.Start();
         }
 
         public void Destroy()
         {
-            _periodicAction.Stop();
+            _periodicAction?.Stop();
         }
 
         public DirectImpactData GetProcessedImpactValue(DirectImpactData buffDebuff)
         {
-            return buffDebuff;
+              return buffDebuff;
         }
 
         private void OnFinishedHandler()
@@ -44,10 +40,19 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
             BuffDebuffData.ImpactTarget.BuffDebuffController.Debuffs.Remove(BuffDebuffData.Name);
         }
 
-        private void DeSlowdown(object sender, ElapsedEventArgs e)
+        private void DecreaseHP(object sender, ElapsedEventArgs e)
         {
-            Debug.Log("DeSlowdown");
-            BuffDebuffData.ImpactTarget.CharacterDataController.CharacterData.MaxMovingSpeed = _chacheMaxMovingSpeed;
+            Debug.Log("DecreaseHP");
+            var HP = BuffDebuffData.ImpactTarget.CharacterDataController.CharacterData.HP - BuffDebuffData.DirectImpactData.AbsoluteValue;
+
+            if (HP > BuffDebuffData.ImpactTarget.CharacterDataController.CharacterData.HPMax)
+            {
+                BuffDebuffData.ImpactTarget.CharacterDataController.CharacterData.HP = HP;
+            }
+            else
+            {
+                BuffDebuffData.ImpactTarget.CharacterDataController.CharacterData.HP = 0;
+            }
         }
     }
 }
