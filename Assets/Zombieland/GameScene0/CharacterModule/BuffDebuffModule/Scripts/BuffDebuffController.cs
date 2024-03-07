@@ -46,9 +46,9 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
         {
             for (int i = 0; i < buffs.Count; i++)
             {
-                if (!Buffs.ContainsKey(buffs[i].Name))
+                if (!Buffs.ContainsKey(buffs[i].BuffDebuffData.Name))
                 {
-                    Buffs.Add(buffs[i].Name, buffs[i]);
+                    Buffs.Add(buffs[i].BuffDebuffData.Name, buffs[i]);
                     buffs[i].Execute();
                 }
             }
@@ -58,17 +58,17 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
         {
             for (int i = 0; i < debuffs.Count; i++)
             {
-                if (!Buffs.ContainsKey(debuffs[i].Name))
+                if (!Buffs.ContainsKey(debuffs[i].BuffDebuffData.Name))
                 {
-                    Buffs.Add(debuffs[i].Name, debuffs[i]);
+                    Buffs.Add(debuffs[i].BuffDebuffData.Name, debuffs[i]);
                     debuffs[i].Execute();
                 }
             }
         }
 
-        public DirectImpactSetting GetProcessedImpactValue(DirectImpactSetting buffDebuff)
+        public DirectImpactData GetProcessedImpactValue(DirectImpactData buffDebuff)
         {
-            DirectImpactSetting localBuffDebuff = buffDebuff;
+            DirectImpactData localBuffDebuff = buffDebuff;
 
             for (int i = 0; i < Buffs.Count; i++)
             {
