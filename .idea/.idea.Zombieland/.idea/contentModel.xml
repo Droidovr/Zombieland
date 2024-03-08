@@ -144,11 +144,11 @@
                   <e p="BuffDebuffController.cs" t="Include" />
                   <e p="BuffDebuffData.cs" t="Include" />
                   <e p="Buffs" t="Include">
-                    <e p="WeakTreatment.cs" t="Include" />
+                    <e p="Buff_WeakHealing.cs" t="Include" />
                   </e>
                   <e p="Debuffs" t="Include">
-                    <e p="InfectedWound.cs" t="Include" />
-                    <e p="Slowdown.cs" t="Include" />
+                    <e p="Debuff_InfectedWound.cs" t="Include" />
+                    <e p="Debuff_Slowdown.cs" t="Include" />
                   </e>
                   <e p="DirectImpactData.cs" t="Include" />
                   <e p="DirectImpactType.cs" t="Include" />
@@ -244,9 +244,6 @@
               <e p="IGameManager.cs" t="Include" />
             </e>
             <e p="ImpactModule" t="Include">
-              <e p="Resources" t="Include">
-                <e p="Test.txt" t="Include" />
-              </e>
               <e p="Scripts" t="Include">
                 <e p="00.Assembly" t="Include">
                   <e p="ImpactAssembler.cs" t="Include" />
@@ -261,13 +258,15 @@
                   <e p="Updater.cs" t="Include" />
                 </e>
                 <e p="02.InitialImpact" t="Include">
-                  <e p="DefaultImpact.cs" t="Include" />
                   <e p="Detectors" t="Include">
                     <e p="SphereDetector.cs" t="Include" />
                     <e p="TouchColliderDetector.cs" t="Include" />
                     <e p="UpfrontRayDetector.cs" t="Include" />
                   </e>
-                  <e p="InitialImpact.cs" t="Include" />
+                  <e p="InfectedMine.cs" t="Include" />
+                  <e p="MinorHealing.cs" t="Include" />
+                  <e p="SlowDownProjectile.cs" t="Include" />
+                  <e p="РomingProjectile.cs" t="Include" />
                 </e>
                 <e p="03.BuffDebuff" t="Include">
                   <e p="BuffDebuffInjection.cs" t="Include" />

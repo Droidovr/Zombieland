@@ -2,13 +2,13 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 {
     public class BuffDebuffData
     {
-        public string ID { get; private set; } // Serializable
-        public string Name { get; private set; } // Serializable
-        public string IconID { get; private set; } // Serializable
-        public string PreabID { get; private set; } // Serializable
-        public VFXPosition VFXPosition { get; private set;} // Serializable
-        public int LifeTime { get; private set; } // Serializable
-        public int Interval { get; private set; } // Serializable
+        public string ID { get; set; } // Serializable
+        public string Name { get; set; } // Serializable
+        public string IconID { get; set; } // Serializable
+        public string PrefabID { get; set; } // Serializable
+        public VFXPosition VFXPosition { get; set;} // Serializable
+        public int LifeTime { get; set; } // Serializable
+        public int Interval { get; set; } // Serializable
         public DirectImpactData DirectImpactData { get; set; }
         public ICharacterController ImpactTarget { get; set; }
         public ICharacterController Owner { get; set; }

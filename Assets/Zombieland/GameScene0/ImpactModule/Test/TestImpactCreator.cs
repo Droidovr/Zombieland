@@ -6,6 +6,7 @@ namespace Zombieland.GameScene0.ImpactModule.Test
 {
     public class TestImpactCreator : MonoBehaviour
     {
+        public string FileName;
         public Impact Impact;
 
         void Start()
@@ -24,7 +25,8 @@ namespace Zombieland.GameScene0.ImpactModule.Test
                     Lifetime = 0f
                 },
                 
-                DirectImpact = new DefaultImpact{
+                DirectImpact = new SlowdownProjectile
+                {
                     Detector = new UpfrontRayDetector
                     {
                         DetectionRadius = 0f
@@ -33,25 +35,58 @@ namespace Zombieland.GameScene0.ImpactModule.Test
                     {
                         new DirectImpactData
                         {
-                            Type = DirectImpactType.NotType,
+                            Type = DirectImpactType.None,
                             AbsoluteValue = 0f,
                             PercentageValue = 0f
                         }
                     },
-                    TargetEffectPrefabID = "TargetEffectPrefabID", 
-                    NOTargetEffectPrefabID = "NOTargetEffectPrefabID"
+                    TargetReachedEffectPrefabID = "TargetReachedEffectPrefabID", 
+                    NoTargetEffectPrefabID = "NoTargetEffectPrefabID"
                 },
                 
                 BuffDebuffInjection = new BuffDebuffInjection
                 {
-                    Buffs = new List<IBuffDebuffCommand>(),
-                    Debuffs = new List<IBuffDebuffCommand>
+                    Buffs = new List<IBuffDebuffCommand>
                     {
-                        new Slowdown
+                        new Buff_WeakHealing
                         {
                             BuffDebuffData = new BuffDebuffData
                             {
-                                
+                                ID = "ID",
+                                Name = "Name",
+                                IconID = "IconID",
+                                PrefabID = "PrefabID",
+                                VFXPosition = VFXPosition.Body,
+                                LifeTime = 0,
+                                Interval = 0,
+                                DirectImpactData = new DirectImpactData
+                                {
+                                    Type = DirectImpactType.None,
+                                    AbsoluteValue = 0f,
+                                    PercentageValue = 0f
+                                }
+                            }
+                        },
+                    },
+                    Debuffs = new List<IBuffDebuffCommand>
+                    {
+                        new Debuff_Slowdown()
+                        {
+                            BuffDebuffData = new BuffDebuffData
+                            {
+                                ID = "ID",
+                                Name = "Name",
+                                IconID = "IconID",
+                                PrefabID = "PrefabID",
+                                VFXPosition = VFXPosition.Body,
+                                LifeTime = 0,
+                                Interval = 0,
+                                DirectImpactData = new DirectImpactData
+                                {
+                                    Type = DirectImpactType.None,
+                                    AbsoluteValue = 0f,
+                                    PercentageValue = 0f
+                                }
                             }
                         }
                     }

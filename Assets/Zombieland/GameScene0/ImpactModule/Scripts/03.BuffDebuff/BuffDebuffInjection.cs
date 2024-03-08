@@ -23,7 +23,8 @@ namespace Zombieland.GameScene0.ImpactModule
                         buff.BuffDebuffData.Owner = Impact.ImpactOwner;
                         buff.BuffDebuffData.ImpactTarget = target.Owner;
                     }
-                    target.Owner.BuffDebuffController.InjectBuffs(Buffs);
+                    target.TestApplyBuffs(Buffs);
+                    //target.Owner.BuffDebuffController.InjectBuffs(Buffs);
                 }
 
                 if (Debuffs.Count > 0)
@@ -33,7 +34,8 @@ namespace Zombieland.GameScene0.ImpactModule
                         debuff.BuffDebuffData.Owner = Impact.ImpactOwner;
                         debuff.BuffDebuffData.ImpactTarget = target.Owner;
                     }
-                    target.Owner.BuffDebuffController.InjectDebuffs(Buffs);
+                    target.TestApplyDebuffs(Debuffs);
+                    //target.Owner.BuffDebuffController.InjectDebuffs(Debuffs);
                 }
             }
             

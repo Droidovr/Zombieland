@@ -17,9 +17,6 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule
         {
             var impactSensor = _characterController.VisualBodyController.SensorCollider.AddComponent<ImpactSensor>();
             impactSensor.Owner = _characterController;
-
-            //add _damageDetectionSensor to character collider
-            //_impactDetectionSensor.Init((IDamageable)_characterController);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
