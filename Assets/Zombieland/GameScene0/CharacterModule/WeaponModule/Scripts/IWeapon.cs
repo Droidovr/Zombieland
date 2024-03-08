@@ -6,12 +6,12 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
     public interface IWeapon
     {
-        ICharacterController Owner { get; }
-        string ID { get; }
-        string Name { get; }
-        string PrefabName { get; }
-        Vector3 DeparturePoint { get; }
-        //List<Impact> AvailableImpactTypes { get; }
-        IShotCommand ShotHandler { get; }
+        ICharacterController Owner { get; set; }
+        string ID { get; set; }
+        string Name { get; set; }
+        string PrefabName { get; set; }
+        Vector3 DeparturePoint { get; set; }
+        //List<Impact> AvailableImpactTypes { get; set; }
+        IShotCommand ShotHandler { get; set; }
     }
 }

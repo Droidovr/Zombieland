@@ -1,14 +1,16 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
     public class Weapon : IWeapon
     {
-        public ICharacterController Owner { get; private set; }
-        public string ID { get; private set; }
-        public string Name { get; private set; }
-        public string PrefabName { get; private set; }
-        public Vector3 DeparturePoint { get; private set; }
-        public IShotCommand ShotHandler { get; private set; }
+        public ICharacterController Owner { get; set; }
+        public string ID { get; set; }
+        public string Name { get; set; }
+        public string PrefabName { get; set; }
+        public Vector3 DeparturePoint { get; set; }
+        //public List<Impact> AvailableImpactTypes { get; set; }
+        public IShotCommand ShotHandler { get; set; }
     }
 }
