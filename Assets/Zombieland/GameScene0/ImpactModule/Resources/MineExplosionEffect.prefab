@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6243781491003271144}
   - component: {fileID: 1546408753864695001}
   m_Layer: 0
-  m_Name: MineExplosionEffectEffect
+  m_Name: MineExplosionEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1773414221400430874}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.700076, y: 0.652, z: 2.4185889}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:

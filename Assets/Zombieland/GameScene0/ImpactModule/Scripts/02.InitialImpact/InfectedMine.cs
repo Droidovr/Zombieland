@@ -46,7 +46,7 @@ namespace Zombieland.GameScene0.ImpactModule
             var targetsList = Detector.GetTargets(Impact.ImpactObject);
             Impact.Targets = targetsList;
 
-            if (targetsList != null)
+            if (targetsList != null && targetsList.Count > 0)
             {
                 var onTargetEffectPrefab = Resources.Load<GameObject>(OnTargetEffectPrefabID);
                 foreach (var target in Impact.Targets)
@@ -54,7 +54,7 @@ namespace Zombieland.GameScene0.ImpactModule
                     target.TestApplyDirectImpact(InitialImpactData);
                     //target.Owner.TakeImpactController.ApplyImpact(InitialImpactData);
                     if(!onTargetEffectPrefab) return;
-                    var effect = GameObject.Instantiate(onTargetEffectPrefab, target.Transform.position, Quaternion.identity);
+                    var effect = GameObject.Instantiate(onTargetEffectPrefab, target.Transform);
                     var effectTime = effect.GetComponent<ParticleSystem>().main.duration;
                     GameObject.Destroy(effect, effectTime);
                 }

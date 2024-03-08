@@ -244,6 +244,12 @@
               <e p="IGameManager.cs" t="Include" />
             </e>
             <e p="ImpactModule" t="Include">
+              <e p="Resources" t="Include">
+                <e p="HomingProjectile.txt" t="Include" />
+                <e p="InfectedMine.txt" t="Include" />
+                <e p="MinorHealing.txt" t="Include" />
+                <e p="SlowdownProjectile.txt" t="Include" />
+              </e>
               <e p="Scripts" t="Include">
                 <e p="00.Assembly" t="Include">
                   <e p="ImpactAssembler.cs" t="Include" />
@@ -263,10 +269,10 @@
                     <e p="TouchColliderDetector.cs" t="Include" />
                     <e p="UpfrontRayDetector.cs" t="Include" />
                   </e>
+                  <e p="HomingProjectile.cs" t="Include" />
                   <e p="InfectedMine.cs" t="Include" />
                   <e p="MinorHealing.cs" t="Include" />
                   <e p="SlowDownProjectile.cs" t="Include" />
-                  <e p="РomingProjectile.cs" t="Include" />
                 </e>
                 <e p="03.BuffDebuff" t="Include">
                   <e p="BuffDebuffInjection.cs" t="Include" />

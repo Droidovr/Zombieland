@@ -10,7 +10,7 @@ namespace Zombieland.GameScene0.ImpactModule
 
         public void Execute()
         {
-            Impact.DirectImpact.Execute();
+            Impact.InitialImpact.Execute();
         }
         public void Deactivate()
         {

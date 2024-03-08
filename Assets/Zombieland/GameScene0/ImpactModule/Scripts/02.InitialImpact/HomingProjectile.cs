@@ -5,7 +5,7 @@ using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 
 namespace Zombieland.GameScene0.ImpactModule
 {
-    public class РomingProjectile : IImpactCommand
+    public class HomingProjectile : IImpactCommand
     {
         [JsonIgnore] public IImpact Impact { get; set; }
         public IDetector Detector { get; set; }
@@ -18,7 +18,7 @@ namespace Zombieland.GameScene0.ImpactModule
             var targetsList = Detector.GetTargets(Impact.ImpactObject);
             Impact.Targets = targetsList;
             
-            if (targetsList == null)
+            if (targetsList == null || targetsList.Count <= 0)
             {
                 var effectPrefab = Resources.Load<GameObject>(NoTargetEffectPrefabID);
                 if (effectPrefab)

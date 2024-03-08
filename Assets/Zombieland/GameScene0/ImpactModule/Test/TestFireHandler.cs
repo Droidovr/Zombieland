@@ -8,11 +8,10 @@ namespace Zombieland.GameScene0.ImpactModule
     public class TestFireHandler : MonoBehaviour
     {
         public string ImpactName;
-        public Transform SpawnPositionTransform;
+        public Transform HeroWeaponTransform;
         public Transform TargetTransform;
         public Transform MineSpawnPosition;
-        [SerializeReference]
-        public List<ImpactSensor> TargetImpactableList;
+        [SerializeReference] public List<ImpactSensor> TargetImpactableList;
 
         void Update()
         {
@@ -25,14 +24,14 @@ namespace Zombieland.GameScene0.ImpactModule
                 var impact = JsonConvert.DeserializeObject<Impact>(textAsset.text, settings);
                 if (impact.Delivery is MovingForwardHandler movingForwardHandler)
                 {
-                    movingForwardHandler.ObjectSpawnPosition = SpawnPositionTransform.position; 
-                    movingForwardHandler.ObjectRotation = SpawnPositionTransform.rotation;
+                    movingForwardHandler.ObjectSpawnPosition = HeroWeaponTransform.position; 
+                    movingForwardHandler.ObjectRotation = HeroWeaponTransform.rotation;
                     movingForwardHandler.IgnoringColliders = new List<Collider>{GetComponent<Collider>()};
                 }
                 else if (impact.Delivery is FollowingTargetHandler followingTargetHandler)
                 {
-                    followingTargetHandler.ObjectSpawnPosition = SpawnPositionTransform.position; 
-                    followingTargetHandler.ObjectRotation = SpawnPositionTransform.rotation;
+                    followingTargetHandler.ObjectSpawnPosition = HeroWeaponTransform.position; 
+                    followingTargetHandler.ObjectRotation = HeroWeaponTransform.rotation;
                     followingTargetHandler.TargetTransform = TargetTransform;
                     followingTargetHandler.IgnoringColliders = new List<Collider>{GetComponent<Collider>()};
                 }
@@ -41,6 +40,13 @@ namespace Zombieland.GameScene0.ImpactModule
                     objectInstantTeleport.ObjectSpawnPosition = MineSpawnPosition.position; 
                     objectInstantTeleport.ObjectRotation = Quaternion.identity;
                     objectInstantTeleport.IgnoringColliders = new List<Collider>{GetComponent<Collider>()};
+                }
+                else if (impact.Delivery is ImpactInstantTeleport)
+                {
+                    var targets = new List<IImpactable>();
+                    foreach (var target in TargetImpactableList)
+                        targets.Add(target);
+                    impact.Targets = targets;
                 }
                 
                 impact.Activate();
