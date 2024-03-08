@@ -16,16 +16,15 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
         private ElapsedEventHandler _elapsedEventHandler;
         private CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
 
-        public PeriodicAction(int lifeTimer, int interval, ElapsedEventHandler elapsedEventHandler)
+        public PeriodicAction(float lifeTimer, float interval, ElapsedEventHandler elapsedEventHandler)
         {
-            _lifeTimer = lifeTimer;
-            _interval = interval;
+            _lifeTimer = (int)(lifeTimer * 1000);
+            _interval = (int)(interval * 1000);
             _elapsedEventHandler = elapsedEventHandler;
         }
 
         public void Start()
         {
-            Debug.Log("Start");
             if (_interval > 0)
             {
                 _timer = new System.Timers.Timer(_interval);
@@ -50,7 +49,6 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 
         public void Stop()
         {
-            Debug.Log("Stop");
             _timer?.Stop();
             _cancellationTokenSource.Cancel();
             OnFinished?.Invoke();
