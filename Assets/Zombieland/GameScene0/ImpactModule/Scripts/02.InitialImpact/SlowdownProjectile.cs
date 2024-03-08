@@ -34,8 +34,8 @@ namespace Zombieland.GameScene0.ImpactModule
                 var effectPrefab = Resources.Load<GameObject>(TargetReachedEffectPrefabID);
                 foreach (var target in Impact.Targets)
                 {
-                    target.TestApplyDirectImpact(InitialImpactData);
-                    //target.Owner.TakeImpactController.ApplyImpact(InitialImpactData);
+                    //target.TestApplyDirectImpact(InitialImpactData);
+                    target.Owner.TakeImpactController.ApplyImpact(InitialImpactData);
                     if(!effectPrefab) return;
                     var effect = GameObject.Instantiate(effectPrefab, Impact.ImpactObject.transform.position, Quaternion.identity);
                     var effectTime = effect.GetComponent<ParticleSystem>().main.duration;
