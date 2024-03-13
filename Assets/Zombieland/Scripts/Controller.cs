@@ -37,8 +37,7 @@ namespace Zombieland
         {
             _dependencyTracker.OnReady -= OnDependencysReadyHandler;
             _subsystemsActivator.OnReady -= OnSystemReadyHandler;
-            
-            _subsystemsActivator.OnReady -= OnSystemReadyHandler;
+
             _subsystemsActivator.SetSubsystemsActivity(false);
         }
 
