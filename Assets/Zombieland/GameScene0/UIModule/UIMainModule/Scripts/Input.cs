@@ -8,13 +8,14 @@ namespace Zombieland.GameScene0.UIModule
     {
         public event Action<Vector2> OnMoved;
         public event Action OnFire;
-        public bool IsClickedStealthOn = false;
+
+        [SerializeField] private bool _isClickedStealthOn = false;
+        [SerializeField] private Image _imageButtonStealth;
 
         private const string NAME_SPRITE_STEALTH_ON = "StealthOn";
         private const string NAME_SPRITE_STEALTH_OFF = "StealthOff";
 
         private InputSystemControls _inputSystemControls;
-        private Image _imageButtonStealth;
         private Sprite _spriteStealthOn;
         private Sprite _spriteStealthOff;
 
@@ -25,7 +26,6 @@ namespace Zombieland.GameScene0.UIModule
 
         private void Start()
         {
-            _imageButtonStealth = transform.Find("Stealth").GetComponent<Image>();
             _spriteStealthOn = Resources.Load<Sprite>(NAME_SPRITE_STEALTH_ON);
             _spriteStealthOff = Resources.Load<Sprite>(NAME_SPRITE_STEALTH_OFF);
         }
@@ -61,9 +61,9 @@ namespace Zombieland.GameScene0.UIModule
 
         private void StealthClick()
         {
-            IsClickedStealthOn = !IsClickedStealthOn;
+            _isClickedStealthOn = !_isClickedStealthOn;
 
-            _imageButtonStealth.sprite = IsClickedStealthOn ? _spriteStealthOn : _spriteStealthOff;
+            _imageButtonStealth.sprite = _isClickedStealthOn ? _spriteStealthOn : _spriteStealthOff;
         }
     }
 }
