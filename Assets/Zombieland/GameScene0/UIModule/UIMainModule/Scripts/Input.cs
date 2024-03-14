@@ -12,8 +12,8 @@ namespace Zombieland.GameScene0.UIModule
         [SerializeField] private bool _isClickedStealthOn = false;
         [SerializeField] private Image _imageButtonStealth;
 
-        private const string NAME_SPRITE_STEALTH_ON = "StealthOn";
-        private const string NAME_SPRITE_STEALTH_OFF = "StealthOff";
+        private const string NAME_SPRITE_STEALTH_ON = "sit_down_on";
+        private const string NAME_SPRITE_STEALTH_OFF = "sit_down_off";
 
         private InputSystemControls _inputSystemControls;
         private Sprite _spriteStealthOn;
@@ -63,7 +63,7 @@ namespace Zombieland.GameScene0.UIModule
         {
             _isClickedStealthOn = !_isClickedStealthOn;
 
-            _imageButtonStealth.sprite = _isClickedStealthOn ? _spriteStealthOn : _spriteStealthOff;
+            //_imageButtonStealth.sprite = _isClickedStealthOn ? _spriteStealthOn : _spriteStealthOff;
         }
     }
 }
