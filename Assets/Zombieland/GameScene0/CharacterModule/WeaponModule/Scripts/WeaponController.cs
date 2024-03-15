@@ -27,7 +27,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         public override void Enable()
         {
-            CharacterController.EquipmentController.OnWeaponChanged += SetWeapon;
+            CharacterController.EquipmentController.OnWeaponChanged += WeaponChangedHandler;
             CharacterController.EquipmentController.OnAmmoChanged += OnAmmoChangedHandler;
             CharacterController.RootController.UIController.OnFireDown += OnButtonFireDownHandler;
             CharacterController.RootController.UIController.OnFireUp += OnButtonFireUpHandler;
@@ -37,7 +37,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         public override void Disable()
         {
-            CharacterController.EquipmentController.OnWeaponChanged -= SetWeapon;
+            CharacterController.EquipmentController.OnWeaponChanged -= WeaponChangedHandler;
             CharacterController.EquipmentController.OnAmmoChanged -= OnAmmoChangedHandler;
             CharacterController.RootController.UIController.OnFireDown -= OnButtonFireDownHandler;
             CharacterController.RootController.UIController.OnFireUp -= OnButtonFireUpHandler;
@@ -55,7 +55,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             // This controller doesn’t have any subsystems at the moment.
         }
 
-        private void SetWeapon(Weapon weapon)
+        private void WeaponChangedHandler(Weapon weapon)
         {
             _weapon = weapon;
         }
@@ -75,14 +75,12 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         private void OnButtonFireDownHandler()
         {
-            // Start Fire attempts
-            _weapon.ShotHandler.Execute();
+            _weapon.ShotProcess.StartFire();
         }
 
         private void OnButtonFireUpHandler() 
         {
-            // Stop Fire attempts
-            _weapon.ShotHandler.Stop();
+            _weapon.ShotProcess.StopFire();
         }
     }
 }
