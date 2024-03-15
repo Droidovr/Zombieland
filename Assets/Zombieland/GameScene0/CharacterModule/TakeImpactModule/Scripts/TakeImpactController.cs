@@ -1,19 +1,27 @@
 using System.Collections.Generic;
+using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 using Zombieland.GameScene0.ImpactModule;
+using System.Linq;
+using Assets.Zombieland.GameScene0.CharacterModule.TakeImpactModule.Scripts;
 
 namespace Zombieland.GameScene0.CharacterModule.TakeImpactModule
 {
     public class TakeImpactController : Controller, ITakeImpactController
     {
+
+        private ICharacterController _characterController;
+        private TakeImpactHandler _takeImpactHandler;
+
         public TakeImpactController(IController parentController, List<IController> requiredControllers) 
             : base(parentController, requiredControllers)
         {
-            // This class’s constructor doesn’t have any content yet.
+            _characterController = parentController as ICharacterController;
+          
         }
 
         protected override void CreateHelpersScripts()
         {
-            // This controller doesn’t have any helpers scripts at the moment.
+            _takeImpactHandler = new TakeImpactHandler();
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -21,9 +29,13 @@ namespace Zombieland.GameScene0.CharacterModule.TakeImpactModule
             // This controller doesn’t have any subsystems at the moment.
         }
 
-        public void ProcessImpact(IImpactController impactController)
+        public void TakeImpact(DirectImpactData directImpactData)
         {
-            // This method doesn't have any realization at the moment.
+            _takeImpactHandler.handleImpact(directImpactData);
+
         }
+
+
+
     }
 }

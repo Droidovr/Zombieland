@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.LowLevel;
 
 public class TestScript : MonoBehaviour
 {
@@ -46,8 +45,7 @@ public class TestScript : MonoBehaviour
             yield return new WaitForSeconds(1);
             if (_inArea)
             {
-                Debug.Log("10 damage");
-                characterController.
+                characterController.Ta
             }
         }
     }

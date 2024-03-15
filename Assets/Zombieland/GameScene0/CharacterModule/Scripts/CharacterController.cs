@@ -64,7 +64,7 @@ namespace Zombieland.GameScene0.CharacterModule
             SensorController = new SensorController(this, new List<IController>{(IController)VisualBodyController});
             subsystemsControllers.Add((IController)SensorController);
             
-            TakeImpactController = new TakeImpactController(this, null);
+            TakeImpactController = new TakeImpactController(this, new List<IController> { (IController)BuffDebuffController, (IController)CharacterDataController });
             subsystemsControllers.Add((IController)TakeImpactController);
             
             EquipmentController = new EquipmentController(this, new List<IController>{(IController)CharacterDataController});
