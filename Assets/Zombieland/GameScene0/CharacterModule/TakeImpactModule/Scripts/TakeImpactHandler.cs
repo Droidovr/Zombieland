@@ -13,8 +13,6 @@ namespace Assets.Zombieland.GameScene0.CharacterModule.TakeImpactModule.Scripts
 {
     internal class TakeImpactHandler
     {
-
-        private Boolean _init;
         private IBuffDebuffController _buffDebuffController;
         private Dictionary<DirectImpactType, IImpactProvider> _impactProviders;
         private IImpactProvider _defaultProvider;
@@ -25,6 +23,7 @@ namespace Assets.Zombieland.GameScene0.CharacterModule.TakeImpactModule.Scripts
           
             _defaultProvider = new FixedDamageProvider(_characterController.CharacterDataController.CharacterData);
             _impactProviders = new Dictionary<DirectImpactType, IImpactProvider>();
+
             initProviders();
 
         }

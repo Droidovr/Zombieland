@@ -22,6 +22,7 @@ namespace Zombieland.GameScene0.CharacterModule.TakeImpactModule
         protected override void CreateHelpersScripts()
         {
             _takeImpactHandler = new TakeImpactHandler();
+            _takeImpactHandler.Init(_characterController);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
