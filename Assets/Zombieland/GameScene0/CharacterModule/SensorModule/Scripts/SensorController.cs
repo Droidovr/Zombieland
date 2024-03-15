@@ -5,7 +5,7 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule
     public class SensorController : Controller, ISensorController
     {
         private readonly ICharacterController _characterController;
-        
+        private ImpactDetectionSensor _impactDetectionSensor;
         public SensorController(IController parentController, List<IController> requiredControllers) 
             : base(parentController, requiredControllers)
         {
@@ -14,8 +14,8 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule
 
         protected override void CreateHelpersScripts()
         {
-            //add _damageDetectionSensor to character collider
-            //_impactDetectionSensor.Init((IDamageable)_characterController);
+            _impactDetectionSensor = _characterController.VisualBodyController.CharacterInScene.AddComponent<ImpactDetectionSensor>();
+            _impactDetectionSensor.Init((IImpactable)_characterController);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
