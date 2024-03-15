@@ -30,7 +30,7 @@ namespace Zombieland.GameScene0.CharacterModule.TakeImpactModule
             // This controller doesn’t have any subsystems at the moment.
         }
 
-        public void TakeImpact(DirectImpactData directImpactData)
+        public void processImpact(DirectImpactData directImpactData)
         {
             _takeImpactHandler.handleImpact(directImpactData);
 

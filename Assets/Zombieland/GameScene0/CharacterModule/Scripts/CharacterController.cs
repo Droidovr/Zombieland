@@ -77,10 +77,10 @@ namespace Zombieland.GameScene0.CharacterModule
             subsystemsControllers.Add((IController)BuffDebuffController);
         }
         
-        public void ApplyImpact(IImpactController impactController)
+        public void ApplyImpact(DirectImpactData directImpactData)
         {
             // if its direct damage
-            TakeImpactController.ProcessImpact(impactController);
+            TakeImpactController.processImpact(directImpactData);
         }
     }
 }
