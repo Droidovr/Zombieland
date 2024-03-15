@@ -13,6 +13,7 @@ namespace Assets.Zombieland.GameScene0.CharacterModule.TakeImpactModule.Scripts
 {
     internal class TakeImpactHandler
     {
+
         private IBuffDebuffController _buffDebuffController;
         private Dictionary<DirectImpactType, IImpactProvider> _impactProviders;
         private IImpactProvider _defaultProvider;
@@ -28,18 +29,20 @@ namespace Assets.Zombieland.GameScene0.CharacterModule.TakeImpactModule.Scripts
 
         }
 
+        public void handleImpact(DirectImpactData directImpactData)
+        {
+            var updatedImpact = _buffDebuffController.GetProcessedImpactValue(directImpactData);
+            var impactProvider = _impactProviders.TryGetValue(directImpactData.Type, out var value) ? value : _defaultProvider;
+
+            impactProvider.provideImpact(updatedImpact);
+        }
+
         private void initProviders()
         {
             // Add here new Providers to _impactProviders depend on DirectImpactType
         }
 
-        public void handleImpact(DirectImpactData directImpactData)
-        {
-           var updatedImpact = _buffDebuffController.GetProcessedImpactValue(directImpactData);
-           var impactProvider = _impactProviders.TryGetValue(directImpactData.Type, out var value) ? value : _defaultProvider;
-
-           impactProvider.provideImpact(updatedImpact);
-        }
+       
 
     }
 }
