@@ -11,7 +11,7 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule
             _characterController = characterController;
         }
 
-       public IImpactable GetDamageableObject()
+       public IImpactable GetImpactableObject()
        {
            return _characterController;
        }

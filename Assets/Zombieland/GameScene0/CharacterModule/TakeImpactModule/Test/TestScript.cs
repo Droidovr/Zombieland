@@ -1,21 +1,25 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
+using Zombieland.GameScene0.CharacterModule.SensorModule;
 
 public class TestScript : MonoBehaviour
 {
 
     private bool _inArea = false;
     private Coroutine _coroutine;
-    private CharacterController characterController;
+    private ImpactDetectionSensor _sensor;
 
+
+      
     private void OnTriggerEnter(Collider other)
     {
-        var characterController = other.gameObject.GetComponent<CharacterController>();
-        if (characterController)
+        Debug.Log("player enter");
+        if (other.gameObject.GetComponent<ImpactDetectionSensor>())
         {
-            Debug.Log("player enter");
+         
+           
+            _sensor = other.gameObject.GetComponent<ImpactDetectionSensor>();
             _inArea = true;
             if (_coroutine == null)
             {
@@ -26,9 +30,10 @@ public class TestScript : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.GetComponent<CharacterController>())
+        Debug.Log("player exit");
+        if (other.gameObject.GetComponent<ImpactDetectionSensor>())
         {
-            Debug.Log("player exit");
+           
             _inArea = false;
             if (_coroutine != null)
             {
@@ -45,7 +50,8 @@ public class TestScript : MonoBehaviour
             yield return new WaitForSeconds(1);
             if (_inArea)
             {
-                characterController.Ta
+                _sensor.GetImpactableObject().ApplyImpact(new DirectImpactData() { AbsoluteValue = 10 }); // for full test add log or listener to HP in CaracterData
+                Debug.Log("player exit");
             }
         }
     }
