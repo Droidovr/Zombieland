@@ -16,33 +16,30 @@ namespace Assets.Zombieland.GameScene0.CharacterModule.TakeImpactModule.Scripts
 
         private Boolean _init;
         private IBuffDebuffController _buffDebuffController;
-        private CharacterData _characterData;
         private Dictionary<DirectImpactType, IImpactProvider> _impactProviders;
-        public TakeImpactHandler() {
-          
-        }
+        private IImpactProvider _defaultProvider;
 
         public void Init(ICharacterController _characterController)
         {
             _buffDebuffController = _characterController.BuffDebuffController;
           
-            var _defaultProvider = new FixedDamageProvider(_characterController.CharacterDataController.CharacterData);
-           
-            _impactProviders = new Dictionary<DirectImpactType, IImpactProvider>
-            {
-                {DirectImpactType.None, _defaultProvider },
-                {DirectImpactType.Poison, _defaultProvider },
-                {DirectImpactType.ParameterDecreation, _defaultProvider }
-            };
+            _defaultProvider = new FixedDamageProvider(_characterController.CharacterDataController.CharacterData);
+            _impactProviders = new Dictionary<DirectImpactType, IImpactProvider>();
+            initProviders();
 
+        }
 
+        private void initProviders()
+        {
+            // Add here new Providers to _impactProviders depend on DirectImpactType
         }
 
         public void handleImpact(DirectImpactData directImpactData)
         {
-            _buffDebuffController.GetProcessedImpactValue(directImpactData);
-            _impactProviders[directImpactData.Type].provideImpact(directImpactData);
+           var updatedImpact = _buffDebuffController.GetProcessedImpactValue(directImpactData);
+           var impactProvider = _impactProviders.TryGetValue(directImpactData.Type, out var value) ? value : _defaultProvider;
 
+           impactProvider.provideImpact(updatedImpact);
         }
 
     }
