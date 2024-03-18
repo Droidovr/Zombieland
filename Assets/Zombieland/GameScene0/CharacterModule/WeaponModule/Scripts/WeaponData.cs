@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
+    [Serializable]
     public class WeaponData
     {
         ICharacterController Owner;

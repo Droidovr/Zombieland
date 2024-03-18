@@ -1,13 +1,15 @@
-using System.Timers;
+using System;
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
+    [Serializable]
     public class ShotProcess : IShotProcess
     {
         public IWeapon Weapon { get; set; }
         public IConsumption Consumption { get; set; }
         public float CheckFirePermissionPeriod { get; set; }
 
-        private ShotPermitionTimer _shotPermitionTimer;
+        private ShotTimer _shotPermitionTimer;
+        private ShotTimer _shotFinishPreparationTimer;
 
         public void StartFire()
         {
@@ -20,8 +22,9 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
             if (isFirePermition)
             {
-                _shotPermitionTimer = new ShotPermitionTimer(CheckFirePermissionPeriod, CheckFirePermission);
-                _shotPermitionTimer.OnShotPermition += FireProceses;
+                _shotPermitionTimer = new ShotTimer(CheckFirePermissionPeriod, CheckFirePermission);
+                _shotPermitionTimer.Start();
+                _shotPermitionTimer.OnPermission += FireProceses;
             }
             else
             {
@@ -31,10 +34,10 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         public void StopFire()
         {
-            // плановое/намеренное прерывания стрельбы:
+            // плановое/намеренное прерывания стрельбы: 
             //1.всех таймеров
-            _shotPermitionTimer.OnShotPermition -= FireProceses;
             _shotPermitionTimer.Stop();
+            _shotPermitionTimer.OnPermission -= FireProceses;
 
             //2.прерывание всех запущенных процессов касательно выстрела.
         }
@@ -42,15 +45,17 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         private void FireProceses()
         {
             //1.Останавливаем таймер CheckFirePermissionTimer(CheckFirePermission())
-            _shotPermitionTimer.OnShotPermition -= FireProceses;
             _shotPermitionTimer.Stop();
+            _shotPermitionTimer.OnPermission -= FireProceses;
 
             //2.Запуск таймера на подготовку(каст заклинания) = CheckFinishPreparation()
+            _shotFinishPreparationTimer = new ShotTimer(CheckFirePermissionPeriod, CheckFinishPreparation);
+            _shotFinishPreparationTimer.Start();
         }
 
-        private void CheckFinishPreparation()
+        private bool CheckFinishPreparation()
         {
-
+            return true;
         }
 
         private void FireInteruption()
@@ -60,13 +65,18 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         private bool CheckFirePermission()
         {
-            // проверяем наличие ресурсов, отсутствие состояние стана, смерти
+            // проверяем наличие ресурсов или итемы, отсутствие состояние стана, смерти, наличие патронов, наличие цели, если это предусмотрено.
             return true;
         }
 
         private void ResourcesConsumption() // расход ресурсов(атрибутов и айтемов)
         {
             // Прогнать наш ресурс через бафдебафсистем и проверить в нашей CharacterData или есть у нас возможность.
+        }
+
+        private void Fire()
+        { 
+        
         }
     }
 }
