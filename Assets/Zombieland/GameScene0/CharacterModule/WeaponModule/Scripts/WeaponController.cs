@@ -10,17 +10,17 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         public event Action OnShotPerformed;
         public event Action OnShotFailed;
 
-        public readonly ICharacterController CharacterController;
+        public string CurrentImpactName { get; private set; }
+        public Dictionary<string, TestImpact> Impacts { get; private set; }
 
-        public string CurrentImpactName;
-        //public Dictionary<string, Impact> Impacts { get; set; }
+        public readonly ICharacterController CharacterController;
 
         private Weapon _weapon;
 
 
         public WeaponController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
-            //Impacts = new Dictionary<string, Impact>();
+            Impacts = new Dictionary<string, TestImpact>();
 
             CharacterController = parentController as ICharacterController;
         }
@@ -28,9 +28,9 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         public override void Enable()
         {
             CharacterController.EquipmentController.OnWeaponChanged += WeaponChangedHandler;
-            CharacterController.EquipmentController.OnAmmoChanged += OnAmmoChangedHandler;
-            CharacterController.RootController.UIController.OnFireDown += OnButtonFireDownHandler;
-            CharacterController.RootController.UIController.OnFireUp += OnButtonFireUpHandler;
+            CharacterController.EquipmentController.OnAmmoChanged += AmmoChangedHandler;
+            CharacterController.RootController.UIController.OnFireDown += ButtonFireDownHandler;
+            CharacterController.RootController.UIController.OnFireUp += ButtonFireUpHandler;
 
             base.Enable();
         }
@@ -38,9 +38,9 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         public override void Disable()
         {
             CharacterController.EquipmentController.OnWeaponChanged -= WeaponChangedHandler;
-            CharacterController.EquipmentController.OnAmmoChanged -= OnAmmoChangedHandler;
-            CharacterController.RootController.UIController.OnFireDown -= OnButtonFireDownHandler;
-            CharacterController.RootController.UIController.OnFireUp -= OnButtonFireUpHandler;
+            CharacterController.EquipmentController.OnAmmoChanged -= AmmoChangedHandler;
+            CharacterController.RootController.UIController.OnFireDown -= ButtonFireDownHandler;
+            CharacterController.RootController.UIController.OnFireUp -= ButtonFireUpHandler;
 
             base.Disable();
         }
@@ -60,25 +60,26 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             _weapon = weapon;
         }
 
-        private void OnAmmoChangedHandler(string impactName)
+        private void AmmoChangedHandler(string impactName)
         {
             // Subscribe to OnAmmoChanged in EquipmentSystem
 
-            //if (!Impacts.ContainsKey(impactName))
-            //{
-            //    Impact impact = ДесериализуемИмпакт(impactName);
-            //    Impacts.Add(impactName, impact);
-            //}
+            if (!Impacts.ContainsKey(impactName))
+            {
+                //Impact impact = ДесериализуемИмпакт(impactName);
+                TestImpact impact = new TestImpact();
+                Impacts.Add(impactName, impact);
+            }
 
             CurrentImpactName = impactName;
         }
 
-        private void OnButtonFireDownHandler()
+        private void ButtonFireDownHandler()
         {
             _weapon.ShotProcess.StartFire();
         }
 
-        private void OnButtonFireUpHandler() 
+        private void ButtonFireUpHandler() 
         {
             _weapon.ShotProcess.StopFire();
         }

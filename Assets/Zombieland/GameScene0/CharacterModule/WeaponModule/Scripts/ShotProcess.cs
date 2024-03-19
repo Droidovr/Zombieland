@@ -1,4 +1,10 @@
 using System;
+using System.Collections.Generic;
+using System.Xml.Linq;
+using Unity.Burst.Intrinsics;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
+using static UnityEditor.Progress;
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
     [Serializable]
@@ -7,6 +13,8 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         public IWeapon Weapon { get; set; }
         public IConsumption Consumption { get; set; }
         public float CheckFirePermissionPeriod { get; set; }
+        public float TimeBetweenShots { get; set; }
+        public float TimeBetweenRecharges { get; set; }
 
         private ShotTimer _shotPermitionTimer;
         private ShotTimer _shotFinishPreparationTimer;
@@ -66,7 +74,32 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         private bool CheckFirePermission()
         {
             // проверяем наличие ресурсов или итемы, отсутствие состояние стана, смерти, наличие патронов, наличие цели, если это предусмотрено.
-            return true;
+            
+            bool isCheckResource = false;
+
+            string currentImpactName = Weapon.WeaponData.Owner.WeaponController.CurrentImpactName;
+            TestImpact currentImpact = Weapon.WeaponData.Owner.WeaponController.Impacts[currentImpactName];
+
+            List<TestConsumableResource> consumableResource = currentImpact.ImpactData.ConsumableResources;
+            for (int i = 0; i < consumableResource.Count; i++)
+            {
+                // Проверяем наши ресурсы, если ресурсов больше или равно что нам нужно из consumableResource - возвращем true иначе false
+                // Item, // кристалы, свитки и т.д.
+                // Attributes // манна, здоровье, сила и т.д.
+
+                isCheckResource = true;
+            }
+            // Подобно такому же проверяем все другие условия: состояние стана, смерти, наличие патронов, наличие цели, если это предусмотрено
+
+            if (isCheckResource)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
         private void ResourcesConsumption() // расход ресурсов(атрибутов и айтемов)

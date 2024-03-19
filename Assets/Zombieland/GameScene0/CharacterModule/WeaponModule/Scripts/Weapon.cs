@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
@@ -10,5 +11,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         public WeaponData WeaponData { get; set; }
         public IShotProcess ShotProcess { get; set; }
+
     }
 }
