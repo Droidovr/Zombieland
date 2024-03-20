@@ -24,7 +24,7 @@ namespace Zombieland.GameScene0.ImpactModule
             }
             else
             {
-                _updater = Impact.ImpactObject.AddComponent<Updater>();
+                _updater = Impact.ImpactData.ImpactObject.AddComponent<Updater>();
                 _updater.SubscribeToUpdate(CheckLifetime);
             }
         }
@@ -39,17 +39,17 @@ namespace Zombieland.GameScene0.ImpactModule
         private void ActivateMine()
         {
             var explosionEffectPrefab = Resources.Load<GameObject>(ExplosionEffectPrefabID);
-            var explosionEffect = GameObject.Instantiate(explosionEffectPrefab, Impact.ImpactObject.transform.position, Quaternion.identity);
+            var explosionEffect = GameObject.Instantiate(explosionEffectPrefab, Impact.ImpactData.ImpactObject.transform.position, Quaternion.identity);
             var explosionEffectTime = explosionEffect.GetComponent<ParticleSystem>().main.duration;
             GameObject.Destroy(explosionEffect, explosionEffectTime);
             
-            var targetsList = Detector.GetTargets(Impact.ImpactObject);
-            Impact.Targets = targetsList;
+            var targetsList = Detector.GetTargets(Impact.ImpactData.ImpactObject);
+            Impact.ImpactData.Targets = targetsList;
 
             if (targetsList != null && targetsList.Count > 0)
             {
                 var onTargetEffectPrefab = Resources.Load<GameObject>(OnTargetEffectPrefabID);
-                foreach (var target in Impact.Targets)
+                foreach (var target in Impact.ImpactData.Targets)
                 {
                     //target.TestApplyDirectImpact(InitialImpactData);
                     target.Owner.TakeImpactController.ApplyImpact(InitialImpactData);

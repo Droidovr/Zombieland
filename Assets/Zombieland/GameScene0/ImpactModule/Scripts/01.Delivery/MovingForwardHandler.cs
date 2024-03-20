@@ -22,7 +22,7 @@ namespace Zombieland.GameScene0.ImpactModule
 
         public void Execute()
         {
-            _impactObject = Impact.ImpactObject;
+            _impactObject = Impact.ImpactData.ImpactObject;
             _impactObject.transform.position = ObjectSpawnPosition;
             _impactObject.transform.rotation = ObjectRotation;
 

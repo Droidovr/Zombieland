@@ -9,9 +9,7 @@ namespace Zombieland.GameScene0.ImpactModule
     [Serializable]
     public class Impact : IImpact
     {
-        [JsonIgnore] public ICharacterController ImpactOwner { get; set; }
-        [JsonIgnore] public List<IImpactable> Targets { get; set; }
-        [JsonIgnore] public GameObject ImpactObject { get; set; }
+        public ImpactData ImpactData { get; set; }
         public IImpactCommand Assembler { get; set; }
         public IImpactCommand Delivery { get; set; }
         public IImpactCommand InitialImpact { get; set; }

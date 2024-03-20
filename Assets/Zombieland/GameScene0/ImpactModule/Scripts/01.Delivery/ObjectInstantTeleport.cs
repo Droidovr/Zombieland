@@ -15,10 +15,10 @@ namespace Zombieland.GameScene0.ImpactModule
 
         public void Execute()
         {
-            Impact.ImpactObject.transform.position = ObjectSpawnPosition;
-            Impact.ImpactObject.transform.rotation = ObjectRotation;
+            Impact.ImpactData.ImpactObject.transform.position = ObjectSpawnPosition;
+            Impact.ImpactData.ImpactObject.transform.rotation = ObjectRotation;
 
-            var collisionHandler = Impact.ImpactObject.AddComponent<CollisionHandler>();
+            var collisionHandler = Impact.ImpactData.ImpactObject.AddComponent<CollisionHandler>();
             collisionHandler.Init(FinalizeDelivery, IgnoringColliders);
         }
 

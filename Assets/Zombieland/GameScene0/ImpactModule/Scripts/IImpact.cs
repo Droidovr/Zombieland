@@ -6,9 +6,7 @@ namespace Zombieland.GameScene0.ImpactModule
 {
     public interface IImpact
     {
-        public ICharacterController ImpactOwner { get; set; }
-        public List<IImpactable> Targets { get; set; }
-        public GameObject ImpactObject { get; set; }
+        public ImpactData ImpactData { get; set; }
         public IImpactCommand Assembler { get; set; }
         public IImpactCommand Delivery { get; set; }
         public IImpactCommand InitialImpact { get; set; }

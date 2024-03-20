@@ -46,7 +46,7 @@ namespace Zombieland.GameScene0.ImpactModule
                     var targets = new List<IImpactable>();
                     foreach (var target in TargetImpactableList)
                         targets.Add(target);
-                    impact.Targets = targets;
+                    impact.ImpactData.Targets = targets;
                 }
                 
                 impact.Activate();

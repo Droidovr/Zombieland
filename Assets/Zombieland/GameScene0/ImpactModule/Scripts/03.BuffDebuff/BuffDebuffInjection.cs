@@ -14,13 +14,13 @@ namespace Zombieland.GameScene0.ImpactModule
 
         public void Execute()
         {
-            foreach (var target in Impact.Targets)
+            foreach (var target in Impact.ImpactData.Targets)
             {
                 if (Buffs.Count > 0)
                 {
                     foreach (var buff in Buffs)
                     {
-                        buff.BuffDebuffData.Owner = Impact.ImpactOwner;
+                        buff.BuffDebuffData.Owner = Impact.ImpactData.ImpactOwner;
                         buff.BuffDebuffData.ImpactTarget = target.Owner;
                     }
                     target.TestApplyBuffs(Buffs);
@@ -31,7 +31,7 @@ namespace Zombieland.GameScene0.ImpactModule
                 {
                     foreach (var debuff in Debuffs)
                     {
-                        debuff.BuffDebuffData.Owner = Impact.ImpactOwner;
+                        debuff.BuffDebuffData.Owner = Impact.ImpactData.ImpactOwner;
                         debuff.BuffDebuffData.ImpactTarget = target.Owner;
                     }
                     target.TestApplyDebuffs(Debuffs);

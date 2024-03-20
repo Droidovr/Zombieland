@@ -13,14 +13,14 @@ namespace Zombieland.GameScene0.ImpactModule
         public void Execute()
         {
             var impactObjectPrefab = Resources.Load<GameObject>(PrefabID);
-            Impact.ImpactObject = GameObject.Instantiate(impactObjectPrefab);
+            Impact.ImpactData.ImpactObject = GameObject.Instantiate(impactObjectPrefab);
             
             Impact.Delivery.Execute();
         }
 
         public void Deactivate()
         {
-            GameObject.Destroy(Impact.ImpactObject);
+            GameObject.Destroy(Impact.ImpactData.ImpactObject);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Zombieland.GameScene0.ImpactModule
         public void Execute()
         {
             var effectPrefab = Resources.Load<GameObject>(OnTargetEffectPrefabID);
-            foreach (var target in Impact.Targets)
+            foreach (var target in Impact.ImpactData.Targets)
             {
                 //target.TestApplyDirectImpact(InitialImpactData);
                 target.Owner.TakeImpactController.ApplyImpact(InitialImpactData);

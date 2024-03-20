@@ -277,12 +277,15 @@
                 <e p="03.BuffDebuff" t="Include">
                   <e p="BuffDebuffInjection.cs" t="Include" />
                 </e>
+                <e p="ConsumableResource.cs" t="Include" />
                 <e p="Deserializator.cs" t="Include" />
                 <e p="IDetector.cs" t="Include" />
                 <e p="IImpact.cs" t="Include" />
                 <e p="IImpactable.cs" t="Include" />
                 <e p="IImpactCommand.cs" t="Include" />
                 <e p="Impact.cs" t="Include" />
+                <e p="ImpactData.cs" t="Include" />
+                <e p="ResourceType.cs" t="Include" />
               </e>
               <e p="Test" t="Include">
                 <e p="TestEnemyCircleMoving.cs" t="Include" />
