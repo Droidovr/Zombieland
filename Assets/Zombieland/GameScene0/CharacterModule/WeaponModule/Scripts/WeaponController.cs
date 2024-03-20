@@ -36,6 +36,8 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         public override void Disable()
         {
+            _weapon.ShotProcess.StopFire();
+
             CharacterController.EquipmentController.OnWeaponChanged -= WeaponChangedHandler;
             CharacterController.EquipmentController.OnAmmoChanged -= AmmoChangedHandler;
             CharacterController.RootController.UIController.OnFireDown -= ButtonFireDownHandler;
@@ -66,7 +68,10 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             if (!Impacts.ContainsKey(impactName))
             {
                 //Impact impact = ДесериализуемИмпакт(impactName);
+                // Test -------------------------------------
                 TestImpact impact = new TestImpact();
+                // ------------------------------------------
+
                 Impacts.Add(impactName, impact);
             }
 

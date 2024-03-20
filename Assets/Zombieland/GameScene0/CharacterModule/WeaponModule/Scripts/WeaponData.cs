@@ -14,5 +14,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         public Vector3 DeparturePoint; //localPosition вылета пули т.п.
         public string FVXShotingName;
         public List<string> AvailableImpactIDs; // это список разрешенных зарядов для стрельбы - для екипировки
+        public float ShootCooldown;
+        public float ReloadCooldown;
     }
 }
