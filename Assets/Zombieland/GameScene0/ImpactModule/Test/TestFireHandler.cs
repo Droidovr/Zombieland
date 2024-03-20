@@ -9,8 +9,8 @@ namespace Zombieland.GameScene0.ImpactModule
     {
         public string ImpactName;
         public Transform HeroWeaponTransform;
-        public Transform TargetTransform;
-        public Transform MineSpawnPosition;
+        public Transform FollowTargetTransform;
+        public Transform SpawnPosition;
         [SerializeReference] public List<ImpactSensor> TargetImpactableList;
 
         void Update()
@@ -22,33 +22,17 @@ namespace Zombieland.GameScene0.ImpactModule
                     Debug.LogError("Cannot find file at " + ImpactName);
                 var settings = new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.Auto};
                 var impact = JsonConvert.DeserializeObject<Impact>(textAsset.text, settings);
-                if (impact.Delivery is MovingForwardHandler movingForwardHandler)
+                impact.ImpactData.ObjectSpawnPosition = !SpawnPosition ? HeroWeaponTransform.position : SpawnPosition.position;
+                impact.ImpactData.ObjectRotation = HeroWeaponTransform.rotation;
+                impact.ImpactData.IgnoringColliders = new List<Collider>{GetComponent<Collider>()};
+                impact.ImpactData.FollowTargetTransform = FollowTargetTransform;
+
+                if (TargetImpactableList.Count > 0)
                 {
-                    movingForwardHandler.ObjectSpawnPosition = HeroWeaponTransform.position; 
-                    movingForwardHandler.ObjectRotation = HeroWeaponTransform.rotation;
-                    movingForwardHandler.IgnoringColliders = new List<Collider>{GetComponent<Collider>()};
-                }
-                else if (impact.Delivery is FollowingTargetHandler followingTargetHandler)
-                {
-                    followingTargetHandler.ObjectSpawnPosition = HeroWeaponTransform.position; 
-                    followingTargetHandler.ObjectRotation = HeroWeaponTransform.rotation;
-                    followingTargetHandler.TargetTransform = TargetTransform;
-                    followingTargetHandler.IgnoringColliders = new List<Collider>{GetComponent<Collider>()};
-                }
-                else if (impact.Delivery is ObjectInstantTeleport objectInstantTeleport)
-                {
-                    objectInstantTeleport.ObjectSpawnPosition = MineSpawnPosition.position; 
-                    objectInstantTeleport.ObjectRotation = Quaternion.identity;
-                    objectInstantTeleport.IgnoringColliders = new List<Collider>{GetComponent<Collider>()};
-                }
-                else if (impact.Delivery is ImpactInstantTeleport)
-                {
-                    var targets = new List<IImpactable>();
-                    foreach (var target in TargetImpactableList)
-                        targets.Add(target);
+                    var targets = new List<IImpactable>(TargetImpactableList);
                     impact.ImpactData.Targets = targets;
                 }
-                
+
                 impact.Activate();
             }
         }

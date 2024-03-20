@@ -9,15 +9,12 @@ namespace Zombieland.GameScene0.ImpactModule
     public class FollowingTargetHandler : IImpactCommand
     {
         [JsonIgnore] public IImpact Impact { get; set; }
-        [JsonIgnore] public Vector3 ObjectSpawnPosition { get; set; }
-        [JsonIgnore] public Quaternion ObjectRotation { get; set; }
-        [JsonIgnore] public Transform TargetTransform { get; set; }
-        [JsonIgnore] public List<Collider> IgnoringColliders { get; set; }
         public float MovingSpeed { get; set; }
         public float Range { get; set; }
         public float Lifetime { get; set; }
 
         private GameObject _impactObject;
+        private Transform _followTargetTransform;
         private Updater _updater;
         private bool _isLifetimeRelated;
         
@@ -26,11 +23,12 @@ namespace Zombieland.GameScene0.ImpactModule
         public void Execute()
         {
             _impactObject = Impact.ImpactData.ImpactObject;
-            _impactObject.transform.position = ObjectSpawnPosition;
-            _impactObject.transform.rotation = ObjectRotation;
+            _followTargetTransform = Impact.ImpactData.FollowTargetTransform;
+            _impactObject.transform.position = Impact.ImpactData.ObjectSpawnPosition;
+            _impactObject.transform.rotation = Impact.ImpactData.ObjectRotation;
 
             var collisionHandler = _impactObject.AddComponent<CollisionHandler>();
-            collisionHandler.Init(FinalizeDelivery, IgnoringColliders);
+            collisionHandler.Init(FinalizeDelivery, Impact.ImpactData.IgnoringColliders);
             
             _updater = _impactObject.AddComponent<Updater>();
             _updater.SubscribeToUpdate(MoveObject);
@@ -41,9 +39,9 @@ namespace Zombieland.GameScene0.ImpactModule
         private void MoveObject()
         {
             _impactObject.transform.position = Vector3.MoveTowards(_impactObject.transform.position,
-                TargetTransform.position, MovingSpeed * Time.deltaTime);
+                _followTargetTransform.position, MovingSpeed * Time.deltaTime);
 
-            var direction = TargetTransform.position - _impactObject.transform.position;
+            var direction = _followTargetTransform.position - _impactObject.transform.position;
             var targetRotation = Quaternion.LookRotation(direction, Vector3.up);
             _impactObject.transform.rotation = Quaternion.Lerp(_impactObject.transform.rotation, targetRotation,
                 PROJECTILE_ROTATION_SPEED * Time.deltaTime);
@@ -56,7 +54,7 @@ namespace Zombieland.GameScene0.ImpactModule
 
         private void CheckDistance()
         {
-            if (Vector3.Distance(_impactObject.transform.position, ObjectSpawnPosition) < Range) return;
+            if (Vector3.Distance(_impactObject.transform.position, Impact.ImpactData.ObjectSpawnPosition) < Range) return;
             FinalizeDelivery();
         }
 

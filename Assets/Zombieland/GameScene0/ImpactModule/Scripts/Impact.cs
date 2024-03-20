@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
-using UnityEngine;
-using Zombieland.GameScene0.CharacterModule;
+using System.Linq;
 
 namespace Zombieland.GameScene0.ImpactModule
 {
@@ -21,6 +18,24 @@ namespace Zombieland.GameScene0.ImpactModule
             Delivery.Impact = this;
             InitialImpact.Impact = this;
             BuffDebuffInjection.Impact = this;
+            
+            var initialImpact = (IInitialImpact)InitialImpact;
+            var updatedInitialImpactList = initialImpact.InitialImpactData
+                .Select(impact => ImpactData.ImpactOwner.BuffDebuffController.GetProcessedImpactValue(impact)).
+                ToList();
+            initialImpact.InitialImpactData = updatedInitialImpactList;
+
+            var buffDebuffInjection = (BuffDebuffInjection)BuffDebuffInjection;
+            foreach (var buff in buffDebuffInjection.Buffs)
+            {
+                buff.BuffDebuffData.DirectImpactData = ImpactData.ImpactOwner.BuffDebuffController.GetProcessedImpactValue(buff.BuffDebuffData.DirectImpactData);
+            }
+            
+            foreach (var debuff in buffDebuffInjection.Debuffs)
+            {
+                debuff.BuffDebuffData.DirectImpactData = ImpactData.ImpactOwner.BuffDebuffController.GetProcessedImpactValue(debuff.BuffDebuffData.DirectImpactData);
+            }
+            
             Assembler.Execute();
         }
 

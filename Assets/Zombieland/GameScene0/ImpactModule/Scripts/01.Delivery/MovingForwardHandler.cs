@@ -9,9 +9,6 @@ namespace Zombieland.GameScene0.ImpactModule
     public class MovingForwardHandler : IImpactCommand
     {
         [JsonIgnore] public IImpact Impact { get; set; }
-        [JsonIgnore] public Vector3 ObjectSpawnPosition { get; set; }
-        [JsonIgnore] public Quaternion ObjectRotation { get; set; }
-        [JsonIgnore] public List<Collider> IgnoringColliders { get; set; }
         public float MovingSpeed { get; set; }
         public float Range { get; set; }
         public float Lifetime { get; set; }
@@ -23,11 +20,11 @@ namespace Zombieland.GameScene0.ImpactModule
         public void Execute()
         {
             _impactObject = Impact.ImpactData.ImpactObject;
-            _impactObject.transform.position = ObjectSpawnPosition;
-            _impactObject.transform.rotation = ObjectRotation;
+            _impactObject.transform.position = Impact.ImpactData.ObjectSpawnPosition;
+            _impactObject.transform.rotation = Impact.ImpactData.ObjectRotation;
 
             var collisionHandler = _impactObject.AddComponent<CollisionHandler>();
-            collisionHandler.Init(FinalizeDelivery, IgnoringColliders);
+            collisionHandler.Init(FinalizeDelivery, Impact.ImpactData.IgnoringColliders);
             
             _updater = _impactObject.AddComponent<Updater>();
             _updater.SubscribeToUpdate(MoveObject);
@@ -46,7 +43,7 @@ namespace Zombieland.GameScene0.ImpactModule
 
         private void CheckDistance()
         {
-            if (Vector3.Distance(_impactObject.transform.position, ObjectSpawnPosition) < Range) return;
+            if (Vector3.Distance(_impactObject.transform.position, Impact.ImpactData.ObjectSpawnPosition) < Range) return;
             FinalizeDelivery();
         }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Zombieland.GameScene0.ImpactModule
 {
     [Serializable]
-    public class UpfrontRayDetector : IDetector
+    public class UpfrontRayDetector
     {
         public float DetectionRadius { get; set; }
         private const float MinCastSphereRadius = 0.2f;

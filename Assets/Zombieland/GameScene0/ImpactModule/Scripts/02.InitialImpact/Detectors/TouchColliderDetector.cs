@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Zombieland.GameScene0.ImpactModule
 {
     [Serializable]
-    public class TouchColliderDetector : IDetector
+    public class TouchColliderDetector
     {
         public List<IImpactable> GetTargets(GameObject impactObject)
         {

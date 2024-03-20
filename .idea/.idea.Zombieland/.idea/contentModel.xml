@@ -245,41 +245,43 @@
             </e>
             <e p="ImpactModule" t="Include">
               <e p="Resources" t="Include">
-                <e p="HomingProjectile.txt" t="Include" />
-                <e p="InfectedMine.txt" t="Include" />
-                <e p="MinorHealing.txt" t="Include" />
-                <e p="SlowdownProjectile.txt" t="Include" />
+                <e p="GunBullet.txt" t="Include" />
+                <e p="Knife.txt" t="Include" />
+                <e p="ShotgunBullet.txt" t="Include" />
               </e>
               <e p="Scripts" t="Include">
                 <e p="00.Assembly" t="Include">
-                  <e p="ImpactAssembler.cs" t="Include" />
+                  <e p="EmptyAssembler.cs" t="Include" />
                   <e p="ObjectAssembler.cs" t="Include" />
                 </e>
                 <e p="01.Delivery" t="Include">
                   <e p="CollisionHandler.cs" t="Include" />
+                  <e p="EmptyDelivery.cs" t="Include" />
                   <e p="FollowingTargetHandler.cs" t="Include" />
-                  <e p="ImpactInstantTeleport.cs" t="Include" />
                   <e p="MovingForwardHandler.cs" t="Include" />
                   <e p="ObjectInstantTeleport.cs" t="Include" />
                   <e p="Updater.cs" t="Include" />
                 </e>
                 <e p="02.InitialImpact" t="Include">
+                  <e p="BaseDirectProjectile.cs" t="Include" />
+                  <e p="BaseHealing.cs" t="Include" />
+                  <e p="BaseHomingProjectile.cs" t="Include" />
+                  <e p="BaseMine.cs" t="Include" />
                   <e p="Detectors" t="Include">
                     <e p="SphereDetector.cs" t="Include" />
                     <e p="TouchColliderDetector.cs" t="Include" />
                     <e p="UpfrontRayDetector.cs" t="Include" />
                   </e>
-                  <e p="HomingProjectile.cs" t="Include" />
-                  <e p="InfectedMine.cs" t="Include" />
-                  <e p="MinorHealing.cs" t="Include" />
-                  <e p="SlowDownProjectile.cs" t="Include" />
+                  <e p="GunBullet.cs" t="Include" />
+                  <e p="IInitialImpact.cs" t="Include" />
+                  <e p="Knife.cs" t="Include" />
+                  <e p="ShotgunBullet.cs" t="Include" />
                 </e>
                 <e p="03.BuffDebuff" t="Include">
                   <e p="BuffDebuffInjection.cs" t="Include" />
                 </e>
                 <e p="ConsumableResource.cs" t="Include" />
                 <e p="Deserializator.cs" t="Include" />
-                <e p="IDetector.cs" t="Include" />
                 <e p="IImpact.cs" t="Include" />
                 <e p="IImpactable.cs" t="Include" />
                 <e p="IImpactCommand.cs" t="Include" />
@@ -288,10 +290,16 @@
                 <e p="ResourceType.cs" t="Include" />
               </e>
               <e p="Test" t="Include">
+                <e p="Archive" t="Include">
+                  <e p="TestHomingProjectile.txt" t="Include" />
+                  <e p="TestInfectedMine.txt" t="Include" />
+                  <e p="TestMinorHealing.txt" t="Include" />
+                  <e p="TestSlowdownProjectile.txt" t="Include" />
+                </e>
                 <e p="TestEnemyCircleMoving.cs" t="Include" />
                 <e p="TestFireHandler.cs" t="Include" />
-                <e p="TestImapactCreatorEditor.cs" t="Include" />
                 <e p="TestImpactCreator.cs" t="Include" />
+                <e p="TestImpactCreatorEditor.cs" t="Include" />
               </e>
             </e>
             <e p="RootModule" t="Include">

@@ -16,7 +16,7 @@ namespace Zombieland.GameScene0.ImpactModule
         {
             foreach (var target in Impact.ImpactData.Targets)
             {
-                if (Buffs.Count > 0)
+                if (Buffs!= null && Buffs.Count > 0)
                 {
                     foreach (var buff in Buffs)
                     {
@@ -27,7 +27,7 @@ namespace Zombieland.GameScene0.ImpactModule
                     //target.Owner.BuffDebuffController.InjectBuffs(Buffs);
                 }
 
-                if (Debuffs.Count > 0)
+                if (Debuffs!= null && Debuffs.Count > 0)
                 {
                     foreach (var debuff in Debuffs)
                     {

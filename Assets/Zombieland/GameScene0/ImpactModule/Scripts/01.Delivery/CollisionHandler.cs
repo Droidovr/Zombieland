@@ -13,7 +13,7 @@ namespace Zombieland.GameScene0.ImpactModule
         public void Init(Action onObjectCollision, List<Collider> ignoringColliders)
         {
             _onObjectCollision = onObjectCollision;
-            var objectCollider = GetComponent<Collider>();
+            var objectCollider = GetComponentInChildren<Collider>();
             foreach (var ignoringCollider in ignoringColliders)
             {
                 Physics.IgnoreCollision(objectCollider, ignoringCollider, true);

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Zombieland.GameScene0.ImpactModule
 {
@@ -9,17 +10,14 @@ namespace Zombieland.GameScene0.ImpactModule
     public class ObjectInstantTeleport : IImpactCommand
     {
         [JsonIgnore] public IImpact Impact { get; set; }
-        [JsonIgnore] public Vector3 ObjectSpawnPosition { get; set; }
-        [JsonIgnore] public Quaternion ObjectRotation { get; set; }
-        [JsonIgnore] public List<Collider> IgnoringColliders { get; set; }
 
         public void Execute()
         {
-            Impact.ImpactData.ImpactObject.transform.position = ObjectSpawnPosition;
-            Impact.ImpactData.ImpactObject.transform.rotation = ObjectRotation;
+            Impact.ImpactData.ImpactObject.transform.position = Impact.ImpactData.ObjectSpawnPosition;
+            Impact.ImpactData.ImpactObject.transform.rotation = Impact.ImpactData.ObjectRotation;
 
             var collisionHandler = Impact.ImpactData.ImpactObject.AddComponent<CollisionHandler>();
-            collisionHandler.Init(FinalizeDelivery, IgnoringColliders);
+            collisionHandler.Init(FinalizeDelivery, Impact.ImpactData.IgnoringColliders);
         }
 
         private void FinalizeDelivery()

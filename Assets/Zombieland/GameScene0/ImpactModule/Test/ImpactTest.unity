@@ -436,12 +436,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3672fce56632644a5018c27242f36c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ImpactName: MinorHealing
+  ImpactName: Knife
   HeroWeaponTransform: {fileID: 777453216}
-  TargetTransform: {fileID: 1743469692}
-  MineSpawnPosition: {fileID: 1211072021}
-  TargetImpactableList:
-  - {fileID: 1428937451}
+  FollowTargetTransform: {fileID: 0}
+  SpawnPosition: {fileID: 1211072021}
+  TargetImpactableList: []
 --- !u!136 &777453213
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -524,7 +523,7 @@ Transform:
   m_GameObject: {fileID: 777453211}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.71233225, z: 0, w: 0.70184237}
-  m_LocalPosition: {x: -1.715, y: 0.8, z: 4.079}
+  m_LocalPosition: {x: -3, y: 0.85, z: 4.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -660,9 +659,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1211072021}
   m_Layer: 0
-  m_Name: MinePosition
+  m_Name: SpawnPosition
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -675,7 +674,7 @@ Transform:
   m_GameObject: {fileID: 1211072020}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.8, y: 0, z: 4.57}
+  m_LocalPosition: {x: -4.21, y: 0.69, z: 5.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

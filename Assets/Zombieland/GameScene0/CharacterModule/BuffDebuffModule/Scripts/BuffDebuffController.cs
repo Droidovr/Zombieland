@@ -87,12 +87,12 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 
         protected override void CreateHelpersScripts()
         {
-            // This controller doesn’t have any helpers scripts at the moment.
+            // This controller doesnâ€™t have any helpers scripts at the moment.
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            // This controller doesn’t have any subsystems at the moment.
+            // This controller doesnâ€™t have any subsystems at the moment.
         }
     }
 }
