@@ -11,7 +11,6 @@ public class TestScript : MonoBehaviour
     private ImpactDetectionSensor _sensor;
 
 
-      
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("player enter");
@@ -51,7 +50,7 @@ public class TestScript : MonoBehaviour
             if (_inArea)
             {
                 _sensor.GetImpactableObject().ApplyImpact(new DirectImpactData() { AbsoluteValue = 10 }); // for full test add log or listener to HP in CaracterData
-                Debug.Log("player exit");
+                Debug.Log("player take damage");
             }
         }
     }
