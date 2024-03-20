@@ -12,8 +12,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         public string CurrentImpactName { get; private set; }
         public Dictionary<string, TestImpact> Impacts { get; private set; }
-
-        public readonly ICharacterController CharacterController;
+        public ICharacterController CharacterController { get; private set; }
 
         private Weapon _weapon;
 

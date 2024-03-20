@@ -9,6 +9,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         event Action OnShotPerformed;
         event Action OnShotFailed;
 
+        ICharacterController CharacterController { get; }
         string CurrentImpactName { get; }
         Dictionary<string, TestImpact> Impacts { get; }
     }

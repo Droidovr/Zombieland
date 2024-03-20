@@ -74,24 +74,14 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         private bool CheckFirePermission()
         {
             // проверяем наличие ресурсов или итемы, отсутствие состояние стана, смерти, наличие патронов, наличие цели, если это предусмотрено.
-            
-            bool isCheckResource = false;
+            // Дописать после написания модуля Экипировки - наличие патронов
+            // Дописать после написания модуля Прицеливания - есть ли цель
 
-            string currentImpactName = Weapon.WeaponData.Owner.WeaponController.CurrentImpactName;
-            TestImpact currentImpact = Weapon.WeaponData.Owner.WeaponController.Impacts[currentImpactName];
+            bool isCheckResource = ResourcesConsumption();
+            bool isDead = Weapon.WeaponData.Owner.WeaponController.CharacterController.CharacterDataController.CharacterData.IsDead;
+            bool isStunned = Weapon.WeaponData.Owner.WeaponController.CharacterController.CharacterDataController.CharacterData.IsStunned;
 
-            List<TestConsumableResource> consumableResource = currentImpact.ImpactData.ConsumableResources;
-            for (int i = 0; i < consumableResource.Count; i++)
-            {
-                // Проверяем наши ресурсы, если ресурсов больше или равно что нам нужно из consumableResource - возвращем true иначе false
-                // Item, // кристалы, свитки и т.д.
-                // Attributes // манна, здоровье, сила и т.д.
-
-                isCheckResource = true;
-            }
-            // Подобно такому же проверяем все другие условия: состояние стана, смерти, наличие патронов, наличие цели, если это предусмотрено
-
-            if (isCheckResource)
+            if (isCheckResource && isDead && isStunned)
             {
                 return true;
             }
@@ -102,14 +92,41 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         }
 
-        private void ResourcesConsumption() // расход ресурсов(атрибутов и айтемов)
+        private bool ResourcesConsumption()
         {
-            // Прогнать наш ресурс через бафдебафсистем и проверить в нашей CharacterData или есть у нас возможность.
+            bool isCheckResource = false;
+
+            string currentImpactName = Weapon.WeaponData.Owner.WeaponController.CurrentImpactName;
+            TestImpact currentImpact = Weapon.WeaponData.Owner.WeaponController.Impacts[currentImpactName];
+            List<TestConsumableResource> consumableResource = currentImpact.ImpactData.ConsumableResources;
+
+            for (int i = 0; i < consumableResource.Count; i++)
+            {
+                switch (consumableResource[i].ResourceType)
+                {
+                    case TestResourceType.Stamina:
+                        if (consumableResource[i].Value >= Weapon.WeaponData.Owner.WeaponController.CharacterController.CharacterDataController.CharacterData.Stamina)
+                        {
+                            isCheckResource = true;
+                        }
+                        else
+                        {
+                            isCheckResource = false;
+                        }
+                        break;
+
+                    default:
+                        isCheckResource = false;
+                        break;
+                }
+            }
+
+            return isCheckResource;
         }
 
         private void Fire()
-        { 
-        
+        {
+
         }
     }
 }
