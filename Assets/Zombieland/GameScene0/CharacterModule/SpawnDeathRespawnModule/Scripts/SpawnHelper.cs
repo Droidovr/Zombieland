@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule;
 
 namespace Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule
 {
@@ -18,12 +17,18 @@ namespace Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule
         public void Start()
         {
             var characterData = _spawnDeathRespawnController.CharacterController.CharacterDataController.CharacterData;
+            var radiusAgent = _spawnDeathRespawnController.CharacterController.VisualBodyController.CharacterInScene.GetComponent<UnityEngine.CharacterController>().radius;
 
             SpawnData spawnData = characterData.SpawnData;
-            //AvailablePosition availablePosition = new AvailablePosition();
+            Vector3 DefaultPosition = new Vector3(spawnData.DefaultPosition.X, spawnData.DefaultPosition.Y, spawnData.DefaultPosition.Z);
+            AvailablePosition availablePosition = new AvailablePosition();
 
-            //Vector3 spawnPosition = availablePosition.GetSpawnPosition(spawnData.DefaultPosition, spawnData.SpawnRadius, 0.2f);
-            //OnSpawn?.Invoke(spawnPosition);
+            Vector3 spawnPosition = availablePosition.GetSpawnPosition(DefaultPosition, spawnData.SpawnRadius, radiusAgent, spawnData.SpawnType);
+
+            if (spawnPosition != null)
+            {
+                OnSpawn?.Invoke(spawnPosition);
+            }
         }
     }
 }

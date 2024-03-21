@@ -7,17 +7,19 @@ namespace Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule
     public class SpawnDeathRespawnController : Controller, ISpawnDeathRespawnController
     {
         public event Action<Vector3> OnSpawn;
+
+        private SpawnHelper spawnHelper;
+
         public ICharacterController CharacterController { get; }
 
-        public SpawnDeathRespawnController(IController parentController, List<IController> requiredControllers) : base(
-            parentController, requiredControllers)
+        public SpawnDeathRespawnController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             CharacterController = parentController as ICharacterController;
+            spawnHelper = new SpawnHelper(this);
         }
 
         protected override void CreateHelpersScripts()
         {
-            SpawnHelper spawnHelper = new SpawnHelper(this);
             spawnHelper.Start();
         }
 
