@@ -8,13 +8,12 @@ using Zombieland.GameScene0.CharacterModule.EquipmentModule;
 using Zombieland.GameScene0.CharacterModule.SensorModule;
 using Zombieland.GameScene0.CharacterModule.TakeImpactModule;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
-using Zombieland.GameScene0.ImpactModule;
 using Zombieland.GameScene0.RootModule;
 using Zombieland.GameScene0.VisualBodyModule;
 
 namespace Zombieland.GameScene0.CharacterModule
 {
-    public class CharacterController : Controller, ICharacterController, IImpactable
+    public class CharacterController : Controller, ICharacterController
     {
         public IRootController RootController { get; private set; }
         public ICharacterDataController CharacterDataController { get; private set; }
@@ -75,12 +74,6 @@ namespace Zombieland.GameScene0.CharacterModule
 
             BuffDebuffController = new BuffDebuffController(this, null);
             subsystemsControllers.Add((IController)BuffDebuffController);
-        }
-        
-        public void ApplyImpact(IImpactController impactController)
-        {
-            // if its direct damage
-            TakeImpactController.ProcessImpact(impactController);
         }
     }
 }
