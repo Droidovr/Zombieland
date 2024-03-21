@@ -1,6 +1,4 @@
-using System;
-using System.Numerics;
-using Zombieland.GameScene0.CharacterModule.SpawnDeathRespawmModule;
+using Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule;
 
 namespace Zombieland.GameScene0.CharacterModule.CharacterDataModule
 {
@@ -11,7 +9,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterDataModule
         public float MaxRotationSpeed;
         public float DesignRotationSpeed;
 
+        public SpawnData SpawnData;
 
-        public ICommandSpawner SpawnMethod;
     }
 }

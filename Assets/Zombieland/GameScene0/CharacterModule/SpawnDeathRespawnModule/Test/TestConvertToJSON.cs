@@ -1,11 +1,12 @@
 using Newtonsoft.Json;
 using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
+using Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule;
 using Vector3 = System.Numerics.Vector3;
 
 public class TestConvertToJSON : MonoBehaviour
 {
-    
+    /*
     void Start()
     {
         Serialize();
@@ -35,6 +36,6 @@ public class TestConvertToJSON : MonoBehaviour
 
         // Выполняем команду из десериализованного CommandHolder
         characterData.SpawnMethod.Execute();
-    }
+    }*/
 
 }
