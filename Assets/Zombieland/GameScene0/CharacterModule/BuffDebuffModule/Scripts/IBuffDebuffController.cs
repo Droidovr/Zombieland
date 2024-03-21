@@ -7,6 +7,7 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
         Dictionary<string, IBuffDebuffCommand> Buffs { get; set; }
         Dictionary<string, IBuffDebuffCommand> Debuffs { get; set; }
         ICharacterController CharacterController { get; }
+        float CountBuffDebuff { get; }
 
 
         void InjectBuffs(List<IBuffDebuffCommand> buffs);
