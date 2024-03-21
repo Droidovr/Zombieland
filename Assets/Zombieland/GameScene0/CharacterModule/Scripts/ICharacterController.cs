@@ -1,5 +1,5 @@
 using Zombieland.GameScene0.CharacterModule.CharacterMovingModule;
-﻿using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
+ using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
 using Zombieland.GameScene0.CharacterModule.EquipmentModule;
 using Zombieland.GameScene0.CharacterModule.SensorModule;
 using Zombieland.GameScene0.CharacterModule.TakeImpactModule;
