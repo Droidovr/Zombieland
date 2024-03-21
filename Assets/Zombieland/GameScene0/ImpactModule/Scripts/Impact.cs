@@ -18,24 +18,27 @@ namespace Zombieland.GameScene0.ImpactModule
             Delivery.Impact = this;
             InitialImpact.Impact = this;
             BuffDebuffInjection.Impact = this;
-            
-            var initialImpact = (IInitialImpact)InitialImpact;
-            var updatedInitialImpactList = initialImpact.InitialImpactData
-                .Select(impact => ImpactData.ImpactOwner.BuffDebuffController.GetProcessedImpactValue(impact)).
-                ToList();
-            initialImpact.InitialImpactData = updatedInitialImpactList;
 
-            var buffDebuffInjection = (BuffDebuffInjection)BuffDebuffInjection;
-            foreach (var buff in buffDebuffInjection.Buffs)
+            if (ImpactData.ImpactOwner.BuffDebuffController.CountBuffDebuff > 0)
             {
-                buff.BuffDebuffData.DirectImpactData = ImpactData.ImpactOwner.BuffDebuffController.GetProcessedImpactValue(buff.BuffDebuffData.DirectImpactData);
-            }
+                var initialImpact = (IInitialImpact)InitialImpact;
+                var updatedInitialImpactList = initialImpact.InitialImpactData
+                    .Select(impact => ImpactData.ImpactOwner.BuffDebuffController.GetProcessedImpactValue(impact)).
+                    ToList();
+                initialImpact.InitialImpactData = updatedInitialImpactList;
+
+                var buffDebuffInjection = (BuffDebuffInjection)BuffDebuffInjection;
+                foreach (var buff in buffDebuffInjection.Buffs)
+                {
+                    buff.BuffDebuffData.DirectImpactData = ImpactData.ImpactOwner.BuffDebuffController.GetProcessedImpactValue(buff.BuffDebuffData.DirectImpactData);
+                }
             
-            foreach (var debuff in buffDebuffInjection.Debuffs)
-            {
-                debuff.BuffDebuffData.DirectImpactData = ImpactData.ImpactOwner.BuffDebuffController.GetProcessedImpactValue(debuff.BuffDebuffData.DirectImpactData);
+                foreach (var debuff in buffDebuffInjection.Debuffs)
+                {
+                    debuff.BuffDebuffData.DirectImpactData = ImpactData.ImpactOwner.BuffDebuffController.GetProcessedImpactValue(debuff.BuffDebuffData.DirectImpactData);
+                }
             }
-            
+
             Assembler.Execute();
         }
 
