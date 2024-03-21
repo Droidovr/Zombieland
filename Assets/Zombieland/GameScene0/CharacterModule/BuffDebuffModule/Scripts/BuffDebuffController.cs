@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,6 +8,7 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
         public Dictionary<string, IBuffDebuffCommand> Buffs { get; set; }
         public Dictionary<string, IBuffDebuffCommand> Debuffs { get; set; }
         public ICharacterController CharacterController { get; private set; }
+        public int CountBuffDebuff => Buffs.Count + Debuffs.Count;
 
         public BuffDebuffController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
@@ -87,12 +87,12 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 
         protected override void CreateHelpersScripts()
         {
-            // This controller doesnâ€™t have any helpers scripts at the moment.
+            // This controller doesn’t have any helpers scripts at the moment.
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            // This controller doesnâ€™t have any subsystems at the moment.
+            // This controller doesn’t have any subsystems at the moment.
         }
     }
 }
