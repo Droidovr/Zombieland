@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using Zombieland.GameScene0.ImpactModule;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
@@ -11,7 +9,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         event Action OnShotFailed;
 
         ICharacterController CharacterController { get; }
+        IWeapon Weapon { get; }
         string CurrentImpactName { get; }
-        Dictionary<string, IImpact> Impacts { get; }
     }
 }

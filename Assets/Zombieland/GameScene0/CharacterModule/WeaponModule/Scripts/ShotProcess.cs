@@ -1,6 +1,5 @@
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using UnityEngine;
 using Zombieland.GameScene0.ImpactModule;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
@@ -8,22 +7,28 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
     [Serializable]
     public class ShotProcess : IShotProcess
     {
-        public IWeapon Weapon { get; set; }
-        public IConsumption Consumption { get; set; }
-        public float CheckFirePermissionPeriod { get; set; }
+        public event Action OnAmmoDepleted;
+        public event Action OnShotPerformed;
+        public event Action OnShotFailed;
+
+        [JsonIgnore] public ICharacterController Owner { get; set; }
+
         public float TimeBetweenShots { get; set; }
         public float TimeBetweenRecharges { get; set; }
 
+        private const float CHECK_FIRE_PERMITION_PERIOD = 0.1f;
+
         private ShotTimer _shotPermitionTimer;
         private InvokeTimer _invokeTimer;
-        private bool isReservedResources;
+        private bool _isReservedResources;
+        private Impact _impact;
 
         #region MainFireLogicScripts
         public void StartFire()
         {
             if (CheckFirePermission())
             {
-                _shotPermitionTimer = new ShotTimer(CheckFirePermissionPeriod, CheckFirePermission);
+                _shotPermitionTimer = new ShotTimer(CHECK_FIRE_PERMITION_PERIOD, CheckFirePermission);
                 _shotPermitionTimer.Start();
                 _shotPermitionTimer.OnPermission += PreparingFire;
             }
@@ -42,28 +47,9 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
             _invokeTimer?.Stop();
 
-            if (isReservedResources)
+            if (_isReservedResources)
             {
-                ICharacterController owner = Weapon.WeaponData.Owner;
-
-                string currentImpactName = owner.WeaponController.CurrentImpactName;
-                IImpact currentImpact = owner.WeaponController.Impacts[currentImpactName];
-                List<ConsumableResource> consumableResource = currentImpact.ImpactData.ConsumableResources;
-
-                for (int i = 0; i < consumableResource.Count; i++)
-                {
-                    switch (consumableResource[i].ResourceType)
-                    {
-                        case ResourceType.Stamina:
-                            owner.WeaponController.CharacterController.CharacterDataController.CharacterData.Stamina += consumableResource[i].Value;
-                            break;
-
-                        default:
-                            break;
-                    }
-                }
-
-                isReservedResources = false;
+                _isReservedResources = false;
             }
 
             //2.прерывание всех запущенных процессов касательно выстрела.
@@ -75,7 +61,12 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             _shotPermitionTimer.Stop();
             _shotPermitionTimer.OnPermission -= PreparingFire;
 
-            // 2. Резервируем ресурсы, которые нужно снять, при этом снять, но не тратить.
+            // 2. Десериализируем Импакт и заполняем поля. Заполнить все поля нужные для Импакт. Установка Owner и Targets. Targets при этом нужно проганять через метод кучности выстрела.
+            _impact = new Deserializator().DeserializeImpact(Owner.WeaponController.CurrentImpactName);
+            _impact.ImpactData.ImpactOwner = Owner;
+
+
+            // 3. Резервируем ресурсы, которые нужно снять, при этом снять, но не тратить.
             // а) Минусуем в EquipmentSystem в нашем магазине Импакт
             // б) Из Импакта по списку List<ConsumableResource> ConsumableResources снимаем наши ресурсы
 
@@ -87,18 +78,12 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
             if (CheckFirePermission())
             {
-                ICharacterController owner = Weapon.WeaponData.Owner;
-
-                string currentImpactName = owner.WeaponController.CurrentImpactName;
-                IImpact currentImpact = owner.WeaponController.Impacts[currentImpactName];
-                List<ConsumableResource> consumableResource = currentImpact.ImpactData.ConsumableResources;
-
-                for (int i = 0; i < consumableResource.Count; i++)
+                for (int i = 0; i < _impact.ImpactData.ConsumableResources.Count; i++)
                 {
-                    switch (consumableResource[i].ResourceType)
+                    switch (_impact.ImpactData.ConsumableResources[i].ResourceType)
                     {
                         case ResourceType.Stamina:
-                            owner.WeaponController.CharacterController.CharacterDataController.CharacterData.Stamina -= consumableResource[i].Value;
+                            Owner.CharacterDataController.CharacterData.Stamina -= _impact.ImpactData.ConsumableResources[i].Value;
                             break;
 
                         default:
@@ -106,43 +91,29 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
                     }
                 }
 
-                isReservedResources = true;
+                _isReservedResources = true;
             }
 
-            // 3. Делаем клон Импакта.
+            // 4. Если есть анимация проигрывания подготовки - дождаться ее завершения.
             // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
             // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-
-            // 4. Заполнить все поля нужные для Импакт. Установка Owner и Targets. Targets при этом нужно проганять через метод кучности выстрела.
-            // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-            // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-            // 5. Если есть анимация проигрывания подготовки - дождаться ее завершения.
-            // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-            // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-            // 6. По окончании всех процедур запускаем Fire().
+            // 5. По окончании всех процедур запускаем Fire().
             CompletionFire();
 
         }
 
         private void CompletionFire()
         {
+            OnShotPerformed.Invoke();
+
             //1. Снимаем зерезервированные ресурсы.
-            isReservedResources = false;
+            _isReservedResources = false;
 
-            //2. Сделать клон Импакта и активируем его.
-            // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-            // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            //2. Активируем Импакт.
+            _impact.Activate();
 
             //3. Проигрываем звук выстрела.
             // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -163,7 +134,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
             //6. Переход обратно через время ShootCooldown на StartFire().
-            _invokeTimer = new InvokeTimer(Weapon.WeaponData.ShootCooldown, StartFire);
+            _invokeTimer = new InvokeTimer(Owner.WeaponController.Weapon.WeaponData.ShootCooldown, StartFire);
             _invokeTimer.Start();
         }
         #endregion
@@ -178,8 +149,8 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             // Дописать после написания модуля Прицеливания - есть ли цель
 
             bool isCheckResource = ResourcesConsumption();
-            bool isDead = Weapon.WeaponData.Owner.WeaponController.CharacterController.CharacterDataController.CharacterData.IsDead;
-            bool isStunned = Weapon.WeaponData.Owner.WeaponController.CharacterController.CharacterDataController.CharacterData.IsStunned;
+            bool isDead = Owner.CharacterDataController.CharacterData.IsDead;
+            bool isStunned = Owner.CharacterDataController.CharacterData.IsStunned;
 
             if (isCheckResource && isDead && isStunned)
             {
@@ -196,18 +167,12 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         {
             bool isCheckResource = false;
 
-            IWeaponController weaponController = Weapon.WeaponData.Owner.WeaponController;
-
-            string currentImpactName = weaponController.CurrentImpactName;
-            IImpact currentImpact = weaponController.Impacts[currentImpactName];
-            List<ConsumableResource> consumableResource = currentImpact.ImpactData.ConsumableResources;
-
-            for (int i = 0; i < consumableResource.Count; i++)
+            for (int i = 0; i < _impact.ImpactData.ConsumableResources.Count; i++)
             {
-                switch (consumableResource[i].ResourceType)
+                switch (_impact.ImpactData.ConsumableResources[i].ResourceType)
                 {
                     case ResourceType.Stamina:
-                        if (consumableResource[i].Value >= weaponController.CharacterController.CharacterDataController.CharacterData.Stamina)
+                        if (_impact.ImpactData.ConsumableResources[i].Value >= Owner.CharacterDataController.CharacterData.Stamina)
                         {
                             isCheckResource = true;
                         }

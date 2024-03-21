@@ -11,17 +11,14 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         public event Action OnShotPerformed;
         public event Action OnShotFailed;
 
-        public string CurrentImpactName { get; private set; }
-        public Dictionary<string, IImpact> Impacts { get; private set; }
         public ICharacterController CharacterController { get; private set; }
+        public IWeapon Weapon { get; private set; }
+        public string CurrentImpactName { get; private set; }
 
-        private Weapon _weapon;
 
 
         public WeaponController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
-            Impacts = new Dictionary<string, IImpact>();
-
             CharacterController = parentController as ICharacterController;
         }
 
@@ -37,7 +34,11 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         public override void Disable()
         {
-            _weapon.ShotProcess.StopFire();
+            if (Weapon != null)
+            {
+                Weapon.ShotProcess.StopFire();
+                Weapon.ShotProcess.OnShotPerformed -= OnShotHandler;
+            }
 
             CharacterController.EquipmentController.OnWeaponChanged -= WeaponChangedHandler;
             CharacterController.EquipmentController.OnAmmoChanged -= AmmoChangedHandler;
@@ -59,34 +60,28 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         private void WeaponChangedHandler(Weapon weapon)
         {
-            _weapon = weapon;
+            Weapon = weapon;
+            Weapon.ShotProcess.OnShotPerformed += OnShotHandler;
         }
 
         private void AmmoChangedHandler(string impactName)
         {
-            // Subscribe to OnAmmoChanged in EquipmentSystem
-
-            if (!Impacts.ContainsKey(impactName))
-            {
-                //Impact impact = ДесериализуемИмпакт(impactName);
-                // Test -------------------------------------
-                //TestImpact impact = new TestImpact();
-                // ------------------------------------------
-
-                //Impacts.Add(impactName, impact);
-            }
-
             CurrentImpactName = impactName;
         }
 
         private void ButtonFireDownHandler()
         {
-            _weapon.ShotProcess.StartFire();
+            Weapon.ShotProcess.StartFire();
         }
 
         private void ButtonFireUpHandler() 
         {
-            _weapon.ShotProcess.StopFire();
+            Weapon.ShotProcess.StopFire();
+        }
+
+        private void OnShotHandler()
+        {
+            OnShotPerformed?.Invoke();
         }
     }
 }

@@ -9,6 +9,5 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         public WeaponData WeaponData { get; set; }
         public IShotProcess ShotProcess { get; set; }
-
     }
 }
