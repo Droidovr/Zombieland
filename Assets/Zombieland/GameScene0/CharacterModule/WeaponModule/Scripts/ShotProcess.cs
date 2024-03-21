@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Zombieland.GameScene0.ImpactModule;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
@@ -46,14 +47,14 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
                 ICharacterController owner = Weapon.WeaponData.Owner;
 
                 string currentImpactName = owner.WeaponController.CurrentImpactName;
-                TestImpact currentImpact = owner.WeaponController.Impacts[currentImpactName];
-                List<TestConsumableResource> consumableResource = currentImpact.ImpactData.ConsumableResources;
+                IImpact currentImpact = owner.WeaponController.Impacts[currentImpactName];
+                List<ConsumableResource> consumableResource = currentImpact.ImpactData.ConsumableResources;
 
                 for (int i = 0; i < consumableResource.Count; i++)
                 {
                     switch (consumableResource[i].ResourceType)
                     {
-                        case TestResourceType.Stamina:
+                        case ResourceType.Stamina:
                             owner.WeaponController.CharacterController.CharacterDataController.CharacterData.Stamina += consumableResource[i].Value;
                             break;
 
@@ -89,14 +90,14 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
                 ICharacterController owner = Weapon.WeaponData.Owner;
 
                 string currentImpactName = owner.WeaponController.CurrentImpactName;
-                TestImpact currentImpact = owner.WeaponController.Impacts[currentImpactName];
-                List<TestConsumableResource> consumableResource = currentImpact.ImpactData.ConsumableResources;
+                IImpact currentImpact = owner.WeaponController.Impacts[currentImpactName];
+                List<ConsumableResource> consumableResource = currentImpact.ImpactData.ConsumableResources;
 
                 for (int i = 0; i < consumableResource.Count; i++)
                 {
                     switch (consumableResource[i].ResourceType)
                     {
-                        case TestResourceType.Stamina:
+                        case ResourceType.Stamina:
                             owner.WeaponController.CharacterController.CharacterDataController.CharacterData.Stamina -= consumableResource[i].Value;
                             break;
 
@@ -198,14 +199,14 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             IWeaponController weaponController = Weapon.WeaponData.Owner.WeaponController;
 
             string currentImpactName = weaponController.CurrentImpactName;
-            TestImpact currentImpact = weaponController.Impacts[currentImpactName];
-            List<TestConsumableResource> consumableResource = currentImpact.ImpactData.ConsumableResources;
+            IImpact currentImpact = weaponController.Impacts[currentImpactName];
+            List<ConsumableResource> consumableResource = currentImpact.ImpactData.ConsumableResources;
 
             for (int i = 0; i < consumableResource.Count; i++)
             {
                 switch (consumableResource[i].ResourceType)
                 {
-                    case TestResourceType.Stamina:
+                    case ResourceType.Stamina:
                         if (consumableResource[i].Value >= weaponController.CharacterController.CharacterDataController.CharacterData.Stamina)
                         {
                             isCheckResource = true;

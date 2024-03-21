@@ -109,11 +109,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16abff6e1f677bf4da1d7bda20e4d585,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6460629959234190722}
+      addedObject: {fileID: 2991187887782095856}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16abff6e1f677bf4da1d7bda20e4d585,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2991187887782095856}
+      addedObject: {fileID: 8368049732950497255}
     - targetCorrespondingSourceObject: {fileID: 1082271958561512970, guid: 16abff6e1f677bf4da1d7bda20e4d585,
         type: 3}
       insertIndex: -1
@@ -323,29 +323,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!136 &6460629959234190722
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 310744569574224249}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.2
-  m_Height: 1.8
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &2991187887782095856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,6 +341,29 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!136 &8368049732950497255
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310744569574224249}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Height: 1.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!1 &543692863993254434 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1082271958561512970, guid: 16abff6e1f677bf4da1d7bda20e4d585,

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Zombieland.GameScene0.ImpactModule;
 
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
@@ -11,7 +12,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         public event Action OnShotFailed;
 
         public string CurrentImpactName { get; private set; }
-        public Dictionary<string, TestImpact> Impacts { get; private set; }
+        public Dictionary<string, IImpact> Impacts { get; private set; }
         public ICharacterController CharacterController { get; private set; }
 
         private Weapon _weapon;
@@ -19,7 +20,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         public WeaponController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
-            Impacts = new Dictionary<string, TestImpact>();
+            Impacts = new Dictionary<string, IImpact>();
 
             CharacterController = parentController as ICharacterController;
         }
@@ -69,10 +70,10 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             {
                 //Impact impact = ДесериализуемИмпакт(impactName);
                 // Test -------------------------------------
-                TestImpact impact = new TestImpact();
+                //TestImpact impact = new TestImpact();
                 // ------------------------------------------
 
-                Impacts.Add(impactName, impact);
+                //Impacts.Add(impactName, impact);
             }
 
             CurrentImpactName = impactName;

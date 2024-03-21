@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Zombieland.GameScene0.ImpactModule;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
@@ -11,6 +12,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         ICharacterController CharacterController { get; }
         string CurrentImpactName { get; }
-        Dictionary<string, TestImpact> Impacts { get; }
+        Dictionary<string, IImpact> Impacts { get; }
     }
 }
