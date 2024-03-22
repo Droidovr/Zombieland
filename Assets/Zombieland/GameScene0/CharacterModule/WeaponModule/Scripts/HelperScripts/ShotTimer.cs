@@ -3,7 +3,7 @@ using System.Timers;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
-    public class ShotTimer
+    public class ShotTimer : IFireTimer
     {
         public event Action OnPermission;
 

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Zombieland.GameScene0.ImpactModule;
+using UnityEngine;
 
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
@@ -71,17 +71,29 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         private void ButtonFireDownHandler()
         {
-            Weapon.ShotProcess.StartFire();
+            if (Weapon != null)
+            {
+                Weapon.ShotProcess.StartFire();
+                Debug.Log("Weapon - ButtonFireDownHandler");
+            }
         }
 
         private void ButtonFireUpHandler() 
         {
-            Weapon.ShotProcess.StopFire();
+            if (Weapon != null)
+            {
+                Weapon.ShotProcess.StopFire();
+                Debug.Log("Weapon - ButtonFireUpHandler");
+            }
         }
 
         private void OnShotHandler()
         {
-            OnShotPerformed?.Invoke();
+            if (Weapon != null)
+            {
+                OnShotPerformed?.Invoke();
+                Debug.Log("Weapon - OnShotHandler");
+            }
         }
     }
 }

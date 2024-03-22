@@ -1,5 +1,5 @@
-using Newtonsoft.Json;
 using System;
+using Newtonsoft.Json;
 using Zombieland.GameScene0.ImpactModule;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
@@ -19,7 +19,8 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         private const float CHECK_FIRE_PERMITION_PERIOD = 0.1f;
 
         private ShotTimer _shotPermitionTimer;
-        private InvokeTimer _invokeTimer;
+        private InvokeTimer _preparingFireTimer;
+        private InvokeTimer _cooldawnTimer;
         private bool _isReservedResources;
         private Impact _impact;
 
@@ -30,123 +31,92 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             {
                 _shotPermitionTimer = new ShotTimer(CHECK_FIRE_PERMITION_PERIOD, CheckFirePermission);
                 _shotPermitionTimer.Start();
-                _shotPermitionTimer.OnPermission += PreparingFire;
+                _shotPermitionTimer.OnPermission += StartPreparingFireTimer;
             }
             else
             {
-                PreparingFire();
+                StartPreparingFireTimer();
             }
         }
 
         public void StopFire()
         {
-            // плановое/намеренное прерывания стрельбы: 
-            //1.всех таймеров
-            _shotPermitionTimer?.Stop();
+            StopTimerSafely(_shotPermitionTimer);
             _shotPermitionTimer.OnPermission -= PreparingFire;
 
-            _invokeTimer?.Stop();
-
+            StopTimerSafely(_preparingFireTimer);
             if (_isReservedResources)
             {
+                ResourceOperation(_isReservedResources);
                 _isReservedResources = false;
             }
 
-            //2.прерывание всех запущенных процессов касательно выстрела.
+            StopTimerSafely(_cooldawnTimer);
         }
 
         private void PreparingFire()
         {
             // 1. Остановка таймера _shotPermitionTimer
-            _shotPermitionTimer.Stop();
+            StopTimerSafely(_shotPermitionTimer);
             _shotPermitionTimer.OnPermission -= PreparingFire;
 
-            // 2. Десериализируем Импакт и заполняем поля. Заполнить все поля нужные для Импакт. Установка Owner и Targets. Targets при этом нужно проганять через метод кучности выстрела.
+            // 2. Deserializator Impact. Filling Owner и Targets. Targets при этом нужно проганять через метод кучности выстрела.
             _impact = new Deserializator().DeserializeImpact(Owner.WeaponController.CurrentImpactName);
             _impact.ImpactData.ImpactOwner = Owner;
 
-
-            // 3. Резервируем ресурсы, которые нужно снять, при этом снять, но не тратить.
-            // а) Минусуем в EquipmentSystem в нашем магазине Импакт
-            // б) Из Импакта по списку List<ConsumableResource> ConsumableResources снимаем наши ресурсы
-
-            // Здесьну нужно списать у EquipmentSystem в нашем магазине Импакт
-            // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-            // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+            // 3. Reserved Resources
             if (CheckFirePermission())
             {
-                for (int i = 0; i < _impact.ImpactData.ConsumableResources.Count; i++)
-                {
-                    switch (_impact.ImpactData.ConsumableResources[i].ResourceType)
-                    {
-                        case ResourceType.Stamina:
-                            Owner.CharacterDataController.CharacterData.Stamina -= _impact.ImpactData.ConsumableResources[i].Value;
-                            break;
-
-                        default:
-                            break;
-                    }
-                }
-
                 _isReservedResources = true;
+                ResourceOperation(_isReservedResources);
             }
 
-            // 4. Если есть анимация проигрывания подготовки - дождаться ее завершения.
-            // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            // 4. Play Animation PreparingFire
 
-
-            // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-            // 5. По окончании всех процедур запускаем Fire().
+            // 5. Fire 
             CompletionFire();
-
         }
 
         private void CompletionFire()
         {
-            OnShotPerformed.Invoke();
-
-            //1. Снимаем зерезервированные ресурсы.
+            //1. Not Reserved Resources
             _isReservedResources = false;
 
-            //2. Активируем Импакт.
+            //2. Impact Active
             _impact.Activate();
+            OnShotPerformed.Invoke();
 
-            //3. Проигрываем звук выстрела.
-            // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            //3. Play Sound
 
+            //4. Instantiate FVX-shoot
 
-            // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            //5. Play Animation Weapon
 
-            //4. Запускаем FVX-выстрела из дула.
-            // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-            // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-            //5. Если есть анимация выстрела проигрываем ее.
-            // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-            // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-            //6. Переход обратно через время ShootCooldown на StartFire().
-            _invokeTimer = new InvokeTimer(Owner.WeaponController.Weapon.WeaponData.ShootCooldown, StartFire);
-            _invokeTimer.Start();
+            //6. Cooldown
+            StartCooldownTimer();
         }
         #endregion
 
 
 
         #region HelperScripts
+        private void StartPreparingFireTimer()
+        {
+            _preparingFireTimer = new InvokeTimer(0, PreparingFire);
+            _preparingFireTimer.Start();
+        }
+
+
+        private void StartCooldownTimer()
+        {
+            _cooldawnTimer = new InvokeTimer(Owner.WeaponController.Weapon.WeaponData.ShootCooldown, StartFire);
+            _cooldawnTimer.Start();
+        }
         private bool CheckFirePermission()
         {
-            // проверяем наличие ресурсов или итемы, отсутствие состояние стана, смерти, наличие патронов, наличие цели, если это предусмотрено.
-            // Дописать после написания модуля Экипировки - наличие патронов
-            // Дописать после написания модуля Прицеливания - есть ли цель
+            // check the availability of resources or items, the absence of stun status, deaths, the presence of ammunition, the presence of a target, if provided.
+            // Add after writing the Equipment module - availability of ammo
+            // Add after writing the Aiming module - is there a target?
 
             bool isCheckResource = ResourcesConsumption();
             bool isDead = Owner.CharacterDataController.CharacterData.IsDead;
@@ -189,6 +159,46 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             }
 
             return isCheckResource;
+        }
+
+        private void ResourceOperation(bool isReservedResources)
+        {
+            // а) Минусуем в EquipmentSystem в нашем магазине Импакт
+            // б) Из Импакта по списку List<ConsumableResource> ConsumableResources снимаем наши ресурсы
+
+            // Здесьну нужно списать у EquipmentSystem в нашем магазине Импакт
+            // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+            // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+            for (int i = 0; i < _impact.ImpactData.ConsumableResources.Count; i++)
+            {
+                switch (_impact.ImpactData.ConsumableResources[i].ResourceType)
+                {
+                    case ResourceType.Stamina:
+                        if (isReservedResources)
+                        {
+                            Owner.CharacterDataController.CharacterData.Stamina -= _impact.ImpactData.ConsumableResources[i].Value;
+                        }
+                        else
+                        {
+                            Owner.CharacterDataController.CharacterData.Stamina += _impact.ImpactData.ConsumableResources[i].Value;
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private void StopTimerSafely(IFireTimer timer)
+        {
+            if (timer != null)
+            {
+                timer?.Stop();
+            }
         }
         #endregion
     }

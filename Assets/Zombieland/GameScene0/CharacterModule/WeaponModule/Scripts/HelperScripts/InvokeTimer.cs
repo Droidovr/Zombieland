@@ -3,16 +3,16 @@ using System.Timers;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
-    public class InvokeTimer
+    public class InvokeTimer : IFireTimer
     {
         private Timer _timer;
         private Action _invokeMethod;
 
-        public InvokeTimer(float interval, Action invokeMethod)
+        public InvokeTimer(float delayTime, Action invokeMethod)
         {
             _invokeMethod = invokeMethod;
 
-            int intervalMS = (int)(interval * 1000);
+            int intervalMS = (int)(delayTime * 1000);
             _timer = new Timer(intervalMS);
         }
 
