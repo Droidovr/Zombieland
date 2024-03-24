@@ -5,6 +5,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
     public interface IShotProcess
     {
         public event Action OnAmmoDepleted;
+        public event Action OnShotAnimationPreparing;
         public event Action OnShotPerformed;
         public event Action OnShotFailed;
 

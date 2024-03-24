@@ -15,6 +15,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         public string PrefabName;
         public string FVXShotingName;
         public string AnimationPreparing;
+        public float TimeAnimationPreparing;
         public string AnimationShot;
         public Vector3 FirePoint;
         public List<string> AvailableImpactIDs;

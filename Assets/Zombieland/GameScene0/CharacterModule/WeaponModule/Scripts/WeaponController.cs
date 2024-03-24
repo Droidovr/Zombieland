@@ -8,14 +8,14 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
     public class WeaponController : Controller, IWeaponController
     {
         public event Action OnAmmoDepleted;
+        public event Action OnShotAnimationPreparing;
         public event Action OnShotPerformed;
         public event Action OnShotFailed;
 
         public ICharacterController CharacterController { get; private set; }
         public IWeapon Weapon { get; private set; }
         public string CurrentImpactName { get; private set; }
-
-
+        public int CurrentImpactCount { get; set; }
 
         public WeaponController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
@@ -37,7 +37,8 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             if (Weapon != null)
             {
                 Weapon.ShotProcess.StopFire();
-                Weapon.ShotProcess.OnShotPerformed -= OnShotHandler;
+                Weapon.ShotProcess.OnShotPerformed -= ShotHandler;
+                Weapon.ShotProcess.OnShotAnimationPreparing -= ShotAnimationPreparing;
             }
 
             CharacterController.EquipmentController.OnWeaponChanged -= WeaponChangedHandler;
@@ -61,11 +62,13 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         private void WeaponChangedHandler(Weapon weapon)
         {
             Weapon = weapon;
-            Weapon.ShotProcess.OnShotPerformed += OnShotHandler;
+            Weapon.ShotProcess.OnShotPerformed += ShotHandler;
+            Weapon.ShotProcess.OnShotAnimationPreparing += ShotAnimationPreparing;
         }
 
-        private void AmmoChangedHandler(string impactName)
+        private void AmmoChangedHandler(int countImpact, string impactName)
         {
+            CurrentImpactCount = countImpact;
             CurrentImpactName = impactName;
         }
 
@@ -87,7 +90,12 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             }
         }
 
-        private void OnShotHandler()
+        private void ShotAnimationPreparing()
+        {
+            OnShotAnimationPreparing?.Invoke();
+        }
+
+        private void ShotHandler()
         {
             if (Weapon != null)
             {

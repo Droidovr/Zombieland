@@ -8,6 +8,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
     public class ShotProcess : IShotProcess
     {
         public event Action OnAmmoDepleted;
+        public event Action OnShotAnimationPreparing;
         public event Action OnShotPerformed;
         public event Action OnShotFailed;
 
@@ -20,6 +21,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         private ShotTimer _shotPermitionTimer;
         private InvokeTimer _preparingFireTimer;
+        private InvokeTimer _completionFireTimer;
         private InvokeTimer _cooldawnTimer;
         private bool _isReservedResources;
         private Impact _impact;
@@ -35,7 +37,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             }
             else
             {
-                StartPreparingFireTimer();
+                PreparingFire();
             }
         }
 
@@ -60,9 +62,10 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             StopTimerSafely(_shotPermitionTimer);
             _shotPermitionTimer.OnPermission -= PreparingFire;
 
-            // 2. Deserializator Impact. Filling Owner и Targets. Targets при этом нужно проганять через метод кучности выстрела.
+            // 2. Deserializator Impact. Filling Owner и Target. Target при этом нужно проганять через метод кучности выстрела. Target получаем от системы прицеливания
             _impact = new Deserializator().DeserializeImpact(Owner.WeaponController.CurrentImpactName);
             _impact.ImpactData.ImpactOwner = Owner;
+            //_impact.ImpactData.Targets = Targets при этом нужно проганять через метод кучности выстрела.
 
             // 3. Reserved Resources
             if (CheckFirePermission())
@@ -72,25 +75,37 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             }
 
             // 4. Play Animation PreparingFire
-
-            // 5. Fire 
-            CompletionFire();
+            if (Owner.WeaponController.Weapon.WeaponData.AnimationPreparing != null)
+            {
+                OnShotAnimationPreparing.Invoke();
+                StartCompletionFireTimer();
+            }
+            else
+            {
+                // 5. Fire 
+                CompletionFire();
+            }
         }
 
         private void CompletionFire()
         {
+            StopTimerSafely(_completionFireTimer);
+
             //1. Not Reserved Resources
             _isReservedResources = false;
 
             //2. Impact Active
             _impact.Activate();
-            OnShotPerformed.Invoke();
 
             //3. Play Sound
-
             //4. Instantiate FVX-shoot
-
             //5. Play Animation Weapon
+            OnShotPerformed.Invoke();
+
+            if (Owner.WeaponController.CurrentImpactCount <= 0)
+            {
+                OnAmmoDepleted.Invoke();
+            }
 
             //6. Cooldown
             StartCooldownTimer();
@@ -106,6 +121,11 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             _preparingFireTimer.Start();
         }
 
+        private void StartCompletionFireTimer()
+        {
+            _completionFireTimer = new InvokeTimer(Owner.WeaponController.Weapon.WeaponData.TimeAnimationPreparing, CompletionFire);
+            _completionFireTimer.Start();
+        }
 
         private void StartCooldownTimer()
         {
@@ -115,7 +135,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         private bool CheckFirePermission()
         {
             // check the availability of resources or items, the absence of stun status, deaths, the presence of ammunition, the presence of a target, if provided.
-            // Add after writing the Equipment module - availability of ammo
             // Add after writing the Aiming module - is there a target?
 
             bool isCheckResource = ResourcesConsumption();
@@ -136,6 +155,8 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         private bool ResourcesConsumption()
         {
             bool isCheckResource = false;
+
+            isCheckResource = Owner.WeaponController.CurrentImpactCount >= 0;
 
             for (int i = 0; i < _impact.ImpactData.ConsumableResources.Count; i++)
             {
@@ -163,14 +184,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         private void ResourceOperation(bool isReservedResources)
         {
-            // а) Минусуем в EquipmentSystem в нашем магазине Импакт
-            // б) Из Импакта по списку List<ConsumableResource> ConsumableResources снимаем наши ресурсы
-
-            // Здесьну нужно списать у EquipmentSystem в нашем магазине Импакт
-            // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-            // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            Owner.WeaponController.CurrentImpactCount += isReservedResources ? -1 : 1;
 
             for (int i = 0; i < _impact.ImpactData.ConsumableResources.Count; i++)
             {
