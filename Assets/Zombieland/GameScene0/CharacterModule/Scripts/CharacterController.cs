@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zombieland.GameScene0.CharacterModule.AimingModule;
 using Zombieland.GameScene0.CharacterModule.AnimationModule;
 using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
@@ -26,6 +27,7 @@ namespace Zombieland.GameScene0.CharacterModule
         public IEquipmentController EquipmentController { get; private set;}
         public IAnimationController AnimationController { get; private set; }
         public IBuffDebuffController BuffDebuffController { get; private set; }
+        public IAimingController AimingController { get; private set; }
 
         public Transform CharacterTransform => VisualBodyController.CharacterInScene.transform;
 
@@ -46,7 +48,7 @@ namespace Zombieland.GameScene0.CharacterModule
             CharacterDataController = new CharacterDataController(this, new List<IController> { (IController)RootController.GameDataController });
             subsystemsControllers.Add((IController)CharacterDataController);
 
-            WeaponController = new WeaponController(this, new List<IController> { (IController)CharacterDataController, (IController)EquipmentController, (IController)RootController.UIController });
+            WeaponController = new WeaponController(this, new List<IController> { (IController)CharacterDataController, (IController)EquipmentController, (IController)AimingController, (IController)RootController.UIController });
             subsystemsControllers.Add((IController)WeaponController);
 
             VisualBodyController = new VisualBodyController(this, new List<IController> { (IController)RootController.EnvironmentController });
@@ -70,8 +72,9 @@ namespace Zombieland.GameScene0.CharacterModule
             BuffDebuffController = new BuffDebuffController(this, null);
             subsystemsControllers.Add((IController)BuffDebuffController);
 
-            //WeaponController = new WeaponController(this, new List<IController> { (IController)CharacterDataController, (IController)EquipmentController, (IController)RootController.UIController });
-            //subsystemsControllers.Add((IController)WeaponController);
+            AimingController = new AimingController(this, new List<IController> { (IController)VisualBodyController, (IController)RootController.UIController });
+            subsystemsControllers.Add((IController)AimingController);
+
         }
     }
 }
