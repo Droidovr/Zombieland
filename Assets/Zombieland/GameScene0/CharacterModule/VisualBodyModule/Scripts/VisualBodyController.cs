@@ -6,8 +6,9 @@ namespace Zombieland.GameScene0.VisualBodyModule
     public class VisualBodyController : Controller, IVisualBodyController
     {
         public GameObject CharacterInScene { get; private set; }
-
+        public GameObject WeaponInScene { get; private set; }
         public Collider SensorCollider { get; private set; }
+
 
         public VisualBodyController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {

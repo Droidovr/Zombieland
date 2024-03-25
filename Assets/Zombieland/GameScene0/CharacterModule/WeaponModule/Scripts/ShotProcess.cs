@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using UnityEngine;
 using Zombieland.GameScene0.ImpactModule;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
@@ -65,7 +66,9 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             // 2. Deserializator Impact. Filling Owner и Target. Target при этом нужно проганять через метод кучности выстрела. Target получаем от системы прицеливания
             _impact = new Deserializator().DeserializeImpact(Owner.WeaponController.CurrentImpactName);
             _impact.ImpactData.ImpactOwner = Owner;
-            //_impact.ImpactData.Targets = Targets при этом нужно проганять через метод кучности выстрела.
+            _impact.ImpactData.ObjectSpawnPosition = Owner.VisualBodyController.WeaponInScene.GetComponent<Transform>().TransformPoint(Owner.WeaponController.Weapon.WeaponData.FirePoint);
+            _impact.ImpactData.ObjectRotation = Owner.VisualBodyController.WeaponInScene.GetComponent<Transform>().rotation; // направления брать из системы прицеливания и учитывать разброс оружия AddShotSpread(Target)
+
 
             // 3. Reserved Resources
             if (CheckFirePermission())
@@ -213,6 +216,19 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             {
                 timer?.Stop();
             }
+        }
+
+        public Vector3 AddShotSpread(Vector3 targetPosition)
+        {
+            WeaponData weaponData = Owner.WeaponController.Weapon.WeaponData;
+
+            float spreadX = UnityEngine.Random.Range(-weaponData.ShotAccuracy, weaponData.ShotAccuracy);
+            float spreadY = UnityEngine.Random.Range(-weaponData.ShotAccuracy, weaponData.ShotAccuracy);
+            float spreadZ = UnityEngine.Random.Range(-weaponData.ShotAccuracy, weaponData.ShotAccuracy);
+
+            Vector3 shotSpread = new Vector3(spreadX, spreadY, spreadZ);
+
+            return targetPosition + shotSpread;
         }
         #endregion
     }
