@@ -45,7 +45,7 @@ public class TestScript : MonoBehaviour
             yield return new WaitForSeconds(1);
             if (_inArea)
             {
-                characterController.Ta
+                //characterController.Ta
             }
         }
     }
