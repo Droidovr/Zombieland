@@ -105,7 +105,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Treatment",
+                    "name": "Healing",
                     "type": "Button",
                     "id": "b04301f7-83ee-4416-9faa-22fe06e8b45f",
                     "expectedControlType": "Button",
@@ -375,7 +375,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Treatment",
+                    "action": "Healing",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

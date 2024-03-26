@@ -127,7 +127,7 @@ public partial class @InputSystemControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Treatment"",
+                    ""name"": ""Healing"",
                     ""type"": ""Button"",
                     ""id"": ""b04301f7-83ee-4416-9faa-22fe06e8b45f"",
                     ""expectedControlType"": ""Button"",
@@ -397,7 +397,7 @@ public partial class @InputSystemControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Treatment"",
+                    ""action"": ""Healing"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -425,7 +425,7 @@ public partial class @InputSystemControls: IInputActionCollection2, IDisposable
         m_Main_Knife = m_Main.FindAction("Knife", throwIfNotFound: true);
         m_Main_Pistol = m_Main.FindAction("Pistol", throwIfNotFound: true);
         m_Main_Shotgun = m_Main.FindAction("Shotgun", throwIfNotFound: true);
-        m_Main_Treatment = m_Main.FindAction("Treatment", throwIfNotFound: true);
+        m_Main_Healing = m_Main.FindAction("Healing", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -498,7 +498,7 @@ public partial class @InputSystemControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Main_Knife;
     private readonly InputAction m_Main_Pistol;
     private readonly InputAction m_Main_Shotgun;
-    private readonly InputAction m_Main_Treatment;
+    private readonly InputAction m_Main_Healing;
     public struct MainActions
     {
         private @InputSystemControls m_Wrapper;
@@ -514,7 +514,7 @@ public partial class @InputSystemControls: IInputActionCollection2, IDisposable
         public InputAction @Knife => m_Wrapper.m_Main_Knife;
         public InputAction @Pistol => m_Wrapper.m_Main_Pistol;
         public InputAction @Shotgun => m_Wrapper.m_Main_Shotgun;
-        public InputAction @Treatment => m_Wrapper.m_Main_Treatment;
+        public InputAction @Healing => m_Wrapper.m_Main_Healing;
         public InputActionMap Get() { return m_Wrapper.m_Main; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -557,9 +557,9 @@ public partial class @InputSystemControls: IInputActionCollection2, IDisposable
             @Shotgun.started += instance.OnShotgun;
             @Shotgun.performed += instance.OnShotgun;
             @Shotgun.canceled += instance.OnShotgun;
-            @Treatment.started += instance.OnTreatment;
-            @Treatment.performed += instance.OnTreatment;
-            @Treatment.canceled += instance.OnTreatment;
+            @Healing.started += instance.OnHealing;
+            @Healing.performed += instance.OnHealing;
+            @Healing.canceled += instance.OnHealing;
         }
 
         private void UnregisterCallbacks(IMainActions instance)
@@ -597,9 +597,9 @@ public partial class @InputSystemControls: IInputActionCollection2, IDisposable
             @Shotgun.started -= instance.OnShotgun;
             @Shotgun.performed -= instance.OnShotgun;
             @Shotgun.canceled -= instance.OnShotgun;
-            @Treatment.started -= instance.OnTreatment;
-            @Treatment.performed -= instance.OnTreatment;
-            @Treatment.canceled -= instance.OnTreatment;
+            @Healing.started -= instance.OnHealing;
+            @Healing.performed -= instance.OnHealing;
+            @Healing.canceled -= instance.OnHealing;
         }
 
         public void RemoveCallbacks(IMainActions instance)
@@ -639,6 +639,6 @@ public partial class @InputSystemControls: IInputActionCollection2, IDisposable
         void OnKnife(InputAction.CallbackContext context);
         void OnPistol(InputAction.CallbackContext context);
         void OnShotgun(InputAction.CallbackContext context);
-        void OnTreatment(InputAction.CallbackContext context);
+        void OnHealing(InputAction.CallbackContext context);
     }
 }

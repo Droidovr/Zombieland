@@ -7,7 +7,7 @@ namespace Zombieland.GameScene0.UIModule
     public class UIController : Controller, IUIController
     {
         public event Action<Vector2> OnMoved;
-        public event Action OnFire;
+        public event Action<bool> OnFire;
         public event Action<string> OnInventoryButtonClick;
 
         private UIMainController _uIMainController;
@@ -55,9 +55,9 @@ namespace Zombieland.GameScene0.UIModule
             // Debug.Log(vectorMove);
         }
 
-        private void HandleFireClick()
+        private void HandleFireClick(bool isFire)
         {
-            OnFire?.Invoke();
+            OnFire?.Invoke(isFire);
             Debug.Log("HandleFireClick");
         }
         #endregion PRIVATE
