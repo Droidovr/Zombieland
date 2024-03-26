@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
-using Zombieland.GameScene0.CharacterModule.SensorModule;
+using Zombieland.GameScene0.CharacterModule.SensorModule.ImpactableSensorModule;
 
 namespace Zombieland.GameScene0.ImpactModule
 {
@@ -11,7 +11,7 @@ namespace Zombieland.GameScene0.ImpactModule
         public Transform HeroWeaponTransform;
         public Transform FollowTargetTransform;
         public Transform SpawnPosition;
-        [SerializeReference] public List<ImpactSensor> TargetImpactableList;
+        //[SerializeReference] public List<ImpactSensor> TargetImpactableList;
 
         void Update()
         {
@@ -27,11 +27,11 @@ namespace Zombieland.GameScene0.ImpactModule
                 impact.ImpactData.IgnoringColliders = new List<Collider>{GetComponent<Collider>()};
                 impact.ImpactData.FollowTargetTransform = FollowTargetTransform;
 
-                if (TargetImpactableList.Count > 0)
-                {
-                    var targets = new List<IImpactable>(TargetImpactableList);
-                    impact.ImpactData.Targets = targets;
-                }
+                //if (TargetImpactableList.Count > 0)
+                //{
+                //    var targets = new List<IImpactable>(TargetImpactableList);
+                //    impact.ImpactData.Targets = targets;
+                //}
 
                 impact.Activate();
             }
