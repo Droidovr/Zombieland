@@ -5,25 +5,28 @@ namespace Zombieland.GameScene0.CharacterModule.TakeImpactModule
 {
     public class TakeImpactController : Controller, ITakeImpactController
     {
-        public TakeImpactController(IController parentController, List<IController> requiredControllers)
-            : base(parentController, requiredControllers)
+        public ICharacterController CharacterController { get; private set; }
+
+        private TakerImpact _takerImpact;
+
+        public TakeImpactController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
-            // This class’s constructor doesn’t have any content yet.
+            CharacterController = parentController as ICharacterController;
+        }
+
+        public void ApplyImpact(List<DirectImpactData> damageTakens)
+        {
+            _takerImpact.ApplyImpact(damageTakens);
         }
 
         protected override void CreateHelpersScripts()
         {
-            // This controller doesn’t have any helpers scripts at the moment.
+            _takerImpact = new TakerImpact(CharacterController);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
             // This controller doesn’t have any subsystems at the moment.
-        }
-
-        public void ApplyImpact(List<DirectImpactData> directImpactDataList)
-        {
-            // This method doesn't have any realization at the moment.
         }
     }
 }
