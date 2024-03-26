@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 namespace Zombieland.GameScene0.CharacterModule.SensorModule
 {
@@ -14,8 +15,8 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule
 
         protected override void CreateHelpersScripts()
         {
-            _impactDetectionSensor = _characterController.VisualBodyController.SensorCollider.gameObject.AddComponent<ImpactDetectionSensor>();
-            _impactDetectionSensor.Init((IImpactable)_characterController);
+            //var impactSensor = _characterController.VisualBodyController.SensorCollider.AddComponent<ImpactSensor>();
+            //impactSensor.Owner = _characterController;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
