@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 namespace Zombieland.GameScene0.CharacterModule.SensorModule.ImpactableSensorModule
