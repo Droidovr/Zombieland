@@ -1,12 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\User\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\User\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Zombieland.1029733466.00" t="ExcludeRecursive" />
-    <e p="D:\develop\Unity\Projects\Zombieland" t="IncludeRecursive">
+    <e p="C:\Users\crlku\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\crlku\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Zombieland.640643772.00" t="ExcludeRecursive" />
+    <e p="C:\Users\crlku\Desktop\Projects\Zombieland" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="BigRookGames" t="Include">
+          <e p="_AssetPacks" t="Include">
+            <e p="Stylized Weapon Pack" t="Include">
+              <e p="M4 Scoped Assault Rifle" t="Include">
+                <e p="Readme.txt" t="Include" />
+                <e p="Scripts" t="Include">
+                  <e p="GunfireController.cs" t="Include" />
+                </e>
+              </e>
+            </e>
+          </e>
+        </e>
+        <e p="PolygonApocalypse" t="Include">
+          <e p="DecalTesting" t="Include">
+            <e p="BloodstainsTrigger.cs" t="Include" />
+            <e p="trails" t="Include">
+              <e p="HelpersForTesting" t="Include">
+                <e p="CorpseMover.cs" t="Include" />
+              </e>
+              <e p="TrailTesting.cs" t="Include" />
+            </e>
+            <e p="WalkingBloodstains.cs" t="Include" />
+          </e>
+        </e>
         <e p="PolygonSciFiSpace" t="Include">
           <e p="Shaders" t="Include">
             <e p="POLYGON_SpaceShip_Rim.shader" t="Include" />
@@ -27,6 +51,81 @@
           </e>
           <e p="Scripts" t="Include">
             <e p="Outline.cs" t="Include" />
+          </e>
+        </e>
+        <e p="TextMesh Pro" t="Include">
+          <e p="Examples &amp; Extras" t="Include">
+            <e p="Fonts" t="Include">
+              <e p="Anton OFL.txt" t="Include" />
+              <e p="Bangers - OFL.txt" t="Include" />
+              <e p="Oswald-Bold - OFL.txt" t="Include" />
+            </e>
+            <e p="Scripts" t="Include">
+              <e p="Benchmark01.cs" t="Include" />
+              <e p="Benchmark01_UGUI.cs" t="Include" />
+              <e p="Benchmark02.cs" t="Include" />
+              <e p="Benchmark03.cs" t="Include" />
+              <e p="Benchmark04.cs" t="Include" />
+              <e p="CameraController.cs" t="Include" />
+              <e p="ChatController.cs" t="Include" />
+              <e p="DropdownSample.cs" t="Include" />
+              <e p="EnvMapAnimator.cs" t="Include" />
+              <e p="ObjectSpin.cs" t="Include" />
+              <e p="ShaderPropAnimator.cs" t="Include" />
+              <e p="SimpleScript.cs" t="Include" />
+              <e p="SkewTextExample.cs" t="Include" />
+              <e p="TeleType.cs" t="Include" />
+              <e p="TextConsoleSimulator.cs" t="Include" />
+              <e p="TextMeshProFloatingText.cs" t="Include" />
+              <e p="TextMeshSpawner.cs" t="Include" />
+              <e p="TMP_DigitValidator.cs" t="Include" />
+              <e p="TMP_ExampleScript_01.cs" t="Include" />
+              <e p="TMP_FrameRateCounter.cs" t="Include" />
+              <e p="TMP_PhoneNumberValidator.cs" t="Include" />
+              <e p="TMP_TextEventCheck.cs" t="Include" />
+              <e p="TMP_TextEventHandler.cs" t="Include" />
+              <e p="TMP_TextInfoDebugTool.cs" t="Include" />
+              <e p="TMP_TextSelector_A.cs" t="Include" />
+              <e p="TMP_TextSelector_B.cs" t="Include" />
+              <e p="TMP_UiFrameRateCounter.cs" t="Include" />
+              <e p="TMPro_InstructionOverlay.cs" t="Include" />
+              <e p="VertexColorCycler.cs" t="Include" />
+              <e p="VertexJitter.cs" t="Include" />
+              <e p="VertexShakeA.cs" t="Include" />
+              <e p="VertexShakeB.cs" t="Include" />
+              <e p="VertexZoom.cs" t="Include" />
+              <e p="WarpTextExample.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Fonts" t="Include">
+            <e p="LiberationSans - OFL.txt" t="Include" />
+          </e>
+          <e p="Resources" t="Include">
+            <e p="LineBreaking Following Characters.txt" t="Include" />
+            <e p="LineBreaking Leading Characters.txt" t="Include" />
+          </e>
+          <e p="Shaders" t="Include">
+            <e p="TMP_Bitmap-Custom-Atlas.shader" t="Include" />
+            <e p="TMP_Bitmap-Mobile.shader" t="Include" />
+            <e p="TMP_Bitmap.shader" t="Include" />
+            <e p="TMP_SDF Overlay.shader" t="Include" />
+            <e p="TMP_SDF SSD.shader" t="Include" />
+            <e p="TMP_SDF-Mobile Masking.shader" t="Include" />
+            <e p="TMP_SDF-Mobile Overlay.shader" t="Include" />
+            <e p="TMP_SDF-Mobile SSD.shader" t="Include" />
+            <e p="TMP_SDF-Mobile.shader" t="Include" />
+            <e p="TMP_SDF-Surface-Mobile.shader" t="Include" />
+            <e p="TMP_SDF-Surface.shader" t="Include" />
+            <e p="TMP_SDF.shader" t="Include" />
+            <e p="TMP_Sprite.shader" t="Include" />
+            <e p="TMPro.cginc" t="Include" />
+            <e p="TMPro_Mobile.cginc" t="Include" />
+            <e p="TMPro_Properties.cginc" t="Include" />
+            <e p="TMPro_Surface.cginc" t="Include" />
+          </e>
+          <e p="Sprites" t="Include">
+            <e p="EmojiOne Attribution.txt" t="Include" />
+            <e p="EmojiOne.json" t="Include" />
           </e>
         </e>
         <e p="TutorialInfo" t="Include">
@@ -62,6 +161,25 @@
                   <e p="Test" t="Include">
                     <e p="TestShooter.cs" t="Include" />
                   </e>
+                </e>
+              </e>
+              <e p="BuffDebuffModule" t="Include">
+                <e p="Scripts" t="Include">
+                  <e p="BuffDebuffController.cs" t="Include" />
+                  <e p="BuffDebuffData.cs" t="Include" />
+                  <e p="Buffs" t="Include">
+                    <e p="Buff_WeakHealing.cs" t="Include" />
+                  </e>
+                  <e p="Debuffs" t="Include">
+                    <e p="Debuff_InfectedWound.cs" t="Include" />
+                    <e p="Debuff_Slowdown.cs" t="Include" />
+                  </e>
+                  <e p="DirectImpactData.cs" t="Include" />
+                  <e p="DirectImpactType.cs" t="Include" />
+                  <e p="IBuffDebuffCommand.cs" t="Include" />
+                  <e p="IBuffDebuffController.cs" t="Include" />
+                  <e p="PeriodicAction.cs" t="Include" />
+                  <e p="VFXPosition.cs" t="Include" />
                 </e>
               </e>
               <e p="CharacterDataModule" t="Include">
@@ -159,7 +277,7 @@
             </e>
             <e p="RootModule" t="Include">
               <e p="Scripts" t="Include">
-                <e p="ICharacterController.cs" t="Include" />
+                <e p="IRootController.cs" t="Include" />
                 <e p="RootController.cs" t="Include" />
               </e>
             </e>
@@ -197,6 +315,7 @@
           <e p="Scripts" t="Include">
             <e p="Controller.cs" t="Include" />
             <e p="DependencyTracker.cs" t="Include" />
+            <e p="ICommand.cs" t="Include" />
             <e p="IController.cs" t="Include" />
             <e p="IDependencyTracker.cs" t="Include" />
             <e p="ISubsystemsActivator.cs" t="Include" />

@@ -46,4 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particlesTrail: {fileID: 7201581726166703797, guid: 2e126dd620584fc45bbe35f254606136,
     type: 3}
-  spawnCooldown: 2
+  spawnCooldown: 3
+  trailStopMovingDelay: 1.5

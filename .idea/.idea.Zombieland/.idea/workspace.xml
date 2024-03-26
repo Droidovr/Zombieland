@@ -11,9 +11,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BFF907ED-581F-483A-B4BD-129472866E97/0f/a546ecc8/CapsuleCollider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/ITakeImpactController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/IImpactController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BFF907ED-581F-483A-B4BD-129472866E97/bf/db3f69ea/SphereCollider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/Scripts/ICommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/IImpactable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/IImpactController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -51,6 +54,7 @@
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/TakeImpactController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/Scripts/CharacterController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/Readme/Readme.cs" />
+        <option value="$PROJECT_DIR$/Assets/PolygonApocalypse/DecalTesting/trails/TrailTesting.cs" />
       </list>
     </option>
   </component>
