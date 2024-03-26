@@ -83,6 +83,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character0Ragdoll
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 16abff6e1f677bf4da1d7bda20e4d585,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1082271958561512970, guid: 16abff6e1f677bf4da1d7bda20e4d585,
         type: 3}
       propertyPath: m_IsActive
@@ -114,6 +119,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2991187887782095856}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16abff6e1f677bf4da1d7bda20e4d585,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6313055809505212639}
     - targetCorrespondingSourceObject: {fileID: 1082271958561512970, guid: 16abff6e1f677bf4da1d7bda20e4d585,
         type: 3}
       insertIndex: -1
@@ -340,7 +349,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.2
   m_Height: 1.8
@@ -364,6 +373,23 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &6313055809505212639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310744569574224249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77e80e50026ed904c81a4c1015719760, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _footprint: {fileID: 1997857183308608752, guid: 560f8e1a55c48ef4f9523b2878e2a196,
+    type: 3}
+  _rightLegTransform: {fileID: 2375412290890783360}
+  _leftLegTransform: {fileID: 5837237290250435718}
+  activeSteps: 0
 --- !u!1 &543692863993254434 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1082271958561512970, guid: 16abff6e1f677bf4da1d7bda20e4d585,
@@ -520,6 +546,12 @@ CapsuleCollider:
   m_Height: 0.30033842
   m_Direction: 1
   m_Center: {x: -0.000000017753337, y: 0.15016921, z: 0.000000011175871}
+--- !u!4 &2375412290890783360 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2916570863362053800, guid: 16abff6e1f677bf4da1d7bda20e4d585,
+    type: 3}
+  m_PrefabInstance: {fileID: 616594420314623016}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2509380630553284136 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6170625038081293824, guid: 16abff6e1f677bf4da1d7bda20e4d585,
@@ -1128,6 +1160,12 @@ CapsuleCollider:
   m_Height: 0.32379353
   m_Direction: 1
   m_Center: {x: -4.656613e-10, y: 0.16189677, z: -9.313226e-10}
+--- !u!4 &5837237290250435718 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -2770666803903516498, guid: 16abff6e1f677bf4da1d7bda20e4d585,
+    type: 3}
+  m_PrefabInstance: {fileID: 616594420314623016}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6747610070870685859 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3086436065929644917, guid: 16abff6e1f677bf4da1d7bda20e4d585,
