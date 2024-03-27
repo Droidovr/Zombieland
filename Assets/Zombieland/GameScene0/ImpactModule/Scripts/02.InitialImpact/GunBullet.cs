@@ -4,7 +4,7 @@ using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 using Zombieland.GameScene0.ImpactModule;
 
-public class GunBullet : IInitialImpact
+public class GunBullet : IInitialImpactCommand
 {
     [JsonIgnore] public IImpact Impact { get; set; }
     public UpfrontRayDetector Detector { get; set; }

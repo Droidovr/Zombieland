@@ -29,6 +29,9 @@
             <e p="Outline.cs" t="Include" />
           </e>
         </e>
+        <e p="Resources" t="Include">
+          <e p="BillingMode.json" t="Include" />
+        </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Examples &amp; Extras" t="Include">
             <e p="Fonts" t="Include">
@@ -124,6 +127,12 @@
               </e>
             </e>
             <e p="CharacterModule" t="Include">
+              <e p="AimingModule" t="Include">
+                <e p="Scripts" t="Include">
+                  <e p="AimingController.cs" t="Include" />
+                  <e p="IAimingController.cs" t="Include" />
+                </e>
+              </e>
               <e p="AnimationModule" t="Include">
                 <e p="Scripts" t="Include">
                   <e p="AnimationController.cs" t="Include" />
@@ -191,8 +200,22 @@
                 <e p="ICharacterController.cs" t="Include" />
               </e>
               <e p="SensorModule" t="Include">
+                <e p="EnvironmentSensorModule" t="Include">
+                  <e p="Scripts" t="Include">
+                    <e p="EnvironmentSensorController.cs" t="Include" />
+                    <e p="IEnvironmentSensorController.cs" t="Include" />
+                  </e>
+                </e>
+                <e p="ImpactableSensorModule" t="Include">
+                  <e p="Scripts" t="Include">
+                    <e p="IImpactable.cs" t="Include" />
+                    <e p="IImpactableSensorController.cs" t="Include" />
+                    <e p="Impactable.cs" t="Include" />
+                    <e p="ImpactableInstaller.cs" t="Include" />
+                    <e p="ImpactableSensorController.cs" t="Include" />
+                  </e>
+                </e>
                 <e p="Scripts" t="Include">
-                  <e p="ImpactSensor.cs" t="Include" />
                   <e p="ISensorController.cs" t="Include" />
                   <e p="SensorController.cs" t="Include" />
                 </e>
@@ -201,11 +224,13 @@
                 <e p="Scripts" t="Include">
                   <e p="ITakeImpactController.cs" t="Include" />
                   <e p="TakeImpactController.cs" t="Include" />
+                  <e p="TakerImpact.cs" t="Include" />
                 </e>
               </e>
               <e p="VisualBodyModule" t="Include">
                 <e p="Scripts" t="Include">
                   <e p="CreateCharacterPrefab.cs" t="Include" />
+                  <e p="GertterTriggers.cs" t="Include" />
                   <e p="IVisualBodyController.cs" t="Include" />
                   <e p="VisualBodyController.cs" t="Include" />
                 </e>
@@ -273,7 +298,7 @@
                     <e p="UpfrontRayDetector.cs" t="Include" />
                   </e>
                   <e p="GunBullet.cs" t="Include" />
-                  <e p="IInitialImpact.cs" t="Include" />
+                  <e p="IInitialImpactCommand.cs" t="Include" />
                   <e p="Knife.cs" t="Include" />
                   <e p="ShotgunBullet.cs" t="Include" />
                 </e>
@@ -283,7 +308,6 @@
                 <e p="ConsumableResource.cs" t="Include" />
                 <e p="Deserializator.cs" t="Include" />
                 <e p="IImpact.cs" t="Include" />
-                <e p="IImpactable.cs" t="Include" />
                 <e p="IImpactCommand.cs" t="Include" />
                 <e p="Impact.cs" t="Include" />
                 <e p="ImpactData.cs" t="Include" />

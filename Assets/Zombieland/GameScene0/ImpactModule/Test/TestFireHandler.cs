@@ -11,7 +11,7 @@ namespace Zombieland.GameScene0.ImpactModule
         public Transform HeroWeaponTransform;
         public Transform FollowTargetTransform;
         public Transform SpawnPosition;
-        [SerializeReference] public List<IImpactable> TargetImpactableList;
+        [SerializeReference] public List<Impactable> TargetImpactableList;
 
         void Update()
         {
