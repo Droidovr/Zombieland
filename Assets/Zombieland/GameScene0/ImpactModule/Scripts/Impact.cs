@@ -18,27 +18,7 @@ namespace Zombieland.GameScene0.ImpactModule
             Delivery.Impact = this;
             InitialImpact.Impact = this;
             BuffDebuffInjection.Impact = this;
-
-            if (ImpactData.ImpactOwner.BuffDebuffController.CountBuffDebuff > 0)
-            {
-                var initialImpact = (IInitialImpact)InitialImpact;
-                var updatedInitialImpactList = initialImpact.InitialImpactData
-                    .Select(impact => ImpactData.ImpactOwner.BuffDebuffController.GetProcessedImpactValue(impact)).
-                    ToList();
-                initialImpact.InitialImpactData = updatedInitialImpactList;
-
-                var buffDebuffInjection = (BuffDebuffInjection)BuffDebuffInjection;
-                foreach (var buff in buffDebuffInjection.Buffs)
-                {
-                    buff.BuffDebuffData.DirectImpactData = ImpactData.ImpactOwner.BuffDebuffController.GetProcessedImpactValue(buff.BuffDebuffData.DirectImpactData);
-                }
-            
-                foreach (var debuff in buffDebuffInjection.Debuffs)
-                {
-                    debuff.BuffDebuffData.DirectImpactData = ImpactData.ImpactOwner.BuffDebuffController.GetProcessedImpactValue(debuff.BuffDebuffData.DirectImpactData);
-                }
-            }
-
+            ApplyBuffsDebuffsToImpact();
             Assembler.Execute();
         }
 
@@ -48,6 +28,28 @@ namespace Zombieland.GameScene0.ImpactModule
             Delivery.Deactivate();
             InitialImpact.Deactivate();
             BuffDebuffInjection.Deactivate();
+        }
+
+        private void ApplyBuffsDebuffsToImpact()
+        {
+            if (ImpactData.ImpactOwner.BuffDebuffController.CountBuffDebuff <= 0) return;
+            
+            var initialImpact = (IInitialImpactCommand)InitialImpact;
+            var updatedInitialImpactList = initialImpact.InitialImpactData
+                .Select(impact => ImpactData.ImpactOwner.BuffDebuffController.GetProcessedImpactValue(impact)).
+                ToList();
+            initialImpact.InitialImpactData = updatedInitialImpactList;
+
+            var buffDebuffInjection = (BuffDebuffInjection)BuffDebuffInjection;
+            foreach (var buff in buffDebuffInjection.Buffs)
+            {
+                buff.BuffDebuffData.DirectImpactData = ImpactData.ImpactOwner.BuffDebuffController.GetProcessedImpactValue(buff.BuffDebuffData.DirectImpactData);
+            }
+            
+            foreach (var debuff in buffDebuffInjection.Debuffs)
+            {
+                debuff.BuffDebuffData.DirectImpactData = ImpactData.ImpactOwner.BuffDebuffController.GetProcessedImpactValue(debuff.BuffDebuffData.DirectImpactData);
+            }
         }
     }
 }

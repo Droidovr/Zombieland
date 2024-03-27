@@ -4,7 +4,7 @@ using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 using Zombieland.GameScene0.ImpactModule;
 
-public class Knife : IInitialImpact
+public class Knife : IInitialImpactCommand
 {
     [JsonIgnore] public IImpact Impact { get; set; }
     public SphereDetector Detector { get; set; }

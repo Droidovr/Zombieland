@@ -5,7 +5,7 @@ using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 
 namespace Zombieland.GameScene0.ImpactModule
 {
-    public class BaseHomingProjectile : IInitialImpact
+    public class BaseHomingProjectile : IInitialImpactCommand
     {
         [JsonIgnore] public IImpact Impact { get; set; }
         public UpfrontRayDetector Detector { get; set; }
@@ -35,7 +35,6 @@ namespace Zombieland.GameScene0.ImpactModule
                 var effectPrefab = Resources.Load<GameObject>(TargetReachedEffectPrefabName);
                 foreach (var target in Impact.ImpactData.Targets)
                 {
-                    //target.TestApplyDirectImpact(InitialImpactData);
                     target.Owner.TakeImpactController.ApplyImpact(InitialImpactData);
                     if(!effectPrefab) return;
                     var effect = GameObject.Instantiate(effectPrefab, Impact.ImpactData.ImpactObject.transform.position, Quaternion.identity);

@@ -4,6 +4,6 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule.ImpactableSensorMod
 {
     public class Impactable : MonoBehaviour, IImpactable
     {
-        public ICharacterController CharacterController { get; set; }
+        public ICharacterController Owner { get; set; }
     }
 }
