@@ -1,5 +1,5 @@
 using Zombieland.GameScene0.CharacterModule.CharacterMovingModule;
- using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
+using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
 using Zombieland.GameScene0.CharacterModule.EquipmentModule;
 using Zombieland.GameScene0.CharacterModule.SensorModule;
 using Zombieland.GameScene0.CharacterModule.TakeImpactModule;
@@ -9,6 +9,7 @@ using Zombieland.GameScene0.VisualBodyModule;
 using Zombieland.GameScene0.CharacterModule.AnimationModule;
 using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
+using Zombieland.GameScene0.CharacterModule.AimingModule;
 
 namespace Zombieland.GameScene0.CharacterModule
 {
@@ -24,6 +25,7 @@ namespace Zombieland.GameScene0.CharacterModule
         IEquipmentController EquipmentController { get; }
         IAnimationController AnimationController { get; }
         IBuffDebuffController BuffDebuffController { get; }
+        IAimingController AimingController { get; }
 
         Transform CharacterTransform { get; }
     }

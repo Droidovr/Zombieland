@@ -5,6 +5,7 @@ namespace Zombieland.GameScene0.CharacterModule.TakeImpactModule
 {
     public interface ITakeImpactController
     {
-        public void ApplyImpact(List<DirectImpactData> directImpactDataList);
+        ICharacterController CharacterController { get; }
+        void ApplyImpact(List<DirectImpactData> damageTakens);
     }
 }
