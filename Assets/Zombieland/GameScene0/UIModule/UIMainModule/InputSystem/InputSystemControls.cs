@@ -37,6 +37,15 @@ public partial class @InputSystemControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""MousePosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""8ee1edf8-b872-446e-beed-4f27d65f4b48"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Fire"",
                     ""type"": ""Button"",
                     ""id"": ""79708dc9-0463-45de-af0d-88c45d98f218"",
@@ -49,6 +58,15 @@ public partial class @InputSystemControls: IInputActionCollection2, IDisposable
                     ""name"": ""Stealth"",
                     ""type"": ""Button"",
                     ""id"": ""458a56b0-31e7-41d2-86b1-0fb5c70b3b61"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FastRun"",
+                    ""type"": ""Button"",
+                    ""id"": ""7daa3e41-19e2-4d4c-b89e-c84cc5f9ed94"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -73,9 +91,9 @@ public partial class @InputSystemControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""FastRun"",
+                    ""name"": ""Inventory"",
                     ""type"": ""Button"",
-                    ""id"": ""7daa3e41-19e2-4d4c-b89e-c84cc5f9ed94"",
+                    ""id"": ""35df5117-ea9f-4291-99af-878aa1549058"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -91,16 +109,7 @@ public partial class @InputSystemControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Fists"",
-                    ""type"": ""Button"",
-                    ""id"": ""6f7e51e2-c217-4ed4-b16e-23f99eee217c"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Knife"",
+                    ""name"": ""Number1"",
                     ""type"": ""Button"",
                     ""id"": ""44620c4c-0e35-4d0a-976c-72637a96b2bb"",
                     ""expectedControlType"": ""Button"",
@@ -109,7 +118,7 @@ public partial class @InputSystemControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Pistol"",
+                    ""name"": ""Number2"",
                     ""type"": ""Button"",
                     ""id"": ""62192192-43a8-43b9-8de1-c58394be85fe"",
                     ""expectedControlType"": ""Button"",
@@ -118,7 +127,7 @@ public partial class @InputSystemControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Shotgun"",
+                    ""name"": ""Number3"",
                     ""type"": ""Button"",
                     ""id"": ""b24c6c1a-d550-4f89-bead-b95c34f45fef"",
                     ""expectedControlType"": ""Button"",
@@ -127,7 +136,7 @@ public partial class @InputSystemControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Healing"",
+                    ""name"": ""Number4"",
                     ""type"": ""Button"",
                     ""id"": ""b04301f7-83ee-4416-9faa-22fe06e8b45f"",
                     ""expectedControlType"": ""Button"",
@@ -326,17 +335,6 @@ public partial class @InputSystemControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4301bf4c-179e-4376-b719-76323d02f4f9"",
-                    ""path"": ""<Keyboard>/shift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""FastRun"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""e505d1ae-92f6-4ebe-9d3a-95bb6c655654"",
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
@@ -348,56 +346,78 @@ public partial class @InputSystemControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c1cf4fdf-647b-4116-b02d-d23570179613"",
+                    ""id"": ""291ecbf5-4b48-4da6-83da-f7a69540f504"",
                     ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Fists"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""291ecbf5-4b48-4da6-83da-f7a69540f504"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Knife"",
+                    ""action"": ""Number1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""800ebfc9-b6ff-4a21-8c25-d5a1640a1137"",
-                    ""path"": ""<Keyboard>/3"",
+                    ""path"": ""<Keyboard>/2"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Pistol"",
+                    ""action"": ""Number2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""3c371f30-52e6-4698-a771-a9e5cd179169"",
-                    ""path"": ""<Keyboard>/4"",
+                    ""path"": ""<Keyboard>/3"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Shotgun"",
+                    ""action"": ""Number3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""c236615e-d886-4bb4-a078-150e5cb15ae9"",
-                    ""path"": ""<Keyboard>/5"",
+                    ""path"": ""<Keyboard>/4"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Healing"",
+                    ""action"": ""Number4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f2454d7b-212a-4634-a420-6be5bc2d2eff"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5f84dade-1958-43c2-b1c1-673fbdbe9756"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4301bf4c-179e-4376-b719-76323d02f4f9"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FastRun"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -415,17 +435,18 @@ public partial class @InputSystemControls: IInputActionCollection2, IDisposable
         // Main
         m_Main = asset.FindActionMap("Main", throwIfNotFound: true);
         m_Main_Move = m_Main.FindAction("Move", throwIfNotFound: true);
+        m_Main_MousePosition = m_Main.FindAction("MousePosition", throwIfNotFound: true);
         m_Main_Fire = m_Main.FindAction("Fire", throwIfNotFound: true);
         m_Main_Stealth = m_Main.FindAction("Stealth", throwIfNotFound: true);
+        m_Main_FastRun = m_Main.FindAction("FastRun", throwIfNotFound: true);
         m_Main_WeaponRealod = m_Main.FindAction("WeaponRealod", throwIfNotFound: true);
         m_Main_Use = m_Main.FindAction("Use", throwIfNotFound: true);
-        m_Main_FastRun = m_Main.FindAction("FastRun", throwIfNotFound: true);
+        m_Main_Inventory = m_Main.FindAction("Inventory", throwIfNotFound: true);
         m_Main_Throw = m_Main.FindAction("Throw", throwIfNotFound: true);
-        m_Main_Fists = m_Main.FindAction("Fists", throwIfNotFound: true);
-        m_Main_Knife = m_Main.FindAction("Knife", throwIfNotFound: true);
-        m_Main_Pistol = m_Main.FindAction("Pistol", throwIfNotFound: true);
-        m_Main_Shotgun = m_Main.FindAction("Shotgun", throwIfNotFound: true);
-        m_Main_Healing = m_Main.FindAction("Healing", throwIfNotFound: true);
+        m_Main_Number1 = m_Main.FindAction("Number1", throwIfNotFound: true);
+        m_Main_Number2 = m_Main.FindAction("Number2", throwIfNotFound: true);
+        m_Main_Number3 = m_Main.FindAction("Number3", throwIfNotFound: true);
+        m_Main_Number4 = m_Main.FindAction("Number4", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -488,33 +509,35 @@ public partial class @InputSystemControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Main;
     private List<IMainActions> m_MainActionsCallbackInterfaces = new List<IMainActions>();
     private readonly InputAction m_Main_Move;
+    private readonly InputAction m_Main_MousePosition;
     private readonly InputAction m_Main_Fire;
     private readonly InputAction m_Main_Stealth;
+    private readonly InputAction m_Main_FastRun;
     private readonly InputAction m_Main_WeaponRealod;
     private readonly InputAction m_Main_Use;
-    private readonly InputAction m_Main_FastRun;
+    private readonly InputAction m_Main_Inventory;
     private readonly InputAction m_Main_Throw;
-    private readonly InputAction m_Main_Fists;
-    private readonly InputAction m_Main_Knife;
-    private readonly InputAction m_Main_Pistol;
-    private readonly InputAction m_Main_Shotgun;
-    private readonly InputAction m_Main_Healing;
+    private readonly InputAction m_Main_Number1;
+    private readonly InputAction m_Main_Number2;
+    private readonly InputAction m_Main_Number3;
+    private readonly InputAction m_Main_Number4;
     public struct MainActions
     {
         private @InputSystemControls m_Wrapper;
         public MainActions(@InputSystemControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Main_Move;
+        public InputAction @MousePosition => m_Wrapper.m_Main_MousePosition;
         public InputAction @Fire => m_Wrapper.m_Main_Fire;
         public InputAction @Stealth => m_Wrapper.m_Main_Stealth;
+        public InputAction @FastRun => m_Wrapper.m_Main_FastRun;
         public InputAction @WeaponRealod => m_Wrapper.m_Main_WeaponRealod;
         public InputAction @Use => m_Wrapper.m_Main_Use;
-        public InputAction @FastRun => m_Wrapper.m_Main_FastRun;
+        public InputAction @Inventory => m_Wrapper.m_Main_Inventory;
         public InputAction @Throw => m_Wrapper.m_Main_Throw;
-        public InputAction @Fists => m_Wrapper.m_Main_Fists;
-        public InputAction @Knife => m_Wrapper.m_Main_Knife;
-        public InputAction @Pistol => m_Wrapper.m_Main_Pistol;
-        public InputAction @Shotgun => m_Wrapper.m_Main_Shotgun;
-        public InputAction @Healing => m_Wrapper.m_Main_Healing;
+        public InputAction @Number1 => m_Wrapper.m_Main_Number1;
+        public InputAction @Number2 => m_Wrapper.m_Main_Number2;
+        public InputAction @Number3 => m_Wrapper.m_Main_Number3;
+        public InputAction @Number4 => m_Wrapper.m_Main_Number4;
         public InputActionMap Get() { return m_Wrapper.m_Main; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -527,39 +550,42 @@ public partial class @InputSystemControls: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @MousePosition.started += instance.OnMousePosition;
+            @MousePosition.performed += instance.OnMousePosition;
+            @MousePosition.canceled += instance.OnMousePosition;
             @Fire.started += instance.OnFire;
             @Fire.performed += instance.OnFire;
             @Fire.canceled += instance.OnFire;
             @Stealth.started += instance.OnStealth;
             @Stealth.performed += instance.OnStealth;
             @Stealth.canceled += instance.OnStealth;
+            @FastRun.started += instance.OnFastRun;
+            @FastRun.performed += instance.OnFastRun;
+            @FastRun.canceled += instance.OnFastRun;
             @WeaponRealod.started += instance.OnWeaponRealod;
             @WeaponRealod.performed += instance.OnWeaponRealod;
             @WeaponRealod.canceled += instance.OnWeaponRealod;
             @Use.started += instance.OnUse;
             @Use.performed += instance.OnUse;
             @Use.canceled += instance.OnUse;
-            @FastRun.started += instance.OnFastRun;
-            @FastRun.performed += instance.OnFastRun;
-            @FastRun.canceled += instance.OnFastRun;
+            @Inventory.started += instance.OnInventory;
+            @Inventory.performed += instance.OnInventory;
+            @Inventory.canceled += instance.OnInventory;
             @Throw.started += instance.OnThrow;
             @Throw.performed += instance.OnThrow;
             @Throw.canceled += instance.OnThrow;
-            @Fists.started += instance.OnFists;
-            @Fists.performed += instance.OnFists;
-            @Fists.canceled += instance.OnFists;
-            @Knife.started += instance.OnKnife;
-            @Knife.performed += instance.OnKnife;
-            @Knife.canceled += instance.OnKnife;
-            @Pistol.started += instance.OnPistol;
-            @Pistol.performed += instance.OnPistol;
-            @Pistol.canceled += instance.OnPistol;
-            @Shotgun.started += instance.OnShotgun;
-            @Shotgun.performed += instance.OnShotgun;
-            @Shotgun.canceled += instance.OnShotgun;
-            @Healing.started += instance.OnHealing;
-            @Healing.performed += instance.OnHealing;
-            @Healing.canceled += instance.OnHealing;
+            @Number1.started += instance.OnNumber1;
+            @Number1.performed += instance.OnNumber1;
+            @Number1.canceled += instance.OnNumber1;
+            @Number2.started += instance.OnNumber2;
+            @Number2.performed += instance.OnNumber2;
+            @Number2.canceled += instance.OnNumber2;
+            @Number3.started += instance.OnNumber3;
+            @Number3.performed += instance.OnNumber3;
+            @Number3.canceled += instance.OnNumber3;
+            @Number4.started += instance.OnNumber4;
+            @Number4.performed += instance.OnNumber4;
+            @Number4.canceled += instance.OnNumber4;
         }
 
         private void UnregisterCallbacks(IMainActions instance)
@@ -567,39 +593,42 @@ public partial class @InputSystemControls: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @MousePosition.started -= instance.OnMousePosition;
+            @MousePosition.performed -= instance.OnMousePosition;
+            @MousePosition.canceled -= instance.OnMousePosition;
             @Fire.started -= instance.OnFire;
             @Fire.performed -= instance.OnFire;
             @Fire.canceled -= instance.OnFire;
             @Stealth.started -= instance.OnStealth;
             @Stealth.performed -= instance.OnStealth;
             @Stealth.canceled -= instance.OnStealth;
+            @FastRun.started -= instance.OnFastRun;
+            @FastRun.performed -= instance.OnFastRun;
+            @FastRun.canceled -= instance.OnFastRun;
             @WeaponRealod.started -= instance.OnWeaponRealod;
             @WeaponRealod.performed -= instance.OnWeaponRealod;
             @WeaponRealod.canceled -= instance.OnWeaponRealod;
             @Use.started -= instance.OnUse;
             @Use.performed -= instance.OnUse;
             @Use.canceled -= instance.OnUse;
-            @FastRun.started -= instance.OnFastRun;
-            @FastRun.performed -= instance.OnFastRun;
-            @FastRun.canceled -= instance.OnFastRun;
+            @Inventory.started -= instance.OnInventory;
+            @Inventory.performed -= instance.OnInventory;
+            @Inventory.canceled -= instance.OnInventory;
             @Throw.started -= instance.OnThrow;
             @Throw.performed -= instance.OnThrow;
             @Throw.canceled -= instance.OnThrow;
-            @Fists.started -= instance.OnFists;
-            @Fists.performed -= instance.OnFists;
-            @Fists.canceled -= instance.OnFists;
-            @Knife.started -= instance.OnKnife;
-            @Knife.performed -= instance.OnKnife;
-            @Knife.canceled -= instance.OnKnife;
-            @Pistol.started -= instance.OnPistol;
-            @Pistol.performed -= instance.OnPistol;
-            @Pistol.canceled -= instance.OnPistol;
-            @Shotgun.started -= instance.OnShotgun;
-            @Shotgun.performed -= instance.OnShotgun;
-            @Shotgun.canceled -= instance.OnShotgun;
-            @Healing.started -= instance.OnHealing;
-            @Healing.performed -= instance.OnHealing;
-            @Healing.canceled -= instance.OnHealing;
+            @Number1.started -= instance.OnNumber1;
+            @Number1.performed -= instance.OnNumber1;
+            @Number1.canceled -= instance.OnNumber1;
+            @Number2.started -= instance.OnNumber2;
+            @Number2.performed -= instance.OnNumber2;
+            @Number2.canceled -= instance.OnNumber2;
+            @Number3.started -= instance.OnNumber3;
+            @Number3.performed -= instance.OnNumber3;
+            @Number3.canceled -= instance.OnNumber3;
+            @Number4.started -= instance.OnNumber4;
+            @Number4.performed -= instance.OnNumber4;
+            @Number4.canceled -= instance.OnNumber4;
         }
 
         public void RemoveCallbacks(IMainActions instance)
@@ -629,16 +658,17 @@ public partial class @InputSystemControls: IInputActionCollection2, IDisposable
     public interface IMainActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnMousePosition(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnStealth(InputAction.CallbackContext context);
+        void OnFastRun(InputAction.CallbackContext context);
         void OnWeaponRealod(InputAction.CallbackContext context);
         void OnUse(InputAction.CallbackContext context);
-        void OnFastRun(InputAction.CallbackContext context);
+        void OnInventory(InputAction.CallbackContext context);
         void OnThrow(InputAction.CallbackContext context);
-        void OnFists(InputAction.CallbackContext context);
-        void OnKnife(InputAction.CallbackContext context);
-        void OnPistol(InputAction.CallbackContext context);
-        void OnShotgun(InputAction.CallbackContext context);
-        void OnHealing(InputAction.CallbackContext context);
+        void OnNumber1(InputAction.CallbackContext context);
+        void OnNumber2(InputAction.CallbackContext context);
+        void OnNumber3(InputAction.CallbackContext context);
+        void OnNumber4(InputAction.CallbackContext context);
     }
 }
