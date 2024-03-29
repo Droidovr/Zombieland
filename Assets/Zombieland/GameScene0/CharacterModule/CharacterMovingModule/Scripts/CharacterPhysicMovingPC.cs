@@ -61,7 +61,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
             CalculeteRealMovingSpeed();
 
-            if (_vectorMove.magnitude > MIN_VECTORMOVE_MAGITUDE)
+            if (_vectorMousePosition.magnitude > MIN_VECTORMOVE_MAGITUDE)
             {
                 CalculeteRotation();
             }
@@ -106,16 +106,20 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void CalculeteRotation()
         {
-            //Vector3 direction = new Vector3(_vectorMove.x, 0f, _vectorMove.y).normalized;
+            Ray ray = _characterMovingController.CharacterController.RootController.CameraController.PlayerCamera.ScreenPointToRay(_vectorMousePosition);
+            RaycastHit hit;
 
-            //float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-            //float rotationSpeed = _characterDataController.CharacterData.DesignRotationSpeed;
-            //float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSpeed, ROTATION_SMOOTH_TIME);
+            if (Physics.Raycast(ray, out hit))
+            {
+                Vector3 mousePositionOnScene = hit.point;
+                mousePositionOnScene.y = transform.position.y;
+                Vector3 direction = mousePositionOnScene - transform.position;
+                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+                float rotationSpeed = _characterDataController.CharacterData.DesignRotationSpeed;
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSpeed, ROTATION_SMOOTH_TIME);
 
-            //transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
-            //Vector2 mousePosition = _characterMovingController.CharacterController.RootController. //    Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            }
         }
         #endregion PRIVATE
     }
