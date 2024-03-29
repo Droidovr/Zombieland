@@ -6,8 +6,7 @@ namespace Zombieland.GameScene0.VisualBodyModule
     public class VisualBodyController : Controller, IVisualBodyController
     {
         public GameObject CharacterInScene { get; private set; }
-
-        public Collider SensorCollider { get; private set; }
+        public List<GameObject> SensorTriggersGameobject { get; private set; }
 
         public VisualBodyController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
@@ -17,6 +16,9 @@ namespace Zombieland.GameScene0.VisualBodyModule
         protected override void CreateHelpersScripts()
         {
             CreateCharacterGameobject();
+
+            GertterTriggers gertterTriggers = new GertterTriggers(this);
+            SensorTriggersGameobject = gertterTriggers.GetSensorTriggers();
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -32,8 +34,6 @@ namespace Zombieland.GameScene0.VisualBodyModule
 
             CreateCharacterPrefab createCharacterGameobject = new CreateCharacterPrefab();
             CharacterInScene = createCharacterGameobject.CreateCharacter(spawnPositionCharacter, spawnRotationCharacter);
-
-            SensorCollider = CharacterInScene.GetComponent<BoxCollider>() as Collider;
         }
     }
 }
