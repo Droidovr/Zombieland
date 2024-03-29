@@ -305,13 +305,15 @@
                 <e p="03.BuffDebuff" t="Include">
                   <e p="BuffDebuffInjection.cs" t="Include" />
                 </e>
-                <e p="ConsumableResource.cs" t="Include" />
+                <e p="Data" t="Include">
+                  <e p="ConsumableResource.cs" t="Include" />
+                  <e p="ImpactData.cs" t="Include" />
+                  <e p="ResourceType.cs" t="Include" />
+                </e>
                 <e p="Deserializator.cs" t="Include" />
                 <e p="IImpact.cs" t="Include" />
                 <e p="IImpactCommand.cs" t="Include" />
                 <e p="Impact.cs" t="Include" />
-                <e p="ImpactData.cs" t="Include" />
-                <e p="ResourceType.cs" t="Include" />
               </e>
               <e p="Test" t="Include">
                 <e p="Archive" t="Include">
@@ -324,6 +326,49 @@
                 <e p="TestFireHandler.cs" t="Include" />
                 <e p="TestImpactCreator.cs" t="Include" />
                 <e p="TestImpactCreatorEditor.cs" t="Include" />
+              </e>
+            </e>
+            <e p="NPCModule" t="Include">
+              <e p="NPCDataModule" t="Include">
+                <e p="Scripts" t="Include">
+                  <e p="INPCDataController.cs" t="Include" />
+                  <e p="NPCData.cs" t="Include" />
+                  <e p="NPCDataController.cs" t="Include" />
+                </e>
+              </e>
+              <e p="NPCMovingModule" t="Include">
+                <e p="Scripts" t="Include">
+                  <e p="INPCMovingController.cs" t="Include" />
+                  <e p="NPCMovingController.cs" t="Include" />
+                </e>
+              </e>
+              <e p="NPCSpawnModule" t="Include">
+                <e p="Scripts" t="Include">
+                  <e p="INPCSpawnController.cs" t="Include" />
+                  <e p="NPCSpawnController.cs" t="Include" />
+                </e>
+              </e>
+              <e p="NPCVisualBodyModule" t="Include">
+                <e p="Scripts" t="Include">
+                  <e p="INPCVisualBodyController.cs" t="Include" />
+                  <e p="NPCVisualBodyController.cs" t="Include" />
+                </e>
+              </e>
+              <e p="Scripts" t="Include">
+                <e p="INPController.cs" t="Include" />
+                <e p="NPCController.cs" t="Include" />
+              </e>
+              <e p="Test" t="Include">
+                <e p="PolygonApocalypse" t="Include">
+                  <e p="Materials" t="Include">
+                    <e p="Misc" t="Include">
+                      <e p="Shader" t="Include">
+                        <e p="POLYGON_Zombies.shader" t="Include" />
+                      </e>
+                    </e>
+                  </e>
+                </e>
+                <e p="TestStartPoint.cs" t="Include" />
               </e>
             </e>
             <e p="RootModule" t="Include">
