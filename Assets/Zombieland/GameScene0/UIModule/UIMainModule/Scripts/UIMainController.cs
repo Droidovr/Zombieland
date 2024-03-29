@@ -7,9 +7,21 @@ namespace Zombieland.GameScene0.UIModule
     public class UIMainController : Controller, IUIMainController
     {
         public event Action<Vector2> OnMoved;
-        public event Action OnFire;
+        public event Action<Vector2> OnMouseMoved;
+        public event Action<bool> OnFire;
+        public event Action<bool> OnStealth;
+        public event Action<bool> OnFastRun;
+        public event Action OnWeaponReaload;
+        public event Action OnUse;
+        public event Action OnInventory;
+        public event Action OnThrow;
+        public event Action OnNumber1;
+        public event Action OnNumber2;
+        public event Action OnNumber3;
+        public event Action OnNumber4;
 
         private InitializerInputPrefab _initializerInputGameobjects;
+        private GameCursor _gameCursor;
 
         #region PUBLIC
         public UIMainController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
@@ -22,7 +34,23 @@ namespace Zombieland.GameScene0.UIModule
             if (_initializerInputGameobjects != null)
             {
                 _initializerInputGameobjects.Input.OnMoved -= HandleMoved;
-                _initializerInputGameobjects.Input.OnFire -= HandleButtonClick;
+                _initializerInputGameobjects.Input.OnMouseMoved -= HandleMouseMoved;
+                _initializerInputGameobjects.Input.OnFire -= HandleFireClick;
+                _initializerInputGameobjects.Input.OnStealth -= HandleStealthClick;
+                _initializerInputGameobjects.Input.OnFastRun -= HandleFastRunClick;
+                _initializerInputGameobjects.Input.OnWeaponReaload -= HandleWeaponRealoadClick;
+                _initializerInputGameobjects.Input.OnUse -= HandleUseEClick;
+                _initializerInputGameobjects.Input.OnInventory -= HandleInventoryEClick;
+                _initializerInputGameobjects.Input.OnThrow -= HandleThrowClick;
+                _initializerInputGameobjects.Input.OnNumber1 -= HandleNumber1Click;
+                _initializerInputGameobjects.Input.OnNumber2 -= HandleNumber2Click;
+                _initializerInputGameobjects.Input.OnNumber3 -= HandleNumber3Click;
+                _initializerInputGameobjects.Input.OnNumber4 -= HandleNumber4Click;
+            }
+
+            if (_gameCursor != null)
+            {
+                _gameCursor.Disable();
             }
 
             base.Disable();
@@ -37,7 +65,20 @@ namespace Zombieland.GameScene0.UIModule
             _initializerInputGameobjects.Init();
 
             _initializerInputGameobjects.Input.OnMoved += HandleMoved;
-            _initializerInputGameobjects.Input.OnFire += HandleButtonClick;
+            _initializerInputGameobjects.Input.OnMouseMoved += HandleMouseMoved;
+            _initializerInputGameobjects.Input.OnFire += HandleFireClick;
+            _initializerInputGameobjects.Input.OnStealth += HandleStealthClick;
+            _initializerInputGameobjects.Input.OnFastRun += HandleFastRunClick;
+            _initializerInputGameobjects.Input.OnWeaponReaload += HandleWeaponRealoadClick;
+            _initializerInputGameobjects.Input.OnUse += HandleUseEClick;
+            _initializerInputGameobjects.Input.OnInventory += HandleInventoryEClick;
+            _initializerInputGameobjects.Input.OnThrow += HandleThrowClick;
+            _initializerInputGameobjects.Input.OnNumber1 += HandleNumber1Click;
+            _initializerInputGameobjects.Input.OnNumber2 += HandleNumber2Click;
+            _initializerInputGameobjects.Input.OnNumber3 += HandleNumber3Click;
+            _initializerInputGameobjects.Input.OnNumber4 += HandleNumber4Click;
+
+            _gameCursor = new GameCursor(this);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -53,9 +94,64 @@ namespace Zombieland.GameScene0.UIModule
             OnMoved?.Invoke(vectorMove);
         }
 
-        private void HandleButtonClick()
+        private void HandleMouseMoved(Vector2 mousePosition)
         {
-            OnFire?.Invoke();
+            OnMouseMoved?.Invoke(mousePosition);
+        }
+
+        private void HandleFireClick(bool isFire)
+        {
+            OnFire?.Invoke(isFire);
+        }
+
+        private void HandleStealthClick(bool isStaelth)
+        {
+            OnStealth?.Invoke(isStaelth);
+        }
+
+        private void HandleFastRunClick(bool isFastRun)
+        {
+            OnFastRun?.Invoke(isFastRun);
+        }
+
+        private void HandleWeaponRealoadClick()
+        {
+            OnWeaponReaload?.Invoke();
+        }
+
+        private void HandleUseEClick()
+        {
+            OnUse?.Invoke();
+        }
+
+        private void HandleInventoryEClick()
+        {
+            OnInventory?.Invoke();
+        }
+
+        private void HandleThrowClick()
+        {
+            OnThrow?.Invoke();
+        }
+
+        private void HandleNumber1Click()
+        {
+            OnNumber1?.Invoke();
+        }
+
+        private void HandleNumber2Click()
+        {
+            OnNumber2?.Invoke();
+        }
+
+        private void HandleNumber3Click()
+        {
+            OnNumber3?.Invoke();
+        }
+
+        private void HandleNumber4Click()
+        {
+            OnNumber4?.Invoke();
         }
         #endregion PRIVATE
     }

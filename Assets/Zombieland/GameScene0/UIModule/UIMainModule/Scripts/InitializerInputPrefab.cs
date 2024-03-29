@@ -8,8 +8,8 @@ namespace Zombieland.GameScene0.UIModule
     {
         public Input Input { get; private set; }
 
-        private const string INPUT_MOBILE_PREFAB_NAME = "MainUICanvas";
-        private const string INPUT_PC_PREFAB_NAME = "InputPC";
+        private const string INPUT_MOBILE_PREFAB_NAME = "MainMobileUICanvas";
+        private const string INPUT_PC_PREFAB_NAME = "MainPCUICanvas";
 
         public void Init()
         {

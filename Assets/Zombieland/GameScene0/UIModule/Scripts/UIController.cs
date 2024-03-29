@@ -7,8 +7,19 @@ namespace Zombieland.GameScene0.UIModule
     public class UIController : Controller, IUIController
     {
         public event Action<Vector2> OnMoved;
-        public event Action OnFire;
-        public event Action<string> OnInventoryButtonClick;
+        public event Action<Vector2> OnMouseMoved;
+        public event Action<bool> OnFire;
+        public event Action<bool> OnStealth;
+        public event Action<bool> OnFastRun;
+        public event Action OnWeaponReaload;
+        public event Action OnUse;
+        public event Action OnInventory;
+        public event Action OnThrow;
+        public event Action OnNumber1;
+        public event Action OnNumber2;
+        public event Action OnNumber3;
+        public event Action OnNumber4;
+
 
         private UIMainController _uIMainController;
 
@@ -23,7 +34,18 @@ namespace Zombieland.GameScene0.UIModule
             if (_uIMainController != null)
             {
                 _uIMainController.OnMoved -= HandleMoved;
+                _uIMainController.OnMouseMoved -= HandleMouseMoved;
                 _uIMainController.OnFire -= HandleFireClick;
+                _uIMainController.OnStealth -= HandleStealthClick;
+                _uIMainController.OnFastRun -= HandleFastRunClick;
+                _uIMainController.OnWeaponReaload -= HandleWeaponRealoadClick;
+                _uIMainController.OnUse -= HandleUseEClick;
+                _uIMainController.OnInventory -= HandleInventoryEClick;
+                _uIMainController.OnThrow -= HandleThrowClick;
+                _uIMainController.OnNumber1 -= HandleNumber1Click;
+                _uIMainController.OnNumber2 -= HandleNumber2Click;
+                _uIMainController.OnNumber3 -= HandleNumber3Click;
+                _uIMainController.OnNumber4 -= HandleNumber4Click;
             }
 
             base.Disable();
@@ -43,7 +65,18 @@ namespace Zombieland.GameScene0.UIModule
             subsystemsControllers.Add((IController)_uIMainController);
 
             _uIMainController.OnMoved += HandleMoved;
+            _uIMainController.OnMouseMoved += HandleMouseMoved;
             _uIMainController.OnFire += HandleFireClick;
+            _uIMainController.OnStealth += HandleStealthClick;
+            _uIMainController.OnFastRun += HandleFastRunClick;
+            _uIMainController.OnWeaponReaload += HandleWeaponRealoadClick;
+            _uIMainController.OnUse += HandleUseEClick;
+            _uIMainController.OnInventory += HandleInventoryEClick;
+            _uIMainController.OnThrow += HandleThrowClick;
+            _uIMainController.OnNumber1 += HandleNumber1Click;
+            _uIMainController.OnNumber2 += HandleNumber2Click;
+            _uIMainController.OnNumber3 += HandleNumber3Click;
+            _uIMainController.OnNumber4 += HandleNumber4Click;
         }
         #endregion PROTECTED
 
@@ -52,13 +85,66 @@ namespace Zombieland.GameScene0.UIModule
         private void HandleMoved(Vector2 vectorMove)
         {
             OnMoved?.Invoke(vectorMove);
-            // Debug.Log(vectorMove);
         }
 
-        private void HandleFireClick()
+        private void HandleMouseMoved(Vector2 mousePosition)
         {
-            OnFire?.Invoke();
-            Debug.Log("HandleFireClick");
+            OnMouseMoved?.Invoke(mousePosition);
+        }
+
+        private void HandleFireClick(bool isFire)
+        {
+            OnFire?.Invoke(isFire);
+        }
+
+        private void HandleStealthClick(bool isStaelth)
+        {
+            OnStealth?.Invoke(isStaelth);
+        }
+
+        private void HandleFastRunClick(bool isFastRun)
+        {
+            OnFastRun?.Invoke(isFastRun);
+        }
+
+        private void HandleWeaponRealoadClick()
+        {
+            OnWeaponReaload?.Invoke();
+        }
+
+        private void HandleUseEClick()
+        {
+            OnUse?.Invoke();
+        }
+
+        private void HandleInventoryEClick()
+        {
+            OnInventory?.Invoke();
+        }
+
+        private void HandleThrowClick()
+        {
+            OnThrow?.Invoke();
+        }
+
+        private void HandleNumber1Click()
+        {
+            OnNumber1?.Invoke();
+        }
+
+        private void HandleNumber2Click()
+        {
+            OnNumber2?.Invoke();
+        }
+
+        private void HandleNumber3Click()
+        {
+            OnNumber3?.Invoke();
+        }
+
+        private void HandleNumber4Click()
+        {
+            OnNumber4?.Invoke();
         }
         #endregion PRIVATE
     }

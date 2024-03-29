@@ -6,6 +6,17 @@ namespace Zombieland.GameScene0.UIModule
     public interface IUIMainController
     {
         event Action<Vector2> OnMoved;
-        event Action OnFire;
+        event Action<Vector2> OnMouseMoved;
+        event Action<bool> OnFire;
+        event Action<bool> OnStealth;
+        event Action<bool> OnFastRun;
+        event Action OnWeaponReaload;
+        event Action OnUse;
+        event Action OnInventory;
+        event Action OnThrow;
+        event Action OnNumber1;
+        event Action OnNumber2;
+        event Action OnNumber3;
+        event Action OnNumber4;
     }
 }
