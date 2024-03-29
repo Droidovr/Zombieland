@@ -48,14 +48,16 @@ namespace Zombieland.GameScene0.UIModule
                 _initializerInputGameobjects.Input.OnNumber4 -= HandleNumber4Click;
             }
 
+#if UNITY_STANDALONE
             if (_gameCursor != null)
             {
                 _gameCursor.Disable();
             }
+#endif
 
             base.Disable();
         }
-        #endregion PUBLIC
+#endregion PUBLIC
 
 
         #region PROTECTED
@@ -78,14 +80,16 @@ namespace Zombieland.GameScene0.UIModule
             _initializerInputGameobjects.Input.OnNumber3 += HandleNumber3Click;
             _initializerInputGameobjects.Input.OnNumber4 += HandleNumber4Click;
 
+#if UNITY_STANDALONE
             _gameCursor = new GameCursor(this);
+#endif
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
             // This controller doesn't have any subsystems at the moment.
         }
-        #endregion PROTECTED
+#endregion PROTECTED
 
 
         #region PRIVATE
