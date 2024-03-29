@@ -2,16 +2,16 @@ using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
 using Zombieland.GameScene0.UIModule;
 
-
 namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 {
-    public class CharacterPhysicMoving : MonoBehaviour
+    public class CharacterPhysicMovingPC : MonoBehaviour, ICharacterPhysicMoving
     {
         private const float GRAVITY = 9.8f;
         private const float ROTATION_SMOOTH_TIME = 0.03f;
         private const float MIN_VECTORMOVE_MAGITUDE = 0.1f;
 
         private Vector2 _vectorMove;
+        private Vector2 _vectorMousePosition;
         private float _verticalSpeed;
         private UnityEngine.CharacterController _unityCharacterController;
         private IUIMain _uIController;
@@ -24,6 +24,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         public void Disable()
         {
             _uIController.OnMoved -= MovedHandler;
+            _uIController.OnMouseMoved -= MovedMouseHandler;
             _characterMovingController.CharacterController.AnimationController.OnAnimatorMove -= OnAnimatorMoveHandler;
         }
 
@@ -36,6 +37,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
             _uIController = characterMovingController.CharacterController.RootController.UIController;
             _uIController.OnMoved += MovedHandler;
+            _uIController.OnMouseMoved += MovedMouseHandler;
 
             _characterDataController = characterMovingController.CharacterController.CharacterDataController;
 
@@ -48,7 +50,6 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             _isActive = isActive;
         }
         #endregion PUBLIC
-
 
         #region MONOBEHAVIOUR
         private void Update()
@@ -82,6 +83,11 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             _vectorMove = joystickPosition;
         }
 
+        private void MovedMouseHandler(Vector2 mousePosition)
+        {
+            _vectorMousePosition = mousePosition;
+        }
+
         private void CalculateGravity()
         {
             if (_unityCharacterController.enabled)
@@ -100,13 +106,16 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void CalculeteRotation()
         {
-            Vector3 direction = new Vector3(_vectorMove.x, 0f, _vectorMove.y).normalized;
+            //Vector3 direction = new Vector3(_vectorMove.x, 0f, _vectorMove.y).normalized;
 
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-            float rotationSpeed = _characterDataController.CharacterData.DesignRotationSpeed;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSpeed, ROTATION_SMOOTH_TIME);
+            //float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+            //float rotationSpeed = _characterDataController.CharacterData.DesignRotationSpeed;
+            //float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSpeed, ROTATION_SMOOTH_TIME);
 
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            //transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+            //Vector2 mousePosition = _characterMovingController.CharacterController.RootController. //    Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         }
         #endregion PRIVATE
     }
