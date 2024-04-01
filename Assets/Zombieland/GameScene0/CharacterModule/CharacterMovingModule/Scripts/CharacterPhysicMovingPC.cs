@@ -18,6 +18,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         private ICharacterDataController _characterDataController;
         private ICharacterMovingController _characterMovingController;
         public bool _isActive;
+        private float _speedMultiplier = 1f;
 
 
         #region PUBLIC
@@ -38,6 +39,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             _uIController = characterMovingController.CharacterController.RootController.UIController;
             _uIController.OnMoved += MovedHandler;
             _uIController.OnMouseMoved += MovedMouseHandler;
+            _uIController.OnFastRun += FastRunHandler;
 
             _characterDataController = characterMovingController.CharacterController.CharacterDataController;
 
@@ -92,16 +94,26 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         {
             if (_unityCharacterController.enabled)
             {
-                _verticalSpeed += _unityCharacterController.isGrounded ? GRAVITY : -GRAVITY;
+                _verticalSpeed -= _unityCharacterController.isGrounded ? _verticalSpeed : GRAVITY * Time.deltaTime;
                 _unityCharacterController.Move(Vector3.up * _verticalSpeed * Time.deltaTime);
             }
         }
 
+        private void FastRunHandler(bool isShift)
+        {
+            _speedMultiplier = isShift ? 3 : 1;
+        }
+
         private void CalculeteRealMovingSpeed()
         {
-            Vector3 movementDirection = new Vector3(_vectorMove.x, 0f, _vectorMove.y);
+            _characterMovingController.DirectionWalk = new Vector3(_vectorMove.x, 0f, _vectorMove.y);
 
-            _characterMovingController.RealMovingSpeed = Mathf.Clamp01(movementDirection.magnitude) * _characterDataController.CharacterData.DesignMovingSpeed;
+            _characterMovingController.RealMovingSpeed = Mathf.Clamp01(_characterMovingController.DirectionWalk.magnitude) * _characterDataController.CharacterData.DesignMovingSpeed * _speedMultiplier;
+
+            if (Time.frameCount % 60 == 0)
+            {
+                Debug.Log(_characterMovingController.RealMovingSpeed);
+            }
         }
 
         private void CalculeteRotation()
