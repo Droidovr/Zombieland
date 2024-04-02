@@ -9,6 +9,8 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         private const float GRAVITY = 9.8f;
         private const float ROTATION_SMOOTH_TIME = 0.03f;
         private const float MIN_VECTORMOVE_MAGITUDE = 0.1f;
+        private const float DEFAULT_SPEED_MULTIPLIER = 1f;
+        private const float FAST_SPEED_MULTIPLIER = 3f;
 
         private Vector2 _vectorMove;
         private Vector2 _vectorMousePosition;
@@ -99,9 +101,9 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             }
         }
 
-        private void FastRunHandler(bool isShift)
+        private void FastRunHandler(bool isFastRun)
         {
-            _speedMultiplier = isShift ? 3 : 1;
+            _speedMultiplier = isFastRun ? FAST_SPEED_MULTIPLIER : DEFAULT_SPEED_MULTIPLIER;
         }
 
         private void CalculeteRealMovingSpeed()
@@ -113,7 +115,8 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             if (Time.frameCount % 60 == 0)
             {
                 Debug.Log(_characterMovingController.RealMovingSpeed);
-            }
+                Debug.Log(_characterMovingController.DirectionWalk);
+;           }
         }
 
         private void CalculeteRotation()

@@ -42,5 +42,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
                 OnAnimatorMoveHandler?.Invoke(_animator.deltaPosition);
             }
         }
+
+
     }
 }
