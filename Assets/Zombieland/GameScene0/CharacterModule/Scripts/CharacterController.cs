@@ -6,6 +6,7 @@ using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
 using Zombieland.GameScene0.CharacterModule.CharacterMovingModule;
 using Zombieland.GameScene0.CharacterModule.EquipmentModule;
+using Zombieland.GameScene0.CharacterModule.InventoryModule;
 using Zombieland.GameScene0.CharacterModule.SensorModule;
 using Zombieland.GameScene0.CharacterModule.TakeImpactModule;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
@@ -25,6 +26,7 @@ namespace Zombieland.GameScene0.CharacterModule
         public ISensorController SensorController { get; private set; }
         public ITakeImpactController TakeImpactController { get; private set;}
         public IEquipmentController EquipmentController { get; private set;}
+        public IInventoryController InventoryController { get; private set; }
         public IAnimationController AnimationController { get; private set; }
         public IBuffDebuffController BuffDebuffController { get; private set; }
         public IAimingController AimingController { get; private set; }
@@ -69,8 +71,11 @@ namespace Zombieland.GameScene0.CharacterModule
             TakeImpactController = new TakeImpactController(this, new List<IController> { (IController)BuffDebuffController, (IController)CharacterDataController });
             subsystemsControllers.Add((IController)TakeImpactController);
             
-            EquipmentController = new EquipmentController(this, new List<IController>{(IController)CharacterDataController});
+            EquipmentController = new EquipmentController(this, new List<IController>{(IController)CharacterDataController, (IController)RootController.UIController.UIMainController, (IController)InventoryController });
             subsystemsControllers.Add((IController)EquipmentController);
+
+            InventoryController = new InventoryController(this, new List<IController> { (IController)CharacterDataController });
+            subsystemsControllers.Add((IController)InventoryController);
 
             AnimationController = new AnimationController(this, new List<IController>{(IController)CharacterMovingController});
             subsystemsControllers.Add ((IController)AnimationController);

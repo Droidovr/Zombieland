@@ -20,8 +20,7 @@ namespace Zombieland.GameScene0.UIModule
         public event Action OnNumber3;
         public event Action OnNumber4;
 
-
-        private UIMainController _uIMainController;
+        public IUIMainController UIMainController { get; private set; }
 
         #region PUBLIC
         public UIController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
@@ -31,21 +30,21 @@ namespace Zombieland.GameScene0.UIModule
 
         public override void Disable()
         {
-            if (_uIMainController != null)
+            if (UIMainController != null)
             {
-                _uIMainController.OnMoved -= HandleMoved;
-                _uIMainController.OnMouseMoved -= HandleMouseMoved;
-                _uIMainController.OnFire -= HandleFireClick;
-                _uIMainController.OnStealth -= HandleStealthClick;
-                _uIMainController.OnFastRun -= HandleFastRunClick;
-                _uIMainController.OnWeaponReaload -= HandleWeaponRealoadClick;
-                _uIMainController.OnUse -= HandleUseEClick;
-                _uIMainController.OnInventory -= HandleInventoryEClick;
-                _uIMainController.OnThrow -= HandleThrowClick;
-                _uIMainController.OnNumber1 -= HandleNumber1Click;
-                _uIMainController.OnNumber2 -= HandleNumber2Click;
-                _uIMainController.OnNumber3 -= HandleNumber3Click;
-                _uIMainController.OnNumber4 -= HandleNumber4Click;
+                UIMainController.OnMoved -= HandleMoved;
+                UIMainController.OnMouseMoved -= HandleMouseMoved;
+                UIMainController.OnFire -= HandleFireClick;
+                UIMainController.OnStealth -= HandleStealthClick;
+                UIMainController.OnFastRun -= HandleFastRunClick;
+                UIMainController.OnWeaponReaload -= HandleWeaponRealoadClick;
+                UIMainController.OnUse -= HandleUseEClick;
+                UIMainController.OnInventory -= HandleInventoryEClick;
+                UIMainController.OnThrow -= HandleThrowClick;
+                UIMainController.OnNumber1 -= HandleNumber1Click;
+                UIMainController.OnNumber2 -= HandleNumber2Click;
+                UIMainController.OnNumber3 -= HandleNumber3Click;
+                UIMainController.OnNumber4 -= HandleNumber4Click;
             }
 
             base.Disable();
@@ -61,22 +60,22 @@ namespace Zombieland.GameScene0.UIModule
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            _uIMainController = new UIMainController(this, null);
-            subsystemsControllers.Add((IController)_uIMainController);
+            UIMainController = new UIMainController(this, null);
+            subsystemsControllers.Add((IController)UIMainController);
 
-            _uIMainController.OnMoved += HandleMoved;
-            _uIMainController.OnMouseMoved += HandleMouseMoved;
-            _uIMainController.OnFire += HandleFireClick;
-            _uIMainController.OnStealth += HandleStealthClick;
-            _uIMainController.OnFastRun += HandleFastRunClick;
-            _uIMainController.OnWeaponReaload += HandleWeaponRealoadClick;
-            _uIMainController.OnUse += HandleUseEClick;
-            _uIMainController.OnInventory += HandleInventoryEClick;
-            _uIMainController.OnThrow += HandleThrowClick;
-            _uIMainController.OnNumber1 += HandleNumber1Click;
-            _uIMainController.OnNumber2 += HandleNumber2Click;
-            _uIMainController.OnNumber3 += HandleNumber3Click;
-            _uIMainController.OnNumber4 += HandleNumber4Click;
+            UIMainController.OnMoved += HandleMoved;
+            UIMainController.OnMouseMoved += HandleMouseMoved;
+            UIMainController.OnFire += HandleFireClick;
+            UIMainController.OnStealth += HandleStealthClick;
+            UIMainController.OnFastRun += HandleFastRunClick;
+            UIMainController.OnWeaponReaload += HandleWeaponRealoadClick;
+            UIMainController.OnUse += HandleUseEClick;
+            UIMainController.OnInventory += HandleInventoryEClick;
+            UIMainController.OnThrow += HandleThrowClick;
+            UIMainController.OnNumber1 += HandleNumber1Click;
+            UIMainController.OnNumber2 += HandleNumber2Click;
+            UIMainController.OnNumber3 += HandleNumber3Click;
+            UIMainController.OnNumber4 += HandleNumber4Click;
         }
         #endregion PROTECTED
 
