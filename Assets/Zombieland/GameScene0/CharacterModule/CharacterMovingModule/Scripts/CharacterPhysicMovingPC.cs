@@ -109,17 +109,17 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void CalculeteRealMovingSpeed()
         {
-            //_characterMovingController.DirectionWalk = new Vector3(_vectorMove.x, 0f, _vectorMove.y);
-            //_characterMovingController.RealMovingSpeed = Mathf.Clamp01(_characterMovingController.DirectionWalk.magnitude) * _characterDataController.CharacterData.DesignMovingSpeed * _speedMultiplier;
-
-            _characterMovingController.DirectionWalk = transform.forward * _vectorMove.y + transform.right * _vectorMove.x;
+            _characterMovingController.DirectionWalk = new Vector3(_vectorMove.x, 0f, _vectorMove.y);
             _characterMovingController.RealMovingSpeed = Mathf.Clamp01(_characterMovingController.DirectionWalk.magnitude) * _characterDataController.CharacterData.DesignMovingSpeed * _speedMultiplier;
+
+            //_characterMovingController.DirectionWalk = transform.forward * _vectorMove.y + transform.right * _vectorMove.x;
+            //_characterMovingController.RealMovingSpeed = Mathf.Clamp01(_characterMovingController.DirectionWalk.magnitude) * _characterDataController.CharacterData.DesignMovingSpeed * _speedMultiplier;
 
             if (Time.frameCount % 60 == 0)
             {
                 Debug.Log(_characterMovingController.RealMovingSpeed);
                 Debug.Log(_characterMovingController.DirectionWalk);
-;           }
+            }
         }
 
         private void CalculeteRotation()
