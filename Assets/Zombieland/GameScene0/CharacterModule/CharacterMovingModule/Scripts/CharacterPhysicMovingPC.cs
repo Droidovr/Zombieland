@@ -21,6 +21,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         private ICharacterMovingController _characterMovingController;
         public bool _isActive;
         private float _speedMultiplier = 1f;
+        private Vector3 _lookPosition;
 
 
         #region PUBLIC
@@ -108,8 +109,10 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void CalculeteRealMovingSpeed()
         {
-            _characterMovingController.DirectionWalk = new Vector3(_vectorMove.x, 0f, _vectorMove.y);
+            //_characterMovingController.DirectionWalk = new Vector3(_vectorMove.x, 0f, _vectorMove.y);
+            //_characterMovingController.RealMovingSpeed = Mathf.Clamp01(_characterMovingController.DirectionWalk.magnitude) * _characterDataController.CharacterData.DesignMovingSpeed * _speedMultiplier;
 
+            _characterMovingController.DirectionWalk = transform.forward * _vectorMove.y + transform.right * _vectorMove.x;
             _characterMovingController.RealMovingSpeed = Mathf.Clamp01(_characterMovingController.DirectionWalk.magnitude) * _characterDataController.CharacterData.DesignMovingSpeed * _speedMultiplier;
 
             if (Time.frameCount % 60 == 0)
@@ -135,6 +138,19 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
             }
+
+            //Ray ray = _characterMovingController.CharacterController.RootController.CameraController.PlayerCamera.ScreenPointToRay(_vectorMousePosition);
+            //RaycastHit hit;
+
+            //if (Physics.Raycast(ray, out hit, 100))
+            //{
+            //    _lookPosition = hit.point;
+            //}
+
+            //Vector3 lookDirection = _lookPosition - transform.position;
+            //lookDirection.y = 0;
+
+            //transform.LookAt(transform.position + lookDirection, Vector3.up);
         }
         #endregion PRIVATE
     }
