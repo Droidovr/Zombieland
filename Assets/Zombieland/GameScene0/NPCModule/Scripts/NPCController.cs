@@ -35,6 +35,9 @@ namespace Zombieland.GameScene0.NPCModule
             
             SpawnController = new NPCSpawnController(this, new List<IController>{(IController)VisualBodyController});
             subsystemsControllers.Add((IController)SpawnController);
+            
+            MovingController = new NPCMovingController(this, new List<IController>{(IController)VisualBodyController, (IController)DataController});
+            subsystemsControllers.Add((IController)MovingController);
         }
 
         private void TestCreateSubsystems()
@@ -42,6 +45,7 @@ namespace Zombieland.GameScene0.NPCModule
             DataController = new NPCDataController(this, new List<IController>());
             VisualBodyController = new NPCVisualBodyController(this, new List<IController>{(IController)DataController});
             SpawnController = new NPCSpawnController(this, new List<IController>{(IController)VisualBodyController});
+            MovingController = new NPCMovingController(this, new List<IController>{(IController)VisualBodyController, (IController)DataController});
         }
     }
 }

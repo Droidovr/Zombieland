@@ -14,5 +14,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCDataModule
 
         public float Speed = 10;
         public Vector3 SpawnPosition = Vector3.zero;
+        public float StopDistance;
     }
 }

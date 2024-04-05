@@ -10,7 +10,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCDataModule
             : base(parentController, requiredControllers)
         {
             CreateHelpersScripts();
-            TestCreateSubsystems();
         }
 
         protected override void CreateHelpersScripts()
@@ -21,11 +20,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCDataModule
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
             //This method has no implementation
-        }
-        
-        private void TestCreateSubsystems()
-        {
-            
         }
     }
 }

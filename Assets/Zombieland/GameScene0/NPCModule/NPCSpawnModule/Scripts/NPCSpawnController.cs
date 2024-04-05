@@ -11,7 +11,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCSpawnModule
         {
             NPCController = (INPCController)parentController;
             CreateHelpersScripts();
-            TestCreateSubsystems();
         }
 
         protected override void CreateHelpersScripts()
@@ -22,11 +21,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCSpawnModule
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
             //This method has no implementation
-        }
-        
-        private void TestCreateSubsystems()
-        {
-            
         }
 
         private void SetAndActivateNPC()
