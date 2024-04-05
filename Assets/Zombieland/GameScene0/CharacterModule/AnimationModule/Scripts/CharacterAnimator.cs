@@ -7,6 +7,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
     public class CharacterAnimator : MonoBehaviour
     {
         public event Action<Vector3> OnAnimatorMoveHandler;
+        public event Action OnFinish;
 
         private const string PC_ANIMATOR = "PCAnimatorController";
         private const string MOBILE_ANIMATOR = "Character0MobileAnimator";
@@ -36,6 +37,12 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 #endif
 
             _characterController = CharacterController;
+        }
+
+        public void FinishHandler()
+        {
+            OnFinish?.Invoke();
+            Debug.Log("FinishHandler");
         }
 
         private void OnAnimatorMove()

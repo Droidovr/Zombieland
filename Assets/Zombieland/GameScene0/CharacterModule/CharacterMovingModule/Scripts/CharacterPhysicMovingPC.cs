@@ -103,14 +103,6 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void FastRunHandler(bool isFastRun)
         {
-            //if (isFastRun && _vectorMove.y > 1)
-            //{
-            //    _speedMultiplier = FAST_SPEED_MULTIPLIER;
-            //}
-            //else
-            //{
-            //    _speedMultiplier = DEFAULT_SPEED_MULTIPLIER;
-            //}
             _speedMultiplier = isFastRun ? FAST_SPEED_MULTIPLIER : DEFAULT_SPEED_MULTIPLIER;
         }
 
@@ -121,8 +113,10 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         }
 
         private void CalculeteRotation()
-        {
-            Ray ray = _characterMovingController.CharacterController.RootController.CameraController.PlayerCamera.ScreenPointToRay(_vectorMousePosition);
+        {        
+            Vector2 offsetMousePotion = _vectorMousePosition - new Vector2(-128f, 128f);
+
+            Ray ray = _characterMovingController.CharacterController.RootController.CameraController.PlayerCamera.ScreenPointToRay(offsetMousePotion);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))

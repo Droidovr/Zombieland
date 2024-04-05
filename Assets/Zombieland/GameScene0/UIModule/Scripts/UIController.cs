@@ -20,6 +20,7 @@ namespace Zombieland.GameScene0.UIModule
         public event Action OnNumber3;
         public event Action OnNumber4;
 
+        public Vector2 SizeCursor { get; set; }
 
         private UIMainController _uIMainController;
 
