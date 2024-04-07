@@ -38,11 +38,13 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 #endif
 
             _characterController = CharacterController;
+
+            //_characterController.EquipmentController. += WeaponChangeHandler;
         }
 
         public void Disable()
         {
-            
+            //_characterController.EquipmentController. -= WeaponChangeHandler;
         }
 
         public void FinishHandler()
