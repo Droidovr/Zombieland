@@ -18,5 +18,7 @@ namespace Zombieland.GameScene0.UIModule
         event Action OnNumber2;
         event Action OnNumber3;
         event Action OnNumber4;
+
+        IUIMainController UIMainController { get; }
     }
 }
