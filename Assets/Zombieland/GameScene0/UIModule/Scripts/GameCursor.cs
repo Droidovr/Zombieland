@@ -14,6 +14,7 @@ namespace Zombieland.GameScene0.UIModule
         private Texture2D _cursorAimTexture;
         private IUIMainController _uIMainController;
         private List<RaycastResult> _raycastResults;
+        private bool _isPointerOverGameObject = false;
 
         public GameCursor(IUIMainController uIMainController)
         {
@@ -33,9 +34,20 @@ namespace Zombieland.GameScene0.UIModule
             _uIMainController.OnMouseMoved -= UpdateCursor;
         }
 
+        private void OnPointerEnter(PointerEventData eventData)
+        {
+            _isPointerOverGameObject = true;
+        }
+
+        private void OnPointerExit(PointerEventData eventData)
+        {
+            _isPointerOverGameObject = false;
+        }
+
         private void UpdateCursor(Vector2 mousePosition)
         {
-            if (EventSystem.current.IsPointerOverGameObject())
+            //if (EventSystem.current.IsPointerOverGameObject())
+            if (_isPointerOverGameObject)
             {
                 PointerEventData pointerData = new PointerEventData(EventSystem.current);
                 pointerData.position = mousePosition;

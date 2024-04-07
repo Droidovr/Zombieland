@@ -8,6 +8,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
     {
         public event Action<Vector3> OnAnimatorMoveHandler;
         public event Action OnFinish;
+        public event Action OnFinishPreparationAttack;
 
         private const string PC_ANIMATOR = "PCAnimatorController";
         private const string MOBILE_ANIMATOR = "Character0MobileAnimator";
@@ -39,10 +40,26 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             _characterController = CharacterController;
         }
 
+        public void Disable()
+        {
+            
+        }
+
         public void FinishHandler()
         {
             OnFinish?.Invoke();
             Debug.Log("FinishHandler");
+        }
+
+        private void FinishPreparationAttackHandler()
+        {
+            OnFinishPreparationAttack?.Invoke();
+            Debug.Log("FinishPreparationAttackHandler");
+        }
+
+        private void WeaponChangeHandler()
+        { 
+            
         }
 
         private void OnAnimatorMove()

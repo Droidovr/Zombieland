@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1be9d5888daccab4a8999ae773bdf127
+guid: c144979eb97a6124e8c98f91111a463d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,7 +33,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Great Sword Slash
+      name: Crouch Walk Right
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
@@ -44,9 +44,9 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 1
-      loopBlendOrientation: 1
+      loopBlendOrientation: 0
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
@@ -56,14 +56,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0
-        functionName: FinishPreparationAttackHandler
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
