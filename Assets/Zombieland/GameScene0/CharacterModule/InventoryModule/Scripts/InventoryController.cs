@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-
+using UnityEngine;
 
 namespace Zombieland.GameScene0.CharacterModule.InventoryModule
 {
@@ -10,7 +10,7 @@ namespace Zombieland.GameScene0.CharacterModule.InventoryModule
         public event Action<string, int> OnCurrentImpactEquipped;
         public event Action<string> OnCurrentOutfitEquipped;
 
-        public Dictionary<string, int> ItemsInInventory { get; private set; }
+        public Dictionary<string, InventoryItem> ItemsInInventory { get; private set; }
 
         public ICharacterController CharacterController { get; private set; }
 
@@ -21,7 +21,9 @@ namespace Zombieland.GameScene0.CharacterModule.InventoryModule
 
         public void PickUpItem(string itemName, int count)
         {
-
+            ItemsInInventory.Add("Some ID", new InventoryItem(itemName, count));
+            Debug.Log($"Added {count} of {itemName}!");
+            // For testing purpose try to call Equip here, with an additional parameter (int slotNumber) determined in every temporary weapon prefab on Scene.
         }
 
         #region PROTECTED
@@ -35,6 +37,11 @@ namespace Zombieland.GameScene0.CharacterModule.InventoryModule
             // This controller doesn't have any subsystems at the moment.
         }
         #endregion PROTECTED
+
+        private void EquipWeaponIntoActiveSlot(string name, int slotNumber)
+        {
+            OnMainSlotEquipped?.Invoke(name, slotNumber);
+        }
     }
 }
 

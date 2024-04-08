@@ -8,13 +8,14 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
     public class EquipmentController : Controller, IEquipmentController
     {
         public event Action<Weapon> OnWeaponChanged;
-        public event Action OnEquipmentChanged;
+        public event Action<string> OnEquipmentChanged;
         public event Action<string> OnAmmoChanged;
         public event Action OnAmmoDepleted;
 
         public ICharacterController CharacterController { get; private set; }
-        public List<Weapon> WeaponsSlots { get; private set; }
+        public Dictionary<int, Weapon> WeaponsSlots { get; private set; }
         public int CurrentAmmoCount { get; private set; }
+        public string CurrentOutfitEquipped { get; private set; }
 
 
         public EquipmentController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
@@ -24,10 +25,16 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
 
         public override void Enable()
         {
+            WeaponsSlots = new Dictionary<int, Weapon>() { { 1, null }, { 2, null }, { 3, null }, { 4, null } };
+
             CharacterController.RootController.UIController.OnNumber1 += Number1Handler;
             CharacterController.RootController.UIController.OnNumber2 += Number2Handler;
             CharacterController.RootController.UIController.OnNumber3 += Number3Handler;
             CharacterController.RootController.UIController.OnNumber4 += Number4Handler;
+
+            CharacterController.InventoryController.OnMainSlotEquipped += MainSlotEquippedHandler;
+            //CharacterController.InventoryController.OnCurrentImpactEquipped += CurrentImpactEquippedHandler;
+            CharacterController.InventoryController.OnCurrentOutfitEquipped += CurrentOutfitEquippedHandler;
 
             base.Enable();
         }
@@ -39,12 +46,11 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
             CharacterController.RootController.UIController.OnNumber3 -= Number3Handler;
             CharacterController.RootController.UIController.OnNumber4 -= Number4Handler;
 
-            base.Disable();
-        }
+            CharacterController.InventoryController.OnMainSlotEquipped -= MainSlotEquippedHandler;
+            //CharacterController.InventoryController.OnCurrentImpactEquipped -= CurrentImpactEquippedHandler;
+            CharacterController.InventoryController.OnCurrentOutfitEquipped -= CurrentOutfitEquippedHandler;
 
-        public void PickUpWeapon(Weapon weapon)
-        {
-            WeaponsSlots.Add(weapon);
+            base.Disable();
         }
 
         #region PROTECTED
@@ -60,39 +66,53 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
         #endregion PROTECTED
 
         #region PRIVATE
+        private void MainSlotEquippedHandler(string name, int slotNumber)
+        {
+            WeaponsSlots[slotNumber] = CharacterController.RootController.GameDataController.GetData<Weapon>(name); //*Place new Weapon Object here*;
+        }
+
+        private void CurrentOutfitEquippedHandler(string name)
+        {
+            OnEquipmentChanged?.Invoke(name);
+        }
+
         private void Number1Handler()
         {
-            Debug.Log("Weapon in slot 1 is equipped!");
-            if (WeaponsSlots[0] != null)
+            Debug.Log("Weapon slot 1 is empty!");
+            if (WeaponsSlots[1] != null)
             {
-                OnWeaponChanged?.Invoke(WeaponsSlots[0]);
+                Debug.Log($"Weapon in slot 1 : {WeaponsSlots[1]} is equipped!");
+                OnWeaponChanged?.Invoke(WeaponsSlots[1]);
             }
         }
 
         private void Number2Handler()
         {
-            Debug.Log("Weapon in slot 2 is equipped!");
-            if (WeaponsSlots[1] != null)
+            Debug.Log("Weapon slot 2 is empty!");
+            if (WeaponsSlots[2] != null)
             {
-                OnWeaponChanged?.Invoke(WeaponsSlots[1]);
+                Debug.Log($"Weapon in slot 2 : {WeaponsSlots[2]} is equipped!");
+                OnWeaponChanged?.Invoke(WeaponsSlots[2]);
             }
         }
 
         private void Number3Handler()
         {
-            Debug.Log("Weapon in slot 3 is equipped!");
-            if (WeaponsSlots[2] != null)
+            Debug.Log("Weapon slot 3 is empty!");
+            if (WeaponsSlots[3] != null)
             {
-                OnWeaponChanged?.Invoke(WeaponsSlots[2]);
+                Debug.Log($"Weapon in slot 3 : {WeaponsSlots[3]} is equipped!");
+                OnWeaponChanged?.Invoke(WeaponsSlots[3]);
             }
         }
 
         private void Number4Handler()
         {
-            Debug.Log("Weapon in slot 4 is equipped!");
-            if (WeaponsSlots[3] != null)
+            Debug.Log("Weapon slot 4 is empty!");
+            if (WeaponsSlots[4] != null)
             {
-                OnWeaponChanged?.Invoke(WeaponsSlots[3]);
+                Debug.Log($"Weapon in slot 4 : {WeaponsSlots[4]} is equipped!");
+                OnWeaponChanged?.Invoke(WeaponsSlots[4]);
             }
         }
         #endregion PRIVATE
