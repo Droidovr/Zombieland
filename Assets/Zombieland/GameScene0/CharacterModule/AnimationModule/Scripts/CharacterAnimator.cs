@@ -110,9 +110,10 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         private void FireHandler(bool isFire)
         { 
-            if (!isFire) 
+            if (!isFire && _animator.GetBool("IsWrench") || _animator.GetBool("IsPistol") || _animator.GetBool("IsShotgun") )
             {
                 _animator.SetTrigger("Attack");
+                Debug.Log("FireHandler");
             }
         }
 
