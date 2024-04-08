@@ -32,7 +32,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             _animatorController = animatorController;
 
             _animatorController.CharacterController.EquipmentController.OnWeaponChanged += WeaponChangeHandler;
-            _animatorController.CharacterController.RootController.UIController.OnStealth += StealthHandler;
+            _animatorController.CharacterController.StealthController.OnStealth += StealthHandler;
             _animatorController.CharacterController.RootController.UIController.OnFire += FireHandler;
 
             //Test
@@ -43,7 +43,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         public void Disable()
         {
             _animatorController.CharacterController.EquipmentController.OnWeaponChanged -= WeaponChangeHandler;
-            _animatorController.CharacterController.RootController.UIController.OnStealth -= StealthHandler;
+            _animatorController.CharacterController.StealthController.OnStealth -= StealthHandler;
             _animatorController.CharacterController.RootController.UIController.OnFire -= FireHandler;
         }
 

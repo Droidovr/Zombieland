@@ -9,8 +9,8 @@ namespace Zombieland.GameScene0.UIModule
         public event Action<Vector2> OnMoved;
         public event Action<Vector2> OnMouseMoved;
         public event Action<bool> OnFire;
-        public event Action<bool> OnStealth;
         public event Action<bool> OnFastRun;
+        public event Action OnStealth;
         public event Action OnWeaponReaload;
         public event Action OnUse;
         public event Action OnInventory;
@@ -36,8 +36,8 @@ namespace Zombieland.GameScene0.UIModule
                 _initializerInputGameobjects.Input.OnMoved -= HandleMoved;
                 _initializerInputGameobjects.Input.OnMouseMoved -= HandleMouseMoved;
                 _initializerInputGameobjects.Input.OnFire -= HandleFireClick;
-                _initializerInputGameobjects.Input.OnStealth -= HandleStealthClick;
                 _initializerInputGameobjects.Input.OnFastRun -= HandleFastRunClick;
+                _initializerInputGameobjects.Input.OnStealth -= HandleStealthClick;
                 _initializerInputGameobjects.Input.OnWeaponReaload -= HandleWeaponRealoadClick;
                 _initializerInputGameobjects.Input.OnUse -= HandleUseEClick;
                 _initializerInputGameobjects.Input.OnInventory -= HandleInventoryEClick;
@@ -69,8 +69,8 @@ namespace Zombieland.GameScene0.UIModule
             _initializerInputGameobjects.Input.OnMoved += HandleMoved;
             _initializerInputGameobjects.Input.OnMouseMoved += HandleMouseMoved;
             _initializerInputGameobjects.Input.OnFire += HandleFireClick;
-            _initializerInputGameobjects.Input.OnStealth += HandleStealthClick;
             _initializerInputGameobjects.Input.OnFastRun += HandleFastRunClick;
+            _initializerInputGameobjects.Input.OnStealth += HandleStealthClick;
             _initializerInputGameobjects.Input.OnWeaponReaload += HandleWeaponRealoadClick;
             _initializerInputGameobjects.Input.OnUse += HandleUseEClick;
             _initializerInputGameobjects.Input.OnInventory += HandleInventoryEClick;
@@ -108,9 +108,9 @@ namespace Zombieland.GameScene0.UIModule
             OnFire?.Invoke(isFire);
         }
 
-        private void HandleStealthClick(bool isStaelth)
+        private void HandleStealthClick()
         {
-            OnStealth?.Invoke(isStaelth);
+            OnStealth?.Invoke();
         }
 
         private void HandleFastRunClick(bool isFastRun)
