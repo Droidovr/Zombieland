@@ -1,6 +1,8 @@
 using System;
 using UnityEditor.Animations;
 using UnityEngine;
+using Zombieland.GameScene0.CharacterModule.WeaponModule;
+using Zombieland.GameScene0.ImpactModule;
 
 namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 {
@@ -14,20 +16,10 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private const string MOBILE_ANIMATOR = "Character0MobileAnimator";
         private const float DAMP_TIME = 0.05f;
 
-        private ICharacterController _characterController;
+        private IAnimationController _animatorController;
         private Animator _animator;
 
-        private void Update()
-        {
-            _animator.SetFloat("RealMovingSpeed", _characterController.CharacterMovingController.RealMovingSpeed, DAMP_TIME, Time.deltaTime);
-
-            Vector3 moveDirection = transform.InverseTransformDirection(_characterController.CharacterMovingController.DirectionWalk);
-
-            _animator.SetFloat("DirectionX", moveDirection.x, DAMP_TIME, Time.deltaTime);
-            _animator.SetFloat("DirectionZ", moveDirection.z, DAMP_TIME, Time.deltaTime);
-        }
-
-        public void Init(ICharacterController CharacterController)
+        public void Init(IAnimationController animatorController)
         {
             _animator = GetComponent<Animator>();
 
@@ -37,14 +29,22 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             _animator.runtimeAnimatorController = Resources.Load<AnimatorController>(MOBILE_ANIMATOR);
 #endif
 
-            _characterController = CharacterController;
+            _animatorController = animatorController;
 
-            //_characterController.EquipmentController. += WeaponChangeHandler;
+            _animatorController.CharacterController.EquipmentController.OnWeaponChanged += WeaponChangeHandler;
+            _animatorController.CharacterController.RootController.UIController.OnStealth += StealthHandler;
+            _animatorController.CharacterController.RootController.UIController.OnFire += FireHandler;
+
+            //Test
+            TestEquipment testEquipment = new TestEquipment(_animatorController);
+            testEquipment.OnWeaponChanged += WeaponChangeHandler;
         }
 
         public void Disable()
         {
-            //_characterController.EquipmentController. -= WeaponChangeHandler;
+            _animatorController.CharacterController.EquipmentController.OnWeaponChanged -= WeaponChangeHandler;
+            _animatorController.CharacterController.RootController.UIController.OnStealth -= StealthHandler;
+            _animatorController.CharacterController.RootController.UIController.OnFire -= FireHandler;
         }
 
         public void FinishHandler()
@@ -53,15 +53,67 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             Debug.Log("FinishHandler");
         }
 
+        private void Update()
+        {
+            _animator.SetFloat("RealMovingSpeed", _animatorController.CharacterController.CharacterMovingController.RealMovingSpeed, DAMP_TIME, Time.deltaTime);
+
+            Vector3 moveDirection = transform.InverseTransformDirection(_animatorController.CharacterController.CharacterMovingController.DirectionWalk);
+
+            _animator.SetFloat("DirectionX", moveDirection.x, DAMP_TIME, Time.deltaTime);
+            _animator.SetFloat("DirectionZ", moveDirection.z, DAMP_TIME, Time.deltaTime);
+        }
+
         private void FinishPreparationAttackHandler()
         {
             OnFinishPreparationAttack?.Invoke();
             Debug.Log("FinishPreparationAttackHandler");
         }
 
-        private void WeaponChangeHandler()
+        private void WeaponChangeHandler(Weapon weapon)
         { 
-            
+            string nameWeapon = weapon.WeaponData.Name;
+
+            _animator.SetBool("IsWrench", false);
+            _animator.SetBool("IsPistol", false);
+            _animator.SetBool("IsShotgun", false);
+
+            switch (nameWeapon)
+            {
+                case "Wrench":
+                    _animator.SetBool("IsWrench", true);
+                    break;
+
+                case "Pistol":
+                    _animator.SetBool("IsPistol", true);
+                    break;
+
+                case "Shotgun":
+                    _animator.SetBool("IsShotgun", true);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void StealthHandler(bool isStealth)
+        {
+            if (isStealth)
+            {
+                _animator.SetBool("IsStealth", true);
+            }
+            else
+            {
+                _animator.SetBool("IsStealth", false);
+            }
+        }
+
+        private void FireHandler(bool isFire)
+        { 
+            if (!isFire) 
+            {
+                _animator.SetTrigger("Attack");
+            }
         }
 
         private void OnAnimatorMove()

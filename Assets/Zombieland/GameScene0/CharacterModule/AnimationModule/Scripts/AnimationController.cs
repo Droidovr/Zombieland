@@ -34,7 +34,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             GameObject character = CharacterController.VisualBodyController.CharacterInScene;
 
             _characterAnimator = character.AddComponent<CharacterAnimator>();
-            _characterAnimator.Init(CharacterController);
+            _characterAnimator.Init(this);
             _characterAnimator.OnAnimatorMoveHandler += AnimatorMoveHandler;
             _characterAnimator.OnFinishPreparationAttack += FinishPreparationAttack;
 

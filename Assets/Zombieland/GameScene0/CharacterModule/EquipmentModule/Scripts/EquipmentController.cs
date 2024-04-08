@@ -24,20 +24,20 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
 
         public override void Enable()
         {
-            CharacterController.RootController.UIController.OnNumber1 += Number1Handler;
-            CharacterController.RootController.UIController.OnNumber2 += Number2Handler;
-            CharacterController.RootController.UIController.OnNumber3 += Number3Handler;
-            CharacterController.RootController.UIController.OnNumber4 += Number4Handler;
+            //CharacterController.RootController.UIController.OnNumber1 += Number1Handler;
+            //CharacterController.RootController.UIController.OnNumber2 += Number2Handler;
+            //CharacterController.RootController.UIController.OnNumber3 += Number3Handler;
+            //CharacterController.RootController.UIController.OnNumber4 += Number4Handler;
 
             base.Enable();
         }
 
         public override void Disable()
         {
-            CharacterController.RootController.UIController.OnNumber1 -= Number1Handler;
-            CharacterController.RootController.UIController.OnNumber2 -= Number2Handler;
-            CharacterController.RootController.UIController.OnNumber3 -= Number3Handler;
-            CharacterController.RootController.UIController.OnNumber4 -= Number4Handler;
+            //CharacterController.RootController.UIController.OnNumber1 -= Number1Handler;
+            //CharacterController.RootController.UIController.OnNumber2 -= Number2Handler;
+            //CharacterController.RootController.UIController.OnNumber3 -= Number3Handler;
+            //CharacterController.RootController.UIController.OnNumber4 -= Number4Handler;
 
             base.Disable();
         }

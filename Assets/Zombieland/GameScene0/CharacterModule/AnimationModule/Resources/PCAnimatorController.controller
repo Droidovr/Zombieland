@@ -198,7 +198,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: ISWrench
+    m_ConditionEvent: IsWrench
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4398000347727389061}
@@ -596,7 +596,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: ISWrench
+    m_ConditionEvent: IsWrench
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7089243516130993763}
@@ -1055,7 +1055,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: ISWrench
+  - m_Name: IsWrench
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -1516,7 +1516,7 @@ AnimatorStateMachine:
     m_Position: {x: 240, y: -40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2957328389250953034}
-    m_Position: {x: 400, y: -380, z: 0}
+    m_Position: {x: 390, y: -380, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
