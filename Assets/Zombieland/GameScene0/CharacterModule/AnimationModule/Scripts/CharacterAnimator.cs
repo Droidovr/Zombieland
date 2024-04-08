@@ -98,23 +98,12 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         private void StealthHandler(bool isStealth)
         {
-            if (isStealth)
-            {
-                _animator.SetBool("IsStealth", true);
-            }
-            else
-            {
-                _animator.SetBool("IsStealth", false);
-            }
+            _animator.SetBool("IsStealth", isStealth);
         }
 
         private void FireHandler(bool isFire)
-        { 
-            if (!isFire && _animator.GetBool("IsWrench") || _animator.GetBool("IsPistol") || _animator.GetBool("IsShotgun") )
-            {
-                _animator.SetTrigger("Attack");
-                Debug.Log("FireHandler");
-            }
+        {
+            _animator.SetBool("Attack", isFire);
         }
 
         private void OnAnimatorMove()
