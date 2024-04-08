@@ -9,8 +9,8 @@ namespace Zombieland.GameScene0.UIModule
         public event Action<Vector2> OnMoved;
         public event Action<Vector2> OnMouseMoved;
         public event Action<bool> OnFire;
-        public event Action<bool> OnStealth;
         public event Action<bool> OnFastRun;
+        public event Action OnStealth;
         public event Action OnWeaponReaload;
         public event Action OnUse;
         public event Action OnInventory;
@@ -97,14 +97,14 @@ namespace Zombieland.GameScene0.UIModule
             OnFire?.Invoke(isFire);
         }
 
-        private void HandleStealthClick(bool isStaelth)
-        {
-            OnStealth?.Invoke(isStaelth);
-        }
-
         private void HandleFastRunClick(bool isFastRun)
         {
             OnFastRun?.Invoke(isFastRun);
+        }
+
+        private void HandleStealthClick()
+        {
+            OnStealth?.Invoke();
         }
 
         private void HandleWeaponRealoadClick()
