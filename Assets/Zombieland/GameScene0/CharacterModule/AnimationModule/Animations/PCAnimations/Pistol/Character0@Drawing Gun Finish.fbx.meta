@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 474d226bd88ac554cb7987cefb71809d
+guid: 151dd8291aa2aed4e8396c3b2c189533
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -56,7 +56,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.95384616
+        functionName: FinishHandler
+        data: Pistol
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

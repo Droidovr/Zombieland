@@ -1,4 +1,6 @@
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
 using Zombieland.GameScene0.UIModule;
 
@@ -22,6 +24,9 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         public bool _isActive;
         private float _speedMultiplier = 1f;
 
+        #if UNITY_EDITOR
+        private Vector3 _mousePositionOnGround;
+        #endif
 
         #region PUBLIC
         public void Disable()
@@ -113,24 +118,42 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         }
 
         private void CalculeteRotation()
-        {        
-            Vector2 offsetMousePotion = _vectorMousePosition - new Vector2(-128f, 128f);
+        {
+            Vector2 offsetMousePotion = _vectorMousePosition - new Vector2(-50f, 50f);
+
+            Plane groundPlane = new Plane(Vector3.up, transform.position);
 
             Ray ray = _characterMovingController.CharacterController.RootController.CameraController.PlayerCamera.ScreenPointToRay(offsetMousePotion);
-            RaycastHit hit;
+            float distanceToGround;
+            Vector3 mousePositionOnGround = Vector3.zero;
 
-            if (Physics.Raycast(ray, out hit))
+            if (groundPlane.Raycast(ray, out distanceToGround))
             {
-                Vector3 mousePositionOnScene = hit.point;
-                mousePositionOnScene.y = transform.position.y;
-                Vector3 direction = mousePositionOnScene - transform.position;
-                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-                float rotationSpeed = _characterDataController.CharacterData.DesignRotationSpeed;
-                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSpeed, ROTATION_SMOOTH_TIME);
-
-                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                mousePositionOnGround = ray.GetPoint(distanceToGround);
+                
+                #if UNITY_EDITOR
+                _mousePositionOnGround = mousePositionOnGround;
+                #endif
             }
+
+            Vector3 direction = mousePositionOnGround - transform.position;
+
+            if (direction != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _characterDataController.CharacterData.DesignRotationSpeed);
+            }
+
         }
+
+        #if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(transform.position, _mousePositionOnGround);
+        }
+        #endif
+
         #endregion PRIVATE
     }
 }

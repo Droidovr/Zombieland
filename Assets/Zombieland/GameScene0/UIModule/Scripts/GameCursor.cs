@@ -46,7 +46,6 @@ namespace Zombieland.GameScene0.UIModule
 
         private void UpdateCursor(Vector2 mousePosition)
         {
-            //if (EventSystem.current.IsPointerOverGameObject())
             if (_isPointerOverGameObject)
             {
                 PointerEventData pointerData = new PointerEventData(EventSystem.current);
