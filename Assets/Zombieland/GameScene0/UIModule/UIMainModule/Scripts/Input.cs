@@ -25,7 +25,7 @@ namespace Zombieland.GameScene0.UIModule
 
         private void Start()
         {
-            _imageButtonStealth = transform.Find("Stealth").GetComponent<Image>();
+            //_imageButtonStealth = transform.Find("Stealth").GetComponent<Image>();
             _spriteStealthOn = Resources.Load<Sprite>(NAME_SPRITE_STEALTH_ON);
             _spriteStealthOff = Resources.Load<Sprite>(NAME_SPRITE_STEALTH_OFF);
         }
