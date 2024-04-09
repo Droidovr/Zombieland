@@ -10,6 +10,8 @@ namespace Zombieland.GameScene0.CameraModule
         private readonly IRootController _rootController;
         private InitializerCamera _initializerCamera;
 
+        public Camera PlayerCamera { get; private set; }
+
         public CameraController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             _rootController = parentController as IRootController;
@@ -30,6 +32,7 @@ namespace Zombieland.GameScene0.CameraModule
             _initializerCamera = new InitializerCamera();
             var cameraData = _rootController.GameDataController.GetData<CameraData>("CameraData");
             _initializerCamera.Init(cameraData, characterTransform);
+            PlayerCamera = _initializerCamera.MainCamera;
         }
 
     }
