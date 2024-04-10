@@ -1,25 +1,24 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zombieland;
-using Zombieland.GameScene0.NPCModule;
+using Zombieland.GameScene0.NPCManagerModule;
 
 public class TestStartPoint : MonoBehaviour
 {
-    public Transform TargetTransform;
+    public Transform CharacterTransform;
     
     private IController Controller;
     private readonly List<IController> ControllersList = new List<IController>();
-    private INPCController NPCController;
+    private NPCManagerController NPCManagerController;
 
 
     private void Awake()
     {
-        NPCController = new NPCController(Controller, ControllersList);
+        NPCManagerController = new NPCManagerController(Controller, ControllersList);
     }
 
     void Start()
     {
-        NPCController.MovingController.FollowTarget(TargetTransform, 1);
+        NPCManagerController.CharacterTransform = CharacterTransform;
     }
 }
