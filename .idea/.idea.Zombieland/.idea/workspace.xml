@@ -20,23 +20,15 @@
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/NPCController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/ITakeImpactController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCSpawnModule/Scripts/INPCSpawnController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCHearingSensorModule/Scripts/NPCHearingSensorController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Knife.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCVisionSensorModule/Scripts/IVisionSensorController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCVisionSensorModule/Scripts/INPCVisionSensorController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/IInitialImpactCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/INPCManagerController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Resources/Knife.txt" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Knife.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/IImpactable.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Detectors/SphereDetector.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Detectors/TouchColliderDetector.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Detectors/UpfrontRayDetector.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/ImpactData.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SensorModule/ImpactableSensorModule/Scripts/IImpactable.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SensorModule/ImpactableSensorModule/Scripts/Impactable.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/BaseMine.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/BaseDirectProjectile.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/BaseHealing.cs" />
@@ -74,11 +66,20 @@
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCVisionSensorModule/Scripts/VisionSensorController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/INPCManagerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Test/TestStartPoint.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/NPCManagerController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/NPCController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCHearingSensorModule/Scripts/HearingSensorEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCVisionSensorModule/Scripts/VisionSensorEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Test/TestImpactCreatorEditor.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Knife.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCTakeImpactModule/INPCTakeImpactController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCTakeImpactModule/NPCTakeImpactController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCHearingSensorModule/Scripts/INPCHearingSensorController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCHearingSensorModule/Scripts/NPCHearingSensorController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCVisionSensorModule/Scripts/INPCVisionSensorController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCVisionSensorModule/Scripts/NPCVisionSensorController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/INPController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/NPCController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/NPCManagerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/ShotgunBullet.cs" />
       </list>
     </option>
   </component>
@@ -143,6 +144,7 @@
       <workItem from="1712612894109" duration="752000" />
       <workItem from="1712710678246" duration="2586000" />
       <workItem from="1712764495146" duration="3334000" />
+      <workItem from="1712778186344" duration="1833000" />
     </task>
     <servers />
   </component>
@@ -155,15 +157,15 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="921" y="351" key="RiderGenerateDialog" timestamp="1712711756163">
+    <state x="921" y="351" key="RiderGenerateDialog" timestamp="1712783487794">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="921" y="351" key="RiderGenerateDialog/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1712711756163" />
+    <state x="921" y="351" key="RiderGenerateDialog/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1712783487794" />
     <state x="4531" y="605" key="RiderGenerateDialog/3840.349.1920.1020/0.0.2560.1400@3840.349.1920.1020" timestamp="1711732327080" />
-    <state x="165" y="-13" width="2150" height="1401" maximized="true" key="dock-window-1" timestamp="1712769961854">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="3840" y="349" width="1936" height="1107" key="dock-window-1" timestamp="1712783893231">
+      <screen x="3840" y="349" width="1920" height="1020" />
     </state>
-    <state x="165" y="-13" width="2150" height="1401" maximized="true" key="dock-window-1/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1712769961854" />
+    <state x="3840" y="349" width="1936" height="1107" key="dock-window-1/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1712783893231" />
     <state x="508" y="172" width="1552" height="1066" maximized="true" key="dock-window-1/3840.349.1920.1020/0.0.2560.1400@3840.349.1920.1020" timestamp="1711737666237" />
     <state x="4270" y="442" width="1880" height="1387" key="dock-window-10" timestamp="1707504789053">
       <screen x="3840" y="349" width="1920" height="1020" />

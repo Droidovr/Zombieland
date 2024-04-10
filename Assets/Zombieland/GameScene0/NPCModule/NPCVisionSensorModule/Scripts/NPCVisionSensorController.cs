@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Zombieland.GameScene0.NPCModule.NPCVisionSensorModule
 {
-    public class VisionSensorController : Controller, IVisionSensorController
+    public class NPCVisionSensorController : Controller, INPCVisionSensorController
     {
         private readonly INPCController NPCController;
         
 
-        public VisionSensorController(IController parentController, List<IController> requiredControllers) 
+        public NPCVisionSensorController(IController parentController, List<IController> requiredControllers) 
             : base(parentController, requiredControllers)
         {
             NPCController = (INPCController) parentController;

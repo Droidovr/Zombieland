@@ -143,7 +143,10 @@
                     <e p="RagdollComponent.cs" t="Include" />
                     <e p="RagdollState.cs" t="Include" />
                   </e>
-                  <e p="Test" t="Include">
+                </e>
+                <e p="Test" t="Include">
+                  <e p="Scripts" t="Include">
+                    <e p="TestEquipment.cs" t="Include" />
                     <e p="TestShooter.cs" t="Include" />
                   </e>
                 </e>
@@ -177,8 +180,10 @@
               <e p="CharacterMovingModule" t="Include">
                 <e p="Scripts" t="Include">
                   <e p="CharacterMovingController.cs" t="Include" />
-                  <e p="CharacterPhysicMoving.cs" t="Include" />
+                  <e p="CharacterPhysicMovingMobile.cs" t="Include" />
+                  <e p="CharacterPhysicMovingPC.cs" t="Include" />
                   <e p="ICharacterMovingController.cs" t="Include" />
+                  <e p="ICharacterPhysicMoving.cs" t="Include" />
                 </e>
                 <e p="Test" t="Include">
                   <e p="TestCamera" t="Include">
@@ -192,7 +197,23 @@
               <e p="EquipmentModule" t="Include">
                 <e p="Scripts" t="Include">
                   <e p="EquipmentController.cs" t="Include" />
+                  <e p="HelperScripts" t="Include">
+                    <e p="InterractableEquipmentObject.cs" t="Include" />
+                  </e>
                   <e p="IEquipmentController.cs" t="Include" />
+                </e>
+                <e p="Test" t="Include">
+                  <e p="Scripts" t="Include">
+                    <e p="IWeapon.cs" t="Include" />
+                    <e p="Weapon.cs" t="Include" />
+                    <e p="WeaponData.cs" t="Include" />
+                  </e>
+                </e>
+              </e>
+              <e p="InventoryModule" t="Include">
+                <e p="Scripts" t="Include">
+                  <e p="IInventoryController.cs" t="Include" />
+                  <e p="InventoryController.cs" t="Include" />
                 </e>
               </e>
               <e p="Scripts" t="Include">
@@ -218,6 +239,13 @@
                 <e p="Scripts" t="Include">
                   <e p="ISensorController.cs" t="Include" />
                   <e p="SensorController.cs" t="Include" />
+                </e>
+              </e>
+              <e p="StealthModule" t="Include">
+                <e p="Scripts" t="Include">
+                  <e p="IStealthController.cs" t="Include" />
+                  <e p="StealthController.cs" t="Include" />
+                  <e p="StealthSensor.cs" t="Include" />
                 </e>
               </e>
               <e p="TakeImpactModule" t="Include">
@@ -344,6 +372,8 @@
                 <e p="Scripts" t="Include">
                   <e p="HearingSensor.cs" t="Include" />
                   <e p="HearingSensorEditor.cs" t="Include" />
+                  <e p="INPCHearingSensorController.cs" t="Include" />
+                  <e p="NPCHearingSensorController.cs" t="Include" />
                 </e>
               </e>
               <e p="NPCMovingModule" t="Include">
@@ -359,11 +389,17 @@
                   <e p="NPCSpawnController.cs" t="Include" />
                 </e>
               </e>
+              <e p="NPCTakeImpactModule" t="Include">
+                <e p="Scripts" t="Include">
+                  <e p="INPCTakeImpactController.cs" t="Include" />
+                  <e p="NPCTakeImpactController.cs" t="Include" />
+                </e>
+              </e>
               <e p="NPCVisionSensorModule" t="Include">
                 <e p="Scripts" t="Include">
-                  <e p="IVisionSensorController.cs" t="Include" />
+                  <e p="INPCVisionSensorController.cs" t="Include" />
+                  <e p="NPCVisionSensorController.cs" t="Include" />
                   <e p="VisionSensor.cs" t="Include" />
-                  <e p="VisionSensorController.cs" t="Include" />
                   <e p="VisionSensorEditor.cs" t="Include" />
                 </e>
               </e>
@@ -414,11 +450,11 @@
                   <e p="InputSystemControls.cs" t="Include" />
                 </e>
                 <e p="Scripts" t="Include">
+                  <e p="GameCursor.cs" t="Include" />
                   <e p="InitializerInputPrefab.cs" t="Include" />
                   <e p="Input.cs" t="Include" />
                   <e p="IUIMainController.cs" t="Include" />
                   <e p="MovingJoystickScreen.cs" t="Include" />
-                  <e p="NameButton.cs" t="Include" />
                   <e p="UIMainController.cs" t="Include" />
                 </e>
               </e>

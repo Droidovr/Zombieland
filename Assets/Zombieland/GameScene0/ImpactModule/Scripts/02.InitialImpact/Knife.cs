@@ -26,7 +26,7 @@ public class Knife : IInitialImpactCommand
             var effectPrefab = Resources.Load<GameObject>(TargetReachedEffectPrefabName);
             foreach (var target in Impact.ImpactData.Targets)
             {
-                target.Owner.TakeImpactController.ApplyImpact(InitialImpactData);
+                target.Controller.TakeImpactController.ApplyImpact(InitialImpactData);
                 // target - ApplyForce
                 if(!effectPrefab) return;
                 var effect = GameObject.Instantiate(effectPrefab, Impact.ImpactData.ObjectSpawnPosition, Quaternion.identity);

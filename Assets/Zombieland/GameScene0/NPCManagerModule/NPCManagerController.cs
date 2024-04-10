@@ -10,7 +10,7 @@ namespace Zombieland.GameScene0.NPCManagerModule
         private IRootController _rootController;
         public Transform CharacterTransform { get; set; }
 
-        private List<INPCController> _NPCControllers;
+        private List<INPCController> _activeNPCControllers;
 
         public NPCManagerController(IController parentController, List<IController> requiredControllers) 
             : base(parentController, requiredControllers)
@@ -23,7 +23,7 @@ namespace Zombieland.GameScene0.NPCManagerModule
 
         protected override void CreateHelpersScripts()
         {
-            _NPCControllers = new List<INPCController>();
+            _activeNPCControllers = new List<INPCController>();
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -33,8 +33,8 @@ namespace Zombieland.GameScene0.NPCManagerModule
 
         private void CreateNPC()
         {
-            var NPC = new NPCController(this, null);
-            _NPCControllers.Add(NPC);
+            var NPCController = new NPCController(this, null);
+            _activeNPCControllers.Add(NPCController);
         }
     }
 }
