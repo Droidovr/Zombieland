@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Zombieland.GameScene0.CharacterModule;
 using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 
 namespace Zombieland.GameScene0.ImpactModule
@@ -16,24 +17,27 @@ namespace Zombieland.GameScene0.ImpactModule
         {
             foreach (var target in Impact.ImpactData.Targets)
             {
-                if (Buffs != null && Buffs.Count > 0)
+                if (target.Controller is ICharacterController characterController)
                 {
-                    foreach (var buff in Buffs)
+                    if (Buffs != null && Buffs.Count > 0)
                     {
-                        buff.BuffDebuffData.Owner = Impact.ImpactData.ImpactOwner;
-                        buff.BuffDebuffData.ImpactTarget = target.Owner;
+                        foreach (var buff in Buffs)
+                        {
+                            buff.BuffDebuffData.Owner = Impact.ImpactData.ImpactOwner;
+                            buff.BuffDebuffData.ImpactTarget = characterController;
+                        }
+                        characterController.BuffDebuffController.InjectBuffs(Buffs);
                     }
-                    target.Owner.BuffDebuffController.InjectBuffs(Buffs);
-                }
 
-                if (Debuffs != null && Debuffs.Count > 0)
-                {
-                    foreach (var debuff in Debuffs)
+                    if (Debuffs != null && Debuffs.Count > 0)
                     {
-                        debuff.BuffDebuffData.Owner = Impact.ImpactData.ImpactOwner;
-                        debuff.BuffDebuffData.ImpactTarget = target.Owner;
+                        foreach (var debuff in Debuffs)
+                        {
+                            debuff.BuffDebuffData.Owner = Impact.ImpactData.ImpactOwner;
+                            debuff.BuffDebuffData.ImpactTarget = characterController;
+                        }
+                        characterController.BuffDebuffController.InjectDebuffs(Debuffs);
                     }
-                    target.Owner.BuffDebuffController.InjectDebuffs(Debuffs);
                 }
             }
             
