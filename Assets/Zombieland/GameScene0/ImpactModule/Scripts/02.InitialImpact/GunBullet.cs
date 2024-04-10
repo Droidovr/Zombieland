@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
+using Zombieland.GameScene0.CharacterModule;
 using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 using Zombieland.GameScene0.ImpactModule;
 
@@ -34,12 +35,15 @@ public class GunBullet : IInitialImpactCommand
             var effectPrefab = Resources.Load<GameObject>(TargetReachedEffectPrefabName);
             foreach (var target in Impact.ImpactData.Targets)
             {
-                target.Owner.TakeImpactController.ApplyImpact(InitialImpactData);
-                // target - ApplyForce
-                if(!effectPrefab) return;
-                var effect = GameObject.Instantiate(effectPrefab, Impact.ImpactData.ImpactObject.transform.position, Quaternion.identity);
-                var effectTime = effect.GetComponent<ParticleSystem>().main.duration;
-                GameObject.Destroy(effect, effectTime);
+                if (target.Controller is ICharacterController characterController)
+                {
+                    characterController.TakeImpactController.ApplyImpact(InitialImpactData);
+                    // target - ApplyForce
+                    if(!effectPrefab) return;
+                    var effect = GameObject.Instantiate(effectPrefab, Impact.ImpactData.ImpactObject.transform.position, Quaternion.identity);
+                    var effectTime = effect.GetComponent<ParticleSystem>().main.duration;
+                    GameObject.Destroy(effect, effectTime);
+                }
             }
             Impact.BuffDebuffInjection.Execute();
         }
