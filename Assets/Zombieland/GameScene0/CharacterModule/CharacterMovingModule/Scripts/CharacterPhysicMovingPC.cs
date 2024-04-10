@@ -119,9 +119,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void CalculeteRotation()
         {
-            //_vectorMousePosition -= new Vector2(32f, 32f);
-
-            Vector2 cursorCenter = _vectorMousePosition;// - _defaultSizeCursor/2;
+            Vector2 cursorCenter = _vectorMousePosition - _defaultSizeCursor/2;
 
             Vector2 offset = cursorCenter - _centerScreen;
             float angle = Mathf.Atan2(offset.x, offset.y) * Mathf.Rad2Deg;
