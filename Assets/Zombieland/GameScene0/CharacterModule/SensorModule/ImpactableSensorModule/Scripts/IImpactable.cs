@@ -2,6 +2,6 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule.ImpactableSensorMod
 {
     public interface IImpactable
     {
-        ICharacterController Owner { get; set; }
+        IController Controller { get; }
     }
 }

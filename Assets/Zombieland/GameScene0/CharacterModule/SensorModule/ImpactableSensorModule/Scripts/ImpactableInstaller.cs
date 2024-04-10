@@ -23,6 +23,7 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule.ImpactableSensorMod
                 for (int i = 0; i < sensorTriggersGameobject.Count; i++)
                 {
                     Impactable impactable = sensorTriggersGameobject[i].AddComponent<Impactable>();
+                    impactable.Init((IController) _impactableSensorController.SensorController.CharacterController);
                     impactables.Add(impactable);
                 }
             }
