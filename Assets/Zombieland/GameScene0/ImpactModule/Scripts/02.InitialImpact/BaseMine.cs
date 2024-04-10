@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
+using Zombieland.GameScene0.CharacterModule;
 using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
+using Zombieland.GameScene0.CharacterModule.SensorModule.ImpactableSensorModule;
 
 namespace Zombieland.GameScene0.ImpactModule
 {
-    public class BaseMine : IInitialImpact
+    public class BaseMine : IInitialImpactCommand
     {
         [JsonIgnore] public IImpact Impact { get; set; }
         public SphereDetector Detector { get; set; }
@@ -52,12 +54,14 @@ namespace Zombieland.GameScene0.ImpactModule
                 var onTargetEffectPrefab = Resources.Load<GameObject>(OnTargetEffectPrefabName);
                 foreach (var target in Impact.ImpactData.Targets)
                 {
-                    //target.TestApplyDirectImpact(InitialImpactData);
-                    target.Owner.TakeImpactController.ApplyImpact(InitialImpactData);
-                    if(!onTargetEffectPrefab) return;
-                    var effect = GameObject.Instantiate(onTargetEffectPrefab, target.Transform);
-                    var effectTime = effect.GetComponent<ParticleSystem>().main.duration;
-                    GameObject.Destroy(effect, effectTime);
+                    if (target.Controller is ICharacterController characterController)
+                    {
+                        characterController.TakeImpactController.ApplyImpact(InitialImpactData);
+                        if(!onTargetEffectPrefab) return;
+                        var effect = GameObject.Instantiate(onTargetEffectPrefab, ((Impactable)target).gameObject.transform);
+                        var effectTime = effect.GetComponent<ParticleSystem>().main.duration;
+                        GameObject.Destroy(effect, effectTime);
+                    }
                 }
             }
             Impact.BuffDebuffInjection.Execute();
