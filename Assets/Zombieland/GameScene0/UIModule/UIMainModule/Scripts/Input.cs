@@ -43,7 +43,7 @@ namespace Zombieland.GameScene0.UIModule.UIMainModule
             _inputSystemControls.Main.Use.performed += context => OnUse?.Invoke();
             _inputSystemControls.Main.Inventory.performed += context => OnInventory?.Invoke();
             _inputSystemControls.Main.Throw.performed += context => OnThrow?.Invoke();
-            _inputSystemControls.Main.Number1.performed += context => OnNumber1?.Invoke(); 
+            _inputSystemControls.Main.Number1.performed += context => OnNumber1?.Invoke();
             _inputSystemControls.Main.Number2.performed += context => OnNumber2?.Invoke();
             _inputSystemControls.Main.Number3.performed += context => OnNumber3?.Invoke();
             _inputSystemControls.Main.Number4.performed += context => OnNumber4?.Invoke();
