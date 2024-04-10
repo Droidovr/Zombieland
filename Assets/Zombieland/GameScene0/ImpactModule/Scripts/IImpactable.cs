@@ -8,7 +8,7 @@ namespace Zombieland.GameScene0.ImpactModule
     public interface IImpactable
     {
         public ICharacterController Owner { get; set; }
-        public Transform Transform  { get; }
+        public Transform Transform { get; }
 
         public void TestApplyDirectImpact(List<DirectImpactData> directImpactDataList);
         public void TestApplyBuffs(List<IBuffDebuffCommand> buffs);

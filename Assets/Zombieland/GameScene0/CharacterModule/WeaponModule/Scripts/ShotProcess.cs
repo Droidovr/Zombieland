@@ -109,7 +109,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             //5. Play Animation Weapon
             OnShotPerformed.Invoke();
 
-            if (Owner.WeaponController.CurrentImpactCount <= 0)
+            if (Owner.WeaponController.CharacterController.EquipmentController.CurrentAmmoCount <= 0)
             {
                 OnAmmoDepleted.Invoke();
             }
@@ -163,7 +163,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         {
             bool isCheckResource = false;
 
-            isCheckResource = Owner.WeaponController.CurrentImpactCount >= 0;
+            isCheckResource = Owner.WeaponController.CharacterController.EquipmentController.CurrentAmmoCount >= 0;
 
             for (int i = 0; i < _impact.ImpactData.ConsumableResources.Count; i++)
             {
@@ -191,7 +191,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         private void ResourceOperation(bool isReservedResources)
         {
-            Owner.WeaponController.CurrentImpactCount += isReservedResources ? -1 : 1;
+            Owner.WeaponController.CharacterController.EquipmentController.CurrentAmmoCount += isReservedResources ? -1 : 1;
 
             for (int i = 0; i < _impact.ImpactData.ConsumableResources.Count; i++)
             {

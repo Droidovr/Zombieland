@@ -15,7 +15,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         public ICharacterController CharacterController { get; private set; }
         public IWeapon Weapon { get; private set; }
         public string CurrentImpactName { get; private set; }
-        public int CurrentImpactCount { get; set; }
 
         public WeaponController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
@@ -26,8 +25,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         {
             CharacterController.EquipmentController.OnWeaponChanged += WeaponChangedHandler;
             CharacterController.EquipmentController.OnAmmoChanged += AmmoChangedHandler;
-            CharacterController.RootController.UIController.OnFireDown += ButtonFireDownHandler;
-            CharacterController.RootController.UIController.OnFireUp += ButtonFireUpHandler;
+            CharacterController.RootController.UIController.OnFire += ButtonFireHandler;
 
             base.Enable();
         }
@@ -43,8 +41,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
             CharacterController.EquipmentController.OnWeaponChanged -= WeaponChangedHandler;
             CharacterController.EquipmentController.OnAmmoChanged -= AmmoChangedHandler;
-            CharacterController.RootController.UIController.OnFireDown -= ButtonFireDownHandler;
-            CharacterController.RootController.UIController.OnFireUp -= ButtonFireUpHandler;
+            CharacterController.RootController.UIController.OnFire -= ButtonFireHandler;
 
             base.Disable();
         }
@@ -66,27 +63,28 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             Weapon.ShotProcess.OnShotAnimationPreparing += ShotAnimationPreparing;
         }
 
-        private void AmmoChangedHandler(int countImpact, string impactName)
+        private void AmmoChangedHandler(string impactName)
         {
-            CurrentImpactCount = countImpact;
             CurrentImpactName = impactName;
         }
 
-        private void ButtonFireDownHandler()
+        private void ButtonFireHandler(bool isFire)
         {
-            if (Weapon != null)
+            if (isFire)
             {
-                Weapon.ShotProcess.StartFire();
-                Debug.Log("Weapon - ButtonFireDownHandler");
+                if (Weapon != null)
+                {
+                    Weapon.ShotProcess.StartFire();
+                    Debug.Log("Weapon - ButtonFireDownHandler");
+                }
             }
-        }
-
-        private void ButtonFireUpHandler() 
-        {
-            if (Weapon != null)
+            else
             {
-                Weapon.ShotProcess.StopFire();
-                Debug.Log("Weapon - ButtonFireUpHandler");
+                if (Weapon != null)
+                {
+                    Weapon.ShotProcess.StopFire();
+                    Debug.Log("Weapon - ButtonFireUpHandler");
+                }
             }
         }
 

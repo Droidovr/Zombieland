@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Zombieland.GameScene0.VisualBodyModule
@@ -6,6 +7,6 @@ namespace Zombieland.GameScene0.VisualBodyModule
     {
         GameObject CharacterInScene { get; }
         GameObject WeaponInScene { get; }
-        Collider SensorCollider { get; }
+        List<GameObject> SensorTriggersGameobject { get; }
     }
 }
