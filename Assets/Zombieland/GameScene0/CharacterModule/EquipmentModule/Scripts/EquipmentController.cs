@@ -14,8 +14,12 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
 
         public ICharacterController CharacterController { get; private set; }
         public Dictionary<int, Weapon> WeaponsSlots { get; private set; }
-        public int CurrentAmmoCount { get; private set; }
+        public Dictionary<string, int> CurrentImpactsEquipped { get; private set; }
+        public int CurrentImpactCount { get; private set; }
         public string CurrentOutfitEquipped { get; private set; }
+
+        private Weapon _currentWeaponEquipped;
+
 
 
         public EquipmentController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
@@ -33,7 +37,7 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
             CharacterController.RootController.UIController.OnNumber4 += Number4Handler;
 
             CharacterController.InventoryController.OnMainSlotEquipped += MainSlotEquippedHandler;
-            //CharacterController.InventoryController.OnCurrentImpactEquipped += CurrentImpactEquippedHandler;
+            CharacterController.InventoryController.OnCurrentImpactEquipped += CurrentImpactEquippedHandler;
             CharacterController.InventoryController.OnCurrentOutfitEquipped += CurrentOutfitEquippedHandler;
 
             base.Enable();
@@ -47,7 +51,7 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
             CharacterController.RootController.UIController.OnNumber4 -= Number4Handler;
 
             CharacterController.InventoryController.OnMainSlotEquipped -= MainSlotEquippedHandler;
-            //CharacterController.InventoryController.OnCurrentImpactEquipped -= CurrentImpactEquippedHandler;
+            CharacterController.InventoryController.OnCurrentImpactEquipped -= CurrentImpactEquippedHandler;
             CharacterController.InventoryController.OnCurrentOutfitEquipped -= CurrentOutfitEquippedHandler;
 
             base.Disable();
@@ -68,8 +72,18 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
         #region PRIVATE
         private void MainSlotEquippedHandler(string name, int slotNumber)
         {
-            WeaponsSlots[slotNumber] = CharacterController.RootController.GameDataController.GetData<Weapon>(name); //*Place new Weapon Object here*;
+            WeaponsSlots[slotNumber] = CharacterController.RootController.GameDataController.GetData<Weapon>(name);
         }
+
+        private void CurrentImpactEquippedHandler(string impactID, int amount)
+        {
+            if (_currentWeaponEquipped.WeaponData.AvailableImpactIDs.Contains(impactID))
+            {
+                CurrentImpactsEquipped.Add(impactID, amount);
+            }
+        }
+
+        //probably CurrentImpactSelectedHandler(string impactID) is needed, subscribed to some UIMain event and telling us which Impacts do we want to use.
 
         private void CurrentOutfitEquippedHandler(string name)
         {
@@ -83,6 +97,7 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
             {
                 Debug.Log($"Weapon in slot 1 : {WeaponsSlots[1]} is equipped!");
                 OnWeaponChanged?.Invoke(WeaponsSlots[1]);
+                _currentWeaponEquipped = WeaponsSlots[1];
             }
         }
 
@@ -93,6 +108,7 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
             {
                 Debug.Log($"Weapon in slot 2 : {WeaponsSlots[2]} is equipped!");
                 OnWeaponChanged?.Invoke(WeaponsSlots[2]);
+                _currentWeaponEquipped = WeaponsSlots[2];
             }
         }
 
@@ -103,6 +119,7 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
             {
                 Debug.Log($"Weapon in slot 3 : {WeaponsSlots[3]} is equipped!");
                 OnWeaponChanged?.Invoke(WeaponsSlots[3]);
+                _currentWeaponEquipped = WeaponsSlots[3];
             }
         }
 
@@ -113,6 +130,7 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
             {
                 Debug.Log($"Weapon in slot 4 : {WeaponsSlots[4]} is equipped!");
                 OnWeaponChanged?.Invoke(WeaponsSlots[4]);
+                _currentWeaponEquipped = WeaponsSlots[4];
             }
         }
         #endregion PRIVATE

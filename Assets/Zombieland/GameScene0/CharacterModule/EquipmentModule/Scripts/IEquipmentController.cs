@@ -12,7 +12,8 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
         event Action OnAmmoDepleted;
 
         Dictionary<int, Weapon> WeaponsSlots { get; }
-        int CurrentAmmoCount { get; }
+        Dictionary<string, int> CurrentImpactsEquipped { get; }
+        int CurrentImpactCount { get; }
         string CurrentOutfitEquipped { get; }
 
         ICharacterController CharacterController { get; }
