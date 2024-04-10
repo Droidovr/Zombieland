@@ -24,6 +24,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         public bool _isActive;
         private float _speedMultiplier = 1f;
         private Vector2 _centerScreen;
+        private Vector2 _defaultSizeCursor = new Vector2(32f, 32f);
 
 
         #region PUBLIC
@@ -120,11 +121,22 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         {
             //_vectorMousePosition -= new Vector2(32f, 32f);
 
-            Vector2 offset = _vectorMousePosition - _centerScreen;
+            Vector2 cursorCenter = _vectorMousePosition;// - _defaultSizeCursor/2;
+
+            Vector2 offset = cursorCenter - _centerScreen;
             float angle = Mathf.Atan2(offset.x, offset.y) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(0f, angle, 0f);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _characterDataController.CharacterData.DesignRotationSpeed);
         }
+
+        #if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, transform.position + transform.forward * 5f);
+        }
+        #endif
+
         #endregion PRIVATE
     }
 }

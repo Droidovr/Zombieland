@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Zombieland.GameScene0.UIModule.UIMainModule;
 
 namespace Zombieland.GameScene0.UIModule
 {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Zombieland.GameScene0.UIModule
+namespace Zombieland.GameScene0.UIModule.UIMainModule
 {
     public class UIMainController : Controller, IUIMainController
     {

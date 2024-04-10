@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Zombieland.GameScene0.UIModule
+namespace Zombieland.GameScene0.UIModule.UIMainModule
 {
     public interface IUIMainController
     {

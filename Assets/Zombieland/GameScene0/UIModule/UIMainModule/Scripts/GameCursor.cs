@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.OnScreen;
 
-namespace Zombieland.GameScene0.UIModule
+namespace Zombieland.GameScene0.UIModule.UIMainModule
 {
     public class GameCursor
     {
