@@ -23,10 +23,8 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         private ICharacterMovingController _characterMovingController;
         public bool _isActive;
         private float _speedMultiplier = 1f;
+        private Vector2 _centerScreen;
 
-        #if UNITY_EDITOR
-        private Vector3 _mousePositionOnGround;
-        #endif
 
         #region PUBLIC
         public void Disable()
@@ -51,6 +49,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             _characterDataController = characterMovingController.CharacterController.CharacterDataController;
 
             _isActive = true;
+            _centerScreen = new Vector2(Screen.width / 2f, Screen.height / 2f);
         }
 
         public void ActivateMoving(bool isActive)
@@ -119,41 +118,13 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void CalculeteRotation()
         {
-            Vector2 offsetMousePotion = _vectorMousePosition - new Vector2(-50f, 50f);
+            //_vectorMousePosition -= new Vector2(32f, 32f);
 
-            Plane groundPlane = new Plane(Vector3.up, transform.position);
-
-            Ray ray = _characterMovingController.CharacterController.RootController.CameraController.PlayerCamera.ScreenPointToRay(offsetMousePotion);
-            float distanceToGround;
-            Vector3 mousePositionOnGround = Vector3.zero;
-
-            if (groundPlane.Raycast(ray, out distanceToGround))
-            {
-                mousePositionOnGround = ray.GetPoint(distanceToGround);
-                
-                #if UNITY_EDITOR
-                _mousePositionOnGround = mousePositionOnGround;
-                #endif
-            }
-
-            Vector3 direction = mousePositionOnGround - transform.position;
-
-            if (direction != Vector3.zero)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _characterDataController.CharacterData.DesignRotationSpeed);
-            }
-
+            Vector2 offset = _vectorMousePosition - _centerScreen;
+            float angle = Mathf.Atan2(offset.x, offset.y) * Mathf.Rad2Deg;
+            Quaternion targetRotation = Quaternion.Euler(0f, angle, 0f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _characterDataController.CharacterData.DesignRotationSpeed);
         }
-
-        #if UNITY_EDITOR
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(transform.position, _mousePositionOnGround);
-        }
-        #endif
-
         #endregion PRIVATE
     }
 }

@@ -7,6 +7,8 @@ namespace Zombieland.GameScene0.UIModule
 {
     public class GameCursor
     {
+        public Vector2 SizeCursor { get; private set; }
+
         private const string CURSOR_DEFAULT_NAME = "UISprites/cursorDefault";
         private const string CURSOR_AIM_NAME = "UISprites/cursorAim";
 
@@ -20,6 +22,8 @@ namespace Zombieland.GameScene0.UIModule
         {
             _cursorDefaultTexture = Resources.Load<Texture2D>(CURSOR_DEFAULT_NAME);
             _cursorAimTexture = Resources.Load<Texture2D>(CURSOR_AIM_NAME);
+
+            SizeCursor = new Vector2(_cursorAimTexture.width, _cursorAimTexture.height);
 
             _uIMainController = uIMainController;
             _uIMainController.OnMouseMoved += UpdateCursor;

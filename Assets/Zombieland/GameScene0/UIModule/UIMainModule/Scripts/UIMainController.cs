@@ -20,8 +20,11 @@ namespace Zombieland.GameScene0.UIModule
         public event Action OnNumber3;
         public event Action OnNumber4;
 
+        public Vector2 SizeCursor { get; private set; }
+
         private InitializerInputPrefab _initializerInputGameobjects;
         private GameCursor _gameCursor;
+
 
         #region PUBLIC
         public UIMainController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
@@ -82,6 +85,7 @@ namespace Zombieland.GameScene0.UIModule
 
 #if UNITY_STANDALONE
             _gameCursor = new GameCursor(this);
+            SizeCursor = _gameCursor.SizeCursor;
 #endif
         }
 
