@@ -22,5 +22,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         public float ShootCooldown;
         public float ReloadCooldown;
         public float ShotAccuracy;
+        public int MaxImpactCount;
     }
 }

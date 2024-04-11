@@ -59,17 +59,18 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         private void PreparingFire()
         {
-            // 1. Остановка таймера _shotPermitionTimer
+            // 1. Stop Timer _shotPermitionTimer
             StopTimerSafely(_shotPermitionTimer);
             _shotPermitionTimer.OnPermission -= PreparingFire;
 
             // 2. Deserializator Impact. Filling Owner и Target. Target при этом нужно проганять через метод кучности выстрела. Target получаем от системы прицеливания
-            _impact = new Deserializator().DeserializeImpact(Owner.WeaponController.CurrentImpactName);
+            //_impact = new Deserializator().DeserializeImpact(Owner.WeaponController.CurrentImpactName);
+            _impact = Owner.RootController.GameDataController.GetData<Impact>(Owner.WeaponController.CurrentImpactName);
             _impact.ImpactData.ImpactOwner = Owner;
             Vector3 firePointGlobal = Owner.VisualBodyController.WeaponInScene.GetComponent<Transform>().TransformPoint(Owner.WeaponController.Weapon.WeaponData.FirePoint);
             _impact.ImpactData.ObjectSpawnPosition = firePointGlobal;
             Vector3 targetPoint = Owner.AimingController.GetTarget();
-            Vector3 pointCorrectFire  = AddShotSpread(targetPoint);
+            Vector3 pointCorrectFire = AddShotSpread(targetPoint);
             Vector3 direction = firePointGlobal - pointCorrectFire;
             _impact.ImpactData.ObjectRotation = Quaternion.FromToRotation(Vector3.forward, direction);
 

@@ -1,5 +1,8 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using Zombieland.GameScene0.CharacterModule;
+using Zombieland.GameScene0.CharacterModule.WeaponModule;
 
 namespace Zombieland.GameScene0.VisualBodyModule
 {
@@ -8,11 +11,18 @@ namespace Zombieland.GameScene0.VisualBodyModule
         public GameObject CharacterInScene { get; private set; }
         public GameObject WeaponInScene { get; private set; }
         public List<GameObject> SensorTriggersGameobject { get; private set; }
-
+        public ICharacterController CharacterController {  get; private set; }
 
         public VisualBodyController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
-            // This class's constructor doesn't have any content yet.
+            CharacterController = parentController as ICharacterController;
+        }
+
+        public override void Disable()
+        {
+            CharacterController.EquipmentController.OnWeaponChanged -= WeaponChangedHandler;
+
+            base.Disable();
         }
 
         protected override void CreateHelpersScripts()
@@ -21,6 +31,8 @@ namespace Zombieland.GameScene0.VisualBodyModule
 
             GertterTriggers gertterTriggers = new GertterTriggers(this);
             SensorTriggersGameobject = gertterTriggers.GetSensorTriggers();
+
+            CharacterController.EquipmentController.OnWeaponChanged += WeaponChangedHandler;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -36,6 +48,11 @@ namespace Zombieland.GameScene0.VisualBodyModule
 
             CreateCharacterPrefab createCharacterGameobject = new CreateCharacterPrefab();
             CharacterInScene = createCharacterGameobject.CreateCharacter(spawnPositionCharacter, spawnRotationCharacter);
+        }
+
+        private void WeaponChangedHandler(Weapon weapon)
+        {
+            //WeaponInScene = new CreateWeaponPrefab().CtreateWeapon(weapon, this);
         }
     }
 }

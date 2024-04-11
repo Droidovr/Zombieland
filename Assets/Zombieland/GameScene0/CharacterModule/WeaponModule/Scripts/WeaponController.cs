@@ -7,7 +7,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
     public class WeaponController : Controller, IWeaponController
     {
-        public event Action OnAmmoDepleted;
+        public event Action OnImpactDepleted;
         public event Action OnShotAnimationPreparing;
         public event Action OnShotPerformed;
         public event Action OnShotFailed;
@@ -19,15 +19,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         public WeaponController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             CharacterController = parentController as ICharacterController;
-        }
-
-        public override void Enable()
-        {
-            CharacterController.EquipmentController.OnWeaponChanged += WeaponChangedHandler;
-            CharacterController.EquipmentController.OnAmmoChanged += AmmoChangedHandler;
-            CharacterController.RootController.UIController.OnFire += ButtonFireHandler;
-
-            base.Enable();
         }
 
         public override void Disable()
@@ -48,7 +39,9 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         protected override void CreateHelpersScripts()
         {
-            // This controller doesn’t have any helpers scripts at the moment.
+            CharacterController.EquipmentController.OnWeaponChanged += WeaponChangedHandler;
+            CharacterController.EquipmentController.OnAmmoChanged += AmmoChangedHandler;
+            CharacterController.RootController.UIController.OnFire += ButtonFireHandler;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -59,6 +52,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         private void WeaponChangedHandler(Weapon weapon)
         {
             Weapon = weapon;
+            Weapon.ShotProcess.Owner = CharacterController;
             Weapon.ShotProcess.OnShotPerformed += ShotHandler;
             Weapon.ShotProcess.OnShotAnimationPreparing += ShotAnimationPreparing;
         }
