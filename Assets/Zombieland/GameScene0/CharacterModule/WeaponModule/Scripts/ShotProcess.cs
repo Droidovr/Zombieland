@@ -9,7 +9,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
     public class ShotProcess : IShotProcess
     {
         public event Action OnAmmoDepleted;
-        public event Action OnShotAnimationPreparing;
         public event Action OnShotPerformed;
         public event Action OnShotFailed;
 
@@ -22,7 +21,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         private ShotTimer _shotPermitionTimer;
         private InvokeTimer _preparingFireTimer;
-        private InvokeTimer _completionFireTimer;
         private InvokeTimer _cooldawnTimer;
         private bool _isReservedResources;
         private Impact _impact;
@@ -63,17 +61,15 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             StopTimerSafely(_shotPermitionTimer);
             _shotPermitionTimer.OnPermission -= PreparingFire;
 
-            // 2. Deserializator Impact. Filling Owner и Target. Target при этом нужно проганять через метод кучности выстрела. Target получаем от системы прицеливания
-            //_impact = new Deserializator().DeserializeImpact(Owner.WeaponController.CurrentImpactName);
+            // 2. Deserializator Impact.
             _impact = Owner.RootController.GameDataController.GetData<Impact>(Owner.WeaponController.CurrentImpactName);
             _impact.ImpactData.ImpactOwner = Owner;
+            _impact.ImpactData.FollowTargetTransform = Owner.AimingController.GetTarget();
             Vector3 firePointGlobal = Owner.VisualBodyController.WeaponInScene.GetComponent<Transform>().TransformPoint(Owner.WeaponController.Weapon.WeaponData.FirePoint);
             _impact.ImpactData.ObjectSpawnPosition = firePointGlobal;
-            Vector3 targetPoint = Owner.AimingController.GetTarget();
-            Vector3 pointCorrectFire = AddShotSpread(targetPoint);
+            Vector3 pointCorrectFire = AddShotSpread(Owner.AimingController.GetTarget().position);
             Vector3 direction = firePointGlobal - pointCorrectFire;
             _impact.ImpactData.ObjectRotation = Quaternion.FromToRotation(Vector3.forward, direction);
-
 
             // 3. Reserved Resources
             if (CheckFirePermission())
@@ -82,22 +78,12 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
                 ResourceOperation(_isReservedResources);
             }
 
-            // 4. Play Animation PreparingFire
-            if (Owner.WeaponController.Weapon.WeaponData.AnimationPreparing != null)
-            {
-                OnShotAnimationPreparing.Invoke();
-                StartCompletionFireTimer();
-            }
-            else
-            {
-                // 5. Fire 
-                CompletionFire();
-            }
+            Owner.AnimationController.OnFinishPreparationAttack += CompletionFire;
         }
 
         private void CompletionFire()
         {
-            StopTimerSafely(_completionFireTimer);
+            Owner.AnimationController.OnFinishPreparationAttack += CompletionFire;
 
             //1. Not Reserved Resources
             _isReservedResources = false;
@@ -129,12 +115,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             _preparingFireTimer.Start();
         }
 
-        private void StartCompletionFireTimer()
-        {
-            _completionFireTimer = new InvokeTimer(Owner.WeaponController.Weapon.WeaponData.TimeAnimationPreparing, CompletionFire);
-            _completionFireTimer.Start();
-        }
-
         private void StartCooldownTimer()
         {
             _cooldawnTimer = new InvokeTimer(Owner.WeaponController.Weapon.WeaponData.ShootCooldown, StartFire);
@@ -162,9 +142,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         private bool ResourcesConsumption()
         {
-            bool isCheckResource = false;
-
-            isCheckResource = Owner.WeaponController.CharacterController.EquipmentController.CurrentAmmoCount >= 0;
+            bool isCheckResource = Owner.WeaponController.CharacterController.EquipmentController.CurrentAmmoCount >= 0;
 
             for (int i = 0; i < _impact.ImpactData.ConsumableResources.Count; i++)
             {
