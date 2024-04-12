@@ -10,12 +10,8 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
     {
         public event Action OnAmmoDepleted;
         public event Action OnShotPerformed;
-        public event Action OnShotFailed;
 
         [JsonIgnore] public ICharacterController Owner { get; set; }
-
-        public float TimeBetweenShots { get; set; }
-        public float TimeBetweenRecharges { get; set; }
 
         private const float CHECK_FIRE_PERMITION_PERIOD = 0.1f;
 
@@ -24,19 +20,20 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         private InvokeTimer _cooldawnTimer;
         private bool _isReservedResources;
         private Impact _impact;
+        private Transform _target;
 
         #region MainFireLogicScripts
         public void StartFire()
         {
             if (CheckFirePermission())
             {
-                _shotPermitionTimer = new ShotTimer(CHECK_FIRE_PERMITION_PERIOD, CheckFirePermission);
-                _shotPermitionTimer.Start();
-                _shotPermitionTimer.OnPermission += StartPreparingFireTimer;
+                PreparingFire();
             }
             else
             {
-                PreparingFire();
+                _shotPermitionTimer = new ShotTimer(CHECK_FIRE_PERMITION_PERIOD, CheckFirePermission);
+                _shotPermitionTimer.Start();
+                _shotPermitionTimer.OnPermission += StartPreparingFireTimer;
             }
         }
 
@@ -62,14 +59,20 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             _shotPermitionTimer.OnPermission -= PreparingFire;
 
             // 2. Deserializator Impact.
+            // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             _impact = Owner.RootController.GameDataController.GetData<Impact>(Owner.WeaponController.CurrentImpactName);
+
             _impact.ImpactData.ImpactOwner = Owner;
-            _impact.ImpactData.FollowTargetTransform = Owner.AimingController.GetTarget();
-            Vector3 firePointGlobal = Owner.VisualBodyController.WeaponInScene.GetComponent<Transform>().TransformPoint(Owner.WeaponController.Weapon.WeaponData.FirePoint);
-            _impact.ImpactData.ObjectSpawnPosition = firePointGlobal;
-            Vector3 pointCorrectFire = AddShotSpread(Owner.AimingController.GetTarget().position);
-            Vector3 direction = firePointGlobal - pointCorrectFire;
-            _impact.ImpactData.ObjectRotation = Quaternion.FromToRotation(Vector3.forward, direction);
+
+            if (Owner.WeaponController.Weapon.WeaponData.HasTarget)
+            {
+                _impact.ImpactData.FollowTargetTransform = _target;
+            }
+
+            _impact.ImpactData.ObjectSpawnPosition = Owner.VisualBodyController.CharacterInScene.GetComponent<Transform>().TransformPoint(Owner.VisualBodyController.WeaponPointFire.position);
+
+            _impact.ImpactData.ObjectRotation = AddShotSpread(_target);
+            // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
             // 3. Reserved Resources
             if (CheckFirePermission())
@@ -78,6 +81,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
                 ResourceOperation(_isReservedResources);
             }
 
+            // 4. Subscribe to the event from the animation when to fire a shot
             Owner.AnimationController.OnFinishPreparationAttack += CompletionFire;
         }
 
@@ -92,14 +96,20 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             _impact.Activate();
 
             //3. Play Sound
+            Owner.VisualBodyController.WeaponSoundFire?.Play();
+
             //4. Play FVX-shoot
-            //5. Play Animation Weapon
+            Owner.VisualBodyController.WeaponVFX?.Play();
+
+            //5. We trigger the event that the shot was fired.
             OnShotPerformed.Invoke();
 
             if (Owner.WeaponController.CharacterController.EquipmentController.CurrentAmmoCount <= 0)
             {
                 OnAmmoDepleted.Invoke();
             }
+
+            _target = null;
 
             //6. Cooldown
             StartCooldownTimer();
@@ -123,7 +133,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         private bool CheckFirePermission()
         {
             // check the availability of resources or items, the absence of stun status, deaths, the presence of ammunition, the presence of a target, if provided.
-            // Add after writing the Aiming module - is there a target?
 
             bool isCheckResource = ResourcesConsumption();
             bool isDead = Owner.CharacterDataController.CharacterData.IsDead;
@@ -131,13 +140,25 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
             if (isCheckResource && isDead && isStunned)
             {
+                if (Owner.WeaponController.Weapon.WeaponData.HasTarget)
+                {
+                    _target = Owner.AimingController.GetTarget();
+                    if (_target != null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
                 return true;
             }
             else
             {
                 return false;
             }
-
         }
 
         private bool ResourcesConsumption()
@@ -201,17 +222,31 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             }
         }
 
-        public Vector3 AddShotSpread(Vector3 targetPosition)
+        public Quaternion AddShotSpread(Transform target)
         {
-            WeaponData weaponData = Owner.WeaponController.Weapon.WeaponData;
+            Quaternion finalRotation = new Quaternion();
 
-            float spreadX = UnityEngine.Random.Range(-weaponData.ShotAccuracy, weaponData.ShotAccuracy);
-            float spreadY = UnityEngine.Random.Range(-weaponData.ShotAccuracy, weaponData.ShotAccuracy);
-            float spreadZ = UnityEngine.Random.Range(-weaponData.ShotAccuracy, weaponData.ShotAccuracy);
+            if (Owner.WeaponController.Weapon.WeaponData.HasTarget)
+            {
+                float shotAccuracy = Owner.WeaponController.Weapon.WeaponData.ShotAccuracy;
+                float deviationAngle = UnityEngine.Random.Range(-shotAccuracy, shotAccuracy);
+                Quaternion deviationRotation = Quaternion.Euler(0f, 0f, deviationAngle);
+                
+                Vector3 startPosition = Owner.VisualBodyController.CharacterInScene.GetComponent<Transform>().TransformPoint(Owner.VisualBodyController.WeaponPointFire.position);
+                
+                Vector3 directionToTarget = (target.position - startPosition).normalized;
+                
+                Quaternion directionQuaternion = Quaternion.LookRotation(directionToTarget);
 
-            Vector3 shotSpread = new Vector3(spreadX, spreadY, spreadZ);
+                finalRotation = deviationRotation * directionQuaternion;
+            }
+            else
+            {
+                float deviationAngle = UnityEngine.Random.Range(-Owner.WeaponController.Weapon.WeaponData.ShotAccuracy, Owner.WeaponController.Weapon.WeaponData.ShotAccuracy);
+                finalRotation = Owner.VisualBodyController.WeaponPointFire.rotation * Quaternion.Euler(0f, 0f, deviationAngle);
+            }
 
-            return targetPosition + shotSpread;
+            return finalRotation;
         }
         #endregion
     }

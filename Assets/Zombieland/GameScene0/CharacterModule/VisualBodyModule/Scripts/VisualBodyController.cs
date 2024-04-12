@@ -10,6 +10,9 @@ namespace Zombieland.GameScene0.VisualBodyModule
     {
         public GameObject CharacterInScene { get; private set; }
         public GameObject WeaponInScene { get; private set; }
+        public Transform WeaponPointFire { get; private set; }
+        public AudioSource WeaponSoundFire { get; private set; }
+        public ParticleSystem WeaponVFX { get; private set; }
         public List<GameObject> SensorTriggersGameobject { get; private set; }
         public ICharacterController CharacterController {  get; private set; }
 
@@ -53,6 +56,9 @@ namespace Zombieland.GameScene0.VisualBodyModule
         private void WeaponChangedHandler(Weapon weapon)
         {
             //WeaponInScene = new CreateWeaponPrefab().CtreateWeapon(weapon, this);
+            WeaponPointFire = WeaponInScene.GetComponent<Transform>().Find("PointFire");
+            WeaponSoundFire = WeaponInScene.GetComponent<AudioSource>();
+            WeaponVFX = WeaponInScene.GetComponent<Transform>().Find("VFX").GetComponent<ParticleSystem>();
         }
     }
 }
