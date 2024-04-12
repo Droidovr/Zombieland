@@ -92,7 +92,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             _impact.Activate();
 
             //3. Play Sound
-            //4. Instantiate FVX-shoot
+            //4. Play FVX-shoot
             //5. Play Animation Weapon
             OnShotPerformed.Invoke();
 

@@ -27,7 +27,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             {
                 Weapon.ShotProcess.StopFire();
                 Weapon.ShotProcess.OnShotPerformed -= ShotHandler;
-                Weapon.ShotProcess.OnShotAnimationPreparing -= ShotAnimationPreparing;
             }
 
             CharacterController.EquipmentController.OnWeaponChanged -= WeaponChangedHandler;
@@ -54,7 +53,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             Weapon = weapon;
             Weapon.ShotProcess.Owner = CharacterController;
             Weapon.ShotProcess.OnShotPerformed += ShotHandler;
-            Weapon.ShotProcess.OnShotAnimationPreparing += ShotAnimationPreparing;
         }
 
         private void AmmoChangedHandler(string impactName)
@@ -80,11 +78,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
                     Debug.Log("Weapon - ButtonFireUpHandler");
                 }
             }
-        }
-
-        private void ShotAnimationPreparing()
-        {
-            OnShotAnimationPreparing?.Invoke();
         }
 
         private void ShotHandler()
