@@ -1,40 +1,34 @@
 using System;
-using Newtonsoft.Json;
-using UnityEngine;
 using Zombieland.GameScene0.ImpactModule;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
-    [Serializable]
     public class ShotProcess : IShotProcess
     {
         public event Action OnAmmoDepleted;
         public event Action OnShotPerformed;
+ 
+        public ICharacterController CharacterController { get; set; }
 
-        [JsonIgnore] public ICharacterController Owner { get; set; }
-
-        private const float CHECK_FIRE_PERMITION_PERIOD = 0.1f;
-
-        private ShotTimer _shotPermitionTimer;
-        private InvokeTimer _preparingFireTimer;
+        private FirePermiserTimer _shotPermitionTimer;
         private InvokeTimer _cooldawnTimer;
-        private bool _isReservedResources;
         private Impact _impact;
-        private Transform _target;
+        private WeaponImpacter _weaponImpacter;
+        private WeaponResurser _weaponResurser;
 
-        #region MainFireLogicScripts
+        #region PublicScripts
+        public void Init()
+        {
+            _shotPermitionTimer = new FirePermiserTimer(CharacterController);
+            _cooldawnTimer = new InvokeTimer(CharacterController.WeaponController.Weapon.WeaponData.ShootCooldown, StartFire);
+            _weaponImpacter = new WeaponImpacter(CharacterController);
+            _weaponResurser = new WeaponResurser(CharacterController);
+        }
+
         public void StartFire()
         {
-            if (CheckFirePermission())
-            {
-                PreparingFire();
-            }
-            else
-            {
-                _shotPermitionTimer = new ShotTimer(CHECK_FIRE_PERMITION_PERIOD, CheckFirePermission);
-                _shotPermitionTimer.Start();
-                _shotPermitionTimer.OnPermission += StartPreparingFireTimer;
-            }
+            _shotPermitionTimer.Start();
+            _shotPermitionTimer.OnPermission += PreparingFire;
         }
 
         public void StopFire()
@@ -42,176 +36,45 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             StopTimerSafely(_shotPermitionTimer);
             _shotPermitionTimer.OnPermission -= PreparingFire;
 
-            StopTimerSafely(_preparingFireTimer);
-            if (_isReservedResources)
-            {
-                ResourceOperation(_isReservedResources);
-                _isReservedResources = false;
-            }
-
             StopTimerSafely(_cooldawnTimer);
-        }
 
-        private void PreparingFire()
-        {
-            // 1. Stop Timer _shotPermitionTimer
-            StopTimerSafely(_shotPermitionTimer);
-            _shotPermitionTimer.OnPermission -= PreparingFire;
-
-            // 2. Deserializator Impact.
-            // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-            _impact = Owner.RootController.GameDataController.GetData<Impact>(Owner.WeaponController.CurrentImpactName);
-
-            _impact.ImpactData.ImpactOwner = Owner;
-
-            if (Owner.WeaponController.Weapon.WeaponData.HasTarget)
-            {
-                _impact.ImpactData.FollowTargetTransform = _target;
-            }
-
-            _impact.ImpactData.ObjectSpawnPosition = Owner.VisualBodyController.CharacterInScene.GetComponent<Transform>().TransformPoint(Owner.VisualBodyController.WeaponPointFire.position);
-
-            _impact.ImpactData.ObjectRotation = AddShotSpread(_target);
-            // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-            // 3. Reserved Resources
-            if (CheckFirePermission())
-            {
-                _isReservedResources = true;
-                ResourceOperation(_isReservedResources);
-            }
-
-            // 4. Subscribe to the event from the animation when to fire a shot
-            Owner.AnimationController.OnFinishPreparationAttack += CompletionFire;
-        }
-
-        private void CompletionFire()
-        {
-            Owner.AnimationController.OnFinishPreparationAttack += CompletionFire;
-
-            //1. Not Reserved Resources
-            _isReservedResources = false;
-
-            //2. Impact Active
-            _impact.Activate();
-
-            //3. Play Sound
-            Owner.VisualBodyController.WeaponSoundFire?.Play();
-
-            //4. Play FVX-shoot
-            Owner.VisualBodyController.WeaponVFX?.Play();
-
-            //5. We trigger the event that the shot was fired.
-            OnShotPerformed.Invoke();
-
-            if (Owner.WeaponController.CharacterController.EquipmentController.CurrentAmmoCount <= 0)
-            {
-                OnAmmoDepleted.Invoke();
-            }
-
-            _target = null;
-
-            //6. Cooldown
-            StartCooldownTimer();
+            _weaponResurser.ResourceOperation(false, _impact.ImpactData.ConsumableResources);
         }
         #endregion
 
 
-
-        #region HelperScripts
-        private void StartPreparingFireTimer()
+        #region PrivateScripts
+        private void PreparingFire()
         {
-            _preparingFireTimer = new InvokeTimer(0, PreparingFire);
-            _preparingFireTimer.Start();
+            StopTimerSafely(_shotPermitionTimer);
+            _shotPermitionTimer.OnPermission -= PreparingFire;
+
+            _impact = _weaponImpacter.GetCurrentImpact();
+
+            _weaponResurser.ResourceOperation(true, _impact.ImpactData.ConsumableResources);
+
+            CharacterController.AnimationController.OnFinishPreparationAttack += CompletionFire;
         }
 
-        private void StartCooldownTimer()
+        private void CompletionFire()
         {
-            _cooldawnTimer = new InvokeTimer(Owner.WeaponController.Weapon.WeaponData.ShootCooldown, StartFire);
+            CharacterController.AnimationController.OnFinishPreparationAttack += CompletionFire;
+
+            _impact.Activate();
+            _weaponResurser.IsReserveResurce = false;
+
+            CharacterController.VisualBodyController.WeaponSoundFire?.Play();
+
+            CharacterController.VisualBodyController.WeaponVFX?.Play();
+
+            OnShotPerformed.Invoke();
+
+            if (CharacterController.WeaponController.CharacterController.EquipmentController.CurrentAmmoCount <= 0)
+            {
+                OnAmmoDepleted.Invoke();
+            }
+
             _cooldawnTimer.Start();
-        }
-        private bool CheckFirePermission()
-        {
-            // check the availability of resources or items, the absence of stun status, deaths, the presence of ammunition, the presence of a target, if provided.
-
-            bool isCheckResource = ResourcesConsumption();
-            bool isDead = Owner.CharacterDataController.CharacterData.IsDead;
-            bool isStunned = Owner.CharacterDataController.CharacterData.IsStunned;
-
-            if (isCheckResource && isDead && isStunned)
-            {
-                if (Owner.WeaponController.Weapon.WeaponData.HasTarget)
-                {
-                    _target = Owner.AimingController.GetTarget();
-                    if (_target != null)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        private bool ResourcesConsumption()
-        {
-            bool isCheckResource = Owner.WeaponController.CharacterController.EquipmentController.CurrentAmmoCount >= 0;
-
-            for (int i = 0; i < _impact.ImpactData.ConsumableResources.Count; i++)
-            {
-                switch (_impact.ImpactData.ConsumableResources[i].ResourceType)
-                {
-                    case ResourceType.Stamina:
-                        if (_impact.ImpactData.ConsumableResources[i].Value >= Owner.CharacterDataController.CharacterData.Stamina)
-                        {
-                            isCheckResource = true;
-                        }
-                        else
-                        {
-                            isCheckResource = false;
-                        }
-                        break;
-
-                    default:
-                        isCheckResource = false;
-                        break;
-                }
-            }
-
-            return isCheckResource;
-        }
-
-        private void ResourceOperation(bool isReservedResources)
-        {
-            Owner.WeaponController.CharacterController.EquipmentController.CurrentAmmoCount += isReservedResources ? -1 : 1;
-
-            for (int i = 0; i < _impact.ImpactData.ConsumableResources.Count; i++)
-            {
-                switch (_impact.ImpactData.ConsumableResources[i].ResourceType)
-                {
-                    case ResourceType.Stamina:
-                        if (isReservedResources)
-                        {
-                            Owner.CharacterDataController.CharacterData.Stamina -= _impact.ImpactData.ConsumableResources[i].Value;
-                        }
-                        else
-                        {
-                            Owner.CharacterDataController.CharacterData.Stamina += _impact.ImpactData.ConsumableResources[i].Value;
-                        }
-                        break;
-
-                    default:
-                        break;
-                }
-            }
         }
 
         private void StopTimerSafely(IFireTimer timer)
@@ -220,33 +83,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             {
                 timer?.Stop();
             }
-        }
-
-        public Quaternion AddShotSpread(Transform target)
-        {
-            Quaternion finalRotation = new Quaternion();
-
-            if (Owner.WeaponController.Weapon.WeaponData.HasTarget)
-            {
-                float shotAccuracy = Owner.WeaponController.Weapon.WeaponData.ShotAccuracy;
-                float deviationAngle = UnityEngine.Random.Range(-shotAccuracy, shotAccuracy);
-                Quaternion deviationRotation = Quaternion.Euler(0f, 0f, deviationAngle);
-                
-                Vector3 startPosition = Owner.VisualBodyController.CharacterInScene.GetComponent<Transform>().TransformPoint(Owner.VisualBodyController.WeaponPointFire.position);
-                
-                Vector3 directionToTarget = (target.position - startPosition).normalized;
-                
-                Quaternion directionQuaternion = Quaternion.LookRotation(directionToTarget);
-
-                finalRotation = deviationRotation * directionQuaternion;
-            }
-            else
-            {
-                float deviationAngle = UnityEngine.Random.Range(-Owner.WeaponController.Weapon.WeaponData.ShotAccuracy, Owner.WeaponController.Weapon.WeaponData.ShotAccuracy);
-                finalRotation = Owner.VisualBodyController.WeaponPointFire.rotation * Quaternion.Euler(0f, 0f, deviationAngle);
-            }
-
-            return finalRotation;
         }
         #endregion
     }

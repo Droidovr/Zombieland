@@ -7,9 +7,10 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         public event Action OnAmmoDepleted;
         public event Action OnShotPerformed;
 
-        ICharacterController Owner { get; set; }
+        ICharacterController CharacterController { get; set; }
 
 
+        void Init();
         void StartFire();
         void StopFire();
     }

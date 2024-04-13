@@ -51,7 +51,8 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         private void WeaponChangedHandler(Weapon weapon)
         {
             Weapon = weapon;
-            Weapon.ShotProcess.Owner = CharacterController;
+            Weapon.ShotProcess.CharacterController = CharacterController;
+            Weapon.ShotProcess.Init();
             Weapon.ShotProcess.OnShotPerformed += ShotHandler;
         }
 
