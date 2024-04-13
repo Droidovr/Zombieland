@@ -7,19 +7,28 @@ namespace Zombieland.GameScene0.CharacterModule.AimingModule
     {
         public ICharacterController CharacterController { get; private set; }
 
+        private Aiming _aiming;
+
         public AimingController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             CharacterController = parentController as ICharacterController;
         }
 
-        public Vector3 GetTarget()
+        public Transform GetTarget()
         {
-            return new Vector3(0f, 0f, 0f);
+            return _aiming.GetTarget();
+        }
+
+        public override void Disable()
+        {
+            _aiming.Disable();
+
+            base.Disable();
         }
 
         protected override void CreateHelpersScripts()
         {
-            // This controller does not have helpers scripts.
+            _aiming = new Aiming(this);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
