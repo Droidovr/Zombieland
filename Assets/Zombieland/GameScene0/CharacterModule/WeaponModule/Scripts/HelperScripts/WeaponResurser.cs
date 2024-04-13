@@ -9,11 +9,11 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
     {
         public  bool IsReserveResurce = false;
 
-        private ICharacterController _characterController;
+        private IWeaponController _weaponController;
 
-        public WeaponResurser(ICharacterController characterController)
-        { 
-            _characterController = characterController;
+        public WeaponResurser(IWeaponController weaponController)
+        {
+            _weaponController = weaponController;
         }
 
         public void ResourceOperation(bool isOperation,List<ConsumableResource> consumableResources)
@@ -26,7 +26,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
             IsReserveResurce = isOperation;
 
-            _characterController.WeaponController.CharacterController.EquipmentController.CurrentAmmoCount += isOperation ? -1 : 1;
+            _weaponController.CharacterController.EquipmentController.CurrentImpactCount += isOperation ? -1 : 1;
 
             for (int i = 0; i < consumableResources.Count; i++)
             {
@@ -35,11 +35,11 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
                     case ResourceType.Stamina:
                         if (isOperation)
                         {
-                            _characterController.CharacterDataController.CharacterData.Stamina -= consumableResources[i].Value;
+                            _weaponController.CharacterController.CharacterDataController.CharacterData.Stamina -= consumableResources[i].Value;
                         }
                         else
                         {
-                            _characterController.CharacterDataController.CharacterData.Stamina += consumableResources[i].Value;
+                            _weaponController.CharacterController.CharacterDataController.CharacterData.Stamina += consumableResources[i].Value;
                         }
                         break;
 

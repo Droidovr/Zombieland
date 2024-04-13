@@ -12,5 +12,8 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         ICharacterController CharacterController { get; }
         IWeapon Weapon { get; }
         string CurrentImpactName { get; }
+
+
+        void ReCharge();
     }
 }

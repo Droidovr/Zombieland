@@ -4,13 +4,12 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
     public interface IShotProcess
     {
-        public event Action OnAmmoDepleted;
         public event Action OnShotPerformed;
 
-        ICharacterController CharacterController { get; set; }
+        IWeaponController WeaponController { get; set; }
 
 
-        void Init();
+        void Init(IWeaponController weaponController);
         void StartFire();
         void StopFire();
     }

@@ -30,17 +30,24 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             }
 
             CharacterController.EquipmentController.OnWeaponChanged -= WeaponChangedHandler;
-            CharacterController.EquipmentController.OnAmmoChanged -= AmmoChangedHandler;
+            CharacterController.EquipmentController.OnImpactChanged -= AmmoChangedHandler;
             CharacterController.RootController.UIController.OnFire -= ButtonFireHandler;
+            CharacterController.RootController.UIController.OnWeaponReaload -= ReCharge;
 
             base.Disable();
+        }
+
+        public void ReCharge()
+        {
+            CharacterController.EquipmentController.ReloadCurrentWeapon();
         }
 
         protected override void CreateHelpersScripts()
         {
             CharacterController.EquipmentController.OnWeaponChanged += WeaponChangedHandler;
-            CharacterController.EquipmentController.OnAmmoChanged += AmmoChangedHandler;
+            CharacterController.EquipmentController.OnImpactChanged += AmmoChangedHandler;
             CharacterController.RootController.UIController.OnFire += ButtonFireHandler;
+            CharacterController.RootController.UIController.OnWeaponReaload += ReCharge;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -51,8 +58,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         private void WeaponChangedHandler(Weapon weapon)
         {
             Weapon = weapon;
-            Weapon.ShotProcess.CharacterController = CharacterController;
-            Weapon.ShotProcess.Init();
+            Weapon.Init(this);
             Weapon.ShotProcess.OnShotPerformed += ShotHandler;
         }
 

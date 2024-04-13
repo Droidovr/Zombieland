@@ -12,17 +12,17 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         private const float CHECK_FIRE_PERMITION_PERIOD = 0.1f;
 
         private Timer _timer;
-        private ICharacterController _characterController;
+        private IWeaponController _weaponController;
         private Impact _impact;
 
-        public FirePermiserTimer(ICharacterController characterController)
+        public FirePermiserTimer(IWeaponController weaponController)
         {
-            _characterController = characterController;
+            _weaponController = weaponController;
 
             int intervalMS = (int)(CHECK_FIRE_PERMITION_PERIOD * 1000);
             _timer = new Timer(intervalMS);
 
-            _impact = _characterController.RootController.GameDataController.GetData<Impact>(_characterController.WeaponController.CurrentImpactName);
+            _impact = _weaponController.CharacterController.RootController.GameDataController.GetData<Impact>(_weaponController.CurrentImpactName);
         }
 
         public void Start()
@@ -48,14 +48,14 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         private bool CheckFirePermission()
         {
             bool isCheckResource = ResourcesConsumption();
-            bool isDead = _characterController.CharacterDataController.CharacterData.IsDead;
-            bool isStunned = _characterController.CharacterDataController.CharacterData.IsStunned;
+            bool isDead = _weaponController.CharacterController.CharacterDataController.CharacterData.IsDead;
+            bool isStunned = _weaponController.CharacterController.CharacterDataController.CharacterData.IsStunned;
 
             if (isCheckResource && isDead && isStunned)
             {
-                if (_characterController.WeaponController.Weapon.WeaponData.HasTarget)
+                if (_weaponController.Weapon.WeaponData.HasTarget)
                 {
-                    if (_characterController.AimingController.GetTarget() != null)
+                    if (_weaponController.CharacterController.AimingController.GetTarget() != null)
                     {
                         return true;
                     }
@@ -75,14 +75,14 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         private bool ResourcesConsumption()
         {
-            bool isCheckResource = _characterController.WeaponController.CharacterController.EquipmentController.CurrentAmmoCount >= 0;
+            bool isCheckResource = _weaponController.CharacterController.EquipmentController.CurrentImpactCount >= 0;
 
             for (int i = 0; i < _impact.ImpactData.ConsumableResources.Count; i++)
             {
                 switch (_impact.ImpactData.ConsumableResources[i].ResourceType)
                 {
                     case ResourceType.Stamina:
-                        if (_impact.ImpactData.ConsumableResources[i].Value >= _characterController.CharacterDataController.CharacterData.Stamina)
+                        if (_impact.ImpactData.ConsumableResources[i].Value >= _weaponController.CharacterController.CharacterDataController.CharacterData.Stamina)
                         {
                             isCheckResource = true;
                         }

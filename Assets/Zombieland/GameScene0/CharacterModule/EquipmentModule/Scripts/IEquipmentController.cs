@@ -7,13 +7,15 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
     {
         event Action<Weapon> OnWeaponChanged;
         event Action OnEquipmentChanged;
-        event Action<string> OnAmmoChanged;
+        event Action<string> OnImpactChanged;
         event Action OnAmmoDepleted;
 
-        int CurrentAmmoCount { get; set; }
+        int CurrentImpactCount { get; set; }
 
         ICharacterController CharacterController { get; }
 
         void PickUpWeapon(Weapon weapon);
+
+        void ReloadCurrentWeapon();
     }
 }

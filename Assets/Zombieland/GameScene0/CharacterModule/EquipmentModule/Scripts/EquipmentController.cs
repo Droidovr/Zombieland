@@ -11,15 +11,21 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
         public event Action OnEquipmentChanged;
         public event Action<string> OnAmmoChanged;
         public event Action OnAmmoDepleted;
+        public event Action<string> OnImpactChanged;
 
         public ICharacterController CharacterController { get; private set; }
         public List<Weapon> WeaponsSlots { get; private set; }
         public int CurrentAmmoCount { get; set; }
-
+        public int CurrentImpactCount { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public EquipmentController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             CharacterController = parentController as ICharacterController;
+        }
+
+        public void ReloadCurrentWeapon()
+        {
+
         }
 
         public override void Enable()
