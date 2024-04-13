@@ -7,9 +7,10 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
     public class CharacterMovingController : Controller, ICharacterMovingController
     {
         public float RealMovingSpeed { get; set; }
+        public Vector3 DirectionWalk { get; set; }
         public ICharacterController CharacterController { get; private set; }
 
-        private CharacterPhysicMoving _characterPhysicMoving; 
+        private ICharacterPhysicMoving _characterPhysicMoving; 
 
 
         public CharacterMovingController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
@@ -31,7 +32,12 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         protected override void CreateHelpersScripts()
         {
-            _characterPhysicMoving = CharacterController.VisualBodyController.CharacterInScene.AddComponent<CharacterPhysicMoving>();
+#if UNITY_STANDALONE// || UNITY_EDITOR
+            _characterPhysicMoving = CharacterController.VisualBodyController.CharacterInScene.AddComponent<CharacterPhysicMovingPC>();
+#else
+            _characterPhysicMoving = CharacterController.VisualBodyController.CharacterInScene.AddComponent<CharacterPhysicMovingMobile>();
+#endif
+
             _characterPhysicMoving.Init(this);
         }
 

@@ -8,6 +8,8 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
     public class AnimationController : Controller, IAnimationController
     {
         public event Action<Vector3> OnAnimatorMove;
+        public event Action OnFinishPreparationAttack;
+
         public ICharacterController CharacterController { get; private set; }
 
         private CharacterAnimator _characterAnimator;
@@ -20,7 +22,9 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         public override void Disable()
         {
-            _characterAnimator.OnAnimatorMoveHandler -= OnAnimatorMoveHandler;
+            _characterAnimator.OnAnimatorMoveHandler -= AnimatorMoveHandler;
+            _characterAnimator.OnFinishPreparationAttack -= FinishPreparationAttack;
+            _characterAnimator.Disable();
 
             base.Disable();
         }
@@ -30,8 +34,9 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             GameObject character = CharacterController.VisualBodyController.CharacterInScene;
 
             _characterAnimator = character.AddComponent<CharacterAnimator>();
-            _characterAnimator.Init(CharacterController);
-            _characterAnimator.OnAnimatorMoveHandler += OnAnimatorMoveHandler;
+            _characterAnimator.Init(this);
+            _characterAnimator.OnAnimatorMoveHandler += AnimatorMoveHandler;
+            _characterAnimator.OnFinishPreparationAttack += FinishPreparationAttack;
 
             CharacterRagdoll characterRagdoll = character.AddComponent<CharacterRagdoll>();
             characterRagdoll.Init(this);
@@ -46,9 +51,14 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             // This controller doesn't have any subsystems at the moment.
         }
 
-        private void OnAnimatorMoveHandler(Vector3 deltaPosition)
+        private void AnimatorMoveHandler(Vector3 deltaPosition)
         {
             OnAnimatorMove?.Invoke(deltaPosition);
+        }
+
+        private void FinishPreparationAttack()
+        {
+            OnFinishPreparationAttack?.Invoke();
         }
     }
 }
