@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zombieland.GameScene0.ImpactModule;
-using static UnityEngine.Rendering.HDROutputUtils;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {

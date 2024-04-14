@@ -8,8 +8,7 @@ namespace Zombieland.GameScene0.VisualBodyModule
     {
         public GameObject CtreateWeapon(Weapon weapon, IVisualBodyController visualBodyController)
         {
-            //GameObject prefab = Resources.Load<GameObject>(weapon.WeaponData.PrefabName);
-            GameObject prefab = Resources.Load<GameObject>("Weapons/Wreanch");
+            GameObject prefab = Resources.Load<GameObject>(weapon.WeaponData.PrefabName);
 
             Transform weaponPoint = visualBodyController.CharacterInScene.GetComponent<Transform>().Find("WeaponPoint");
 

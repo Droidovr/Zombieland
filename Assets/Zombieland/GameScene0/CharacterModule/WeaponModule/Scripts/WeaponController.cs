@@ -7,8 +7,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
     public class WeaponController : Controller, IWeaponController
     {
-        public event Action OnImpactDepleted;
-        public event Action OnShotAnimationPreparing;
         public event Action OnShotPerformed;
         public event Action OnShotFailed;
 
@@ -16,6 +14,8 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         public IWeapon Weapon { get; private set; }
         public string CurrentImpactName { get; private set; }
 
+
+        #region Public
         public WeaponController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             CharacterController = parentController as ICharacterController;
@@ -30,61 +30,67 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             }
 
             CharacterController.EquipmentController.OnWeaponChanged -= WeaponChangedHandler;
-            CharacterController.EquipmentController.OnImpactChanged -= AmmoChangedHandler;
+            CharacterController.EquipmentController.OnImpactChanged -= ImpactChangedHandler;
             CharacterController.RootController.UIController.OnFire -= ButtonFireHandler;
-            CharacterController.RootController.UIController.OnWeaponReaload -= ReCharge;
+            CharacterController.RootController.UIController.OnWeaponReaload -= WeaponRealoadHaundler;
 
             base.Disable();
         }
+        #endregion
 
-        public void ReCharge()
-        {
-            CharacterController.EquipmentController.ReloadCurrentWeapon();
-        }
 
+        #region Protected
         protected override void CreateHelpersScripts()
         {
             CharacterController.EquipmentController.OnWeaponChanged += WeaponChangedHandler;
-            CharacterController.EquipmentController.OnImpactChanged += AmmoChangedHandler;
+            CharacterController.EquipmentController.OnImpactChanged += ImpactChangedHandler;
             CharacterController.RootController.UIController.OnFire += ButtonFireHandler;
-            CharacterController.RootController.UIController.OnWeaponReaload += ReCharge;
+            CharacterController.RootController.UIController.OnWeaponReaload += WeaponRealoadHaundler;
+
+            //Pistol pistol = new Pistol(this);
+            //pistol.Init();
+            //pistol.Serialize();
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
             // This controller doesn’t have any subsystems at the moment.
         }
+        #endregion
 
+
+        #region Private
         private void WeaponChangedHandler(Weapon weapon)
         {
             Weapon = weapon;
+            Weapon.WeaponData.Owner = CharacterController;
             Weapon.Init(this);
             Weapon.ShotProcess.OnShotPerformed += ShotHandler;
         }
 
-        private void AmmoChangedHandler(string impactName)
+        private void ImpactChangedHandler(string impactName)
         {
             CurrentImpactName = impactName;
         }
 
         private void ButtonFireHandler(bool isFire)
         {
-            if (isFire)
+            if (Weapon != null)
             {
-                if (Weapon != null)
+                if (isFire)
                 {
                     Weapon.ShotProcess.StartFire();
-                    Debug.Log("Weapon - ButtonFireDownHandler");
                 }
-            }
-            else
-            {
-                if (Weapon != null)
+                else
                 {
                     Weapon.ShotProcess.StopFire();
-                    Debug.Log("Weapon - ButtonFireUpHandler");
                 }
             }
+        }
+
+        private void WeaponRealoadHaundler()
+        {
+            CharacterController.EquipmentController.ReloadCurrentWeapon();
         }
 
         private void ShotHandler()
@@ -92,8 +98,8 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             if (Weapon != null)
             {
                 OnShotPerformed?.Invoke();
-                Debug.Log("Weapon - OnShotHandler");
             }
         }
+        #endregion
     }
 }

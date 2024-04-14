@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
@@ -6,10 +7,11 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
     public class Weapon : IWeapon
     {
         public WeaponData WeaponData { get; set; }
-        public IShotProcess ShotProcess { get; set; }
+        public IShotProcess ShotProcess { get; private set; }
 
         public void Init(IWeaponController weaponController)
-        {
+        { 
+            ShotProcess = new ShotProcess();
             ShotProcess.Init(weaponController);
         }
     }

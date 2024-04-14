@@ -6,22 +6,23 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
     public class ShotProcess : IShotProcess
     {
         public event Action OnShotPerformed;
- 
-        public IWeaponController WeaponController { get; set; }
 
+        private IWeaponController _weaponController;
         private FirePermiserTimer _shotPermitionTimer;
         private InvokeTimer _cooldawnTimer;
         private Impact _impact;
         private WeaponImpacter _weaponImpacter;
         private WeaponResurser _weaponResurser;
 
-        #region PublicScripts
+        #region Public
         public void Init(IWeaponController weaponController)
         {
-            _shotPermitionTimer = new FirePermiserTimer(WeaponController);
-            _cooldawnTimer = new InvokeTimer(WeaponController.Weapon.WeaponData.ShootCooldown, StartFire);
-            _weaponImpacter = new WeaponImpacter(WeaponController);
-            _weaponResurser = new WeaponResurser(WeaponController);
+            _weaponController = weaponController;
+            _shotPermitionTimer = new FirePermiserTimer(_weaponController);
+            _cooldawnTimer = new InvokeTimer(_weaponController.Weapon.WeaponData.ShootCooldown, StartFire);
+            _impact = new Impact();
+            _weaponImpacter = new WeaponImpacter(_weaponController);
+            _weaponResurser = new WeaponResurser(_weaponController);
         }
 
         public void StartFire()
@@ -42,7 +43,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         #endregion
 
 
-        #region PrivateScripts
+        #region Private
         private void PreparingFire()
         {
             _shotPermitionTimer?.Stop();
@@ -52,19 +53,19 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
             _weaponResurser.ResourceOperation(true, _impact.ImpactData.ConsumableResources);
 
-            WeaponController.CharacterController.AnimationController.OnFinishPreparationAttack += CompletionFire;
+            _weaponController.CharacterController.AnimationController.OnFinishPreparationAttack += CompletionFire;
         }
 
         private void CompletionFire()
         {
-            WeaponController.CharacterController.AnimationController.OnFinishPreparationAttack -= CompletionFire;
+            _weaponController.CharacterController.AnimationController.OnFinishPreparationAttack -= CompletionFire;
 
             _impact.Activate();
             _weaponResurser.IsReserveResurce = false;
 
-            WeaponController.CharacterController.VisualBodyController.WeaponSoundFire?.Play();
+            _weaponController.CharacterController.VisualBodyController.WeaponSoundFire?.Play();
 
-            WeaponController.CharacterController.VisualBodyController.WeaponVFX?.Play();
+            _weaponController.CharacterController.VisualBodyController.WeaponVFX?.Play();
 
             OnShotPerformed.Invoke();
 
