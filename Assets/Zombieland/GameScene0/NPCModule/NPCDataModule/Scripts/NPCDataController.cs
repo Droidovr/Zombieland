@@ -9,7 +9,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCDataModule
         public NPCDataController(IController parentController, List<IController> requiredControllers) 
             : base(parentController, requiredControllers)
         {
-            CreateHelpersScripts();
+            TestCreateSubsystem();
         }
 
         protected override void CreateHelpersScripts()
@@ -20,6 +20,11 @@ namespace Zombieland.GameScene0.NPCModule.NPCDataModule
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
             //This method has no implementation
+        }
+
+        private void TestCreateSubsystem()
+        {
+            NPCData = new NPCData();
         }
     }
 }

@@ -410,7 +410,7 @@
                 </e>
               </e>
               <e p="Scripts" t="Include">
-                <e p="INPController.cs" t="Include" />
+                <e p="INPCController.cs" t="Include" />
                 <e p="NPCController.cs" t="Include" />
               </e>
               <e p="Test" t="Include">

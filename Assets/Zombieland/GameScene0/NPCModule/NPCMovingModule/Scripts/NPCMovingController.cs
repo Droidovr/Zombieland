@@ -13,7 +13,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
             : base(parentController, requiredControllers)
         {
             _NPCController = (INPCController)parentController;
-            CreateHelpersScripts();
+            TestCreateSubsystem();
         }
 
         protected override void CreateHelpersScripts()
@@ -40,6 +40,12 @@ namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
         public void StopMoving()
         {
             _navMeshHandler.StopMoving();
+        }
+
+        private void TestCreateSubsystem()
+        {
+            _navMeshHandler = _NPCController.VisualBodyController.ActiveNPC.GetComponent<NavMeshHandler>();
+            _navMeshHandler.Init(_NPCController.DataController.NPCData.Speed);
         }
     }
 }

@@ -6,18 +6,18 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisualBodyModule
     public class NPCVisualBodyController : Controller, INPCVisualBodyController
     {
         public GameObject ActiveNPC { get; set; }
-        private readonly INPCController NPCController;
+        private readonly INPCController _NPCController;
 
         public NPCVisualBodyController(IController parentController, List<IController> requiredControllers) 
             : base(parentController, requiredControllers)
         {
-            NPCController = (INPCController) parentController;
-            CreateHelpersScripts();
+            _NPCController = (INPCController) parentController;
+            TestCreateSubsystem();
         }
 
         protected override void CreateHelpersScripts()
         {
-            CreateNPC();
+            CreateNPConScene();
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -25,11 +25,16 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisualBodyModule
             //This method has no implementation
         }
 
-        private void CreateNPC()
+        private void CreateNPConScene()
         {
-            var NPCPrefab = Resources.Load<GameObject>(NPCController.DataController.NPCData.Name);
+            var NPCPrefab = Resources.Load<GameObject>(_NPCController.DataController.NPCData.Name);
             ActiveNPC = GameObject.Instantiate(NPCPrefab);
             ActiveNPC.SetActive(false);
+        }
+        
+        private void TestCreateSubsystem()
+        {
+            CreateNPConScene();
         }
     }
 }

@@ -5,6 +5,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCTakeImpactModule
 {
     public interface INPCTakeImpactController
     {
-        void ApplyImpact(List<DirectImpactData> impact);
+        public void ApplyImpact(List<DirectImpactData> impact);
     }
 }

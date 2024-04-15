@@ -8,17 +8,10 @@ public class TestStartPoint : MonoBehaviour
     public Transform CharacterTransform;
     
     private IController Controller;
-    private readonly List<IController> ControllersList = new List<IController>();
     private NPCManagerController NPCManagerController;
-
-
-    private void Awake()
-    {
-        NPCManagerController = new NPCManagerController(Controller, ControllersList);
-    }
 
     void Start()
     {
-        NPCManagerController.CharacterTransform = CharacterTransform;
+        NPCManagerController = new NPCManagerController(Controller, null, CharacterTransform);
     }
 }

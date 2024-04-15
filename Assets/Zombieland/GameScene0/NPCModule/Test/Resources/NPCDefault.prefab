@@ -5668,6 +5668,8 @@ GameObject:
   - component: {fileID: 3029096429990941134}
   - component: {fileID: 6923984502340601528}
   - component: {fileID: 5254201673641582939}
+  - component: {fileID: 3077785629600307283}
+  - component: {fileID: 7211796403652894682}
   m_Layer: 0
   m_Name: NPCDefault
   m_TagString: Untagged
@@ -5776,6 +5778,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63eca03df57665846932ee675e7fb87d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3077785629600307283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8716972487273300851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09935646d343a9d47a13364ab4c94853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hearingRange: 5
+  _hearingRangeColour: {r: 0.3, g: 0.8, b: 1, a: 0.1}
+--- !u!114 &7211796403652894682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8716972487273300851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c75a47d7005e6854f91b32f059004aa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _visionConeAngle: 60
+  _visionConeRange: 5
+  _visionConeColour: {r: 0.9, g: 0, b: 0, a: 0.4}
+  _detectionMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _eyesTransform: {fileID: 0}
 --- !u!1 &8795699301891362277
 GameObject:
   m_ObjectHideFlags: 0

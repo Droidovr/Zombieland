@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Zombieland.GameScene0.CharacterModule;
 using Zombieland.GameScene0.CharacterModule.SensorModule.ImpactableSensorModule;
 
 namespace Zombieland.GameScene0.NPCModule.NPCVisionSensorModule
@@ -81,8 +82,10 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisionSensorModule
             // check component
             if (raycastHit.collider.TryGetComponent<IImpactable>(out var impactable))
             {
-                // Check if impactable is CharacterImpactable
-                RegisterTarget();
+                if (impactable.Controller is ICharacterController)
+                {
+                    RegisterTarget();
+                }
             }
         }
 

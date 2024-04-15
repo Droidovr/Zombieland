@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Zombieland.GameScene0.NPCManagerModule;
 using Zombieland.GameScene0.NPCModule.NPCDataModule;
 using Zombieland.GameScene0.NPCModule.NPCHearingSensorModule.Scripts;
 using Zombieland.GameScene0.NPCModule.NPCMovingModule;
@@ -11,6 +12,7 @@ namespace Zombieland.GameScene0.NPCModule
 {
     public class NPCController : Controller, INPCController
     {
+        public INPCManagerController NPCManagerController { get; set; }
         public INPCDataController DataController { get; set; }
         public INPCVisualBodyController VisualBodyController { get; set; }
         public INPCSpawnController SpawnController { get; set; }
@@ -22,7 +24,7 @@ namespace Zombieland.GameScene0.NPCModule
         public NPCController(IController parentController, List<IController> requiredControllers) 
             : base(parentController, requiredControllers)
         {
-            CreateHelpersScripts();
+            NPCManagerController = (INPCManagerController) parentController;
             TestCreateSubsystems();
         }
 

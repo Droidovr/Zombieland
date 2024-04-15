@@ -12,16 +12,16 @@ public class NPCTakeImpactController : Controller, INPCTakeImpactController
 
     protected override void CreateHelpersScripts()
     {
-        throw new System.NotImplementedException();
+        //This method has no implementation
     }
 
     protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
     {
-        throw new System.NotImplementedException();
+        //This method has no implementation
     }
 
     public void ApplyImpact(List<DirectImpactData> impact)
     {
-        throw new System.NotImplementedException();
+        //This method has no implementation
     }
 }
