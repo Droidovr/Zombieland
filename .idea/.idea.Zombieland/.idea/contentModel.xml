@@ -7,7 +7,22 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="PolygonApocalypseZombieland" t="Include">
+          <e p="Materials" t="Include">
+            <e p="Misc" t="Include">
+              <e p="Shader" t="Include">
+                <e p="POLYGON_Triplanar.shader" t="Include" />
+                <e p="POLYGON_Zombies.shader" t="Include" />
+                <e p="SkyGradient.shader" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
         <e p="PolygonSciFiSpace" t="Include">
+          <e p="EnvironmentModule" t="Include">
+            <e p="DissolveChnager.cs" t="Include" />
+            <e p="FPSCounter.cs" t="Include" />
+          </e>
           <e p="Shaders" t="Include">
             <e p="POLYGON_SpaceShip_Rim.shader" t="Include" />
             <e p="POLYGON_Triplanar.shader" t="Include" />
@@ -299,8 +314,8 @@
             <e p="ImpactModule" t="Include">
               <e p="Resources" t="Include">
                 <e p="GunBullet.txt" t="Include" />
-                <e p="Knife.txt" t="Include" />
-                <e p="ShotgunBullet.txt" t="Include" />
+                <e p="MachineGunBullet.txt" t="Include" />
+                <e p="Wrench.txt" t="Include" />
               </e>
               <e p="Scripts" t="Include">
                 <e p="00.Assembly" t="Include">
@@ -316,10 +331,12 @@
                   <e p="Updater.cs" t="Include" />
                 </e>
                 <e p="02.InitialImpact" t="Include">
-                  <e p="BaseDirectProjectile.cs" t="Include" />
-                  <e p="BaseHealing.cs" t="Include" />
-                  <e p="BaseHomingProjectile.cs" t="Include" />
-                  <e p="BaseMine.cs" t="Include" />
+                  <e p="Base" t="Include">
+                    <e p="BaseDirectProjectile.cs" t="Include" />
+                    <e p="BaseHealing.cs" t="Include" />
+                    <e p="BaseHomingProjectile.cs" t="Include" />
+                    <e p="BaseMine.cs" t="Include" />
+                  </e>
                   <e p="Detectors" t="Include">
                     <e p="SphereDetector.cs" t="Include" />
                     <e p="TouchColliderDetector.cs" t="Include" />
@@ -327,8 +344,8 @@
                   </e>
                   <e p="GunBullet.cs" t="Include" />
                   <e p="IInitialImpactCommand.cs" t="Include" />
-                  <e p="Knife.cs" t="Include" />
-                  <e p="ShotgunBullet.cs" t="Include" />
+                  <e p="MachineGunBullet.cs" t="Include" />
+                  <e p="Wrench.cs" t="Include" />
                 </e>
                 <e p="03.BuffDebuff" t="Include">
                   <e p="BuffDebuffInjection.cs" t="Include" />

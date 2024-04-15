@@ -15,7 +15,6 @@ namespace Zombieland.GameScene0.ImpactModule
         [JsonIgnore] public Transform FollowTargetTransform { get; set; }
         [JsonIgnore] public Vector3 ObjectSpawnPosition { get; set; }
         [JsonIgnore] public Quaternion ObjectRotation { get; set; }
-        [JsonIgnore] public List<Collider> IgnoringColliders { get; set; }
         [JsonIgnore] public GameObject ImpactObject { get; set; }
 
         public string ID { get; set; }

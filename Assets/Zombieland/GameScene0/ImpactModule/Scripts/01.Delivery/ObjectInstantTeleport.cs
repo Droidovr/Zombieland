@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Zombieland.GameScene0.ImpactModule
 {
@@ -10,14 +8,22 @@ namespace Zombieland.GameScene0.ImpactModule
     public class ObjectInstantTeleport : IImpactCommand
     {
         [JsonIgnore] public IImpact Impact { get; set; }
+        public float Lifetime { get; set; }
+        
+        private Updater _updater;
 
         public void Execute()
         {
-            Impact.ImpactData.ImpactObject.transform.position = Impact.ImpactData.ObjectSpawnPosition;
-            Impact.ImpactData.ImpactObject.transform.rotation = Impact.ImpactData.ObjectRotation;
+            var impactObject = Impact.ImpactData.ImpactObject;
+            impactObject.transform.position = Impact.ImpactData.ObjectSpawnPosition;
+            impactObject.transform.rotation = Impact.ImpactData.ObjectRotation;
 
             var collisionHandler = Impact.ImpactData.ImpactObject.AddComponent<CollisionHandler>();
-            collisionHandler.Init(FinalizeDelivery, Impact.ImpactData.IgnoringColliders);
+            collisionHandler.Init(FinalizeDelivery);
+            
+            if(Lifetime < 0f) return;
+            _updater = impactObject.AddComponent<Updater>();
+            _updater.SubscribeToUpdate(CheckLifetime);
         }
 
         private void FinalizeDelivery()
@@ -28,7 +34,14 @@ namespace Zombieland.GameScene0.ImpactModule
 
         public void Deactivate()
         {
-            // Has no implementation
+            _updater?.UnsubscribeFromUpdate(CheckLifetime);
+        }
+        
+        private void CheckLifetime()
+        {
+            Lifetime -= Time.deltaTime;
+            if(Lifetime > 0) return;
+            FinalizeDelivery();
         }
     }
 }
