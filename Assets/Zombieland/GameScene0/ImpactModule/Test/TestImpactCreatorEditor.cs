@@ -1,10 +1,14 @@
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
-using UnityEditor;
 using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+#if UNITY_EDITOR
 namespace Zombieland.GameScene0.ImpactModule.Test
 {
     [CustomEditor(typeof(TestImpactCreator))]
@@ -110,3 +114,4 @@ namespace Zombieland.GameScene0.ImpactModule.Test
         }
     }
 }
+#endif
