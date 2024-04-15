@@ -5,7 +5,7 @@ namespace Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule
 {
     public class SpawnHelper
     {
-        public event Action<Vector3> OnSpawn;
+        public event Action<Vector3, Quaternion> OnSpawn;
 
         private readonly SpawnDeathRespawnController _spawnDeathRespawnController;
 
@@ -20,14 +20,15 @@ namespace Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule
             var radiusAgent = _spawnDeathRespawnController.CharacterController.VisualBodyController.CharacterInScene.GetComponent<UnityEngine.CharacterController>().radius;
 
             SpawnData spawnData = characterData.SpawnData;
-            Vector3 DefaultPosition = new Vector3(spawnData.DefaultPosition.X, spawnData.DefaultPosition.Y, spawnData.DefaultPosition.Z);
+            Vector3 defaultPosition = new Vector3(spawnData.DefaultPosition.X, spawnData.DefaultPosition.Y, spawnData.DefaultPosition.Z);
+            Quaternion defaultRotation = Quaternion.Euler(new Vector3(spawnData.DefaultRotation.X, spawnData.DefaultRotation.Y, spawnData.DefaultRotation.Z));
             AvailablePosition availablePosition = new AvailablePosition();
 
-            Vector3 spawnPosition = availablePosition.GetSpawnPosition(DefaultPosition, spawnData.SpawnRadius, radiusAgent, spawnData.SpawnType);
+            Vector3 spawnPosition = availablePosition.GetSpawnPosition(defaultPosition, spawnData.SpawnRadius, radiusAgent, spawnData.SpawnType);
 
             if (spawnPosition != null)
             {
-                OnSpawn?.Invoke(spawnPosition);
+                OnSpawn?.Invoke(spawnPosition, defaultRotation);
             }
         }
     }

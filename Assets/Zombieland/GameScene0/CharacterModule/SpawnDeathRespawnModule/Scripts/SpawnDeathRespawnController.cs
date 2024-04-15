@@ -8,7 +8,7 @@ namespace Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule
 {
     public class SpawnDeathRespawnController : Controller, ISpawnDeathRespawnController
     {
-        public event Action<Vector3> OnSpawn;
+        public event Action<Vector3, Quaternion> OnSpawn;
 
         private SpawnHelper _spawnHelper;
 
@@ -19,11 +19,25 @@ namespace Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule
             CharacterController = parentController as ICharacterController;
         }
 
+        public void SpawnCharacter()
+        {
+            _spawnHelper.Start();
+        }
+
+        public override void Disable()
+        {
+            // Викликати метод, який буде зберігати нашу теперішню точку.
+
+            base.Disable();
+        }
+
         protected override void CreateHelpersScripts()
         {
             _spawnHelper = new SpawnHelper(this);
             _spawnHelper.OnSpawn += SpawnHandler;
-            _spawnHelper.Start();
+
+            // Test
+            SpawnCharacter();
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -31,10 +45,11 @@ namespace Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule
             // This controller doesn’t have any subsystems at the moment.
         }
 
-        private void SpawnHandler(Vector3 spawnPosition)
+        private void SpawnHandler(Vector3 spawnPosition, Quaternion spawnQuaternion)
         {
-            OnSpawn?.Invoke(spawnPosition);
+            OnSpawn?.Invoke(spawnPosition, spawnQuaternion);
             CharacterController.VisualBodyController.CharacterInScene.transform.position = spawnPosition;
+            CharacterController.VisualBodyController.CharacterInScene.transform.rotation = spawnQuaternion;
             CharacterController.VisualBodyController.CharacterInScene.SetActive(true);
         }
     }
