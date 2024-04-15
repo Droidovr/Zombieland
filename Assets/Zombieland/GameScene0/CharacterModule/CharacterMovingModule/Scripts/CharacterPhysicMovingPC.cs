@@ -124,7 +124,8 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             Vector2 offset = cursorCenter - _centerScreen;
             float angle = Mathf.Atan2(offset.x, offset.y) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(0f, angle, 0f);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _characterDataController.CharacterData.DesignRotationSpeed);
+            //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _characterDataController.CharacterData.DesignRotationSpeed);
+            transform.rotation = targetRotation;
         }
 
         #if UNITY_EDITOR
