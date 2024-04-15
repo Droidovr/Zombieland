@@ -9,9 +9,9 @@
 	{
 		"DefaultPosition":
 		{
-			"X":1.0,
-			"Y":1.0,
-			"Z":1.0
+			"X":-10.0,
+			"Y":6.1,
+			"Z":-4.0
 		},
 		"SpawnRadius":5.0,
 		"SpawnType":1

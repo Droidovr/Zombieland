@@ -34,7 +34,6 @@ namespace Zombieland.GameScene0.CharacterModule
         public IAimingController AimingController { get; private set; }
         public IStealthController StealthController { get; private set; }
 
-        public Transform CharacterTransform => VisualBodyController.CharacterInScene.transform;
 
         private readonly IRootController _rootController;
 
@@ -83,7 +82,7 @@ namespace Zombieland.GameScene0.CharacterModule
             AnimationController = new AnimationController(this, new List<IController> { (IController)CharacterMovingController });
             subsystemsControllers.Add((IController)AnimationController);
 
-            SpawnDeathRespawnController = new SpawnDeathRespawnController(this, new List<IController> { (IController)CharacterDataController });
+            SpawnDeathRespawnController = new SpawnDeathRespawnController(this, new List<IController> { (IController)CharacterDataController, (IController)VisualBodyController });
             subsystemsControllers.Add((IController)SpawnDeathRespawnController);
 
             BuffDebuffController = new BuffDebuffController(this, null);

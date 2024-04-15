@@ -32,7 +32,5 @@ namespace Zombieland.GameScene0.CharacterModule
         IBuffDebuffController BuffDebuffController { get; }
         IAimingController AimingController { get; }
         IStealthController StealthController { get; }
-
-        Transform CharacterTransform { get; }
     }
 }

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Numerics;
+using UnityEngine;
+
+
 
 namespace Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule
 {
@@ -20,12 +22,20 @@ namespace Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule
         protected override void CreateHelpersScripts()
         {
             _spawnHelper = new SpawnHelper(this);
+            _spawnHelper.OnSpawn += SpawnHandler;
             _spawnHelper.Start();
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
             // This controller doesn’t have any subsystems at the moment.
+        }
+
+        private void SpawnHandler(Vector3 spawnPosition)
+        {
+            OnSpawn?.Invoke(spawnPosition);
+            CharacterController.VisualBodyController.CharacterInScene.transform.position = spawnPosition;
+            CharacterController.VisualBodyController.CharacterInScene.SetActive(true);
         }
     }
 }
