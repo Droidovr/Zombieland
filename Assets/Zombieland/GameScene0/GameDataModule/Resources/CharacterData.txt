@@ -1,8 +1,10 @@
 {
-	"MaxMovingSpeed":0.0,
-	"DesignMovingSpeed":0.0,
-	"MaxRotationSpeed":0.0,
-	"DesignRotationSpeed":0.0,
+	"MaxMovingSpeed":0.7,
+	"DesignMovingSpeed":0,
+	"MaxRotationSpeed":4.0,
+	"DesignRotationSpeed":0,
+	"IsDead":false,
+	"IsStunned":false,	
 	"SpawnData":
 	{
 		"DefaultPosition":

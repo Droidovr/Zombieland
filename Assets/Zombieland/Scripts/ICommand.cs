@@ -1,7 +1,7 @@
 namespace Zombieland
 {
-  public interface ICommand
-  {
-    void Execute();
-  }
+    public interface ICommand
+    {
+        void Execute();
+    }
 }

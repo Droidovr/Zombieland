@@ -11,5 +11,12 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterDataModule
 
         public SpawnData SpawnData;
 
+        public float HP;
+        public float HPMax;
+        public float HPDefault;
+        public float Stamina;
+
+        public bool IsDead;
+        public bool IsStunned;
     }
 }

@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using Zombieland.GameScene0.CameraModule;
 using Zombieland.GameScene0.CharacterModule;
+using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 using Zombieland.GameScene0.EnvironmentModule;
 using Zombieland.GameScene0.GameDataModule;
 using Zombieland.GameScene0.UIModule;
