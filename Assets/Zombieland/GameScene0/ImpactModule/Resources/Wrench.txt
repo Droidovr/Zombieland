@@ -1,7 +1,7 @@
 {
   "ImpactData": {
-    "ID": "GunBullet",
-    "Name": "Gun Bullet",
+    "ID": "Wrench",
+    "Name": "Wrench",
     "IconID": "IconID",
     "ConsumableResources": [
       {
@@ -12,19 +12,15 @@
   },
   "Assembler": {
     "$type": "Zombieland.GameScene0.ImpactModule.ObjectAssembler, Assembly-CSharp",
-    "PrefabName": "GunBullet"
+    "PrefabName": "Wrench"
   },
   "Delivery": {
-    "$type": "Zombieland.GameScene0.ImpactModule.MovingForwardHandler, Assembly-CSharp",
-    "MovingSpeed": 10.0,
-    "Range": 5.0,
-    "Lifetime": 0.0
+    "$type": "Zombieland.GameScene0.ImpactModule.ObjectInstantTeleport, Assembly-CSharp",
+    "Lifetime": 1.0
   },
   "InitialImpact": {
-    "$type": "GunBullet, Assembly-CSharp",
-    "Detector": {
-      "DetectionRadius": 0.3
-    },
+    "$type": "Wrench, Assembly-CSharp",
+    "Detector": {},
     "InitialImpactData": [
       {
         "Type": 0,
@@ -32,8 +28,7 @@
         "PercentageValue": 0.0
       }
     ],
-    "TargetReachedEffectPrefabName": "GunBulletTargetReachedEffect",
-    "NoTargetEffectPrefabName": "NoTargetEffectPrefabID",
+    "TargetReachedEffectPrefabName": "WrenchTargetReachedEffect",
     "Force": 0.0
   },
   "BuffDebuffInjection": {
