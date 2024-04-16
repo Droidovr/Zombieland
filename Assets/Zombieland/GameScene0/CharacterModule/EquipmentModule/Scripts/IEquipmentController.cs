@@ -11,8 +11,8 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
         event Action<string> OnImpactChanged;
         event Action OnImpactDepleted;
 
-        Dictionary<int, WeaponSlot> WeaponsSlots { get; }
-        Dictionary<string, int> CurrentImpactsEquipped { get; }
+        Dictionary<int, WeaponSlot> WeaponSlots { get; }
+        //Dictionary<string, int> CurrentImpactsEquipped { get; }
         int CurrentImpactCount { get; set;  }
         string CurrentOutfitEquipped { get; }
 
