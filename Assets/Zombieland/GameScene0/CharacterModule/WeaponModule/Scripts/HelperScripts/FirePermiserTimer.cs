@@ -22,7 +22,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             int intervalMS = (int)(CHECK_FIRE_PERMITION_PERIOD * 1000);
             _timer = new Timer(intervalMS);
 
-            _impact = _weaponController.CharacterController.RootController.GameDataController.GetData<Impact>(_weaponController.CurrentImpactName);
+            _impact = _weaponController.CharacterController.RootController.GameDataController.GetData<Impact>(_weaponController.CurrentImpactID);
         }
 
         public void Start()

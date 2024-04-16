@@ -17,19 +17,40 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         public void Init()
         {
-            _pistol.WeaponData.ID = "Pistol_0";
-            _pistol.WeaponData.Name = "Pistol";
-            _pistol.WeaponData.PrefabName = "Pistol_0";
-            _pistol.WeaponData.AvailableImpactIDs = new List<string> { "GunBullet_0", "GunBullet_1" };
-            _pistol.WeaponData.ShootCooldown = 1f;
-            _pistol.WeaponData.ShotAccuracy = 0.5f;
-            _pistol.WeaponData.MaxImpactCount = 15;
+            // Wrench
+            _pistol.WeaponData.ID = "Wrench_0";
+            _pistol.WeaponData.Name = "Wrench";
+            _pistol.WeaponData.PrefabName = "Wrench_0";
+            _pistol.WeaponData.AvailableImpactIDs = new List<string> { "Wrench" };
+            _pistol.WeaponData.ShootCooldown = 0f;
+            _pistol.WeaponData.ShotAccuracy = 0f;
+            _pistol.WeaponData.MaxImpactCount = -1;
             _pistol.WeaponData.HasTarget = false;
+
+            //// Pistol
+            //_pistol.WeaponData.ID = "Pistol_0";
+            //_pistol.WeaponData.Name = "Pistol";
+            //_pistol.WeaponData.PrefabName = "Pistol_0";
+            //_pistol.WeaponData.AvailableImpactIDs = new List<string> { "GunBullet" };
+            //_pistol.WeaponData.ShootCooldown = 1f;
+            //_pistol.WeaponData.ShotAccuracy = 0.5f;
+            //_pistol.WeaponData.MaxImpactCount = 15;
+            //_pistol.WeaponData.HasTarget = false;
+
+            //// Rifle
+            //_pistol.WeaponData.ID = "Rifle_0";
+            //_pistol.WeaponData.Name = "Rifle";
+            //_pistol.WeaponData.PrefabName = "Rifle_0";
+            //_pistol.WeaponData.AvailableImpactIDs = new List<string> { "MachineGunBullet" };
+            //_pistol.WeaponData.ShootCooldown = 0.2f;
+            //_pistol.WeaponData.ShotAccuracy = 0.5f;
+            //_pistol.WeaponData.MaxImpactCount = 33;
+            //_pistol.WeaponData.HasTarget = false;
         }
 
         public void Serialize() 
         {
-            _weaponController.CharacterController.RootController.GameDataController.SaveDada<Weapon>("Pistol_0", _pistol);
+            _weaponController.CharacterController.RootController.GameDataController.SaveDada<Weapon>("Wrench_0", _pistol);
         }
     }
 }

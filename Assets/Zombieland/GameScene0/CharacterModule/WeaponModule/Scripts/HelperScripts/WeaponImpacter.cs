@@ -14,7 +14,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         public Impact GetCurrentImpact()
         {
-            Impact impact = _weaponController.CharacterController.RootController.GameDataController.GetData<Impact>(_weaponController.CurrentImpactName);
+            Impact impact = _weaponController.CharacterController.RootController.GameDataController.GetData<Impact>(_weaponController.CurrentImpactID);
             
             impact.ImpactData.ImpactOwner = _weaponController.CharacterController;
 

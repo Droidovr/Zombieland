@@ -12,7 +12,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         public ICharacterController CharacterController { get; private set; }
         public IWeapon Weapon { get; private set; }
-        public string CurrentImpactName { get; private set; }
+        public string CurrentImpactID { get; private set; }
 
 
         #region Public
@@ -47,9 +47,9 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             CharacterController.RootController.UIController.OnFire += ButtonFireHandler;
             CharacterController.RootController.UIController.OnWeaponReaload += WeaponRealoadHaundler;
 
-            //Pistol pistol = new Pistol(this);
-            //pistol.Init();
-            //pistol.Serialize();
+            Pistol pistol = new Pistol(this);
+            pistol.Init();
+            pistol.Serialize();
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -68,9 +68,9 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             Weapon.ShotProcess.OnShotPerformed += ShotHandler;
         }
 
-        private void ImpactChangedHandler(string impactName)
+        private void ImpactChangedHandler(string impactID)
         {
-            CurrentImpactName = impactName;
+            CurrentImpactID = impactID;
         }
 
         private void ButtonFireHandler(bool isFire)
