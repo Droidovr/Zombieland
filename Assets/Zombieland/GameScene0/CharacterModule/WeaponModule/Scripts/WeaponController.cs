@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
@@ -47,9 +46,10 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             CharacterController.RootController.UIController.OnFire += ButtonFireHandler;
             CharacterController.RootController.UIController.OnWeaponReaload += WeaponRealoadHaundler;
 
-            Pistol pistol = new Pistol(this);
-            pistol.Init();
-            pistol.Serialize();
+            //// Test
+            //Pistol pistol = new Pistol(this);
+            //pistol.Init();
+            //pistol.Serialize();
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)

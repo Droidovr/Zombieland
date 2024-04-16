@@ -17,15 +17,15 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         public void Init()
         {
-            // Wrench
-            _pistol.WeaponData.ID = "Wrench_0";
-            _pistol.WeaponData.Name = "Wrench";
-            _pistol.WeaponData.PrefabName = "Wrench_0";
-            _pistol.WeaponData.AvailableImpactIDs = new List<string> { "Wrench" };
-            _pistol.WeaponData.ShootCooldown = 0f;
-            _pistol.WeaponData.ShotAccuracy = 0f;
-            _pistol.WeaponData.MaxImpactCount = -1;
-            _pistol.WeaponData.HasTarget = false;
+            //// Wrench
+            //_pistol.WeaponData.ID = "Wrench_0";
+            //_pistol.WeaponData.Name = "Wrench";
+            //_pistol.WeaponData.PrefabName = "Wrench_0";
+            //_pistol.WeaponData.AvailableImpactIDs = new List<string> { "Wrench" };
+            //_pistol.WeaponData.ShootCooldown = 0f;
+            //_pistol.WeaponData.ShotAccuracy = 0f;
+            //_pistol.WeaponData.MaxImpactCount = -1;
+            //_pistol.WeaponData.HasTarget = false;
 
             //// Pistol
             //_pistol.WeaponData.ID = "Pistol_0";
@@ -37,10 +37,10 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             //_pistol.WeaponData.MaxImpactCount = 15;
             //_pistol.WeaponData.HasTarget = false;
 
-            //// Rifle
-            //_pistol.WeaponData.ID = "Rifle_0";
-            //_pistol.WeaponData.Name = "Rifle";
-            //_pistol.WeaponData.PrefabName = "Rifle_0";
+            //// AK
+            //_pistol.WeaponData.ID = "AK_0";
+            //_pistol.WeaponData.Name = "AK";
+            //_pistol.WeaponData.PrefabName = "AK_0";
             //_pistol.WeaponData.AvailableImpactIDs = new List<string> { "MachineGunBullet" };
             //_pistol.WeaponData.ShootCooldown = 0.2f;
             //_pistol.WeaponData.ShotAccuracy = 0.5f;

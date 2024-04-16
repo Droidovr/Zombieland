@@ -1,1 +1,0 @@
-{"WeaponData":{"ID":"Rifle_0","Name":"Rifle","PrefabName":"Rifle_0","AvailableImpactIDs":["MachineGunBullet"],"ShootCooldown":0.2,"ShotAccuracy":0.5,"MaxImpactCount":33,"HasTarget":false},"ShotProcess":null}
