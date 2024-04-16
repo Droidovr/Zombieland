@@ -28,7 +28,7 @@ namespace Zombieland.GameScene0.ImpactModule
             _impactObject.transform.rotation = Impact.ImpactData.ObjectRotation;
 
             var collisionHandler = _impactObject.AddComponent<CollisionHandler>();
-            collisionHandler.Init(FinalizeDelivery, Impact.ImpactData.IgnoringColliders);
+            collisionHandler.Init(FinalizeDelivery);
             
             _updater = _impactObject.AddComponent<Updater>();
             _updater.SubscribeToUpdate(MoveObject);
