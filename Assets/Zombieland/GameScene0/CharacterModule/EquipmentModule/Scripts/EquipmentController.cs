@@ -110,10 +110,15 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
         {
             if (_currentWeaponEquipped.WeaponData.AvailableImpactIDs.Contains(impactID))
             {
+                if (WeaponSlots[_currentActiveSlotIndex].EquippedImpacts.ContainsKey(impactID))
+                {
+                    WeaponSlots[_currentActiveSlotIndex].EquippedImpacts[impactID] += amount;
+                    return;
+                }
                 WeaponSlots[_currentActiveSlotIndex].AddEquippedImpact(impactID, amount);
                 OnImpactChanged?.Invoke(impactID);
                 _currentImpactIDEquipped = impactID; //Temporary logic, will be replaced after proper UI ability to choose impacts
-                CurrentImpactCount += amount; //Temporary logic, will be replaced after proper UI ability to choose impacts
+                ReloadCurrentWeapon(); //Temporary logic, will be replaced after proper UI ability to choose impacts
             }
         }
 
@@ -129,7 +134,7 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
             Debug.Log("Weapon slot 1 is empty!");
             if (WeaponSlots[1] != WeaponSlot.empty)
             {
-                Debug.Log($"Weapon in slot 1 : {WeaponSlots[1]} is equipped!");
+                Debug.Log($"Weapon in slot 1 : {WeaponSlots[1]} is equipped! Shooting with {_currentImpactIDEquipped}");
                 OnWeaponChanged?.Invoke(WeaponSlots[1].EquippedWeapon);
                 _currentWeaponEquipped = WeaponSlots[1].EquippedWeapon;
                 OnImpactChanged?.Invoke(WeaponSlots[1].EquippedImpacts.Keys.First());
@@ -143,7 +148,7 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
             Debug.Log("Weapon slot 2 is empty!");
             if (WeaponSlots[2] != WeaponSlot.empty)
             {
-                Debug.Log($"Weapon in slot 2 : {WeaponSlots[2]} is equipped!");
+                Debug.Log($"Weapon in slot 2 : {WeaponSlots[2]} is equipped! Shooting with {_currentImpactIDEquipped}");
                 OnWeaponChanged?.Invoke(WeaponSlots[2].EquippedWeapon);
                 _currentWeaponEquipped = WeaponSlots[2].EquippedWeapon;
                 OnImpactChanged?.Invoke(WeaponSlots[2].EquippedImpacts.Keys.First());
@@ -157,7 +162,7 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
             Debug.Log("Weapon slot 3 is empty!");
             if (WeaponSlots[3] != WeaponSlot.empty)
             {
-                Debug.Log($"Weapon in slot 3 : {WeaponSlots[3]} is equipped!");
+                Debug.Log($"Weapon in slot 3 : {WeaponSlots[3]} is equipped! Shooting with  {_currentImpactIDEquipped}");
                 OnWeaponChanged?.Invoke(WeaponSlots[3].EquippedWeapon);
                 _currentWeaponEquipped = WeaponSlots[3].EquippedWeapon;
                 OnImpactChanged?.Invoke(WeaponSlots[3].EquippedImpacts.Keys.First());
@@ -171,7 +176,7 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
             Debug.Log("Weapon slot 4 is empty!");
             if (WeaponSlots[4] != WeaponSlot.empty)
             {
-                Debug.Log($"Weapon in slot 4 : {WeaponSlots[4]} is equipped!");
+                Debug.Log($"Weapon in slot 4 : {WeaponSlots[4]} is equipped! Shooting with  {_currentImpactIDEquipped}");
                 OnWeaponChanged?.Invoke(WeaponSlots[4].EquippedWeapon);
                 _currentWeaponEquipped = WeaponSlots[4].EquippedWeapon;
                 OnImpactChanged?.Invoke(WeaponSlots[4].EquippedImpacts.Keys.First());
