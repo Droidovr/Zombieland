@@ -35,21 +35,34 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
 
         public void ReloadCurrentWeapon()
         {
-            // add impacts equal to maxWeaponImpact 
+            if (_currentWeaponEquipped.WeaponData.MaxImpactCount == -1)
+            {
+                return;
+            }
+            if (WeaponSlots[_currentActiveSlotIndex].EquippedImpacts[_currentImpactIDEquipped] == 0)
+            {
+                return;
+            }
+            int reloadAmount = _currentWeaponEquipped.WeaponData.MaxImpactCount - CurrentImpactCount;
+            if (WeaponSlots[_currentActiveSlotIndex].EquippedImpacts[_currentImpactIDEquipped] == reloadAmount)
+            {
+                return;
+            }
+            if (WeaponSlots[_currentActiveSlotIndex].EquippedImpacts[_currentImpactIDEquipped] > reloadAmount)
+            {
+                CurrentImpactCount += reloadAmount;
+                WeaponSlots[_currentActiveSlotIndex].EquippedImpacts[_currentImpactIDEquipped] -= reloadAmount;
+            }
+            else
+            {
+                CurrentImpactCount += WeaponSlots[_currentActiveSlotIndex].EquippedImpacts[_currentImpactIDEquipped];
+                WeaponSlots[_currentActiveSlotIndex].EquippedImpacts[_currentImpactIDEquipped] = 0;
+            }
         }
 
         public override void Enable()
         {
             WeaponSlots = new Dictionary<int, WeaponSlot>() { { 1, WeaponSlot.empty }, { 2, WeaponSlot.empty }, { 3, WeaponSlot.empty }, { 4, WeaponSlot.empty } };
-
-            CharacterController.RootController.UIController.OnNumber1 += Number1Handler;
-            CharacterController.RootController.UIController.OnNumber2 += Number2Handler;
-            CharacterController.RootController.UIController.OnNumber3 += Number3Handler;
-            CharacterController.RootController.UIController.OnNumber4 += Number4Handler;
-
-            CharacterController.InventoryController.OnMainSlotEquipped += MainSlotEquippedHandler;
-            CharacterController.InventoryController.OnCurrentImpactEquipped += CurrentImpactEquippedHandler;
-            CharacterController.InventoryController.OnCurrentOutfitEquipped += CurrentOutfitEquippedHandler;
 
             base.Enable();
         }
@@ -71,7 +84,14 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
         #region PROTECTED
         protected override void CreateHelpersScripts()
         {
-            // This controller doesn’t have any helpers scripts at the moment.
+            CharacterController.RootController.UIController.OnNumber1 += Number1Handler;
+            CharacterController.RootController.UIController.OnNumber2 += Number2Handler;
+            CharacterController.RootController.UIController.OnNumber3 += Number3Handler;
+            CharacterController.RootController.UIController.OnNumber4 += Number4Handler;
+
+            CharacterController.InventoryController.OnMainSlotEquipped += MainSlotEquippedHandler;
+            CharacterController.InventoryController.OnCurrentImpactEquipped += CurrentImpactEquippedHandler;
+            CharacterController.InventoryController.OnCurrentOutfitEquipped += CurrentOutfitEquippedHandler;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
