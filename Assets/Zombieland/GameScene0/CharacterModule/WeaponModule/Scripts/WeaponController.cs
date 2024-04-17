@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
@@ -79,10 +80,14 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             {
                 if (isFire)
                 {
+                    Debug.Log("StartFire isFire:" + isFire);
+
                     Weapon.ShotProcess.StartFire();
                 }
                 else
                 {
+                    Debug.Log("StopFire isFire:" + isFire);
+
                     Weapon.ShotProcess.StopFire();
                 }
             }

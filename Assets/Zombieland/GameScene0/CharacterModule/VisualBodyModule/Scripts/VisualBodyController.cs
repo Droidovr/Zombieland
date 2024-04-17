@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using Zombieland.GameScene0.CharacterModule;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
@@ -36,6 +35,7 @@ namespace Zombieland.GameScene0.VisualBodyModule
             SensorTriggersGameobject = gertterTriggers.GetSensorTriggers();
 
             CharacterController.EquipmentController.OnWeaponChanged += WeaponChangedHandler;
+            CharacterController.AnimationController.OnFinishWeaponAnimation += FinishWeaponAnimationHandler;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -55,10 +55,26 @@ namespace Zombieland.GameScene0.VisualBodyModule
 
         private void WeaponChangedHandler(Weapon weapon)
         {
-            WeaponInScene = new CreateWeaponPrefab().CtreateWeapon(weapon, this);
+            WeaponInScene = new CreateWeaponPrefab().CtreateWeapon(weapon, CharacterInScene.GetComponent<Transform>());
             WeaponPointFire = WeaponInScene.GetComponent<Transform>().Find("PointFire");
             WeaponSoundFire = WeaponInScene.GetComponent<AudioSource>();
-            WeaponVFX = WeaponInScene.GetComponent<Transform>().Find("VFX").GetComponent<ParticleSystem>();
+            Transform vfxTransform = WeaponInScene.GetComponent<Transform>().Find("VFX");
+            if (vfxTransform != null)
+            {
+                WeaponVFX = vfxTransform.GetComponent<ParticleSystem>();
+            }
+        }
+
+        private void FinishWeaponAnimationHandler(string nameWeapon)
+        {
+            WeaponPointFire = null;
+            WeaponSoundFire = null;
+            WeaponVFX = null;
+
+            if (WeaponInScene != null)
+            {
+                GameObject.Destroy(WeaponInScene);
+            }
         }
     }
 }

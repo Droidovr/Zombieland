@@ -3,7 +3,7 @@
 	{
 		"ID":"AK_0",
 		"Name":"AK",
-		"PrefabName":"AK_0",
+		"PrefabName":"AK_Prefab_0",
 		"AvailableImpactIDs":["MachineGunBullet"],
 		"ShootCooldown":0.2,
 		"ShotAccuracy":0.5,

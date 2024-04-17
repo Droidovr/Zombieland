@@ -1,18 +1,19 @@
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
 
 namespace Zombieland.GameScene0.VisualBodyModule
 {
     public class CreateWeaponPrefab
     {
-        public GameObject CtreateWeapon(Weapon weapon, IVisualBodyController visualBodyController)
+        public GameObject CtreateWeapon(Weapon weapon, Transform characterInScene)
         {
             GameObject prefab = Resources.Load<GameObject>(weapon.WeaponData.PrefabName);
 
-            Transform weaponPoint = visualBodyController.CharacterInScene.GetComponent<Transform>().Find("WeaponPoint");
+            Transform weaponPoint = GameObject.Find("WeaponPoint").GetComponent<Transform>();
 
-            return GameObject.Instantiate(prefab, weaponPoint.position, Quaternion.identity);
+            GameObject weaponObject = GameObject.Instantiate(prefab, weaponPoint);
+
+            return weaponObject;
         }
     }
 }

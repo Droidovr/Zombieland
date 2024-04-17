@@ -1,5 +1,6 @@
 using System;
 using System.Timers;
+using UnityEngine;
 using Zombieland.GameScene0.ImpactModule;
 
 
@@ -13,7 +14,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         private Timer _timer;
         private IWeaponController _weaponController;
-        private Impact _impact;
 
         public FirePermiserTimer(IWeaponController weaponController)
         {
@@ -21,8 +21,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
             int intervalMS = (int)(CHECK_FIRE_PERMITION_PERIOD * 1000);
             _timer = new Timer(intervalMS);
-
-            _impact = _weaponController.CharacterController.RootController.GameDataController.GetData<Impact>(_weaponController.CurrentImpactID);
         }
 
         public void Start()
@@ -39,10 +37,10 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         private void HandleTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            if (CheckFirePermission())
-            {
+            //if (CheckFirePermission())
+            //{
                 OnPermission?.Invoke();
-            }
+            //}
         }
 
         private bool CheckFirePermission()
@@ -76,13 +74,14 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         private bool ResourcesConsumption()
         {
             bool isCheckResource = _weaponController.CharacterController.EquipmentController.CurrentImpactCount >= 0;
+            Impact impact = _weaponController.CharacterController.RootController.GameDataController.GetData<Impact>(_weaponController.CurrentImpactID);
 
-            for (int i = 0; i < _impact.ImpactData.ConsumableResources.Count; i++)
+            for (int i = 0; i < impact.ImpactData.ConsumableResources.Count; i++)
             {
-                switch (_impact.ImpactData.ConsumableResources[i].ResourceType)
+                switch (impact.ImpactData.ConsumableResources[i].ResourceType)
                 {
                     case ResourceType.Stamina:
-                        if (_impact.ImpactData.ConsumableResources[i].Value >= _weaponController.CharacterController.CharacterDataController.CharacterData.Stamina)
+                        if (impact.ImpactData.ConsumableResources[i].Value >= _weaponController.CharacterController.CharacterDataController.CharacterData.Stamina)
                         {
                             isCheckResource = true;
                         }

@@ -37,9 +37,9 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             _animatorController.CharacterController.StealthController.OnStealth += StealthHandler;
             _animatorController.CharacterController.RootController.UIController.OnFire += FireHandler;
 
-            //Test
-            TestEquipment testEquipment = new TestEquipment(_animatorController);
-            testEquipment.OnWeaponChanged += WeaponChangeHandler;
+            ////Test
+            //TestEquipment testEquipment = new TestEquipment(_animatorController);
+            //testEquipment.OnWeaponChanged += WeaponChangeHandler;
         }
 
         public void Disable()
@@ -68,12 +68,13 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         {
             OnFinishWeaponAnimation?.Invoke(nameFinishWeapon);
             ChangeWeaponAnimation(_nameWeapon);
-            Debug.Log("FinishHandler - nameFinishWeapon: " + nameFinishWeapon);
         }
 
         private void WeaponChangeHandler(Weapon weapon)
         { 
             _nameWeapon = weapon.WeaponData.Name;
+
+            Debug.Log(_nameWeapon);
 
             _animator.SetBool("IsWrench", false);
             _animator.SetBool("IsPistol", false);

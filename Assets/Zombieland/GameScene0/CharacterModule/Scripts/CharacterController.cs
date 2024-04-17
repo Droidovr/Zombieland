@@ -64,13 +64,13 @@ namespace Zombieland.GameScene0.CharacterModule
             TakeImpactController = new TakeImpactController(this, new List<IController> { (IController)BuffDebuffController, (IController)CharacterDataController });
             subsystemsControllers.Add((IController)TakeImpactController);
             
-            EquipmentController = new EquipmentController(this, new List<IController>{(IController)CharacterDataController, (IController)RootController.UIController.UIMainController, (IController)InventoryController });
+            EquipmentController = new EquipmentController(this, new List<IController>{(IController)CharacterDataController, (IController)RootController.UIController.UIMainController, (IController)InventoryController, (IController)RootController.GameDataController });
             subsystemsControllers.Add((IController)EquipmentController);
 
             InventoryController = new InventoryController(this, new List<IController> { (IController)CharacterDataController });
             subsystemsControllers.Add((IController)InventoryController);
 
-            AnimationController = new AnimationController(this, new List<IController>{(IController)CharacterMovingController});
+            AnimationController = new AnimationController(this, new List<IController>{(IController)CharacterMovingController, (IController)VisualBodyController});
             subsystemsControllers.Add ((IController)AnimationController);
 
             BuffDebuffController = new BuffDebuffController(this, null);

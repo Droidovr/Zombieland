@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using Zombieland.GameScene0.ImpactModule;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
@@ -8,7 +9,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         public event Action OnShotPerformed;
 
         private IWeaponController _weaponController;
-        private FirePermiserTimer _shotPermitionTimer;
+        private FirePermiserTimer _firePermitionTimer;
         private InvokeTimer _cooldawnTimer;
         private Impact _impact;
         private WeaponImpacter _weaponImpacter;
@@ -18,7 +19,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         public void Init(IWeaponController weaponController)
         {
             _weaponController = weaponController;
-            _shotPermitionTimer = new FirePermiserTimer(_weaponController);
+            _firePermitionTimer = new FirePermiserTimer(_weaponController);
             _cooldawnTimer = new InvokeTimer(_weaponController.Weapon.WeaponData.ShootCooldown, StartFire);
             _impact = new Impact();
             _weaponImpacter = new WeaponImpacter(_weaponController);
@@ -27,14 +28,18 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         public void StartFire()
         {
-            _shotPermitionTimer.Start();
-            _shotPermitionTimer.OnPermission += PreparingFire;
+            _firePermitionTimer.Start();
+            _firePermitionTimer.OnPermission += PreparingFire;
+
+            _impact = _weaponImpacter.GetCurrentImpact();
+
+            Debug.Log("Старт стрельбы");
         }
 
         public void StopFire()
         {
-            _shotPermitionTimer?.Stop();
-            _shotPermitionTimer.OnPermission -= PreparingFire;
+            _firePermitionTimer?.Stop();
+            _firePermitionTimer.OnPermission -= PreparingFire;
 
             _cooldawnTimer?.Stop();
 
@@ -46,12 +51,12 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         #region Private
         private void PreparingFire()
         {
-            _shotPermitionTimer?.Stop();
-            _shotPermitionTimer.OnPermission -= PreparingFire;
-
-            _impact = _weaponImpacter.GetCurrentImpact();
+            _firePermitionTimer?.Stop();
+            _firePermitionTimer.OnPermission -= PreparingFire;
 
             _weaponResurser.ResourceOperation(true, _impact.ImpactData.ConsumableResources);
+
+            Debug.Log("Запуск стрельбы");
 
             _weaponController.CharacterController.AnimationController.OnFinishPreparationAttack += CompletionFire;
         }

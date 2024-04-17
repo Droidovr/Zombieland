@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace Zombieland.GameScene0.CharacterModule.AnimationModule
@@ -9,6 +8,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
     {
         public event Action<Vector3> OnAnimatorMove;
         public event Action OnFinishPreparationAttack;
+        public event Action<string> OnFinishWeaponAnimation;
 
         public ICharacterController CharacterController { get; private set; }
 
@@ -37,6 +37,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             _characterAnimator.Init(this);
             _characterAnimator.OnAnimatorMoveHandler += AnimatorMoveHandler;
             _characterAnimator.OnFinishPreparationAttack += FinishPreparationAttack;
+            _characterAnimator.OnFinishWeaponAnimation += FinishWeaponAnimationHandler;
 
             CharacterRagdoll characterRagdoll = character.AddComponent<CharacterRagdoll>();
             characterRagdoll.Init(this);
@@ -59,6 +60,11 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private void FinishPreparationAttack()
         {
             OnFinishPreparationAttack?.Invoke();
+        }
+
+        private void FinishWeaponAnimationHandler(string nameWeapon)
+        {
+            OnFinishWeaponAnimation?.Invoke(nameWeapon);
         }
     }
 }
