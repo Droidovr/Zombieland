@@ -9,6 +9,8 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         public event Action<Vector3> OnAnimatorMove;
         public event Action OnFinishPreparationAttack;
         public event Action<string> OnFinishWeaponAnimation;
+        public event Action OnCreateWeaponPrefab;
+        public event Action OnDestroyWeaponPrefab;
 
         public ICharacterController CharacterController { get; private set; }
 
@@ -24,6 +26,8 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         {
             _characterAnimator.OnAnimatorMoveHandler -= AnimatorMoveHandler;
             _characterAnimator.OnFinishPreparationAttack -= FinishPreparationAttack;
+            _characterAnimator.OnFinishWeaponAnimation -= FinishWeaponAnimationHandler;
+            _characterAnimator.OnDestroyWeaponPreafab -= DestroyWeaponPreafabHandler;
             _characterAnimator.Disable();
 
             base.Disable();
@@ -38,6 +42,8 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             _characterAnimator.OnAnimatorMoveHandler += AnimatorMoveHandler;
             _characterAnimator.OnFinishPreparationAttack += FinishPreparationAttack;
             _characterAnimator.OnFinishWeaponAnimation += FinishWeaponAnimationHandler;
+            _characterAnimator.OnCrateWeaponPreafab += CrateWeaponPreafabHandler;
+            _characterAnimator.OnDestroyWeaponPreafab += DestroyWeaponPreafabHandler;
 
             CharacterRagdoll characterRagdoll = character.AddComponent<CharacterRagdoll>();
             characterRagdoll.Init(this);
@@ -65,6 +71,16 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private void FinishWeaponAnimationHandler(string nameWeapon)
         {
             OnFinishWeaponAnimation?.Invoke(nameWeapon);
+        }
+
+        private void CrateWeaponPreafabHandler()
+        {
+            OnCreateWeaponPrefab?.Invoke();
+        }
+
+        private void DestroyWeaponPreafabHandler()
+        {
+            OnDestroyWeaponPrefab?.Invoke();
         }
     }
 }

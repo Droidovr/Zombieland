@@ -11,6 +11,8 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         public event Action<string> OnStartWeaponAnimation;
         public event Action<string> OnFinishWeaponAnimation;
         public event Action OnFinishPreparationAttack;
+        public event Action OnCrateWeaponPreafab;
+        public event Action OnDestroyWeaponPreafab;
 
         private const string PC_ANIMATOR = "PCAnimatorController";
         private const string MOBILE_ANIMATOR = "Character0MobileAnimator";
@@ -74,11 +76,10 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         { 
             _nameWeapon = weapon.WeaponData.Name;
 
-            Debug.Log(_nameWeapon);
-
             _animator.SetBool("IsWrench", false);
             _animator.SetBool("IsPistol", false);
             _animator.SetBool("IsShotgun", false);
+            _animator.SetBool("IsAK", false);
 
             if (!_isWeaponAnimation)
             {
@@ -107,6 +108,11 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
                     _isWeaponAnimation = true;
                     break;
 
+                case "AK":
+                    _animator.SetBool("IsAK", true);
+                    _isWeaponAnimation = true;
+                    break;
+
                 default:
                     _isWeaponAnimation = false;
                     _nameWeapon = null;
@@ -130,6 +136,16 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             {
                 OnAnimatorMoveHandler?.Invoke(_animator.deltaPosition);
             }
+        }
+
+        private void CreacteWeaponPrefabHandler()
+        {
+            OnCrateWeaponPreafab?.Invoke();
+        }
+
+        private void DestroyWeaponPrefabHandler()
+        {
+            OnDestroyWeaponPreafab?.Invoke();
         }
     }
 }
