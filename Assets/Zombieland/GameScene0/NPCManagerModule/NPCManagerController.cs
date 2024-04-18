@@ -7,7 +7,7 @@ namespace Zombieland.GameScene0.NPCManagerModule
 {
     public class NPCManagerController : Controller, INPCManagerController
     {
-        private IRootController _rootController;
+        public IRootController RootController { get; set; }
         public Transform CharacterTransform { get; set; }
 
         private List<INPCController> _activeNPCControllers;

@@ -19,7 +19,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
         protected override void CreateHelpersScripts()
         {
             _navMeshHandler = _NPCController.VisualBodyController.ActiveNPC.GetComponent<NavMeshHandler>();
-            _navMeshHandler.Init(_NPCController.DataController.NPCData.Speed);
+            _navMeshHandler.Init(_NPCController.DataController.NPCData.speed);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -45,7 +45,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
         private void TestCreateSubsystem()
         {
             _navMeshHandler = _NPCController.VisualBodyController.ActiveNPC.GetComponent<NavMeshHandler>();
-            _navMeshHandler.Init(_NPCController.DataController.NPCData.Speed);
+            _navMeshHandler.Init(_NPCController.DataController.NPCData.speed);
         }
     }
 }

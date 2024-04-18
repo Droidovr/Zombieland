@@ -27,7 +27,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisualBodyModule
 
         private void CreateNPConScene()
         {
-            var NPCPrefab = Resources.Load<GameObject>(_NPCController.DataController.NPCData.Name);
+            var NPCPrefab = Resources.Load<GameObject>(_NPCController.DataController.NPCData.name);
             ActiveNPC = GameObject.Instantiate(NPCPrefab);
             ActiveNPC.SetActive(false);
         }

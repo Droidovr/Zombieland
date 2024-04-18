@@ -36,10 +36,10 @@ namespace Zombieland.GameScene0.NPCModule.NPCHearingSensorModule
             _currentCheckZoneTime = 0f;
         }
         
-        public void Init(Transform targetTransform, Action<bool> onCharacterInsideZone)
+        public void Init(Transform targetTransform, Action<bool> onTargetInsideZone)
         {
             _targetTransform = targetTransform;
-            _onCharacterInsideZone = onCharacterInsideZone;
+            _onCharacterInsideZone = onTargetInsideZone;
         }
 
         private void CheckInZoneTargets()

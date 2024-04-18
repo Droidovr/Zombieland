@@ -361,19 +361,33 @@
               <e p="NPCManagerController.cs" t="Include" />
             </e>
             <e p="NPCModule" t="Include">
+              <e p="NPCAwarenessModule" t="Include">
+                <e p="NPCHearingSensorModule" t="Include">
+                  <e p="Scripts" t="Include">
+                    <e p="HearingSensor.cs" t="Include" />
+                    <e p="HearingSensorEditor.cs" t="Include" />
+                    <e p="INPCHearingSensorController.cs" t="Include" />
+                    <e p="NPCHearingSensorController.cs" t="Include" />
+                  </e>
+                </e>
+                <e p="NPCVisionSensorModule" t="Include">
+                  <e p="Scripts" t="Include">
+                    <e p="INPCVisionSensorController.cs" t="Include" />
+                    <e p="NPCVisionSensorController.cs" t="Include" />
+                    <e p="VisionSensor.cs" t="Include" />
+                    <e p="VisionSensorEditor.cs" t="Include" />
+                  </e>
+                </e>
+                <e p="Scripts" t="Include">
+                  <e p="INPCAwarenessController.cs" t="Include" />
+                  <e p="NPCAwarenessController.cs" t="Include" />
+                </e>
+              </e>
               <e p="NPCDataModule" t="Include">
                 <e p="Scripts" t="Include">
                   <e p="INPCDataController.cs" t="Include" />
                   <e p="NPCData.cs" t="Include" />
                   <e p="NPCDataController.cs" t="Include" />
-                </e>
-              </e>
-              <e p="NPCHearingSensorModule" t="Include">
-                <e p="Scripts" t="Include">
-                  <e p="HearingSensor.cs" t="Include" />
-                  <e p="HearingSensorEditor.cs" t="Include" />
-                  <e p="INPCHearingSensorController.cs" t="Include" />
-                  <e p="NPCHearingSensorController.cs" t="Include" />
                 </e>
               </e>
               <e p="NPCMovingModule" t="Include">
@@ -395,14 +409,6 @@
                   <e p="NPCTakeImpactController.cs" t="Include" />
                 </e>
               </e>
-              <e p="NPCVisionSensorModule" t="Include">
-                <e p="Scripts" t="Include">
-                  <e p="INPCVisionSensorController.cs" t="Include" />
-                  <e p="NPCVisionSensorController.cs" t="Include" />
-                  <e p="VisionSensor.cs" t="Include" />
-                  <e p="VisionSensorEditor.cs" t="Include" />
-                </e>
-              </e>
               <e p="NPCVisualBodyModule" t="Include">
                 <e p="Scripts" t="Include">
                   <e p="INPCVisualBodyController.cs" t="Include" />
@@ -412,6 +418,7 @@
               <e p="Scripts" t="Include">
                 <e p="INPCController.cs" t="Include" />
                 <e p="NPCController.cs" t="Include" />
+                <e p="Updater.cs" t="Include" />
               </e>
               <e p="Test" t="Include">
                 <e p="PolygonApocalypse" t="Include">

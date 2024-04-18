@@ -26,7 +26,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCSpawnModule
         private void SetAndActivateNPC()
         {
             var activeNPC = _NPCController.VisualBodyController.ActiveNPC;
-            activeNPC.transform.position = _NPCController.DataController.NPCData.SpawnPosition;
+            activeNPC.transform.position = _NPCController.DataController.NPCData.spawnPosition;
             activeNPC.SetActive(true);
         }
         
