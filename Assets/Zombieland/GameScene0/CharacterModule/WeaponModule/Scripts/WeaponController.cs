@@ -13,6 +13,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         public ICharacterController CharacterController { get; private set; }
         public IWeapon Weapon { get; private set; }
         public string CurrentImpactID { get; private set; }
+        public Transform WeaponPointFire { get; set; }
 
 
         #region Public

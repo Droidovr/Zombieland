@@ -8,9 +8,6 @@ namespace Zombieland.GameScene0.VisualBodyModule
     {
         GameObject CharacterInScene { get; }
         GameObject WeaponInScene { get; }
-        Transform WeaponPointFire { get; }
-        AudioSource WeaponSoundFire { get; }
-        ParticleSystem WeaponVFX { get; }
         List<GameObject> SensorTriggersGameobject { get; }
         ICharacterController CharacterController { get; }
     }

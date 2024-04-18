@@ -9,14 +9,11 @@ namespace Zombieland.GameScene0.VisualBodyModule
     {
         public GameObject CharacterInScene { get; private set; }
         public GameObject WeaponInScene { get; private set; }
-        public Transform WeaponPointFire { get; private set; }
-        public AudioSource WeaponSoundFire { get; private set; }
-        public ParticleSystem WeaponVFX { get; private set; }
         public List<GameObject> SensorTriggersGameobject { get; private set; }
         public ICharacterController CharacterController {  get; private set; }
 
         private Weapon _currentWeapon;
-        private Weapon _cashWeaponDestroy;
+        private CreateWeaponPrefab _createWeaponPrefab;
 
         public VisualBodyController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
@@ -61,33 +58,20 @@ namespace Zombieland.GameScene0.VisualBodyModule
 
         private void WeaponChangedHandler(Weapon weapon)
         {
-            _cashWeaponDestroy = _currentWeapon;
             _currentWeapon = weapon;
         }
 
         private void CreateWeaponPrefabHandler()
         {
-            WeaponInScene = new CreateWeaponPrefab().CtreateWeapon(_currentWeapon, CharacterInScene.GetComponent<Transform>());
-            WeaponPointFire = WeaponInScene.GetComponent<Transform>().Find("PointFire");
-            WeaponSoundFire = WeaponInScene.GetComponent<AudioSource>();
-            Transform vfxTransform = WeaponInScene.GetComponent<Transform>().Find("VFX");
-            if (vfxTransform != null)
-            {
-                WeaponVFX = vfxTransform.GetComponent<ParticleSystem>();
-            }
+            _createWeaponPrefab = new CreateWeaponPrefab();
+
+            WeaponInScene = _createWeaponPrefab.CtreateWeapon(_currentWeapon, CharacterInScene.GetComponent<Transform>());
+            CharacterController.WeaponController.WeaponPointFire = WeaponInScene.GetComponent<Transform>().Find("PointFire");
         }
 
         private void DestroyWeaponPrefabHandler()
         {
-            WeaponPointFire = null;
-            WeaponSoundFire = null;
-            WeaponVFX = null;
-
-            if (WeaponInScene != null)
-            {
-                Debug.Log("DestroyWeaponPrefabHandler: " + _cashWeaponDestroy.WeaponData.Name);
-                GameObject.Destroy(WeaponInScene);
-            }
+            _createWeaponPrefab.DestroyWeapon(WeaponInScene);
         }
     }
 }

@@ -20,9 +20,15 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
             impact.ImpactData.FollowTargetTransform = _weaponController.CharacterController.AimingController.GetTarget();
 
-            impact.ImpactData.ObjectSpawnPosition = _weaponController.CharacterController.VisualBodyController.CharacterInScene.GetComponent<Transform>().TransformPoint(_weaponController.CharacterController.VisualBodyController.WeaponPointFire.position);
+            Debug.Log("StartPosition Impact: " + _weaponController.WeaponPointFire.position);
 
-            impact.ImpactData.ObjectRotation = AddShotSpread(impact.ImpactData.FollowTargetTransform);
+            impact.ImpactData.ObjectSpawnPosition = _weaponController.WeaponPointFire.position;
+
+            Quaternion quaternion = AddShotSpread(impact.ImpactData.FollowTargetTransform);
+            
+            Debug.Log("Start Quaternion Impact: " + quaternion);
+
+            impact.ImpactData.ObjectRotation = quaternion;
 
             return impact;
         }
@@ -31,13 +37,14 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         {
             Quaternion finalRotation = new Quaternion();
 
+            float shotAccuracy = _weaponController.Weapon.WeaponData.ShotAccuracy;
+            float deviationAngle = Random.Range(-shotAccuracy, shotAccuracy);
+
             if (_weaponController.Weapon.WeaponData.HasTarget)
             {
-                float shotAccuracy = _weaponController.Weapon.WeaponData.ShotAccuracy;
-                float deviationAngle = Random.Range(-shotAccuracy, shotAccuracy);
                 Quaternion deviationRotation = Quaternion.Euler(0f, 0f, deviationAngle);
 
-                Vector3 startPosition = _weaponController.CharacterController.VisualBodyController.CharacterInScene.GetComponent<Transform>().TransformPoint(_weaponController.CharacterController.VisualBodyController.WeaponPointFire.position);
+                Vector3 startPosition = _weaponController.WeaponPointFire.position;
 
                 Vector3 directionToTarget = (target.position - startPosition).normalized;
 
@@ -47,9 +54,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             }
             else
             {
-                float shotAccuracy = _weaponController.Weapon.WeaponData.ShotAccuracy;
-                float deviationAngle = Random.Range(-shotAccuracy, shotAccuracy);
-                finalRotation = _weaponController.CharacterController.VisualBodyController.WeaponPointFire.rotation * Quaternion.Euler(0f, 0f, deviationAngle);
+                finalRotation = _weaponController.WeaponPointFire.rotation * Quaternion.Euler(0f, 0f, deviationAngle);
             }
 
             return finalRotation;

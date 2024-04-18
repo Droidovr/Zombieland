@@ -43,7 +43,10 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
             _cooldawnTimer?.Stop();
 
-            _weaponResurser.ResourceOperation(false, _impact.ImpactData.ConsumableResources);
+            if (_weaponResurser.IsReserveResurce)
+            {
+                _weaponResurser.ResourceOperation(false, _impact.ImpactData.ConsumableResources);
+            }
         }
         #endregion
 
@@ -68,9 +71,9 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             _impact.Activate();
             _weaponResurser.IsReserveResurce = false;
 
-            _weaponController.CharacterController.VisualBodyController.WeaponSoundFire?.Play();
+            //_weaponController.CharacterController.VisualBodyController.WeaponSoundFire?.Play();
 
-            _weaponController.CharacterController.VisualBodyController.WeaponVFX?.Play();
+            //_weaponController.CharacterController.VisualBodyController.WeaponVFX?.Play();
 
             OnShotPerformed.Invoke();
 
