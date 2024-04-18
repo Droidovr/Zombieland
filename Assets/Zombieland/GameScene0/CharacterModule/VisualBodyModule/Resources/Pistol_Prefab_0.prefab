@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7322620536515157964}
   - component: {fileID: 195756264758572716}
   - component: {fileID: 5513277098827432896}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Wep_Pistol_Heavy_Hammer_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5196748649456617282}
   - component: {fileID: 8506579366769372729}
   - component: {fileID: 7713430058191934666}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4994,7 +4994,7 @@ GameObject:
   - component: {fileID: 8889632060391724296}
   - component: {fileID: 7354723875157732162}
   - component: {fileID: 2316784574587912681}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MuzzleAddNarrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9904,7 +9904,7 @@ GameObject:
   - component: {fileID: 985771740735469470}
   - component: {fileID: 3047491523969483604}
   - component: {fileID: 5945698320554270503}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pistol_Prefab_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10088,7 +10088,7 @@ GameObject:
   - component: {fileID: 169345443040799926}
   - component: {fileID: 6975808868336259052}
   - component: {fileID: 798349284488152130}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14988,7 +14988,7 @@ GameObject:
   - component: {fileID: 5564192202935075223}
   - component: {fileID: 8577396114757495149}
   - component: {fileID: 2402425409266648273}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MuzzleBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19888,7 +19888,7 @@ GameObject:
   - component: {fileID: 5728340772634425303}
   - component: {fileID: 7546946515630853445}
   - component: {fileID: 8889662351646205255}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24788,7 +24788,7 @@ GameObject:
   - component: {fileID: 7404570849854964791}
   - component: {fileID: 2906268028720135394}
   - component: {fileID: 2553169528480744437}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MuzzleNarrowVertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29697,7 +29697,7 @@ GameObject:
   - component: {fileID: 5813430699080818042}
   - component: {fileID: 8390060836417518720}
   - component: {fileID: 8901139143571603032}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34602,7 +34602,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4645021741276154912}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PointFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34635,7 +34635,7 @@ GameObject:
   - component: {fileID: 6178048077595940145}
   - component: {fileID: 1700930912689515973}
   - component: {fileID: 8373385423293944637}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Wep_Pistol_Heavy_Slide_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34719,7 +34719,7 @@ GameObject:
   - component: {fileID: 181783700068204024}
   - component: {fileID: 918148285251054737}
   - component: {fileID: 5515608132984222586}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Wep_Pistol_Heavy_Mag_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34802,7 +34802,7 @@ GameObject:
   - component: {fileID: 4002937714980070771}
   - component: {fileID: 7038484484197372253}
   - component: {fileID: 471836549060679987}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MuzzleBase (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39702,7 +39702,7 @@ GameObject:
   - component: {fileID: 8691928419910991115}
   - component: {fileID: 1659796955417515840}
   - component: {fileID: 3111190157006848617}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Wep_Pistol_Heavy_Trigger_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

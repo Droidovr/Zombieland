@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 255759600758774966}
   - component: {fileID: 7740058879909121804}
   - component: {fileID: 818909775070387499}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MuzzleBase (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4911,7 +4911,7 @@ GameObject:
   - component: {fileID: 1690879409113823968}
   - component: {fileID: 3083521040297621258}
   - component: {fileID: 2780658337747311438}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9811,7 +9811,7 @@ GameObject:
   - component: {fileID: 6791159588868885207}
   - component: {fileID: 6317759968909988372}
   - component: {fileID: 2725851536408829912}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MuzzleBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14711,7 +14711,7 @@ GameObject:
   - component: {fileID: 1600904207539009703}
   - component: {fileID: 320453212617897039}
   - component: {fileID: 7767039371546940342}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'VFX '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19618,7 +19618,7 @@ GameObject:
   - component: {fileID: 6880284371645250823}
   - component: {fileID: 5768206975590173533}
   - component: {fileID: 6409542503753131246}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MuzzleNarrowVertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24525,7 +24525,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 727938574620426027}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PointFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24558,7 +24558,7 @@ GameObject:
   - component: {fileID: 240222479679526957}
   - component: {fileID: 2698568704709272372}
   - component: {fileID: 6835216297948804868}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29458,7 +29458,7 @@ GameObject:
   - component: {fileID: 5487813902114993310}
   - component: {fileID: 8341119595901978900}
   - component: {fileID: 5180648785659475897}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MuzzleAddNarrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34367,7 +34367,7 @@ GameObject:
   - component: {fileID: 7288993031722250506}
   - component: {fileID: 3279724534478281177}
   - component: {fileID: 499193021443907294}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39314,6 +39314,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8144543202579569627, guid: 7d3d6711f5a3f6d46bdb78203bf7eb06,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -6954712474629450492, guid: 7d3d6711f5a3f6d46bdb78203bf7eb06,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7d3d6711f5a3f6d46bdb78203bf7eb06,
         type: 3}
       propertyPath: m_Name
@@ -39321,8 +39331,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7d3d6711f5a3f6d46bdb78203bf7eb06,
         type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7d3d6711f5a3f6d46bdb78203bf7eb06,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1913718337735975000, guid: 7d3d6711f5a3f6d46bdb78203bf7eb06,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122771502012082924, guid: 7d3d6711f5a3f6d46bdb78203bf7eb06,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437065042684237567, guid: 7d3d6711f5a3f6d46bdb78203bf7eb06,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
