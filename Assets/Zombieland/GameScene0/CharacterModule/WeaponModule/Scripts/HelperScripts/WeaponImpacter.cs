@@ -20,15 +20,9 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
             impact.ImpactData.FollowTargetTransform = _weaponController.CharacterController.AimingController.GetTarget();
 
-            Debug.Log("StartPosition Impact: " + _weaponController.WeaponPointFire.position);
-
             impact.ImpactData.ObjectSpawnPosition = _weaponController.WeaponPointFire.position;
 
-            Quaternion quaternion = AddShotSpread(impact.ImpactData.FollowTargetTransform);
-            
-            Debug.Log("Start Quaternion Impact: " + quaternion);
-
-            impact.ImpactData.ObjectRotation = quaternion;
+            impact.ImpactData.ObjectRotation = AddShotSpread(impact.ImpactData.FollowTargetTransform);
 
             return impact;
         }

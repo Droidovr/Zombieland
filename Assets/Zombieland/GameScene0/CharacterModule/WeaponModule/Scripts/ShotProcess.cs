@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using UnityEngine;
 using Zombieland.GameScene0.ImpactModule;
 
@@ -13,7 +14,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         private InvokeTimer _cooldawnTimer;
         private Impact _impact;
         private WeaponImpacter _weaponImpacter;
-        private WeaponResurser _weaponResurser;
+        private WeaponResourcer _weaponResourcer;
 
         #region Public
         public void Init(IWeaponController weaponController)
@@ -23,7 +24,9 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             _cooldawnTimer = new InvokeTimer(_weaponController.Weapon.WeaponData.ShootCooldown, StartFire);
             _impact = new Impact();
             _weaponImpacter = new WeaponImpacter(_weaponController);
-            _weaponResurser = new WeaponResurser(_weaponController);
+            _weaponResourcer = new WeaponResourcer(_weaponController);
+
+            Debug.Log("ID Init Thread: " + Thread.CurrentThread.ManagedThreadId);
         }
 
         public void StartFire()
@@ -34,18 +37,20 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             _impact = _weaponImpacter.GetCurrentImpact();
 
             Debug.Log("Старт стрельбы");
+            Debug.Log("ID Start Thread: " + Thread.CurrentThread.ManagedThreadId);
         }
 
         public void StopFire()
         {
+            Debug.Log("ID Stop Thread: " + Thread.CurrentThread.ManagedThreadId);
             _firePermitionTimer?.Stop();
             _firePermitionTimer.OnPermission -= PreparingFire;
 
             _cooldawnTimer?.Stop();
 
-            if (_weaponResurser.IsReserveResurce)
+            if (_weaponResourcer.IsReserveResurce)
             {
-                _weaponResurser.ResourceOperation(false, _impact.ImpactData.ConsumableResources);
+                _weaponResourcer.ResourceOperation(false, _impact.ImpactData.ConsumableResources);
             }
         }
         #endregion
@@ -54,22 +59,28 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         #region Private
         private void PreparingFire()
         {
+            Debug.Log("ID Preparing Thread: " + Thread.CurrentThread.ManagedThreadId);
+
             _firePermitionTimer?.Stop();
             _firePermitionTimer.OnPermission -= PreparingFire;
 
-            _weaponResurser.ResourceOperation(true, _impact.ImpactData.ConsumableResources);
+            _weaponResourcer.ResourceOperation(true, _impact.ImpactData.ConsumableResources);
 
             Debug.Log("Запуск стрельбы");
 
-            _weaponController.CharacterController.AnimationController.OnFinishPreparationAttack += CompletionFire;
+            //_weaponController.CharacterController.AnimationController.OnFinishPreparationAttack += CompletionFire;
+
+            CompletionFire();
         }
 
         private void CompletionFire()
         {
+            Debug.Log("ID Completion Thread: " + Thread.CurrentThread.ManagedThreadId);
+
             _weaponController.CharacterController.AnimationController.OnFinishPreparationAttack -= CompletionFire;
 
             _impact.Activate();
-            _weaponResurser.IsReserveResurce = false;
+            _weaponResourcer.IsReserveResurce = false;
 
             //_weaponController.CharacterController.VisualBodyController.WeaponSoundFire?.Play();
 

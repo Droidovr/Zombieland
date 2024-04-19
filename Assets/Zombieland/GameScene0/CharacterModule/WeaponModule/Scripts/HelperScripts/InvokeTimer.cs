@@ -14,6 +14,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
             int intervalMS = (int)(delayTime * 1000);
             _timer = new Timer(intervalMS);
+            _timer.SynchronizingObject = null;
         }
 
         public void Start()

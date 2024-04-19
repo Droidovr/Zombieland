@@ -1,16 +1,15 @@
 using System.Collections.Generic;
-using UnityEngine;
 using Zombieland.GameScene0.ImpactModule;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
-    public class WeaponResurser : MonoBehaviour
+    public class WeaponResourcer
     {
         public  bool IsReserveResurce = false;
 
         private IWeaponController _weaponController;
 
-        public WeaponResurser(IWeaponController weaponController)
+        public WeaponResourcer(IWeaponController weaponController)
         {
             _weaponController = weaponController;
         }

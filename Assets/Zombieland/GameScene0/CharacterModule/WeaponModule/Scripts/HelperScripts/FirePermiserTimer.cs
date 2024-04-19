@@ -1,6 +1,5 @@
 using System;
 using System.Timers;
-using UnityEngine;
 using Zombieland.GameScene0.ImpactModule;
 
 
@@ -21,6 +20,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
             int intervalMS = (int)(CHECK_FIRE_PERMITION_PERIOD * 1000);
             _timer = new Timer(intervalMS);
+            _timer.SynchronizingObject = null;
         }
 
         public void Start()
