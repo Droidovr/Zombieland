@@ -1,5 +1,7 @@
 using System;
 using System.Linq;
+using System.Threading;
+using UnityEngine;
 
 namespace Zombieland.GameScene0.ImpactModule
 {
@@ -14,6 +16,8 @@ namespace Zombieland.GameScene0.ImpactModule
 
         public void Activate()
         {
+            Debug.Log("ID Impact Activate() Thread: " + Thread.CurrentThread.ManagedThreadId);
+
             Assembler.Impact = this;
             Delivery.Impact = this;
             InitialImpact.Impact = this;

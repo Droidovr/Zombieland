@@ -36,7 +36,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
             _impact = _weaponImpacter.GetCurrentImpact();
 
-            Debug.Log("Старт стрельбы");
             Debug.Log("ID Start Thread: " + Thread.CurrentThread.ManagedThreadId);
         }
 
@@ -66,11 +65,9 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
             _weaponResourcer.ResourceOperation(true, _impact.ImpactData.ConsumableResources);
 
-            Debug.Log("Запуск стрельбы");
+            _weaponController.CharacterController.AnimationController.OnFinishPreparationAttack += CompletionFire;
 
-            //_weaponController.CharacterController.AnimationController.OnFinishPreparationAttack += CompletionFire;
-
-            CompletionFire();
+            //CompletionFire();
         }
 
         private void CompletionFire()

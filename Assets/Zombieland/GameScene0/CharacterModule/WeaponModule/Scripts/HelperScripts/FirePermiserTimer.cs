@@ -20,7 +20,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
             int intervalMS = (int)(CHECK_FIRE_PERMITION_PERIOD * 1000);
             _timer = new Timer(intervalMS);
-            _timer.SynchronizingObject = null;
         }
 
         public void Start()
@@ -40,6 +39,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             //if (CheckFirePermission())
             //{
                 OnPermission?.Invoke();
+                Stop();
             //}
         }
 

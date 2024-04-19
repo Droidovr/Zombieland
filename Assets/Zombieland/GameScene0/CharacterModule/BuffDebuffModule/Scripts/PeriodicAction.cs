@@ -50,6 +50,7 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
         public void Stop()
         {
             _timer?.Stop();
+            _timer?.Dispose();
             _cancellationTokenSource.Cancel();
             OnFinished?.Invoke();
         }           
