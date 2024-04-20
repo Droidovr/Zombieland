@@ -1,5 +1,5 @@
 using System;
-using System.Timers;
+using UnityEngine;
 using Zombieland.GameScene0.ImpactModule;
 
 
@@ -11,7 +11,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         private const float CHECK_FIRE_PERMITION_PERIOD = 0.1f;
 
-        private Timer _timer;
+        private AsyncTimer _timer;
         private IWeaponController _weaponController;
 
         public FirePermiserTimer(IWeaponController weaponController)
@@ -19,27 +19,26 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             _weaponController = weaponController;
 
             int intervalMS = (int)(CHECK_FIRE_PERMITION_PERIOD * 1000);
-            _timer = new Timer(intervalMS);
+            _timer = new AsyncTimer(HandleTimerElapsed,intervalMS);
         }
 
         public void Start()
         {
-            _timer.Elapsed += HandleTimerElapsed;
-            _timer.Start();
+            _timer?.Start();
         }
 
         public void Stop()
         {
             _timer?.Stop();
-            _timer.Elapsed -= HandleTimerElapsed;
         }
 
-        private void HandleTimerElapsed(object sender, ElapsedEventArgs e)
+        private void HandleTimerElapsed()
         {
             //if (CheckFirePermission())
             //{
-                OnPermission?.Invoke();
-                Stop();
+            Debug.Log("HandleTimerElapsed Start");
+            OnPermission?.Invoke();
+            Stop();
             //}
         }
 

@@ -31,8 +31,8 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         public void StartFire()
         {
-            _firePermitionTimer.Start();
             _firePermitionTimer.OnPermission += PreparingFire;
+            _firePermitionTimer.Start();
 
             _impact = _weaponImpacter.GetCurrentImpact();
 
@@ -60,7 +60,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         {
             Debug.Log("ID Preparing Thread: " + Thread.CurrentThread.ManagedThreadId);
 
-            _firePermitionTimer?.Stop();
             _firePermitionTimer.OnPermission -= PreparingFire;
 
             _weaponResourcer.ResourceOperation(true, _impact.ImpactData.ConsumableResources);
