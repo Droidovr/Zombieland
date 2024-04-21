@@ -9904,6 +9904,7 @@ GameObject:
   - component: {fileID: 985771740735469470}
   - component: {fileID: 3047491523969483604}
   - component: {fileID: 5945698320554270503}
+  - component: {fileID: 2734519359407564014}
   m_Layer: 7
   m_Name: Pistol_Prefab_0
   m_TagString: Untagged
@@ -10077,6 +10078,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2734519359407564014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3551687631162614401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780c810d0a32c3e459e6b4a8549aaf65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3596395010538141228
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
         event Action OnAmmoDepleted;
 
         int CurrentImpactCount { get; set; }
+        string CurrentImpactID { get; }
 
         ICharacterController CharacterController { get; }
 

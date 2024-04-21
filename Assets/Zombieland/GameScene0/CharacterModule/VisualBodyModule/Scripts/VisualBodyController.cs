@@ -1,19 +1,21 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zombieland.GameScene0.CharacterModule;
-using Zombieland.GameScene0.CharacterModule.WeaponModule;
 
 namespace Zombieland.GameScene0.VisualBodyModule
 {
     public class VisualBodyController : Controller, IVisualBodyController
     {
+        public event Action OnWeaponInSceneReady;
+
         public GameObject CharacterInScene { get; private set; }
         public GameObject WeaponInScene { get; private set; }
         public List<GameObject> SensorTriggersGameobject { get; private set; }
         public ICharacterController CharacterController {  get; private set; }
 
-        private Weapon _currentWeapon;
         private CreateWeaponPrefab _createWeaponPrefab;
+
 
         public VisualBodyController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
@@ -22,9 +24,8 @@ namespace Zombieland.GameScene0.VisualBodyModule
 
         public override void Disable()
         {
-            CharacterController.EquipmentController.OnWeaponChanged -= WeaponChangedHandler;
-            CharacterController.AnimationController.OnCreateWeaponPrefab -= CreateWeaponPrefabHandler;
-            CharacterController.AnimationController.OnDestroyWeaponPrefab -= DestroyWeaponPrefabHandler;
+            CharacterController.AnimationController.OnAnimationCreateWeapon -= AnimationCreateWeaponHandler;
+            CharacterController.AnimationController.OnAnimationDestroyWeapon -= AnimationDestroyWeaponHandler;
 
             base.Disable();
         }
@@ -36,9 +37,8 @@ namespace Zombieland.GameScene0.VisualBodyModule
             GertterTriggers gertterTriggers = new GertterTriggers(this);
             SensorTriggersGameobject = gertterTriggers.GetSensorTriggers();
 
-            CharacterController.EquipmentController.OnWeaponChanged += WeaponChangedHandler;
-            CharacterController.AnimationController.OnCreateWeaponPrefab += CreateWeaponPrefabHandler;
-            CharacterController.AnimationController.OnDestroyWeaponPrefab += DestroyWeaponPrefabHandler;
+            CharacterController.AnimationController.OnAnimationCreateWeapon += AnimationCreateWeaponHandler;
+            CharacterController.AnimationController.OnAnimationDestroyWeapon += AnimationDestroyWeaponHandler;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -56,20 +56,15 @@ namespace Zombieland.GameScene0.VisualBodyModule
             CharacterInScene = createCharacterGameobject.CreateCharacter(spawnPositionCharacter, spawnRotationCharacter);
         }
 
-        private void WeaponChangedHandler(Weapon weapon)
-        {
-            _currentWeapon = weapon;
-        }
-
-        private void CreateWeaponPrefabHandler()
+        private void AnimationCreateWeaponHandler(string weaponPrefabName)
         {
             _createWeaponPrefab = new CreateWeaponPrefab();
-
-            WeaponInScene = _createWeaponPrefab.CtreateWeapon(_currentWeapon, CharacterInScene.GetComponent<Transform>());
-            CharacterController.WeaponController.WeaponPointFire = WeaponInScene.GetComponent<Transform>().Find("PointFire");
+            WeaponInScene = _createWeaponPrefab.CtreateWeapon(weaponPrefabName, CharacterInScene.GetComponent<Transform>());
+ 
+            OnWeaponInSceneReady?.Invoke();
         }
 
-        private void DestroyWeaponPrefabHandler()
+        private void AnimationDestroyWeaponHandler()
         {
             _createWeaponPrefab.DestroyWeapon(WeaponInScene);
         }

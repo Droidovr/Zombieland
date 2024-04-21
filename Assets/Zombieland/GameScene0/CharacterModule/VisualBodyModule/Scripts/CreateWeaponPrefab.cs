@@ -1,5 +1,4 @@
 using UnityEngine;
-using Zombieland.GameScene0.CharacterModule.WeaponModule;
 
 namespace Zombieland.GameScene0.VisualBodyModule
 {
@@ -7,9 +6,9 @@ namespace Zombieland.GameScene0.VisualBodyModule
     {
 
 
-        public GameObject CtreateWeapon(Weapon weapon, Transform characterInScene)
+        public GameObject CtreateWeapon(string weaponPrefabName, Transform characterInScene)
         {
-            GameObject prefab = Resources.Load<GameObject>(weapon.WeaponData.PrefabName);
+            GameObject prefab = Resources.Load<GameObject>(weaponPrefabName);
 
             Transform weaponPoint = GameObject.Find("WeaponPoint").GetComponent<Transform>();
 

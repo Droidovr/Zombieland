@@ -58,7 +58,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.17181468
-        functionName: FinishPreparationAttackHandler
+        functionName: AttackHandler
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

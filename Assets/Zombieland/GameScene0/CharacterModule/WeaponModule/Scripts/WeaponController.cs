@@ -12,8 +12,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         public ICharacterController CharacterController { get; private set; }
         public IWeapon Weapon { get; private set; }
-        public string CurrentImpactID { get; private set; }
-        public Transform WeaponPointFire { get; set; }
 
 
         #region Public
@@ -31,9 +29,8 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             }
 
             CharacterController.EquipmentController.OnWeaponChanged -= WeaponChangedHandler;
-            CharacterController.EquipmentController.OnImpactChanged -= ImpactChangedHandler;
             CharacterController.RootController.UIController.OnFire -= ButtonFireHandler;
-            CharacterController.RootController.UIController.OnWeaponReaload -= WeaponRealoadHaundler;
+            CharacterController.VisualBodyController.OnWeaponInSceneReady -= WeaponInSceneReadyHandler;
 
             base.Disable();
         }
@@ -44,9 +41,8 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         protected override void CreateHelpersScripts()
         {
             CharacterController.EquipmentController.OnWeaponChanged += WeaponChangedHandler;
-            CharacterController.EquipmentController.OnImpactChanged += ImpactChangedHandler;
             CharacterController.RootController.UIController.OnFire += ButtonFireHandler;
-            CharacterController.RootController.UIController.OnWeaponReaload += WeaponRealoadHaundler;
+            CharacterController.VisualBodyController.OnWeaponInSceneReady += WeaponInSceneReadyHandler;
 
             //// Test
             //Pistol pistol = new Pistol(this);
@@ -65,34 +61,30 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         private void WeaponChangedHandler(Weapon weapon)
         {
             Weapon = weapon;
-            Weapon.WeaponData.Owner = CharacterController;
-            Weapon.Init(this);
-            Weapon.ShotProcess.OnShotPerformed += ShotHandler;
         }
 
-        private void ImpactChangedHandler(string impactID)
+        private void WeaponInSceneReadyHandler()
         {
-            CurrentImpactID = impactID;
+            Weapon.Init(this);
+            Weapon.ShotProcess.OnShotPerformed += ShotHandler;
         }
 
         private void ButtonFireHandler(bool isFire)
         {
             if (Weapon != null)
             {
-                if (isFire)
+                if (Weapon.WeaponData.Owner != null)
                 {
-                    Weapon.ShotProcess.StartFire();
-                }
-                else
-                {
-                    Weapon.ShotProcess.StopFire();
+                    if (isFire)
+                    {
+                        Weapon.ShotProcess.StartFire();
+                    }
+                    else
+                    {
+                        Weapon.ShotProcess.StopFire();
+                    }
                 }
             }
-        }
-
-        private void WeaponRealoadHaundler()
-        {
-            CharacterController.EquipmentController.ReloadCurrentWeapon();
         }
 
         private void ShotHandler()

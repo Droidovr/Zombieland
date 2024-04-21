@@ -15,6 +15,7 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
         public ICharacterController CharacterController { get; private set; }
         public List<Weapon> WeaponsSlots { get; private set; }
         public int CurrentImpactCount { get; set; }
+        public string CurrentImpactID { get; private set; }
 
         public EquipmentController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
@@ -69,6 +70,7 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
             OnWeaponChanged?.Invoke(WeaponsSlots[0]);
             OnImpactChanged?.Invoke(WeaponsSlots[0].WeaponData.AvailableImpactIDs[0]);
             CurrentImpactCount = 10000;
+            CurrentImpactID = WeaponsSlots[0].WeaponData.AvailableImpactIDs[0];
         }
 
         private void Number2Handler()
@@ -78,6 +80,7 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
             OnWeaponChanged?.Invoke(WeaponsSlots[1]);
             OnImpactChanged?.Invoke(WeaponsSlots[1].WeaponData.AvailableImpactIDs[0]);
             CurrentImpactCount = 10000;
+            CurrentImpactID = WeaponsSlots[1].WeaponData.AvailableImpactIDs[0];
         }
 
         private void Number3Handler()
@@ -87,6 +90,7 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
             OnWeaponChanged?.Invoke(WeaponsSlots[2]);
             OnImpactChanged?.Invoke(WeaponsSlots[2].WeaponData.AvailableImpactIDs[0]);
             CurrentImpactCount = 10000;
+            CurrentImpactID = WeaponsSlots[2].WeaponData.AvailableImpactIDs[0];
         }
 
         private void Number4Handler()

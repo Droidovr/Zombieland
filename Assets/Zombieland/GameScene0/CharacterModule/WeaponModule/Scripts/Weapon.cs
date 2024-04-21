@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 using System;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
@@ -10,8 +9,9 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         public IShotProcess ShotProcess { get; private set; }
 
         public void Init(IWeaponController weaponController)
-        { 
-            ShotProcess = new ShotProcess();
+        {
+            WeaponData.Owner = weaponController.CharacterController;
+            ShotProcess = weaponController.CharacterController.VisualBodyController.WeaponInScene.GetComponent<ShotProcess>();
             ShotProcess.Init(weaponController);
         }
     }

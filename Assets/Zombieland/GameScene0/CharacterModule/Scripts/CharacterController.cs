@@ -49,7 +49,7 @@ namespace Zombieland.GameScene0.CharacterModule
             CharacterDataController = new CharacterDataController(this, new List<IController> { (IController)RootController.GameDataController });
             subsystemsControllers.Add((IController)CharacterDataController);
 
-            WeaponController = new WeaponController(this, new List<IController> { (IController)CharacterDataController, (IController)EquipmentController, (IController)AimingController, (IController)RootController.UIController, (IController)AnimationController });
+            WeaponController = new WeaponController(this, new List<IController> { (IController)CharacterDataController, (IController)EquipmentController, (IController)AimingController, (IController)RootController.UIController, (IController)AnimationController, (IController)VisualBodyController });
             subsystemsControllers.Add((IController)WeaponController);
 
             VisualBodyController = new VisualBodyController(this, new List<IController> { (IController)RootController.EnvironmentController, (IController)EquipmentController });

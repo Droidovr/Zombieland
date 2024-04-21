@@ -1,16 +1,16 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Zombieland.GameScene0.CharacterModule.WeaponModule;
 
 namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 {
     public class AnimationController : Controller, IAnimationController
     {
-        public event Action<Vector3> OnAnimatorMove;
-        public event Action OnFinishPreparationAttack;
-        public event Action<string> OnFinishWeaponAnimation;
-        public event Action OnCreateWeaponPrefab;
-        public event Action OnDestroyWeaponPrefab;
+        public event Action<Vector3> OnAnimationMove;
+        public event Action OnAnimationAttack;
+        public event Action<string> OnAnimationCreateWeapon;
+        public event Action OnAnimationDestroyWeapon;
 
         public ICharacterController CharacterController { get; private set; }
 
@@ -24,10 +24,10 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         public override void Disable()
         {
-            _characterAnimator.OnAnimatorMoveHandler -= AnimatorMoveHandler;
-            _characterAnimator.OnFinishPreparationAttack -= FinishPreparationAttack;
-            _characterAnimator.OnFinishWeaponAnimation -= FinishWeaponAnimationHandler;
-            _characterAnimator.OnDestroyWeaponPreafab -= DestroyWeaponPreafabHandler;
+            _characterAnimator.OnAnimationMove -= AnimationMoveHandler;
+            _characterAnimator.OnAnimationAttack -= AnimationAttackHandler;
+            _characterAnimator.OnAnimationCreateWeapon -= AnimationCreateWeaponHandler;
+            _characterAnimator.OnAnimationDestroyWeapon -= AnimationDestroyWeaponHandler;
             _characterAnimator.Disable();
 
             base.Disable();
@@ -39,11 +39,10 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
             _characterAnimator = character.AddComponent<CharacterAnimator>();
             _characterAnimator.Init(this);
-            _characterAnimator.OnAnimatorMoveHandler += AnimatorMoveHandler;
-            _characterAnimator.OnFinishPreparationAttack += FinishPreparationAttack;
-            _characterAnimator.OnFinishWeaponAnimation += FinishWeaponAnimationHandler;
-            _characterAnimator.OnCrateWeaponPreafab += CrateWeaponPreafabHandler;
-            _characterAnimator.OnDestroyWeaponPreafab += DestroyWeaponPreafabHandler;
+            _characterAnimator.OnAnimationMove += AnimationMoveHandler;
+            _characterAnimator.OnAnimationAttack += AnimationAttackHandler;
+            _characterAnimator.OnAnimationCreateWeapon += AnimationCreateWeaponHandler;
+            _characterAnimator.OnAnimationDestroyWeapon += AnimationDestroyWeaponHandler;
 
             CharacterRagdoll characterRagdoll = character.AddComponent<CharacterRagdoll>();
             characterRagdoll.Init(this);
@@ -58,29 +57,24 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             // This controller doesn't have any subsystems at the moment.
         }
 
-        private void AnimatorMoveHandler(Vector3 deltaPosition)
+        private void AnimationMoveHandler(Vector3 deltaPosition)
         {
-            OnAnimatorMove?.Invoke(deltaPosition);
+            OnAnimationMove?.Invoke(deltaPosition);
         }
 
-        private void FinishPreparationAttack()
+        private void AnimationAttackHandler()
         {
-            OnFinishPreparationAttack?.Invoke();
+            OnAnimationAttack?.Invoke();
         }
 
-        private void FinishWeaponAnimationHandler(string nameWeapon)
+        private void AnimationCreateWeaponHandler(string weaponPrefabName)
         {
-            OnFinishWeaponAnimation?.Invoke(nameWeapon);
+            OnAnimationCreateWeapon?.Invoke(weaponPrefabName);
         }
 
-        private void CrateWeaponPreafabHandler()
+        private void AnimationDestroyWeaponHandler()
         {
-            OnCreateWeaponPrefab?.Invoke();
-        }
-
-        private void DestroyWeaponPreafabHandler()
-        {
-            OnDestroyWeaponPrefab?.Invoke();
+            OnAnimationDestroyWeapon?.Invoke();
         }
     }
 }

@@ -5,13 +5,14 @@ using Zombieland.GameScene0.ImpactModule;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
-    public class ShotProcess : IShotProcess
+    public class ShotProcess : MonoBehaviour, IShotProcess
     {
         public event Action OnShotPerformed;
 
+        private const float CHECK_FIRE_PERMITION_PERIOD = 0.1f;
+
         private IWeaponController _weaponController;
-        private FirePermiserTimer _firePermitionTimer;
-        private InvokeTimer _cooldawnTimer;
+        private FirePermiser _firePermiser;
         private Impact _impact;
         private WeaponImpacter _weaponImpacter;
         private WeaponResourcer _weaponResourcer;
@@ -19,35 +20,30 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         #region Public
         public void Init(IWeaponController weaponController)
         {
+            Debug.Log("Init - Thread ID: " + Thread.CurrentThread.ManagedThreadId);
+
             _weaponController = weaponController;
-            _firePermitionTimer = new FirePermiserTimer(_weaponController);
-            _cooldawnTimer = new InvokeTimer(_weaponController.Weapon.WeaponData.ShootCooldown, StartFire);
-            _impact = new Impact();
+            _firePermiser = new FirePermiser(_weaponController);
             _weaponImpacter = new WeaponImpacter(_weaponController);
             _weaponResourcer = new WeaponResourcer(_weaponController);
-
-            Debug.Log("ID Init Thread: " + Thread.CurrentThread.ManagedThreadId);
         }
 
         public void StartFire()
         {
-            _firePermitionTimer.OnPermission += PreparingFire;
-            _firePermitionTimer.Start();
+            Debug.Log("StartFire - Thread ID: " + Thread.CurrentThread.ManagedThreadId);
 
             _impact = _weaponImpacter.GetCurrentImpact();
-
-            Debug.Log("ID Start Thread: " + Thread.CurrentThread.ManagedThreadId);
+            InvokeRepeating("StartFirePermision", 0, CHECK_FIRE_PERMITION_PERIOD);
         }
 
         public void StopFire()
         {
-            Debug.Log("ID Stop Thread: " + Thread.CurrentThread.ManagedThreadId);
-            _firePermitionTimer?.Stop();
-            _firePermitionTimer.OnPermission -= PreparingFire;
+            if (gameObject != null && gameObject.activeInHierarchy)
+            {
+                CancelInvoke();
+            }
 
-            _cooldawnTimer?.Stop();
-
-            if (_weaponResourcer.IsReserveResurce)
+            if (_weaponResourcer.IsReserveResurce && _impact != null)
             {
                 _weaponResourcer.ResourceOperation(false, _impact.ImpactData.ConsumableResources);
             }
@@ -58,22 +54,17 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         #region Private
         private void PreparingFire()
         {
-            Debug.Log("ID Preparing Thread: " + Thread.CurrentThread.ManagedThreadId);
-
-            _firePermitionTimer.OnPermission -= PreparingFire;
+            Debug.Log("PreparingFire - Thread ID: " + Thread.CurrentThread.ManagedThreadId);
 
             _weaponResourcer.ResourceOperation(true, _impact.ImpactData.ConsumableResources);
-
-            _weaponController.CharacterController.AnimationController.OnFinishPreparationAttack += CompletionFire;
-
-            //CompletionFire();
+            _weaponController.CharacterController.AnimationController.OnAnimationAttack += CompletionFire;
         }
 
         private void CompletionFire()
         {
-            Debug.Log("ID Completion Thread: " + Thread.CurrentThread.ManagedThreadId);
+            Debug.Log("CompletionFire - Thread ID: " + Thread.CurrentThread.ManagedThreadId);
 
-            _weaponController.CharacterController.AnimationController.OnFinishPreparationAttack -= CompletionFire;
+            _weaponController.CharacterController.AnimationController.OnAnimationAttack -= CompletionFire;
 
             _impact.Activate();
             _weaponResourcer.IsReserveResurce = false;
@@ -84,7 +75,18 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
             OnShotPerformed.Invoke();
 
-            _cooldawnTimer.Start();
+            Invoke("StartFire", _weaponController.Weapon.WeaponData.ShootCooldown);
+        }
+
+        private void StartFirePermision()
+        {
+            Debug.Log("StartFirePermision - Thread ID: " + Thread.CurrentThread.ManagedThreadId);
+
+            if (_firePermiser.CheckFirePermission(_impact))
+            {
+                CancelInvoke("StartFirePermision");
+                PreparingFire();
+            }
         }
         #endregion
     }

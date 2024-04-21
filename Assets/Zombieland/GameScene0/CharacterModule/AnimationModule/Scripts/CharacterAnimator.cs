@@ -7,12 +7,10 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 {
     public class CharacterAnimator : MonoBehaviour
     {
-        public event Action<Vector3> OnAnimatorMoveHandler;
-        public event Action<string> OnStartWeaponAnimation;
-        public event Action<string> OnFinishWeaponAnimation;
-        public event Action OnFinishPreparationAttack;
-        public event Action OnCrateWeaponPreafab;
-        public event Action OnDestroyWeaponPreafab;
+        public event Action<Vector3> OnAnimationMove;
+        public event Action OnAnimationAttack;
+        public event Action<string> OnAnimationCreateWeapon;
+        public event Action OnAnimationDestroyWeapon;
 
         private const string PC_ANIMATOR = "PCAnimatorController";
         private const string MOBILE_ANIMATOR = "Character0MobileAnimator";
@@ -21,7 +19,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private IAnimationController _animatorController;
         private Animator _animator;
         private bool _isWeaponAnimation = false;
-        private string _nameWeapon;
+        private Weapon _weapon;
 
         public void Init(IAnimationController animatorController)
         {
@@ -61,20 +59,10 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             _animator.SetFloat("DirectionZ", moveDirection.z, DAMP_TIME, Time.deltaTime);
         }
 
-        private void FinishPreparationAttackHandler()
-        {
-            OnFinishPreparationAttack?.Invoke();
-        }
-
-        private void FinishHandler(string nameFinishWeapon)
-        {
-            OnFinishWeaponAnimation?.Invoke(nameFinishWeapon);
-            ChangeWeaponAnimation(_nameWeapon);
-        }
 
         private void WeaponChangeHandler(Weapon weapon)
         { 
-            _nameWeapon = weapon.WeaponData.Name;
+            _weapon = weapon;
 
             _animator.SetBool("IsWrench", false);
             _animator.SetBool("IsPistol", false);
@@ -83,15 +71,13 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
             if (!_isWeaponAnimation)
             {
-                ChangeWeaponAnimation(_nameWeapon);
+                ChangeWeaponAnimation();
             }
         }
 
-        private void ChangeWeaponAnimation(string nameWeapon)
+        private void ChangeWeaponAnimation()
         {            
-            OnStartWeaponAnimation?.Invoke(nameWeapon);
-
-            switch (nameWeapon)
+            switch (_weapon.WeaponData.Name)
             {
                 case "Wrench":
                     _animator.SetBool("IsWrench", true);
@@ -115,9 +101,14 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
                 default:
                     _isWeaponAnimation = false;
-                    _nameWeapon = null;
+                    _weapon = null;
                     break;
             }
+        }
+
+        private void AttackHandler()
+        {
+            OnAnimationAttack?.Invoke();
         }
 
         private void StealthHandler(bool isStealth)
@@ -134,18 +125,18 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         {
             if (_animator.enabled)
             {
-                OnAnimatorMoveHandler?.Invoke(_animator.deltaPosition);
+                OnAnimationMove?.Invoke(_animator.deltaPosition);
             }
         }
 
         private void CreacteWeaponPrefabHandler()
         {
-            OnCrateWeaponPreafab?.Invoke();
+            OnAnimationCreateWeapon?.Invoke(_weapon.WeaponData.PrefabName);
         }
 
         private void DestroyWeaponPrefabHandler()
         {
-            OnDestroyWeaponPreafab?.Invoke();
+            OnAnimationDestroyWeapon?.Invoke();
         }
     }
 }

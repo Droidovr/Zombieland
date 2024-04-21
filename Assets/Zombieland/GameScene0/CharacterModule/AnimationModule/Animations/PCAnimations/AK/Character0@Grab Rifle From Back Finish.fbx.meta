@@ -58,7 +58,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0
-        functionName: FinishHandler
+        functionName: ChangeWeaponAnimation
         data: AK
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
