@@ -14,7 +14,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         private WeaponImpacter _weaponImpacter;
         private WeaponResourcer _weaponResourcer;
 
-        #region Public
         public void Init(IWeaponController weaponController)
         {
             Debug.Log("Init - Thread ID: " + Thread.CurrentThread.ManagedThreadId);
@@ -44,6 +43,5 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
                 _weaponResourcer.ResourceOperation(false, _impact.ImpactData.ConsumableResources);
             }
         }
-        #endregion
     }
 }

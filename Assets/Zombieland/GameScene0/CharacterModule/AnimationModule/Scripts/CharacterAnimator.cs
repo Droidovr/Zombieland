@@ -1,6 +1,4 @@
 using System;
-using System.Threading;
-using UnityEditor.Animations;
 using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
 
@@ -29,9 +27,9 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             _animator = GetComponent<Animator>();
 
 #if UNITY_STANDALONE || UNITY_EDITOR
-            _animator.runtimeAnimatorController = Resources.Load<AnimatorController>(PC_ANIMATOR);
+            _animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(PC_ANIMATOR);
 #else
-            _animator.runtimeAnimatorController = Resources.Load<AnimatorController>(MOBILE_ANIMATOR);
+            _animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(MOBILE_ANIMATOR);
 #endif
 
             _animatorController = animatorController;
