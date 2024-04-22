@@ -101,7 +101,6 @@ namespace Zombieland.GameScene0.UIModule.UIMainModule
         {
             OnMoved?.Invoke(vectorMove);
         }
-
         private void HandleMouseMoved(Vector2 mousePosition)
         {
             OnMouseMoved?.Invoke(mousePosition);

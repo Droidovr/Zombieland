@@ -12,7 +12,7 @@
   },
   "Assembler": {
     "$type": "Zombieland.GameScene0.ImpactModule.ObjectAssembler, Assembly-CSharp",
-    "PrefabName": "ShotgunBullet"
+    "PrefabName": "MachineGunBullet"
   },
   "Delivery": {
     "$type": "Zombieland.GameScene0.ImpactModule.MovingForwardHandler, Assembly-CSharp",

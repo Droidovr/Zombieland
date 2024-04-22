@@ -15,6 +15,8 @@ public class Wrench : IInitialImpactCommand
 
     public void Execute()
     {
+        Debug.Log("Detector - " + Detector);
+        
         var targetsList = Detector.GetTargets(Impact.ImpactData.ImpactObject);
         Impact.ImpactData.Targets = targetsList;
             

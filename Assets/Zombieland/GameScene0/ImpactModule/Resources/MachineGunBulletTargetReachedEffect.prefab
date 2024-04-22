@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 336869961810146466}
   - component: {fileID: 7359341513970786514}
   - component: {fileID: 8333393092055975535}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MachineGunBulletTargetReachedEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -152,6 +152,7 @@
                 <e p="Scripts" t="Include">
                   <e p="AnimationController.cs" t="Include" />
                   <e p="CharacterAnimator.cs" t="Include" />
+                  <e p="FirePermiser.cs" t="Include" />
                   <e p="IAnimationController.cs" t="Include" />
                   <e p="Ragdoll" t="Include">
                     <e p="CharacterRagdoll.cs" t="Include" />
@@ -217,13 +218,6 @@
                   </e>
                   <e p="IEquipmentController.cs" t="Include" />
                 </e>
-                <e p="Test" t="Include">
-                  <e p="Scripts" t="Include">
-                    <e p="IWeapon.cs" t="Include" />
-                    <e p="Weapon.cs" t="Include" />
-                    <e p="WeaponData.cs" t="Include" />
-                  </e>
-                </e>
               </e>
               <e p="InventoryModule" t="Include">
                 <e p="Scripts" t="Include">
@@ -273,15 +267,36 @@
               <e p="VisualBodyModule" t="Include">
                 <e p="Scripts" t="Include">
                   <e p="CreateCharacterPrefab.cs" t="Include" />
+                  <e p="CreateWeaponPrefab.cs" t="Include" />
                   <e p="GertterTriggers.cs" t="Include" />
                   <e p="IVisualBodyController.cs" t="Include" />
                   <e p="VisualBodyController.cs" t="Include" />
                 </e>
               </e>
               <e p="WeaponModule" t="Include">
+                <e p="Resources" t="Include">
+                  <e p="AK_0.txt" t="Include" />
+                  <e p="Pistol_0.txt" t="Include" />
+                  <e p="Wrench_0.txt" t="Include" />
+                </e>
                 <e p="Scripts" t="Include">
+                  <e p="HelperScripts" t="Include">
+                    <e p="WeaponData.cs" t="Include" />
+                    <e p="WeaponImpacter.cs" t="Include" />
+                    <e p="WeaponResourcer.cs" t="Include" />
+                  </e>
+                  <e p="IShotProcess.cs" t="Include" />
+                  <e p="IWeapon.cs" t="Include" />
                   <e p="IWeaponController.cs" t="Include" />
+                  <e p="ShotProcess.cs" t="Include" />
+                  <e p="Weapon.cs" t="Include" />
                   <e p="WeaponController.cs" t="Include" />
+                </e>
+                <e p="Test" t="Include">
+                  <e p="Scripts" t="Include">
+                    <e p="Pistol.cs" t="Include" />
+                    <e p="TestShot.cs" t="Include" />
+                  </e>
                 </e>
               </e>
             </e>
