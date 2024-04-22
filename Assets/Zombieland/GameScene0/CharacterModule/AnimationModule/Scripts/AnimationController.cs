@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Zombieland.GameScene0.CharacterModule.WeaponModule;
 
 namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 {

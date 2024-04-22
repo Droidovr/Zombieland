@@ -14,7 +14,6 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         private const float DEFAULT_SPEED_MULTIPLIER = 1f;
         private const float FAST_SPEED_MULTIPLIER = 3f;
 
-        private Vector2 _vectorMove;
         private Vector2 _vectorMousePosition;
         private float _verticalSpeed;
         private UnityEngine.CharacterController _unityCharacterController;
@@ -89,7 +88,14 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void MovedHandler(Vector2 joystickPosition)
         {
-            _vectorMove = joystickPosition;
+            Vector2 vectorMove = new Vector2(joystickPosition.x, joystickPosition.y);
+
+            if (Mathf.Abs(vectorMove.x) != 0f)
+            {
+                vectorMove.y = 0f;
+            }
+
+            _characterMovingController.DirectionWalk = new Vector3(vectorMove.x, 0f, vectorMove.y);
         }
 
         private void MovedMouseHandler(Vector2 mousePosition)
@@ -113,7 +119,6 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void CalculeteRealMovingSpeed()
         {
-            _characterMovingController.DirectionWalk = new Vector3(_vectorMove.x, 0f, _vectorMove.y);
             _characterMovingController.RealMovingSpeed = Mathf.Clamp01(_characterMovingController.DirectionWalk.magnitude) * _characterDataController.CharacterData.DesignMovingSpeed * _speedMultiplier;
         }
 
