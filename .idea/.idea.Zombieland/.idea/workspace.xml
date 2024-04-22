@@ -15,13 +15,13 @@
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/ITakeImpactController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BFF907ED-581F-483A-B4BD-129472866E97/bf/db3f69ea/SphereCollider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/Scripts/ICommand.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/00.Assembly/ObjectParentAssembler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Wrench.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/IInitialImpactCommand.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Resources/РomingProjectile.txt" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Resources/SlowdownProjectile.txt" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Resources/HomingProjectile.txt" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Resources/InfectedMine.txt" />
@@ -57,21 +57,22 @@
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/BaseHealing.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Knife.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/03.BuffDebuff/BuffDebuffInjection.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/Data/ImpactData.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Test/TestFireHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/01.Delivery/FollowingTargetHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/IImpact.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/GameDataModule/Scripts/GameDataController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Resources/GunBullet.txt" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/MachineGunBullet.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Resources/Wrench.txt" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Resources/MachineGunBullet.txt" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/01.Delivery/MovingForwardHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/01.Delivery/CollisionHandler.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Test/TestImpactCreatorEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/01.Delivery/ObjectInstantTeleport.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Wrench.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Detectors/TouchColliderDetector.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/Data/ImpactData.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/00.Assembly/ObjectParentAssembler.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Resources/Wrench.txt" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Test/TestImpactCreatorEditor.cs" />
       </list>
     </option>
   </component>
@@ -132,6 +133,7 @@
       <workItem from="1712784099175" duration="1323000" />
       <workItem from="1712785995575" duration="55000" />
       <workItem from="1713811057656" duration="1934000" />
+      <workItem from="1713813312195" duration="410000" />
     </task>
     <servers />
   </component>
