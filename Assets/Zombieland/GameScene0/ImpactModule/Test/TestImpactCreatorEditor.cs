@@ -47,7 +47,7 @@ namespace Zombieland.GameScene0.ImpactModule.Test
                     }
                 },
 
-                Assembler = new ObjectAssembler()
+                Assembler = new ObjectParentAssembler()
                 {
                     PrefabName = "Wrench"
                 },

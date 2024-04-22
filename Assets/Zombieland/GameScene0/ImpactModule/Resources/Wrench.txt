@@ -11,7 +11,7 @@
     ]
   },
   "Assembler": {
-    "$type": "Zombieland.GameScene0.ImpactModule.ObjectAssembler, Assembly-CSharp",
+    "$type": "Zombieland.GameScene0.ImpactModule.ObjectParentAssembler, Assembly-CSharp",
     "PrefabName": "Wrench"
   },
   "Delivery": {

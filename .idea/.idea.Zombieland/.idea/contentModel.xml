@@ -336,6 +336,7 @@
                 <e p="00.Assembly" t="Include">
                   <e p="EmptyAssembler.cs" t="Include" />
                   <e p="ObjectAssembler.cs" t="Include" />
+                  <e p="ObjectParentAssembler.cs" t="Include" />
                 </e>
                 <e p="01.Delivery" t="Include">
                   <e p="CollisionHandler.cs" t="Include" />
