@@ -12,7 +12,6 @@ using Zombieland.GameScene0.CharacterModule.StealthModule;
 using Zombieland.GameScene0.CharacterModule.TakeImpactModule;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
 using Zombieland.GameScene0.RootModule;
-using Zombieland.GameScene0.UIModule;
 using Zombieland.GameScene0.VisualBodyModule;
 
 namespace Zombieland.GameScene0.CharacterModule
@@ -35,8 +34,6 @@ namespace Zombieland.GameScene0.CharacterModule
 
         public Transform CharacterTransform => VisualBodyController.CharacterInScene.transform;
 
-        private readonly IRootController _rootController;
-
         public CharacterController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             RootController = parentController as IRootController;
@@ -52,19 +49,13 @@ namespace Zombieland.GameScene0.CharacterModule
             CharacterDataController = new CharacterDataController(this, new List<IController> { (IController)RootController.GameDataController });
             subsystemsControllers.Add((IController)CharacterDataController);
 
-            WeaponController = new WeaponController(this, new List<IController> { (IController)CharacterDataController });
+            WeaponController = new WeaponController(this, new List<IController> { (IController)CharacterDataController, (IController)EquipmentController, (IController)AimingController, (IController)RootController.UIController, (IController)AnimationController, (IController)VisualBodyController });
             subsystemsControllers.Add((IController)WeaponController);
 
-            VisualBodyController = new VisualBodyController(this, new List<IController> { (IController)RootController.EnvironmentController });
+            VisualBodyController = new VisualBodyController(this, new List<IController> { (IController)RootController.EnvironmentController, (IController)EquipmentController });
             subsystemsControllers.Add((IController)VisualBodyController);
 
-            CharacterMovingController = new CharacterMovingController(this, new List<IController> 
-                                                                            {
-                                                                                (IController) RootController.UIController,                                                                                
-                                                                                (IController) CharacterDataController,
-                                                                                (IController) VisualBodyController,
-                                                                                (IController) AnimationController
-                                                                            });
+            CharacterMovingController = new CharacterMovingController(this, new List<IController> { (IController) RootController.UIController, (IController) CharacterDataController, (IController) VisualBodyController, (IController) AnimationController });
             subsystemsControllers.Add((IController)CharacterMovingController);
 
             SensorController = new SensorController(this, new List<IController>{(IController)VisualBodyController});
@@ -73,13 +64,13 @@ namespace Zombieland.GameScene0.CharacterModule
             TakeImpactController = new TakeImpactController(this, new List<IController> { (IController)BuffDebuffController, (IController)CharacterDataController });
             subsystemsControllers.Add((IController)TakeImpactController);
             
-            EquipmentController = new EquipmentController(this, new List<IController>{(IController)CharacterDataController, (IController)RootController.UIController.UIMainController, (IController)InventoryController });
+            EquipmentController = new EquipmentController(this, new List<IController>{(IController)CharacterDataController, (IController)RootController.UIController.UIMainController, (IController)InventoryController, (IController)RootController.GameDataController });
             subsystemsControllers.Add((IController)EquipmentController);
 
             InventoryController = new InventoryController(this, new List<IController> { (IController)CharacterDataController });
             subsystemsControllers.Add((IController)InventoryController);
 
-            AnimationController = new AnimationController(this, new List<IController>{(IController)CharacterMovingController});
+            AnimationController = new AnimationController(this, new List<IController>{(IController)CharacterMovingController, (IController)VisualBodyController});
             subsystemsControllers.Add ((IController)AnimationController);
 
             BuffDebuffController = new BuffDebuffController(this, null);

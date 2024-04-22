@@ -12,9 +12,9 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BFF907ED-581F-483A-B4BD-129472866E97/0f/a546ecc8/CapsuleCollider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/ITakeImpactController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BFF907ED-581F-483A-B4BD-129472866E97/bf/db3f69ea/SphereCollider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/Scripts/ICommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/ITakeImpactController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Wrench.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/IInitialImpactCommand.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -43,7 +43,6 @@
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Resources/Knife.txt" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/IImpactable.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Detectors/SphereDetector.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Detectors/TouchColliderDetector.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Detectors/UpfrontRayDetector.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/ImpactData.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SensorModule/ImpactableSensorModule/Scripts/IImpactable.cs" />
@@ -68,10 +67,11 @@
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Resources/Wrench.txt" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Resources/MachineGunBullet.txt" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/01.Delivery/MovingForwardHandler.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Wrench.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/01.Delivery/CollisionHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Test/TestImpactCreatorEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/01.Delivery/ObjectInstantTeleport.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Wrench.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Detectors/TouchColliderDetector.cs" />
       </list>
     </option>
   </component>
@@ -131,6 +131,7 @@
       <workItem from="1711038789352" duration="449000" />
       <workItem from="1712784099175" duration="1323000" />
       <workItem from="1712785995575" duration="55000" />
+      <workItem from="1713811057656" duration="1934000" />
     </task>
     <servers />
   </component>

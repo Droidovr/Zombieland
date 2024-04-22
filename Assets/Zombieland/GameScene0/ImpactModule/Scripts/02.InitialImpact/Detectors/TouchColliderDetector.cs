@@ -11,6 +11,8 @@ namespace Zombieland.GameScene0.ImpactModule
         public List<IImpactable> GetTargets(GameObject impactObject)
         {
             var targetCollider = impactObject.GetComponent<CollisionHandler>().TargetObjectCollider;
+            if (!targetCollider)
+                return null;
             return targetCollider.TryGetComponent<IImpactable>(out var impactableObject)
                 ? new List<IImpactable> {impactableObject}
                 : null;

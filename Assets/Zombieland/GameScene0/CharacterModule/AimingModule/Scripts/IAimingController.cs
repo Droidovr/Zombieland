@@ -6,6 +6,6 @@ namespace Zombieland.GameScene0.CharacterModule.AimingModule
     {
         ICharacterController CharacterController { get; }
 
-        Vector3 GetTarget();
+        Transform GetTarget();
     }
 }

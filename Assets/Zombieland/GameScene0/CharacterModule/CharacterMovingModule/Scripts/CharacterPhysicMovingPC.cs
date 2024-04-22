@@ -32,7 +32,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         {
             _uIController.OnMoved -= MovedHandler;
             _uIController.OnMouseMoved -= MovedMouseHandler;
-            _characterMovingController.CharacterController.AnimationController.OnAnimatorMove -= OnAnimatorMoveHandler;
+            _characterMovingController.CharacterController.AnimationController.OnAnimationMove -= OnAnimatorMoveHandler;
         }
 
         public void Init(ICharacterMovingController characterMovingController)
@@ -40,7 +40,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             _unityCharacterController = GetComponent<UnityEngine.CharacterController>();
 
             _characterMovingController = characterMovingController;
-            _characterMovingController.CharacterController.AnimationController.OnAnimatorMove += OnAnimatorMoveHandler;
+            _characterMovingController.CharacterController.AnimationController.OnAnimationMove += OnAnimatorMoveHandler;
 
             _uIController = characterMovingController.CharacterController.RootController.UIController;
             _uIController.OnMoved += MovedHandler;
@@ -124,7 +124,8 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             Vector2 offset = cursorCenter - _centerScreen;
             float angle = Mathf.Atan2(offset.x, offset.y) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(0f, angle, 0f);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _characterDataController.CharacterData.DesignRotationSpeed);
+            //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _characterDataController.CharacterData.DesignRotationSpeed);
+            transform.rotation = targetRotation;
         }
 
         #if UNITY_EDITOR
