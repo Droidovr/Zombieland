@@ -47,7 +47,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCHearingSensorModule
             var distanceVector = transform.position - _targetTransform.position;
            
             // check Distance
-            if (distanceVector.sqrMagnitude > _sqrHearingCircleRange)
+            if (distanceVector.sqrMagnitude <= _sqrHearingCircleRange)
             {
                 RegisterTarget();
                 return;

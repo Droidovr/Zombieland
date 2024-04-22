@@ -361,6 +361,13 @@
               <e p="NPCManagerController.cs" t="Include" />
             </e>
             <e p="NPCModule" t="Include">
+              <e p="AIModule" t="Include">
+                <e p="GoalBase.cs" t="Include" />
+                <e p="GoalChase.cs" t="Include" />
+                <e p="GoalIdle.cs" t="Include" />
+                <e p="GoalWander.cs" t="Include" />
+                <e p="IGoal.cs" t="Include" />
+              </e>
               <e p="NPCAwarenessModule" t="Include">
                 <e p="NPCHearingSensorModule" t="Include">
                   <e p="Scripts" t="Include">
@@ -421,7 +428,11 @@
                 <e p="Updater.cs" t="Include" />
               </e>
               <e p="Test" t="Include">
-                <e p="PolygonApocalypse" t="Include">
+                <e p="GoalUI" t="Include">
+                  <e p="TestGoalsUIManager.cs" t="Include" />
+                  <e p="TestGoalUI.cs" t="Include" />
+                </e>
+                <e p="Prefabs" t="Include">
                   <e p="Materials" t="Include">
                     <e p="Misc" t="Include">
                       <e p="Shader" t="Include">

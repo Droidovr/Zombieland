@@ -41,6 +41,11 @@ namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
         {
             _navMeshHandler.StopMoving();
         }
+        
+        public bool IsMoving()
+        {
+            return _navMeshHandler.IsMoving;
+        }
 
         private void TestCreateSubsystem()
         {

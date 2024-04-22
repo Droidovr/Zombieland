@@ -7,6 +7,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
     [RequireComponent(typeof(NavMeshAgent))]
     public class NavMeshHandler : MonoBehaviour
     {
+        public bool IsMoving => !_agent.isStopped;
+        
         private NavMeshAgent _agent;
         private Transform _targetTransform;
         private bool _isTargetUpdatable;
