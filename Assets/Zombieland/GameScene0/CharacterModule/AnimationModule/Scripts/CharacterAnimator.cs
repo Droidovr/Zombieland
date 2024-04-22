@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using UnityEditor.Animations;
 using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
@@ -8,18 +9,20 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
     public class CharacterAnimator : MonoBehaviour
     {
         public event Action<Vector3> OnAnimationMove;
-        public event Action OnAnimationAttack;
+        public event Action<bool> OnAnimationAttack;
         public event Action<string> OnAnimationCreateWeapon;
         public event Action OnAnimationDestroyWeapon;
 
         private const string PC_ANIMATOR = "PCAnimatorController";
         private const string MOBILE_ANIMATOR = "Character0MobileAnimator";
         private const float DAMP_TIME = 0.05f;
+        private const float CHECK_FIRE_PERMITION_PERIOD = 0.1f;
 
         private IAnimationController _animatorController;
         private Animator _animator;
         private bool _isWeaponAnimation = false;
         private Weapon _weapon;
+        private FirePermiser _firePermiser;
 
         public void Init(IAnimationController animatorController)
         {
@@ -35,7 +38,9 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
             _animatorController.CharacterController.EquipmentController.OnWeaponChanged += WeaponChangeHandler;
             _animatorController.CharacterController.StealthController.OnStealth += StealthHandler;
-            _animatorController.CharacterController.RootController.UIController.OnFire += FireHandler;
+            _animatorController.CharacterController.RootController.UIController.OnFire += UIFireHandler;
+
+            _firePermiser = new FirePermiser(_animatorController);
 
             ////Test
             //TestEquipment testEquipment = new TestEquipment(_animatorController);
@@ -46,7 +51,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         {
             _animatorController.CharacterController.EquipmentController.OnWeaponChanged -= WeaponChangeHandler;
             _animatorController.CharacterController.StealthController.OnStealth -= StealthHandler;
-            _animatorController.CharacterController.RootController.UIController.OnFire -= FireHandler;
+            _animatorController.CharacterController.RootController.UIController.OnFire -= UIFireHandler;
         }
 
         private void Update()
@@ -108,7 +113,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         private void AttackHandler()
         {
-            OnAnimationAttack?.Invoke();
+            OnAnimationAttack?.Invoke(true);
         }
 
         private void StealthHandler(bool isStealth)
@@ -116,9 +121,26 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             _animator.SetBool("IsStealth", isStealth);
         }
 
-        private void FireHandler(bool isFire)
+        private void UIFireHandler(bool isFire)
         {
-            _animator.SetBool("Attack", isFire);
+            if (isFire)
+            {
+                InvokeRepeating("StartFirePermision", 0, CHECK_FIRE_PERMITION_PERIOD);
+            }
+            else
+            {
+                _animator.SetBool("Attack", isFire);
+                OnAnimationAttack?.Invoke(false);
+            }
+        }
+
+        private void StartFirePermision()
+        {
+            if (_firePermiser.CheckFirePermission(_weapon))
+            {
+                CancelInvoke("StartFirePermision");
+                _animator.SetBool("Attack", true);
+            }
         }
 
         private void OnAnimatorMove()

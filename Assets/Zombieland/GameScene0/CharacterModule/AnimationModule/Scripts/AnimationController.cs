@@ -8,7 +8,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
     public class AnimationController : Controller, IAnimationController
     {
         public event Action<Vector3> OnAnimationMove;
-        public event Action OnAnimationAttack;
+        public event Action<bool> OnAnimationAttack;
         public event Action<string> OnAnimationCreateWeapon;
         public event Action OnAnimationDestroyWeapon;
 
@@ -62,9 +62,9 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             OnAnimationMove?.Invoke(deltaPosition);
         }
 
-        private void AnimationAttackHandler()
+        private void AnimationAttackHandler(bool isFire)
         {
-            OnAnimationAttack?.Invoke();
+            OnAnimationAttack?.Invoke(isFire);
         }
 
         private void AnimationCreateWeaponHandler(string weaponPrefabName)

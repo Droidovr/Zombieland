@@ -29,8 +29,8 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             }
 
             CharacterController.EquipmentController.OnWeaponChanged -= WeaponChangedHandler;
-            CharacterController.RootController.UIController.OnFire -= ButtonFireHandler;
             CharacterController.VisualBodyController.OnWeaponInSceneReady -= WeaponInSceneReadyHandler;
+            CharacterController.AnimationController.OnAnimationAttack -= ButtonFireHandler;
 
             base.Disable();
         }
@@ -41,8 +41,8 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         protected override void CreateHelpersScripts()
         {
             CharacterController.EquipmentController.OnWeaponChanged += WeaponChangedHandler;
-            CharacterController.RootController.UIController.OnFire += ButtonFireHandler;
             CharacterController.VisualBodyController.OnWeaponInSceneReady += WeaponInSceneReadyHandler;
+            CharacterController.AnimationController.OnAnimationAttack += ButtonFireHandler;
 
             //// Test
             //Pistol pistol = new Pistol(this);
@@ -73,16 +73,13 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         {
             if (Weapon != null)
             {
-                if (Weapon.WeaponData.Owner != null)
+                if (isFire)
                 {
-                    if (isFire)
-                    {
-                        Weapon.ShotProcess.StartFire();
-                    }
-                    else
-                    {
-                        Weapon.ShotProcess.StopFire();
-                    }
+                    Weapon.ShotProcess.StartFire();
+                }
+                else
+                {
+                    Weapon.ShotProcess.StopFire();
                 }
             }
         }

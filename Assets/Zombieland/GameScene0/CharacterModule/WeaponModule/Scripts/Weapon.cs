@@ -11,7 +11,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         public void Init(IWeaponController weaponController)
         {
             WeaponData.Owner = weaponController.CharacterController;
-            ShotProcess = weaponController.CharacterController.VisualBodyController.WeaponInScene.GetComponent<ShotProcess>();
+            ShotProcess = new ShotProcess();
             ShotProcess.Init(weaponController);
         }
     }
