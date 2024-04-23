@@ -85,7 +85,7 @@ namespace Zombieland.GameScene0.CharacterModule
             BuffDebuffController = new BuffDebuffController(this, null);
             subsystemsControllers.Add((IController)BuffDebuffController);
 
-            AimingController = new AimingController(this, new List<IController> { (IController)VisualBodyController, (IController)RootController.UIController, (IController)RootController.CameraController  });
+            AimingController = new AimingController(this, new List<IController> { (IController)VisualBodyController, (IController)RootController.UIController});
             subsystemsControllers.Add((IController)AimingController);
 
             StealthController = new StealthController(this, new List<IController> { (IController)VisualBodyController, (IController)RootController.UIController });
