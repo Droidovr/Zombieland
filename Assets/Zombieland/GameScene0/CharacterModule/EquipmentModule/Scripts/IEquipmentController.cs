@@ -8,16 +8,14 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
     {
         event Action<Weapon> OnWeaponChanged;
         event Action<string> OnEquipmentChanged;
-        event Action<string> OnImpactChanged;
         event Action OnImpactDepleted;
 
-        Dictionary<int, WeaponSlot> WeaponSlots { get; }
-        //Dictionary<string, int> CurrentImpactsEquipped { get; }
-        int CurrentImpactCount { get; set;  }
+        //Dictionary<int, WeaponSlot> WeaponSlots { get; }
+        List<WeaponSlot> WeaponSlots { get; }
+        string CurrentImpactID { get; }
+        int CurrentImpactCount { get; set; }
         string CurrentOutfitEquipped { get; }
 
         ICharacterController CharacterController { get; }
-
-        void ReloadCurrentWeapon();
     }
 }

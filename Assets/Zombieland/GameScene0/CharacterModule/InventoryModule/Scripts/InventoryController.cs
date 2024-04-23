@@ -29,7 +29,9 @@ namespace Zombieland.GameScene0.CharacterModule.InventoryModule
         #region PROTECTED
         protected override void CreateHelpersScripts()
         {
-            // This controller doesn’t have any helpers scripts at the moment.
+            GameObject testPickUp = GameObject.Instantiate(new GameObject("TestPickUp"));
+            testPickUp.AddComponent<WeaponImpactPicker>();
+            testPickUp.GetComponent<WeaponImpactPicker>().Init(this);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -38,7 +40,7 @@ namespace Zombieland.GameScene0.CharacterModule.InventoryModule
         }
         #endregion PROTECTED
 
-        private void EquipWeaponIntoActiveSlot(string name, int slotNumber)
+        public void EquipWeaponIntoActiveSlot(string name, int slotNumber)
         {
             OnMainSlotEquipped?.Invoke(name, slotNumber);
             // This method should be subscribed to DragNDrop Event in UIEquipment when something is dragged into Weapon Slot.

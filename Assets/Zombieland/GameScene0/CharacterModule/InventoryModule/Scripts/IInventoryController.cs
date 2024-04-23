@@ -14,5 +14,7 @@ namespace Zombieland.GameScene0.CharacterModule.InventoryModule
         ICharacterController CharacterController { get; }
 
         void PickUpItem(string itemName, int count);
+
+        void EquipWeaponIntoActiveSlot(string name, int slotNumber);
     }
 }
