@@ -7,7 +7,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
     public class WeaponController : Controller, IWeaponController
     {
-        public event Action OnShotPerformed;
+        public event Action<Weapon> OnShotPerformed;
         public event Action OnShotFailed;
 
         public ICharacterController CharacterController { get; private set; }
@@ -88,7 +88,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         {
             if (Weapon != null)
             {
-                OnShotPerformed?.Invoke();
+                OnShotPerformed?.Invoke((Weapon)Weapon);
             }
         }
         #endregion
