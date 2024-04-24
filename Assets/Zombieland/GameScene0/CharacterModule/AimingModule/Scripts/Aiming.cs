@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.SensorModule.ImpactableSensorModule;
 
@@ -25,15 +26,22 @@ namespace Zombieland.GameScene0.CharacterModule.AimingModule
 
         public Transform GetTarget()
         {
-            Ray ray = _aimingController.CharacterController.RootController.CameraController.PlayerCamera.ScreenPointToRay(_mousePos);
-            RaycastHit hit;
-            
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            try
             {
-                if (hit.collider.TryGetComponent(out Impactable _))
+                Ray ray = _aimingController.CharacterController.RootController.CameraController.PlayerCamera.ScreenPointToRay(_mousePos);
+                RaycastHit hit;
+            
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity))
                 {
-                    return hit.transform;
+                    if (hit.collider.TryGetComponent(out Impactable _))
+                    {
+                        return hit.transform;
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                Debug.Log("No PlayerCamera");
             }
             return default(Transform);
         }
