@@ -12,6 +12,8 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         public string ID;
         public string Name;
         public string PrefabName;
+        public string VFXPrefabName;
+        public string SoundName;
         public List<string> AvailableImpactIDs;
         public float ShootCooldown;
         public float ShotAccuracy;
