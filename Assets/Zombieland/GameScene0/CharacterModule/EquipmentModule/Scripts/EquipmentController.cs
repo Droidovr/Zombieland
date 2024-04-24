@@ -17,14 +17,15 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
         public List<WeaponSlot> WeaponSlots { get; private set; }
         public string CurrentImpactID { get; private set; }
         public int CurrentImpactCount 
-        { 
-            get { return CurrentImpactCount; } 
-            set { if (value <= 0) return; else CurrentImpactCount = value; }
+        {
+            get { return _currentImpactCount; } 
+            set { if (value <= 0) return; else _currentImpactCount = value; }
         }
         public string CurrentOutfitEquipped { get; private set; }
 
         private Weapon _currentWeaponEquipped;
         private int _currentActiveSlotIndex;
+        private int _currentImpactCount;
 
 
         public EquipmentController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
