@@ -5,6 +5,7 @@ using Zombieland.GameScene0.CharacterModule.AnimationModule;
 using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
 using Zombieland.GameScene0.CharacterModule.CharacterMovingModule;
+using Zombieland.GameScene0.CharacterModule.CharacterVFX;
 using Zombieland.GameScene0.CharacterModule.EquipmentModule;
 using Zombieland.GameScene0.CharacterModule.InventoryModule;
 using Zombieland.GameScene0.CharacterModule.SensorModule;
@@ -31,6 +32,7 @@ namespace Zombieland.GameScene0.CharacterModule
         public IBuffDebuffController BuffDebuffController { get; private set; }
         public IAimingController AimingController { get; private set; }
         public IStealthController StealthController { get; private set; }
+        public ICharacterVFXController CharacterVFXController { get; private set; }
 
         public Transform CharacterTransform => VisualBodyController.CharacterInScene.transform;
 
@@ -81,6 +83,9 @@ namespace Zombieland.GameScene0.CharacterModule
 
             StealthController = new StealthController(this, new List<IController> { (IController)VisualBodyController, (IController)RootController.UIController });
             subsystemsControllers.Add((IController)StealthController);
+
+            CharacterVFXController = new CharacterVFXController(this, new List<IController> { (IController)WeaponController, (IController)VisualBodyController });
+            subsystemsControllers.Add((IController)CharacterVFXController);
         }
     }
 }

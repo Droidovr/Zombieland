@@ -4,6 +4,8 @@
 		"ID":"Wrench_0",
 		"Name":"Wrench",
 		"PrefabName":"Wrench_Prefab_0",
+		"VFXPrefabName":"",
+		"SoundName":"",
 		"AvailableImpactIDs":["Wrench"],
 		"ShootCooldown":0.2,
 		"ShotAccuracy":0.0,

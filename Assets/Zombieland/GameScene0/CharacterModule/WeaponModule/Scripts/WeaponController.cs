@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
@@ -88,7 +87,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         {
             if (Weapon != null)
             {
-                OnShotPerformed?.Invoke((Weapon)Weapon);
+                OnShotPerformed?.Invoke((Weapon) Weapon);
             }
         }
         #endregion

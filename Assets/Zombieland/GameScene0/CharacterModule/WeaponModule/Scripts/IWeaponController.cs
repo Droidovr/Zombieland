@@ -1,5 +1,4 @@
 ﻿using System;
-using UnityEngine;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
