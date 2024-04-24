@@ -46,7 +46,7 @@ namespace Zombieland.GameScene0.CharacterModule.InventoryModule
             // This method should be subscribed to DragNDrop Event in UIEquipment when something is dragged into Weapon Slot.
         }
 
-        private void EquipCurrentImpact(string name, int amount)
+        public void EquipCurrentImpact(string name, int amount)
         {
             OnCurrentImpactEquipped?.Invoke(name, amount);
             // This method should be subscribed to OnClick Event in UIEquipment when impact is selected from Inventory somehow.

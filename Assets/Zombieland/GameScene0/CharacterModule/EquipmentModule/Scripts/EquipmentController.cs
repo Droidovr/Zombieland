@@ -74,7 +74,7 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
         {
             Debug.Log($"Received {name} into {slotNumber}");
             Weapon weapon = CharacterController.RootController.GameDataController.GetData<Weapon>(name);
-            WeaponSlots[slotNumber] = new WeaponSlot(weapon, null);
+            WeaponSlots[slotNumber] = new WeaponSlot(weapon, new Dictionary<string, int>());
             WeaponSlots[slotNumber].SetEquippedWeapon(weapon);
             Debug.Log(WeaponSlots[slotNumber].EquippedWeapon.WeaponData.Name);
         }
@@ -91,7 +91,9 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
                 WeaponSlots[_currentActiveSlotIndex].AddEquippedImpact(impactID, amount);
                 CurrentImpactID = impactID; //Temporary logic, will be replaced after proper UI ability to choose impacts
                 ReloadCurrentWeapon(); //Temporary logic, will be replaced after proper UI ability to choose impacts
+                return;
             }
+            Debug.Log($"{impactID} can not be used with {_currentWeaponEquipped.WeaponData.Name}!");
         }
 
         //probably CurrentImpactSelectedHandler(string impactID) is needed, subscribed to some UIMain event and telling us which Impacts do we want to use.

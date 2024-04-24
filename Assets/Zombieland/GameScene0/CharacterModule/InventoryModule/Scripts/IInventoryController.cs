@@ -16,5 +16,6 @@ namespace Zombieland.GameScene0.CharacterModule.InventoryModule
         void PickUpItem(string itemName, int count);
 
         void EquipWeaponIntoActiveSlot(string name, int slotNumber);
+        void EquipCurrentImpact(string name, int amount);
     }
 }
