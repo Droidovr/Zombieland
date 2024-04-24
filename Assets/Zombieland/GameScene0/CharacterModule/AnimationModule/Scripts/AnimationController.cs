@@ -1,13 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 {
     public class AnimationController : Controller, IAnimationController
     {
-        public event Action<Vector3> OnAnimatorMove;
+        public event Action<Vector3> OnAnimationMove;
+        public event Action<bool> OnAnimationAttack;
+        public event Action<string> OnAnimationCreateWeapon;
+        public event Action OnAnimationDestroyWeapon;
+
         public ICharacterController CharacterController { get; private set; }
 
         private CharacterAnimator _characterAnimator;
@@ -20,7 +23,11 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         public override void Disable()
         {
-            _characterAnimator.OnAnimatorMoveHandler -= OnAnimatorMoveHandler;
+            _characterAnimator.OnAnimationMove -= AnimationMoveHandler;
+            _characterAnimator.OnAnimationAttack -= AnimationAttackHandler;
+            _characterAnimator.OnAnimationCreateWeapon -= AnimationCreateWeaponHandler;
+            _characterAnimator.OnAnimationDestroyWeapon -= AnimationDestroyWeaponHandler;
+            _characterAnimator.Disable();
 
             base.Disable();
         }
@@ -30,8 +37,11 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             GameObject character = CharacterController.VisualBodyController.CharacterInScene;
 
             _characterAnimator = character.AddComponent<CharacterAnimator>();
-            _characterAnimator.Init(CharacterController);
-            _characterAnimator.OnAnimatorMoveHandler += OnAnimatorMoveHandler;
+            _characterAnimator.Init(this);
+            _characterAnimator.OnAnimationMove += AnimationMoveHandler;
+            _characterAnimator.OnAnimationAttack += AnimationAttackHandler;
+            _characterAnimator.OnAnimationCreateWeapon += AnimationCreateWeaponHandler;
+            _characterAnimator.OnAnimationDestroyWeapon += AnimationDestroyWeaponHandler;
 
             CharacterRagdoll characterRagdoll = character.AddComponent<CharacterRagdoll>();
             characterRagdoll.Init(this);
@@ -46,9 +56,24 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             // This controller doesn't have any subsystems at the moment.
         }
 
-        private void OnAnimatorMoveHandler(Vector3 deltaPosition)
+        private void AnimationMoveHandler(Vector3 deltaPosition)
         {
-            OnAnimatorMove?.Invoke(deltaPosition);
+            OnAnimationMove?.Invoke(deltaPosition);
+        }
+
+        private void AnimationAttackHandler(bool isFire)
+        {
+            OnAnimationAttack?.Invoke(isFire);
+        }
+
+        private void AnimationCreateWeaponHandler(string weaponPrefabName)
+        {
+            OnAnimationCreateWeapon?.Invoke(weaponPrefabName);
+        }
+
+        private void AnimationDestroyWeaponHandler()
+        {
+            OnAnimationDestroyWeapon?.Invoke();
         }
     }
 }

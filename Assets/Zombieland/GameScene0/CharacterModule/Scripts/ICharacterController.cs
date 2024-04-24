@@ -11,6 +11,8 @@ using Zombieland.GameScene0.CharacterModule.AnimationModule;
 using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 using Zombieland.GameScene0.CharacterModule.AimingModule;
+using Zombieland.GameScene0.CharacterModule.StealthModule;
+using Zombieland.GameScene0.CharacterModule.CharacterVFX;
 
 namespace Zombieland.GameScene0.CharacterModule
 {
@@ -28,6 +30,8 @@ namespace Zombieland.GameScene0.CharacterModule
         IAnimationController AnimationController { get; }
         IBuffDebuffController BuffDebuffController { get; }
         IAimingController AimingController { get; }
+        IStealthController StealthController { get; }
+        ICharacterVFXController CharacterVFXController { get; }
 
         Transform CharacterTransform { get; }
     }

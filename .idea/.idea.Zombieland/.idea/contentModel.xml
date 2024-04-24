@@ -7,7 +7,22 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="PolygonApocalypseZombieland" t="Include">
+          <e p="Materials" t="Include">
+            <e p="Misc" t="Include">
+              <e p="Shader" t="Include">
+                <e p="POLYGON_Triplanar.shader" t="Include" />
+                <e p="POLYGON_Zombies.shader" t="Include" />
+                <e p="SkyGradient.shader" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
         <e p="PolygonSciFiSpace" t="Include">
+          <e p="EnvironmentModule" t="Include">
+            <e p="DissolveChnager.cs" t="Include" />
+            <e p="FPSCounter.cs" t="Include" />
+          </e>
           <e p="Shaders" t="Include">
             <e p="POLYGON_SpaceShip_Rim.shader" t="Include" />
             <e p="POLYGON_Triplanar.shader" t="Include" />
@@ -28,6 +43,9 @@
           <e p="Scripts" t="Include">
             <e p="Outline.cs" t="Include" />
           </e>
+        </e>
+        <e p="Resources" t="Include">
+          <e p="BillingMode.json" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Examples &amp; Extras" t="Include">
@@ -124,17 +142,27 @@
               </e>
             </e>
             <e p="CharacterModule" t="Include">
+              <e p="AimingModule" t="Include">
+                <e p="Scripts" t="Include">
+                  <e p="AimingController.cs" t="Include" />
+                  <e p="IAimingController.cs" t="Include" />
+                </e>
+              </e>
               <e p="AnimationModule" t="Include">
                 <e p="Scripts" t="Include">
                   <e p="AnimationController.cs" t="Include" />
                   <e p="CharacterAnimator.cs" t="Include" />
+                  <e p="FirePermiser.cs" t="Include" />
                   <e p="IAnimationController.cs" t="Include" />
                   <e p="Ragdoll" t="Include">
                     <e p="CharacterRagdoll.cs" t="Include" />
                     <e p="RagdollComponent.cs" t="Include" />
                     <e p="RagdollState.cs" t="Include" />
                   </e>
-                  <e p="Test" t="Include">
+                </e>
+                <e p="Test" t="Include">
+                  <e p="Scripts" t="Include">
+                    <e p="TestEquipment.cs" t="Include" />
                     <e p="TestShooter.cs" t="Include" />
                   </e>
                 </e>
@@ -168,8 +196,10 @@
               <e p="CharacterMovingModule" t="Include">
                 <e p="Scripts" t="Include">
                   <e p="CharacterMovingController.cs" t="Include" />
-                  <e p="CharacterPhysicMoving.cs" t="Include" />
+                  <e p="CharacterPhysicMovingMobile.cs" t="Include" />
+                  <e p="CharacterPhysicMovingPC.cs" t="Include" />
                   <e p="ICharacterMovingController.cs" t="Include" />
+                  <e p="ICharacterPhysicMoving.cs" t="Include" />
                 </e>
                 <e p="Test" t="Include">
                   <e p="TestCamera" t="Include">
@@ -183,7 +213,16 @@
               <e p="EquipmentModule" t="Include">
                 <e p="Scripts" t="Include">
                   <e p="EquipmentController.cs" t="Include" />
+                  <e p="HelperScripts" t="Include">
+                    <e p="InterractableEquipmentObject.cs" t="Include" />
+                  </e>
                   <e p="IEquipmentController.cs" t="Include" />
+                </e>
+              </e>
+              <e p="InventoryModule" t="Include">
+                <e p="Scripts" t="Include">
+                  <e p="IInventoryController.cs" t="Include" />
+                  <e p="InventoryController.cs" t="Include" />
                 </e>
               </e>
               <e p="Scripts" t="Include">
@@ -191,29 +230,73 @@
                 <e p="ICharacterController.cs" t="Include" />
               </e>
               <e p="SensorModule" t="Include">
+                <e p="EnvironmentSensorModule" t="Include">
+                  <e p="Scripts" t="Include">
+                    <e p="EnvironmentSensorController.cs" t="Include" />
+                    <e p="IEnvironmentSensorController.cs" t="Include" />
+                  </e>
+                </e>
+                <e p="ImpactableSensorModule" t="Include">
+                  <e p="Scripts" t="Include">
+                    <e p="IImpactable.cs" t="Include" />
+                    <e p="IImpactableSensorController.cs" t="Include" />
+                    <e p="Impactable.cs" t="Include" />
+                    <e p="ImpactableInstaller.cs" t="Include" />
+                    <e p="ImpactableSensorController.cs" t="Include" />
+                  </e>
+                </e>
                 <e p="Scripts" t="Include">
-                  <e p="ImpactSensor.cs" t="Include" />
                   <e p="ISensorController.cs" t="Include" />
                   <e p="SensorController.cs" t="Include" />
+                </e>
+              </e>
+              <e p="StealthModule" t="Include">
+                <e p="Scripts" t="Include">
+                  <e p="IStealthController.cs" t="Include" />
+                  <e p="StealthController.cs" t="Include" />
+                  <e p="StealthSensor.cs" t="Include" />
                 </e>
               </e>
               <e p="TakeImpactModule" t="Include">
                 <e p="Scripts" t="Include">
                   <e p="ITakeImpactController.cs" t="Include" />
                   <e p="TakeImpactController.cs" t="Include" />
+                  <e p="TakerImpact.cs" t="Include" />
                 </e>
               </e>
               <e p="VisualBodyModule" t="Include">
                 <e p="Scripts" t="Include">
                   <e p="CreateCharacterPrefab.cs" t="Include" />
+                  <e p="CreateWeaponPrefab.cs" t="Include" />
+                  <e p="GertterTriggers.cs" t="Include" />
                   <e p="IVisualBodyController.cs" t="Include" />
                   <e p="VisualBodyController.cs" t="Include" />
                 </e>
               </e>
               <e p="WeaponModule" t="Include">
+                <e p="Resources" t="Include">
+                  <e p="AK_0.txt" t="Include" />
+                  <e p="Pistol_0.txt" t="Include" />
+                  <e p="Wrench_0.txt" t="Include" />
+                </e>
                 <e p="Scripts" t="Include">
+                  <e p="HelperScripts" t="Include">
+                    <e p="WeaponData.cs" t="Include" />
+                    <e p="WeaponImpacter.cs" t="Include" />
+                    <e p="WeaponResourcer.cs" t="Include" />
+                  </e>
+                  <e p="IShotProcess.cs" t="Include" />
+                  <e p="IWeapon.cs" t="Include" />
                   <e p="IWeaponController.cs" t="Include" />
+                  <e p="ShotProcess.cs" t="Include" />
+                  <e p="Weapon.cs" t="Include" />
                   <e p="WeaponController.cs" t="Include" />
+                </e>
+                <e p="Test" t="Include">
+                  <e p="Scripts" t="Include">
+                    <e p="Pistol.cs" t="Include" />
+                    <e p="TestShot.cs" t="Include" />
+                  </e>
                 </e>
               </e>
             </e>
@@ -246,13 +329,14 @@
             <e p="ImpactModule" t="Include">
               <e p="Resources" t="Include">
                 <e p="GunBullet.txt" t="Include" />
-                <e p="Knife.txt" t="Include" />
-                <e p="ShotgunBullet.txt" t="Include" />
+                <e p="MachineGunBullet.txt" t="Include" />
+                <e p="Wrench.txt" t="Include" />
               </e>
               <e p="Scripts" t="Include">
                 <e p="00.Assembly" t="Include">
                   <e p="EmptyAssembler.cs" t="Include" />
                   <e p="ObjectAssembler.cs" t="Include" />
+                  <e p="ObjectParentAssembler.cs" t="Include" />
                 </e>
                 <e p="01.Delivery" t="Include">
                   <e p="CollisionHandler.cs" t="Include" />
@@ -263,31 +347,34 @@
                   <e p="Updater.cs" t="Include" />
                 </e>
                 <e p="02.InitialImpact" t="Include">
-                  <e p="BaseDirectProjectile.cs" t="Include" />
-                  <e p="BaseHealing.cs" t="Include" />
-                  <e p="BaseHomingProjectile.cs" t="Include" />
-                  <e p="BaseMine.cs" t="Include" />
+                  <e p="Base" t="Include">
+                    <e p="BaseDirectProjectile.cs" t="Include" />
+                    <e p="BaseHealing.cs" t="Include" />
+                    <e p="BaseHomingProjectile.cs" t="Include" />
+                    <e p="BaseMine.cs" t="Include" />
+                  </e>
                   <e p="Detectors" t="Include">
                     <e p="SphereDetector.cs" t="Include" />
                     <e p="TouchColliderDetector.cs" t="Include" />
                     <e p="UpfrontRayDetector.cs" t="Include" />
                   </e>
                   <e p="GunBullet.cs" t="Include" />
-                  <e p="IInitialImpact.cs" t="Include" />
-                  <e p="Knife.cs" t="Include" />
-                  <e p="ShotgunBullet.cs" t="Include" />
+                  <e p="IInitialImpactCommand.cs" t="Include" />
+                  <e p="MachineGunBullet.cs" t="Include" />
+                  <e p="Wrench.cs" t="Include" />
                 </e>
                 <e p="03.BuffDebuff" t="Include">
                   <e p="BuffDebuffInjection.cs" t="Include" />
                 </e>
-                <e p="ConsumableResource.cs" t="Include" />
+                <e p="Data" t="Include">
+                  <e p="ConsumableResource.cs" t="Include" />
+                  <e p="ImpactData.cs" t="Include" />
+                  <e p="ResourceType.cs" t="Include" />
+                </e>
                 <e p="Deserializator.cs" t="Include" />
                 <e p="IImpact.cs" t="Include" />
-                <e p="IImpactable.cs" t="Include" />
                 <e p="IImpactCommand.cs" t="Include" />
                 <e p="Impact.cs" t="Include" />
-                <e p="ImpactData.cs" t="Include" />
-                <e p="ResourceType.cs" t="Include" />
               </e>
               <e p="Test" t="Include">
                 <e p="Archive" t="Include">
@@ -326,11 +413,11 @@
                   <e p="InputSystemControls.cs" t="Include" />
                 </e>
                 <e p="Scripts" t="Include">
+                  <e p="GameCursor.cs" t="Include" />
                   <e p="InitializerInputPrefab.cs" t="Include" />
                   <e p="Input.cs" t="Include" />
                   <e p="IUIMainController.cs" t="Include" />
                   <e p="MovingJoystickScreen.cs" t="Include" />
-                  <e p="NameButton.cs" t="Include" />
                   <e p="UIMainController.cs" t="Include" />
                 </e>
               </e>

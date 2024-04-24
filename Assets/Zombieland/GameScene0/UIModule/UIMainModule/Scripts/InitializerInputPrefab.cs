@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
 
-namespace Zombieland.GameScene0.UIModule
+namespace Zombieland.GameScene0.UIModule.UIMainModule
 {
     public class InitializerInputPrefab
     {

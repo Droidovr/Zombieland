@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Zombieland.GameScene0.UIModule
+namespace Zombieland.GameScene0.UIModule.UIMainModule
 {
     public class UIMainController : Controller, IUIMainController
     {
         public event Action<Vector2> OnMoved;
         public event Action<Vector2> OnMouseMoved;
         public event Action<bool> OnFire;
-        public event Action<bool> OnStealth;
         public event Action<bool> OnFastRun;
+        public event Action OnStealth;
         public event Action OnWeaponReaload;
         public event Action OnUse;
         public event Action OnInventory;
@@ -20,8 +20,11 @@ namespace Zombieland.GameScene0.UIModule
         public event Action OnNumber3;
         public event Action OnNumber4;
 
+        public Vector2 SizeCursor { get; private set; }
+
         private InitializerInputPrefab _initializerInputGameobjects;
         private GameCursor _gameCursor;
+
 
         #region PUBLIC
         public UIMainController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
@@ -36,8 +39,8 @@ namespace Zombieland.GameScene0.UIModule
                 _initializerInputGameobjects.Input.OnMoved -= HandleMoved;
                 _initializerInputGameobjects.Input.OnMouseMoved -= HandleMouseMoved;
                 _initializerInputGameobjects.Input.OnFire -= HandleFireClick;
-                _initializerInputGameobjects.Input.OnStealth -= HandleStealthClick;
                 _initializerInputGameobjects.Input.OnFastRun -= HandleFastRunClick;
+                _initializerInputGameobjects.Input.OnStealth -= HandleStealthClick;
                 _initializerInputGameobjects.Input.OnWeaponReaload -= HandleWeaponRealoadClick;
                 _initializerInputGameobjects.Input.OnUse -= HandleUseEClick;
                 _initializerInputGameobjects.Input.OnInventory -= HandleInventoryEClick;
@@ -69,8 +72,8 @@ namespace Zombieland.GameScene0.UIModule
             _initializerInputGameobjects.Input.OnMoved += HandleMoved;
             _initializerInputGameobjects.Input.OnMouseMoved += HandleMouseMoved;
             _initializerInputGameobjects.Input.OnFire += HandleFireClick;
-            _initializerInputGameobjects.Input.OnStealth += HandleStealthClick;
             _initializerInputGameobjects.Input.OnFastRun += HandleFastRunClick;
+            _initializerInputGameobjects.Input.OnStealth += HandleStealthClick;
             _initializerInputGameobjects.Input.OnWeaponReaload += HandleWeaponRealoadClick;
             _initializerInputGameobjects.Input.OnUse += HandleUseEClick;
             _initializerInputGameobjects.Input.OnInventory += HandleInventoryEClick;
@@ -82,6 +85,7 @@ namespace Zombieland.GameScene0.UIModule
 
 #if UNITY_STANDALONE
             _gameCursor = new GameCursor(this);
+            SizeCursor = _gameCursor.SizeCursor;
 #endif
         }
 
@@ -97,7 +101,6 @@ namespace Zombieland.GameScene0.UIModule
         {
             OnMoved?.Invoke(vectorMove);
         }
-
         private void HandleMouseMoved(Vector2 mousePosition)
         {
             OnMouseMoved?.Invoke(mousePosition);
@@ -108,9 +111,9 @@ namespace Zombieland.GameScene0.UIModule
             OnFire?.Invoke(isFire);
         }
 
-        private void HandleStealthClick(bool isStaelth)
+        private void HandleStealthClick()
         {
-            OnStealth?.Invoke(isStaelth);
+            OnStealth?.Invoke();
         }
 
         private void HandleFastRunClick(bool isFastRun)

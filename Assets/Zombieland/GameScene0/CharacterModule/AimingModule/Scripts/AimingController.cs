@@ -12,9 +12,9 @@ namespace Zombieland.GameScene0.CharacterModule.AimingModule
             CharacterController = parentController as ICharacterController;
         }
 
-        public Vector3 GetTarget()
+        public Transform GetTarget()
         {
-            return new Vector3(0f, 0f, 0f);
+            return default;
         }
 
         protected override void CreateHelpersScripts()

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Zombieland.GameScene0.EnvironmentModule
 {
@@ -6,8 +7,8 @@ namespace Zombieland.GameScene0.EnvironmentModule
     {
         public void Init(EnvironmentData environmentData)
         {
-            GameObject prefab = Resources.Load<GameObject>(environmentData.CurrentLevelName);
-            GameObject.Instantiate(prefab);
+            SceneManager.LoadScene(environmentData.CurrentLevelName, LoadSceneMode.Additive);
+            Application.targetFrameRate = 60;
         }
     }
 }
