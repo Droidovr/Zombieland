@@ -24,7 +24,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         public void Disable()
         {
             _uIController.OnMoved -= MovedHandler;
-            _characterMovingController.CharacterController.AnimationController.OnAnimatorMove -= OnAnimatorMoveHandler;
+            _characterMovingController.CharacterController.AnimationController.OnAnimationMove -= OnAnimatorMoveHandler;
         }
 
         public void Init(ICharacterMovingController characterMovingController)
@@ -32,7 +32,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             _unityCharacterController = GetComponent<UnityEngine.CharacterController>();
 
             _characterMovingController = characterMovingController;
-            _characterMovingController.CharacterController.AnimationController.OnAnimatorMove += OnAnimatorMoveHandler;
+            _characterMovingController.CharacterController.AnimationController.OnAnimationMove += OnAnimatorMoveHandler;
 
             _uIController = characterMovingController.CharacterController.RootController.UIController;
             _uIController.OnMoved += MovedHandler;

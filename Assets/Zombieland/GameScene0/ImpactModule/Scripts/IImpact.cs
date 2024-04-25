@@ -1,7 +1,3 @@
-using System.Collections.Generic;
-using UnityEngine;
-using Zombieland.GameScene0.CharacterModule;
-
 namespace Zombieland.GameScene0.ImpactModule
 {
     public interface IImpact

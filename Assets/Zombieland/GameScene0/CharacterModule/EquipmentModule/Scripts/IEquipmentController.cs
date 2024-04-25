@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
 
 namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
@@ -6,14 +7,15 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
     public interface IEquipmentController
     {
         event Action<Weapon> OnWeaponChanged;
-        event Action OnEquipmentChanged;
-        event Action<string> OnAmmoChanged;
-        event Action OnAmmoDepleted;
+        event Action<string> OnEquipmentChanged;
+        event Action OnImpactDepleted;
 
-        int CurrentAmmoCount { get; }
+        //Dictionary<int, WeaponSlot> WeaponSlots { get; }
+        List<WeaponSlot> WeaponSlots { get; }
+        string CurrentImpactID { get; }
+        int CurrentImpactCount { get; set; }
+        string CurrentOutfitEquipped { get; }
 
         ICharacterController CharacterController { get; }
-
-        void PickUpWeapon(Weapon weapon);
     }
 }
