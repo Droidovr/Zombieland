@@ -3,15 +3,15 @@ using UnityEngine;
 
 namespace Zombieland.GameScene0.NPCModule.NPCVisualBodyModule
 {
-    public class NPCVisualBodyController : Controller, INPCVisualBodyController
+    public class NpcVisualBodyController : Controller, INpcVisualBodyController
     {
         public GameObject ActiveNPC { get; set; }
-        private readonly INPCController _NPCController;
+        private readonly INpcController _NPCController;
 
-        public NPCVisualBodyController(IController parentController, List<IController> requiredControllers) 
+        public NpcVisualBodyController(IController parentController, List<IController> requiredControllers) 
             : base(parentController, requiredControllers)
         {
-            _NPCController = (INPCController) parentController;
+            _NPCController = (INpcController) parentController;
             TestCreateSubsystem();
         }
 

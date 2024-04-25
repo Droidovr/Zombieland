@@ -362,11 +362,17 @@
             </e>
             <e p="NPCModule" t="Include">
               <e p="AIModule" t="Include">
+                <e p="ActionBase.cs" t="Include" />
+                <e p="ActionChase.cs" t="Include" />
+                <e p="ActionIdle.cs" t="Include" />
+                <e p="ActionWander.cs" t="Include" />
                 <e p="GoalBase.cs" t="Include" />
                 <e p="GoalChase.cs" t="Include" />
                 <e p="GoalIdle.cs" t="Include" />
                 <e p="GoalWander.cs" t="Include" />
                 <e p="IGoal.cs" t="Include" />
+                <e p="INpcAiController.cs" t="Include" />
+                <e p="NpcAiController.cs" t="Include" />
               </e>
               <e p="NPCAwarenessModule" t="Include">
                 <e p="NPCHearingSensorModule" t="Include">

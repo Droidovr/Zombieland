@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Zombieland.GameScene0.NPCModule.NPCDataModule
 {
     [Serializable]
-    public class NPCData
+    public class NpcData
     {
         public string name = "NPCDefault";
         public string ID;

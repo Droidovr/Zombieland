@@ -4,8 +4,7 @@ namespace Zombieland.GameScene0.NPCModule.AIModule
 {
     public class GoalIdle : GoalBase
     {
-        [SerializeField]
-        private int _priority = 10;
+        [SerializeField] private int _maxPriority = 10;
 
         public override bool CanRun()
         {
@@ -14,7 +13,7 @@ namespace Zombieland.GameScene0.NPCModule.AIModule
 
         public override int CalculatePriority()
         {
-            return _priority;
+            return _maxPriority;
         }
     }
 }

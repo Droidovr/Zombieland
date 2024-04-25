@@ -1,18 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GoalChase : MonoBehaviour
+namespace Zombieland.GameScene0.NPCModule.AIModule
 {
-    // Start is called before the first frame update
-    void Start()
+    public class GoalChase : GoalBase
     {
-        
-    }
+        [SerializeField] private int _maxPriority = 60;
+        [SerializeField] private float _prirotyDecayRate = 10f;
 
-    // Update is called once per frame
-    void Update()
-    {
+        private float _currentPriority;
         
+        public override bool CanRun()
+        {
+            return NpcController.AwarenessController.IsTargetInFocus;
+        }
+
+        public override void OnGoalActivated()
+        {
+            _currentPriority = _maxPriority;
+        }
+        
+        public override void OnTickGoal()
+        {
+            if (!NpcController.AwarenessController.IsTargetInFocus)
+                _currentPriority -= _prirotyDecayRate * Time.deltaTime;
+        }
+        
+        public override int CalculatePriority()
+        {
+            return Mathf.FloorToInt(_currentPriority);
+        }
+        
+        public override void OnGoalDeactivated()
+        {
+            
+        }
     }
 }

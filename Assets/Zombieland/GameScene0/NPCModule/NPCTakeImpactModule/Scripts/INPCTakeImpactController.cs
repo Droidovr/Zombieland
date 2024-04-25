@@ -3,7 +3,7 @@ using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 
 namespace Zombieland.GameScene0.NPCModule.NPCTakeImpactModule
 {
-    public interface INPCTakeImpactController
+    public interface INpcTakeImpactController
     {
         public void ApplyImpact(List<DirectImpactData> impact);
     }

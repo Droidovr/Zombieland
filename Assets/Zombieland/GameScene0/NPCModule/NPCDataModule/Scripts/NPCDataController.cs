@@ -2,11 +2,11 @@ using System.Collections.Generic;
 
 namespace Zombieland.GameScene0.NPCModule.NPCDataModule
 {
-    public class NPCDataController : Controller, INPCDataController
+    public class NpcDataController : Controller, INpcDataController
     {
-        public NPCData NPCData { get; set; }
+        public NpcData NPCData { get; set; }
 
-        public NPCDataController(IController parentController, List<IController> requiredControllers) 
+        public NpcDataController(IController parentController, List<IController> requiredControllers) 
             : base(parentController, requiredControllers)
         {
             TestCreateSubsystem();
@@ -14,7 +14,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCDataModule
 
         protected override void CreateHelpersScripts()
         {
-            NPCData = new NPCData();
+            NPCData = new NpcData();
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -24,7 +24,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCDataModule
 
         private void TestCreateSubsystem()
         {
-            NPCData = new NPCData();
+            NPCData = new NpcData();
         }
     }
 }

@@ -4,15 +4,17 @@ using UnityEngine;
 
 namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
 {
-    public class NPCMovingController : Controller, INPCMovingController
+    public class NpcMovingController : Controller, INpcMovingController
     {
-        private readonly INPCController _NPCController;
+        public bool IsMoving => _navMeshHandler.IsMoving;
+
+        private readonly INpcController _NPCController;
         private NavMeshHandler _navMeshHandler;
 
-        public NPCMovingController(IController parentController, List<IController> requiredControllers) 
+        public NpcMovingController(IController parentController, List<IController> requiredControllers) 
             : base(parentController, requiredControllers)
         {
-            _NPCController = (INPCController)parentController;
+            _NPCController = (INpcController)parentController;
             TestCreateSubsystem();
         }
 
@@ -40,11 +42,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
         public void StopMoving()
         {
             _navMeshHandler.StopMoving();
-        }
-        
-        public bool IsMoving()
-        {
-            return _navMeshHandler.IsMoving;
         }
 
         private void TestCreateSubsystem()

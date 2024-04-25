@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Zombieland.GameScene0.NPCManagerModule;
+using Zombieland.GameScene0.NPCModule.AIModule;
 using Zombieland.GameScene0.NPCModule.NPCAwarenessModule;
 using Zombieland.GameScene0.NPCModule.NPCDataModule;
 using Zombieland.GameScene0.NPCModule.NPCMovingModule;
@@ -9,20 +10,21 @@ using Zombieland.GameScene0.NPCModule.NPCVisualBodyModule;
 
 namespace Zombieland.GameScene0.NPCModule
 {
-    public class NPCController : Controller, INPCController
+    public class NpcController : Controller, INpcController
     {
-        public INPCManagerController NPCManagerController { get; set; }
-        public INPCDataController DataController { get; set; }
-        public INPCVisualBodyController VisualBodyController { get; set; }
-        public INPCSpawnController SpawnController { get; set; }
-        public INPCMovingController MovingController { get; set; }
-        public INPCTakeImpactController TakeImpactController { get; set; }
-        public INPCAwarenessController AwarenessController { get; set; }
+        public INpcManagerController NPCManagerController { get; set; }
+        public INpcDataController DataController { get; set; }
+        public INpcVisualBodyController VisualBodyController { get; set; }
+        public INpcSpawnController SpawnController { get; set; }
+        public INpcMovingController MovingController { get; set; }
+        public INpcTakeImpactController TakeImpactController { get; set; }
+        public INpcAwarenessController AwarenessController { get; set; }
+        public INpcAIController AIController { get; set; }
 
-        public NPCController(IController parentController, List<IController> requiredControllers) 
+        public NpcController(IController parentController, List<IController> requiredControllers) 
             : base(parentController, requiredControllers)
         {
-            NPCManagerController = (INPCManagerController) parentController;
+            NPCManagerController = (INpcManagerController) parentController;
             TestCreateSubsystems();
         }
 
@@ -33,33 +35,37 @@ namespace Zombieland.GameScene0.NPCModule
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            DataController = new NPCDataController(this, null);
+            DataController = new NpcDataController(this, null);
             subsystemsControllers.Add((IController)DataController);
             
-            VisualBodyController = new NPCVisualBodyController(this, new List<IController>{(IController)DataController});
+            VisualBodyController = new NpcVisualBodyController(this, new List<IController>{(IController)DataController});
             subsystemsControllers.Add((IController)VisualBodyController);
             
-            SpawnController = new NPCSpawnController(this, new List<IController>{(IController)VisualBodyController});
+            SpawnController = new NpcSpawnController(this, new List<IController>{(IController)VisualBodyController});
             subsystemsControllers.Add((IController)SpawnController);
             
-            MovingController = new NPCMovingController(this, new List<IController>{(IController)VisualBodyController, (IController)DataController});
+            MovingController = new NpcMovingController(this, new List<IController>{(IController)VisualBodyController, (IController)DataController});
             subsystemsControllers.Add((IController)MovingController);
 
-            TakeImpactController = new NPCTakeImpactController(this,new List<IController>{(IController)DataController});
+            TakeImpactController = new NpcTakeImpactController(this,new List<IController>{(IController)DataController});
             subsystemsControllers.Add((IController)TakeImpactController);
             
-            AwarenessController = new NPCAwarenessController(this, new List<IController>{(IController)VisualBodyController});
+            AwarenessController = new NpcAwarenessController(this, new List<IController>{(IController)VisualBodyController});
             subsystemsControllers.Add((IController)AwarenessController);
+            
+            AIController = new NpcAIController(this, new List<IController>{(IController)VisualBodyController});
+            subsystemsControllers.Add((IController)AIController);
         }
 
         private void TestCreateSubsystems()
         {
-            DataController = new NPCDataController(this, new List<IController>());
-            VisualBodyController = new NPCVisualBodyController(this, new List<IController>{(IController)DataController});
-            SpawnController = new NPCSpawnController(this, new List<IController>{(IController)VisualBodyController});
-            MovingController = new NPCMovingController(this, new List<IController>{(IController)VisualBodyController, (IController)DataController});
-            TakeImpactController = new NPCTakeImpactController(this,new List<IController>{(IController)DataController});
-            AwarenessController = new NPCAwarenessController(this, new List<IController>{(IController)VisualBodyController});
+            DataController = new NpcDataController(this, new List<IController>());
+            VisualBodyController = new NpcVisualBodyController(this, new List<IController>{(IController)DataController});
+            SpawnController = new NpcSpawnController(this, new List<IController>{(IController)VisualBodyController});
+            MovingController = new NpcMovingController(this, new List<IController>{(IController)VisualBodyController, (IController)DataController});
+            TakeImpactController = new NpcTakeImpactController(this,new List<IController>{(IController)DataController});
+            AwarenessController = new NpcAwarenessController(this, new List<IController>{(IController)VisualBodyController});
+            AIController = new NpcAIController(this, new List<IController>{(IController)VisualBodyController});
         }
     }
 }

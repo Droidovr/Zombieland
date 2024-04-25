@@ -1,8 +1,9 @@
 namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule
 {
-    public interface INPCAwarenessController
+    public interface INpcAwarenessController
     {
-        public INPCController NPCController { get; set; }
+        public INpcController NpcController { get; }
+        public bool IsTargetInFocus { get; }
         public void CanSeeTarget(bool isTargetDetected);
         public void CanHearTarget(bool isTargetDetected);
     }

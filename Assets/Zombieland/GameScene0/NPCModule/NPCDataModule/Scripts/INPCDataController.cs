@@ -1,7 +1,7 @@
 namespace Zombieland.GameScene0.NPCModule.NPCDataModule
 {
-    public interface INPCDataController
+    public interface INpcDataController
     {
-        public NPCData NPCData { get; set; }
+        public NpcData NPCData { get; set; }
     }
 }

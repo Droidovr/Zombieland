@@ -3,22 +3,22 @@ using Zombieland.GameScene0.NPCModule.NPCAwarenessModule;
 
 namespace Zombieland.GameScene0.NPCModule.NPCVisionSensorModule
 {
-    public class NPCVisionSensorController : Controller, INPCVisionSensorController
+    public class NpcVisionSensorController : Controller, INpcVisionSensorController
     {
-        private readonly INPCAwarenessController _INPCAwarenessController;
+        private readonly INpcAwarenessController _npcAwarenessController;
         private VisionSensor _visionSensor;
 
-        public NPCVisionSensorController(IController parentController, List<IController> requiredControllers) 
+        public NpcVisionSensorController(IController parentController, List<IController> requiredControllers) 
             : base(parentController, requiredControllers)
         {
-            _INPCAwarenessController = (INPCAwarenessController) parentController;
+            _npcAwarenessController = (INpcAwarenessController) parentController;
             TestCreateSubsystem();
         }
 
         protected override void CreateHelpersScripts()
         {
-            _visionSensor = _INPCAwarenessController.NPCController.VisualBodyController.ActiveNPC.GetComponent<VisionSensor>();
-            _visionSensor.Init( _INPCAwarenessController.NPCController.NPCManagerController.CharacterTransform, OnCharacterInsideZone);
+            _visionSensor = _npcAwarenessController.NpcController.VisualBodyController.ActiveNPC.GetComponent<VisionSensor>();
+            _visionSensor.Init( _npcAwarenessController.NpcController.NPCManagerController.CharacterTransform, OnCharacterInsideZone);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -28,13 +28,13 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisionSensorModule
         
         private void TestCreateSubsystem()
         {
-            _visionSensor =  _INPCAwarenessController.NPCController.VisualBodyController.ActiveNPC.GetComponent<VisionSensor>();
-            _visionSensor.Init( _INPCAwarenessController.NPCController.NPCManagerController.CharacterTransform, OnCharacterInsideZone);
+            _visionSensor =  _npcAwarenessController.NpcController.VisualBodyController.ActiveNPC.GetComponent<VisionSensor>();
+            _visionSensor.Init( _npcAwarenessController.NpcController.NPCManagerController.CharacterTransform, OnCharacterInsideZone);
         }
 
         private void OnCharacterInsideZone(bool isInsideZone)
         {
-            _INPCAwarenessController.CanSeeTarget(isInsideZone);
+            _npcAwarenessController.CanSeeTarget(isInsideZone);
         }
     }
 }

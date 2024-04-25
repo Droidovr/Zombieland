@@ -5,15 +5,15 @@ using Zombieland.GameScene0.NPCModule.NPCVisionSensorModule;
 
 namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule
 {
-    public class NPCAwarenessController : Controller, INPCAwarenessController
+    public class NpcAwarenessController : Controller, INpcAwarenessController
     {
-        public INPCController NPCController { get; set; }
-        private INPCVisionSensorController _visionSensorController;
-        private INPCHearingSensorController _hearingSensorController;
+        public INpcController NpcController { get; }
+        public bool IsTargetInFocus { get; private set; }
+        private INpcVisionSensorController _visionSensorController;
+        private INpcHearingSensorController _hearingSensorController;
 
         private bool _isTargetInsideVisionZone;
         private bool _isTargetInsideHearingZone;
-        private bool _isTargetFocused;
 
         private float _visionAwarenessSpeed;
         private float _hearingAwarenessSpeed;
@@ -23,36 +23,36 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule
 
         private Updater _updater;
 
-        public NPCAwarenessController(IController parentController, List<IController> requiredControllers) 
+        public NpcAwarenessController(IController parentController, List<IController> requiredControllers) 
             : base(parentController, requiredControllers)
         {
-            NPCController = (INPCController) parentController;
+            NpcController = (INpcController) parentController;
             TestCreateSubsystems();
         }
 
         protected override void CreateHelpersScripts()
         {
-            _visionAwarenessSpeed = NPCController.DataController.NPCData.visionAwarenessSpeed;
-            _hearingAwarenessSpeed = NPCController.DataController.NPCData.hearingAwarenessSpeed;
-            _awarenessDecaySpeed = NPCController.DataController.NPCData.awarenessDecaySpeed;
-            _maxAwarenessLevel = NPCController.DataController.NPCData.maxAwarenessLevel;
+            _visionAwarenessSpeed = NpcController.DataController.NPCData.visionAwarenessSpeed;
+            _hearingAwarenessSpeed = NpcController.DataController.NPCData.hearingAwarenessSpeed;
+            _awarenessDecaySpeed = NpcController.DataController.NPCData.awarenessDecaySpeed;
+            _maxAwarenessLevel = NpcController.DataController.NPCData.maxAwarenessLevel;
 
-            _updater = NPCController.VisualBodyController.ActiveNPC.GetComponent<Updater>();
+            _updater = NpcController.VisualBodyController.ActiveNPC.GetComponent<Updater>();
             _updater.SubscribeToUpdate(UpdateVisibility);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            _visionSensorController = new NPCVisionSensorController(this, null);
+            _visionSensorController = new NpcVisionSensorController(this, null);
             subsystemsControllers.Add((IController) _visionSensorController);
-            _hearingSensorController = new NPCHearingSensorController(this, null);
+            _hearingSensorController = new NpcHearingSensorController(this, null);
             subsystemsControllers.Add((IController) _hearingSensorController);
         }
 
         private void TestCreateSubsystems()
         {
-            _visionSensorController = new NPCVisionSensorController(this, null);
-            _hearingSensorController = new NPCHearingSensorController(this, null);
+            _visionSensorController = new NpcVisionSensorController(this, null);
+            _hearingSensorController = new NpcHearingSensorController(this, null);
         }
 
         public void CanSeeTarget(bool isTargetDetected)
@@ -84,16 +84,16 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule
 
             _currentAwarenessLevel = Mathf.Clamp(_currentAwarenessLevel, 0, _maxAwarenessLevel);
 
-            if (_isTargetFocused && _currentAwarenessLevel <= 0f)
+            if (IsTargetInFocus && _currentAwarenessLevel <= 0f)
             {
-                _isTargetFocused = false;
+                IsTargetInFocus = false;
                 // Call Lose Target
                 return;
             }
 
-            if (!_isTargetFocused && _currentAwarenessLevel >= _maxAwarenessLevel)
+            if (!IsTargetInFocus && _currentAwarenessLevel >= _maxAwarenessLevel)
             {
-                _isTargetFocused = true;
+                IsTargetInFocus = true;
                 // Call Follow Target
             }
         }

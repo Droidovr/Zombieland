@@ -1,6 +1,6 @@
 namespace Zombieland.GameScene0.NPCModule.NPCVisionSensorModule
 {
-    public interface INPCVisionSensorController
+    public interface INpcVisionSensorController
     {
 
     }

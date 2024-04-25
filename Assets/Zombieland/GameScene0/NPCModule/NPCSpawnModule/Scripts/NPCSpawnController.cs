@@ -2,14 +2,14 @@ using System.Collections.Generic;
 
 namespace Zombieland.GameScene0.NPCModule.NPCSpawnModule
 {
-    public class NPCSpawnController : Controller, INPCSpawnController
+    public class NpcSpawnController : Controller, INpcSpawnController
     {
-        private readonly INPCController _NPCController;
+        private readonly INpcController _NPCController;
 
-        public NPCSpawnController(IController parentController, List<IController> requiredControllers) 
+        public NpcSpawnController(IController parentController, List<IController> requiredControllers) 
             : base(parentController, requiredControllers)
         {
-            _NPCController = (INPCController)parentController;
+            _NPCController = (INpcController)parentController;
             TestCreateSubsystem();
         }
 

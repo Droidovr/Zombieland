@@ -5,7 +5,7 @@ namespace Zombieland.GameScene0.NPCModule.AIModule
 {
     public class GoalBase : MonoBehaviour, IGoal
     {
-        protected INPCController NPCController;
+        protected INpcController NpcController;
         private TestGoalsUIManager _goalsUIManager;
 
         private void Awake()
@@ -13,14 +13,15 @@ namespace Zombieland.GameScene0.NPCModule.AIModule
             _goalsUIManager = FindObjectOfType<TestGoalsUIManager>();
         }
 
-        public void Init(INPCController NPCController)
+        public void Init(INpcController NpcController)
         {
-            this.NPCController = NPCController;
+            this.NpcController = NpcController;
         }
 
         private void Update()
         {
-            GoalTick();
+            if(NpcController == null) return;
+            OnTickGoal();
             _goalsUIManager.UpdateGoal(this, GetType().Name, "", CalculatePriority());
         }
 
@@ -33,7 +34,7 @@ namespace Zombieland.GameScene0.NPCModule.AIModule
         {
         }
 
-        public virtual void GoalTick()
+        public virtual void OnTickGoal()
         {
             
         }

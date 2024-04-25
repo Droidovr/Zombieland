@@ -3,9 +3,9 @@ using Zombieland;
 using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 using Zombieland.GameScene0.NPCModule.NPCTakeImpactModule;
 
-public class NPCTakeImpactController : Controller, INPCTakeImpactController
+public class NpcTakeImpactController : Controller, INpcTakeImpactController
 {
-    public NPCTakeImpactController(IController parentController, List<IController> requiredControllers) 
+    public NpcTakeImpactController(IController parentController, List<IController> requiredControllers) 
         : base(parentController, requiredControllers)
     {
     }
