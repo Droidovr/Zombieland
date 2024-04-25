@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 
 namespace Zombieland.GameScene0.CharacterModule.TakeImpactModule
@@ -14,9 +15,9 @@ namespace Zombieland.GameScene0.CharacterModule.TakeImpactModule
             CharacterController = parentController as ICharacterController;
         }
 
-        public void ApplyImpact(List<DirectImpactData> damageTakens)
+        public void ApplyImpact(List<DirectImpactData> damageTaken, Vector3 impactCollisionPosition, Vector3 impactDirection)
         {
-            _takerImpact.ApplyImpact(damageTakens);
+            _takerImpact.ApplyImpact(damageTaken);
         }
 
         protected override void CreateHelpersScripts()

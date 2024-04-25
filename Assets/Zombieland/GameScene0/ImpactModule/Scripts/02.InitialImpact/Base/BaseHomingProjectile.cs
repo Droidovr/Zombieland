@@ -17,7 +17,7 @@ namespace Zombieland.GameScene0.ImpactModule
 
         public void Execute()
         {
-            var targetsList = Detector.GetTargets(Impact.ImpactData.ImpactObject);
+            Detector.GetTargets(Impact.ImpactData.ImpactObject, out var targetsList, out var collisionPosition);
             Impact.ImpactData.Targets = targetsList;
             
             if (targetsList == null || targetsList.Count <= 0)
@@ -38,7 +38,8 @@ namespace Zombieland.GameScene0.ImpactModule
                 {
                     if (target.Controller is ICharacterController characterController)
                     {
-                        characterController.TakeImpactController.ApplyImpact(InitialImpactData);
+                        characterController.TakeImpactController.ApplyImpact(InitialImpactData, collisionPosition,
+                            Impact.ImpactData.ImpactObject.transform.forward);
                         if(!effectPrefab) return;
                         var effect = GameObject.Instantiate(effectPrefab, Impact.ImpactData.ImpactObject.transform.position, Quaternion.identity);
                         var effectTime = effect.GetComponent<ParticleSystem>().main.duration;
