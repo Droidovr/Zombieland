@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
     public class WeaponController : Controller, IWeaponController
     {
-        public event Action OnShotPerformed;
+        public event Action<Weapon> OnShotPerformed;
         public event Action OnShotFailed;
 
         public ICharacterController CharacterController { get; private set; }
@@ -60,6 +59,12 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         #region Private
         private void WeaponChangedHandler(Weapon weapon)
         {
+            if (Weapon != null)
+            {
+                Weapon.ShotProcess.StopFire();
+                Weapon.ShotProcess.OnShotPerformed -= ShotHandler;
+            }
+
             Weapon = weapon;
         }
 
@@ -88,7 +93,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         {
             if (Weapon != null)
             {
-                OnShotPerformed?.Invoke();
+                OnShotPerformed?.Invoke((Weapon) Weapon);
             }
         }
         #endregion

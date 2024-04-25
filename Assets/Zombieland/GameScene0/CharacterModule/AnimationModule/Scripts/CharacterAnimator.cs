@@ -10,6 +10,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         public event Action<bool> OnAnimationAttack;
         public event Action<string> OnAnimationCreateWeapon;
         public event Action OnAnimationDestroyWeapon;
+        public event Action OnStep;
 
         private const string PC_ANIMATOR = "PCAnimatorController";
         private const string MOBILE_ANIMATOR = "Character0MobileAnimator";
@@ -56,10 +57,10 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         {
             _animator.SetFloat("RealMovingSpeed", _animatorController.CharacterController.CharacterMovingController.RealMovingSpeed, DAMP_TIME, Time.deltaTime);
 
-            Vector3 moveDirection = transform.InverseTransformDirection(_animatorController.CharacterController.CharacterMovingController.DirectionWalk);
+            //Vector3 moveDirection = transform.InverseTransformDirection(_animatorController.CharacterController.CharacterMovingController.DirectionWalk);
 
-            _animator.SetFloat("DirectionX", moveDirection.x, DAMP_TIME, Time.deltaTime);
-            _animator.SetFloat("DirectionZ", moveDirection.z, DAMP_TIME, Time.deltaTime);
+            _animator.SetFloat("DirectionX", _animatorController.CharacterController.CharacterMovingController.DirectionWalk.x, DAMP_TIME, Time.deltaTime);
+            _animator.SetFloat("DirectionZ", _animatorController.CharacterController.CharacterMovingController.DirectionWalk.z, DAMP_TIME, Time.deltaTime);
         }
 
 
@@ -157,6 +158,11 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private void DestroyWeaponPrefabHandler()
         {
             OnAnimationDestroyWeapon?.Invoke();
+        }
+
+        private void StepHandler()
+        {
+            OnStep?.Invoke();
         }
     }
 }

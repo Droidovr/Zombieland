@@ -9,6 +9,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         event Action<bool> OnAnimationAttack;
         event Action<string> OnAnimationCreateWeapon;
         event Action OnAnimationDestroyWeapon;
+        event Action OnStep;
 
         ICharacterController CharacterController { get; }
     }
