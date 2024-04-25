@@ -10,6 +10,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         public event Action<bool> OnAnimationAttack;
         public event Action<string> OnAnimationCreateWeapon;
         public event Action OnAnimationDestroyWeapon;
+        public event Action OnStep;
 
         public ICharacterController CharacterController { get; private set; }
 
@@ -27,6 +28,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             _characterAnimator.OnAnimationAttack -= AnimationAttackHandler;
             _characterAnimator.OnAnimationCreateWeapon -= AnimationCreateWeaponHandler;
             _characterAnimator.OnAnimationDestroyWeapon -= AnimationDestroyWeaponHandler;
+            _characterAnimator.OnStep -= StepHandler;
             _characterAnimator.Disable();
 
             base.Disable();
@@ -42,6 +44,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             _characterAnimator.OnAnimationAttack += AnimationAttackHandler;
             _characterAnimator.OnAnimationCreateWeapon += AnimationCreateWeaponHandler;
             _characterAnimator.OnAnimationDestroyWeapon += AnimationDestroyWeaponHandler;
+            _characterAnimator.OnStep += StepHandler;
 
             CharacterRagdoll characterRagdoll = character.AddComponent<CharacterRagdoll>();
             characterRagdoll.Init(this);
@@ -74,6 +77,11 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private void AnimationDestroyWeaponHandler()
         {
             OnAnimationDestroyWeapon?.Invoke();
+        }
+
+        private void StepHandler()
+        {
+            OnStep?.Invoke();
         }
     }
 }

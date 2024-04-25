@@ -10,6 +10,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         public event Action<bool> OnAnimationAttack;
         public event Action<string> OnAnimationCreateWeapon;
         public event Action OnAnimationDestroyWeapon;
+        public event Action OnStep;
 
         private const string PC_ANIMATOR = "PCAnimatorController";
         private const string MOBILE_ANIMATOR = "Character0MobileAnimator";
@@ -157,6 +158,11 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private void DestroyWeaponPrefabHandler()
         {
             OnAnimationDestroyWeapon?.Invoke();
+        }
+
+        private void StepHandler()
+        {
+            OnStep?.Invoke();
         }
     }
 }
