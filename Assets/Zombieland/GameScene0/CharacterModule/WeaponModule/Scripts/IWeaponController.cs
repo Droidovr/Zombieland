@@ -1,8 +1,13 @@
-﻿namespace Zombieland.GameScene0.CharacterModule.WeaponModule
+﻿using System;
+
+namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
     public interface IWeaponController
     {
-        void ChangeWeapon();
-        void Fire();
+        event Action<Weapon> OnShotPerformed;
+        event Action OnShotFailed;
+
+        ICharacterController CharacterController { get; }
+        IWeapon Weapon { get; }
     }
 }

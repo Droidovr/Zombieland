@@ -1,7 +1,7 @@
 {
   "ImpactData": {
-    "ID": "ID",
-    "Name": "GunBullet",
+    "ID": "GunBullet",
+    "Name": "Gun Bullet",
     "IconID": "IconID",
     "ConsumableResources": [
       {

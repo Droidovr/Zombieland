@@ -9,10 +9,13 @@ namespace Zombieland.GameScene0.CharacterModule.InventoryModule
         event Action<string, int> OnCurrentImpactEquipped;
         event Action<string> OnCurrentOutfitEquipped;
 
-        Dictionary<string, int> ItemsInInventory { get; }
+        Dictionary<string, InventoryItem> ItemsInInventory { get; }
 
         ICharacterController CharacterController { get; }
 
         void PickUpItem(string itemName, int count);
+
+        void EquipWeaponIntoActiveSlot(string name, int slotNumber);
+        void EquipCurrentImpact(string name, int amount);
     }
 }
