@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
 namespace Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule
 {
     public class SpawnDeathRespawnController : Controller, ISpawnDeathRespawnController
     {
         public event Action<Vector3, Quaternion> OnSpawn;
 
-        private SpawnHelper _spawnHelper;
-
         public ICharacterController CharacterController { get; }
+
+        private SpawnHelper _spawnHelper;
 
         public SpawnDeathRespawnController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             CharacterController = parentController as ICharacterController;
+            _spawnHelper = new SpawnHelper(this);
         }
 
         public void SpawnCharacter()
@@ -33,10 +33,7 @@ namespace Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule
 
         protected override void CreateHelpersScripts()
         {
-            _spawnHelper = new SpawnHelper(this);
             _spawnHelper.OnSpawn += SpawnHandler;
-
-            // Test
             SpawnCharacter();
         }
 

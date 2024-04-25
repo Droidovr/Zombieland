@@ -46,7 +46,7 @@ namespace Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule
         private void Serialize()
         {
             SpawnData spawnData = new SpawnData();
-            spawnData.DefaultPosition = new System.Numerics.Vector3(1f, 1f, 1f);
+            spawnData.Level1DefaultPosition = new System.Numerics.Vector3(1f, 1f, 1f);
             spawnData.SpawnRadius = 5f;
             spawnData.SpawnType = SpawnType.InPoint;
 
@@ -62,7 +62,7 @@ namespace Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule
             var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
             CharacterData characterData = JsonConvert.DeserializeObject<CharacterData>(json, settings);
 
-            Debug.Log(characterData.SpawnData.DefaultPosition);
+            Debug.Log(characterData.SpawnData.Level1DefaultPosition);
             Debug.Log(characterData.SpawnData.SpawnRadius);
             Debug.Log(characterData.SpawnData.SpawnType);
         }
