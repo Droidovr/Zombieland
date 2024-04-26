@@ -59,6 +59,12 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         #region Private
         private void WeaponChangedHandler(Weapon weapon)
         {
+            if (Weapon != null)
+            {
+                Weapon.ShotProcess.StopFire();
+                Weapon.ShotProcess.OnShotPerformed -= ShotHandler;
+            }
+
             Weapon = weapon;
         }
 

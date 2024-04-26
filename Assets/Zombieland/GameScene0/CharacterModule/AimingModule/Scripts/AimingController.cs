@@ -1,30 +1,43 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Zombieland.GameScene0.CharacterModule.AimingModule.Test;
 
 namespace Zombieland.GameScene0.CharacterModule.AimingModule
 {
     public class AimingController : Controller, IAimingController
     {
         public ICharacterController CharacterController { get; private set; }
+        
+        private Aiming _aiming;
+        private TargetCaller _targetCaller;
 
         public AimingController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             CharacterController = parentController as ICharacterController;
         }
-
         public Transform GetTarget()
         {
-            return default;
+            return _aiming.GetTarget();
+        }
+
+        public override void Disable()
+        {
+            _aiming.Disable();
+
+            base.Disable();
         }
 
         protected override void CreateHelpersScripts()
         {
-            // This controller does not have helpers scripts.
+            _aiming = new Aiming(this);
+            _targetCaller = CharacterController.VisualBodyController.CharacterInScene.AddComponent<TargetCaller>();
+            
+            _targetCaller.Init(this);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            // This controller doesn’t have any subsystems at the moment.
+            // This controller doesnâ€™t have any subsystems at the moment.
         }
     }
 }

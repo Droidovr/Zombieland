@@ -27,6 +27,6 @@ public class InterractableEquipmentObject : MonoBehaviour
 
     private void PickedUp()
     {
-        _equipmentController.PickUpWeapon(_weapon);
+        //_equipmentController.PickUpWeapon(_weapon);
     }
 }

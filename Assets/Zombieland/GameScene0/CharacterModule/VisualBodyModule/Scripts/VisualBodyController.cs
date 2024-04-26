@@ -48,12 +48,9 @@ namespace Zombieland.GameScene0.VisualBodyModule
 
         private void CreateCharacterGameobject()
         {
-            // Get SpawnPosition & SpanwRotation from GameManager or Gamedata && Add a dependency System in Character for VisualBodyController - !!! position + rotation
-            Vector3 spawnPositionCharacter = new Vector3(3f, 0f, -4f); // Test
-            Quaternion spawnRotationCharacter = Quaternion.identity; // Test
-
             CreateCharacterPrefab createCharacterGameobject = new CreateCharacterPrefab();
-            CharacterInScene = createCharacterGameobject.CreateCharacter(spawnPositionCharacter, spawnRotationCharacter);
+            CharacterInScene = createCharacterGameobject.CreateCharacter(Vector3.zero, Quaternion.identity);
+            CharacterInScene.SetActive(false);
         }
 
         private void AnimationCreateWeaponHandler(string weaponPrefabName)
