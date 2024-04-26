@@ -30,7 +30,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
                     {
                         Vector3 forceDirection = (hit.point - _camera.transform.position).normalized;
                         forceDirection.y = 0;
-                        _characterRagdoll.Hit(forceDirection * _force, hit.point, true);
+                        _characterRagdoll.Hit(forceDirection * _force, hit.point, false);
                     }
                 }
             }
