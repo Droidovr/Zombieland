@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Zombieland.GameScene0.NPCModule.NPCDataModule
@@ -15,6 +16,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCDataModule
         public float speed = 10;
         public Vector3 spawnPosition = Vector3.zero;
         public float stopDistance;
+
+        public List<Vector3> wanderPositions;
         
         public float visionAwarenessSpeed;
         public float hearingAwarenessSpeed;

@@ -11,7 +11,7 @@ namespace Zombieland.GameScene0.NPCModule.AIModule
         
         public override bool CanRun()
         {
-            return NpcController.AwarenessController.IsTargetInFocus;
+            return npcController.AwarenessController.IsTargetInFocus;
         }
 
         public override void OnGoalActivated()
@@ -21,7 +21,7 @@ namespace Zombieland.GameScene0.NPCModule.AIModule
         
         public override void OnTickGoal()
         {
-            if (!NpcController.AwarenessController.IsTargetInFocus)
+            if (!npcController.AwarenessController.IsTargetInFocus)
                 _currentPriority -= _prirotyDecayRate * Time.deltaTime;
         }
         

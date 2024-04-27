@@ -1,18 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class ActionChase : MonoBehaviour
+namespace Zombieland.GameScene0.NPCModule.AIModule
 {
-    // Start is called before the first frame update
-    void Start()
+    public class ActionChase : ActionBase
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

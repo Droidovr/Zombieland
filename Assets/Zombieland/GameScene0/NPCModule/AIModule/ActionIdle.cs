@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public class ActionIdle : MonoBehaviour
+namespace Zombieland.GameScene0.NPCModule.AIModule
 {
-    // Start is called before the first frame update
-    void Start()
+    public class ActionIdle : ActionBase
     {
-        
-    }
+        private System.Type[] supportedGoals = new[] {typeof(GoalIdle)};
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override System.Type[] GetSupportedGoals()
+        {
+            return supportedGoals;
+        }
+
+        public override float Cost()
+        {
+            return 0f;
+        }
     }
 }

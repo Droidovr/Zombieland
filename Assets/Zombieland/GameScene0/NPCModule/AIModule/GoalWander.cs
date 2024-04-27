@@ -4,7 +4,6 @@ namespace Zombieland.GameScene0.NPCModule.AIModule
 {
     public class GoalWander : GoalBase
     {
-        [SerializeField] private int _minPriority = 0;
         [SerializeField] private int _maxPriority = 30;
         [SerializeField] private float _prirotyBuildRate = 10f;
         [SerializeField] private float _prirotyDecayRate = 10f;
@@ -22,7 +21,7 @@ namespace Zombieland.GameScene0.NPCModule.AIModule
 
         public override void OnTickGoal()
         {
-            if (NpcController.MovingController.IsMoving)
+            if (npcController.MovingController.IsMoving)
             {
                 _currentPriority -= _prirotyDecayRate * Time.deltaTime;
             }

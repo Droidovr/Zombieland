@@ -5,7 +5,7 @@ namespace Zombieland.GameScene0.NPCModule.AIModule
 {
     public class GoalBase : MonoBehaviour, IGoal
     {
-        protected INpcController NpcController;
+        protected INpcController npcController;
         private TestGoalsUIManager _goalsUIManager;
 
         private void Awake()
@@ -15,12 +15,12 @@ namespace Zombieland.GameScene0.NPCModule.AIModule
 
         public void Init(INpcController NpcController)
         {
-            this.NpcController = NpcController;
+            this.npcController = NpcController;
         }
 
         private void Update()
         {
-            if(NpcController == null) return;
+            if(npcController == null) return;
             OnTickGoal();
             _goalsUIManager.UpdateGoal(this, GetType().Name, "", CalculatePriority());
         }

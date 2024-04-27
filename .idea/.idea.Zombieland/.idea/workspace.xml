@@ -12,27 +12,22 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BFF907ED-581F-483A-B4BD-129472866E97/0f/a546ecc8/CapsuleCollider.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/NpcController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BFF907ED-581F-483A-B4BD-129472866E97/bf/db3f69ea/SphereCollider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/Scripts/ICommand.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCDataModule/Scripts/NPCData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/ITakeImpactController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCSpawnModule/Scripts/INpcSpawnController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCVisualBodyModule/Scripts/INpcVisualBodyController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Test/GoalUI/TestGoalsUIManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCDataModule/Scripts/NpcData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/Updater.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/NPCController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/AIModule/ActionBase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCVisualBodyModule/Scripts/INPCVisualBodyController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/Updater.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Test/TestStartPoint.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCSpawnModule/Scripts/INPCSpawnController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/IInitialImpactCommand.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCVisionSensorModule/Scripts/NPCVisionSensorController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCAwarenessModule/NPCAwarenessController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCAwarenessModule/Scripts/INPCAwarenessController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/Updater.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCAwarenessModule/Scripts/NPCAwarenessController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Test/TestGoalUI.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Test/UI/GoalUI.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Test/UI/GOAPUI.cs" />
@@ -40,7 +35,6 @@
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Test/GoalUI/GoalsUIManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Test/GoalUI/TestGoalsUIManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Test/GoalUI/TestGoalUI.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCMovingModule/Scripts/NavMeshHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCMovingModule/Scripts/INPCMovingController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCMovingModule/Scripts/NPCMovingController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCAwarenessModule/NPCHearingSensorModule/Scripts/INpcHearingSensorController.cs" />
@@ -66,8 +60,6 @@
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/AIModule/INpcAIController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/AIModule/NpcAIController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/NpcController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/AIModule/GoalWander.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/AIModule/GoalBase.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/INpcManagerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCAwarenessModule/NPCVisionSensorModule/Scripts/VisionSensor.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCAwarenessModule/NPCHearingSensorModule/Scripts/HearingSensor.cs" />
@@ -79,6 +71,14 @@
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/AIModule/GoalChase.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/BuffDebuffModule/Scripts/DirectImpactData.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/GunBullet.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/AIModule/GoalWander.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/AIModule/ActionChase.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/AIModule/GoalBase.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/AIModule/ActionBase.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/AIModule/ActionIdle.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCDataModule/Scripts/NPCData.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCMovingModule/Scripts/NavMeshHandler.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/AIModule/ActionWander.cs" />
       </list>
     </option>
   </component>
@@ -145,6 +145,7 @@
       <workItem from="1713890735957" duration="3685000" />
       <workItem from="1713894482363" duration="4949000" />
       <workItem from="1714065164935" duration="999000" />
+      <workItem from="1714178725358" duration="2469000" />
     </task>
     <servers />
   </component>

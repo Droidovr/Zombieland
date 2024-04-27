@@ -45,6 +45,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
 
         public void MoveToTarget(Vector3 targetPosition, float stoppingDistance, Action onTargetReached)
         {
+            _agent.ResetPath();
             _agent.stoppingDistance = stoppingDistance;
             _agent.SetDestination(targetPosition);
             _targetReached = onTargetReached;
@@ -53,6 +54,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
 
         public void FollowTarget(Transform targetTransform, float stoppingDistance, Action onTargetReached)
         {
+            _agent.ResetPath();
             _agent.stoppingDistance = stoppingDistance;
             _agent.SetDestination(targetTransform.position);
             _targetReached = onTargetReached;
