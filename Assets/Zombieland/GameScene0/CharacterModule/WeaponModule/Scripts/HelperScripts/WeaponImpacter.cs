@@ -24,6 +24,8 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
             impact.ImpactData.ObjectSpawnPosition = _weaponPointFire.position;
 
+            impact.ImpactData.ObjectParentTransform = _weaponPointFire;
+
             impact.ImpactData.ObjectRotation = AddShotSpread(impact.ImpactData.FollowTargetTransform);
 
             return impact;

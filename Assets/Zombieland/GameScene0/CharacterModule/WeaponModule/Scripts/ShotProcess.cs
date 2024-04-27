@@ -16,8 +16,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         public void Init(IWeaponController weaponController)
         {
-            Debug.Log("Init - Thread ID: " + Thread.CurrentThread.ManagedThreadId);
-
             _weaponController = weaponController;
             _weaponImpacter = new WeaponImpacter(_weaponController);
             _weaponResourcer = new WeaponResourcer(_weaponController);

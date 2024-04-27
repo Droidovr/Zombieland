@@ -9,6 +9,7 @@ using Zombieland.GameScene0.CharacterModule.CharacterVFX;
 using Zombieland.GameScene0.CharacterModule.EquipmentModule;
 using Zombieland.GameScene0.CharacterModule.InventoryModule;
 using Zombieland.GameScene0.CharacterModule.SensorModule;
+using Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule;
 using Zombieland.GameScene0.CharacterModule.StealthModule;
 using Zombieland.GameScene0.CharacterModule.TakeImpactModule;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
@@ -25,16 +26,16 @@ namespace Zombieland.GameScene0.CharacterModule
         public IVisualBodyController VisualBodyController { get; private set; }
         public ICharacterMovingController CharacterMovingController { get; private set; }
         public ISensorController SensorController { get; private set; }
-        public ITakeImpactController TakeImpactController { get; private set;}
-        public IEquipmentController EquipmentController { get; private set;}
+        public ITakeImpactController TakeImpactController { get; private set; }
+        public IEquipmentController EquipmentController { get; private set; }
         public IInventoryController InventoryController { get; private set; }
         public IAnimationController AnimationController { get; private set; }
+        public ISpawnDeathRespawnController SpawnDeathRespawnController { get; private set; }
         public IBuffDebuffController BuffDebuffController { get; private set; }
         public IAimingController AimingController { get; private set; }
         public IStealthController StealthController { get; private set; }
         public ICharacterVFXController CharacterVFXController { get; private set; }
 
-        public Transform CharacterTransform => VisualBodyController.CharacterInScene.transform;
 
         public CharacterController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
@@ -60,9 +61,9 @@ namespace Zombieland.GameScene0.CharacterModule
             CharacterMovingController = new CharacterMovingController(this, new List<IController> { (IController) RootController.UIController, (IController) CharacterDataController, (IController) VisualBodyController, (IController) AnimationController });
             subsystemsControllers.Add((IController)CharacterMovingController);
 
-            SensorController = new SensorController(this, new List<IController>{(IController)VisualBodyController});
+            SensorController = new SensorController(this, new List<IController> { (IController)VisualBodyController });
             subsystemsControllers.Add((IController)SensorController);
-            
+
             TakeImpactController = new TakeImpactController(this, new List<IController> { (IController)BuffDebuffController, (IController)CharacterDataController });
             subsystemsControllers.Add((IController)TakeImpactController);
             
@@ -75,10 +76,13 @@ namespace Zombieland.GameScene0.CharacterModule
             AnimationController = new AnimationController(this, new List<IController>{(IController)CharacterMovingController, (IController)VisualBodyController});
             subsystemsControllers.Add ((IController)AnimationController);
 
+            SpawnDeathRespawnController = new SpawnDeathRespawnController(this, new List<IController> { (IController)CharacterDataController, (IController)VisualBodyController });
+            subsystemsControllers.Add((IController)SpawnDeathRespawnController);
+
             BuffDebuffController = new BuffDebuffController(this, null);
             subsystemsControllers.Add((IController)BuffDebuffController);
 
-            AimingController = new AimingController(this, new List<IController> { (IController)VisualBodyController, (IController)RootController.UIController });
+            AimingController = new AimingController(this, new List<IController> { (IController)VisualBodyController, (IController)RootController.UIController});
             subsystemsControllers.Add((IController)AimingController);
 
             StealthController = new StealthController(this, new List<IController> { (IController)VisualBodyController, (IController)RootController.UIController });

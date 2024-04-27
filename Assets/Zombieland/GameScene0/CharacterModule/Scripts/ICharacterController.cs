@@ -12,7 +12,9 @@ using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 using Zombieland.GameScene0.CharacterModule.AimingModule;
 using Zombieland.GameScene0.CharacterModule.StealthModule;
+using Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule;
 using Zombieland.GameScene0.CharacterModule.CharacterVFX;
+
 
 namespace Zombieland.GameScene0.CharacterModule
 {
@@ -28,11 +30,10 @@ namespace Zombieland.GameScene0.CharacterModule
         IEquipmentController EquipmentController { get; }
         IInventoryController InventoryController { get; }
         IAnimationController AnimationController { get; }
+        ISpawnDeathRespawnController SpawnDeathRespawnController { get; }
         IBuffDebuffController BuffDebuffController { get; }
         IAimingController AimingController { get; }
         IStealthController StealthController { get; }
         ICharacterVFXController CharacterVFXController { get; }
-
-        Transform CharacterTransform { get; }
     }
 }

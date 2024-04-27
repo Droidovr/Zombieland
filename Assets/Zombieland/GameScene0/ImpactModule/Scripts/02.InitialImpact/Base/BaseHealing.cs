@@ -21,7 +21,7 @@ namespace Zombieland.GameScene0.ImpactModule
             {
                 if (target.Controller is ICharacterController characterController)
                 {
-                    characterController.TakeImpactController.ApplyImpact(InitialImpactData);
+                    characterController.TakeImpactController.ApplyImpact(InitialImpactData, Vector3.zero, Vector3.zero);
                     if(!effectPrefab) return;
                     var effect = GameObject.Instantiate(effectPrefab, ((Impactable)target).transform.position, Quaternion.identity);
                     var effectTime = effect.GetComponent<ParticleSystem>().main.duration;
