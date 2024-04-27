@@ -1,23 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="907d7957-8796-4ab4-a556-102ecf85e7d2" name="Default Changelist" comment="" />
+    <list default="true" id="907d7957-8796-4ab4-a556-102ecf85e7d2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Zombieland/.idea/contentModel.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Zombieland/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Zombieland/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Zombieland/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Zombieland/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/0.5.4-AnimationSystem" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BFF907ED-581F-483A-B4BD-129472866E97/0f/a546ecc8/CapsuleCollider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/ISoundBurstController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/SoundBurstController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/ITakeImpactController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BFF907ED-581F-483A-B4BD-129472866E97/bf/db3f69ea/SphereCollider.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/Scripts/ICommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/00.Assembly/ObjectParentAssembler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Wrench.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/IInitialImpactCommand.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Wrench.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/Scripts/ICommand.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -76,24 +86,60 @@
       </list>
     </option>
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2bBMIt96jmhy7VGWdQC7DVmRt4h" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="Discover.Launch.Via.Unity" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\Igor\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\Igor\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\Igor\\AppData\\Local\\Symbols\\src&quot;
+    ]
+  }
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\Program Files\Unity 2022.3.23f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-projectPath C:\UnityGit\Zombieland -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="C:\UnityGit\Zombieland" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\Program Files\Unity 2022.3.23f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\UnityGit\Zombieland -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="C:\UnityGit\Zombieland" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <method v="2" />
     </configuration>
@@ -101,8 +147,9 @@
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <method v="2" />
     </configuration>
@@ -134,69 +181,20 @@
       <workItem from="1712785995575" duration="55000" />
       <workItem from="1713811057656" duration="1934000" />
       <workItem from="1713813312195" duration="410000" />
+      <workItem from="1713979023729" duration="839000" />
+      <workItem from="1714067162361" duration="1658000" />
+      <workItem from="1714163611046" duration="2336000" />
+      <workItem from="1714218037529" duration="1039000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="921" y="351" key="RiderGenerateDialog" timestamp="1710976096638">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="921" y="351" key="RiderGenerateDialog/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1710976096638" />
-    <state x="4531" y="605" key="RiderGenerateDialog/3840.349.1920.1020/0.0.2560.1400@3840.349.1920.1020" timestamp="1707846503919" />
-    <state x="3840" y="349" width="1936" height="1107" key="dock-window-1" timestamp="1713213764821">
-      <screen x="3840" y="349" width="1920" height="1020" />
-    </state>
-    <state x="3840" y="349" width="1936" height="1107" key="dock-window-1/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1713213764821" />
-    <state x="357" y="-19" width="1606" height="1066" maximized="true" key="dock-window-1/3840.349.1920.1020/0.0.2560.1400@3840.349.1920.1020" timestamp="1707854937290" />
-    <state x="4270" y="442" width="1880" height="1387" key="dock-window-10" timestamp="1707504789053">
-      <screen x="3840" y="349" width="1920" height="1020" />
-    </state>
-    <state x="4270" y="442" width="1880" height="1387" key="dock-window-10/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1707504789053" />
-    <state x="3840" y="349" width="1882" height="1107" key="dock-window-11" timestamp="1707506250003">
-      <screen x="3840" y="349" width="1920" height="1020" />
-    </state>
-    <state x="3840" y="349" width="1882" height="1107" key="dock-window-11/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1707506250003" />
-    <state x="3840" y="349" width="1936" height="1107" key="dock-window-2" timestamp="1713214645110">
-      <screen x="3840" y="349" width="1920" height="1020" />
-    </state>
-    <state x="3840" y="349" width="1936" height="1107" key="dock-window-2/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1713214645110" />
-    <state x="4470" y="505" width="2232" height="1387" key="dock-window-3" timestamp="1710976998924">
-      <screen x="3840" y="349" width="1920" height="1020" />
-    </state>
-    <state x="4470" y="505" width="2232" height="1387" key="dock-window-3/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1710976998924" />
-    <state x="554" y="237" width="2284" height="1387" key="dock-window-3/3840.349.1920.1020/0.0.2560.1400@3840.349.1920.1020" timestamp="1709701138739" />
-    <state x="342" y="0" width="2232" height="1387" key="dock-window-4" timestamp="1710977352369">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="342" y="0" width="2232" height="1387" key="dock-window-4/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1710977352369" />
-    <state x="4167" y="669" width="2284" height="1387" key="dock-window-4/3840.349.1920.1020/0.0.2560.1400@3840.349.1920.1020" timestamp="1709701138739" />
-    <state x="287" y="185" width="2232" height="1387" key="dock-window-5" timestamp="1710977352369">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="287" y="185" width="2232" height="1387" key="dock-window-5/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1710977352369" />
-    <state x="3" y="143" width="2232" height="1387" key="dock-window-6" timestamp="1710978347834">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="3" y="143" width="2232" height="1387" key="dock-window-6/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1710978347834" />
-    <state x="4362" y="540" width="1887" height="926" key="dock-window-7" timestamp="1707503922764">
-      <screen x="3840" y="349" width="1920" height="1020" />
-    </state>
-    <state x="4362" y="540" width="1887" height="926" key="dock-window-7/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1707503922764" />
-    <state x="3840" y="349" width="1882" height="1107" key="dock-window-8" timestamp="1707504789053">
-      <screen x="3840" y="349" width="1920" height="1020" />
-    </state>
-    <state x="3840" y="349" width="1882" height="1107" key="dock-window-8/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1707504789053" />
-    <state x="4478" y="561" width="1880" height="1387" key="dock-window-9" timestamp="1707504789053">
-      <screen x="3840" y="349" width="1920" height="1020" />
-    </state>
-    <state x="4478" y="561" width="1880" height="1387" key="dock-window-9/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1707504789053" />
   </component>
 </project>
