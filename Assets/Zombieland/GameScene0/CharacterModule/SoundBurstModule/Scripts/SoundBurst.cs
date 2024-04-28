@@ -49,7 +49,8 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
             
             try
             {
-                _sounds.Add(soundName, Resources.Load<AudioClip>(soundName));
+                AudioClip audio = Resources.Load<AudioClip>(soundName);
+                _sounds.Add(soundName, audio);
                 return true;
             }
             catch (Exception e)
