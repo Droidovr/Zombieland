@@ -10,6 +10,7 @@ using Zombieland.GameScene0.CharacterModule.EquipmentModule;
 using Zombieland.GameScene0.CharacterModule.InventoryModule;
 using Zombieland.GameScene0.CharacterModule.SensorModule;
 using Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts;
+using Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule;
 using Zombieland.GameScene0.CharacterModule.StealthModule;
 using Zombieland.GameScene0.CharacterModule.TakeImpactModule;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
@@ -30,6 +31,7 @@ namespace Zombieland.GameScene0.CharacterModule
         public IEquipmentController EquipmentController { get; private set; }
         public IInventoryController InventoryController { get; private set; }
         public IAnimationController AnimationController { get; private set; }
+        public ISpawnDeathRespawnController SpawnDeathRespawnController { get; }
         public IBuffDebuffController BuffDebuffController { get; private set; }
         public IAimingController AimingController { get; private set; }
         public IStealthController StealthController { get; private set; }

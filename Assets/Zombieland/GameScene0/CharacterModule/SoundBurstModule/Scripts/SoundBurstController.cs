@@ -7,9 +7,9 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
     public class SoundBurstController : Controller, ISoundBurstController
     {
         private const string STEPSOUNDNAME = "";
-        
         public ICharacterController CharacterController { get; private set; }
-        
+
+        private AudioIDAsset _audioID;
         private SoundBurst _soundBurst;
         private AudioSource _audioSource;
         
@@ -20,7 +20,9 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
         
         public override void Disable()
         {
-            CharacterController.WeaponController.OnShotPerformed -= PlaySound;
+            CharacterController.WeaponController.OnShotPerformed -= PlayWeaponSound;
+            CharacterController.AnimationController.OnStep -= () => PlaySimpleSound("STEPSOUNDNAME");
+            CharacterController.TakeImpactController.OnApplyImpact -= PlayImpactSound;
 
             base.Disable();
         }
@@ -28,11 +30,13 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
         protected override void CreateHelpersScripts()
         {
             _audioSource = CharacterController.VisualBodyController.CharacterInScene.AddComponent<AudioSource>();
+            _audioID = Resources.Load<AudioIDAsset>("AudioID");
 
             _soundBurst = new SoundBurst(_audioSource);
 
-            CharacterController.WeaponController.OnShotPerformed += PlaySound;
-            CharacterController.AnimationController.OnStep += () => PlaySound("STEPSOUNDNAME");
+            CharacterController.WeaponController.OnShotPerformed += PlayWeaponSound;
+            CharacterController.AnimationController.OnStep += () => PlaySimpleSound(_audioID.walkSoundName);
+            CharacterController.TakeImpactController.OnApplyImpact += PlayImpactSound;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -40,14 +44,18 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
             // This controller doesn’t have any subsystems at the moment.
         }
         
-        private void PlaySound(Weapon weapon)
+        private void PlayWeaponSound(Weapon weapon)
         {
             _soundBurst.PlaySound(weapon);
         }
 
-        private void PlaySound(string soundName)
+        private void PlaySimpleSound(string soundName)
         {
             _soundBurst.PlaySound(soundName);
+        }
+        private void PlayImpactSound(Vector3 vector1, Vector3 vector2)
+        {
+            _soundBurst.PlaySound(_audioID.impactSoundName);
         }
     }
 }
