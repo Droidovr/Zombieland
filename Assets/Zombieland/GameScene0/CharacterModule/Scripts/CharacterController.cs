@@ -26,8 +26,8 @@ namespace Zombieland.GameScene0.CharacterModule
         public IVisualBodyController VisualBodyController { get; private set; }
         public ICharacterMovingController CharacterMovingController { get; private set; }
         public ISensorController SensorController { get; private set; }
-        public ITakeImpactController TakeImpactController { get; private set;}
-        public IEquipmentController EquipmentController { get; private set;}
+        public ITakeImpactController TakeImpactController { get; private set; }
+        public IEquipmentController EquipmentController { get; private set; }
         public IInventoryController InventoryController { get; private set; }
         public IAnimationController AnimationController { get; private set; }
         public IBuffDebuffController BuffDebuffController { get; private set; }

@@ -19,7 +19,7 @@ namespace Zombieland.GameScene0.CameraModule
 
         protected override void CreateHelpersScripts()
         {
-            CreateCameraObject(_rootController.CharacterController.CharacterTransform);
+            CreateCameraObject(_rootController.CharacterController.VisualBodyController.CharacterInScene.transform);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
