@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="907d7957-8796-4ab4-a556-102ecf85e7d2" name="Default Changelist" comment="">
+    <list default="true" id="907d7957-8796-4ab4-a556-102ecf85e7d2" name="Default Changelist" comment="scriptable object with ids">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Zombieland/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Zombieland/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/Scripts/CharacterController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/Scripts/CharacterController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/SoundBurstController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/SoundBurstController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/SoundBurst.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/SoundBurst.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +20,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/UnityGit/Zombieland/Assets/Zombieland/GameScene0/CharacterModule/Scripts/CharacterController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/AudioIDAsset.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/ISoundBurstController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/SoundBurstController.cs" root0="FORCE_HIGHLIGHTING" />
@@ -189,7 +189,7 @@
       <workItem from="1714220672295" duration="806000" />
       <workItem from="1714314690616" duration="1908000" />
       <workItem from="1714325313829" duration="601000" />
-      <workItem from="1714326077306" duration="992000" />
+      <workItem from="1714326077306" duration="1686000" />
     </task>
     <task id="LOCAL-00001" summary="start setup">
       <option name="closed" value="true" />
@@ -215,7 +215,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714316361138</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="scriptable object with ids">
+      <option name="closed" value="true" />
+      <created>1714327168591</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1714327168591</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,6 +237,7 @@
     <MESSAGE value="start setup" />
     <MESSAGE value="Start setup" />
     <MESSAGE value="Added sounds for shooting and walking" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added sounds for shooting and walking" />
+    <MESSAGE value="scriptable object with ids" />
+    <option name="LAST_COMMIT_MESSAGE" value="scriptable object with ids" />
   </component>
 </project>

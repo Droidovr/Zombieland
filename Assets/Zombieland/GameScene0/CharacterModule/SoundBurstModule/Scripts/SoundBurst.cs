@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
@@ -22,26 +23,51 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
         {
             string soundName = weapon.WeaponData.SoundName;
 
-            if (!_sounds.ContainsKey(soundName))
-            {
-                LoadSound(soundName);
-            }
-            
-            _audioSource.PlayOneShot(_sounds[soundName], VOLUME);
+            PlayOneShot(soundName);
         }
         public void PlaySound(string soundName)
         {
-            if (!_sounds.ContainsKey(soundName))
+            PlayOneShot(soundName);
+        }
+
+        private void PlayOneShot(string soundName)
+        {
+            if (!LoadSound(soundName))
             {
-                LoadSound(soundName);
+                return;
             }
             
             _audioSource.PlayOneShot(_sounds[soundName], VOLUME);
         }
-
-        private void LoadSound(string soundName)
+        
+        private bool LoadSound(string soundName)
         {
-            _sounds.Add(soundName, Resources.Load<AudioClip>(soundName));
+            if (IsSoundExist(soundName))
+            {
+                return true;
+            }
+            
+            try
+            {
+                _sounds.Add(soundName, Resources.Load<AudioClip>(soundName));
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.Log($"Sound - {soundName} is not exist in Resources");
+                return false;
+            }
+        }
+        private bool IsSoundExist(string soundName)
+        {
+            if (_sounds.ContainsKey(soundName))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
