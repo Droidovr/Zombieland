@@ -9,6 +9,7 @@ using Zombieland.GameScene0.CharacterModule.CharacterVFX;
 using Zombieland.GameScene0.CharacterModule.EquipmentModule;
 using Zombieland.GameScene0.CharacterModule.InventoryModule;
 using Zombieland.GameScene0.CharacterModule.SensorModule;
+using Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts;
 using Zombieland.GameScene0.CharacterModule.StealthModule;
 using Zombieland.GameScene0.CharacterModule.TakeImpactModule;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
@@ -33,6 +34,7 @@ namespace Zombieland.GameScene0.CharacterModule
         public IAimingController AimingController { get; private set; }
         public IStealthController StealthController { get; private set; }
         public ICharacterVFXController CharacterVFXController { get; private set; }
+        public ISoundBurstController SoundBurstController { get; private set; }
 
         public Transform CharacterTransform => VisualBodyController.CharacterInScene.transform;
 
@@ -86,6 +88,9 @@ namespace Zombieland.GameScene0.CharacterModule
 
             CharacterVFXController = new CharacterVFXController(this, new List<IController> { (IController)WeaponController, (IController)VisualBodyController });
             subsystemsControllers.Add((IController)CharacterVFXController);
+            
+            SoundBurstController = new SoundBurstController(this, new List<IController> { (IController)VisualBodyController, (IController)WeaponController});
+            subsystemsControllers.Add((IController)SoundBurstController);
         }
     }
 }

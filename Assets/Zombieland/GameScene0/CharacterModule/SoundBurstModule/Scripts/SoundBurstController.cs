@@ -6,8 +6,10 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
 {
     public class SoundBurstController : Controller, ISoundBurstController
     {
+        private const string STEPSOUNDNAME = "";
+        
         public ICharacterController CharacterController { get; private set; }
-
+        
         private SoundBurst _soundBurst;
         private AudioSource _audioSource;
         
@@ -15,14 +17,11 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
         {
             CharacterController = parentController as ICharacterController;
         }
-        public void PlaySound(Weapon weapon)
-        {
-            _soundBurst.PlaySound(weapon);
-        }
+        
         public override void Disable()
         {
-            _soundBurst.Disable();
-            
+            CharacterController.WeaponController.OnShotPerformed -= PlaySound;
+
             base.Disable();
         }
         
@@ -30,14 +29,25 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
         {
             _audioSource = CharacterController.VisualBodyController.CharacterInScene.AddComponent<AudioSource>();
 
-            _soundBurst = new SoundBurst(this ,_audioSource);
+            _soundBurst = new SoundBurst(_audioSource);
 
             CharacterController.WeaponController.OnShotPerformed += PlaySound;
+            CharacterController.AnimationController.OnStep += () => PlaySound("STEPSOUNDNAME");
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
             // This controller doesn’t have any subsystems at the moment.
+        }
+        
+        private void PlaySound(Weapon weapon)
+        {
+            _soundBurst.PlaySound(weapon);
+        }
+
+        private void PlaySound(string soundName)
+        {
+            _soundBurst.PlaySound(soundName);
         }
     }
 }

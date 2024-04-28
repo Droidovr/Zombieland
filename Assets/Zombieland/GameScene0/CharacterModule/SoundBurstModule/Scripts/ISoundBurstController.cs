@@ -6,7 +6,5 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
     public interface ISoundBurstController
     {
         ICharacterController CharacterController { get; }
-
-        void PlaySound(Weapon weapon);
     }
 }
