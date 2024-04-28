@@ -27,7 +27,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             _animationController = animationController;
         }
 
-        public async void Hit(Vector3 forceDirection, Vector3 hitPosition, bool isDeath)
+        public async void Hit(Vector3 hitPosition, Vector3 forceDirection)
         {
             foreach (RagdollComponent component in _ragdollComponents)
             {
@@ -45,7 +45,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
                         component.RigidBody.AddForceAtPosition(forceDirection, hitPosition, ForceMode.Impulse);
 
-                        if (isDeath)
+                        if (_animationController.CharacterController.CharacterDataController.CharacterData.IsDead)
                         {
                             return;
                         }

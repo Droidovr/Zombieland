@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using Zombieland.GameScene0.ImpactModule;
+using static UnityEngine.GraphicsBuffer;
 
 namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 {
@@ -11,6 +13,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private Camera _camera;
 
         private CharacterRagdoll _characterRagdoll;
+        private IAnimationController _animationController;
 
 
         private void Start()
@@ -30,7 +33,24 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
                     {
                         Vector3 forceDirection = (hit.point - _camera.transform.position).normalized;
                         forceDirection.y = 0;
-                        _characterRagdoll.Hit(forceDirection * _force, hit.point, true);
+
+
+                        Impact impact = _animationController.CharacterController.RootController.GameDataController.GetData<Impact>("GunBullet");
+
+                        impact.ImpactData.ImpactOwner = _animationController.CharacterController;
+
+                        impact.ImpactData.FollowTargetTransform = _animationController.CharacterController.AimingController.GetTarget();
+
+                        impact.ImpactData.ObjectSpawnPosition = (((_camera.transform.position + hit.point) * 0.5f + hit.point) * 0.5f + hit.point) * 0.5f;
+
+                        impact.ImpactData.ObjectParentTransform = null;
+
+                        Vector3 direction = hit.point - _camera.transform.position;
+                        impact.ImpactData.ObjectRotation = Quaternion.LookRotation(direction);
+
+                        impact.Activate();
+
+                        //_characterRagdoll.Hit(hit.point, forceDirection * _force);
                     }
                 }
             }
@@ -41,8 +61,9 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             }
         }
 
-        public void Init(CharacterRagdoll characterRagdoll)
+        public void Init(IAnimationController animationController, CharacterRagdoll characterRagdoll)
         {
+            _animationController = animationController;
             _characterRagdoll = characterRagdoll;
         }
     }

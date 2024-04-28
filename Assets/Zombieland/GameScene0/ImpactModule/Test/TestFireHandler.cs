@@ -24,7 +24,6 @@ namespace Zombieland.GameScene0.ImpactModule
                 var impact = JsonConvert.DeserializeObject<Impact>(textAsset.text, settings);
                 impact.ImpactData.ObjectSpawnPosition = !SpawnPosition ? HeroWeaponTransform.position : SpawnPosition.position;
                 impact.ImpactData.ObjectRotation = HeroWeaponTransform.rotation;
-                impact.ImpactData.IgnoringColliders = new List<Collider>{GetComponent<Collider>()};
                 impact.ImpactData.FollowTargetTransform = FollowTargetTransform;
 
                 if (TargetImpactableList.Count > 0)
