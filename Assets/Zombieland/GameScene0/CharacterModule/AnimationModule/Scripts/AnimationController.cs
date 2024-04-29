@@ -49,8 +49,8 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             _characterAnimator.OnAnimationDestroyWeapon += AnimationDestroyWeaponHandler;
             _characterAnimator.OnStep += StepHandler;
 
-            //_characterRagdoll = CharacterController.VisualBodyController.CharacterInScene.AddComponent<CharacterRagdoll>();
-            //_characterRagdoll.Init(this);
+            _characterRagdoll = CharacterController.VisualBodyController.CharacterInScene.AddComponent<CharacterRagdoll>();
+            _characterRagdoll.Init(this);
 
             //Test
             //TestShooter testShooter = CharacterController.VisualBodyController.CharacterInScene.AddComponent<TestShooter>();
