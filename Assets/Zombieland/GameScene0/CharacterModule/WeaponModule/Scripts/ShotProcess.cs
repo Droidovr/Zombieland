@@ -1,6 +1,4 @@
 using System;
-using System.Threading;
-using UnityEngine;
 using Zombieland.GameScene0.ImpactModule;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule

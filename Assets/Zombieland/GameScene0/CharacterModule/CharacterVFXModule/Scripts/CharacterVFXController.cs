@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
@@ -37,9 +36,10 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterVFX
 
         private void ShotPerformedHandler(Weapon weapon)
         {
-            Transform weaponPointFire = CharacterController.VisualBodyController.WeaponInScene.GetComponent<Transform>().Find("PointFire");
-
-            _vFXCreator.CtreateVFX(weapon.WeaponData.VFXPrefabName, weaponPointFire.position, weaponPointFire.rotation);
+            Debug.Log(CharacterController.VisualBodyController.WeaponInScene.GetComponent<Transform>().Find("PointFire").position);
+            Debug.Log(CharacterController.WeaponController.WeaponPointFire.position);
+            
+            _vFXCreator.CtreateVFX(weapon.WeaponData.VFXPrefabName, CharacterController.WeaponController.WeaponPointFire.position, CharacterController.WeaponController.WeaponPointFire.rotation);
         }
 
         private void ApplyImpactHandler(Vector3 position, Vector3 direction)

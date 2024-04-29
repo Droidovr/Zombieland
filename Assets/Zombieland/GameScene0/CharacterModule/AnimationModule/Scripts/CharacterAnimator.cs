@@ -13,7 +13,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         public event Action OnStep;
 
         private const string PC_ANIMATOR = "PCAnimatorController";
-        private const string MOBILE_ANIMATOR = "Character0MobileAnimator";
+        private const string MOBILE_ANIMATOR = "MobileAnimatorController";
         private const float DAMP_TIME = 0.05f;
         private const float CHECK_FIRE_PERMITION_PERIOD = 0.1f;
 
