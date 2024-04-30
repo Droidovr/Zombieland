@@ -11,6 +11,8 @@ namespace Zombieland.GameScene0.UIModule.UIMainModule
         private const string INPUT_MOBILE_PREFAB_NAME = "MainMobileUICanvas";
         private const string INPUT_PC_PREFAB_NAME = "MainPCUICanvas";
 
+        private GameObject _inputSystemGameobject;
+
         public void Init()
         {
             GameObject eventSystem = new GameObject();
@@ -20,12 +22,17 @@ namespace Zombieland.GameScene0.UIModule.UIMainModule
 
 #if UNITY_STANDALONE// || UNITY_EDITOR
             GameObject prefab = Resources.Load<GameObject>(INPUT_PC_PREFAB_NAME);
-            GameObject inputSystemGameobject = GameObject.Instantiate(prefab);
+            _inputSystemGameobject = GameObject.Instantiate(prefab);
 #else
             GameObject prefab = Resources.Load<GameObject>(INPUT_MOBILE_PREFAB_NAME);
-            GameObject inputSystemGameobject = GameObject.Instantiate(prefab);
+            _inputSystemGameobject = GameObject.Instantiate(prefab);
 #endif
-            Input = inputSystemGameobject.GetComponentInChildren<Input>();
+            Input = _inputSystemGameobject.GetComponentInChildren<Input>();
+        }
+
+        public GameObject GetInputSystemGameobject()
+        {
+            return _inputSystemGameobject;
         }
     }
 }

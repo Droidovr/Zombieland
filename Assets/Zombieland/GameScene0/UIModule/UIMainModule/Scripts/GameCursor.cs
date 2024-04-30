@@ -1,76 +1,68 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.OnScreen;
 
 namespace Zombieland.GameScene0.UIModule.UIMainModule
 {
-    public class GameCursor
+    public class GameCursor : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        public Vector2 SizeCursor { get; private set; }
-
-        private const string CURSOR_DEFAULT_NAME = "UISprites/cursorDefault";
-        private const string CURSOR_AIM_NAME = "UISprites/cursorAim";
-
-        private Texture2D _cursorDefaultTexture;
-        private Texture2D _cursorAimTexture;
         private IUIMainController _uIMainController;
-        private List<RaycastResult> _raycastResults;
-        private bool _isPointerOverGameObject = false;
+        private GameObject _aim;
+        private Transform _aimTransform;
 
-        public GameCursor(IUIMainController uIMainController)
+
+        public void OnPointerEnter(PointerEventData eventData)
         {
-            _cursorDefaultTexture = Resources.Load<Texture2D>(CURSOR_DEFAULT_NAME);
-            _cursorAimTexture = Resources.Load<Texture2D>(CURSOR_AIM_NAME);
-
-            SizeCursor = new Vector2(_cursorAimTexture.width, _cursorAimTexture.height);
-
-            _uIMainController = uIMainController;
-            _uIMainController.OnMouseMoved += UpdateCursor;
-
-            _raycastResults = new List<RaycastResult>();
-
-            Cursor.SetCursor(_cursorAimTexture, Vector2.zero, CursorMode.Auto);
-        }
-
-        public void Disable()
-        {
-            _uIMainController.OnMouseMoved -= UpdateCursor;
-        }
-
-        private void OnPointerEnter(PointerEventData eventData)
-        {
-            _isPointerOverGameObject = true;
-        }
-
-        private void OnPointerExit(PointerEventData eventData)
-        {
-            _isPointerOverGameObject = false;
-        }
-
-        private void UpdateCursor(Vector2 mousePosition)
-        {
-            if (_isPointerOverGameObject)
+            OnScreenButton onScreenButton = eventData.pointerEnter.GetComponent<OnScreenButton>();
+            if (onScreenButton != null)
             {
-                PointerEventData pointerData = new PointerEventData(EventSystem.current);
-                pointerData.position = mousePosition;
-
-                _raycastResults.Clear();
-
-                EventSystem.current.RaycastAll(pointerData, _raycastResults);
-
-                if (_raycastResults.Count > 0)
-                {
-                    if (_raycastResults[0].gameObject.GetComponent<OnScreenButton>() != null)
-                    {
-                        Cursor.SetCursor(_cursorDefaultTexture, Vector2.zero, CursorMode.Auto);
-                    }
-                }
-                else
-                {
-                    Cursor.SetCursor(_cursorAimTexture, Vector2.zero, CursorMode.Auto);
-                }
+                Cursor.visible = true;
+                _aim.SetActive(false);
             }
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            OnScreenButton onScreenButton = eventData.pointerEnter.GetComponent<OnScreenButton>();
+            if (onScreenButton != null)
+            {
+                Cursor.visible = false;
+                _aim.SetActive(true);
+            }
+        }
+
+        public void Init(IUIMainController uIMainController)
+        {
+            _uIMainController = uIMainController;
+            _uIMainController.OnMouseMoved += UpdateAim;
+        }
+
+        public void OnDestroy()
+        {
+            _uIMainController.OnMouseMoved -= UpdateAim;
+        }
+
+        private void Start()
+        {
+            Cursor.visible = false;
+            _aim = GameObject.Find("Aim");
+            _aimTransform = _aim.GetComponent<Transform>();
+        }
+
+        private void UpdateAim(Vector2 mousePosition)
+        {
+            _aimTransform.position = mousePosition;
+        }
+
+        private void OnApplicationFocus(bool hasFocus)
+        {
+            Cursor.visible = !hasFocus;
+            _aim.SetActive(hasFocus);
+        }
+
+        private void OnApplicationPause(bool isPaused)
+        { 
+        
         }
     }
 }
