@@ -22,11 +22,11 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         public void StartFire()
         {
+            Debug.Log("From Shotprocess:" + _weaponController.WeaponPointFire.position);
+
             _impact = _weaponImpacter.GetCurrentImpact();
 
             _weaponResourcer.ResourceOperation(true, _impact.ImpactData.ConsumableResources);
-
-            Debug.Log("WeaponPointFire in ShotProcess: " + _weaponController.WeaponPointFire.position);
 
             _impact.Activate();
 

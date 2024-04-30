@@ -14,16 +14,22 @@ namespace Zombieland.GameScene0.VisualBodyModule
         public List<GameObject> SensorTriggersGameobject { get; private set; }
         public ICharacterController CharacterController {  get; private set; }
 
+        private CreateCharacterPrefab _createCharacterGameobject;
         private CreateWeaponPrefab _createWeaponPrefab;
 
 
         public VisualBodyController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             CharacterController = parentController as ICharacterController;
+            _createWeaponPrefab = new CreateWeaponPrefab();
+            _createCharacterGameobject = new CreateCharacterPrefab();
         }
 
         public override void Disable()
         {
+            _createCharacterGameobject.Destroy(CharacterInScene);
+            _createWeaponPrefab.Destroy(WeaponInScene);
+
             CharacterController.AnimationController.OnAnimationCreateWeapon -= AnimationCreateWeaponHandler;
             CharacterController.AnimationController.OnAnimationDestroyWeapon -= AnimationDestroyWeaponHandler;
 
@@ -48,14 +54,12 @@ namespace Zombieland.GameScene0.VisualBodyModule
 
         private void CreateCharacterGameobject()
         {
-            CreateCharacterPrefab createCharacterGameobject = new CreateCharacterPrefab();
-            CharacterInScene = createCharacterGameobject.CreateCharacter(Vector3.zero, Quaternion.identity);
+            CharacterInScene = _createCharacterGameobject.CreateCharacter(Vector3.zero, Quaternion.identity);
             CharacterInScene.SetActive(false);
         }
 
         private void AnimationCreateWeaponHandler(string weaponPrefabName)
         {
-            _createWeaponPrefab = new CreateWeaponPrefab();
             WeaponInScene = _createWeaponPrefab.CtreateWeapon(weaponPrefabName, CharacterInScene.GetComponent<Transform>());
  
             OnWeaponInSceneReady?.Invoke();
@@ -63,7 +67,7 @@ namespace Zombieland.GameScene0.VisualBodyModule
 
         private void AnimationDestroyWeaponHandler()
         {
-            _createWeaponPrefab.DestroyWeapon(WeaponInScene);
+            _createWeaponPrefab.Destroy(WeaponInScene);
         }
     }
 }
