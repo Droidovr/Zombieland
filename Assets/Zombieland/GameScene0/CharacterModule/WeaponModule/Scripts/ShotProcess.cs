@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using Zombieland.GameScene0.ImpactModule;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
@@ -25,11 +26,13 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
             _weaponResourcer.ResourceOperation(true, _impact.ImpactData.ConsumableResources);
 
+            Debug.Log("WeaponPointFire in ShotProcess: " + _weaponController.WeaponPointFire.position);
+
             _impact.Activate();
 
-            _weaponResourcer.IsReserveResurce = false;
-
             OnShotPerformed.Invoke();
+
+            _weaponResourcer.IsReserveResurce = false;
         }
 
         public void StopFire()

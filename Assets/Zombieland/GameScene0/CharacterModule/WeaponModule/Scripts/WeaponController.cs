@@ -74,7 +74,9 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         {
             Weapon.Init(this);
             Weapon.ShotProcess.OnShotPerformed += ShotHandler;
-            WeaponPointFire = CharacterController.VisualBodyController.WeaponInScene.GetComponent<Transform>().Find("PointFire");
+            WeaponPointFire = CharacterController.VisualBodyController.WeaponInScene.transform.Find("PointFire");
+
+            Debug.Log("LocalPosition WeaponPointFire: " + WeaponPointFire.localPosition);
         }
 
         private void ButtonFireHandler(bool isFire)
