@@ -36,12 +36,10 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterVFX
 
         private void ShotPerformedHandler(Weapon weapon)
         {
-            Debug.Log(CharacterController.WeaponController.WeaponPointFire.position);
-
-            Vector3 localPoint = new Vector3(0f, 0.0743f, 0.305f);
-            Vector3 globalPoint = CharacterController.VisualBodyController.WeaponInScene.transform.TransformPoint(localPoint);
-
-            _vFXCreator.CtreateVFX(weapon.WeaponData.VFXPrefabName, globalPoint, CharacterController.WeaponController.WeaponPointFire.rotation);
+            if (weapon.WeaponData.VFXPrefabName != "")
+            {
+                _vFXCreator.CtreateVFX(weapon.WeaponData.VFXPrefabName, CharacterController.WeaponController.WeaponPointFire.position, CharacterController.WeaponController.WeaponPointFire.rotation);
+            }
         }
 
         private void ApplyImpactHandler(Vector3 position, Vector3 direction)
