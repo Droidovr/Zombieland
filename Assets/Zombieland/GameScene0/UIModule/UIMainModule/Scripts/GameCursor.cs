@@ -61,8 +61,9 @@ namespace Zombieland.GameScene0.UIModule.UIMainModule
         }
 
         private void OnApplicationPause(bool isPaused)
-        { 
-        
+        {
+            Cursor.visible = !isPaused;
+            _aim.SetActive(isPaused);
         }
     }
 }
