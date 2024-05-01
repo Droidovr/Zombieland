@@ -18,19 +18,7 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
             
             _audioSource = audioSource;
         }
-        
-        public void PlaySound(Weapon weapon)
-        {
-            string soundName = weapon.WeaponData.SoundName;
-
-            PlayOneShot(soundName);
-        }
         public void PlaySound(string soundName)
-        {
-            PlayOneShot(soundName);
-        }
-
-        private void PlayOneShot(string soundName)
         {
             if (!LoadSound(soundName))
             {

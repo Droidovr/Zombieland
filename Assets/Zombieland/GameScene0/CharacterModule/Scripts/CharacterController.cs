@@ -91,7 +91,7 @@ namespace Zombieland.GameScene0.CharacterModule
             CharacterVFXController = new CharacterVFXController(this, new List<IController> { (IController)WeaponController, (IController)VisualBodyController });
             subsystemsControllers.Add((IController)CharacterVFXController);
             
-            SoundBurstController = new SoundBurstController(this, new List<IController> { (IController)VisualBodyController, (IController)WeaponController});
+            SoundBurstController = new SoundBurstController(this, new List<IController> { (IController)VisualBodyController, (IController)WeaponController, (IController)AnimationController, (IController)TakeImpactController});
             subsystemsControllers.Add((IController)SoundBurstController);
         }
     }

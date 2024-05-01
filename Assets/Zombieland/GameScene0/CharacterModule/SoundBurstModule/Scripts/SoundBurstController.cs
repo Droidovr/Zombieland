@@ -21,8 +21,8 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
         public override void Disable()
         {
             CharacterController.WeaponController.OnShotPerformed -= PlayWeaponSound;
-            CharacterController.AnimationController.OnStep -= () => PlaySimpleSound(_audioID.walkSoundName);
-            CharacterController.TakeImpactController.OnApplyImpact -= PlayImpactSound;
+            CharacterController.AnimationController.OnStep -= PlayOnStepSound;
+            //CharacterController.TakeImpactController.OnApplyImpact -= PlayImpactSound;
 
             base.Disable();
         }
@@ -30,13 +30,12 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
         protected override void CreateHelpersScripts()
         {
             _audioSource = CharacterController.VisualBodyController.CharacterInScene.AddComponent<AudioSource>();
-            _audioID = Resources.Load<AudioIDAsset>("AudioID");
 
             _soundBurst = new SoundBurst(_audioSource);
 
             CharacterController.WeaponController.OnShotPerformed += PlayWeaponSound;
-            CharacterController.AnimationController.OnStep += () => PlaySimpleSound(_audioID.walkSoundName);
-           //CharacterController.TakeImpactController.OnApplyImpact += PlayImpactSound;
+            CharacterController.AnimationController.OnStep += PlayOnStepSound;
+            //CharacterController.TakeImpactController.OnApplyImpact += PlayImpactSound;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -46,16 +45,15 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
         
         private void PlayWeaponSound(Weapon weapon)
         {
-            _soundBurst.PlaySound(weapon);
+            _soundBurst.PlaySound(weapon.WeaponData.SoundName);
         }
-
-        private void PlaySimpleSound(string soundName)
+        private void PlayOnStepSound()
         {
-            _soundBurst.PlaySound(soundName);
+            _soundBurst.PlaySound("Walk");
         }
         private void PlayImpactSound(Vector3 vector1, Vector3 vector2)
         {
-            _soundBurst.PlaySound(_audioID.impactSoundName);
+            _soundBurst.PlaySound("Hit");
         }
     }
 }
