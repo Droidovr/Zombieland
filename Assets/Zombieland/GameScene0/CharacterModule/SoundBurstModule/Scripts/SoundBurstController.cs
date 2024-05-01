@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
@@ -6,9 +7,8 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
 {
     public class SoundBurstController : Controller, ISoundBurstController
     {
-        private const string STEPSOUNDNAME = "";
         public ICharacterController CharacterController { get; private set; }
-
+        
         private AudioIDAsset _audioID;
         private SoundBurst _soundBurst;
         private AudioSource _audioSource;
@@ -21,7 +21,7 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
         public override void Disable()
         {
             CharacterController.WeaponController.OnShotPerformed -= PlayWeaponSound;
-            CharacterController.AnimationController.OnStep -= () => PlaySimpleSound("STEPSOUNDNAME");
+            CharacterController.AnimationController.OnStep -= () => PlaySimpleSound(_audioID.walkSoundName);
             CharacterController.TakeImpactController.OnApplyImpact -= PlayImpactSound;
 
             base.Disable();
@@ -36,7 +36,7 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
 
             CharacterController.WeaponController.OnShotPerformed += PlayWeaponSound;
             CharacterController.AnimationController.OnStep += () => PlaySimpleSound(_audioID.walkSoundName);
-            CharacterController.TakeImpactController.OnApplyImpact += PlayImpactSound;
+           //CharacterController.TakeImpactController.OnApplyImpact += PlayImpactSound;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)

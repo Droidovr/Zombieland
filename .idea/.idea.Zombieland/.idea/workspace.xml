@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="907d7957-8796-4ab4-a556-102ecf85e7d2" name="Default Changelist" comment="scriptable object with ids">
+    <list default="true" id="907d7957-8796-4ab4-a556-102ecf85e7d2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Zombieland/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Zombieland/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/SoundBurst.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/SoundBurst.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Resources/AudioID.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Resources/AudioID.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/SoundBurstController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/SoundBurstController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +24,8 @@
     <setting file="mock://C:/UnityGit/Zombieland/Assets/Zombieland/GameScene0/CharacterModule/Scripts/CharacterController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/AudioIDAsset.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/ISoundBurstController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/UnityGit/Zombieland/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/SoundBurst.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/UnityGit/Zombieland/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/SoundBurst.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/SoundBurstController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/ITakeImpactController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/00.Assembly/ObjectParentAssembler.cs" root0="FORCE_HIGHLIGHTING" />
@@ -189,7 +192,8 @@
       <workItem from="1714220672295" duration="806000" />
       <workItem from="1714314690616" duration="1908000" />
       <workItem from="1714325313829" duration="601000" />
-      <workItem from="1714326077306" duration="1686000" />
+      <workItem from="1714326077306" duration="3158000" />
+      <workItem from="1714582420996" duration="642000" />
     </task>
     <task id="LOCAL-00001" summary="start setup">
       <option name="closed" value="true" />
@@ -223,7 +227,23 @@
       <option name="project" value="LOCAL" />
       <updated>1714327168591</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added check if sound loaded correctly">
+      <option name="closed" value="true" />
+      <created>1714327958537</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1714327958537</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added check if sound loaded correctly">
+      <option name="closed" value="true" />
+      <created>1714328071623</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1714328071623</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,6 +258,7 @@
     <MESSAGE value="Start setup" />
     <MESSAGE value="Added sounds for shooting and walking" />
     <MESSAGE value="scriptable object with ids" />
-    <option name="LAST_COMMIT_MESSAGE" value="scriptable object with ids" />
+    <MESSAGE value="Added check if sound loaded correctly" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added check if sound loaded correctly" />
   </component>
 </project>

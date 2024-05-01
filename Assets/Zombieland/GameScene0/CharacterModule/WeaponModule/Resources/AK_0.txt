@@ -5,7 +5,7 @@
 		"Name":"AK",
 		"PrefabName":"AK_Prefab_0",
 		"VFXPrefabName":"VFXShot",
-		"SoundName":"",
+		"SoundName":"AKShoot",
 		"AvailableImpactIDs":["MachineGunBullet"],
 		"ShootCooldown":0.2,
 		"ShotAccuracy":0.5,

@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fbd1ca3bdaf76244b32b7aba74e9d36, type: 3}
   m_Name: AudioID
   m_EditorClassIdentifier: 
-  _walkSoundName: 
+  _walkSoundName: Walk
+  _impactSoundName: 
