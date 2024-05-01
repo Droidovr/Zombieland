@@ -38,7 +38,9 @@ public class DissolveChnager : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("test");
             _isHiddden = true;
+
         }
     }
 

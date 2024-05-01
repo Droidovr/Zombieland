@@ -6,12 +6,10 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
     public class WeaponImpacter
     {
         private IWeaponController _weaponController;
-        private Transform _weaponPointFire;
 
         public WeaponImpacter(IWeaponController weaponController) 
         { 
             _weaponController = weaponController;
-            _weaponPointFire = _weaponController.CharacterController.VisualBodyController.WeaponInScene.GetComponent<Transform>().Find("PointFire");
         }
 
         public Impact GetCurrentImpact()
@@ -22,9 +20,9 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
             impact.ImpactData.FollowTargetTransform = _weaponController.CharacterController.AimingController.GetTarget();
 
-            impact.ImpactData.ObjectSpawnPosition = _weaponPointFire.position;
+            impact.ImpactData.ObjectSpawnPosition = _weaponController.WeaponPointFire.position;
 
-            impact.ImpactData.ObjectParentTransform = _weaponPointFire;
+            impact.ImpactData.ObjectParentTransform = _weaponController.WeaponPointFire;
 
             impact.ImpactData.ObjectRotation = AddShotSpread(impact.ImpactData.FollowTargetTransform);
 
@@ -42,7 +40,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             {
                 Quaternion deviationRotation = Quaternion.Euler(0f, 0f, deviationAngle);
 
-                Vector3 startPosition = _weaponPointFire.position;
+                Vector3 startPosition = _weaponController.WeaponPointFire.position;
 
                 Vector3 directionToTarget = (target.position - startPosition).normalized;
 
@@ -52,7 +50,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
             }
             else
             {
-                finalRotation = _weaponPointFire.rotation * Quaternion.Euler(0f, 0f, deviationAngle);
+                finalRotation = _weaponController.WeaponPointFire.rotation * Quaternion.Euler(0f, 0f, deviationAngle);
             }
 
             return finalRotation;

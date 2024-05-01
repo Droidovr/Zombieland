@@ -1,5 +1,4 @@
 using System;
-using System.Threading;
 using UnityEngine;
 using Zombieland.GameScene0.ImpactModule;
 
@@ -16,8 +15,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         public void Init(IWeaponController weaponController)
         {
-            Debug.Log("Init - Thread ID: " + Thread.CurrentThread.ManagedThreadId);
-
             _weaponController = weaponController;
             _weaponImpacter = new WeaponImpacter(_weaponController);
             _weaponResourcer = new WeaponResourcer(_weaponController);
@@ -25,15 +22,17 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         public void StartFire()
         {
+            Debug.Log("From Shotprocess:" + _weaponController.WeaponPointFire.position);
+
             _impact = _weaponImpacter.GetCurrentImpact();
 
             _weaponResourcer.ResourceOperation(true, _impact.ImpactData.ConsumableResources);
 
             _impact.Activate();
 
-            _weaponResourcer.IsReserveResurce = false;
-
             OnShotPerformed.Invoke();
+
+            _weaponResourcer.IsReserveResurce = false;
         }
 
         public void StopFire()
