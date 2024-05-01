@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ff9a1636d1fc8c544afc4d285c10c757
+guid: d451b4b1d0d47b24682a1d2eb590dcb9
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,19 +33,19 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Pistol Kneel To Stand
+      name: RunBack
       takeName: Scene
       internalID: -623603649343465320
       firstFrame: 1
-      lastFrame: 42
+      lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0

@@ -21,8 +21,6 @@ public class GunBullet : IInitialImpactCommand
             
         if (targetsList == null || targetsList.Count <= 0)
         {
-            Debug.Log("if");
-            
             var effectPrefab = Resources.Load<GameObject>(NoTargetEffectPrefabName);
             if (effectPrefab)
             {
@@ -34,8 +32,6 @@ public class GunBullet : IInitialImpactCommand
         }
         else
         {
-            Debug.Log("else");
-
             var effectPrefab = Resources.Load<GameObject>(TargetReachedEffectPrefabName);
             foreach (var target in Impact.ImpactData.Targets)
             {
