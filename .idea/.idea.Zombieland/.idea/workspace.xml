@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="907d7957-8796-4ab4-a556-102ecf85e7d2" name="Default Changelist" comment="fixed delegate">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Zombieland/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Zombieland/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PolygonSciFiSpace/URP_ExtractMe.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/Scripts/CharacterController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/Scripts/CharacterController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/SoundBurst.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/SoundBurst.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/SoundBurstController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/SoundBurstController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Test/TestSoundBurstSystem.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Test/TestSoundBurstSystem.unity" afterDir="false" />
-    </list>
+    <list default="true" id="907d7957-8796-4ab4-a556-102ecf85e7d2" name="Default Changelist" comment="fixed playsound" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,8 +20,6 @@
     <setting file="mock://C:/UnityGit/Zombieland/Assets/Zombieland/GameScene0/CharacterModule/Scripts/CharacterController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/AudioIDAsset.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/ISoundBurstController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/UnityGit/Zombieland/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/SoundBurst.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/UnityGit/Zombieland/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/SoundBurst.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/SoundBurstController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/ITakeImpactController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/00.Assembly/ObjectParentAssembler.cs" root0="FORCE_HIGHLIGHTING" />
@@ -106,23 +97,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\Igor\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\Igor\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\Igor\\AppData\\Local\\Symbols\\src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\Igor\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
+      "C:\\Users\\Igor\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
+      "C:\\Users\\Igor\\AppData\\Local\\Symbols\\src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity 2022.3.23f1\Editor\Unity.exe" />
@@ -254,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714583239880</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="fixed playsound">
+      <option name="closed" value="true" />
+      <created>1714585708079</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1714585708079</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -271,6 +271,7 @@
     <MESSAGE value="scriptable object with ids" />
     <MESSAGE value="Added check if sound loaded correctly" />
     <MESSAGE value="fixed delegate" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed delegate" />
+    <MESSAGE value="fixed playsound" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed playsound" />
   </component>
 </project>

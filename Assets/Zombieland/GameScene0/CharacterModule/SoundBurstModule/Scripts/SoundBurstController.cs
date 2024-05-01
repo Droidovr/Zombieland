@@ -49,6 +49,7 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
         }
         private void PlayOnStepSound()
         {
+            Debug.Log("ON STEP EVENT");
             _soundBurst.PlaySound("Walk");
         }
         private void PlayImpactSound(Vector3 vector1, Vector3 vector2)
