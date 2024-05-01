@@ -6,7 +6,7 @@ namespace Zombieland.GameScene0.CharacterModule.InventoryModule
 {
     public class InventoryController : Controller, IInventoryController
     {
-        public event Action<string, int> OnMainSlotEquipped;
+        public event Action<string, int, string, int> OnMainSlotEquipped;
         public event Action<string, int> OnCurrentImpactEquipped;
         public event Action<string> OnCurrentOutfitEquipped;
 
@@ -40,9 +40,9 @@ namespace Zombieland.GameScene0.CharacterModule.InventoryModule
         }
         #endregion PROTECTED
 
-        public void EquipWeaponIntoActiveSlot(string name, int slotNumber)
+        public void EquipWeaponIntoActiveSlot(string name, int slotNumber, string defaultImpactName, int defaultImpactCount)
         {
-            OnMainSlotEquipped?.Invoke(name, slotNumber);
+            OnMainSlotEquipped?.Invoke(name, slotNumber, defaultImpactName, defaultImpactCount);
             // This method should be subscribed to DragNDrop Event in UIEquipment when something is dragged into Weapon Slot.
         }
 

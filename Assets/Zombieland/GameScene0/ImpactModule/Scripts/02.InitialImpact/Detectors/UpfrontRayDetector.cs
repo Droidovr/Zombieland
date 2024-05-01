@@ -11,7 +11,8 @@ namespace Zombieland.GameScene0.ImpactModule
         public float DetectionRadius { get; set; }
         private const float MinCastSphereRadius = 0.2f;
 
-        public List<IImpactable> GetTargets(GameObject impactObject)
+        public void GetTargets(GameObject impactObject, out List<IImpactable> impactablesList,
+            out Vector3 collisionPosition)
         {
             var castSphereRadius = impactObject.TryGetComponent<SphereCollider>(out var sphereCollider) 
                 ? sphereCollider.radius 
@@ -20,18 +21,19 @@ namespace Zombieland.GameScene0.ImpactModule
             var raycastHits = Physics.SphereCastAll(impactObject.transform.position, castSphereRadius, impactObject.transform.forward, DetectionRadius);
             if (raycastHits.Length > 0)
             {
-                var impactableObjects = new List<IImpactable>();
+                impactablesList = new List<IImpactable>();
                 foreach (var raycastHit in raycastHits)
                 {
                     if (raycastHit.collider.TryGetComponent<IImpactable>(out var impactableObject))
                     {
-                        impactableObjects.Add(impactableObject);
+                        impactablesList.Add(impactableObject);
                     }
                 }
-                return impactableObjects;
+                collisionPosition = raycastHits[0].point;
             }
 
-            return null;
+            impactablesList = null;
+            collisionPosition = Vector3.zero;
         }
     }
 }

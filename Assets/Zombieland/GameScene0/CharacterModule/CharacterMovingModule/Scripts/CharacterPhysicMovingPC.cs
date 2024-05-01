@@ -138,6 +138,14 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         {
             Gizmos.color = Color.red;
             Gizmos.DrawLine(transform.position, transform.position + transform.forward * 5f);
+
+            if (_characterMovingController.CharacterController.WeaponController.WeaponPointFire != null)
+            {
+                Gizmos.color = Color.green;
+                Gizmos.DrawLine(_characterMovingController.CharacterController.WeaponController.WeaponPointFire.position,
+                    _characterMovingController.CharacterController.WeaponController.WeaponPointFire.position +
+                    _characterMovingController.CharacterController.WeaponController.WeaponPointFire.forward * 5f);
+            }
         }
         #endif
 

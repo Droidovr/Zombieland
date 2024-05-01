@@ -12,5 +12,10 @@ namespace Zombieland.GameScene0.VisualBodyModule
 
             return GameObject.Instantiate(prefab, spawnPosition, spawnRotation);
         }
+
+        public void Destroy(GameObject characterInScene)
+        {
+            GameObject.Destroy(characterInScene);
+        }
     }
 }

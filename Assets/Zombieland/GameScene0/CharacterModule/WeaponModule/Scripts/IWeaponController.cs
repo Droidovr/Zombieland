@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
@@ -9,5 +10,6 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         ICharacterController CharacterController { get; }
         IWeapon Weapon { get; }
+        Transform WeaponPointFire { get; }
     }
 }
