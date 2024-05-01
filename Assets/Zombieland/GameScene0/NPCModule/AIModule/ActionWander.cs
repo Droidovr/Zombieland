@@ -25,7 +25,7 @@ namespace Zombieland.GameScene0.NPCModule.AIModule
 
         public override void OnDeactivated()
         {
-            npcController.MovingController.StopMoving();
+            npcController.NpcMovingController.StopMoving();
             base.OnDeactivated();
         }
 
@@ -37,10 +37,10 @@ namespace Zombieland.GameScene0.NPCModule.AIModule
         private void SetWanderTarget()
         {
             var wanderTargetPosition =
-                npcController.DataController.NPCData.wanderPositions[_currentWanderPositionIndex];
-            npcController.MovingController.MoveToTarget(wanderTargetPosition, 0f, SetWanderTarget);
+                npcController.NpcDataController.NpcData.wanderPositions[_currentWanderPositionIndex];
+            npcController.NpcMovingController.MoveToTarget(wanderTargetPosition, 0f, SetWanderTarget);
 
-            _currentWanderPositionIndex = _currentWanderPositionIndex + 1 < npcController.DataController.NPCData.wanderPositions.Count
+            _currentWanderPositionIndex = _currentWanderPositionIndex + 1 < npcController.NpcDataController.NpcData.wanderPositions.Count
                 ? _currentWanderPositionIndex + 1
                 : 0;
         }

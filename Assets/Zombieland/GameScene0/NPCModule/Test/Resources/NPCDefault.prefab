@@ -4308,7 +4308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c808b742b2fda347b858d9fd72a7b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _priority: 10
+  _maxPriority: 10
 --- !u!114 &8160679205149595629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4321,7 +4321,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073a32edf4f7799499a75933c5c89f09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minPriority: 0
   _maxPriority: 30
   _prirotyBuildRate: 1
   _prirotyDecayRate: 0.1

@@ -11,14 +11,14 @@ namespace Zombieland.GameScene0.NPCModule
 {
     public interface INpcController
     {
-        public INpcManagerController NPCManagerController { get; set; }
-        public INpcDataController DataController { get; set; }
-        public INpcSpawnController SpawnController { get; set; }
-        public INpcVisualBodyController VisualBodyController { get; set; }
-        public INpcMovingController MovingController { get; set; }
-        public INpcTakeImpactController TakeImpactController { get; set; }
-        public INpcAwarenessController AwarenessController { get; set; }
-
-        public INpcAIController AIController { get; set; }
+        public INpcManagerController NpcManagerController { get; }
+        public INpcDataController NpcDataController { get; }
+        public INpcSpawnController NpcSpawnController { get; }
+        public INpcVisualBodyController NpcVisualBodyController { get; }
+        public INpcMovingController NpcMovingController { get; }
+        public INpcTakeImpactController NpcTakeImpactController { get; }
+        public INpcAwarenessController NpcAwarenessController { get; }
+        public INpcAIController NpcAIController { get; set; }
+        public NpcSpawnData NpcSpawnData { get; }
     }
 }

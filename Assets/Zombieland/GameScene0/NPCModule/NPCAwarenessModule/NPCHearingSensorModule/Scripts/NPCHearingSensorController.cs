@@ -19,9 +19,9 @@ namespace Zombieland.GameScene0.NPCModule.NPCHearingSensorModule.Scripts
 
         protected override void CreateHelpersScripts()
         {
-            _characterStealthController = _INPCAwarenessController.NpcController.NPCManagerController.RootController.CharacterController.StealthController;
-            _hearingSensor = _INPCAwarenessController.NpcController.VisualBodyController.ActiveNPC.GetComponent<HearingSensor>();
-            _hearingSensor.Init(_INPCAwarenessController.NpcController.NPCManagerController.CharacterTransform, OnCharacterInsideZone);
+            _characterStealthController = _INPCAwarenessController.NpcController.NpcManagerController.RootController.CharacterController.StealthController;
+            _hearingSensor = _INPCAwarenessController.NpcController.NpcVisualBodyController.ActiveNPC.GetComponent<HearingSensor>();
+            _hearingSensor.Init(_INPCAwarenessController.NpcController.NpcManagerController.CharacterTransform, OnCharacterInsideZone);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -31,8 +31,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCHearingSensorModule.Scripts
         
         private void TestCreateSubsystem()
         {
-            _hearingSensor = _INPCAwarenessController.NpcController.VisualBodyController.ActiveNPC.GetComponent<HearingSensor>();
-            _hearingSensor.Init(_INPCAwarenessController.NpcController.NPCManagerController.CharacterTransform, OnCharacterInsideZone);
+            _hearingSensor = _INPCAwarenessController.NpcController.NpcVisualBodyController.ActiveNPC.GetComponent<HearingSensor>();
+            _hearingSensor.Init(_INPCAwarenessController.NpcController.NpcManagerController.CharacterTransform, OnCharacterInsideZone);
         }
 
         private void OnCharacterInsideZone(bool isInsideZone)

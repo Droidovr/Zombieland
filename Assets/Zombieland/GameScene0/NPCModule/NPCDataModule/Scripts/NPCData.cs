@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Zombieland.GameScene0.NPCModule.NPCDataModule
@@ -12,12 +13,14 @@ namespace Zombieland.GameScene0.NPCModule.NPCDataModule
 
         public float maxHealth = 100;
         public float currentHealth = 100;
-
+        
         public float speed = 10;
-        public Vector3 spawnPosition = Vector3.zero;
         public float stopDistance;
 
-        public List<Vector3> wanderPositions;
+        [JsonIgnore]
+        public Vector3 spawnPosition;
+        [JsonIgnore]
+        public List<Vector3> wanderPositions = new List<Vector3>();
         
         public float visionAwarenessSpeed;
         public float hearingAwarenessSpeed;

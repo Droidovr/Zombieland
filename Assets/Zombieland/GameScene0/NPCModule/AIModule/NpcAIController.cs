@@ -11,12 +11,11 @@ namespace Zombieland.GameScene0.NPCModule.AIModule
             : base(parentController, requiredControllers)
         {
             _npcController = (INpcController) parentController;
-            TestCreateHelpersScripts();
         }
 
         protected override void CreateHelpersScripts()
         {
-            _goalsList = new List<IGoal>(_npcController.VisualBodyController.ActiveNPC.GetComponentsInChildren<IGoal>());
+            _goalsList = new List<IGoal>(_npcController.NpcVisualBodyController.ActiveNPC.GetComponentsInChildren<IGoal>());
             foreach (var goal in _goalsList)
             {
                 goal.Init(_npcController);
@@ -27,15 +26,5 @@ namespace Zombieland.GameScene0.NPCModule.AIModule
         {
             //This method has no implementation
         }
-        
-        private void TestCreateHelpersScripts()
-        {
-            _goalsList = new List<IGoal>(_npcController.VisualBodyController.ActiveNPC.GetComponentsInChildren<IGoal>());
-            foreach (var goal in _goalsList)
-            {
-                goal.Init(_npcController);
-            }
-        }
-
     }
 }

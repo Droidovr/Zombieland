@@ -27,17 +27,16 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule
             : base(parentController, requiredControllers)
         {
             NpcController = (INpcController) parentController;
-            TestCreateSubsystems();
         }
 
         protected override void CreateHelpersScripts()
         {
-            _visionAwarenessSpeed = NpcController.DataController.NPCData.visionAwarenessSpeed;
-            _hearingAwarenessSpeed = NpcController.DataController.NPCData.hearingAwarenessSpeed;
-            _awarenessDecaySpeed = NpcController.DataController.NPCData.awarenessDecaySpeed;
-            _maxAwarenessLevel = NpcController.DataController.NPCData.maxAwarenessLevel;
+            _visionAwarenessSpeed = NpcController.NpcDataController.NpcData.visionAwarenessSpeed;
+            _hearingAwarenessSpeed = NpcController.NpcDataController.NpcData.hearingAwarenessSpeed;
+            _awarenessDecaySpeed = NpcController.NpcDataController.NpcData.awarenessDecaySpeed;
+            _maxAwarenessLevel = NpcController.NpcDataController.NpcData.maxAwarenessLevel;
 
-            _updater = NpcController.VisualBodyController.ActiveNPC.GetComponent<Updater>();
+            _updater = NpcController.NpcVisualBodyController.ActiveNPC.GetComponent<Updater>();
             _updater.SubscribeToUpdate(UpdateVisibility);
         }
 
@@ -47,12 +46,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule
             subsystemsControllers.Add((IController) _visionSensorController);
             _hearingSensorController = new NpcHearingSensorController(this, null);
             subsystemsControllers.Add((IController) _hearingSensorController);
-        }
-
-        private void TestCreateSubsystems()
-        {
-            _visionSensorController = new NpcVisionSensorController(this, null);
-            _hearingSensorController = new NpcHearingSensorController(this, null);
         }
 
         public void CanSeeTarget(bool isTargetDetected)

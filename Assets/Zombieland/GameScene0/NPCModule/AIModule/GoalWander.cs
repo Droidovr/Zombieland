@@ -21,7 +21,7 @@ namespace Zombieland.GameScene0.NPCModule.AIModule
 
         public override void OnTickGoal()
         {
-            if (npcController.MovingController.IsMoving)
+            if (npcController.NpcMovingController.IsMoving)
             {
                 _currentPriority -= _prirotyDecayRate * Time.deltaTime;
             }

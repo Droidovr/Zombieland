@@ -12,6 +12,6 @@ public class TestStartPoint : MonoBehaviour
 
     void Start()
     {
-        NPCManagerController = new NpcManagerController(Controller, null, CharacterTransform);
+        NPCManagerController = new NpcManagerController(Controller, null);
     }
 }

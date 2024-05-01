@@ -10,7 +10,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCSpawnModule
             : base(parentController, requiredControllers)
         {
             _NPCController = (INpcController)parentController;
-            TestCreateSubsystem();
         }
 
         protected override void CreateHelpersScripts()
@@ -25,14 +24,9 @@ namespace Zombieland.GameScene0.NPCModule.NPCSpawnModule
 
         private void SetAndActivateNPC()
         {
-            var activeNPC = _NPCController.VisualBodyController.ActiveNPC;
-            activeNPC.transform.position = _NPCController.DataController.NPCData.spawnPosition;
-            activeNPC.SetActive(true);
-        }
-        
-        private void TestCreateSubsystem()
-        {
-            SetAndActivateNPC();
+            var activeNpc = _NPCController.NpcVisualBodyController.ActiveNPC;
+            activeNpc.transform.position = _NPCController.NpcDataController.NpcData.spawnPosition;
+            activeNpc.SetActive(true);
         }
     }
 }
