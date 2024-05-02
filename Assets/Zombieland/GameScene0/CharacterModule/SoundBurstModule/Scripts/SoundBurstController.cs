@@ -22,7 +22,7 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
         {
             CharacterController.WeaponController.OnShotPerformed -= PlayWeaponSound;
             CharacterController.AnimationController.OnStep -= PlayOnStepSound;
-            //CharacterController.TakeImpactController.OnApplyImpact -= PlayImpactSound;
+            CharacterController.TakeImpactController.OnApplyImpact -= PlayImpactSound;
 
             base.Disable();
         }
@@ -35,7 +35,7 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
 
             CharacterController.WeaponController.OnShotPerformed += PlayWeaponSound;
             CharacterController.AnimationController.OnStep += PlayOnStepSound;
-            //CharacterController.TakeImpactController.OnApplyImpact += PlayImpactSound;
+            CharacterController.TakeImpactController.OnApplyImpact += PlayImpactSound;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -49,7 +49,6 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
         }
         private void PlayOnStepSound()
         {
-            Debug.Log("ON STEP EVENT");
             _soundBurst.PlaySound("Walk");
         }
         private void PlayImpactSound(Vector3 vector1, Vector3 vector2)
