@@ -20,7 +20,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
         protected override void CreateHelpersScripts()
         {
             _navMeshHandler = _NPCController.NpcVisualBodyController.NpcOnScene.GetComponent<NavMeshHandler>();
-            _navMeshHandler.Init(_NPCController.NpcDataController.NpcData.speed);
+            _navMeshHandler.Init(_NPCController.NpcDataController.NpcData.Speed);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)

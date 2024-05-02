@@ -1,0 +1,42 @@
+[
+  {
+    "NpcJsonFileName": "NpcDefault",
+    "SpawnPositionTuple": {
+      "Item1": 1.0,
+      "Item2": 0.0,
+      "Item3": 10.0
+    },
+    "WanderPointTuples": [
+      {
+        "Item1": -5.4,
+        "Item2": 0.0,
+        "Item3": 21.71
+      },
+      {
+        "Item1": 8.62,
+        "Item2": 0.0,
+        "Item3": 8.67
+      }
+    ]
+  },
+  {
+    "NpcJsonFileName": "NpcDefault",
+    "SpawnPositionTuple": {
+      "Item1": 8.0,
+      "Item2": 0.0,
+      "Item3": 2.0
+    },
+    "WanderPointTuples": [
+      {
+        "Item1": 11.83,
+        "Item2": 0.0,
+        "Item3": -0.269999981
+      },
+      {
+        "Item1": 1.09000015,
+        "Item2": 0.0,
+        "Item3": 16.08
+      }
+    ]
+  }
+]

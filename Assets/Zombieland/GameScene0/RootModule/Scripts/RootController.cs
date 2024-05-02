@@ -18,8 +18,8 @@ namespace Zombieland.GameScene0.RootModule
         public IUIController UIController { get; private set; }
         public ICameraController CameraController { get; private set; }
 
-        public RootController(IController parentController, List<IController> requiredControllers) : base(
-            parentController, requiredControllers)
+        public RootController(IController parentController, List<IController> requiredControllers) 
+            : base(parentController, requiredControllers)
         {
             // This class’s constructor doesn’t have any content yet.
         }

@@ -520,10 +520,16 @@
               </e>
             </e>
             <e p="NPCManagerModule" t="Include">
+              <e p="Resources" t="Include">
+                <e p="NpcSpawnData.txt" t="Include" />
+              </e>
               <e p="Scripts" t="Include">
                 <e p="INPCManagerController.cs" t="Include" />
                 <e p="NPCManagerController.cs" t="Include" />
-                <e p="NpcSpawnSearch.cs" t="Include" />
+                <e p="NpcSpawnData.cs" t="Include" />
+                <e p="NpcSpawnJSONCreator.cs" t="Include" />
+                <e p="NpcSpawnJSONCreatorEditor.cs" t="Include" />
+                <e p="NpcSpawnJSONData.cs" t="Include" />
               </e>
             </e>
             <e p="NPCModule" t="Include">
@@ -594,10 +600,12 @@
                   <e p="NPCVisualBodyController.cs" t="Include" />
                 </e>
               </e>
+              <e p="Resources" t="Include">
+                <e p="NpcDefault.txt" t="Include" />
+              </e>
               <e p="Scripts" t="Include">
                 <e p="INPCController.cs" t="Include" />
                 <e p="NPCController.cs" t="Include" />
-                <e p="NpcSpawnData.cs" t="Include" />
                 <e p="Updater.cs" t="Include" />
               </e>
               <e p="Test" t="Include">

@@ -5,7 +5,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisualBodyModule
 {
     public class NpcVisualBodyController : Controller, INpcVisualBodyController
     {
-        public GameObject NpcOnScene { get; set; }
+        public GameObject NpcOnScene { get; private set; }
         private readonly INpcController _npcController;
 
         public NpcVisualBodyController(IController parentController, List<IController> requiredControllers) 
@@ -26,8 +26,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisualBodyModule
 
         private void CreateNpcOnScene()
         {
-            var npcPrefab = Resources.Load<GameObject>(_npcController.NpcDataController.NpcData.name);
-            Debug.Log("-------------------------- npcPrefab" + _npcController.NpcDataController.NpcData.name + " - " + npcPrefab);
+            var npcPrefab = Resources.Load<GameObject>(_npcController.NpcDataController.NpcData.Name);
             NpcOnScene = GameObject.Instantiate(npcPrefab);
             NpcOnScene.SetActive(false);
         }

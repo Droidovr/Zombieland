@@ -12,33 +12,27 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BFF907ED-581F-483A-B4BD-129472866E97/0f/a546ecc8/CapsuleCollider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/Scripts/NpcSpawnData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BFF907ED-581F-483A-B4BD-129472866E97/bf/db3f69ea/SphereCollider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/Scripts/ICommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/Scripts/NpcSpawnSearch.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1899C5BD-2A6D-4660-81CD-705BEE01D689/f3/c243da7d/Editor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C5ED7824-3908-4EF1-BC2A-D85EEC89E9FE/8d/6ea14cb1/Vector3.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.10/Runtime/UniversalRenderPipeline.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C5ED7824-3908-4EF1-BC2A-D85EEC89E9FE/85/bd1d4799/SceneManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/ITakeImpactController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C5ED7824-3908-4EF1-BC2A-D85EEC89E9FE/56/be19ea8d/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Wrench.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/NpcSpawnData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C5ED7824-3908-4EF1-BC2A-D85EEC89E9FE/35/a100e489/Component.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/Scripts/NpcSpawnJSONCreator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C5ED7824-3908-4EF1-BC2A-D85EEC89E9FE/29/96d409f5/Transform.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/Scripts/NpcSpawnJSONCreatorEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/Scripts/NpcSpawnJSONData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/00.Assembly/ObjectParentAssembler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/IInitialImpactCommand.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/01.Delivery/FollowingTargetHandler.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/IImpact.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/GameDataModule/Scripts/GameDataController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Resources/GunBullet.txt" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Resources/MachineGunBullet.txt" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/01.Delivery/MovingForwardHandler.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/01.Delivery/ObjectInstantTeleport.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/Data/ImpactData.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/00.Assembly/ObjectParentAssembler.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Resources/Wrench.txt" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Test/TestImpactCreatorEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/01.Delivery/CollisionHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Detectors/TouchColliderDetector.cs" />
@@ -59,27 +53,37 @@
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/Scripts/NPCManagerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCSpawnModule/Scripts/NpcSpawnController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCMovingModule/Scripts/NpcMovingController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCAwarenessModule/Scripts/NpcAwarenessController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/AIModule/NpcAIController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Test/TestStartPoint.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/LongestSubstring.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/INPCController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/Scripts/NpcSearch.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/RootModule/Scripts/IRootController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/INpcController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCDataModule/Scripts/INpcDataController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/AIModule/ActionWander.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCVisualBodyModule/Scripts/INPCVisualBodyController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCVisualBodyModule/Scripts/NPCVisualBodyController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/NpcSpawnData.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCSpawnModule/Scripts/NPCSpawnController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCDataModule/Scripts/NpcDataController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/NpcController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/EnvironmentModule/Scripts/InitializerEnvironment.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/Scripts/NpcSpawnSearch.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/EnvironmentModule/Scripts/InitializerEnvironment.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCSpawnModule/Scripts/INpcSpawnController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCMovingModule/Scripts/NPCMovingController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/Scripts/NpcSpawnJSONCreatorEditor.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCSpawnModule/Scripts/NPCSpawnController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/AIModule/ActionWander.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/Scripts/NpcSpawnJSONData.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/Scripts/NpcSpawnJSONCreator.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/GameDataModule/Scripts/ResourcesStorage.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/RootModule/Scripts/RootController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Resources/NpcDefault.txt" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCDataModule/Scripts/NpcDataController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/Scripts/NpcManagerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCVisualBodyModule/Scripts/NPCVisualBodyController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/AIModule/GoalBase.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCAwarenessModule/Scripts/NpcAwarenessController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCDataModule/Scripts/NpcData.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCAwarenessModule/Scripts/INpcAwarenessController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/Scripts/NpcSpawnData.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/INpcController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/NpcController.cs" />
       </list>
     </option>
   </component>
@@ -144,6 +148,7 @@
       <workItem from="1714417035479" duration="8924000" />
       <workItem from="1714491529058" duration="3666000" />
       <workItem from="1714592233979" duration="9538000" />
+      <workItem from="1714668957065" duration="11197000" />
     </task>
     <servers />
   </component>
@@ -161,10 +166,10 @@
     </state>
     <state x="921" y="351" key="RiderGenerateDialog/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1713896383927" />
     <state x="4531" y="605" key="RiderGenerateDialog/3840.349.1920.1020/0.0.2560.1400@3840.349.1920.1020" timestamp="1714421201166" />
-    <state x="479" y="420" width="1462" height="1066" maximized="true" key="dock-window-1" timestamp="1714419861693">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="3840" y="349" width="1936" height="1107" key="dock-window-1" timestamp="1714670890285">
+      <screen x="3840" y="349" width="1920" height="1020" />
     </state>
-    <state x="3840" y="349" width="1936" height="1107" key="dock-window-1/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1713213764821" />
+    <state x="3840" y="349" width="1936" height="1107" key="dock-window-1/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1714670890285" />
     <state x="479" y="420" width="1462" height="1066" maximized="true" key="dock-window-1/3840.349.1920.1020/0.0.2560.1400@3840.349.1920.1020" timestamp="1714419861693" />
     <state x="4270" y="442" width="1880" height="1387" key="dock-window-10" timestamp="1707504789053">
       <screen x="3840" y="349" width="1920" height="1020" />
@@ -174,36 +179,36 @@
       <screen x="3840" y="349" width="1920" height="1020" />
     </state>
     <state x="3840" y="349" width="1882" height="1107" key="dock-window-11/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1707506250003" />
-    <state x="3840" y="349" width="1936" height="1107" key="dock-window-2" timestamp="1713214645110">
+    <state x="501" y="0" width="2073" height="1387" key="dock-window-2" timestamp="1714670890285">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="501" y="0" width="2073" height="1387" key="dock-window-2/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1714670890285" />
+    <state x="4010" y="474" width="1936" height="1107" key="dock-window-3" timestamp="1714670890285">
       <screen x="3840" y="349" width="1920" height="1020" />
     </state>
-    <state x="3840" y="349" width="1936" height="1107" key="dock-window-2/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1713214645110" />
-    <state x="4470" y="505" width="2232" height="1387" key="dock-window-3" timestamp="1710976998924">
-      <screen x="3840" y="349" width="1920" height="1020" />
-    </state>
-    <state x="3840" y="349" width="1936" height="1107" key="dock-window-3/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1713224467154" />
+    <state x="4010" y="474" width="1936" height="1107" key="dock-window-3/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1714670890285" />
     <state x="554" y="237" width="2284" height="1387" key="dock-window-3/3840.349.1920.1020/0.0.2560.1400@3840.349.1920.1020" timestamp="1709701138739" />
-    <state x="4006" y="519" width="2065" height="1387" key="dock-window-4" timestamp="1713224467154">
+    <state x="3840" y="349" width="1936" height="1107" key="dock-window-4" timestamp="1714678311122">
       <screen x="3840" y="349" width="1920" height="1020" />
     </state>
-    <state x="4006" y="519" width="2065" height="1387" key="dock-window-4/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1713224467154" />
-    <state x="4167" y="669" width="2284" height="1387" key="dock-window-4/3840.349.1920.1020/0.0.2560.1400@3840.349.1920.1020" timestamp="1709701138739" />
-    <state x="287" y="185" width="2232" height="1387" key="dock-window-5" timestamp="1710977352369">
+    <state x="3840" y="349" width="1936" height="1107" key="dock-window-4/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1714672462135" />
+    <state x="3840" y="349" width="1936" height="1107" key="dock-window-4/3840.349.1920.1020/0.0.2560.1400@3840.349.1920.1020" timestamp="1714678311122" />
+    <state x="501" y="186" width="2073" height="1201" key="dock-window-5" timestamp="1714672462135">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="287" y="185" width="2232" height="1387" key="dock-window-5/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1710977352369" />
-    <state x="3" y="143" width="2232" height="1387" key="dock-window-6" timestamp="1710978347834">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="3" y="143" width="2232" height="1387" key="dock-window-6/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1710978347834" />
-    <state x="4362" y="540" width="1887" height="926" key="dock-window-7" timestamp="1707503922764">
+    <state x="501" y="186" width="2073" height="1201" key="dock-window-5/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1714672462135" />
+    <state x="4208" y="580" width="2073" height="1201" key="dock-window-6" timestamp="1714672462135">
       <screen x="3840" y="349" width="1920" height="1020" />
     </state>
-    <state x="4362" y="540" width="1887" height="926" key="dock-window-7/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1707503922764" />
-    <state x="3840" y="349" width="1882" height="1107" key="dock-window-8" timestamp="1707504789053">
+    <state x="4208" y="580" width="2073" height="1201" key="dock-window-6/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1714672462135" />
+    <state x="4226" y="581" width="1936" height="1107" key="dock-window-7" timestamp="1714672462135">
       <screen x="3840" y="349" width="1920" height="1020" />
     </state>
-    <state x="3840" y="349" width="1882" height="1107" key="dock-window-8/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1707504789053" />
+    <state x="4226" y="581" width="1936" height="1107" key="dock-window-7/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1714672462135" />
+    <state x="4280" y="416" width="1936" height="1107" key="dock-window-8" timestamp="1714677106113">
+      <screen x="3840" y="349" width="1920" height="1020" />
+    </state>
+    <state x="4280" y="416" width="1936" height="1107" key="dock-window-8/3840.349.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1714677106113" />
     <state x="4478" y="561" width="1880" height="1387" key="dock-window-9" timestamp="1707504789053">
       <screen x="3840" y="349" width="1920" height="1020" />
     </state>

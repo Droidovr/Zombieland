@@ -37,10 +37,10 @@ namespace Zombieland.GameScene0.NPCModule.AIModule
         private void SetWanderTarget()
         {
             var wanderTargetPosition =
-                npcController.NpcDataController.NpcData.SpawnData.WanderPositionTransforms[_currentWanderPositionIndex].position;
+                npcController.NpcDataController.NpcData.SpawnData.WanderPoints[_currentWanderPositionIndex];
             npcController.NpcMovingController.MoveToTarget(wanderTargetPosition, 0f, SetWanderTarget);
 
-            _currentWanderPositionIndex = _currentWanderPositionIndex + 1 < npcController.NpcDataController.NpcData.SpawnData.WanderPositionTransforms.Count
+            _currentWanderPositionIndex = _currentWanderPositionIndex + 1 < npcController.NpcDataController.NpcData.SpawnData.WanderPoints.Count
                 ? _currentWanderPositionIndex + 1
                 : 0;
         }

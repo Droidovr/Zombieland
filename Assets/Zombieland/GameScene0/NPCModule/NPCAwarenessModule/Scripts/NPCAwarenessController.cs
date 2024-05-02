@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zombieland.GameScene0.NPCModule.NPCHearingSensorModule.Scripts;
@@ -9,6 +10,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule
     {
         public INpcController NpcController { get; }
         public bool IsTargetInFocus { get; private set; }
+        public event Action<bool> OnTargetInFocus;
         private INpcVisionSensorController _visionSensorController;
         private INpcHearingSensorController _hearingSensorController;
 
@@ -31,10 +33,10 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule
 
         protected override void CreateHelpersScripts()
         {
-            _visionAwarenessSpeed = NpcController.NpcDataController.NpcData.visionAwarenessSpeed;
-            _hearingAwarenessSpeed = NpcController.NpcDataController.NpcData.hearingAwarenessSpeed;
-            _awarenessDecaySpeed = NpcController.NpcDataController.NpcData.awarenessDecaySpeed;
-            _maxAwarenessLevel = NpcController.NpcDataController.NpcData.maxAwarenessLevel;
+            _visionAwarenessSpeed = NpcController.NpcDataController.NpcData.VisionAwarenessSpeed;
+            _hearingAwarenessSpeed = NpcController.NpcDataController.NpcData.HearingAwarenessSpeed;
+            _awarenessDecaySpeed = NpcController.NpcDataController.NpcData.AwarenessDecaySpeed;
+            _maxAwarenessLevel = NpcController.NpcDataController.NpcData.MaxAwarenessLevel;
 
             _updater = NpcController.NpcVisualBodyController.NpcOnScene.GetComponent<Updater>();
             _updater.SubscribeToUpdate(UpdateVisibility);
@@ -80,14 +82,14 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule
             if (IsTargetInFocus && _currentAwarenessLevel <= 0f)
             {
                 IsTargetInFocus = false;
-                // Call Lose Target
+                OnTargetInFocus?.Invoke(false);
                 return;
             }
 
             if (!IsTargetInFocus && _currentAwarenessLevel >= _maxAwarenessLevel)
             {
                 IsTargetInFocus = true;
-                // Call Follow Target
+                OnTargetInFocus?.Invoke(true);
             }
         }
     }

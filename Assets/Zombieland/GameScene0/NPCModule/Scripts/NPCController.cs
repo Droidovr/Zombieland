@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 using Zombieland.GameScene0.NPCManagerModule;
 using Zombieland.GameScene0.NPCModule.AIModule;
 using Zombieland.GameScene0.NPCModule.NPCAwarenessModule;
@@ -20,14 +19,14 @@ namespace Zombieland.GameScene0.NPCModule
         public INpcMovingController NpcMovingController { get; private set; }
         public INpcTakeImpactController NpcTakeImpactController { get; private set; }
         public INpcAwarenessController NpcAwarenessController { get; private set; }
-        public INpcAIController NpcAIController { get; set; }
-        private readonly NpcSpawnData _npcSpawnData;
+        public INpcAIController NpcAIController { get; private set; }
+        private readonly NpcSpawnData _spawnData;
 
         public NpcController(IController parentController, List<IController> requiredControllers, NpcSpawnData npcSpawnData) 
             : base(parentController, requiredControllers)
         {
             NpcManagerController = (INpcManagerController) parentController;
-            _npcSpawnData = npcSpawnData;
+            _spawnData = npcSpawnData;
         }
 
         protected override void CreateHelpersScripts()
@@ -37,7 +36,7 @@ namespace Zombieland.GameScene0.NPCModule
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            NpcDataController = new NpcDataController(this, null, _npcSpawnData);
+            NpcDataController = new NpcDataController(this, null, _spawnData);
             subsystemsControllers.Add((IController)NpcDataController);
             
             NpcVisualBodyController = new NpcVisualBodyController(this, new List<IController>{(IController)NpcDataController});

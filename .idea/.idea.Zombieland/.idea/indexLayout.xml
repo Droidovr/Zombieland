@@ -3,6 +3,7 @@
   <component name="ContentModelUserStore">
     <attachedFolders />
     <explicitIncludes>
+      <Path>Assets</Path>
       <Path>Library/PackageCache/com.unity.ads@4.4.2</Path>
       <Path>Library/PackageCache/com.unity.ai.navigation@1.1.5</Path>
       <Path>Library/PackageCache/com.unity.analytics@3.8.1</Path>
@@ -31,6 +32,7 @@
       <Path>Library/PackageCache/com.unity.visualscripting@1.9.1</Path>
       <Path>Library/PackageCache/com.unity.visualscripting@1.9.2</Path>
       <Path>Library/PackageCache/com.unity.xr.legacyinputhelpers@2.1.10</Path>
+      <Path>Packages</Path>
       <Path>ProjectSettings</Path>
     </explicitIncludes>
     <explicitExcludes>

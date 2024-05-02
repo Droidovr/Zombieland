@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Zombieland.GameScene0.NPCManagerModule.Scripts;
 using Zombieland.GameScene0.NPCModule;
 using Zombieland.GameScene0.RootModule;
 
@@ -26,18 +25,16 @@ namespace Zombieland.GameScene0.NPCManagerModule
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            var npcSearch = new GameObject("NpcSpawnSearch").AddComponent<NpcSpawnSearch>();
-            var npcSpawnDataList = npcSearch.GetNpcSpawnDataList();
-            
-            Debug.Log("----------- OBJECT SEARCH -----------");
+            var npcSpawnDataList = RootController.GameDataController.GetData<List<NpcSpawnData>>("NpcSpawnData");
             foreach (var npcSpawnData in npcSpawnDataList)
             {
+                npcSpawnData.ConvertDataToVector3();
                 INpcController npcController = new NpcController(this, null, npcSpawnData);
-                subsystemsControllers.Add((IController) npcController);
+                subsystemsControllers.Add((IController)npcController);
                 AddNpcToActive(npcController);
             }
         }
-        
+
         public void AddNpcToActive(INpcController npcController)
         {
             ActiveNpcControllers.Add(npcController);

@@ -1,0 +1,12 @@
+{
+  "Name": "NpcDefault",
+  "ID": null,
+  "MaxHealth": 100.0,
+  "CurrentHealth": 100.0,
+  "Speed": 10.0,
+  "StopDistance": 5.0,
+  "VisionAwarenessSpeed": 0.0,
+  "HearingAwarenessSpeed": 0.0,
+  "AwarenessDecaySpeed": 0.0,
+  "MaxAwarenessLevel": 0.0
+}

@@ -18,6 +18,6 @@ namespace Zombieland.GameScene0.NPCModule
         public INpcMovingController NpcMovingController { get; }
         public INpcTakeImpactController NpcTakeImpactController { get; }
         public INpcAwarenessController NpcAwarenessController { get; }
-        public INpcAIController NpcAIController { get; set; }
+        public INpcAIController NpcAIController { get; }
     }
 }
