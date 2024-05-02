@@ -1,6 +1,4 @@
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
 using Zombieland.GameScene0.UIModule;
 
@@ -22,8 +20,6 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         private ICharacterMovingController _characterMovingController;
         public bool _isActive;
         private float _speedMultiplier = 1f;
-        private Vector2 _centerScreen;
-        private Vector2 _defaultSizeCursor = new Vector2(32f, 32f);
 
 
         #region PUBLIC
@@ -49,7 +45,6 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             _characterDataController = characterMovingController.CharacterController.CharacterDataController;
 
             _isActive = true;
-            _centerScreen = new Vector2(Screen.width / 2f, Screen.height / 2f);
         }
 
         public void ActivateMoving(bool isActive)
@@ -124,10 +119,10 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void CalculeteRotation()
         {
-            Vector2 offset = _vectorMousePosition - _centerScreen;
+            Vector2 centerScreen = new Vector2(Screen.width / 2f, Screen.height / 2f);
+            Vector2 offset = _vectorMousePosition - centerScreen;
             float angle = Mathf.Atan2(offset.x, offset.y) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(0f, angle, 0f);
-            //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _characterDataController.CharacterData.DesignRotationSpeed);
             transform.rotation = targetRotation;
         }
 
