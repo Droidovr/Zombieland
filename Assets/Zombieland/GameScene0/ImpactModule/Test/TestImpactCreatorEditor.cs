@@ -1,10 +1,14 @@
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
-using UnityEditor;
 using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+#if UNITY_EDITOR
 namespace Zombieland.GameScene0.ImpactModule.Test
 {
     [CustomEditor(typeof(TestImpactCreator))]
@@ -30,8 +34,8 @@ namespace Zombieland.GameScene0.ImpactModule.Test
             {
                 ImpactData = new ImpactData()
                 {
-                    ID = "ID",
-                    Name = "Knife",
+                    ID = "Wrench",
+                    Name = "Wrench",
                     IconID = "IconID",
                     ConsumableResources = new List<ConsumableResource>()
                     {
@@ -43,23 +47,21 @@ namespace Zombieland.GameScene0.ImpactModule.Test
                     }
                 },
 
-                Assembler = new EmptyAssembler()
+                Assembler = new ObjectParentAssembler()
                 {
-                    //PrefabName = "GunBullet"
+                    PrefabName = "Wrench"
                 },
                 
-                Delivery = new EmptyDelivery()
+                Delivery = new ObjectInstantTeleport()
                 {
-                    // MovingSpeed = 10f,
-                    // Range = 5f,
-                    // Lifetime = 0f
+                    Lifetime = 1f
                 },
                 
-                InitialImpact = new Knife()
+                InitialImpact = new Wrench()
                 {
-                    Detector = new SphereDetector()
+                    Detector = new TouchColliderDetector()
                     {
-                        DetectionRadius = 0.3f
+                        //DetectionRadius = 0.3f
                     },
                     
                     InitialImpactData = new List<DirectImpactData>()
@@ -72,7 +74,7 @@ namespace Zombieland.GameScene0.ImpactModule.Test
                         }
                     },
                     
-                    TargetReachedEffectPrefabName = "KnifeTargetReachedEffect",
+                    TargetReachedEffectPrefabName = "WrenchTargetReachedEffect",
                     Force = 0f
                 },
                 
@@ -110,3 +112,4 @@ namespace Zombieland.GameScene0.ImpactModule.Test
         }
     }
 }
+#endif

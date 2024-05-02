@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
+using Zombieland.GameScene0.CharacterModule;
 using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 using Zombieland.GameScene0.ImpactModule;
 
-public class GunBullet : IInitialImpact
+public class GunBullet : IInitialImpactCommand
 {
     [JsonIgnore] public IImpact Impact { get; set; }
     public UpfrontRayDetector Detector { get; set; }
@@ -15,7 +16,7 @@ public class GunBullet : IInitialImpact
 
     public void Execute()
     {
-        var targetsList = Detector.GetTargets(Impact.ImpactData.ImpactObject);
+        Detector.GetTargets(Impact.ImpactData.ImpactObject, out var targetsList, out var collisionPosition);
         Impact.ImpactData.Targets = targetsList;
             
         if (targetsList == null || targetsList.Count <= 0)
@@ -34,12 +35,16 @@ public class GunBullet : IInitialImpact
             var effectPrefab = Resources.Load<GameObject>(TargetReachedEffectPrefabName);
             foreach (var target in Impact.ImpactData.Targets)
             {
-                target.Owner.TakeImpactController.ApplyImpact(InitialImpactData);
-                // target - ApplyForce
-                if(!effectPrefab) return;
-                var effect = GameObject.Instantiate(effectPrefab, Impact.ImpactData.ImpactObject.transform.position, Quaternion.identity);
-                var effectTime = effect.GetComponent<ParticleSystem>().main.duration;
-                GameObject.Destroy(effect, effectTime);
+                if (target.Controller is ICharacterController characterController)
+                {
+                    characterController.TakeImpactController.ApplyImpact(InitialImpactData, collisionPosition,
+                        Impact.ImpactData.ImpactObject.transform.forward);
+                    // target - ApplyForce
+                    if(!effectPrefab) return;
+                    var effect = GameObject.Instantiate(effectPrefab, Impact.ImpactData.ImpactObject.transform.position, Quaternion.identity);
+                    var effectTime = effect.GetComponent<ParticleSystem>().main.duration;
+                    GameObject.Destroy(effect, effectTime);
+                }
             }
             Impact.BuffDebuffInjection.Execute();
         }

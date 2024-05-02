@@ -20,10 +20,7 @@ namespace Zombieland.GameScene0.UIModule.UIMainModule
         public event Action OnNumber3;
         public event Action OnNumber4;
 
-        public Vector2 SizeCursor { get; private set; }
-
         private InitializerInputPrefab _initializerInputGameobjects;
-        private GameCursor _gameCursor;
 
 
         #region PUBLIC
@@ -51,13 +48,6 @@ namespace Zombieland.GameScene0.UIModule.UIMainModule
                 _initializerInputGameobjects.Input.OnNumber4 -= HandleNumber4Click;
             }
 
-#if UNITY_STANDALONE
-            if (_gameCursor != null)
-            {
-                _gameCursor.Disable();
-            }
-#endif
-
             base.Disable();
         }
 #endregion PUBLIC
@@ -84,8 +74,7 @@ namespace Zombieland.GameScene0.UIModule.UIMainModule
             _initializerInputGameobjects.Input.OnNumber4 += HandleNumber4Click;
 
 #if UNITY_STANDALONE
-            _gameCursor = new GameCursor(this);
-            SizeCursor = _gameCursor.SizeCursor;
+            _initializerInputGameobjects.GetInputSystemGameobject().GetComponent<GameCursor>().Init(this);
 #endif
         }
 
@@ -101,7 +90,6 @@ namespace Zombieland.GameScene0.UIModule.UIMainModule
         {
             OnMoved?.Invoke(vectorMove);
         }
-
         private void HandleMouseMoved(Vector2 mousePosition)
         {
             OnMouseMoved?.Invoke(mousePosition);

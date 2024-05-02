@@ -1,5 +1,7 @@
 using System;
 using System.Linq;
+using System.Threading;
+using UnityEngine;
 
 namespace Zombieland.GameScene0.ImpactModule
 {
@@ -18,8 +20,23 @@ namespace Zombieland.GameScene0.ImpactModule
             Delivery.Impact = this;
             InitialImpact.Impact = this;
             BuffDebuffInjection.Impact = this;
+            ApplyBuffsDebuffsToImpact();
+            Assembler.Execute();
+        }
+
+        public void Deactivate()
+        {
+            Assembler.Deactivate();
+            Delivery.Deactivate();
+            InitialImpact.Deactivate();
+            BuffDebuffInjection.Deactivate();
+        }
+
+        private void ApplyBuffsDebuffsToImpact()
+        {
+            if (ImpactData.ImpactOwner.BuffDebuffController.CountBuffDebuff <= 0) return;
             
-            var initialImpact = (IInitialImpact)InitialImpact;
+            var initialImpact = (IInitialImpactCommand)InitialImpact;
             var updatedInitialImpactList = initialImpact.InitialImpactData
                 .Select(impact => ImpactData.ImpactOwner.BuffDebuffController.GetProcessedImpactValue(impact)).
                 ToList();
@@ -35,16 +52,6 @@ namespace Zombieland.GameScene0.ImpactModule
             {
                 debuff.BuffDebuffData.DirectImpactData = ImpactData.ImpactOwner.BuffDebuffController.GetProcessedImpactValue(debuff.BuffDebuffData.DirectImpactData);
             }
-            
-            Assembler.Execute();
-        }
-
-        public void Deactivate()
-        {
-            Assembler.Deactivate();
-            Delivery.Deactivate();
-            InitialImpact.Deactivate();
-            BuffDebuffInjection.Deactivate();
         }
     }
 }

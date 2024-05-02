@@ -1,18 +1,21 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 {
     public class AnimationController : Controller, IAnimationController
     {
-        public event Action<Vector3> OnAnimatorMove;
-        public event Action OnFinishPreparationAttack;
+        public event Action<Vector3> OnAnimationMove;
+        public event Action<bool> OnAnimationAttack;
+        public event Action<string> OnAnimationCreateWeapon;
+        public event Action OnAnimationDestroyWeapon;
+        public event Action OnStep;
 
         public ICharacterController CharacterController { get; private set; }
 
         private CharacterAnimator _characterAnimator;
+        private CharacterRagdoll _characterRagdoll;
 
 
         public AnimationController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
@@ -22,8 +25,13 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         public override void Disable()
         {
-            _characterAnimator.OnAnimatorMoveHandler -= AnimatorMoveHandler;
-            _characterAnimator.OnFinishPreparationAttack -= FinishPreparationAttack;
+            CharacterController.TakeImpactController.OnApplyImpact -= ApplyImpactHandler;
+
+            _characterAnimator.OnAnimationMove -= AnimationMoveHandler;
+            _characterAnimator.OnAnimationAttack -= AnimationAttackHandler;
+            _characterAnimator.OnAnimationCreateWeapon -= AnimationCreateWeaponHandler;
+            _characterAnimator.OnAnimationDestroyWeapon -= AnimationDestroyWeaponHandler;
+            _characterAnimator.OnStep -= StepHandler;
             _characterAnimator.Disable();
 
             base.Disable();
@@ -31,19 +39,27 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         protected override void CreateHelpersScripts()
         {
-            GameObject character = CharacterController.VisualBodyController.CharacterInScene;
+            CharacterController.TakeImpactController.OnApplyImpact += ApplyImpactHandler;
 
-            _characterAnimator = character.AddComponent<CharacterAnimator>();
+            _characterAnimator = CharacterController.VisualBodyController.CharacterInScene.AddComponent<CharacterAnimator>();
             _characterAnimator.Init(this);
-            _characterAnimator.OnAnimatorMoveHandler += AnimatorMoveHandler;
-            _characterAnimator.OnFinishPreparationAttack += FinishPreparationAttack;
+            _characterAnimator.OnAnimationMove += AnimationMoveHandler;
+            _characterAnimator.OnAnimationAttack += AnimationAttackHandler;
+            _characterAnimator.OnAnimationCreateWeapon += AnimationCreateWeaponHandler;
+            _characterAnimator.OnAnimationDestroyWeapon += AnimationDestroyWeaponHandler;
+            _characterAnimator.OnStep += StepHandler;
 
-            CharacterRagdoll characterRagdoll = character.AddComponent<CharacterRagdoll>();
-            characterRagdoll.Init(this);
+            _characterRagdoll = CharacterController.VisualBodyController.CharacterInScene.AddComponent<CharacterRagdoll>();
+            _characterRagdoll.Init(this);
 
             //Test
-            //TestShooter testShooter = character.AddComponent<TestShooter>();
-            //testShooter.Init(characterRagdoll);
+            //TestShooter testShooter = CharacterController.VisualBodyController.CharacterInScene.AddComponent<TestShooter>();
+            //testShooter.Init(this, _characterRagdoll);
+        }
+
+        private void ApplyImpactHandler(Vector3 impactCollisionPosition, Vector3 impactDirection)
+        {
+            _characterRagdoll.Hit(impactCollisionPosition, impactDirection);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -51,14 +67,29 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             // This controller doesn't have any subsystems at the moment.
         }
 
-        private void AnimatorMoveHandler(Vector3 deltaPosition)
+        private void AnimationMoveHandler(Vector3 deltaPosition)
         {
-            OnAnimatorMove?.Invoke(deltaPosition);
+            OnAnimationMove?.Invoke(deltaPosition);
         }
 
-        private void FinishPreparationAttack()
+        private void AnimationAttackHandler(bool isFire)
         {
-            OnFinishPreparationAttack?.Invoke();
+            OnAnimationAttack?.Invoke(isFire);
+        }
+
+        private void AnimationCreateWeaponHandler(string weaponPrefabName)
+        {
+            OnAnimationCreateWeapon?.Invoke(weaponPrefabName);
+        }
+
+        private void AnimationDestroyWeaponHandler()
+        {
+            OnAnimationDestroyWeapon?.Invoke();
+        }
+
+        private void StepHandler()
+        {
+            OnStep?.Invoke();
         }
     }
 }

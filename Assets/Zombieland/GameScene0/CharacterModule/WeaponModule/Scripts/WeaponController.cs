@@ -1,33 +1,104 @@
-﻿
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
+
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 {
     public class WeaponController : Controller, IWeaponController
     {
+        public event Action<Weapon> OnShotPerformed;
+        public event Action OnShotFailed;
+
+        public ICharacterController CharacterController { get; private set; }
+        public IWeapon Weapon { get; private set; }
+        public Transform WeaponPointFire { get; private set; }
+
+
+        #region Public
         public WeaponController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
-            // This class’s constructor doesn’t have any content yet.
+            CharacterController = parentController as ICharacterController;
         }
 
+        public override void Disable()
+        {
+            if (Weapon != null)
+            {
+                Weapon.ShotProcess.StopFire();
+                Weapon.ShotProcess.OnShotPerformed -= ShotHandler;
+            }
+
+            CharacterController.EquipmentController.OnWeaponChanged -= WeaponChangedHandler;
+            CharacterController.VisualBodyController.OnWeaponInSceneReady -= WeaponInSceneReadyHandler;
+            CharacterController.AnimationController.OnAnimationAttack -= ButtonFireHandler;
+
+            base.Disable();
+        }
+        #endregion
+
+
+        #region Protected
         protected override void CreateHelpersScripts()
         {
-            // This controller doesn’t have any helpers scripts at the moment.
+            CharacterController.EquipmentController.OnWeaponChanged += WeaponChangedHandler;
+            CharacterController.VisualBodyController.OnWeaponInSceneReady += WeaponInSceneReadyHandler;
+            CharacterController.AnimationController.OnAnimationAttack += ButtonFireHandler;
+
+            //// Test
+            //Pistol pistol = new Pistol(this);
+            //pistol.Init();
+            //pistol.Serialize();
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
             // This controller doesn’t have any subsystems at the moment.
         }
+        #endregion
 
-        public void ChangeWeapon()
+
+        #region Private
+        private void WeaponChangedHandler(Weapon weapon)
         {
-           // throw new System.NotImplementedException();
+            if (Weapon != null)
+            {
+                Weapon.ShotProcess.StopFire();
+                Weapon.ShotProcess.OnShotPerformed -= ShotHandler;
+            }
+
+            Weapon = weapon;
         }
 
-        public void Fire()
+        private void WeaponInSceneReadyHandler()
         {
-           // throw new System.NotImplementedException();
+            Weapon.Init(this);
+            Weapon.ShotProcess.OnShotPerformed += ShotHandler;
+            WeaponPointFire = CharacterController.VisualBodyController.WeaponInScene.transform.Find("PointFire");
         }
+
+        private void ButtonFireHandler(bool isFire)
+        {
+            if (Weapon != null)
+            {
+                if (isFire)
+                {
+                    Weapon.ShotProcess.StartFire();
+                }
+                else
+                {
+                    Weapon.ShotProcess.StopFire();
+                }
+            }
+        }
+
+        private void ShotHandler()
+        {
+            if (Weapon != null)
+            {
+                OnShotPerformed?.Invoke((Weapon) Weapon);
+            }
+        }
+        #endregion
     }
 }
