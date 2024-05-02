@@ -36,7 +36,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule
             _awarenessDecaySpeed = NpcController.NpcDataController.NpcData.awarenessDecaySpeed;
             _maxAwarenessLevel = NpcController.NpcDataController.NpcData.maxAwarenessLevel;
 
-            _updater = NpcController.NpcVisualBodyController.ActiveNPC.GetComponent<Updater>();
+            _updater = NpcController.NpcVisualBodyController.NpcOnScene.GetComponent<Updater>();
             _updater.SubscribeToUpdate(UpdateVisibility);
         }
 

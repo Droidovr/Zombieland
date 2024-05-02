@@ -1,19 +1,21 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Zombieland.GameScene0.NPCModule.NPCSpawnModule
 {
     public class NpcSpawnController : Controller, INpcSpawnController
     {
-        private readonly INpcController _NPCController;
+        private readonly INpcController _npcController;
 
         public NpcSpawnController(IController parentController, List<IController> requiredControllers) 
             : base(parentController, requiredControllers)
         {
-            _NPCController = (INpcController)parentController;
+            _npcController = (INpcController)parentController;
         }
 
         protected override void CreateHelpersScripts()
         {
+            Debug.Log(")))))))))))))))))))) - NpcSpawnController");
             SetAndActivateNPC();
         }
 
@@ -24,9 +26,15 @@ namespace Zombieland.GameScene0.NPCModule.NPCSpawnModule
 
         private void SetAndActivateNPC()
         {
-            var activeNpc = _NPCController.NpcVisualBodyController.ActiveNPC;
-            activeNpc.transform.position = _NPCController.NpcDataController.NpcData.spawnPosition;
-            activeNpc.SetActive(true);
+            Debug.Log("***********************" + _npcController.NpcVisualBodyController.NpcOnScene.name);
+            Debug.Log("***********************" + _npcController.NpcDataController.NpcData);
+            Debug.Log("***********************" + _npcController.NpcDataController.NpcData.SpawnData);
+            Debug.Log("***********************" + _npcController.NpcDataController.NpcData.SpawnData.SpawnPositionTransform);
+
+
+
+            _npcController.NpcVisualBodyController.NpcOnScene.transform.position = _npcController.NpcDataController.NpcData.SpawnData.SpawnPositionTransform.position;
+            _npcController.NpcVisualBodyController.NpcOnScene.SetActive(true);
         }
     }
 }

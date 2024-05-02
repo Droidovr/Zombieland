@@ -17,7 +17,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisionSensorModule
 
         protected override void CreateHelpersScripts()
         {
-            _visionSensor = _npcAwarenessController.NpcController.NpcVisualBodyController.ActiveNPC.GetComponent<VisionSensor>();
+            _visionSensor = _npcAwarenessController.NpcController.NpcVisualBodyController.NpcOnScene.GetComponent<VisionSensor>();
             _visionSensor.Init( _npcAwarenessController.NpcController.NpcManagerController.CharacterTransform, OnCharacterInsideZone);
         }
 
@@ -28,7 +28,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisionSensorModule
         
         private void TestCreateSubsystem()
         {
-            _visionSensor =  _npcAwarenessController.NpcController.NpcVisualBodyController.ActiveNPC.GetComponent<VisionSensor>();
+            _visionSensor =  _npcAwarenessController.NpcController.NpcVisualBodyController.NpcOnScene.GetComponent<VisionSensor>();
             _visionSensor.Init( _npcAwarenessController.NpcController.NpcManagerController.CharacterTransform, OnCharacterInsideZone);
         }
 

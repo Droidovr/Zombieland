@@ -19,6 +19,5 @@ namespace Zombieland.GameScene0.NPCModule
         public INpcTakeImpactController NpcTakeImpactController { get; }
         public INpcAwarenessController NpcAwarenessController { get; }
         public INpcAIController NpcAIController { get; set; }
-        public NpcSpawnData NpcSpawnData { get; }
     }
 }

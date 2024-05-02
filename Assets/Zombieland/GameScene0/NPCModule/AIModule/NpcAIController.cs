@@ -15,7 +15,7 @@ namespace Zombieland.GameScene0.NPCModule.AIModule
 
         protected override void CreateHelpersScripts()
         {
-            _goalsList = new List<IGoal>(_npcController.NpcVisualBodyController.ActiveNPC.GetComponentsInChildren<IGoal>());
+            _goalsList = new List<IGoal>(_npcController.NpcVisualBodyController.NpcOnScene.GetComponentsInChildren<IGoal>());
             foreach (var goal in _goalsList)
             {
                 goal.Init(_npcController);

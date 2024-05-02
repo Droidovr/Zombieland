@@ -9,29 +9,31 @@ namespace Zombieland.GameScene0.NPCManagerModule
     public class NpcManagerController : Controller, INpcManagerController
     {
         public IRootController RootController { get; }
-        public Transform CharacterTransform { get; }
-        public List<INpcController> ActiveNpcControllers { get; }
+        public Transform CharacterTransform { get; private set; }
+        public List<INpcController> ActiveNpcControllers { get; private set; }
         
         public NpcManagerController(IController parentController, List<IController> requiredControllers) 
             : base(parentController, requiredControllers)
         {
             RootController = (IRootController)parentController;
-            CharacterTransform = RootController.CharacterController.VisualBodyController.CharacterInScene.transform;
-            ActiveNpcControllers = new List<INpcController>();
         }
 
         protected override void CreateHelpersScripts()
         {
-            //This method has no implementation
+            CharacterTransform = RootController.CharacterController.VisualBodyController.CharacterInScene.transform;
+            ActiveNpcControllers = new List<INpcController>();
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            var npcSearch = new GameObject("Search").AddComponent<NpcSearch>();
+            var npcSearch = new GameObject("NpcSpawnSearch").AddComponent<NpcSpawnSearch>();
             var npcSpawnDataList = npcSearch.GetNpcSpawnDataList();
+            
+            Debug.Log("----------- OBJECT SEARCH -----------");
             foreach (var npcSpawnData in npcSpawnDataList)
             {
-                var npcController = new NpcController(this, null, npcSpawnData);
+                INpcController npcController = new NpcController(this, null, npcSpawnData);
+                subsystemsControllers.Add((IController) npcController);
                 AddNpcToActive(npcController);
             }
         }

@@ -1,26 +1,22 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Zombieland.GameScene0.NPCModule.NPCDataModule
 {
     public class NpcDataController : Controller, INpcDataController
     {
-        public NpcData NpcData { get; set; }
-        private readonly INpcController _npcController;
+        public NpcData NpcData { get; private set; }
+        private readonly NpcSpawnData _npcSpawnData;
         
-        public NpcDataController(IController parentController, List<IController> requiredControllers) 
+        public NpcDataController(IController parentController, List<IController> requiredControllers, NpcSpawnData npcSpawnData) 
             : base(parentController, requiredControllers)
         {
-            _npcController = (INpcController)parentController;
+            _npcSpawnData = npcSpawnData;
         }
 
         protected override void CreateHelpersScripts()
         {
-            NpcData = new NpcData();
-            NpcData.spawnPosition = _npcController.NpcSpawnData.transform.position;
-            foreach (var wanderTransform in _npcController.NpcSpawnData.wanderPositionTransforms)
-            {
-                NpcData.wanderPositions.Add(wanderTransform.position);
-            }
+            NpcData = new NpcData {SpawnData = _npcSpawnData};
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)

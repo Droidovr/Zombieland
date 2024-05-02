@@ -12,14 +12,16 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BFF907ED-581F-483A-B4BD-129472866E97/0f/a546ecc8/CapsuleCollider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BFF907ED-581F-483A-B4BD-129472866E97/bf/db3f69ea/SphereCollider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/Scripts/ICommand.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/Scripts/NpcSpawnSearch.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.10/Runtime/UniversalRenderPipeline.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C5ED7824-3908-4EF1-BC2A-D85EEC89E9FE/85/bd1d4799/SceneManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/TakeImpactModule/Scripts/ITakeImpactController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C5ED7824-3908-4EF1-BC2A-D85EEC89E9FE/56/be19ea8d/Object.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BFF907ED-581F-483A-B4BD-129472866E97/bf/db3f69ea/SphereCollider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Wrench.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/NpcSpawnData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/Scripts/ICommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C5ED7824-3908-4EF1-BC2A-D85EEC89E9FE/35/a100e489/Component.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/Scripts/NpcSearch.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C5ED7824-3908-4EF1-BC2A-D85EEC89E9FE/29/96d409f5/Transform.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/00.Assembly/ObjectParentAssembler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/IInitialImpactCommand.cs" root0="FORCE_HIGHLIGHTING" />
@@ -27,13 +29,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/BaseMine.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/BaseHomingProjectile.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/BaseDirectProjectile.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/BaseHealing.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/Knife.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/03.BuffDebuff/BuffDebuffInjection.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Test/TestFireHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/01.Delivery/FollowingTargetHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/IImpact.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/GameDataModule/Scripts/GameDataController.cs" />
@@ -62,22 +57,29 @@
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/Scripts/NpcSeach.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/Scripts/INPCManagerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/Scripts/NPCManagerController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/INpcController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/NpcController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCDataModule/Scripts/NpcData.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCDataModule/Scripts/NpcDataController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCVisualBodyModule/Scripts/NPCVisualBodyController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCSpawnModule/Scripts/NpcSpawnController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCMovingModule/Scripts/NpcMovingController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCAwarenessModule/Scripts/NpcAwarenessController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/AIModule/NpcAIController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Test/TestStartPoint.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/AIModule/ActionWander.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/ImpactModule/Scripts/02.InitialImpact/LongestSubstring.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/INPCController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/NpcSpawnData.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/Scripts/NpcSearch.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/RootModule/Scripts/IRootController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/INpcController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCDataModule/Scripts/INpcDataController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/AIModule/ActionWander.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCVisualBodyModule/Scripts/INPCVisualBodyController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCVisualBodyModule/Scripts/NPCVisualBodyController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/NpcSpawnData.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCSpawnModule/Scripts/NPCSpawnController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCDataModule/Scripts/NpcDataController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/Scripts/NpcController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/EnvironmentModule/Scripts/InitializerEnvironment.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/Scripts/NpcSpawnSearch.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/RootModule/Scripts/RootController.cs" />
         <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCManagerModule/Scripts/NpcManagerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Zombieland/GameScene0/NPCModule/NPCDataModule/Scripts/NpcData.cs" />
       </list>
     </option>
   </component>
@@ -141,7 +143,7 @@
       <workItem from="1713813312195" duration="410000" />
       <workItem from="1714417035479" duration="8924000" />
       <workItem from="1714491529058" duration="3666000" />
-      <workItem from="1714592233979" duration="1551000" />
+      <workItem from="1714592233979" duration="9538000" />
     </task>
     <servers />
   </component>

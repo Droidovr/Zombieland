@@ -523,7 +523,7 @@
               <e p="Scripts" t="Include">
                 <e p="INPCManagerController.cs" t="Include" />
                 <e p="NPCManagerController.cs" t="Include" />
-                <e p="NpcSearch.cs" t="Include" />
+                <e p="NpcSpawnSearch.cs" t="Include" />
               </e>
             </e>
             <e p="NPCModule" t="Include">
@@ -605,16 +605,6 @@
                   <e p="TestGoalsUIManager.cs" t="Include" />
                   <e p="TestGoalUI.cs" t="Include" />
                 </e>
-                <e p="Prefabs" t="Include">
-                  <e p="Materials" t="Include">
-                    <e p="Misc" t="Include">
-                      <e p="Shader" t="Include">
-                        <e p="POLYGON_Zombies.shader" t="Include" />
-                      </e>
-                    </e>
-                  </e>
-                </e>
-                <e p="TestStartPoint.cs" t="Include" />
               </e>
             </e>
             <e p="RootModule" t="Include">
