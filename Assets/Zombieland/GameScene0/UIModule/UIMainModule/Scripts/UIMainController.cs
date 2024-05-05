@@ -93,6 +93,7 @@ namespace Zombieland.GameScene0.UIModule.UIMainModule
         private void HandleMouseMoved(Vector2 mousePosition)
         {
             OnMouseMoved?.Invoke(mousePosition);
+            Debug.Log("HandleMouseMoved: " + mousePosition);
         }
 
         private void HandleFireClick(bool isFire)
