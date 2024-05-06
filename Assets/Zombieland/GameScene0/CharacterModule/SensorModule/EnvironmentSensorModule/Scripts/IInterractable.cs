@@ -1,18 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class IInterractable : MonoBehaviour
+namespace Zombieland.GameScene0.CharacterModule.SensorModule.EnvironmentSensorModule
 {
-    // Start is called before the first frame update
-    void Start()
+    public interface IInterractable
     {
-        
-    }
+        IController Controller { get; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        void ToggleInterractable(bool isInRange);
+        void Interract();
     }
 }
+
