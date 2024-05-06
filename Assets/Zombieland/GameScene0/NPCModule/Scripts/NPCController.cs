@@ -1,15 +1,19 @@
 using System.Collections.Generic;
 using Zombieland.GameScene0.NPCManagerModule;
+using Zombieland.GameScene0.NPCModule.NPCDataModule;
 
 namespace Zombieland.GameScene0.NPCModule
 {
     public class NPCController : Controller, INPCController
     {
-        public INPCManagerController NpcManagerController { get; private set; }
+        public INPCManagerController NPCManagerController { get; private set; }
+        public NPCSpawnData NPCSpawnData { get; private set; }
+        public INPCDataController NPCDataController { get; private set; }
 
         public NPCController(IController parentController, List<IController> requiredControllers, NPCSpawnData npcSpawnData) : base(parentController, requiredControllers)
         {
-            NpcManagerController = parentController as INPCManagerController;
+            NPCManagerController = parentController as INPCManagerController;
+            NPCSpawnData = npcSpawnData;
         }
 
 
@@ -20,7 +24,8 @@ namespace Zombieland.GameScene0.NPCModule
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            // This controller doesn’t have any subsystems at the moment.
+            NPCDataController = new NPCDataController(this, null);
+            subsystemsControllers.Add((IController)NPCDataController);
         }
     }
 }

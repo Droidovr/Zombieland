@@ -35,7 +35,7 @@ namespace Zombieland.GameScene0.RootModule
             EnvironmentController = new EnvironmentController(this, new List<IController> {(IController) GameDataController});
             UIController = new UIController(this, null);
             CameraController = new CameraController(this, new List<IController> {(IController)CharacterController});
-            NPCManagerController = new NPCManagerController(this, new List<IController> { (IController)EnvironmentController, (IController)CharacterController.VisualBodyController});
+            NPCManagerController = new NPCManagerController(this, new List<IController> { (IController)EnvironmentController });
 
             subsystemsControllers.Add((IController) CharacterController);
             subsystemsControllers.Add((IController) GameDataController);

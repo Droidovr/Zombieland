@@ -1,6 +1,6 @@
 [
   {
-    "NpcJsonFileName": "Npc0",
+    "NpcJsonFileName": "NPC_JSON_0",
     "SpawnPosition": {
       "X": 1.0,
       "Y": 0.0,
@@ -13,7 +13,7 @@
     }
   },
   {
-    "NpcJsonFileName": "Npc0",
+    "NpcJsonFileName": "NPC_JSON_0",
     "SpawnPosition": {
       "X": 1.0,
       "Y": 0.0,
