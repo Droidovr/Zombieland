@@ -22,6 +22,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisualBodyModule
         protected override void CreateHelpersScripts()
         {
             CreateNPCGameobject();
+            SetTriggersOnNPC();
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -33,6 +34,12 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisualBodyModule
         {
             NPCInScene = _createNPCGameobject.CreateNPC(Vector3.zero, Quaternion.identity);
             NPCInScene.SetActive(false);
+        }
+
+        private void SetTriggersOnNPC()
+        {
+            GertterTriggers gertterTriggers = new GertterTriggers(this);
+            SensorTriggersGameobject = gertterTriggers.GetSensorTriggers();
         }
     }
 }
