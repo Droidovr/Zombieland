@@ -7,8 +7,10 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisualBodyModule
     public class NPCVisualBodyController : Controller, INPCVisualBodyController
     {
         public GameObject NPCInScene { get; private set; }
+        public GameObject WeaponInScene { get; private set; }
         public List<GameObject> SensorTriggersGameobject { get; private set; }
         public INPCController NPCController { get; private set; }
+
 
         private CreateNPCPrefab _createNPCGameobject;
 
