@@ -30,9 +30,6 @@ namespace Zombieland.GameScene0.CharacterModule.AimingModule
         protected override void CreateHelpersScripts()
         {
             _aiming = new Aiming(this);
-            _targetCaller = CharacterController.VisualBodyController.CharacterInScene.AddComponent<TargetCaller>();
-            
-            _targetCaller.Init(this);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)

@@ -1,0 +1,28 @@
+[
+  {
+    "NpcJsonFileName": "NPC_JSON_0",
+    "SpawnPosition": {
+      "X": 11.0,
+      "Y": 0.0,
+      "Z": 0.0
+    },
+    "PatrolPoint": {
+        "X": 11.0,
+        "Y": 0.0,
+        "Z": 22.00
+    }
+  },
+  {
+    "NpcJsonFileName": "NPC_JSON_0",
+    "SpawnPosition": {
+      "X": 21.0,
+      "Y": 0.0,
+      "Z": 15.0
+    },
+    "PatrolPoint": {
+        "X":0.4,
+        "Y": 0.0,
+        "Z": -8.0
+    }
+  }
+]

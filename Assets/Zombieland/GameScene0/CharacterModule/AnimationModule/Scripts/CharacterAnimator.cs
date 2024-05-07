@@ -13,7 +13,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         public event Action OnStep;
 
         private const string PC_ANIMATOR = "PCAnimatorController";
-        private const string MOBILE_ANIMATOR = "Character0MobileAnimator";
+        private const string MOBILE_ANIMATOR = "MobileAnimatorController";
         private const float DAMP_TIME = 0.05f;
         private const float CHECK_FIRE_PERMITION_PERIOD = 0.1f;
 
@@ -112,6 +112,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         private void AttackHandler()
         {
+            Debug.Log("From animation AttackHandler:" + _animatorController.CharacterController.WeaponController.WeaponPointFire.position);
             OnAnimationAttack?.Invoke(true);
         }
 
@@ -122,14 +123,17 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         private void UIFireHandler(bool isFire)
         {
-            if (isFire)
+            if (_animatorController.CharacterController.VisualBodyController.WeaponInScene != null)
             {
-                InvokeRepeating("StartFirePermision", 0, CHECK_FIRE_PERMITION_PERIOD);
-            }
-            else
-            {
-                _animator.SetBool("Attack", isFire);
-                OnAnimationAttack?.Invoke(false);
+                if (isFire)
+                {
+                    InvokeRepeating("StartFirePermision", 0, CHECK_FIRE_PERMITION_PERIOD);
+                }
+                else
+                {
+                    _animator.SetBool("Attack", isFire);
+                    OnAnimationAttack?.Invoke(false);
+                }
             }
         }
 
@@ -137,6 +141,8 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         {
             if (_firePermiser.CheckFirePermission(_weapon))
             {
+                //Debug.Log("From animation StartFirePermision:" + _animatorController.CharacterController.WeaponController.WeaponPointFire.position);
+
                 CancelInvoke("StartFirePermision");
                 _animator.SetBool("Attack", true);
             }

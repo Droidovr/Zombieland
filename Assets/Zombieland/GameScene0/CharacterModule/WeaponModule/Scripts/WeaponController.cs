@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
@@ -11,6 +12,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
         public ICharacterController CharacterController { get; private set; }
         public IWeapon Weapon { get; private set; }
+        public Transform WeaponPointFire { get; private set; }
 
 
         #region Public
@@ -72,6 +74,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
         {
             Weapon.Init(this);
             Weapon.ShotProcess.OnShotPerformed += ShotHandler;
+            WeaponPointFire = CharacterController.VisualBodyController.WeaponInScene.transform.Find("PointFire");
         }
 
         private void ButtonFireHandler(bool isFire)

@@ -15,7 +15,7 @@ namespace Zombieland.GameScene0.VisualBodyModule
             return GameObject.Instantiate(prefab, weaponPoint);
         }
 
-        public void DestroyWeapon(GameObject weaponInScene)
+        public void Destroy(GameObject weaponInScene)
         {
             GameObject.Destroy(weaponInScene);
         }

@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using Zombieland.GameScene0.ImpactModule;
-using static UnityEngine.GraphicsBuffer;
 
 namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 {
@@ -50,7 +49,9 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
                         impact.Activate();
 
-                        //_characterRagdoll.Hit(hit.point, forceDirection * _force);
+                        _animationController.CharacterController.CharacterDataController.CharacterData.IsDead = true;
+
+                        _characterRagdoll.Hit(hit.point, forceDirection * _force);
                     }
                 }
             }
