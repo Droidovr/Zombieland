@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Zombieland.GameScene0.NPCManagerModule;
 using Zombieland.GameScene0.NPCModule.NPCDataModule;
+using Zombieland.GameScene0.NPCModule.NPCSpawnModule;
 using Zombieland.GameScene0.NPCModule.NPCVisualBodyModule;
 
 namespace Zombieland.GameScene0.NPCModule
@@ -11,6 +12,7 @@ namespace Zombieland.GameScene0.NPCModule
         public NPCSpawnData NPCSpawnData { get; private set; }
         public INPCDataController NPCDataController { get; private set; }
         public INPCVisualBodyController NPCVisualBodyController { get; private set; }
+        public INPCSpawnController NPCSpawnController { get; private set; }
 
         public NPCController(IController parentController, List<IController> requiredControllers, NPCSpawnData npcSpawnData) : base(parentController, requiredControllers)
         {
@@ -31,6 +33,9 @@ namespace Zombieland.GameScene0.NPCModule
 
             NPCVisualBodyController = new NPCVisualBodyController(this, new List<IController> { (IController)NPCManagerController.RootController.EnvironmentController });
             subsystemsControllers.Add((IController)NPCVisualBodyController);
+
+            NPCSpawnController = new NPCSpawnController(this, new List<IController> { (IController)NPCDataController, (IController)NPCVisualBodyController });
+            subsystemsControllers.Add((IController)NPCSpawnController);
         }
     }
 }
