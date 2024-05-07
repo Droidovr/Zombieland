@@ -5,7 +5,7 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule.EnvironmentSensorMo
         IController Controller { get; }
 
         void ToggleInterractable(bool isInRange);
-        void Interract();
+        bool TryInterract(IEnvironmentSensorController environmentSensorController);
     }
 }
 

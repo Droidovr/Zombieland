@@ -7,21 +7,29 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule.EnvironmentSensorMo
     public class InterractableSensor : MonoBehaviour
     {
         private List<IInterractable> _interractablesInRange;
+        private IEnvironmentSensorController _environmentSensorController;
 
-        public void Init()
+        public void Init(IController parentController)
         {
             _interractablesInRange = new List<IInterractable>();
-            //add this to the character on scene
+            _environmentSensorController = parentController as IEnvironmentSensorController;
         }
 
         public void TryInterract()
         {
-            // try to interract with the first Interractable through listening to the event in Controller
+            if ( _interractablesInRange.Count == 0)
+            {
+                return;
+            }
+            if (_interractablesInRange[0].TryInterract(_environmentSensorController))
+            {
+                _interractablesInRange.RemoveAt(0);
+            }
         }
 
-        private void Update()
+        public void RemoveInterractable(IInterractable interractable)
         {
-            
+            _interractablesInRange.Remove(interractable);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -30,6 +38,7 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule.EnvironmentSensorMo
             {
                 interractable.ToggleInterractable(true);
                 _interractablesInRange.Add(interractable);
+                _environmentSensorController.InterractionTriggerEnter(true);
             }
         }
 
@@ -39,6 +48,8 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule.EnvironmentSensorMo
             {
                 interractable.ToggleInterractable(false);
                 _interractablesInRange.Remove(interractable);
+                _environmentSensorController.InterractionTriggerEnter(false);
+                // Add logic for proccessing being inside multiple triggers at once
             }
         }
     }
