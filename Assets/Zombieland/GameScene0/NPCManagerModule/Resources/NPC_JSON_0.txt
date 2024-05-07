@@ -1,0 +1,9 @@
+{
+    "Name":"NPC",
+    "ID":"NPC0",
+    "PrefabName":"NPC_Prefab_0",
+    "MaxHealth":100.0,
+    "CurrentHealth":100.0,
+    "Speed":5.0,
+    "StopDistance":1.0
+}

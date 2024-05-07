@@ -3,6 +3,7 @@ using Zombieland.GameScene0.CharacterModule;
 using Zombieland.GameScene0.EnvironmentModule;
 using Zombieland.GameScene0.GameDataModule;
 using Zombieland.GameScene0.UIModule;
+using Zombieland.GameScene0.NPCManagerModule;
 
 namespace Zombieland.GameScene0.RootModule
 {
@@ -14,5 +15,6 @@ namespace Zombieland.GameScene0.RootModule
         IEnvironmentController EnvironmentController { get; }
         IUIController UIController { get; }
         ICameraController CameraController { get; }
+        INPCManagerController NPCManagerController { get; }
     }
 }
