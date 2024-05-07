@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d039ee857a1c2e8488ba5e10b11ef18e
+guid: 6c7c6830f79808e49bf373532c3bd96f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,10 +33,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Run_Back
-      takeName: Scene
-      internalID: -623603649343465320
-      firstFrame: 1
+      name: Right Strafe
+      takeName: mixamo.com
+      internalID: -203655887218126122
+      firstFrame: 0
       lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
@@ -57,14 +57,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.4234694
+      - time: 0.42091838
         functionName: StepHandler
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.9693877
+      - time: 0.9311225
         functionName: StepHandler
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -74,7 +74,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0.9
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
