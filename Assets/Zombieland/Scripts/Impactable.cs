@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Zombieland.GameScene0.CharacterModule.SensorModule.ImpactableSensorModule
+namespace Zombieland
 {
     public class Impactable : MonoBehaviour, IImpactable
     {
