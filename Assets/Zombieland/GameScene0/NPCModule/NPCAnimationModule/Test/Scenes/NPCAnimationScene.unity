@@ -309,6 +309,7 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+<<<<<<< HEAD
 --- !u!1 &656626463
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,6 +376,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> develop
 --- !u!1001 &1683553091
 PrefabInstance:
   m_ObjectHideFlags: 0
