@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="907d7957-8796-4ab4-a556-102ecf85e7d2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Zombieland/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Zombieland/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/SoundBurstController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/SoundBurstModule/Scripts/SoundBurstController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/WeaponModule/Resources/Pistol_0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/WeaponModule/Resources/Pistol_0.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/WeaponModule/Resources/Wrench_0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Zombieland/GameScene0/CharacterModule/WeaponModule/Resources/Wrench_0.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,6 +193,7 @@
       <workItem from="1714326077306" duration="3158000" />
       <workItem from="1714582420996" duration="1002000" />
       <workItem from="1714588131958" duration="938000" />
+      <workItem from="1714642985333" duration="344000" />
     </task>
     <task id="LOCAL-00001" summary="start setup">
       <option name="closed" value="true" />
@@ -269,7 +267,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714586230105</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="added sounds to pistol and wrench">
+      <option name="closed" value="true" />
+      <created>1714643021926</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1714643021926</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,6 +294,7 @@
     <MESSAGE value="fixed delegate" />
     <MESSAGE value="fixed playsound" />
     <MESSAGE value="fixed spawnRespawn" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed spawnRespawn" />
+    <MESSAGE value="added sounds to pistol and wrench" />
+    <option name="LAST_COMMIT_MESSAGE" value="added sounds to pistol and wrench" />
   </component>
 </project>
