@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using Zombieland.GameScene0.NPCManagerModule;
+using Zombieland.GameScene0.NPCModule.NPCAnimationModule;
 using Zombieland.GameScene0.NPCModule.NPCDataModule;
 using Zombieland.GameScene0.NPCModule.NPCImpactableSensorModule;
+using Zombieland.GameScene0.NPCModule.NPCMovingModule;
 using Zombieland.GameScene0.NPCModule.NPCSpawnModule;
 using Zombieland.GameScene0.NPCModule.NPCVisualBodyModule;
 
@@ -15,6 +17,8 @@ namespace Zombieland.GameScene0.NPCModule
         public INPCVisualBodyController NPCVisualBodyController { get; private set; }
         public INPCSpawnController NPCSpawnController { get; private set; }
         public INPCImpactableSensorController NPCImpactableSensorController { get; private set; }
+        public INPCMovingController NPCMovingController { get; private set; }
+        public INPCAnimationController NPCAnimationController { get; private set; }
 
         public NPCController(IController parentController, List<IController> requiredControllers, NPCSpawnData npcSpawnData) : base(parentController, requiredControllers)
         {
@@ -41,6 +45,12 @@ namespace Zombieland.GameScene0.NPCModule
 
             NPCImpactableSensorController = new NPCImpactableSensorController(this, new List<IController> { (IController)NPCVisualBodyController });
             subsystemsControllers.Add((IController)NPCImpactableSensorController);
+
+            NPCMovingController = new NPCMovingController(this, new List<IController> { (IController)NPCVisualBodyController, (IController)NPCSpawnController });
+            subsystemsControllers.Add((IController)NPCMovingController);
+
+            NPCAnimationController = new NPCAnimationController(this, new List<IController> { (IController)NPCMovingController });
+            subsystemsControllers.Add((IController)NPCAnimationController);
         }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 
 namespace Zombieland.GameScene0.NPCModule.NPCSpawnModule
@@ -31,7 +32,9 @@ namespace Zombieland.GameScene0.NPCModule.NPCSpawnModule
         {
             System.Numerics.Vector3 spawnposition = NPCController.NPCDataController.NPCData.NPCSpawnData.SpawnPosition;
             NPCController.NPCVisualBodyController.NPCInScene.transform.position = new Vector3(spawnposition.X, spawnposition.Y, spawnposition.Z);
-            //NPCController.NPCVisualBodyController.NPCInScene.SetActive(true);
+            NPCController.NPCVisualBodyController.NPCInScene.SetActive(true);
+            OnSpawn?.Invoke(new Vector3(spawnposition.X, spawnposition.Y, spawnposition.Z), Quaternion.identity);
+            Debug.Log("OnSpawn");
         }
     }
 }

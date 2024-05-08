@@ -1,6 +1,8 @@
 using Zombieland.GameScene0.NPCManagerModule;
+using Zombieland.GameScene0.NPCModule.NPCAnimationModule;
 using Zombieland.GameScene0.NPCModule.NPCDataModule;
 using Zombieland.GameScene0.NPCModule.NPCImpactableSensorModule;
+using Zombieland.GameScene0.NPCModule.NPCMovingModule;
 using Zombieland.GameScene0.NPCModule.NPCSpawnModule;
 using Zombieland.GameScene0.NPCModule.NPCVisualBodyModule;
 
@@ -14,5 +16,7 @@ namespace Zombieland.GameScene0.NPCModule
         INPCVisualBodyController NPCVisualBodyController { get; }
         INPCSpawnController NPCSpawnController { get; }
         INPCImpactableSensorController NPCImpactableSensorController { get; }
+        INPCMovingController NPCMovingController { get; }
+        INPCAnimationController NPCAnimationController { get; }
     }
 }

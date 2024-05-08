@@ -35,20 +35,24 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
 #endif
 
             _nPCAnimatorController = nPCAnimatorController;
+            _nPCAnimatorController.NPCController.NPCMovingController.OnMoving += MovingHandler;
 
             //_nPCAnimatorController.NPCController.OnFire += FireHandler;
 
         }
 
+
         public void Disable()
         {
+            _nPCAnimatorController.NPCController.NPCMovingController.OnMoving -= MovingHandler;
             //_nPCAnimatorController.NPCController.OnFire -= FireHandler;
         }
 
-        private void Update()
-        {
-            //_animator.SetFloat("Speed", _nPCAnimatorController.NPCController. CharacterMovingController.RealMovingSpeed, DAMP_TIME, Time.deltaTime);
 
+        private void MovingHandler(float speed, bool isMove)
+        {
+            _animator.SetFloat("Speed", speed);
+            _animator.SetBool("IsMove", isMove);
         }
 
         private void AttackHandler()
@@ -70,7 +74,12 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
         {
             if (_animator.enabled)
             {
-                OnAnimationMove?.Invoke(_animator.deltaPosition);
+                //Vector3 rootPosition = _animator.rootPosition;
+                //rootPosition.y = _navMeshAgent.nextPosition.y;
+                //transform.position = rootPosition;
+                //_navMeshAgent.nextPosition = rootPosition;
+
+                OnAnimationMove?.Invoke(_animator.rootPosition);
             }
         }
 
