@@ -12,6 +12,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
         public event Action OnStep;
 
         private NPCAnimator _nPCAnimator;
+        private NPCRagdoll _nPCRagdoll;
 
         public INPCController NPCController { get; private set; }
 
@@ -21,11 +22,19 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
             NPCController = parentController as INPCController;
         }
 
+        public void ApplyImpactHandler(Vector3 impactCollisionPosition, Vector3 impactDirection)
+        {
+            _nPCRagdoll.Hit(impactCollisionPosition, impactDirection);
+        }
+
         protected override void CreateHelpersScripts()
         {
             _nPCAnimator = NPCController.NPCVisualBodyController.NPCInScene.AddComponent<NPCAnimator>();
             _nPCAnimator.Init(this);
             _nPCAnimator.OnAnimatorMoveEvent += OnAnimatorMoveEventHandler;
+
+            _nPCRagdoll = NPCController.NPCVisualBodyController.NPCInScene.AddComponent<NPCRagdoll>();
+            _nPCRagdoll.Init(this);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
