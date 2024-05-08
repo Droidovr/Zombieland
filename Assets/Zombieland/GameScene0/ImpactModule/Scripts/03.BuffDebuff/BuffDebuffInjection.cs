@@ -17,28 +17,28 @@ namespace Zombieland.GameScene0.ImpactModule
         {
             foreach (var target in Impact.ImpactData.Targets)
             {
-                if (target.Controller is ICharacterController characterController)
-                {
-                    if (Buffs != null && Buffs.Count > 0)
-                    {
-                        foreach (var buff in Buffs)
-                        {
-                            buff.BuffDebuffData.Owner = Impact.ImpactData.ImpactOwner;
-                            buff.BuffDebuffData.ImpactTarget = characterController;
-                        }
-                        characterController.BuffDebuffController.InjectBuffs(Buffs);
-                    }
+                //if (target.Controller is ICharacterController characterController)
+                //{
+                //    if (Buffs != null && Buffs.Count > 0)
+                //    {
+                //        foreach (var buff in Buffs)
+                //        {
+                //            buff.BuffDebuffData.Owner = Impact.ImpactData.ImpactOwner;
+                //            buff.BuffDebuffData.ImpactTarget = characterController;
+                //        }
+                //        characterController.BuffDebuffController.InjectBuffs(Buffs);
+                //    }
 
-                    if (Debuffs != null && Debuffs.Count > 0)
-                    {
-                        foreach (var debuff in Debuffs)
-                        {
-                            debuff.BuffDebuffData.Owner = Impact.ImpactData.ImpactOwner;
-                            debuff.BuffDebuffData.ImpactTarget = characterController;
-                        }
-                        characterController.BuffDebuffController.InjectDebuffs(Debuffs);
-                    }
-                }
+                //    if (Debuffs != null && Debuffs.Count > 0)
+                //    {
+                //        foreach (var debuff in Debuffs)
+                //        {
+                //            debuff.BuffDebuffData.Owner = Impact.ImpactData.ImpactOwner;
+                //            debuff.BuffDebuffData.ImpactTarget = characterController;
+                //        }
+                //        characterController.BuffDebuffController.InjectDebuffs(Debuffs);
+                //    }
+                //}
             }
             
             Impact.Deactivate();

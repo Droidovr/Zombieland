@@ -15,8 +15,8 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
         public void Execute()
         {
             Debug.Log("Slowdown Execute");
-            _chacheMaxMovingSpeed = BuffDebuffData.ImpactTarget.CharacterDataController.CharacterData.MaxMovingSpeed;
-            BuffDebuffData.ImpactTarget.CharacterDataController.CharacterData.MaxMovingSpeed = _chacheMaxMovingSpeed * BuffDebuffData.DirectImpactData.PercentageValue / 100;
+            _chacheMaxMovingSpeed = BuffDebuffData.ImpactTarget.NPCDataController.NPCData.MaxSpeed;
+            BuffDebuffData.ImpactTarget.NPCDataController.NPCData.MaxSpeed = _chacheMaxMovingSpeed * BuffDebuffData.DirectImpactData.PercentageValue / 100;
 
             _periodicAction = new PeriodicAction(BuffDebuffData.LifeTime, BuffDebuffData.Interval, DeSlowdown);
             _periodicAction.OnFinished += OnFinishedHandler;
@@ -41,13 +41,13 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 
         private void SelfDestroy()
         {
-            BuffDebuffData.ImpactTarget.BuffDebuffController.Debuffs.Remove(BuffDebuffData.Name);
+            BuffDebuffData.ImpactTarget.NPCBuffDebuffController.Debuffs.Remove(BuffDebuffData.Name);
         }
 
         private void DeSlowdown(object sender, ElapsedEventArgs e)
         {
             Debug.Log("DeSlowdown");
-            BuffDebuffData.ImpactTarget.CharacterDataController.CharacterData.MaxMovingSpeed = _chacheMaxMovingSpeed;
+            BuffDebuffData.ImpactTarget.NPCDataController.NPCData.MaxSpeed = _chacheMaxMovingSpeed;
         }
     }
 }

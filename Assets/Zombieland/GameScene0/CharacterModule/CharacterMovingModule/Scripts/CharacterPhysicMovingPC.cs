@@ -15,34 +15,36 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         private Vector2 _vectorMousePosition;
         private float _verticalSpeed;
         private UnityEngine.CharacterController _unityCharacterController;
-        private IUIMain _uIController;
-        private ICharacterDataController _characterDataController;
         private ICharacterMovingController _characterMovingController;
         public bool _isActive;
         private float _speedMultiplier = 1f;
+        private float _unityCharacterControllerHeight;
+        private Vector3 _unityCharacterControllerCenter;
 
 
         #region PUBLIC
         public void Disable()
         {
-            _uIController.OnMoved -= MovedHandler;
-            _uIController.OnMouseMoved -= MovedMouseHandler;
             _characterMovingController.CharacterController.AnimationController.OnAnimationMove -= OnAnimatorMoveHandler;
+            _characterMovingController.CharacterController.RootController.UIController.OnMoved -= MovedHandler;
+            _characterMovingController.CharacterController.RootController.UIController.OnMouseMoved -= MovedMouseHandler;
+            _characterMovingController.CharacterController.AnimationController.OnAnimationMove -= OnAnimatorMoveHandler;
+            _characterMovingController.CharacterController.StealthController.OnStealth -= StealthHandler;
         }
 
         public void Init(ICharacterMovingController characterMovingController)
         {
-            _unityCharacterController = GetComponent<UnityEngine.CharacterController>();
-
             _characterMovingController = characterMovingController;
+
+            _unityCharacterController = GetComponent<UnityEngine.CharacterController>();
+            _unityCharacterControllerHeight = _unityCharacterController.height;
+            _unityCharacterControllerCenter = _unityCharacterController.center;
+
             _characterMovingController.CharacterController.AnimationController.OnAnimationMove += OnAnimatorMoveHandler;
-
-            _uIController = characterMovingController.CharacterController.RootController.UIController;
-            _uIController.OnMoved += MovedHandler;
-            _uIController.OnMouseMoved += MovedMouseHandler;
-            _uIController.OnFastRun += FastRunHandler;
-
-            _characterDataController = characterMovingController.CharacterController.CharacterDataController;
+            _characterMovingController.CharacterController.RootController.UIController.OnMoved += MovedHandler;
+            _characterMovingController.CharacterController.RootController.UIController.OnMouseMoved += MovedMouseHandler;
+            _characterMovingController.CharacterController.RootController.UIController.OnFastRun += FastRunHandler;
+            _characterMovingController.CharacterController.StealthController.OnStealth += StealthHandler;
 
             _isActive = true;
         }
@@ -114,7 +116,8 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void CalculeteRealMovingSpeed()
         {
-            _characterMovingController.RealMovingSpeed = Mathf.Clamp01(_characterMovingController.DirectionWalk.magnitude) * _characterDataController.CharacterData.DesignMovingSpeed * _speedMultiplier;
+            _characterMovingController.RealMovingSpeed = Mathf.Clamp01(_characterMovingController.DirectionWalk.magnitude) * 
+                _characterMovingController.CharacterController.CharacterDataController.CharacterData.DesignMovingSpeed * _speedMultiplier;
         }
 
         private void CalculeteRotation()
@@ -124,6 +127,20 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             float angle = Mathf.Atan2(offset.x, offset.y) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(0f, angle, 0f);
             transform.rotation = targetRotation;
+        }
+
+        private void StealthHandler(bool isStealth)
+        {
+            if (isStealth)
+            {
+                _unityCharacterController.height = _unityCharacterControllerHeight * 0.75f;
+                _unityCharacterController.center = new Vector3(_unityCharacterControllerCenter.x, _unityCharacterControllerCenter.y * 0.75f, _unityCharacterControllerCenter.z);
+            }
+            else
+            {
+                _unityCharacterController.height = _unityCharacterControllerHeight;
+                _unityCharacterController.center = _unityCharacterControllerCenter;
+            }
         }
 
 #if UNITY_EDITOR
