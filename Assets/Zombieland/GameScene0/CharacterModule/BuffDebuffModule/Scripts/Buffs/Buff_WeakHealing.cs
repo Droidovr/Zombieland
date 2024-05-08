@@ -37,21 +37,21 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 
         private void SelfDestroy()
         {
-            BuffDebuffData.ImpactTarget.BuffDebuffController.Buffs.Remove(BuffDebuffData.Name);
+            BuffDebuffData.ImpactTarget.NPCBuffDebuffController.Buffs.Remove(BuffDebuffData.Name);
         }
 
         private void IncreaseHP(object sender, ElapsedEventArgs e)
         {
             Debug.Log("IncreaseHP");
-            var HP = BuffDebuffData.ImpactTarget.CharacterDataController.CharacterData.HP + BuffDebuffData.DirectImpactData.AbsoluteValue;
+            var HP = BuffDebuffData.ImpactTarget.NPCDataController.NPCData.CurrentHealth + BuffDebuffData.DirectImpactData.AbsoluteValue;
 
-            if (HP <= BuffDebuffData.ImpactTarget.CharacterDataController.CharacterData.HPMax)
+            if (HP <= BuffDebuffData.ImpactTarget.NPCDataController.NPCData.MaxHealth)
             {
-                BuffDebuffData.ImpactTarget.CharacterDataController.CharacterData.HP = HP;
+                BuffDebuffData.ImpactTarget.NPCDataController.NPCData.CurrentHealth = HP;
             }
             else
             {
-                BuffDebuffData.ImpactTarget.CharacterDataController.CharacterData.HP = BuffDebuffData.ImpactTarget.CharacterDataController.CharacterData.HPMax;
+                BuffDebuffData.ImpactTarget.NPCDataController.NPCData.CurrentHealth = BuffDebuffData.ImpactTarget.NPCDataController.NPCData.MaxHealth;
             }
         }
     }
