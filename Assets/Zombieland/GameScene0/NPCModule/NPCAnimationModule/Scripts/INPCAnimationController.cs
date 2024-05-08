@@ -5,7 +5,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
 {
     public interface INPCAnimationController
     {
-        event Action<Vector3> OnAnimationMove;
+        event Action<Vector3> OnAnimatorMoveEvent;
         event Action<bool> OnAnimationAttack;
         event Action OnStep;
 

@@ -2,13 +2,16 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
 {
     public class NPCAnimationController : Controller, INPCAnimationController
     {
-        public event Action<Vector3> OnAnimationMove;
+        public event Action<Vector3> OnAnimatorMoveEvent;
         public event Action<bool> OnAnimationAttack;
         public event Action OnStep;
+
+        private NPCAnimator _nPCAnimator;
 
         public INPCController NPCController { get; private set; }
 
@@ -20,12 +23,20 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
 
         protected override void CreateHelpersScripts()
         {
-            // This controller doesn’t have any helpers scripts at the moment.
+            _nPCAnimator = NPCController.NPCVisualBodyController.NPCInScene.AddComponent<NPCAnimator>();
+            _nPCAnimator.Init(this);
+            _nPCAnimator.OnAnimatorMoveEvent += OnAnimatorMoveEventHandler;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
             // This controller doesn’t have any subsystems at the moment.
+        }
+
+
+        private void OnAnimatorMoveEventHandler(Vector3 animatorRootPosition)
+        {
+            OnAnimatorMoveEvent?.Invoke(animatorRootPosition);
         }
     }
 }

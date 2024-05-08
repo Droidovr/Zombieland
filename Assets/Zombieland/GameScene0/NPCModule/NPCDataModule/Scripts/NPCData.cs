@@ -10,6 +10,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCDataModule
         public string Name { get; set; }
         public string ID { get; set; }
         public string PrefabName { get; set; }
+        public string NameAnimatorControllerPC { get; set; }
+        public string NameAnimatorControllerMobile { get; set; }
 
         public float MaxHealth { get; set; }
         public float CurrentHealth { get; set; }

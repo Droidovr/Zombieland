@@ -6,16 +6,12 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
 {
     public class NPCAnimator : MonoBehaviour
     {
-        public event Action<Vector3> OnAnimationMove;
+        public event Action<Vector3> OnAnimatorMoveEvent;
         public event Action<bool> OnAnimationAttack;
         public event Action<string> OnAnimationCreateWeapon;
         public event Action OnAnimationDestroyWeapon;
         public event Action OnStep;
 
-        private const string PC_ANIMATOR_0 = "NPCAnimatorControllerPC_0";
-        private const string PC_ANIMATOR_1 = "NPCAnimatorControllerPC_1";
-        private const string PC_ANIMATOR_2 = "NPCAnimatorControllerPC_2";
-        private const string MOBILE_ANIMATOR = "NPCAnimatorControllerPC_0";
         private const float DAMP_TIME = 0.05f;
         private const float CHECK_FIRE_PERMITION_PERIOD = 0.1f;
 
@@ -29,9 +25,9 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
             _animator = GetComponent<Animator>();
 
 #if UNITY_STANDALONE || UNITY_EDITOR
-            _animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(PC_ANIMATOR_0);
+            _animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(nPCAnimatorController.NPCController.NPCDataController.NPCData.NameAnimatorControllerPC);
 #else
-            _animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(MOBILE_ANIMATOR);
+            _animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(nPCAnimatorController.NPCController.NPCDataController.NPCData.NameAnimatorControllerMobile);
 #endif
 
             _nPCAnimatorController = nPCAnimatorController;
@@ -74,12 +70,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
         {
             if (_animator.enabled)
             {
-                //Vector3 rootPosition = _animator.rootPosition;
-                //rootPosition.y = _navMeshAgent.nextPosition.y;
-                //transform.position = rootPosition;
-                //_navMeshAgent.nextPosition = rootPosition;
-
-                OnAnimationMove?.Invoke(_animator.rootPosition);
+                OnAnimatorMoveEvent?.Invoke(_animator.rootPosition);
             }
         }
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 
 namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
@@ -26,7 +27,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
 
         public override void Disable()
         {
-            _nPCPhysicMoving.OnMoving -= AnimatorMoveHandler;
+            _nPCPhysicMoving.OnMoving -= MovingHandler;
             _nPCPhysicMoving.Disable();
 
             base.Disable();
@@ -42,7 +43,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
 #endif
 
             _nPCPhysicMoving.Init(this);
-            _nPCPhysicMoving.OnMoving += AnimatorMoveHandler;
+            _nPCPhysicMoving.OnMoving += MovingHandler;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -50,9 +51,9 @@ namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
             // This controller doesn’t have any subsystems at the moment.
         }
 
-        private void AnimatorMoveHandler(float speed, bool isMove)
+        private void MovingHandler(float speed, bool isMove)
         {
-            OnMoving.Invoke(speed, isMove);
+            OnMoving?.Invoke(speed, isMove);
         }
     }
 }
