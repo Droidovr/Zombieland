@@ -10,6 +10,7 @@ namespace Zombieland.GameScene0.EnvironmentModule
         private IRootController _rootController;
 
         private InitializerEnvironment _initializerEnvironment;
+        private CreatorNavMeshSurface _creatorNavMeshSurface;
 
         public EnvironmentController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
@@ -17,11 +18,20 @@ namespace Zombieland.GameScene0.EnvironmentModule
             _initializerEnvironment = new InitializerEnvironment();
         }
 
+        public override void Disable()
+        {
+            _creatorNavMeshSurface.Destroy();
+
+            base.Disable();
+        }
+
         protected override void CreateHelpersScripts()
         {
             EnvironmentData environmentData = _rootController.GameDataController.GetData<EnvironmentData>("EnvironmentData");
             CurrentLevelName = environmentData.CurrentLevelName;
             _initializerEnvironment.Init(environmentData);
+
+            _creatorNavMeshSurface = new CreatorNavMeshSurface();
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
