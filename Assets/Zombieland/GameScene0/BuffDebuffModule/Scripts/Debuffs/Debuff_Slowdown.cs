@@ -2,7 +2,7 @@ using System;
 using System.Timers;
 using UnityEngine;
 
-namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
+namespace Zombieland.GameScene0.BuffDebuffModule
 {
     [Serializable]
     public class Debuff_Slowdown : IBuffDebuffCommand
@@ -14,13 +14,13 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 
         public void Execute()
         {
-            Debug.Log("Slowdown Execute");
-            _chacheMaxMovingSpeed = BuffDebuffData.ImpactTarget.NPCDataController.NPCData.MaxSpeed;
-            BuffDebuffData.ImpactTarget.NPCDataController.NPCData.MaxSpeed = _chacheMaxMovingSpeed * BuffDebuffData.DirectImpactData.PercentageValue / 100;
+            //Debug.Log("Slowdown Execute");
+            //_chacheMaxMovingSpeed = BuffDebuffData.ImpactTarget.NPCDataController.NPCData.MaxSpeed;
+            //BuffDebuffData.ImpactTarget.NPCDataController.NPCData.MaxSpeed = _chacheMaxMovingSpeed * BuffDebuffData.DirectImpactData.PercentageValue / 100;
 
-            _periodicAction = new PeriodicAction(BuffDebuffData.LifeTime, BuffDebuffData.Interval, DeSlowdown);
-            _periodicAction.OnFinished += OnFinishedHandler;
-            _periodicAction.Start();
+            //_periodicAction = new PeriodicAction(BuffDebuffData.LifeTime, BuffDebuffData.Interval, DeSlowdown);
+            //_periodicAction.OnFinished += OnFinishedHandler;
+            //_periodicAction.Start();
         }
 
         public void Destroy()
@@ -41,13 +41,13 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 
         private void SelfDestroy()
         {
-            BuffDebuffData.ImpactTarget.NPCBuffDebuffController.Debuffs.Remove(BuffDebuffData.Name);
+            //BuffDebuffData.ImpactTarget.NPCBuffDebuffController.Debuffs.Remove(BuffDebuffData.Name);
         }
 
         private void DeSlowdown(object sender, ElapsedEventArgs e)
         {
-            Debug.Log("DeSlowdown");
-            BuffDebuffData.ImpactTarget.NPCDataController.NPCData.MaxSpeed = _chacheMaxMovingSpeed;
+            //Debug.Log("DeSlowdown");
+            //BuffDebuffData.ImpactTarget.NPCDataController.NPCData.MaxSpeed = _chacheMaxMovingSpeed;
         }
     }
 }
