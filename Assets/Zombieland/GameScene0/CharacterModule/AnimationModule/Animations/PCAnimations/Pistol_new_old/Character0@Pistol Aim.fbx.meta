@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f757cbde524566844b60a606873d4849
+guid: d3d09f82f7daba4499b5515fb30a5143
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Grab Rifle From Back Finish
-      takeName: Scene
-      internalID: -623603649343465320
-      firstFrame: 1
-      lastFrame: 88
+      name: Pistol Aim
+      takeName: mixamo.com
+      internalID: -203655887218126122
+      firstFrame: 0
+      lastFrame: 213
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -57,16 +57,9 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.3318182
-        functionName: DestroyWeaponPrefabHandler
+      - time: 0.59999996
+        functionName: CreacteWeaponPrefabHandler
         data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0
-        functionName: ChangeWeaponAnimation
-        data: AK
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
@@ -74,7 +67,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0.9
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []

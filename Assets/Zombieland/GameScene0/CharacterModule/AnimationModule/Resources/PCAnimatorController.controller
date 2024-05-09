@@ -425,7 +425,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Drawing Gun Finish
-  m_Speed: -1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 8116839056628910738}
@@ -438,7 +438,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -623603649343465320, guid: 3f9a241a9bd70bf498a0c24487206d49,
+  m_Motion: {fileID: -203655887218126122, guid: a3152507235355245908c7394fb97c34,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -756,7 +756,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -623603649343465320, guid: f003a7bfc18b8dd4d88bc17c9e4025a6,
+  m_Motion: {fileID: -203655887218126122, guid: 7255f7cc72129d448988e9dd586e67b4,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -796,7 +796,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Drawing Gun
-  m_Speed: 1
+  m_Speed: -2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 8328081544835162557}
@@ -809,7 +809,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -623603649343465320, guid: e59563e95cbd43b46ac98b1885751e12,
+  m_Motion: {fileID: -203655887218126122, guid: d3d09f82f7daba4499b5515fb30a5143,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -1722,7 +1722,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -623603649343465320, guid: 0b786f914d210164d96fc6e7155fe739,
+  m_Motion: {fileID: -203655887218126122, guid: 9a144d3dd7b8acd48bb8f3cbb0da7745,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
