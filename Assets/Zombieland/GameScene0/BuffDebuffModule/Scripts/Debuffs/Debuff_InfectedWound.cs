@@ -2,7 +2,7 @@ using System;
 using System.Timers;
 using UnityEngine;
 
-namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
+namespace Zombieland.GameScene0.BuffDebuffModule
 {
     [Serializable]
     public class Debuff_InfectedWound : IBuffDebuffCommand
@@ -37,22 +37,22 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
 
         private void SelfDestroy()
         {
-            BuffDebuffData.ImpactTarget.NPCBuffDebuffController.Debuffs.Remove(BuffDebuffData.Name);
+            //BuffDebuffData.ImpactTarget.NPCBuffDebuffController.Debuffs.Remove(BuffDebuffData.Name);
         }
 
         private void DecreaseHP(object sender, ElapsedEventArgs e)
         {
-            Debug.Log("DecreaseHP");
-            var HP = BuffDebuffData.ImpactTarget.NPCDataController.NPCData.CurrentHealth - BuffDebuffData.DirectImpactData.AbsoluteValue;
+            //Debug.Log("DecreaseHP");
+            //var HP = BuffDebuffData.ImpactTarget.NPCDataController.NPCData.CurrentHealth - BuffDebuffData.DirectImpactData.AbsoluteValue;
 
-            if (HP > BuffDebuffData.ImpactTarget.NPCDataController.NPCData.MaxHealth)
-            {
-                BuffDebuffData.ImpactTarget.NPCDataController.NPCData.CurrentHealth = HP;
-            }
-            else
-            {
-                BuffDebuffData.ImpactTarget.NPCDataController.NPCData.CurrentHealth = 0;
-            }
+            //if (HP > BuffDebuffData.ImpactTarget.NPCDataController.NPCData.MaxHealth)
+            //{
+            //    BuffDebuffData.ImpactTarget.NPCDataController.NPCData.CurrentHealth = HP;
+            //}
+            //else
+            //{
+            //    BuffDebuffData.ImpactTarget.NPCDataController.NPCData.CurrentHealth = 0;
+            //}
         }
     }
 }

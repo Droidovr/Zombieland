@@ -1,4 +1,4 @@
-namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
+namespace Zombieland.GameScene0.BuffDebuffModule
 {
     public interface IBuffDebuffCommand : ICommand
     {

@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Zombieland.GameScene0.BuffDebuffModule;
 using Zombieland.GameScene0.CharacterModule;
-using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
+using Zombieland.GameScene0.NPCModule;
+
 
 namespace Zombieland.GameScene0.ImpactModule
 {
@@ -17,28 +19,43 @@ namespace Zombieland.GameScene0.ImpactModule
         {
             foreach (var target in Impact.ImpactData.Targets)
             {
-                //if (target.Controller is ICharacterController characterController)
-                //{
-                //    if (Buffs != null && Buffs.Count > 0)
-                //    {
-                //        foreach (var buff in Buffs)
-                //        {
-                //            buff.BuffDebuffData.Owner = Impact.ImpactData.ImpactOwner;
-                //            buff.BuffDebuffData.ImpactTarget = characterController;
-                //        }
-                //        characterController.BuffDebuffController.InjectBuffs(Buffs);
-                //    }
+                if (target.Controller is IController controller)
+                {
+                    if (Buffs != null && Buffs.Count > 0)
+                    {
+                        foreach (var buff in Buffs)
+                        {
+                            buff.BuffDebuffData.Owner = (IController)Impact.ImpactData.ImpactOwner;
+                            buff.BuffDebuffData.ImpactTarget = (IController)controller;
+                        } 
 
-                //    if (Debuffs != null && Debuffs.Count > 0)
-                //    {
-                //        foreach (var debuff in Debuffs)
-                //        {
-                //            debuff.BuffDebuffData.Owner = Impact.ImpactData.ImpactOwner;
-                //            debuff.BuffDebuffData.ImpactTarget = characterController;
-                //        }
-                //        characterController.BuffDebuffController.InjectDebuffs(Debuffs);
-                //    }
-                //}
+                        if (controller is ICharacterController characterController)
+                        {
+                            characterController.BuffDebuffController.InjectBuffs(Buffs);
+                        }
+                        else if (controller is INPCController nPCController)
+                        {
+                            nPCController.NPCBuffDebuffController.InjectBuffs(Buffs);
+                        }
+                    }
+
+                    if (Debuffs != null && Debuffs.Count > 0)
+                    {
+                        foreach (var debuff in Debuffs)
+                        {
+                            debuff.BuffDebuffData.Owner = (IController)Impact.ImpactData.ImpactOwner;
+                            debuff.BuffDebuffData.ImpactTarget = (IController)controller;
+                        }
+                        if (controller is ICharacterController characterController)
+                        {
+                            characterController.BuffDebuffController.InjectDebuffs(Debuffs);
+                        }
+                        else if (controller is INPCController nPCController)
+                        {
+                            nPCController.NPCBuffDebuffController.InjectDebuffs(Debuffs);
+                        }
+                    }
+                }
             }
             
             Impact.Deactivate();

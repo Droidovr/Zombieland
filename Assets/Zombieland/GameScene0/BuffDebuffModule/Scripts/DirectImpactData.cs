@@ -1,4 +1,4 @@
-namespace Zombieland.GameScene0.NPCModule.NPCBuffDebuffModule
+namespace Zombieland.GameScene0.BuffDebuffModule
 {
     public struct DirectImpactData
     {

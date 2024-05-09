@@ -2,7 +2,7 @@ using System;
 using Newtonsoft.Json;
 using Zombieland.GameScene0.NPCModule;
 
-namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
+namespace Zombieland.GameScene0.BuffDebuffModule
 {
     [Serializable]
     public class BuffDebuffData
@@ -15,7 +15,7 @@ namespace Zombieland.GameScene0.CharacterModule.BuffDebuffModule
         public float LifeTime { get; set; } // Serializable
         public float Interval { get; set; } // Serializable
         public DirectImpactData DirectImpactData { get; set; }
-        [JsonIgnore] public INPCController ImpactTarget { get; set; }
-        [JsonIgnore] public ICharacterController Owner { get; set; }
+        [JsonIgnore] public IController ImpactTarget { get; set; }
+        [JsonIgnore] public IController Owner { get; set; }
     }
 }

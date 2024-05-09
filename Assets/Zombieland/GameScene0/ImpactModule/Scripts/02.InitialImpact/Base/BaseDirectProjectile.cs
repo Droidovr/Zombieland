@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
+using Zombieland.GameScene0.BuffDebuffModule;
 using Zombieland.GameScene0.CharacterModule;
-using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
+
 
 namespace Zombieland.GameScene0.ImpactModule
 {

@@ -3,12 +3,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 
-namespace Zombieland.GameScene0.NPCModule.NPCBuffDebuffModule
+namespace Zombieland.GameScene0.BuffDebuffModule
 {
     public class PeriodicAction
     {
         public event Action OnFinished;
-
+        
         private int _lifeTimer;
         private int _interval;
         private System.Timers.Timer _timer;
@@ -53,6 +53,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCBuffDebuffModule
             _timer?.Dispose();
             _cancellationTokenSource.Cancel();
             OnFinished?.Invoke();
-        }
+        }           
     }
 }

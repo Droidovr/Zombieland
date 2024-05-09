@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-using Zombieland.GameScene0.NPCModule.NPCBuffDebuffModule;
+using Zombieland.GameScene0.BuffDebuffModule;
+
 
 namespace Zombieland.GameScene0.NPCModule.NPCTakeDamageModule
 {

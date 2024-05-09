@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
-using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
+using Zombieland.GameScene0.BuffDebuffModule;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
