@@ -5,7 +5,7 @@
 		"Name":"Pistol",
 		"PrefabName":"Pistol_Prefab_0",
 		"VFXPrefabName":"VFXShot",
-		"SoundName":"",
+		"SoundName":"PistolShoot",
 		"AvailableImpactIDs":["GunBullet"],
 		"ShootCooldown":1.0,
 		"ShotAccuracy":0.5,

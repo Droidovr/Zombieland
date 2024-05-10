@@ -55,12 +55,12 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         private void Update()
         {
-            _animator.SetFloat("RealMovingSpeed", _animatorController.CharacterController.CharacterMovingController.RealMovingSpeed, DAMP_TIME, Time.deltaTime);
+            _animator.SetFloat("RealMovingSpeed", _animatorController.CharacterController.CharacterMovingController.RealMovingSpeed);
 
-            //Vector3 moveDirection = transform.InverseTransformDirection(_animatorController.CharacterController.CharacterMovingController.DirectionWalk);
+            Vector2 moveDirection = transform.InverseTransformDirection(_animatorController.CharacterController.CharacterMovingController.DirectionWalk);
 
-            _animator.SetFloat("DirectionX", _animatorController.CharacterController.CharacterMovingController.DirectionWalk.x, DAMP_TIME, Time.deltaTime);
-            _animator.SetFloat("DirectionZ", _animatorController.CharacterController.CharacterMovingController.DirectionWalk.z, DAMP_TIME, Time.deltaTime);
+            _animator.SetFloat("DirectionX", Mathf.Round(moveDirection.x));
+            _animator.SetFloat("DirectionY", Mathf.Round(moveDirection.y));
         }
 
 
