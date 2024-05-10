@@ -7,5 +7,6 @@
     "MaxHealth":100.0,
     "CurrentHealth":100.0,
     "Speed":3.0,
-    "StopDistance":1.0
+    "StopDistance":1.0,
+    "HearingDistance":5.0
 }

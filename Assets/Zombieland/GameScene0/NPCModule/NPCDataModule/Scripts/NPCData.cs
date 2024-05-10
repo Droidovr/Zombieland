@@ -19,6 +19,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCDataModule
         public float Speed { get; set; }
         public float StopDistance { get; set; }
 
+        public float HearingDistance { get; set; }
+
         [JsonIgnore]
         public NPCSpawnData NPCSpawnData { get; set; }
 

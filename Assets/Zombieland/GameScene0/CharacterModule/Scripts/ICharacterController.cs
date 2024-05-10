@@ -14,6 +14,7 @@ using Zombieland.GameScene0.CharacterModule.AimingModule;
 using Zombieland.GameScene0.CharacterModule.StealthModule;
 using Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule;
 using Zombieland.GameScene0.CharacterModule.CharacterVFX;
+using Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts;
 
 
 namespace Zombieland.GameScene0.CharacterModule
@@ -35,5 +36,6 @@ namespace Zombieland.GameScene0.CharacterModule
         IAimingController AimingController { get; }
         IStealthController StealthController { get; }
         ICharacterVFXController CharacterVFXController { get; }
+        ISoundBurstController SoundBurstController { get; }
     }
 }

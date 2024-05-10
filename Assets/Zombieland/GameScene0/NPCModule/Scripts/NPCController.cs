@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 using Zombieland.GameScene0.NPCManagerModule;
 using Zombieland.GameScene0.NPCModule.NPCAIModule;
 using Zombieland.GameScene0.NPCModule.NPCAnimationModule;
+using Zombieland.GameScene0.NPCModule.NPCAwarenessModule;
 using Zombieland.GameScene0.NPCModule.NPCBuffDebuffModule;
 using Zombieland.GameScene0.NPCModule.NPCDataModule;
 using Zombieland.GameScene0.NPCModule.NPCImpactableSensorModule;
@@ -10,6 +11,7 @@ using Zombieland.GameScene0.NPCModule.NPCMovingModule;
 using Zombieland.GameScene0.NPCModule.NPCSpawnModule;
 using Zombieland.GameScene0.NPCModule.NPCTakeDamageModule;
 using Zombieland.GameScene0.NPCModule.NPCVisualBodyModule;
+using Zombieland.GameScene0.RootModule;
 
 namespace Zombieland.GameScene0.NPCModule
 {
@@ -26,6 +28,7 @@ namespace Zombieland.GameScene0.NPCModule
         public INPCBuffDebuffController NPCBuffDebuffController { get; private set; }
         public INPCTakeDamageController NPCTakeDamageController { get; private set; }
         public INPCAIController NPCAIController { get; private set; }
+        public INPCAwarenessController NPCAwarenessController { get; private set; }
 
         public NPCController(IController parentController, List<IController> requiredControllers, NPCSpawnData npcSpawnData) : base(parentController, requiredControllers)
         {
@@ -42,7 +45,7 @@ namespace Zombieland.GameScene0.NPCModule
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
             NPCDataController = new NPCDataController(this, null);
-            subsystemsControllers.Add((IController) NPCDataController);
+            subsystemsControllers.Add((IController)NPCDataController);
 
             NPCVisualBodyController = new NPCVisualBodyController(this, new List<IController> { (IController)NPCManagerController.RootController.EnvironmentController });
             subsystemsControllers.Add((IController)NPCVisualBodyController);
@@ -62,11 +65,14 @@ namespace Zombieland.GameScene0.NPCModule
             NPCBuffDebuffController = new NPCBuffDebuffController(this, null);
             subsystemsControllers.Add((IController)NPCBuffDebuffController);
 
-            NPCTakeDamageController = new NPCTakeDamageController(this, new List<IController> { (IController)NPCBuffDebuffController, (IController)NPCDataController});
+            NPCTakeDamageController = new NPCTakeDamageController(this, new List<IController> { (IController)NPCBuffDebuffController, (IController)NPCDataController });
             subsystemsControllers.Add((IController)NPCTakeDamageController);
 
             NPCAIController = new NPCAIController(this, new List<IController> { (IController)NPCVisualBodyController, (IController)NPCMovingController });
-            subsystemsControllers.Add ((IController)NPCAIController);
+            subsystemsControllers.Add((IController)NPCAIController);
+
+            NPCAwarenessController = new NPCAwarenessController(this, new List<IController> { (IController)NPCVisualBodyController });
+            subsystemsControllers.Add((IController)NPCAwarenessController);
         }
     }
 }
