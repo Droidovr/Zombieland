@@ -112,7 +112,6 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         private void AttackHandler()
         {
-            Debug.Log("From animation AttackHandler:" + _animatorController.CharacterController.WeaponController.WeaponPointFire.position);
             OnAnimationAttack?.Invoke(true);
         }
 

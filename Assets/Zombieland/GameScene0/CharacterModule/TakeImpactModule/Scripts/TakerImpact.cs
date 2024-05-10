@@ -1,5 +1,6 @@
 using System.Collections.Generic;
-using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
+using Zombieland.GameScene0.BuffDebuffModule;
+
 
 namespace Zombieland.GameScene0.CharacterModule.TakeImpactModule
 {
