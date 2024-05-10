@@ -57,7 +57,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         #endregion PUBLIC
 
         #region MONOBEHAVIOUR
-        private void Update()
+        private void FixedUpdate()
         {
             if (!_isActive)
                 return;

@@ -27,7 +27,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule
             NPCHearingController = new NPCHearingController(this, new List<IController>
                 {
                     (IController)NPCController.NPCManagerController.RootController.CharacterController.VisualBodyController,
-                    (IController)NPCController.NPCManagerController.RootController.CharacterController.SensorController.ImpactableSensorController
+                    (IController)NPCController.NPCManagerController.RootController.CharacterController.StealthController,
+                    (IController)NPCController.NPCMovingController
                 });
             subsystemsControllers.Add((IController)NPCHearingController);
         }
