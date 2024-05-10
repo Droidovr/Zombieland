@@ -1,4 +1,5 @@
 using Zombieland.GameScene0.NPCManagerModule;
+using Zombieland.GameScene0.NPCModule.NPCAIModule;
 using Zombieland.GameScene0.NPCModule.NPCAnimationModule;
 using Zombieland.GameScene0.NPCModule.NPCBuffDebuffModule;
 using Zombieland.GameScene0.NPCModule.NPCDataModule;
@@ -22,5 +23,6 @@ namespace Zombieland.GameScene0.NPCModule
         INPCAnimationController NPCAnimationController { get; }
         INPCBuffDebuffController NPCBuffDebuffController { get; }
         INPCTakeDamageController NPCTakeDamageController { get; }
+        INPCAIController NPCAIController { get; }
     }
 }

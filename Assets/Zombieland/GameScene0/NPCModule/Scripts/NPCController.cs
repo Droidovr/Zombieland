@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 using Zombieland.GameScene0.NPCManagerModule;
+using Zombieland.GameScene0.NPCModule.NPCAIModule;
 using Zombieland.GameScene0.NPCModule.NPCAnimationModule;
 using Zombieland.GameScene0.NPCModule.NPCBuffDebuffModule;
 using Zombieland.GameScene0.NPCModule.NPCDataModule;
@@ -24,6 +25,7 @@ namespace Zombieland.GameScene0.NPCModule
         public INPCAnimationController NPCAnimationController { get; private set; }
         public INPCBuffDebuffController NPCBuffDebuffController { get; private set; }
         public INPCTakeDamageController NPCTakeDamageController { get; private set; }
+        public INPCAIController NPCAIController { get; private set; }
 
         public NPCController(IController parentController, List<IController> requiredControllers, NPCSpawnData npcSpawnData) : base(parentController, requiredControllers)
         {
@@ -62,6 +64,9 @@ namespace Zombieland.GameScene0.NPCModule
 
             NPCTakeDamageController = new NPCTakeDamageController(this, new List<IController> { (IController)NPCBuffDebuffController, (IController)NPCDataController});
             subsystemsControllers.Add((IController)NPCTakeDamageController);
+
+            NPCAIController = new NPCAIController(this, new List<IController> { (IController)NPCVisualBodyController, (IController)NPCMovingController });
+            subsystemsControllers.Add ((IController)NPCAIController);
         }
     }
 }
