@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,6 +6,8 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
 {
     public class SoundBurst
     {
+        public event Action OnSound;
+
         private const float VOLUME = 0.7f;
 
         private AudioSource _audioSource;
@@ -25,6 +28,8 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
             }
             
             _audioSource.PlayOneShot(_sounds[soundName], VOLUME);
+
+            OnSound?.Invoke();
         }
     }
 }
