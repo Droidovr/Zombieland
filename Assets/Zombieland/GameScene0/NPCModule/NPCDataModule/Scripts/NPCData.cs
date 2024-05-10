@@ -17,7 +17,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCDataModule
         public float CurrentHealth { get; set; }
 
         public float Speed { get; set; }
-        public float MaxSpeed { get; set; }
         public float StopDistance { get; set; }
 
         [JsonIgnore]

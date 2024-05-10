@@ -388,6 +388,11 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: c0a42dbde15814041906fd714b283e92,
         type: 3}
       propertyPath: m_UpdateMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: c0a42dbde15814041906fd714b283e92,
+        type: 3}
+      propertyPath: m_CullingMode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6057286732890248245, guid: c0a42dbde15814041906fd714b283e92,
@@ -1751,7 +1756,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 6410072519129944511}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.1
+  m_Radius: 0.4
   m_Speed: 1.75
   m_Acceleration: 8
   avoidancePriority: 50
@@ -1784,7 +1789,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 1.8
-  m_Radius: 0.5
+  m_Radius: 0.1
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
