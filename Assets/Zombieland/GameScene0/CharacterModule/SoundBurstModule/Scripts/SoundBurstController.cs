@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.WeaponModule;
@@ -11,7 +10,6 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
         
         private AudioIDAsset _audioID;
         private SoundBurst _soundBurst;
-        private AudioSource _audioSource;
         
         public SoundBurstController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
@@ -29,9 +27,7 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
         
         protected override void CreateHelpersScripts()
         {
-            _audioSource = CharacterController.VisualBodyController.CharacterInScene.AddComponent<AudioSource>();
-
-            _soundBurst = new SoundBurst(_audioSource);
+            _soundBurst = new SoundBurst(this);
 
             CharacterController.WeaponController.OnShotPerformed += PlayWeaponSound;
             CharacterController.AnimationController.OnStep += PlayOnStepSound;
@@ -49,7 +45,6 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
         }
         private void PlayOnStepSound()
         {
-            Debug.Log("walking");
             _soundBurst.PlaySound("Walk");
         }
         private void PlayImpactSound(Vector3 vector1, Vector3 vector2)

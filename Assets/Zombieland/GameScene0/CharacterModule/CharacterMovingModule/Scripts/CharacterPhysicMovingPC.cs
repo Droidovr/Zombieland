@@ -85,14 +85,17 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void MovedHandler(Vector2 joystickPosition)
         {
-            Vector2 vectorMove = new Vector2(joystickPosition.x, joystickPosition.y);
+            int x = Mathf.RoundToInt(joystickPosition.x);
+            int y = Mathf.RoundToInt(joystickPosition.y);
+
+            Vector2 vectorMove = new Vector2(x, y);
 
             if (Mathf.Abs(vectorMove.x) != 0f)
             {
                 vectorMove.y = 0f;
             }
 
-            _characterMovingController.DirectionWalk = new Vector3(vectorMove.x, 0f, vectorMove.y);
+            _characterMovingController.DirectionWalk = vectorMove;
         }
 
         private void MovedMouseHandler(Vector2 mousePosition)
