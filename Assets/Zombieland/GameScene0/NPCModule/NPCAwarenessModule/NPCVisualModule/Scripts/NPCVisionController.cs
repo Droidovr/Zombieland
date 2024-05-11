@@ -18,7 +18,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
 
         protected override void CreateHelpersScripts()
         {
-            _visualSensor = NPCAwarenessController.NPCController.NPCVisualBodyController.NPCInScene.AddComponent<VisionSensor>();
+            _visualSensor = NPCAwarenessController.NPCController.NPCVisualBodyController.NPCInScene.GetComponent<VisionSensor>();
             _visualSensor.Init(this);
             _visualSensor.OnVisualDetect += VisualDetectHandler;
         }

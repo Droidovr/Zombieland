@@ -7,9 +7,9 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
     {
         public event Action<IController, bool> OnVisualDetect;
 
-        private INPCVisionController _nPCVisualController;
-        private Light _visualSensorLight;
+        [SerializeField] private Light _visualSensorLight;
 
+        private INPCVisionController _nPCVisualController;
         private float _viewAngle = 60f; // Óדמכ מבחמנא
         private float _range = 10f;
         private float _intensity = 50f;
@@ -20,18 +20,19 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
         public void Init(INPCVisionController nPCVisualController)
         {
             _nPCVisualController = nPCVisualController;
-
-            _visualSensorLight = nPCVisualController.NPCAwarenessController.NPCController.NPCVisualBodyController.NPCInScene.transform.Find("VisualSensorLight").GetComponent<Light>();
-            _visualSensorLight.spotAngle = _viewAngle;
-            _visualSensorLight.range = _range;
-            _visualSensorLight.intensity = 0f;
-
             _nPCVisualController.NPCAwarenessController.NPCController.NPCManagerController.RootController.CharacterController.StealthController.OnStealth += CharacterStealthHandler;
         }
 
         public void Destroy()
         {
             _nPCVisualController.NPCAwarenessController.NPCController.NPCManagerController.RootController.CharacterController.StealthController.OnStealth -= CharacterStealthHandler;
+        }
+
+        private void Start()
+        {
+            _visualSensorLight.spotAngle = _viewAngle;
+            _visualSensorLight.range = _range;
+            _visualSensorLight.intensity = 0f;
         }
 
         private void CharacterStealthHandler(bool isStealth)
