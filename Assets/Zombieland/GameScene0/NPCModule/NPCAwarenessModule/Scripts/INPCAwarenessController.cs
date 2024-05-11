@@ -1,5 +1,6 @@
 using System;
 using Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCHearingModule;
+using Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule;
 
 namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule
 {
@@ -9,5 +10,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule
 
         INPCController NPCController { get; }
         INPCHearingController NPCHearingController { get; }
+        INPCVisionController NPCVisionController { get; }
     }
 }
