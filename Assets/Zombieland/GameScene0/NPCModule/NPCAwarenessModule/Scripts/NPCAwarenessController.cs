@@ -18,11 +18,17 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule
             NPCController = parentController as INPCController;
         }
 
+        public override void Disable()
+        {
+            NPCHearingController.OnHearingDetectCharacter -= DetectCharacterHandler;
+            NPCVisualController.OnVisualDetectCharacter -= DetectCharacterHandler;
+
+            base.Disable();
+        }
+
         protected override void CreateHelpersScripts()
         {
             // This controller doesn’t have any helpers scripts at the moment.
-            NPCHearingController.OnHearingDetectCharacter += DetectCharacterHandler;
-            NPCVisualController.OnVisualDetectCharacter += DetectCharacterHandler;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -42,6 +48,9 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule
                     (IController)NPCController.NPCVisualBodyController
                 });
             subsystemsControllers.Add((IController)NPCVisualController);
+
+            NPCHearingController.OnHearingDetectCharacter += DetectCharacterHandler;
+            NPCVisualController.OnVisualDetectCharacter += DetectCharacterHandler;
         }
 
         private void DetectCharacterHandler(IController controller, bool isDetect)
