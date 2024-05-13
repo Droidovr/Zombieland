@@ -6,10 +6,10 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule
 {
     public interface INPCAwarenessController
     {
-        event Action<IController> OnHearingSound;
+        event Action<IController, bool> OnDetectCharacter;
 
         INPCController NPCController { get; }
         INPCHearingController NPCHearingController { get; }
-        INPCVisionController NPCVisionController { get; }
+        INPCVisualController NPCVisualController { get; }
     }
 }

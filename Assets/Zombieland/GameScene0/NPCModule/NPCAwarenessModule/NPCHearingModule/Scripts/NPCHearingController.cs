@@ -5,8 +5,9 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCHearingModule
 {
     public class NPCHearingController : Controller, INPCHearingController
     {
-        public event Action<IController, bool> OnHearingDetect;
+        public event Action<IController, bool> OnHearingDetectCharacter;
 
+        public bool IsHearingDetect { get; private set; }
         public INPCAwarenessController NPCAwarenessController { get; private set; }
 
         private HearingSensor _hearingSensor;
@@ -37,7 +38,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCHearingModule
 
         private void HearingDetectHandler(IController controller, bool isHearing)
         {
-            OnHearingDetect?.Invoke(controller, isHearing);
+            IsHearingDetect = isHearing;
+            OnHearingDetectCharacter?.Invoke(controller, isHearing);
         }
     }
 }

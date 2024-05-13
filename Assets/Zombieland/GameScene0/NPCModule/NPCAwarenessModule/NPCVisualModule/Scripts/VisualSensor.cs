@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
 {
-    public class VisionSensor : MonoBehaviour
+    public class VisualSensor : MonoBehaviour
     {
         public event Action<IController, bool> OnVisualDetect;
 
         [SerializeField] private Light _visualSensorLight;
 
-        private INPCVisionController _nPCVisualController;
+        private INPCVisualController _nPCVisualController;
         private float _viewAngle = 60f; // ”гол обзора
         private float _range = 10f;
         private float _intensity = 50f;
@@ -17,7 +17,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
 
         private Collider _detectedCharacter; // —сылка на обнаруженного персонажа
 
-        public void Init(INPCVisionController nPCVisualController)
+        public void Init(INPCVisualController nPCVisualController)
         {
             _nPCVisualController = nPCVisualController;
             _nPCVisualController.NPCAwarenessController.NPCController.NPCManagerController.RootController.CharacterController.StealthController.OnStealth += CharacterStealthHandler;

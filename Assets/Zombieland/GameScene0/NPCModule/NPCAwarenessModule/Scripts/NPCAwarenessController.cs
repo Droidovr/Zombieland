@@ -7,11 +7,11 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule
 {
     public class NPCAwarenessController : Controller, INPCAwarenessController
     {
-        public event Action<IController> OnHearingSound;
+        public event Action<IController, bool> OnDetectCharacter;
 
         public INPCController NPCController { get; private set; }
         public INPCHearingController NPCHearingController { get; private set; }
-        public INPCVisionController NPCVisionController { get; private set; }
+        public INPCVisualController NPCVisualController { get; private set; }
 
         public NPCAwarenessController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
@@ -21,6 +21,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule
         protected override void CreateHelpersScripts()
         {
             // This controller doesn’t have any helpers scripts at the moment.
+            NPCHearingController.OnHearingDetectCharacter += DetectCharacterHandler;
+            NPCVisualController.OnVisualDetectCharacter += DetectCharacterHandler;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -34,12 +36,34 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule
                 });
             subsystemsControllers.Add((IController)NPCHearingController);
 
-            NPCVisionController = new NPCVisionController(this, new List<IController>
+            NPCVisualController = new NPCVisualController(this, new List<IController>
                 {
                     (IController)NPCController.NPCManagerController.RootController.CharacterController.StealthController,
                     (IController)NPCController.NPCVisualBodyController
                 });
-            subsystemsControllers.Add((IController)NPCVisionController);
+            subsystemsControllers.Add((IController)NPCVisualController);
+        }
+
+        private void DetectCharacterHandler(IController controller, bool isDetect)
+        {
+            if (isDetect)
+            {
+                if (NPCHearingController.IsHearingDetect || NPCVisualController.IsVisualDetect)
+                {
+                    return;
+                }
+
+                OnDetectCharacter?.Invoke(controller, isDetect);
+            }
+            else
+            {
+                if (NPCHearingController.IsHearingDetect || NPCVisualController.IsVisualDetect)
+                {
+                    return;
+                }
+
+                OnDetectCharacter?.Invoke(controller, isDetect);
+            }
         }
     }
 }

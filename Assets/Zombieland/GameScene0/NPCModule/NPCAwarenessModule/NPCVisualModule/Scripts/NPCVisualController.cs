@@ -3,22 +3,23 @@ using System.Collections.Generic;
 
 namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
 {
-    public class NPCVisionController : Controller, INPCVisionController
+    public class NPCVisualController : Controller, INPCVisualController
     {
-        public event Action<IController, bool> OnVisualDetect;
+        public event Action<IController, bool> OnVisualDetectCharacter;
 
+        public bool IsVisualDetect { get; private set; }
         public INPCAwarenessController NPCAwarenessController { get; private set; }
 
-        private VisionSensor _visualSensor;
+        private VisualSensor _visualSensor;
 
-        public NPCVisionController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
+        public NPCVisualController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             NPCAwarenessController = parentController as INPCAwarenessController;
         }
 
         protected override void CreateHelpersScripts()
         {
-            _visualSensor = NPCAwarenessController.NPCController.NPCVisualBodyController.NPCInScene.GetComponent<VisionSensor>();
+            _visualSensor = NPCAwarenessController.NPCController.NPCVisualBodyController.NPCInScene.GetComponent<VisualSensor>();
             _visualSensor.Init(this);
             _visualSensor.OnVisualDetect += VisualDetectHandler;
         }
@@ -31,7 +32,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
 
         private void VisualDetectHandler(IController controller, bool isVisible)
         {
-            OnVisualDetect?.Invoke(controller, isVisible);
+            IsVisualDetect = isVisible;
+            OnVisualDetectCharacter?.Invoke(controller, isVisible);
         }
     }
 }
