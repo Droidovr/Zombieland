@@ -72,7 +72,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCHearingModule
                         {
                             isDetect = true;
                             OnHearingDetect?.Invoke(controller, isDetect);
-                            //Debug.Log("OnHearingDetect: " + characterController.VisualBodyController.CharacterInScene.name);
+                            Debug.Log("OnHearingDetect: " + characterController.VisualBodyController.CharacterInScene.name);
                         }
                     }
                 }
@@ -82,7 +82,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCHearingModule
                     {
                         isDetect = false;
                         OnHearingDetect?.Invoke(controller, isDetect);
-                        //Debug.Log("Out of earshot - OnHearingDetect: " + characterController.VisualBodyController.CharacterInScene.name);
+                        Debug.Log("Out of earshot - OnHearingDetect: " + characterController.VisualBodyController.CharacterInScene.name);
                     }
                 }
             }

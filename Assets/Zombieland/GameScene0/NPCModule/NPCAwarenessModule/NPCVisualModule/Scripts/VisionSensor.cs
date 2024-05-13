@@ -31,6 +31,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
         private void Start()
         {
             _visualSensorLight.spotAngle = _viewAngle;
+            _visualSensorLight.innerSpotAngle = _viewAngle;
             _visualSensorLight.range = _range;
             _visualSensorLight.intensity = 0f;
         }
