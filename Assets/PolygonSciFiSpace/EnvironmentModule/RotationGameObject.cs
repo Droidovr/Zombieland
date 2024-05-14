@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class RotationGameObject : MonoBehaviour
 {
-    [SerializeField] private GameObject GeneratorPrefab;
-    [SerializeField] private float RotateSpeed;
+    [SerializeField] private GameObject prefabRotate;
+    [SerializeField] private float rotateSpeed;
 
     [SerializeField] private bool isRotateAxisX;
     [SerializeField] private bool isRotateAxisY;
@@ -16,18 +16,18 @@ public class RotationGameObject : MonoBehaviour
 
     private void RotateGameObject()
     {
-        float rotationSpeed = RotateSpeed * Time.deltaTime;
+        float rotationSpeed = rotateSpeed * Time.deltaTime;
         if (isRotateAxisX)
         {
-            GeneratorPrefab.transform.Rotate(rotationSpeed, 0, 0);
+            prefabRotate.transform.Rotate(rotationSpeed, 0, 0);
         }
         if (isRotateAxisY)
         {
-            GeneratorPrefab.transform.Rotate(0, rotationSpeed, 0);
+            prefabRotate.transform.Rotate(0, rotationSpeed, 0);
         }
         if (isRotateAxisZ)
         {
-            GeneratorPrefab.transform.Rotate(0, 0, rotationSpeed);
+            prefabRotate.transform.Rotate(0, 0, rotationSpeed);
         }
 
     }

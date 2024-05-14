@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f458c2f8c0ee0cd4bb8b8532f7c1272e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GeneratorPrefab: {fileID: 5903314281531328105}
-  RotateSpeed: 300
+  prefabRotate: {fileID: 5903314281531328105}
+  rotateSpeed: 100
   isRotateAxisX: 0
   isRotateAxisY: 1
   isRotateAxisZ: 0
@@ -202,7 +202,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.9056604, g: 0.07262372, b: 0.07262372, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_Intensity: 10
   m_Range: 4
   m_SpotAngle: 30
