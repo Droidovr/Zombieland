@@ -31,5 +31,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCDataModule
 
         [JsonIgnore]
         public bool IsDead;
+
+        public float Stamina;
+        public bool IsStunned;
     }
 }

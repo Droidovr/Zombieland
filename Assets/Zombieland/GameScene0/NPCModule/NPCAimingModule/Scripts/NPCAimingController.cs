@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Zombieland.GameScene0.NPCModule.NPCAimingController
+namespace Zombieland.GameScene0.NPCModule.NPCAimingModule
 {
     public class NPCAimingController : Controller, INPCAimingController
     {

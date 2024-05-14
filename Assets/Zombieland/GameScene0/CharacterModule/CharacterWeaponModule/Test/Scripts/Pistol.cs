@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Zombieland.GameScene0.CharacterModule.CharacterWeaponModule;
+using Zombieland.GameScene0.WeaponModule;
 
 
 namespace Zombieland.GameScene0.CharacterModule.WeaponModule
@@ -6,9 +8,9 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
     public class Pistol
     {
         private Weapon _pistol;
-        private IWeaponController _weaponController;
+        private ICharacterWeaponController _weaponController;
 
-        public Pistol(IWeaponController weaponController)
+        public Pistol(ICharacterWeaponController weaponController)
         {
             _pistol = new Weapon();
             _pistol.WeaponData = new WeaponData();

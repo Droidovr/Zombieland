@@ -1,19 +1,18 @@
 using System;
-using UnityEngine;
 using Zombieland.GameScene0.ImpactModule;
 
-namespace Zombieland.GameScene0.CharacterModule.WeaponModule
+namespace Zombieland.GameScene0.WeaponModule
 {
     public class ShotProcess : IShotProcess
     {
         public event Action OnShotPerformed;
 
-        private IWeaponController _weaponController;
+        private IController _weaponController;
         private Impact _impact;
         private WeaponImpacter _weaponImpacter;
         private WeaponResourcer _weaponResourcer;
 
-        public void Init(IWeaponController weaponController)
+        public void Init(IController weaponController)
         {
             _weaponController = weaponController;
             _weaponImpacter = new WeaponImpacter(_weaponController);

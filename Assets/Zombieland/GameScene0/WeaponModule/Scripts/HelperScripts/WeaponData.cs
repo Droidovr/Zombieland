@@ -2,12 +2,12 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
-namespace Zombieland.GameScene0.CharacterModule.WeaponModule
+namespace Zombieland.GameScene0.WeaponModule
 {
     [Serializable]
     public class WeaponData
     {
-        [JsonIgnore] public ICharacterController Owner;
+        [JsonIgnore] public IController Owner;
 
         public string ID;
         public string Name;

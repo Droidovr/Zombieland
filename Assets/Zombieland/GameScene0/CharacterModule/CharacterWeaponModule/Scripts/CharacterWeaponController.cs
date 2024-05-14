@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Zombieland.GameScene0.WeaponModule;
 
 
-namespace Zombieland.GameScene0.CharacterModule.WeaponModule
+namespace Zombieland.GameScene0.CharacterModule.CharacterWeaponModule
 {
-    public class WeaponController : Controller, IWeaponController
+    public class CharacterWeaponController : Controller, ICharacterWeaponController
     {
         public event Action<Weapon> OnShotPerformed;
         public event Action OnShotFailed;
@@ -16,7 +17,7 @@ namespace Zombieland.GameScene0.CharacterModule.WeaponModule
 
 
         #region Public
-        public WeaponController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
+        public CharacterWeaponController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             CharacterController = parentController as ICharacterController;
         }

@@ -1,39 +1,40 @@
 using UnityEngine;
-using Zombieland;
 using Zombieland.GameScene0.CharacterModule;
-using Zombieland.GameScene0.NPCModule.NPCAimingController;
 
-public class Aiming
+namespace Zombieland.GameScene0.NPCModule.NPCAimingModule
 {
-    private INPCAimingController _nPCAimingController;
-    private ICharacterController _characterController;
-
-
-    public Aiming(INPCAimingController nPCAimingController)
+    public class Aiming
     {
-        _nPCAimingController = nPCAimingController;
-        _nPCAimingController.NPCController.NPCAwarenessController.OnDetectCharacter += DetectCharacterHandler;
-    }
+        private INPCAimingController _nPCAimingController;
+        private ICharacterController _characterController;
 
-    public Transform GetTarget()
-    { 
-        if (_characterController != null) 
+
+        public Aiming(INPCAimingController nPCAimingController)
         {
-            return _characterController.VisualBodyController.CharacterInScene.GetComponent<Transform>();
+            _nPCAimingController = nPCAimingController;
+            _nPCAimingController.NPCController.NPCAwarenessController.OnDetectCharacter += DetectCharacterHandler;
         }
 
-        return null;
-    }
+        public Transform GetTarget()
+        {
+            if (_characterController != null)
+            {
+                return _characterController.VisualBodyController.CharacterInScene.GetComponent<Transform>();
+            }
 
-    private void DetectCharacterHandler(IController controller, bool isDetect)
-    {
-        if (isDetect)
-        {
-            _characterController = controller as ICharacterController;
+            return null;
         }
-        else
+
+        private void DetectCharacterHandler(IController controller, bool isDetect)
         {
-            _characterController = null;
+            if (isDetect)
+            {
+                _characterController = controller as ICharacterController;
+            }
+            else
+            {
+                _characterController = null;
+            }
         }
     }
 }

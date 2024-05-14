@@ -1,12 +1,12 @@
 using System;
 
-namespace Zombieland.GameScene0.CharacterModule.WeaponModule
+namespace Zombieland.GameScene0.WeaponModule
 {
     public interface IShotProcess
     {
         event Action OnShotPerformed;
 
-        void Init(IWeaponController weaponController);
+        void Init(IController weaponController);
         void StartFire();
         void StopFire();
     }

@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Zombieland.GameScene0.CharacterModule.WeaponModule;
+using Zombieland.GameScene0.WeaponModule;
+
 
 namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
 {
@@ -20,7 +21,7 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
         
         public override void Disable()
         {
-            CharacterController.WeaponController.OnShotPerformed -= PlayWeaponSound;
+            CharacterController.CharacterWeaponController.OnShotPerformed -= PlayWeaponSound;
             CharacterController.AnimationController.OnStep -= PlayOnStepSound;
             CharacterController.TakeImpactController.OnApplyImpact -= PlayImpactSound;
 
@@ -32,7 +33,7 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
             _soundBurst = new SoundBurst(this);
             _soundBurst.OnSound += SoundHandler;    
 
-            CharacterController.WeaponController.OnShotPerformed += PlayWeaponSound;
+            CharacterController.CharacterWeaponController.OnShotPerformed += PlayWeaponSound;
             CharacterController.AnimationController.OnStep += PlayOnStepSound;
             CharacterController.TakeImpactController.OnApplyImpact += PlayImpactSound;
         }
