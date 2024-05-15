@@ -6,7 +6,7 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule.EnvironmentSensorMo
     {
         public IController Controller { get; private set; }
 
-        [SerializeField] private Animator animator;
+        [SerializeField] private Animator[] animators;
         [SerializeField] private bool _isOpened;
 
         private bool _isInInterractionRange;
@@ -30,11 +30,17 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule.EnvironmentSensorMo
         {
             if (_isOpened)
             {
-                animator.Play("CloseDoor", 0);
+                foreach (Animator animator in animators)
+                {
+                    animator.Play("CloseDoor", 0);
+                }
             }
             else
             {
-                animator.Play("OpenDoor", 0);
+                foreach (Animator animator in animators)
+                {
+                    animator.Play("OpenDoor", 0);
+                }
             }
             _isOpened = !_isOpened;
         }

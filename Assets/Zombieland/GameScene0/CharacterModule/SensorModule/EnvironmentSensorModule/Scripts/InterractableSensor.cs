@@ -21,9 +21,21 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule.EnvironmentSensorMo
             {
                 return;
             }
+            /*Debug.Log("The List is not empty");
+            if (_interractablesInRange[0] == null)
+            {
+                Debug.Log("The first element in the list is null");
+                _interractablesInRange.RemoveAt(0);
+            }
+            Debug.Log("The first element was not null and is present");
+            if (_interractablesInRange.Count == 0)
+            {
+                Debug.Log("List is empty");
+                return;
+            }*/
             if (_interractablesInRange[0].TryInterract(_environmentSensorController))
             {
-                _interractablesInRange.RemoveAt(0);
+                return;
             }
         }
 
