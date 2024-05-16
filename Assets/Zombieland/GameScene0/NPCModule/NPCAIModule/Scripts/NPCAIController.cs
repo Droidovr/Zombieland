@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 
@@ -5,6 +6,11 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
 {
     public class NPCAIController : Controller, INPCAIController
     {
+        public event Action SlotNumber1;
+        public event Action SlotNumber2;
+        public event Action SlotNumber3;
+        public event Action SlotNumber4;
+
         public INPCController NPCController { get; private set; }
         private NPCPatrolling _nPCPatrolling;
 

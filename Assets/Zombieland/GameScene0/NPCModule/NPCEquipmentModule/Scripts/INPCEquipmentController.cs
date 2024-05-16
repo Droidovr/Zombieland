@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Zombieland.GameScene0.CharacterModule.EquipmentModule;
 using Zombieland.GameScene0.WeaponModule;
 
 
