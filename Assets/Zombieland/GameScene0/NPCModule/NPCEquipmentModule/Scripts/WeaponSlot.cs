@@ -8,8 +8,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCEquipmentModule
         public Weapon EquippedWeapon;
         public Dictionary<string, int> EquippedImpacts;
 
-        //static readonly WeaponSlot emptySlot = new WeaponSlot(null, null);
-
         public WeaponSlot(Weapon equippedWeapon, Dictionary<string, int> equippedImpacts)
         {
             EquippedWeapon = equippedWeapon;

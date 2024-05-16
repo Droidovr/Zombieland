@@ -19,15 +19,28 @@ namespace Zombieland.GameScene0.NPCModule.NPCWeaponModule
             NPCController = parentController as INPCController;
         }
 
+        public override void Disable()
+        {
+            NPCController.NPCEquipmentController.OnWeaponChanged -= WeaponChangedHandler;
+
+            base.Disable();
+        }
+
 
         protected override void CreateHelpersScripts()
         {
-            // This controller doesn’t have any helpers scripts at the moment.
+            NPCController.NPCEquipmentController.OnWeaponChanged += WeaponChangedHandler;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
             // This controller doesn’t have any subsystems at the moment.
+        }
+
+
+        private void WeaponChangedHandler(Weapon weapon)
+        {
+            Debug.Log(weapon.WeaponData.Name);
         }
     }
 }

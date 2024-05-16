@@ -40,11 +40,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCEquipmentModule
             NPCController.NPCAIController.SlotNumber3 -= Number3Handler;
             NPCController.NPCAIController.SlotNumber4 -= Number4Handler;
 
-
-            NPCController.NPCInventoryController.OnMainSlotEquipped -= MainSlotEquippedHandler;
-            NPCController.NPCInventoryController.OnCurrentImpactEquipped -= CurrentImpactEquippedHandler;
-            NPCController.NPCInventoryController.OnCurrentOutfitEquipped -= CurrentOutfitEquippedHandler;
-
             base.Disable();
         }
 
@@ -54,11 +49,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCEquipmentModule
             NPCController.NPCAIController.SlotNumber2 += Number2Handler;
             NPCController.NPCAIController.SlotNumber3 += Number3Handler;
             NPCController.NPCAIController.SlotNumber4 += Number4Handler;
-
-
-            NPCController.NPCInventoryController.OnMainSlotEquipped += MainSlotEquippedHandler;
-            NPCController.NPCInventoryController.OnCurrentImpactEquipped += CurrentImpactEquippedHandler;
-            NPCController.NPCInventoryController.OnCurrentOutfitEquipped += CurrentOutfitEquippedHandler;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -66,7 +56,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCEquipmentModule
             // This controller doesn’t have any subsystems at the moment.
         }
 
-        private void MainSlotEquippedHandler(string name, int slotNumber, string defaultImpactName, int defaultImpactCount)
+        private void FillSlot(string name, int slotNumber, string defaultImpactName, int defaultImpactCount)
         {
             Debug.Log($"Received {name} into {slotNumber}");
             Weapon weapon = NPCController.NPCManagerController.RootController.GameDataController.GetData<Weapon>(name);
@@ -76,55 +66,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCEquipmentModule
                 WeaponSlots[slotNumber].EquippedImpacts.Add(defaultImpactName, defaultImpactCount);
             }
             WeaponSlots[slotNumber].SetEquippedWeapon(weapon);
-        }
-
-        private void CurrentImpactEquippedHandler(string impactID, int amount)
-        {
-            if (_currentWeaponEquipped.WeaponData.AvailableImpactIDs.Contains(impactID))
-            {
-                if (WeaponSlots[_currentActiveSlotIndex].EquippedImpacts.ContainsKey(impactID))
-                {
-                    WeaponSlots[_currentActiveSlotIndex].EquippedImpacts[impactID] += amount;
-                    return;
-                }
-                WeaponSlots[_currentActiveSlotIndex].AddEquippedImpact(impactID, amount);
-                CurrentImpactID = impactID; //Temporary logic, will be replaced after proper UI ability to choose impacts
-                ReloadCurrentWeapon(); //Temporary logic, will be replaced after proper UI ability to choose impacts
-                return;
-            }
-            Debug.Log($"{impactID} can not be used with {_currentWeaponEquipped.WeaponData.Name}!");
-        }
-
-        private void ReloadCurrentWeapon()
-        {
-            if (_currentWeaponEquipped.WeaponData.MaxImpactCount == -1)
-            {
-                return;
-            }
-            if (WeaponSlots[_currentActiveSlotIndex].EquippedImpacts[CurrentImpactID] == 0)
-            {
-                return;
-            }
-            int reloadAmount = _currentWeaponEquipped.WeaponData.MaxImpactCount - CurrentImpactCount;
-            if (WeaponSlots[_currentActiveSlotIndex].EquippedImpacts[CurrentImpactID] == reloadAmount)
-            {
-                return;
-            }
-            if (WeaponSlots[_currentActiveSlotIndex].EquippedImpacts[CurrentImpactID] > reloadAmount)
-            {
-                CurrentImpactCount += reloadAmount;
-                WeaponSlots[_currentActiveSlotIndex].EquippedImpacts[CurrentImpactID] -= reloadAmount;
-            }
-            else
-            {
-                CurrentImpactCount += WeaponSlots[_currentActiveSlotIndex].EquippedImpacts[CurrentImpactID];
-                WeaponSlots[_currentActiveSlotIndex].EquippedImpacts[CurrentImpactID] = 0;
-            }
-        }
-
-        private void CurrentOutfitEquippedHandler(string name)
-        {
-            OnEquipmentChanged?.Invoke(name);
         }
 
 

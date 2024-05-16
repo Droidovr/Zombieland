@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using UnityEngine;
+using Zombieland.GameScene0.NPCModule.NPCEquipmentModule;
 
 
 namespace Zombieland.GameScene0.NPCModule.NPCDataModule
