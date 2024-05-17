@@ -154,8 +154,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Put Back Rifle Behind Shoulder Finish
-  m_Speed: 1
+  m_Name: Get Wrench Finish
+  m_Speed: -0.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -8880905575678369386}
@@ -168,7 +168,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -623603649343465320, guid: c270790e558a9f14fb6053fac0d05693,
+  m_Motion: {fileID: -623603649343465320, guid: e9585b3515bd33345963c2327acc2477,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -182,7 +182,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Great Sword Idle
+  m_Name: Wrench Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -323,7 +323,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Great Sword Slash
+  m_Name: 'Attack Wrench '
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -654,8 +654,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Put Back Rifle Behind Shoulder
-  m_Speed: -1
+  m_Name: Get Wrench
+  m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -8184612560826606005}
@@ -668,7 +668,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -623603649343465320, guid: 67fb4e95545531a4582b449b4fba1f13,
+  m_Motion: {fileID: -623603649343465320, guid: 457249dc502c7b44a9e9aa26e4ab835a,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
