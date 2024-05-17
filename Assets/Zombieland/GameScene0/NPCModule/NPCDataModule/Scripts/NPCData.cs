@@ -17,8 +17,9 @@ namespace Zombieland.GameScene0.NPCModule.NPCDataModule
         public float CurrentHealth { get; set; }
 
         public float Speed { get; set; }
-        public float MaxSpeed { get; set; }
         public float StopDistance { get; set; }
+
+        public float HearingDistance { get; set; }
 
         [JsonIgnore]
         public NPCSpawnData NPCSpawnData { get; set; }
@@ -30,5 +31,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCDataModule
 
         [JsonIgnore]
         public bool IsDead;
+
+        public float Stamina;
+        public bool IsStunned;
     }
 }

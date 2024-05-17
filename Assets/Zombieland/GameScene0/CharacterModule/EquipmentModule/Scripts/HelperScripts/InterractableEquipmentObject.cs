@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Zombieland.GameScene0.CharacterModule.EquipmentModule;
-using Zombieland.GameScene0.CharacterModule.WeaponModule;
+using Zombieland.GameScene0.WeaponModule;
 
 public class InterractableEquipmentObject : MonoBehaviour
 {

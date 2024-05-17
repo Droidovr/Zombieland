@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Zombieland.GameScene0.CharacterModule.WeaponModule;
+using Zombieland.GameScene0.WeaponModule;
 
 namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
 {

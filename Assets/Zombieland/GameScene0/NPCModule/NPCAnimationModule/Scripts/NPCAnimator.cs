@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using Zombieland.GameScene0.CharacterModule.WeaponModule;
+using Zombieland.GameScene0.WeaponModule;
 
 namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
 {
@@ -35,6 +35,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
 
             //_nPCAnimatorController.NPCController.OnFire += FireHandler;
 
+
+            _animator.SetFloat("Speed", _nPCAnimatorController.NPCController.NPCDataController.NPCData.Speed);
         }
 
 
@@ -47,7 +49,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
 
         private void MovingHandler(float speed, bool isMove)
         {
-            _animator.SetFloat("Speed", speed);
             _animator.SetBool("IsMove", isMove);
         }
 

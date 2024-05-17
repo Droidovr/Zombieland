@@ -32,7 +32,7 @@ namespace Zombieland.GameScene0.UIModule.UIMainModule
             _inputSystemControls.Enable();
 
             _inputSystemControls.Main.Move.performed += context => OnMoved?.Invoke(_inputSystemControls.Main.Move.ReadValue<Vector2>());
-            _inputSystemControls.Main.Move.canceled += context => OnMoved?.Invoke(_inputSystemControls.Main.Move.ReadValue<Vector2>());
+            _inputSystemControls.Main.Move.canceled += context => OnMoved?.Invoke(new Vector2(0f, 0f));
             _inputSystemControls.Main.MousePosition.performed += context => OnMouseMoved?.Invoke(_inputSystemControls.Main.MousePosition.ReadValue<Vector2>());
             _inputSystemControls.Main.Fire.performed += context => OnFire?.Invoke(true);
             _inputSystemControls.Main.Fire.canceled += context => OnFire?.Invoke(false);
@@ -51,7 +51,7 @@ namespace Zombieland.GameScene0.UIModule.UIMainModule
         private void OnDisable()
         {
             _inputSystemControls.Main.Move.performed -= context => OnMoved?.Invoke(_inputSystemControls.Main.Move.ReadValue<Vector2>());
-            _inputSystemControls.Main.Move.canceled -= context => OnMoved?.Invoke(_inputSystemControls.Main.Move.ReadValue<Vector2>());
+            _inputSystemControls.Main.Move.canceled -= context => OnMoved?.Invoke(new Vector2(0f, 0f));
             _inputSystemControls.Main.MousePosition.performed -= context => OnMouseMoved?.Invoke(_inputSystemControls.Main.MousePosition.ReadValue<Vector2>());
             _inputSystemControls.Main.Fire.performed -= context => OnFire?.Invoke(true);
             _inputSystemControls.Main.Fire.canceled -= context => OnFire?.Invoke(false);

@@ -1,14 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 using Zombieland.GameScene0.NPCManagerModule;
+using Zombieland.GameScene0.NPCModule.NPCAimingModule;
+using Zombieland.GameScene0.NPCModule.NPCAIModule;
 using Zombieland.GameScene0.NPCModule.NPCAnimationModule;
+using Zombieland.GameScene0.NPCModule.NPCAwarenessModule;
 using Zombieland.GameScene0.NPCModule.NPCBuffDebuffModule;
 using Zombieland.GameScene0.NPCModule.NPCDataModule;
+using Zombieland.GameScene0.NPCModule.NPCEquipmentModule;
 using Zombieland.GameScene0.NPCModule.NPCImpactableSensorModule;
+using Zombieland.GameScene0.NPCModule.NPCInventoryModule;
 using Zombieland.GameScene0.NPCModule.NPCMovingModule;
 using Zombieland.GameScene0.NPCModule.NPCSpawnModule;
 using Zombieland.GameScene0.NPCModule.NPCTakeDamageModule;
 using Zombieland.GameScene0.NPCModule.NPCVisualBodyModule;
+using Zombieland.GameScene0.RootModule;
 
 namespace Zombieland.GameScene0.NPCModule
 {
@@ -24,6 +30,11 @@ namespace Zombieland.GameScene0.NPCModule
         public INPCAnimationController NPCAnimationController { get; private set; }
         public INPCBuffDebuffController NPCBuffDebuffController { get; private set; }
         public INPCTakeDamageController NPCTakeDamageController { get; private set; }
+        public INPCAIController NPCAIController { get; private set; }
+        public INPCAwarenessController NPCAwarenessController { get; private set; }
+        public INPCAimingController NPCAimingController { get; private set; }
+        public INPCInventoryController NPCInventoryController { get; private set; }
+        public INPCEquipmentController NPCEquipmentController { get; private set; }
 
         public NPCController(IController parentController, List<IController> requiredControllers, NPCSpawnData npcSpawnData) : base(parentController, requiredControllers)
         {
@@ -40,7 +51,7 @@ namespace Zombieland.GameScene0.NPCModule
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
             NPCDataController = new NPCDataController(this, null);
-            subsystemsControllers.Add((IController) NPCDataController);
+            subsystemsControllers.Add((IController)NPCDataController);
 
             NPCVisualBodyController = new NPCVisualBodyController(this, new List<IController> { (IController)NPCManagerController.RootController.EnvironmentController });
             subsystemsControllers.Add((IController)NPCVisualBodyController);
@@ -60,8 +71,23 @@ namespace Zombieland.GameScene0.NPCModule
             NPCBuffDebuffController = new NPCBuffDebuffController(this, null);
             subsystemsControllers.Add((IController)NPCBuffDebuffController);
 
-            NPCTakeDamageController = new NPCTakeDamageController(this, new List<IController> { (IController)NPCBuffDebuffController, (IController)NPCDataController});
+            NPCTakeDamageController = new NPCTakeDamageController(this, new List<IController> { (IController)NPCBuffDebuffController, (IController)NPCDataController });
             subsystemsControllers.Add((IController)NPCTakeDamageController);
+
+            NPCAIController = new NPCAIController(this, new List<IController> { (IController)NPCVisualBodyController, (IController)NPCMovingController });
+            subsystemsControllers.Add((IController)NPCAIController);
+
+            NPCAwarenessController = new NPCAwarenessController(this, new List<IController> { (IController)NPCVisualBodyController });
+            subsystemsControllers.Add((IController)NPCAwarenessController);
+
+            NPCAimingController = new NPCAimingController(this, new List<IController> { (IController)NPCAwarenessController });
+            subsystemsControllers.Add ((IController)NPCAimingController);
+
+            NPCInventoryController = new NPCInventoryController(this, new List<IController> { (IController)NPCDataController });
+            subsystemsControllers.Add((IController)NPCInventoryController);
+
+            NPCEquipmentController = new NPCEquipmentController(this, new List<IController> { (IController)NPCInventoryController });
+            subsystemsControllers.Add((IController)NPCEquipmentController);
         }
     }
 }

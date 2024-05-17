@@ -8,6 +8,7 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule.EnvironmentSensorMo
         event Action<string> OnInterractionZoneExit;
 
         void InterractionTriggerEnter(bool hasEntered);
+        void ExcludeFromInterractions(IInterractable interractable);
 
         ISensorController SensorController { get; }
     }

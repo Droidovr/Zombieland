@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Zombieland.GameScene0.CharacterModule.WeaponModule;
+using Zombieland.GameScene0.WeaponModule;
 
 namespace Zombieland.GameScene0.CharacterModule.CharacterVFX
 {
@@ -18,14 +18,14 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterVFX
 
         public override void Disable()
         {
-            CharacterController.WeaponController.OnShotPerformed -= ShotPerformedHandler;
+            CharacterController.CharacterWeaponController.OnShotPerformed -= ShotPerformedHandler;
 
             base.Disable();
         }
 
         protected override void CreateHelpersScripts()
         {
-            CharacterController.WeaponController.OnShotPerformed += ShotPerformedHandler;
+            CharacterController.CharacterWeaponController.OnShotPerformed += ShotPerformedHandler;
             CharacterController.TakeImpactController.OnApplyImpact += ApplyImpactHandler;
         }
 
@@ -38,7 +38,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterVFX
         {
             if (weapon.WeaponData.VFXPrefabName != "")
             {
-                _vFXCreator.CtreateVFX(weapon.WeaponData.VFXPrefabName, CharacterController.WeaponController.WeaponPointFire.position, CharacterController.WeaponController.WeaponPointFire.rotation);
+                _vFXCreator.CtreateVFX(weapon.WeaponData.VFXPrefabName, CharacterController.CharacterWeaponController.WeaponPointFire.position, CharacterController.CharacterWeaponController.WeaponPointFire.rotation);
             }
         }
 
