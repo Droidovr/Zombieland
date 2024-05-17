@@ -32,6 +32,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
             _nPCAnimator = NPCController.NPCVisualBodyController.NPCInScene.AddComponent<NPCAnimator>();
             _nPCAnimator.Init(this);
             _nPCAnimator.OnAnimatorMoveEvent += OnAnimatorMoveEventHandler;
+            _nPCAnimator.OnStep += StepHandler;
 
             _nPCRagdoll = NPCController.NPCVisualBodyController.NPCInScene.AddComponent<NPCRagdoll>();
             _nPCRagdoll.Init(this);
@@ -46,6 +47,11 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
         private void OnAnimatorMoveEventHandler(Vector3 animatorRootPosition)
         {
             OnAnimatorMoveEvent?.Invoke(animatorRootPosition);
+        }
+
+        private void StepHandler()
+        {
+            OnStep?.Invoke();
         }
     }
 }
