@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4733297365927674}
   - component: {fileID: 33401548090686598}
   - component: {fileID: 23918446866222136}
-  - component: {fileID: 95196436367953790}
   - component: {fileID: 4567105384842678799}
   m_Layer: 12
   m_Name: SM_Bld_Wall_01_Alt
@@ -85,27 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &95196436367953790
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1089632392375526}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 0a2827ff63b3c6b4f822527c8445e29a, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!65 &4567105384842678799
 BoxCollider:
   m_ObjectHideFlags: 0
