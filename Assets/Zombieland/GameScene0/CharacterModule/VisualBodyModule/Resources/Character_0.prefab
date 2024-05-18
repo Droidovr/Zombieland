@@ -400,6 +400,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2654108501851769192}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3f1b035a29160e54abee8535986fcd7a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8358958712310793486}
     - targetCorrespondingSourceObject: {fileID: 827075974287967996, guid: 3f1b035a29160e54abee8535986fcd7a,
         type: 3}
       insertIndex: -1
@@ -931,6 +935,14 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!81 &8358958712310793486
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2577540030976819918}
+  m_Enabled: 1
 --- !u!1 &2629671065932396899 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 827075974287967996, guid: 3f1b035a29160e54abee8535986fcd7a,

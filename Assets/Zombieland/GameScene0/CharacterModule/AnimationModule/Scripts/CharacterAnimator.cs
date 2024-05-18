@@ -158,6 +158,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private void CreacteWeaponPrefabHandler()
         {
             OnAnimationCreateWeapon?.Invoke(_weapon.WeaponData.PrefabName);
+            Debug.Log("CreacteWeaponPrefabHandler");
         }
 
         private void DestroyWeaponPrefabHandler()

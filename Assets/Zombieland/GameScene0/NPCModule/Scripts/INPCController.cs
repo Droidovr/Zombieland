@@ -7,8 +7,8 @@ using Zombieland.GameScene0.NPCModule.NPCBuffDebuffModule;
 using Zombieland.GameScene0.NPCModule.NPCDataModule;
 using Zombieland.GameScene0.NPCModule.NPCEquipmentModule;
 using Zombieland.GameScene0.NPCModule.NPCImpactableSensorModule;
-using Zombieland.GameScene0.NPCModule.NPCInventoryModule;
 using Zombieland.GameScene0.NPCModule.NPCMovingModule;
+using Zombieland.GameScene0.NPCModule.NPCSoundModule;
 using Zombieland.GameScene0.NPCModule.NPCSpawnModule;
 using Zombieland.GameScene0.NPCModule.NPCTakeDamageModule;
 using Zombieland.GameScene0.NPCModule.NPCVisualBodyModule;
@@ -33,5 +33,6 @@ namespace Zombieland.GameScene0.NPCModule
         INPCAimingController NPCAimingController { get; }
         INPCEquipmentController NPCEquipmentController { get; }
         INPCWeaponController NPCWeaponController { get; }
+        INPCSoundController NPCSoundController { get; }
     }
 }
