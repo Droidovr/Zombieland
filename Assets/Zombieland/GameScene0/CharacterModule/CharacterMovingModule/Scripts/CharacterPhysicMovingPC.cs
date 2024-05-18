@@ -57,7 +57,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         #endregion PUBLIC
 
         #region MONOBEHAVIOUR
-        private void Update()
+        private void FixedUpdate()
         {
             if (!_isActive)
                 return;
@@ -85,14 +85,17 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void MovedHandler(Vector2 joystickPosition)
         {
-            Vector2 vectorMove = new Vector2(joystickPosition.x, joystickPosition.y);
+            int x = Mathf.RoundToInt(joystickPosition.x);
+            int y = Mathf.RoundToInt(joystickPosition.y);
+
+            Vector2 vectorMove = new Vector2(x, y);
 
             if (Mathf.Abs(vectorMove.x) != 0f)
             {
                 vectorMove.y = 0f;
             }
 
-            _characterMovingController.DirectionWalk = new Vector3(vectorMove.x, 0f, vectorMove.y);
+            _characterMovingController.DirectionWalk = vectorMove;
         }
 
         private void MovedMouseHandler(Vector2 mousePosition)
@@ -149,12 +152,12 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             Gizmos.color = Color.red;
             Gizmos.DrawLine(transform.position, transform.position + transform.forward * 5f);
 
-            if (_characterMovingController.CharacterController.WeaponController.WeaponPointFire != null)
+            if (_characterMovingController.CharacterController.CharacterWeaponController.WeaponPointFire != null)
             {
                 Gizmos.color = Color.green;
-                Gizmos.DrawLine(_characterMovingController.CharacterController.WeaponController.WeaponPointFire.position,
-                    _characterMovingController.CharacterController.WeaponController.WeaponPointFire.position +
-                    _characterMovingController.CharacterController.WeaponController.WeaponPointFire.forward * 5f);
+                Gizmos.DrawLine(_characterMovingController.CharacterController.CharacterWeaponController.WeaponPointFire.position,
+                    _characterMovingController.CharacterController.CharacterWeaponController.WeaponPointFire.position +
+                    _characterMovingController.CharacterController.CharacterWeaponController.WeaponPointFire.forward * 5f);
             }
         }
 #endif

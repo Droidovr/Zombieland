@@ -36,6 +36,11 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule.EnvironmentSensorMo
                 OnInterractionZoneExit?.Invoke("Exited");
             }
         }
+
+        public void ExcludeFromInterractions(IInterractable interractable)
+        {
+            _interractableSensor.RemoveInterractable(interractable);
+        }
         #endregion
 
         #region Protected

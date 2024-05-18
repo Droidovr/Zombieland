@@ -16,6 +16,7 @@ namespace Zombieland.GameScene0.VisualBodyModule
 
         private CreateCharacterPrefab _createCharacterGameobject;
         private CreateWeaponPrefab _createWeaponPrefab;
+        private Transform _characterWeaponPoint;
 
 
         public VisualBodyController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
@@ -55,12 +56,14 @@ namespace Zombieland.GameScene0.VisualBodyModule
         private void CreateCharacterGameobject()
         {
             CharacterInScene = _createCharacterGameobject.CreateCharacter(Vector3.zero, Quaternion.identity);
+            _characterWeaponPoint = GameObject.Find("CharacterWeaponPoint").transform;
+            
             CharacterInScene.SetActive(false);
         }
 
         private void AnimationCreateWeaponHandler(string weaponPrefabName)
         {
-            WeaponInScene = _createWeaponPrefab.CtreateWeapon(weaponPrefabName, CharacterInScene.GetComponent<Transform>());
+            WeaponInScene = _createWeaponPrefab.CtreateWeapon(weaponPrefabName, _characterWeaponPoint);
  
             OnWeaponInSceneReady?.Invoke();
         }

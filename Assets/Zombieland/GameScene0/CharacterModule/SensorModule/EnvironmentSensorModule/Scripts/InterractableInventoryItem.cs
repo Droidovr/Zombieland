@@ -30,6 +30,7 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule.EnvironmentSensorMo
             {
                 environmentSensorController.SensorController.CharacterController.InventoryController.EquipCurrentImpact(_impactID, _impactCount);
             }
+            environmentSensorController.ExcludeFromInterractions(this);
             Destroy(gameObject);
             return true;
         }

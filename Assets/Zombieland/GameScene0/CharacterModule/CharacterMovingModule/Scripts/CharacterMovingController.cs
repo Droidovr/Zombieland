@@ -7,7 +7,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
     public class CharacterMovingController : Controller, ICharacterMovingController
     {
         public float RealMovingSpeed { get; set; }
-        public Vector3 DirectionWalk { get; set; }
+        public Vector2 DirectionWalk { get; set; }
         public ICharacterController CharacterController { get; private set; }
 
         private ICharacterPhysicMoving _characterPhysicMoving; 

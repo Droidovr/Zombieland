@@ -22,39 +22,39 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+            //if (Input.GetMouseButtonDown(0))
+            //{
+            //    Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
 
-                if (Physics.Raycast(ray, out RaycastHit hit))
-                {
-                    if (_characterRagdoll != null)
-                    {
-                        Vector3 forceDirection = (hit.point - _camera.transform.position).normalized;
-                        forceDirection.y = 0;
+            //    if (Physics.Raycast(ray, out RaycastHit hit))
+            //    {
+            //        if (_characterRagdoll != null)
+            //        {
+            //            Vector3 forceDirection = (hit.point - _camera.transform.position).normalized;
+            //            forceDirection.y = 0;
 
 
-                        Impact impact = _animationController.CharacterController.RootController.GameDataController.GetData<Impact>("GunBullet");
+            //            Impact impact = _animationController.CharacterController.RootController.GameDataController.GetData<Impact>("GunBullet");
 
-                        impact.ImpactData.ImpactOwner = _animationController.CharacterController;
+            //            impact.ImpactData.ImpactOwner = _animationController.CharacterController;
 
-                        impact.ImpactData.FollowTargetTransform = _animationController.CharacterController.AimingController.GetTarget();
+            //            impact.ImpactData.FollowTargetTransform = _animationController.CharacterController.AimingController.GetTarget();
 
-                        impact.ImpactData.ObjectSpawnPosition = (((_camera.transform.position + hit.point) * 0.5f + hit.point) * 0.5f + hit.point) * 0.5f;
+            //            impact.ImpactData.ObjectSpawnPosition = (((_camera.transform.position + hit.point) * 0.5f + hit.point) * 0.5f + hit.point) * 0.5f;
 
-                        impact.ImpactData.ObjectParentTransform = null;
+            //            impact.ImpactData.ObjectParentTransform = null;
 
-                        Vector3 direction = hit.point - _camera.transform.position;
-                        impact.ImpactData.ObjectRotation = Quaternion.LookRotation(direction);
+            //            Vector3 direction = hit.point - _camera.transform.position;
+            //            impact.ImpactData.ObjectRotation = Quaternion.LookRotation(direction);
 
-                        impact.Activate();
+            //            impact.Activate();
 
-                        _animationController.CharacterController.CharacterDataController.CharacterData.IsDead = true;
+            //            _animationController.CharacterController.CharacterDataController.CharacterData.IsDead = true;
 
-                        _characterRagdoll.Hit(hit.point, forceDirection * _force);
-                    }
-                }
-            }
+            //            _characterRagdoll.Hit(hit.point, forceDirection * _force);
+            //        }
+            //    }
+            //}
 
             if (Input.GetKeyDown(KeyCode.F))
             {

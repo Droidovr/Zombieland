@@ -4,15 +4,11 @@ namespace Zombieland.GameScene0.VisualBodyModule
 {
     public class CreateWeaponPrefab
     {
-
-
-        public GameObject CtreateWeapon(string weaponPrefabName, Transform characterInScene)
+        public GameObject CtreateWeapon(string weaponPrefabName, Transform characterWeaponPoint)
         {
             GameObject prefab = Resources.Load<GameObject>(weaponPrefabName);
 
-            Transform weaponPoint = GameObject.Find("WeaponPoint").GetComponent<Transform>();
-
-            return GameObject.Instantiate(prefab, weaponPoint);
+            return GameObject.Instantiate(prefab, characterWeaponPoint);
         }
 
         public void Destroy(GameObject weaponInScene)

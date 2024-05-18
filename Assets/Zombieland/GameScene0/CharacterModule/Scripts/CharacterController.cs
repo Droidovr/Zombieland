@@ -6,13 +6,14 @@ using Zombieland.GameScene0.CharacterModule.BuffDebuffModule;
 using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
 using Zombieland.GameScene0.CharacterModule.CharacterMovingModule;
 using Zombieland.GameScene0.CharacterModule.CharacterVFX;
+using Zombieland.GameScene0.CharacterModule.CharacterWeaponModule;
 using Zombieland.GameScene0.CharacterModule.EquipmentModule;
 using Zombieland.GameScene0.CharacterModule.InventoryModule;
 using Zombieland.GameScene0.CharacterModule.SensorModule;
+using Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts;
 using Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule;
 using Zombieland.GameScene0.CharacterModule.StealthModule;
 using Zombieland.GameScene0.CharacterModule.TakeImpactModule;
-using Zombieland.GameScene0.CharacterModule.WeaponModule;
 using Zombieland.GameScene0.RootModule;
 using Zombieland.GameScene0.VisualBodyModule;
 
@@ -22,7 +23,7 @@ namespace Zombieland.GameScene0.CharacterModule
     {
         public IRootController RootController { get; private set; }
         public ICharacterDataController CharacterDataController { get; private set; }
-        public IWeaponController WeaponController { get; private set; }
+        public ICharacterWeaponController CharacterWeaponController { get; private set; }
         public IVisualBodyController VisualBodyController { get; private set; }
         public ICharacterMovingController CharacterMovingController { get; private set; }
         public ISensorController SensorController { get; private set; }
@@ -30,12 +31,14 @@ namespace Zombieland.GameScene0.CharacterModule
         public IEquipmentController EquipmentController { get; private set; }
         public IInventoryController InventoryController { get; private set; }
         public IAnimationController AnimationController { get; private set; }
-        public ISpawnDeathRespawnController SpawnDeathRespawnController { get; private set; }
+        public ISpawnDeathRespawnController SpawnDeathRespawnController { get; private set;}
         public IBuffDebuffController BuffDebuffController { get; private set; }
         public IAimingController AimingController { get; private set; }
         public IStealthController StealthController { get; private set; }
         public ICharacterVFXController CharacterVFXController { get; private set; }
+        public ISoundBurstController SoundBurstController { get; private set; }
 
+        public Transform CharacterTransform => VisualBodyController.CharacterInScene.transform;
 
         public CharacterController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
@@ -52,8 +55,8 @@ namespace Zombieland.GameScene0.CharacterModule
             CharacterDataController = new CharacterDataController(this, new List<IController> { (IController)RootController.GameDataController });
             subsystemsControllers.Add((IController)CharacterDataController);
 
-            WeaponController = new WeaponController(this, new List<IController> { (IController)CharacterDataController, (IController)EquipmentController, (IController)AimingController, (IController)RootController.UIController, (IController)AnimationController, (IController)VisualBodyController });
-            subsystemsControllers.Add((IController)WeaponController);
+            CharacterWeaponController = new CharacterWeaponController(this, new List<IController> { (IController)CharacterDataController, (IController)EquipmentController, (IController)AimingController, (IController)RootController.UIController, (IController)AnimationController, (IController)VisualBodyController });
+            subsystemsControllers.Add((IController)CharacterWeaponController);
 
             VisualBodyController = new VisualBodyController(this, new List<IController> { (IController)RootController.EnvironmentController, (IController)EquipmentController });
             subsystemsControllers.Add((IController)VisualBodyController);
@@ -63,7 +66,7 @@ namespace Zombieland.GameScene0.CharacterModule
 
             SensorController = new SensorController(this, new List<IController> { (IController)VisualBodyController, (IController)RootController.UIController });
             subsystemsControllers.Add((IController)SensorController);
-
+            
             TakeImpactController = new TakeImpactController(this, new List<IController> { (IController)BuffDebuffController, (IController)CharacterDataController });
             subsystemsControllers.Add((IController)TakeImpactController);
             
@@ -78,7 +81,7 @@ namespace Zombieland.GameScene0.CharacterModule
 
             SpawnDeathRespawnController = new SpawnDeathRespawnController(this, new List<IController> { (IController)CharacterDataController, (IController)VisualBodyController });
             subsystemsControllers.Add((IController)SpawnDeathRespawnController);
-
+            
             BuffDebuffController = new BuffDebuffController(this, null);
             subsystemsControllers.Add((IController)BuffDebuffController);
 
@@ -88,8 +91,11 @@ namespace Zombieland.GameScene0.CharacterModule
             StealthController = new StealthController(this, new List<IController> { (IController)VisualBodyController, (IController)RootController.UIController });
             subsystemsControllers.Add((IController)StealthController);
 
-            CharacterVFXController = new CharacterVFXController(this, new List<IController> { (IController)WeaponController, (IController)VisualBodyController });
+            CharacterVFXController = new CharacterVFXController(this, new List<IController> { (IController)CharacterWeaponController, (IController)VisualBodyController });
             subsystemsControllers.Add((IController)CharacterVFXController);
+            
+            SoundBurstController = new SoundBurstController(this, new List<IController> { (IController)VisualBodyController, (IController)CharacterWeaponController, (IController)AnimationController, (IController)TakeImpactController});
+            subsystemsControllers.Add((IController)SoundBurstController);
         }
     }
 }
