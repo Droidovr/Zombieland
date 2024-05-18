@@ -35,17 +35,17 @@ namespace Zombieland.GameScene0.NPCModule.NPCSoundModule
 
         private void PlayWeaponSound(Weapon weapon)
         {
-            _soundBurst.PlaySound(weapon.WeaponData.SoundName);
+            _soundBurst.PlaySound(weapon.WeaponData.SoundName, 0.3f);
         }
 
         private void PlayOnStepSound()
         {
-            _soundBurst.PlaySound("Walk");
+            _soundBurst.PlaySound("Walk", 0.7f);
         }
 
         private void PlayImpactSound(Vector3 vector1, Vector3 vector2)
         {
-            _soundBurst.PlaySound("Hit");
+            _soundBurst.PlaySound("Hit", 0.7f);
         }
     }
 }

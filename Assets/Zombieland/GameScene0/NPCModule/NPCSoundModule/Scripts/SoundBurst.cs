@@ -5,8 +5,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCSoundModule
 {
     public class SoundBurst
     {
-        private const float VOLUME = 0.7f;
-
         private INPCSoundController _nPCSoundController;
         private AudioSource _audioSource;
         private Dictionary<string, AudioClip> _sounds;
@@ -21,7 +19,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCSoundModule
             _sounds = new Dictionary<string, AudioClip>();
         }
 
-        public void PlaySound(string soundName)
+        public void PlaySound(string soundName, float volume)
         {
             if (!_sounds.ContainsKey(soundName))
             {
@@ -29,28 +27,16 @@ namespace Zombieland.GameScene0.NPCModule.NPCSoundModule
                 _sounds.Add(soundName, audio);
             }
 
-            //_audioSource.PlayOneShot(_sounds[soundName], VOLUME);
+            Vector3 npcPosition = _nPCSoundController.NPCController.NPCVisualBodyController.NPCInScene.transform.position;
+            Vector3 playerPosition = _nPCSoundController.NPCController.NPCManagerController.RootController.CharacterController.VisualBodyController.CharacterInScene.transform.position;
 
-            float distance = Vector3.Distance
-                    (
-                        _nPCSoundController.NPCController.NPCVisualBodyController.NPCInScene.transform.position,
-                        _nPCSoundController.NPCController.NPCManagerController.RootController.CharacterController.VisualBodyController.CharacterInScene.transform.position
-                    );
+            float distance = Vector3.Distance(npcPosition, playerPosition);
 
             if (distance <= _audioSource.maxDistance)
             {
-                Vector3 direction = _nPCSoundController.NPCController.NPCVisualBodyController.NPCInScene.transform.position -
-                    _nPCSoundController.NPCController.NPCManagerController.RootController.CharacterController.VisualBodyController.CharacterInScene.transform.position;
-
-                Ray ray = new Ray(_nPCSoundController.NPCController.NPCVisualBodyController.NPCInScene.transform.position, direction);
-
-                RaycastHit hit;
-                bool isHit = Physics.Raycast(ray, out hit, direction.magnitude);
-
-                if (isHit && ((1 << hit.collider.gameObject.layer) & _wallLayer) == 0)
+                if (!Physics.Linecast(npcPosition, playerPosition, _wallLayer))
                 {
-                    Debug.Log("PlaySound: " + soundName);
-                    _audioSource.PlayOneShot(_sounds[soundName], VOLUME);
+                    _audioSource.PlayOneShot(_sounds[soundName], volume);
                 }
             }
         }
