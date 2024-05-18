@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,20 +7,17 @@ namespace Zombieland.GameScene0.NPCModule.NPCSoundModule
     {
         private const float VOLUME = 0.7f;
 
+        private INPCSoundController _nPCSoundController;
         private AudioSource _audioSource;
         private Dictionary<string, AudioClip> _sounds;
-        private Plane[] _planes;
-        private Collider _nPCCollider;
+        private LayerMask _wallLayer = LayerMask.GetMask("Wall");
+
 
         public SoundBurst(INPCSoundController nPCSoundController)
         {
-            _audioSource = nPCSoundController.NPCController.NPCVisualBodyController.NPCInScene.AddComponent<AudioSource>();
-            
-            Camera camera = nPCSoundController.NPCController.NPCManagerController.RootController.CameraController.PlayerCamera;
-            _planes = GeometryUtility.CalculateFrustumPlanes(camera);
+            _nPCSoundController = nPCSoundController;
 
-            _nPCCollider = nPCSoundController.NPCController.NPCVisualBodyController.NPCInScene.GetComponentInChildren<Collider>();
-
+            _audioSource = _nPCSoundController.NPCController.NPCVisualBodyController.NPCInScene.GetComponent<AudioSource>();
             _sounds = new Dictionary<string, AudioClip>();
         }
 
@@ -33,18 +29,29 @@ namespace Zombieland.GameScene0.NPCModule.NPCSoundModule
                 _sounds.Add(soundName, audio);
             }
 
-            if (GeometryUtility.TestPlanesAABB(_planes, _nPCCollider.bounds))
-            {
-                Debug.Log("<color=red>_nPCRenderer.isVisible != null</color>");
-            }
-            else
-            {
-                Debug.Log("<color=red>_nPCRenderer.isVisible = null</color>");
-            }
+            //_audioSource.PlayOneShot(_sounds[soundName], VOLUME);
 
-            if (GeometryUtility.TestPlanesAABB(_planes, _nPCCollider.bounds))
+            float distance = Vector3.Distance
+                    (
+                        _nPCSoundController.NPCController.NPCVisualBodyController.NPCInScene.transform.position,
+                        _nPCSoundController.NPCController.NPCManagerController.RootController.CharacterController.VisualBodyController.CharacterInScene.transform.position
+                    );
+
+            if (distance <= _audioSource.maxDistance)
             {
-                _audioSource.PlayOneShot(_sounds[soundName], VOLUME);
+                Vector3 direction = _nPCSoundController.NPCController.NPCVisualBodyController.NPCInScene.transform.position -
+                    _nPCSoundController.NPCController.NPCManagerController.RootController.CharacterController.VisualBodyController.CharacterInScene.transform.position;
+
+                Ray ray = new Ray(_nPCSoundController.NPCController.NPCVisualBodyController.NPCInScene.transform.position, direction);
+
+                RaycastHit hit;
+                bool isHit = Physics.Raycast(ray, out hit, direction.magnitude);
+
+                if (isHit && ((1 << hit.collider.gameObject.layer) & _wallLayer) == 0)
+                {
+                    Debug.Log("PlaySound: " + soundName);
+                    _audioSource.PlayOneShot(_sounds[soundName], VOLUME);
+                }
             }
         }
     }
