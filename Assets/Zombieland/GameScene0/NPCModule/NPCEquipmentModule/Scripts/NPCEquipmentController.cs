@@ -22,15 +22,16 @@ namespace Zombieland.GameScene0.NPCModule.NPCEquipmentModule
         }
         public string CurrentOutfitEquipped { get; private set; }
 
-
         private Weapon _currentWeaponEquipped;
-        private int _currentActiveSlotIndex;
+        private int _currentActiveSlotIndex; // For the Future SaveSystem
         private int _currentImpactCount;
 
-
+        #region PUBLIC
         public NPCEquipmentController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             NPCController = parentController as INPCController;
+            WeaponSlots = new List<WeaponSlot>(4) { null, null, null, null };
+            CurrentImpactCount = Int32.MaxValue;
         }
 
         public override void Disable()
@@ -43,46 +44,64 @@ namespace Zombieland.GameScene0.NPCModule.NPCEquipmentModule
             base.Disable();
         }
 
+        public void EquipDefaultWeapon(int defaultWeaponIndex)
+        {
+            switch (defaultWeaponIndex)
+            {
+                case 1:
+                    Number1Handler();
+                    break;
+                case 2:
+                    Number2Handler();
+                    break;
+                case 3:
+                    Number3Handler();
+                    break;
+                case 4:
+                    Number4Handler();
+                    break;
+            }
+        }
+        #endregion PUBLIC
+
         protected override void CreateHelpersScripts()
         {
             NPCController.NPCAIController.SlotNumber1 += Number1Handler;
             NPCController.NPCAIController.SlotNumber2 += Number2Handler;
             NPCController.NPCAIController.SlotNumber3 += Number3Handler;
             NPCController.NPCAIController.SlotNumber4 += Number4Handler;
+
+            foreach (NPCEquipmentSlotData slotData in NPCController.NPCDataController.NPCData.NPCEquipmentSlotDatas)
+            {
+                FillSlot(slotData.WeaponJSONName, slotData.SlotNumber, slotData.DefaultImpactIndexInList);
+            }
         }
 
+        #region PROTECTED
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            // This controller doesn’t have any subsystems at the moment.
+            // This controller doesn't have any subsystems at the moment.
         }
 
-        private void FillSlot(string name, int slotNumber, string defaultImpactName, int defaultImpactCount)
+        private void FillSlot(string weaponJSONName, int slotNumber, int defaultImpactIndex)
         {
-            Debug.Log($"Received {name} into {slotNumber}");
-            Weapon weapon = NPCController.NPCManagerController.RootController.GameDataController.GetData<Weapon>(name);
-            WeaponSlots[slotNumber] = new WeaponSlot(weapon, new Dictionary<string, int>());
-            if (defaultImpactName != null)
-            {
-                WeaponSlots[slotNumber].EquippedImpacts.Add(defaultImpactName, defaultImpactCount);
-            }
-            WeaponSlots[slotNumber].SetEquippedWeapon(weapon);
+            Weapon weapon = NPCController.NPCManagerController.RootController.GameDataController.GetData<Weapon>(weaponJSONName);
+            WeaponSlots[slotNumber] = new WeaponSlot(weapon, weapon.WeaponData.AvailableImpactIDs[defaultImpactIndex]);
         }
+        #endregion PROTECTED
 
-
+        #region PRIVATE
         private void Number1Handler()
         {
             if (WeaponSlots[0] != null)
             {
                 OnWeaponChanged?.Invoke(WeaponSlots[0].EquippedWeapon);
                 _currentWeaponEquipped = WeaponSlots[0].EquippedWeapon;
-                CurrentImpactID = WeaponSlots[0].EquippedImpacts.Keys.First();
-                CurrentImpactCount = WeaponSlots[0].EquippedImpacts[CurrentImpactID];
+                CurrentImpactID = WeaponSlots[0].EquippedImpact;
                 _currentActiveSlotIndex = 0;
-                Debug.Log($"Weapon in slot 1 : {WeaponSlots[0].EquippedWeapon.WeaponData.Name} is equipped! Shooting with {CurrentImpactID}");
-                Debug.Log($"Impacts left: {_currentImpactCount}");
+                Debug.Log($"Weapon in slot 1 : {WeaponSlots[0].EquippedWeapon.WeaponData.Name} is equipped for {NPCController.NPCDataController.NPCData.Name}!");
                 return;
             }
-            Debug.Log("Weapon slot 1 is empty!");
         }
 
         private void Number2Handler()
@@ -91,14 +110,11 @@ namespace Zombieland.GameScene0.NPCModule.NPCEquipmentModule
             {
                 OnWeaponChanged?.Invoke(WeaponSlots[1].EquippedWeapon);
                 _currentWeaponEquipped = WeaponSlots[1].EquippedWeapon;
-                CurrentImpactID = WeaponSlots[1].EquippedImpacts.Keys.First();
-                CurrentImpactCount = WeaponSlots[1].EquippedImpacts[CurrentImpactID];
+                CurrentImpactID = WeaponSlots[1].EquippedImpact;
                 _currentActiveSlotIndex = 1;
-                Debug.Log($"Weapon in slot 2 : {WeaponSlots[1].EquippedWeapon.WeaponData.Name} is equipped! Shooting with {CurrentImpactID}");
-                Debug.Log($"Impacts left: {_currentImpactCount}");
+                Debug.Log($"Weapon in slot 1 : {WeaponSlots[1].EquippedWeapon.WeaponData.Name} is equipped for {NPCController.NPCDataController.NPCData.Name}!");
                 return;
             }
-            Debug.Log("Weapon slot 2 is empty!");
         }
 
         private void Number3Handler()
@@ -107,14 +123,11 @@ namespace Zombieland.GameScene0.NPCModule.NPCEquipmentModule
             {
                 OnWeaponChanged?.Invoke(WeaponSlots[2].EquippedWeapon);
                 _currentWeaponEquipped = WeaponSlots[2].EquippedWeapon;
-                CurrentImpactID = WeaponSlots[2].EquippedImpacts.Keys.First();
-                CurrentImpactCount = WeaponSlots[2].EquippedImpacts[CurrentImpactID];
+                CurrentImpactID = WeaponSlots[2].EquippedImpact;
                 _currentActiveSlotIndex = 2;
-                Debug.Log($"Weapon in slot 3 : {WeaponSlots[2].EquippedWeapon.WeaponData.Name} is equipped! Shooting with  {CurrentImpactID}");
-                Debug.Log($"Impacts left: {_currentImpactCount}");
+                Debug.Log($"Weapon in slot 1 : {WeaponSlots[2].EquippedWeapon.WeaponData.Name} is equipped for {NPCController.NPCDataController.NPCData.Name}!");
                 return;
             }
-            Debug.Log("Weapon slot 3 is empty!");
         }
 
         private void Number4Handler()
@@ -123,14 +136,12 @@ namespace Zombieland.GameScene0.NPCModule.NPCEquipmentModule
             {
                 OnWeaponChanged?.Invoke(WeaponSlots[3].EquippedWeapon);
                 _currentWeaponEquipped = WeaponSlots[3].EquippedWeapon;
-                CurrentImpactID = WeaponSlots[3].EquippedImpacts.Keys.First();
-                CurrentImpactCount = WeaponSlots[0].EquippedImpacts[CurrentImpactID];
+                CurrentImpactID = WeaponSlots[3].EquippedImpact;
                 _currentActiveSlotIndex = 3;
-                Debug.Log($"Weapon in slot 4 : {WeaponSlots[3].EquippedWeapon.WeaponData.Name} is equipped! Shooting with  {CurrentImpactID}");
-                Debug.Log($"Impacts left: {_currentImpactCount}");
+                Debug.Log($"Weapon in slot 1 : {WeaponSlots[3].EquippedWeapon.WeaponData.Name} is equipped for {NPCController.NPCDataController.NPCData.Name}!");
                 return;
             }
-            Debug.Log("Weapon slot 4 is empty!");
         }
+        #endregion PRIVATE
     }
 }

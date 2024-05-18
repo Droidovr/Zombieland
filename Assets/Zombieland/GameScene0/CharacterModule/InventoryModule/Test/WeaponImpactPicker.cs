@@ -15,9 +15,9 @@ public class WeaponImpactPicker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P)) { _inventoryController.EquipWeaponIntoActiveSlot("Wrench_0", 0, "Wrench", 1); }
-        if (Input.GetKeyDown(KeyCode.P)) { _inventoryController.EquipWeaponIntoActiveSlot("Pistol_0", 1, "GunBullet", 20); }
-        if (Input.GetKeyDown(KeyCode.P)) { _inventoryController.EquipWeaponIntoActiveSlot("AK_0", 2, "MachineGunBullet", 40); }
+        if (Input.GetKeyDown(KeyCode.P)) { _inventoryController.EquipWeaponIntoActiveSlot("Wrench_0", 0, 1); }
+        if (Input.GetKeyDown(KeyCode.P)) { _inventoryController.EquipWeaponIntoActiveSlot("Pistol_0", 1, 20); }
+        if (Input.GetKeyDown(KeyCode.P)) { _inventoryController.EquipWeaponIntoActiveSlot("AK_0", 2, 40); }
 
         if (Input.GetKeyDown(KeyCode.Alpha9)) { _inventoryController.EquipCurrentImpact("GunBullet", 20); }
         if (Input.GetKeyDown(KeyCode.Alpha8)) { _inventoryController.EquipCurrentImpact("MachineGunBullet", 40); }

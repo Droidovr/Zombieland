@@ -6,19 +6,19 @@ namespace Zombieland.GameScene0.NPCModule.NPCEquipmentModule
     public class WeaponSlot
     {
         public Weapon EquippedWeapon;
-        public Dictionary<string, int> EquippedImpacts;
+        public string EquippedImpact;
 
-        public WeaponSlot(Weapon equippedWeapon, Dictionary<string, int> equippedImpacts)
+        public WeaponSlot(Weapon equippedWeapon, string equippedImpact)
         {
             EquippedWeapon = equippedWeapon;
-            EquippedImpacts = equippedImpacts;
+            EquippedImpact = equippedImpact;
         }
 
         //public WeaponSlot empty { get { return emptySlot; } }
 
-        public void AddEquippedImpact(string impactID, int amount)
+        public void AddEquippedImpact(string impactID)
         {
-            EquippedImpacts.Add(impactID, amount);
+            EquippedImpact = impactID;
         }
 
         public void SetEquippedWeapon(Weapon equippedWeapon)

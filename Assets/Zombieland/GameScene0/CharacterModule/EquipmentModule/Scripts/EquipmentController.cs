@@ -71,15 +71,12 @@ namespace Zombieland.GameScene0.CharacterModule.EquipmentModule
         #endregion PROTECTED
 
         #region PRIVATE
-        private void MainSlotEquippedHandler(string name, int slotNumber, string defaultImpactName, int defaultImpactCount)
+        private void MainSlotEquippedHandler(string name, int slotNumber, int defaultImpactCount)
         {
             Debug.Log($"Received {name} into {slotNumber}");
             Weapon weapon = CharacterController.RootController.GameDataController.GetData<Weapon>(name);
             WeaponSlots[slotNumber] = new WeaponSlot(weapon, new Dictionary<string, int>());
-            if (defaultImpactName != null)
-            {
-                WeaponSlots[slotNumber].EquippedImpacts.Add(defaultImpactName, defaultImpactCount);
-            }
+            WeaponSlots[slotNumber].EquippedImpacts.Add(weapon.WeaponData.AvailableImpactIDs[0], defaultImpactCount);
             WeaponSlots[slotNumber].SetEquippedWeapon(weapon);
         }
 

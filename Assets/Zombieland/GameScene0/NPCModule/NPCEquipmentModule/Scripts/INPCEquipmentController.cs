@@ -13,8 +13,11 @@ namespace Zombieland.GameScene0.NPCModule.NPCEquipmentModule
 
         List<WeaponSlot> WeaponSlots { get; }
         string CurrentImpactID { get; }
-        int CurrentImpactCount { get; set; }
+        int CurrentImpactCount { get; set;  }
         string CurrentOutfitEquipped { get; }
+
+        void EquipDefaultWeapon(int defaultWeaponIndex);
+
         INPCController NPCController { get; }
     }
 }

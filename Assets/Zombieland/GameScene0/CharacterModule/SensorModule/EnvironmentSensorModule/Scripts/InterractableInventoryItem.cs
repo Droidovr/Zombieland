@@ -24,7 +24,7 @@ namespace Zombieland.GameScene0.CharacterModule.SensorModule.EnvironmentSensorMo
             }
             if (_isWeapon)
             {
-                environmentSensorController.SensorController.CharacterController.InventoryController.EquipWeaponIntoActiveSlot(_weaponName, _slotNumberPlaced, _impactID, _impactCount);
+                environmentSensorController.SensorController.CharacterController.InventoryController.EquipWeaponIntoActiveSlot(_weaponName, _slotNumberPlaced, _impactCount);
             }
             else
             {
