@@ -1,16 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Zombieland.GameScene0.CharacterModule.CharacterVFX
+
+namespace Zombieland.GameScene0.NPCModule.NPCVFXModule
 {
     public class VFXCreator
     {
-        private ICharacterVFXController _characterVFXController;
+        private INPCVFXController _nPCVFXController;
         private Dictionary<string, GameObject> _vfxs;
 
-        public VFXCreator(ICharacterVFXController characterVFXController) 
+        public VFXCreator(INPCVFXController nPCVFXController)
         {
-            _characterVFXController = characterVFXController;
+            _nPCVFXController = nPCVFXController;
             _vfxs = new Dictionary<string, GameObject>();
         }
 
