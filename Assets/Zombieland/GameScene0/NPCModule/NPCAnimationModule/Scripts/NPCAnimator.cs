@@ -43,7 +43,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
         public void Disable()
         {
             _nPCAnimatorController.NPCController.NPCMovingController.OnMoving -= MovingHandler;
-            //_nPCAnimatorController.NPCController.OnFire -= FireHandler;
+            //_nPCAnimatorController.NPCController.NPCAIController.OnFire -= FireHandler;
         }
 
 
@@ -73,6 +73,16 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
             {
                 OnAnimatorMoveEvent?.Invoke(_animator.rootPosition);
             }
+        }
+
+        private void CreacteWeaponPrefabHandler()
+        {
+            OnAnimationCreateWeapon?.Invoke(_weapon.WeaponData.PrefabName);
+        }
+
+        private void DestroyWeaponPrefabHandler()
+        {
+            OnAnimationDestroyWeapon?.Invoke();
         }
 
         private void StepHandler()

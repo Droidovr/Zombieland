@@ -6,6 +6,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisualBodyModule
 {
     public class NPCVisualBodyController : Controller, INPCVisualBodyController
     {
+        public event Action OnWeaponInSceneReady;
+
         public GameObject NPCInScene { get; private set; }
         public GameObject WeaponInScene { get; private set; }
         public List<GameObject> SensorTriggersGameobject { get; private set; }
@@ -13,18 +15,23 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisualBodyModule
 
 
         private CreateNPCPrefab _createNPCGameobject;
+        private CreateWeaponPrefab _createWeaponPrefab;
+        private Transform _NpcWeaponPoint;
 
         public NPCVisualBodyController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             NPCController = parentController as INPCController;
-
             _createNPCGameobject = new CreateNPCPrefab();
+            _createWeaponPrefab = new CreateWeaponPrefab();
         }
 
         protected override void CreateHelpersScripts()
         {
             CreateNPCGameobject();
             SetTriggersOnNPC();
+
+            NPCController.NPCAnimationController.OnAnimationCreateWeapon += AnimationCreateWeaponHandler;
+            NPCController.NPCAnimationController.OnAnimationDestroyWeapon += AnimationDestroyWeaponHandler;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)

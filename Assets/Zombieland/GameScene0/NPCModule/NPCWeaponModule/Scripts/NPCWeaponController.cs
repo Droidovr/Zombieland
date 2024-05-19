@@ -21,7 +21,15 @@ namespace Zombieland.GameScene0.NPCModule.NPCWeaponModule
 
         public override void Disable()
         {
+            if (Weapon != null)
+            {
+                Weapon.ShotProcess.StopFire();
+                Weapon.ShotProcess.OnShotPerformed -= ShotHandler;
+            }
+
             NPCController.NPCEquipmentController.OnWeaponChanged -= WeaponChangedHandler;
+            //NPCController.NPCVisualBodyController.OnWeaponInSceneReady -= WeaponInSceneReadyHandler;
+            NPCController.NPCAnimationController.OnAnimationAttack -= ButtonFireHandler;
 
             base.Disable();
         }
@@ -30,6 +38,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCWeaponModule
         protected override void CreateHelpersScripts()
         {
             NPCController.NPCEquipmentController.OnWeaponChanged += WeaponChangedHandler;
+            //NPCController.NPCVisualBodyController.OnWeaponInSceneReady += WeaponInSceneReadyHandler;
+            NPCController.NPCAnimationController.OnAnimationAttack += ButtonFireHandler;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -38,9 +48,49 @@ namespace Zombieland.GameScene0.NPCModule.NPCWeaponModule
         }
 
 
+        #region Private
         private void WeaponChangedHandler(Weapon weapon)
         {
-            Debug.Log(weapon.WeaponData.Name);
+            if (Weapon != null)
+            {
+                Weapon.ShotProcess.StopFire();
+                Weapon.ShotProcess.OnShotPerformed -= ShotHandler;
+            }
+
+            Weapon = weapon;
+
+            Debug.Log("WeaponChangedHandler: " + Weapon);
         }
+
+        private void WeaponInSceneReadyHandler()
+        {
+            Weapon.Init(this);
+            Weapon.ShotProcess.OnShotPerformed += ShotHandler;
+            WeaponPointFire = NPCController.NPCVisualBodyController.WeaponInScene.transform.Find("PointFire");
+        }
+
+        private void ButtonFireHandler(bool isFire)
+        {
+            if (Weapon != null)
+            {
+                if (isFire)
+                {
+                    Weapon.ShotProcess.StartFire();
+                }
+                else
+                {
+                    Weapon.ShotProcess.StopFire();
+                }
+            }
+        }
+
+        private void ShotHandler()
+        {
+            if (Weapon != null)
+            {
+                OnShotPerformed?.Invoke((Weapon)Weapon);
+            }
+        }
+        #endregion
     }
 }
