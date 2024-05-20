@@ -28,7 +28,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCWeaponModule
             }
 
             NPCController.NPCEquipmentController.OnWeaponChanged -= WeaponChangedHandler;
-            //NPCController.NPCVisualBodyController.OnWeaponInSceneReady -= WeaponInSceneReadyHandler;
+            NPCController.NPCVisualBodyController.OnWeaponInSceneReady -= WeaponInSceneReadyHandler;
             NPCController.NPCAnimationController.OnAnimationAttack -= ButtonFireHandler;
 
             base.Disable();
@@ -38,7 +38,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCWeaponModule
         protected override void CreateHelpersScripts()
         {
             NPCController.NPCEquipmentController.OnWeaponChanged += WeaponChangedHandler;
-            //NPCController.NPCVisualBodyController.OnWeaponInSceneReady += WeaponInSceneReadyHandler;
+            NPCController.NPCVisualBodyController.OnWeaponInSceneReady += WeaponInSceneReadyHandler;
             NPCController.NPCAnimationController.OnAnimationAttack += ButtonFireHandler;
         }
 
