@@ -12,7 +12,5 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
         event Action OnStep;
 
         INPCController NPCController { get; }
-
-        void ApplyImpactHandler(Vector3 impactCollisionPosition, Vector3 impactDirection);
     }
 }

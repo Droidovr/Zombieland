@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Zombieland.GameScene0.CharacterModule.AnimationModule;
 
 
 namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
@@ -14,24 +13,33 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
         public event Action OnAnimationDestroyWeapon;
         public event Action OnStep;
 
-        private NPCAnimator _nPCAnimator;
-        private NPCRagdoll _nPCRagdoll;
-
         public INPCController NPCController { get; private set; }
 
+        private NPCAnimator _nPCAnimator;
+        private NPCRagdoll _nPCRagdoll;
 
         public NPCAnimationController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             NPCController = parentController as INPCController;
         }
 
-        public void ApplyImpactHandler(Vector3 impactCollisionPosition, Vector3 impactDirection)
+        public override void Disable()
         {
-            _nPCRagdoll.Hit(impactCollisionPosition, impactDirection);
+            NPCController.NPCTakeDamageController.OnApplyImpact -= ApplyImpactHandler;
+
+            _nPCAnimator.OnAnimatorMoveEvent -= OnAnimatorMoveEventHandler;
+            _nPCAnimator.OnAnimationAttack -= AnimationAttackHandler;
+            _nPCAnimator.OnAnimationCreateWeapon -= AnimationCreateWeaponHandler;
+            _nPCAnimator.OnAnimationDestroyWeapon -= AnimationDestroyWeaponHandler;
+            _nPCAnimator.OnStep -= StepHandler;
+
+            base.Disable();
         }
 
         protected override void CreateHelpersScripts()
         {
+            NPCController.NPCTakeDamageController.OnApplyImpact += ApplyImpactHandler;
+
             _nPCAnimator = NPCController.NPCVisualBodyController.NPCInScene.AddComponent<NPCAnimator>();
             _nPCAnimator.Init(this);
             _nPCAnimator.OnAnimatorMoveEvent += OnAnimatorMoveEventHandler;
@@ -49,6 +57,11 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
             // This controller doesn’t have any subsystems at the moment.
         }
 
+
+        private void ApplyImpactHandler(Vector3 impactCollisionPosition, Vector3 impactDirection)
+        {
+            _nPCRagdoll.Hit(impactCollisionPosition, impactDirection);
+        }
 
         private void OnAnimatorMoveEventHandler(Vector3 animatorRootPosition)
         {

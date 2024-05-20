@@ -32,8 +32,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
 
             _nPCAnimatorController = nPCAnimatorController;
             _nPCAnimatorController.NPCController.NPCMovingController.OnMoving += MovingHandler;
-
-            //_nPCAnimatorController.NPCController.OnFire += FireHandler;
+            _nPCAnimatorController.NPCController.NPCEquipmentController.OnWeaponChanged += WeaponChangeHandler;
+            _nPCAnimatorController.NPCController.NPCAIController.OnFire += AIFireHandler;
 
 
             _animator.SetFloat("Speed", _nPCAnimatorController.NPCController.NPCDataController.NPCData.Speed);
@@ -43,7 +43,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
         public void Disable()
         {
             _nPCAnimatorController.NPCController.NPCMovingController.OnMoving -= MovingHandler;
-            //_nPCAnimatorController.NPCController.NPCAIController.OnFire -= FireHandler;
+            _nPCAnimatorController.NPCController.NPCEquipmentController.OnWeaponChanged -= WeaponChangeHandler;
+            _nPCAnimatorController.NPCController.NPCAIController.OnFire -= AIFireHandler;
         }
 
 
@@ -52,12 +53,52 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
             _animator.SetBool("IsMove", isMove);
         }
 
+        private void WeaponChangeHandler(Weapon weapon)
+        {
+            _weapon = weapon;
+
+            _animator.SetBool("IsHand", false);
+            _animator.SetBool("IsPistol", false);
+            _animator.SetBool("IsAK", false);
+
+            if (!_isWeaponAnimation)
+            {
+                ChangeWeaponAnimation();
+            }
+        }
+
+        private void ChangeWeaponAnimation()
+        {
+            switch (_weapon.WeaponData.Name)
+            {
+                case "Hand":
+                    _animator.SetBool("IsHand", true);
+                    _isWeaponAnimation = true;
+                    break;
+
+                case "Pistol":
+                    _animator.SetBool("IsPistol", true);
+                    _isWeaponAnimation = true;
+                    break;
+
+                case "AK":
+                    _animator.SetBool("IsAK", true);
+                    _isWeaponAnimation = true;
+                    break;
+
+                default:
+                    _isWeaponAnimation = false;
+                    _weapon = null;
+                    break;
+            }
+        }
+
         private void AttackHandler()
         {
             OnAnimationAttack?.Invoke(true);
         }
 
-        private void FireHandler(bool isFire)
+        private void AIFireHandler(bool isFire)
         {
             if (_nPCAnimatorController.NPCController.NPCVisualBodyController.WeaponInScene != null)
             {

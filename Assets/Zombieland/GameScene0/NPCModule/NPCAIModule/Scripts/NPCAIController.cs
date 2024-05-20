@@ -10,6 +10,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
         public event Action SlotNumber2;
         public event Action SlotNumber3;
         public event Action SlotNumber4;
+        public event Action<bool> OnFire;
 
         public INPCController NPCController { get; private set; }
         private NPCPatrolling _nPCPatrolling;
