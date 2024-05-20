@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisualBodyModule
 
         private CreateNPCPrefab _createNPCGameobject;
         private CreateWeaponPrefab _createWeaponPrefab;
-        private Transform _NpcWeaponPoint;
+        private Transform _nPCWeaponPoint;
 
         public NPCVisualBodyController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
@@ -49,6 +50,18 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisualBodyModule
         {
             GertterTriggers gertterTriggers = new GertterTriggers(this);
             SensorTriggersGameobject = gertterTriggers.GetSensorTriggers();
+        }
+
+        private void AnimationCreateWeaponHandler(string weaponPrefabName)
+        {
+            WeaponInScene = _createWeaponPrefab.CtreateWeapon(weaponPrefabName, _nPCWeaponPoint);
+
+            OnWeaponInSceneReady?.Invoke();
+        }
+
+        private void AnimationDestroyWeaponHandler()
+        {
+            _createWeaponPrefab.Destroy(WeaponInScene);
         }
     }
 }
