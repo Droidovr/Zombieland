@@ -12,9 +12,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
         public event Action OnAnimationDestroyWeapon;
         public event Action OnStep;
 
-        private const float DAMP_TIME = 0.05f;
-        private const float CHECK_FIRE_PERMITION_PERIOD = 0.1f;
-
         private INPCAnimationController _nPCAnimatorController;
         private Animator _animator;
         private bool _isWeaponAnimation = false;
@@ -51,6 +48,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
         private void MovingHandler(float speed, bool isMove)
         {
             _animator.SetBool("IsMove", isMove);
+            //_animator.SetFloat("Speed", speed);
         }
 
         private void WeaponChangeHandler(Weapon weapon)
