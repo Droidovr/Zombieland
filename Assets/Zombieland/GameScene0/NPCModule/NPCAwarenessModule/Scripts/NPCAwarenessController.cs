@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.TextCore.Text;
 using Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCHearingModule;
 using Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule;
 
@@ -55,24 +57,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule
 
         private void DetectCharacterHandler(IController controller, bool isDetect)
         {
-            if (isDetect)
-            {
-                if (NPCHearingController.IsHearingDetect || NPCVisualController.IsVisualDetect)
-                {
-                    return;
-                }
-
-                OnDetectCharacter?.Invoke(controller, isDetect);
-            }
-            else
-            {
-                if (NPCHearingController.IsHearingDetect || NPCVisualController.IsVisualDetect)
-                {
-                    return;
-                }
-
-                OnDetectCharacter?.Invoke(controller, isDetect);
-            }
+            Debug.Log($"NPCAwarenessController controller: {controller}, isDetect: {isDetect}");
+            OnDetectCharacter?.Invoke(controller, isDetect);
         }
     }
 }

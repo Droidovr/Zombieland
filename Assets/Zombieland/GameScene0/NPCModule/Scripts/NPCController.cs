@@ -78,7 +78,7 @@ namespace Zombieland.GameScene0.NPCModule
             NPCTakeDamageController = new NPCTakeDamageController(this, new List<IController> { (IController)NPCBuffDebuffController, (IController)NPCDataController });
             subsystemsControllers.Add((IController)NPCTakeDamageController);
 
-            NPCAIController = new NPCAIController(this, new List<IController> { (IController)NPCVisualBodyController, (IController)NPCMovingController });
+            NPCAIController = new NPCAIController(this, new List<IController> { (IController)NPCVisualBodyController, (IController)NPCMovingController, (IController)NPCAwarenessController });
             subsystemsControllers.Add((IController)NPCAIController);
 
             NPCAwarenessController = new NPCAwarenessController(this, new List<IController> { (IController)NPCVisualBodyController });

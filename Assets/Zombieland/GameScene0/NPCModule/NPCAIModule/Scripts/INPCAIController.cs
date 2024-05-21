@@ -11,5 +11,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
         event Action<bool> OnFire;
 
         INPCController NPCController { get; }
+        bool IsPatrolling { get; }
     }
 }

@@ -12,8 +12,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
         private INPCVisualController _nPCVisualController;
         private float _viewAngle = 60f; // ”гол обзора
         private float _range = 10f;
-        private float _intensity = 50f;
-        private bool isVisible;
+        private Color _originalLightColor;
 
         private Collider _detectedCharacter; // —сылка на обнаруженного персонажа
 
@@ -33,15 +32,17 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
             _visualSensorLight.spotAngle = _viewAngle;
             _visualSensorLight.innerSpotAngle = _viewAngle;
             _visualSensorLight.range = _range;
-            _visualSensorLight.intensity = 0f;
+            _originalLightColor = _visualSensorLight.color;
+            _visualSensorLight.color = Color.black;
         }
 
         private void CharacterStealthHandler(bool isStealth)
         {
-            _visualSensorLight.intensity = isStealth ? _intensity : 0f;
+            _visualSensorLight.color = isStealth ? _originalLightColor : Color.black;
+            InvokeRepeating("VisualDetect", 0f, 0.1f);
         }
 
-        private void Update()
+        private void VisualDetect()
         {
             RaycastHit hit;
             Vector3 rayDirection = transform.forward;

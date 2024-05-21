@@ -6,8 +6,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
 {
     public class NPCPatrolling : MonoBehaviour
     {
-        public bool IsPstrol;
-
         private INPCAIController _nPCAIController;
         private NavMeshAgent _navMeshAgent;
         private Vector3 _positionSpawn;
@@ -26,11 +24,11 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
             System.Numerics.Vector3 positionPatrol = _nPCAIController.NPCController.NPCDataController.NPCData.NPCSpawnData.PatrolPoint;
             _positionPatrol = new Vector3(positionPatrol.X, positionPatrol.Y, positionPatrol.Z);
 
-            IsPstrol = true;
+            InvokeRepeating("CheckDestination", 0f, 0.5f);
         }
-        private void Update() 
+        private void CheckDestination() 
         {
-            if (!IsPstrol)
+            if (!_nPCAIController.IsPatrolling)
                 return;
 
             if (!_navMeshAgent.pathPending && _navMeshAgent.remainingDistance < 0.51f)
