@@ -13,6 +13,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
         private Vector3 _positionSpawn;
         private Vector3 _positionPatrol;
         private bool isGoingToPositionSpawn = false;
+        private bool _isInvokeStart;
 
 
         public void Init(INPCAIController nPCAIController) 
@@ -29,12 +30,20 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
 
         public void StartPatrolling()
         {
-            InvokeRepeating(nameof(CheckDestination), 0f, INVOKE_REPEATING_TIME);
+            if (!_isInvokeStart)
+            {
+                InvokeRepeating(nameof(CheckDestination), 0f, INVOKE_REPEATING_TIME);
+                _isInvokeStart = true;
+            }
         }
 
         public void StopPatrolling()
         {
-            CancelInvoke(nameof(CheckDestination));
+            if (_isInvokeStart)
+            {
+                CancelInvoke(nameof(CheckDestination));
+                _isInvokeStart = false;
+            }
         }
 
         private void CheckDestination() 
@@ -56,7 +65,11 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
 
         private void OnDisable()
         {
-            CancelInvoke(nameof(CheckDestination));
+            if (_isInvokeStart)
+            {
+                CancelInvoke(nameof(CheckDestination));
+                _isInvokeStart = false;
+            }
         }
     }
 }

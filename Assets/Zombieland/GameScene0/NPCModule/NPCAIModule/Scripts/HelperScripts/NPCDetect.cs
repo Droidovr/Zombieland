@@ -11,6 +11,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
         private INPCAIController _nPCAIController;
         private NavMeshAgent _navMeshAgent;
         private Transform _transformDestenation;
+        private bool _isInvokeStart;
 
         public void Init(INPCAIController nPCAIController)
         {
@@ -21,12 +22,20 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
         public void StartDestenation(Transform transformDestenation)
         {
             _transformDestenation = transformDestenation;
-            InvokeRepeating(nameof(UpdateDestenation), 0f, INVOKE_REPEATING_TIME);
+            if (!_isInvokeStart)
+            {
+                InvokeRepeating(nameof(UpdateDestenation), 0f, INVOKE_REPEATING_TIME);
+                _isInvokeStart = true;
+            }
         }
 
         public void StopDestenation()
         {
-            CancelInvoke(nameof(UpdateDestenation));
+            if (_isInvokeStart)
+            {
+                CancelInvoke(nameof(UpdateDestenation));
+                _isInvokeStart = false;
+            }
         }
 
         private void UpdateDestenation()
@@ -36,7 +45,11 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
 
         private void OnDisable()
         {
-            CancelInvoke(nameof(UpdateDestenation));
+            if (_isInvokeStart)
+            {
+                CancelInvoke(nameof(UpdateDestenation));
+                _isInvokeStart = false;
+            }
         }
     }
 }

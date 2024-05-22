@@ -100,7 +100,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
         {
             if (_nPCAnimatorController.NPCController.NPCVisualBodyController.WeaponInScene != null)
             {
-                _animator.SetBool("Attack", isFire);
+                _animator.SetBool("IsAttack", isFire);
                 OnAnimationAttack?.Invoke(isFire);
             }
         }

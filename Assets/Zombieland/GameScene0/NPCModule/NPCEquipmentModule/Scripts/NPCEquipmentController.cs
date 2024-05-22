@@ -75,6 +75,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCEquipmentModule
             {
                 FillSlot(slotData.WeaponJSONName, slotData.SlotNumber, slotData.DefaultImpactIndexInList);
             }
+
+            Number1Handler();
         }
 
         #region PROTECTED
@@ -93,6 +95,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCEquipmentModule
         #region PRIVATE
         private void Number1Handler()
         {
+            Debug.Log("Number1Handler");
+
             if (WeaponSlots[0] != null)
             {
                 OnWeaponChanged?.Invoke(WeaponSlots[0].EquippedWeapon);

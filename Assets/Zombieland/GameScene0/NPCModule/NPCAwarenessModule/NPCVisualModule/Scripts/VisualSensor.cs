@@ -38,7 +38,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
             _originalLightColor = _visualSensorLight.color;
             _visualSensorLight.color = Color.black;
 
-            InvokeRepeating("VisualDetect", 0f, INVOKE_REPEATING_TIME);
+            InvokeRepeating(nameof(VisualDetect), 0f, INVOKE_REPEATING_TIME);
         }
 
         private void CharacterStealthHandler(bool isStealth)
