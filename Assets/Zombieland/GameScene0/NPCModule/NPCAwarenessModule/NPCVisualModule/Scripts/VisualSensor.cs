@@ -9,13 +9,15 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
 
         [SerializeField] private Light _visualSensorLight;
 
-        private INPCVisualController _nPCVisualController;
-        private float _viewAngle = 60f; // ”гол обзора
-        private float _range = 10f;
-        private float _intensity = 50f;
-        private bool isVisible;
+        private float VIEW_ANGLE = 60f;
+        private float RANGE = 10f;
+        private const float EXIT_DETECTION_TIMEOUT = 2f;
+        private const float INVOKE_REPEATING_TIME = 0.1f;
 
-        private Collider _detectedCharacter; // —сылка на обнаруженного персонажа
+        private INPCVisualController _nPCVisualController;
+        private Color _originalLightColor;
+        private Collider _detectedCharacter;
+        private IController _cashController;
 
         public void Init(INPCVisualController nPCVisualController)
         {
@@ -30,25 +32,28 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
 
         private void Start()
         {
-            _visualSensorLight.spotAngle = _viewAngle;
-            _visualSensorLight.innerSpotAngle = _viewAngle;
-            _visualSensorLight.range = _range;
-            _visualSensorLight.intensity = 0f;
+            _visualSensorLight.spotAngle = VIEW_ANGLE;
+            _visualSensorLight.innerSpotAngle = VIEW_ANGLE;
+            _visualSensorLight.range = RANGE;
+            _originalLightColor = _visualSensorLight.color;
+            _visualSensorLight.color = Color.black;
+
+            InvokeRepeating(nameof(VisualDetect), 0f, INVOKE_REPEATING_TIME);
         }
 
         private void CharacterStealthHandler(bool isStealth)
         {
-            _visualSensorLight.intensity = isStealth ? _intensity : 0f;
+            _visualSensorLight.color = isStealth ? _originalLightColor : Color.black;
         }
 
-        private void Update()
+        private void VisualDetect()
         {
             RaycastHit hit;
             Vector3 rayDirection = transform.forward;
 
             if (Physics.Raycast(transform.position, rayDirection, out hit, _visualSensorLight.range))
             {
-                if (Vector3.Angle(rayDirection, hit.transform.position - transform.position) < _viewAngle / 2)
+                if (Vector3.Angle(rayDirection, hit.transform.position - transform.position) < VIEW_ANGLE / 2)
                 {
                     if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Character"))
                     {
@@ -59,7 +64,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
                             {
                                 IController controller = impactable.Controller;
                                 OnVisualDetect?.Invoke(controller, true);
-                                Debug.Log("Character detected: " + hit.collider.gameObject.name);
                                 _detectedCharacter = hit.collider;
                             }
                         }
@@ -68,18 +72,24 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
             }
             else
             {
-                if (_detectedCharacter != null)
+                if (_detectedCharacter != null && _cashController == null)
                 {
                     Impactable impactable = _detectedCharacter.gameObject.GetComponent<Impactable>();
                     if (impactable != null)
                     {
                         IController controller = impactable.Controller;
-                        OnVisualDetect?.Invoke(controller, false);
-                        Debug.Log("Character exited detection zone: " + _detectedCharacter.gameObject.name);
+                        _cashController = controller;
+                        Invoke(nameof(ExitZonaDetect), EXIT_DETECTION_TIMEOUT);
                         _detectedCharacter = null;
                     }
                 }
             }
+        }
+
+        private void ExitZonaDetect()
+        {
+            OnVisualDetect?.Invoke(_cashController, false);
+            _cashController = null;
         }
     }
 }

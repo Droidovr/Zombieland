@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Zombieland.GameScene0.CharacterModule.EquipmentModule;
 using Zombieland.GameScene0.WeaponModule;
 
 
@@ -14,8 +13,11 @@ namespace Zombieland.GameScene0.NPCModule.NPCEquipmentModule
 
         List<WeaponSlot> WeaponSlots { get; }
         string CurrentImpactID { get; }
-        int CurrentImpactCount { get; set; }
+        int CurrentImpactCount { get; set;  }
         string CurrentOutfitEquipped { get; }
+
+        void EquipDefaultWeapon(int defaultWeaponIndex);
+
         INPCController NPCController { get; }
     }
 }

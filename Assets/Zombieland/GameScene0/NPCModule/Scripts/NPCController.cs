@@ -12,8 +12,10 @@ using Zombieland.GameScene0.NPCModule.NPCMovingModule;
 using Zombieland.GameScene0.NPCModule.NPCSoundModule;
 using Zombieland.GameScene0.NPCModule.NPCSpawnModule;
 using Zombieland.GameScene0.NPCModule.NPCTakeDamageModule;
+using Zombieland.GameScene0.NPCModule.NPCVFXModule;
 using Zombieland.GameScene0.NPCModule.NPCVisualBodyModule;
 using Zombieland.GameScene0.NPCModule.NPCWeaponModule;
+
 
 namespace Zombieland.GameScene0.NPCModule
 {
@@ -35,6 +37,7 @@ namespace Zombieland.GameScene0.NPCModule
         public INPCEquipmentController NPCEquipmentController { get; private set; }
         public INPCWeaponController NPCWeaponController { get; private set; }
         public INPCSoundController NPCSoundController { get; private set; }
+        public INPCVFXController NPCVFXController { get; private set; }
 
 
         public NPCController(IController parentController, List<IController> requiredControllers, NPCSpawnData npcSpawnData) : base(parentController, requiredControllers)
@@ -75,7 +78,7 @@ namespace Zombieland.GameScene0.NPCModule
             NPCTakeDamageController = new NPCTakeDamageController(this, new List<IController> { (IController)NPCBuffDebuffController, (IController)NPCDataController });
             subsystemsControllers.Add((IController)NPCTakeDamageController);
 
-            NPCAIController = new NPCAIController(this, new List<IController> { (IController)NPCVisualBodyController, (IController)NPCMovingController });
+            NPCAIController = new NPCAIController(this, new List<IController> { (IController)NPCVisualBodyController, (IController)NPCMovingController, (IController)NPCAwarenessController, (IController)NPCEquipmentController });
             subsystemsControllers.Add((IController)NPCAIController);
 
             NPCAwarenessController = new NPCAwarenessController(this, new List<IController> { (IController)NPCVisualBodyController });
@@ -87,11 +90,14 @@ namespace Zombieland.GameScene0.NPCModule
             NPCEquipmentController = new NPCEquipmentController(this, new List<IController> { (IController)NPCDataController });
             subsystemsControllers.Add((IController)NPCEquipmentController);
 
-            NPCWeaponController = new NPCWeaponController(this, new List<IController> { (IController)NPCEquipmentController });
+            NPCWeaponController = new NPCWeaponController(this, new List<IController> { (IController)NPCEquipmentController, (IController)NPCVisualBodyController });
             subsystemsControllers.Add((IController)NPCWeaponController);
 
             NPCSoundController = new NPCSoundController(this, new List<IController> { (IController)NPCVisualBodyController, (IController)NPCWeaponController, (IController)NPCAnimationController, (IController)NPCTakeDamageController });
             subsystemsControllers.Add((IController)NPCSoundController);
+
+            NPCVFXController = new NPCVFXController(this, new List<IController> { (IController)NPCWeaponController, (IController)NPCVisualBodyController });
+            subsystemsControllers.Add((IController)NPCVFXController);
         }
     }
 }

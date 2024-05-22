@@ -12,9 +12,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
         public event Action OnAnimationDestroyWeapon;
         public event Action OnStep;
 
-        private const float DAMP_TIME = 0.05f;
-        private const float CHECK_FIRE_PERMITION_PERIOD = 0.1f;
-
         private INPCAnimationController _nPCAnimatorController;
         private Animator _animator;
         private bool _isWeaponAnimation = false;
@@ -32,8 +29,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
 
             _nPCAnimatorController = nPCAnimatorController;
             _nPCAnimatorController.NPCController.NPCMovingController.OnMoving += MovingHandler;
-
-            //_nPCAnimatorController.NPCController.OnFire += FireHandler;
+            _nPCAnimatorController.NPCController.NPCEquipmentController.OnWeaponChanged += WeaponChangeHandler;
+            _nPCAnimatorController.NPCController.NPCAIController.OnFire += AIFireHandler;
 
 
             _animator.SetFloat("Speed", _nPCAnimatorController.NPCController.NPCDataController.NPCData.Speed);
@@ -43,13 +40,55 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
         public void Disable()
         {
             _nPCAnimatorController.NPCController.NPCMovingController.OnMoving -= MovingHandler;
-            //_nPCAnimatorController.NPCController.OnFire -= FireHandler;
+            _nPCAnimatorController.NPCController.NPCEquipmentController.OnWeaponChanged -= WeaponChangeHandler;
+            _nPCAnimatorController.NPCController.NPCAIController.OnFire -= AIFireHandler;
         }
 
 
         private void MovingHandler(float speed, bool isMove)
         {
             _animator.SetBool("IsMove", isMove);
+            //_animator.SetFloat("Speed", speed);
+        }
+
+        private void WeaponChangeHandler(Weapon weapon)
+        {
+            _weapon = weapon;
+
+            _animator.SetBool("IsHand", false);
+            _animator.SetBool("IsPistol", false);
+            _animator.SetBool("IsAK", false);
+
+            if (!_isWeaponAnimation)
+            {
+                ChangeWeaponAnimation();
+            }
+        }
+
+        private void ChangeWeaponAnimation()
+        {
+            switch (_weapon.WeaponData.Name)
+            {
+                case "Hand":
+                    _animator.SetBool("IsHand", true);
+                    _isWeaponAnimation = true;
+                    break;
+
+                case "Pistol":
+                    _animator.SetBool("IsPistol", true);
+                    _isWeaponAnimation = true;
+                    break;
+
+                case "AK":
+                    _animator.SetBool("IsAK", true);
+                    _isWeaponAnimation = true;
+                    break;
+
+                default:
+                    _isWeaponAnimation = false;
+                    _weapon = null;
+                    break;
+            }
         }
 
         private void AttackHandler()
@@ -57,11 +96,11 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
             OnAnimationAttack?.Invoke(true);
         }
 
-        private void FireHandler(bool isFire)
+        private void AIFireHandler(bool isFire)
         {
             if (_nPCAnimatorController.NPCController.NPCVisualBodyController.WeaponInScene != null)
             {
-                _animator.SetBool("Attack", isFire);
+                _animator.SetBool("IsAttack", isFire);
                 OnAnimationAttack?.Invoke(isFire);
             }
         }
@@ -73,6 +112,16 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
             {
                 OnAnimatorMoveEvent?.Invoke(_animator.rootPosition);
             }
+        }
+
+        private void CreacteWeaponPrefabHandler()
+        {
+            OnAnimationCreateWeapon?.Invoke(_weapon.WeaponData.PrefabName);
+        }
+
+        private void DestroyWeaponPrefabHandler()
+        {
+            OnAnimationDestroyWeapon?.Invoke();
         }
 
         private void StepHandler()

@@ -6,13 +6,14 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
 {
     public class NPCPatrolling : MonoBehaviour
     {
-        public bool IsPstrol;
+        private const float INVOKE_REPEATING_TIME = 0.5f;
 
         private INPCAIController _nPCAIController;
         private NavMeshAgent _navMeshAgent;
         private Vector3 _positionSpawn;
         private Vector3 _positionPatrol;
         private bool isGoingToPositionSpawn = false;
+        private bool _isInvokeStart;
 
 
         public void Init(INPCAIController nPCAIController) 
@@ -25,15 +26,29 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
 
             System.Numerics.Vector3 positionPatrol = _nPCAIController.NPCController.NPCDataController.NPCData.NPCSpawnData.PatrolPoint;
             _positionPatrol = new Vector3(positionPatrol.X, positionPatrol.Y, positionPatrol.Z);
-
-            IsPstrol = true;
         }
-        private void Update() 
-        {
-            if (!IsPstrol)
-                return;
 
-            if (!_navMeshAgent.pathPending && _navMeshAgent.remainingDistance < 0.51f)
+        public void StartPatrolling()
+        {
+            if (!_isInvokeStart)
+            {
+                InvokeRepeating(nameof(CheckDestination), 0f, INVOKE_REPEATING_TIME);
+                _isInvokeStart = true;
+            }
+        }
+
+        public void StopPatrolling()
+        {
+            if (_isInvokeStart)
+            {
+                CancelInvoke(nameof(CheckDestination));
+                _isInvokeStart = false;
+            }
+        }
+
+        private void CheckDestination() 
+        {
+            if (!_navMeshAgent.pathPending && _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
             {
                 if (isGoingToPositionSpawn)
                 {
@@ -45,6 +60,15 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
                     isGoingToPositionSpawn = true;
                     _navMeshAgent.SetDestination(_positionSpawn);
                 }
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (_isInvokeStart)
+            {
+                CancelInvoke(nameof(CheckDestination));
+                _isInvokeStart = false;
             }
         }
     }

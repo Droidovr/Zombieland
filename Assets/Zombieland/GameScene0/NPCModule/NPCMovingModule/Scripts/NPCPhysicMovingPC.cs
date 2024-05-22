@@ -30,10 +30,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
             _nPCMovingController.NPCController.NPCAnimationController.OnAnimatorMoveEvent += OnAnimatorMoveHandler;
 
             _isActive = true;
-
-            //Test
-            //System.Numerics.Vector3 patrolPoint = _nPCMovingController.NPCController.NPCDataController.NPCData.NPCSpawnData.PatrolPoint;
-            //_navMeshAgent.SetDestination(new Vector3(patrolPoint.X, patrolPoint.Y, patrolPoint.Z));
         }
 
         public void ActivateMoving(bool isActive)
@@ -83,7 +79,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
             if (deltaMagnitude > _navMeshAgent.radius / 2f)
             {
                 _unityCharacterController.Move(_velocity * Time.deltaTime);
-                //transform.position = Vector3.Lerp(GetComponent<Animator>().rootPosition, _navMeshAgent.nextPosition, smooth);
             }
         }
 

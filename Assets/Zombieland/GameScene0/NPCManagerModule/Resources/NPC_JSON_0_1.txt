@@ -8,5 +8,19 @@
     "CurrentHealth":100.0,
     "Speed":2.0,
     "StopDistance":1.0,
-    "HearingDistance":5.0
+    "HearingDistance":5.0,
+    "NPCEquipmentSlotDatas":
+    [
+        {
+            "WeaponJSONName":"ZombieHand_0",
+            "SlotNumber":0,
+            "DefaultImpactIndexInList":0
+        },
+        {
+            "WeaponJSONName":"ZombieHand_0",
+            "SlotNumber":1,
+            "DefaultImpactIndexInList":0
+        },
+    ],
+    "DefaultSlotNumber":0
 }

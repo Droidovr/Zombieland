@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
+
 
 namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCHearingModule
 {
@@ -26,7 +28,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCHearingModule
 
         protected override void CreateHelpersScripts()
         {
-            _hearingSensor = new HearingSensor(this);
+            _hearingSensor = NPCAwarenessController.NPCController.NPCVisualBodyController.NPCInScene.GetComponent<HearingSensor>();
+            _hearingSensor.Init(this);
             _hearingSensor.OnHearingDetect += HearingDetectHandler;
         }
 
@@ -38,8 +41,9 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCHearingModule
 
         private void HearingDetectHandler(IController controller, bool isHearing)
         {
-            IsHearingDetect = isHearing;
             OnHearingDetectCharacter?.Invoke(controller, isHearing);
+
+            IsHearingDetect = isHearing;
         }
     }
 }

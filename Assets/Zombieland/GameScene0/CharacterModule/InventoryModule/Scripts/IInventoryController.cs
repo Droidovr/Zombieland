@@ -5,7 +5,7 @@ namespace Zombieland.GameScene0.CharacterModule.InventoryModule
 {
     public interface IInventoryController
     {
-        event Action<string, int, string, int> OnMainSlotEquipped;
+        event Action<string, int, int> OnMainSlotEquipped;
         event Action<string, int> OnCurrentImpactEquipped;
         event Action<string> OnCurrentOutfitEquipped;
 
@@ -15,7 +15,7 @@ namespace Zombieland.GameScene0.CharacterModule.InventoryModule
 
         void PickUpItem(string itemName, int count);
 
-        void EquipWeaponIntoActiveSlot(string name, int slotNumber, string defaultImpactName, int defaultImpactCount);
+        void EquipWeaponIntoActiveSlot(string name, int slotNumber, int defaultImpactCount);
         void EquipCurrentImpact(string name, int amount);
     }
 }

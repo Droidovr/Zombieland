@@ -7,10 +7,10 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
     {
         event Action<Vector3> OnAnimatorMoveEvent;
         event Action<bool> OnAnimationAttack;
+        event Action<string> OnAnimationCreateWeapon;
+        event Action OnAnimationDestroyWeapon;
         event Action OnStep;
 
         INPCController NPCController { get; }
-
-        void ApplyImpactHandler(Vector3 impactCollisionPosition, Vector3 impactDirection);
     }
 }
