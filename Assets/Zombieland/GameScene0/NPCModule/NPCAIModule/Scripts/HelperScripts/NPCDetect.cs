@@ -6,6 +6,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
 {
     public class NPCDetect : MonoBehaviour
     {
+        private const float INVOKE_REPEATING_TIME = 0.1f;
+
         private INPCAIController _nPCAIController;
         private NavMeshAgent _navMeshAgent;
         private Transform _transformDestenation;
@@ -19,7 +21,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
         public void StartDestenation(Transform transformDestenation)
         {
             _transformDestenation = transformDestenation;
-            InvokeRepeating(nameof(UpdateDestenation), 0f, 0.1f);
+            InvokeRepeating(nameof(UpdateDestenation), 0f, INVOKE_REPEATING_TIME);
         }
 
         public void StopDestenation()

@@ -11,8 +11,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
 
         private float VIEW_ANGLE = 60f;
         private float RANGE = 10f;
-        private const float VISIBILITY_DETECTION_TIMEOUT = 2f;
-        private const float REPEATE_DETECT_TIME = 0.1f;
+        private const float EXIT_DETECTION_TIMEOUT = 2f;
+        private const float INVOKE_REPEATING_TIME = 0.1f;
 
         private INPCVisualController _nPCVisualController;
         private Color _originalLightColor;
@@ -37,12 +37,13 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
             _visualSensorLight.range = RANGE;
             _originalLightColor = _visualSensorLight.color;
             _visualSensorLight.color = Color.black;
+
+            InvokeRepeating("VisualDetect", 0f, INVOKE_REPEATING_TIME);
         }
 
         private void CharacterStealthHandler(bool isStealth)
         {
             _visualSensorLight.color = isStealth ? _originalLightColor : Color.black;
-            InvokeRepeating("VisualDetect", 0f, 0.1f);
         }
 
         private void VisualDetect()
@@ -63,7 +64,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
                             {
                                 IController controller = impactable.Controller;
                                 OnVisualDetect?.Invoke(controller, true);
-                                Debug.Log("Character detected: " + hit.collider.gameObject.name);
                                 _detectedCharacter = hit.collider;
                             }
                         }
@@ -79,8 +79,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
                     {
                         IController controller = impactable.Controller;
                         _cashController = controller;
-                        Invoke(nameof(ExitZonaDetect), VISIBILITY_DETECTION_TIMEOUT);
-                        Debug.Log("Character exited detection zone: " + _detectedCharacter.gameObject.name);
+                        Invoke(nameof(ExitZonaDetect), EXIT_DETECTION_TIMEOUT);
                         _detectedCharacter = null;
                     }
                 }

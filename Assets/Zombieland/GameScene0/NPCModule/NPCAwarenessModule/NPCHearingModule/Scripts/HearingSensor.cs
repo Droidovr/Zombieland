@@ -4,28 +4,31 @@ using Zombieland.GameScene0.CharacterModule;
 
 namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCHearingModule
 {
-    public class HearingSensor
+    public class HearingSensor : MonoBehaviour
     {
         public event Action<IController, bool> OnHearingDetect;
 
+        private const float EXIT_DETECTION_TIMEOUT = 2f;
+
         private INPCHearingController _nPCHearingController;
-        private LayerMask _wallLayer = LayerMask.GetMask("Wall");
-        public LayerMask groundLayer = LayerMask.GetMask("Ground");
+        private LayerMask _wallLayer;
         private int _vertexCount = 40;
         private float _lineWidth = 0.1f;
         private LineRenderer _lineRenderer;
         private bool isActive = true;
         private bool isDetect;
+        private IController _cashController;
 
-        public HearingSensor(INPCHearingController nPCHearingController)
+        public void Init(INPCHearingController nPCHearingController)
         {
+            _wallLayer = LayerMask.GetMask("Wall");
+
             _nPCHearingController = nPCHearingController;
             _lineRenderer = _nPCHearingController.NPCAwarenessController.NPCController.NPCVisualBodyController.NPCInScene.GetComponent<LineRenderer>();
 
             _nPCHearingController.NPCAwarenessController.NPCController.NPCManagerController.RootController.CharacterController.SoundBurstController.OnSound += CharacterSoundReactionHandler;
             _nPCHearingController.NPCAwarenessController.NPCController.NPCManagerController.RootController.CharacterController.StealthController.OnStealth += CharacterStealthHandler;
             _nPCHearingController.NPCAwarenessController.NPCController.NPCMovingController.OnMoving += DrawCirclehandler;
-
         }
 
         public void Destroy()
@@ -72,7 +75,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCHearingModule
                         {
                             isDetect = true;
                             OnHearingDetect?.Invoke(controller, isDetect);
-                            Debug.Log("OnHearingDetect: " + characterController.VisualBodyController.CharacterInScene.name);
                         }
                     }
                 }
@@ -81,11 +83,17 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCHearingModule
                     if (isDetect)
                     {
                         isDetect = false;
-                        OnHearingDetect?.Invoke(controller, isDetect);
-                        Debug.Log("Out of earshot - OnHearingDetect: " + characterController.VisualBodyController.CharacterInScene.name);
+                        _cashController = controller;
+                        Invoke(nameof(ExitZonaDetect), EXIT_DETECTION_TIMEOUT);
                     }
                 }
             }
+        }
+
+        private void ExitZonaDetect()
+        {
+            OnHearingDetect?.Invoke(_cashController, false);
+            _cashController = null;
         }
 
         private void DrawCirclehandler(float arg1, bool arg2)

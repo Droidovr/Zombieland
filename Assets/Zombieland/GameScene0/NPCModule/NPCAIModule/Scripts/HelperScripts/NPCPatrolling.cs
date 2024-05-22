@@ -6,6 +6,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
 {
     public class NPCPatrolling : MonoBehaviour
     {
+        private const float INVOKE_REPEATING_TIME = 0.5f;
+
         private INPCAIController _nPCAIController;
         private NavMeshAgent _navMeshAgent;
         private Vector3 _positionSpawn;
@@ -27,7 +29,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
 
         public void StartPatrolling()
         {
-            InvokeRepeating(nameof(CheckDestination), 0f, 0.5f);
+            InvokeRepeating(nameof(CheckDestination), 0f, INVOKE_REPEATING_TIME);
         }
 
         public void StopPatrolling()
@@ -37,7 +39,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
 
         private void CheckDestination() 
         {
-            if (!_navMeshAgent.pathPending && _navMeshAgent.remainingDistance < 0.51f)
+            if (!_navMeshAgent.pathPending && _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
             {
                 if (isGoingToPositionSpawn)
                 {
