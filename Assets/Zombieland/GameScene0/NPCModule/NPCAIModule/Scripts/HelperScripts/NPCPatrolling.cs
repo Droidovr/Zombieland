@@ -23,14 +23,20 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
 
             System.Numerics.Vector3 positionPatrol = _nPCAIController.NPCController.NPCDataController.NPCData.NPCSpawnData.PatrolPoint;
             _positionPatrol = new Vector3(positionPatrol.X, positionPatrol.Y, positionPatrol.Z);
-
-            InvokeRepeating("CheckDestination", 0f, 0.5f);
         }
+
+        public void StartPatrolling()
+        {
+            InvokeRepeating(nameof(CheckDestination), 0f, 0.5f);
+        }
+
+        public void StopPatrolling()
+        {
+            CancelInvoke(nameof(CheckDestination));
+        }
+
         private void CheckDestination() 
         {
-            if (!_nPCAIController.IsPatrolling)
-                return;
-
             if (!_navMeshAgent.pathPending && _navMeshAgent.remainingDistance < 0.51f)
             {
                 if (isGoingToPositionSpawn)
@@ -44,6 +50,11 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
                     _navMeshAgent.SetDestination(_positionSpawn);
                 }
             }
+        }
+
+        private void OnDisable()
+        {
+            CancelInvoke(nameof(CheckDestination));
         }
     }
 }

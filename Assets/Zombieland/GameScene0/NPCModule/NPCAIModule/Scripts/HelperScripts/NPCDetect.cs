@@ -8,7 +8,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
     {
         private INPCAIController _nPCAIController;
         private NavMeshAgent _navMeshAgent;
-
+        private Transform _transformDestenation;
 
         public void Init(INPCAIController nPCAIController)
         {
@@ -16,9 +16,25 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
             _navMeshAgent = _nPCAIController.NPCController.NPCVisualBodyController.NPCInScene.GetComponent<NavMeshAgent>();
         }
 
-        public void SetDestenation(Vector3 positionSestenation)
+        public void StartDestenation(Transform transformDestenation)
         {
-            _navMeshAgent.SetDestination(positionSestenation);
+            _transformDestenation = transformDestenation;
+            InvokeRepeating(nameof(UpdateDestenation), 0f, 0.1f);
+        }
+
+        public void StopDestenation()
+        {
+            CancelInvoke(nameof(UpdateDestenation));
+        }
+
+        private void UpdateDestenation()
+        {
+            _navMeshAgent.SetDestination(_transformDestenation.position);
+        }
+
+        private void OnDisable()
+        {
+            CancelInvoke(nameof(UpdateDestenation));
         }
     }
 }

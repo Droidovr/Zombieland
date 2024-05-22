@@ -26,10 +26,19 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
             IsPatrolling = true;
         }
 
+        public override void Disable()
+        {
+            _nPCPatrolling.StopPatrolling();
+            _nPCDetect.StopDestenation();
+
+            base.Disable();
+        }
+
         protected override void CreateHelpersScripts()
         {
             _nPCPatrolling = NPCController.NPCVisualBodyController.NPCInScene.AddComponent<NPCPatrolling>();
             _nPCPatrolling.Init(this);
+            _nPCPatrolling.StartPatrolling();
 
             _nPCDetect = NPCController.NPCVisualBodyController.NPCInScene.AddComponent<NPCDetect>();
             _nPCDetect.Init(this);
@@ -44,15 +53,20 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
 
         private void DetectCharacterHandler(IController character, bool isDetect)
         {
-            Debug.Log($"character: {character}, isDetect: {isDetect}");
-            
-            IsPatrolling = !isDetect;
-
-            ICharacterController characterController = character as ICharacterController;
-
-            if (characterController != null)
+            if (isDetect)
             {
-                _nPCDetect.SetDestenation(characterController.VisualBodyController.CharacterInScene.transform.position);
+                _nPCPatrolling.StopPatrolling();
+
+                ICharacterController characterController = character as ICharacterController;
+                if (characterController != null)
+                {
+                    _nPCDetect.StartDestenation(characterController.VisualBodyController.CharacterInScene.transform);
+                }
+            }
+            else
+            { 
+                _nPCDetect?.StopDestenation();
+                _nPCPatrolling.StartPatrolling();
             }
         }
     }

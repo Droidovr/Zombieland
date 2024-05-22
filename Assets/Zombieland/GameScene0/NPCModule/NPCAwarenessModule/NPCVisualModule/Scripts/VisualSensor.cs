@@ -9,12 +9,15 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
 
         [SerializeField] private Light _visualSensorLight;
 
-        private INPCVisualController _nPCVisualController;
-        private float _viewAngle = 60f; // ”гол обзора
-        private float _range = 10f;
-        private Color _originalLightColor;
+        private float VIEW_ANGLE = 60f;
+        private float RANGE = 10f;
+        private const float VISIBILITY_DETECTION_TIMEOUT = 2f;
+        private const float REPEATE_DETECT_TIME = 0.1f;
 
-        private Collider _detectedCharacter; // —сылка на обнаруженного персонажа
+        private INPCVisualController _nPCVisualController;
+        private Color _originalLightColor;
+        private Collider _detectedCharacter;
+        private IController _cashController;
 
         public void Init(INPCVisualController nPCVisualController)
         {
@@ -29,9 +32,9 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
 
         private void Start()
         {
-            _visualSensorLight.spotAngle = _viewAngle;
-            _visualSensorLight.innerSpotAngle = _viewAngle;
-            _visualSensorLight.range = _range;
+            _visualSensorLight.spotAngle = VIEW_ANGLE;
+            _visualSensorLight.innerSpotAngle = VIEW_ANGLE;
+            _visualSensorLight.range = RANGE;
             _originalLightColor = _visualSensorLight.color;
             _visualSensorLight.color = Color.black;
         }
@@ -49,7 +52,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
 
             if (Physics.Raycast(transform.position, rayDirection, out hit, _visualSensorLight.range))
             {
-                if (Vector3.Angle(rayDirection, hit.transform.position - transform.position) < _viewAngle / 2)
+                if (Vector3.Angle(rayDirection, hit.transform.position - transform.position) < VIEW_ANGLE / 2)
                 {
                     if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Character"))
                     {
@@ -69,18 +72,25 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
             }
             else
             {
-                if (_detectedCharacter != null)
+                if (_detectedCharacter != null && _cashController == null)
                 {
                     Impactable impactable = _detectedCharacter.gameObject.GetComponent<Impactable>();
                     if (impactable != null)
                     {
                         IController controller = impactable.Controller;
-                        OnVisualDetect?.Invoke(controller, false);
+                        _cashController = controller;
+                        Invoke(nameof(ExitZonaDetect), VISIBILITY_DETECTION_TIMEOUT);
                         Debug.Log("Character exited detection zone: " + _detectedCharacter.gameObject.name);
                         _detectedCharacter = null;
                     }
                 }
             }
+        }
+
+        private void ExitZonaDetect()
+        {
+            OnVisualDetect?.Invoke(_cashController, false);
+            _cashController = null;
         }
     }
 }
