@@ -98,11 +98,11 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
 
         private void AIFireHandler(bool isFire)
         {
-            if (_nPCAnimatorController.NPCController.NPCVisualBodyController.WeaponInScene != null)
-            {
+            //if (_nPCAnimatorController.NPCController.NPCVisualBodyController.WeaponInScene != null)
+            //{
                 _animator.SetBool("IsAttack", isFire);
                 OnAnimationAttack?.Invoke(isFire);
-            }
+            //}
         }
 
 
