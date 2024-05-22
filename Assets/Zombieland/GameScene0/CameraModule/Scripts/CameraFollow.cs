@@ -14,10 +14,11 @@ public class CameraFollow : MonoBehaviour
     private Transform _characterTransform;
     [SerializeField] private float _cameraSmoothSpeed = 0.125f;
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         CameraPivot0.position = Vector3.Lerp(CameraPivot0.position, _characterTransform.position, _cameraSmoothSpeed);
     }
+
 
     public void SetCharacterTransform(Transform characterTransform)
     {
