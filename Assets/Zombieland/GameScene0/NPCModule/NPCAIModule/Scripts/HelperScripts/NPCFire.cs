@@ -9,7 +9,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
     {
         public event Action<bool> OnFire;
 
-        private const float INVOKE_REPEATING_TIME = 0.5f;
+        private const float FIELD_OF_VIEW = 60f;
 
         private Transform _characterTransform;
         private Transform _nPCTransform;
@@ -22,17 +22,32 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
             _characterTransform = nPCAIController.NPCController.NPCManagerController.RootController.CharacterController.VisualBodyController.CharacterInScene.transform;
             _nPCTransform = nPCAIController.NPCController.NPCVisualBodyController.NPCInScene.transform;
             _navMeshAgent = GetComponent<NavMeshAgent>();
-
-            InvokeRepeating(nameof(CheckFire), 0f, INVOKE_REPEATING_TIME);
         }
 
-        private void CheckFire()
+
+        private void Update()
         {
-            if (Vector3.Distance(_characterTransform.position, _nPCTransform.position) <= _navMeshAgent.stoppingDistance + 0.3f)
+            Vector3 directionToCharacter = (_characterTransform.position - _nPCTransform.position).normalized;
+            float distanceToCharacter = Vector3.Distance(_characterTransform.position, _nPCTransform.position);
+
+            if (distanceToCharacter <= _navMeshAgent.stoppingDistance + 0.3f)
             {
-                OnFire?.Invoke(true);
-                _isFire = true;
-                Debug.Log("Attack");
+                float dotProduct = Vector3.Dot(_nPCTransform.forward, directionToCharacter);
+                float angleToCharacter = Mathf.Acos(dotProduct) * Mathf.Rad2Deg;
+
+                if (angleToCharacter <= FIELD_OF_VIEW / 2)
+                {
+                    OnFire?.Invoke(true);
+                    _isFire = true;
+                }
+                else
+                {
+                    if (_isFire)
+                    {
+                        OnFire?.Invoke(false);
+                        _isFire = false;
+                    }
+                }
             }
             else
             {
@@ -40,14 +55,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
                 {
                     OnFire?.Invoke(false);
                     _isFire = false;
-                    Debug.Log("Finish Attack");
                 }
             }
-        }
-
-        private void OnDisable()
-        {
-            CancelInvoke(nameof(CheckFire));
         }
     }
 }
