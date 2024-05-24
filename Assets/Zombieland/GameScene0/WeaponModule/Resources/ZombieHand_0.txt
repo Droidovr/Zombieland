@@ -1,9 +1,9 @@
 {
 	"WeaponData":
 	{
-		"ID":"ZimbieHand_0",
-		"Name":"Zimbie Hand",
-		"PrefabName":"ZimbieHand_Prefab_0",
+		"ID":"ZombieHand_0",
+		"Name":"Zombie Hand",
+		"PrefabName":"ZombieHand_Prefab_0",
 		"VFXPrefabName":"",
 		"SoundName":"Wrench",
 		"AvailableImpactIDs":["Wrench"],
