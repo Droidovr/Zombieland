@@ -71,6 +71,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCWeaponModule
 
         private void ButtonFireHandler(bool isFire)
         {
+            Debug.Log("ButtonFireHandler");
             if (Weapon != null)
             {
                 if (isFire)
