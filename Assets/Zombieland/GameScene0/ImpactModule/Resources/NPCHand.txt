@@ -28,7 +28,7 @@
         "PercentageValue": 0.0
       }
     ],
-    "TargetReachedEffectPrefabName": "WrenchTargetReachedEffect",
+    "TargetReachedEffectPrefabName": "",
     "Force": 0.0
   },
   "BuffDebuffInjection": {

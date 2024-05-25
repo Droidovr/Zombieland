@@ -20,7 +20,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
 
         private NPCPatrolling _nPCPatrolling;
         private NPCDetect _nPCDetect;
-        private NPCFire _nPCAttack;
+        private NPCFire _nPCFire;
         private NPCWeapon _nPCWeapon;
 
         public NPCAIController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
@@ -34,7 +34,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
             _nPCPatrolling.StopPatrolling();
             _nPCDetect.StopDestenation();
 
-            _nPCAttack.OnFire -= FireHandler;
+            _nPCFire.OnFire -= FireHandler;
             NPCController.NPCAwarenessController.OnDetectCharacter -= DetectCharacterHandler;
 
             base.Disable();
@@ -49,9 +49,9 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
             _nPCDetect = NPCController.NPCVisualBodyController.NPCInScene.AddComponent<NPCDetect>();
             _nPCDetect.Init(this);
 
-            _nPCAttack = NPCController.NPCVisualBodyController.NPCInScene.AddComponent<NPCFire>();
-            _nPCAttack.Init(this);
-            _nPCAttack.OnFire += FireHandler;
+            _nPCFire = NPCController.NPCVisualBodyController.NPCInScene.AddComponent<NPCFire>();
+            _nPCFire.Init(this);
+            _nPCFire.OnFire += FireHandler;
 
             _nPCWeapon = NPCController.NPCVisualBodyController.NPCInScene.AddComponent<NPCWeapon>();
             _nPCWeapon.Init(this);

@@ -58,8 +58,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCWeaponModule
             }
 
             Weapon = weapon;
-
-            Debug.Log("WeaponChangedHandler: " + Weapon);
         }
 
         private void WeaponInSceneReadyHandler()
@@ -71,7 +69,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCWeaponModule
 
         private void ButtonFireHandler(bool isFire)
         {
-            Debug.Log("ButtonFireHandler");
             if (Weapon != null)
             {
                 if (isFire)
