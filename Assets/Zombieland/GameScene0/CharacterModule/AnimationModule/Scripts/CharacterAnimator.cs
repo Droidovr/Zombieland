@@ -71,8 +71,8 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
             inputVector = transform.InverseTransformDirection(inputVector);
 
-            _animator.SetFloat("DirectionX", Mathf.Round(inputVector.x));
-            _animator.SetFloat("DirectionY", Mathf.Round(inputVector.y));
+            _animator.SetFloat("DirectionX", Mathf.Round(inputVector.x) * _animatorController.CharacterController.CharacterMovingController.RealMovingSpeed);
+            _animator.SetFloat("DirectionY", Mathf.Round(inputVector.y) * _animatorController.CharacterController.CharacterMovingController.RealMovingSpeed);
         }
 
 

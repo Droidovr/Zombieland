@@ -21,6 +21,8 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         private float _unityCharacterControllerHeight;
         private Vector3 _unityCharacterControllerCenter;
 
+        private float _currentSpeed;
+
 
         #region PUBLIC
         public void Disable()
@@ -119,9 +121,14 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void CalculeteRealMovingSpeed()
         {
-            _characterMovingController.RealMovingSpeed = Mathf.Clamp01(_characterMovingController.DirectionWalk.magnitude) * 
-                _characterMovingController.CharacterController.CharacterDataController.CharacterData.DesignMovingSpeed * _speedMultiplier;
+            float targetSpeed = Mathf.Clamp01(_characterMovingController.DirectionWalk.magnitude) *
+                                _characterMovingController.CharacterController.CharacterDataController.CharacterData.DesignMovingSpeed * _speedMultiplier;
+
+            _currentSpeed = Mathf.Lerp(_currentSpeed, targetSpeed, Time.deltaTime);
+
+            _characterMovingController.RealMovingSpeed = _currentSpeed;
         }
+
 
         private void CalculeteRotation()
         {
