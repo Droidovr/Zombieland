@@ -25,6 +25,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
         public void Init(INPCAnimationController animationController)
         {
             _nPCAnimationController = animationController;
+            _animator = GetComponent<Animator>();
         }
 
         public async void Hit(Vector3 hitPosition, Vector3 forceDirection)

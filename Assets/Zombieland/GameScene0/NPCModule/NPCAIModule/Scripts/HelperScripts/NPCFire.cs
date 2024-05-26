@@ -14,7 +14,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
         private Transform _characterTransform;
         private Transform _nPCTransform;
         private NavMeshAgent _navMeshAgent;
-        private bool _isFire;
+        private bool _wasInRange;
+        private bool _wasInFieldOfView;
 
 
         public void Init(INPCAIController nPCAIController)
@@ -24,39 +25,56 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
             _navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
-
         private void Update()
+        {
+            bool isInRange = IsCharacterInRange();
+            bool isInFieldOfView = IsInFieldOfView();
+
+            if (isInRange && !_wasInRange)
+            {
+                // Вошли в зону атаки
+                OnFire?.Invoke(true);
+            }
+            else if (!isInRange && _wasInRange)
+            {
+                // Вышли из зоны атаки
+                OnFire?.Invoke(false);
+            }
+            else if (isInRange && _wasInRange)
+            {
+                // Внутри зоны атаки
+                if (isInFieldOfView && !_wasInFieldOfView)
+                {
+                    // Вошли в поле зрения
+                    OnFire?.Invoke(true);
+                }
+                else if (!isInFieldOfView && _wasInFieldOfView)
+                {
+                    // Вышли из поля зрения
+                    OnFire?.Invoke(false);
+                }
+            }
+
+            // Обновляем состояние
+            _wasInRange = isInRange;
+            _wasInFieldOfView = isInFieldOfView;
+        }
+
+
+        private bool IsCharacterInRange()
         {
             Vector3 directionToCharacter = (_characterTransform.position - _nPCTransform.position).normalized;
             float distanceToCharacter = Vector3.Distance(_characterTransform.position, _nPCTransform.position);
-
-            if (distanceToCharacter <= _navMeshAgent.stoppingDistance + 0.3f)
-            {
-                float dotProduct = Vector3.Dot(_nPCTransform.forward, directionToCharacter);
-                float angleToCharacter = Mathf.Acos(dotProduct) * Mathf.Rad2Deg;
-
-                if (angleToCharacter <= FIELD_OF_VIEW / 2)
-                {
-                    OnFire?.Invoke(true);
-                    _isFire = true;
-                }
-                else
-                {
-                    if (_isFire)
-                    {
-                        OnFire?.Invoke(false);
-                        _isFire = false;
-                    }
-                }
-            }
-            else
-            {
-                if (_isFire)
-                {
-                    OnFire?.Invoke(false);
-                    _isFire = false;
-                }
-            }
+            return distanceToCharacter <= _navMeshAgent.stoppingDistance + 0.1f;
         }
+
+        private bool IsInFieldOfView()
+        {
+            Vector3 directionToCharacter = (_characterTransform.position - _nPCTransform.position).normalized;
+            float dotProduct = Vector3.Dot(_nPCTransform.forward, directionToCharacter);
+            float angleToTarget = Mathf.Acos(dotProduct) * Mathf.Rad2Deg;
+            return angleToTarget <= FIELD_OF_VIEW / 2;
+        }
+
     }
 }

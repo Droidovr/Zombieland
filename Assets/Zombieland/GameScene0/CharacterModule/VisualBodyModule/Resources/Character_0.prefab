@@ -399,6 +399,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3f1b035a29160e54abee8535986fcd7a,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1786989438184737432}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3f1b035a29160e54abee8535986fcd7a,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 2654108501851769192}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3f1b035a29160e54abee8535986fcd7a,
         type: 3}
@@ -916,6 +920,29 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!136 &1786989438184737432
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2577540030976819918}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.15
+  m_Height: 1.8
+  m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &2654108501851769192
 MonoBehaviour:

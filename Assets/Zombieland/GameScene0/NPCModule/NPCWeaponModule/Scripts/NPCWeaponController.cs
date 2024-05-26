@@ -58,8 +58,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCWeaponModule
             }
 
             Weapon = weapon;
-
-            Debug.Log("WeaponChangedHandler: " + Weapon);
         }
 
         private void WeaponInSceneReadyHandler()
