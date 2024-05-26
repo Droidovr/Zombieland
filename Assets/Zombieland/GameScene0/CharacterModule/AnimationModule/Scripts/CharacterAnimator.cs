@@ -84,6 +84,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             _animator.SetBool("IsPistol", false);
             _animator.SetBool("IsShotgun", false);
             _animator.SetBool("IsAK", false);
+            _animator.SetBool("IsWeapon", true);
 
             if (!_isWeaponAnimation)
             {
