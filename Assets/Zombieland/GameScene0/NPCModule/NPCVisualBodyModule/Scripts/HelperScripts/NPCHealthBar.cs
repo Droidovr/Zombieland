@@ -19,6 +19,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisualBodyModule
             _slider.value = CalculateHealthProcent();
 
             _nPCVisualBodyController.NPCController.NPCTakeDamageController.OnApplyImpact += UpdateHealth;
+            _nPCVisualBodyController.NPCController.NPCMovingController.OnMoving += UpdateRotationCanvas;
         }
 
         private void UpdateHealth(Vector3 impactCollisionPosition, Vector3 impactDirection)
@@ -38,6 +39,11 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisualBodyModule
         private float CalculateHealthProcent()
         {
             return _nPCVisualBodyController.NPCController.NPCDataController.NPCData.CurrentHealth / _nPCVisualBodyController.NPCController.NPCDataController.NPCData.MaxHealth;
+        }
+
+        private void UpdateRotationCanvas(float speed, bool isMove)
+        {
+            _canvas.transform.LookAt(_canvas.transform.position + _nPCVisualBodyController.NPCController.NPCManagerController.RootController.CameraController.PlayerCamera.transform.forward);
         }
     }
 }
