@@ -92,10 +92,10 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
             Vector2 vectorMove = new Vector2(x, y);
 
-            if (Mathf.Abs(vectorMove.x) != 0f)
-            {
-                vectorMove.y = 0f;
-            }
+            //if (Mathf.Abs(vectorMove.x) != 0f)
+            //{
+            //    vectorMove.y = 0f;
+            //}
 
             _characterMovingController.DirectionWalk = vectorMove;
         }
