@@ -124,7 +124,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             float targetSpeed = Mathf.Clamp01(_characterMovingController.DirectionWalk.magnitude) *
                                 _characterMovingController.CharacterController.CharacterDataController.CharacterData.DesignMovingSpeed * _speedMultiplier;
 
-            _currentSpeed = Mathf.Lerp(_currentSpeed, targetSpeed, Time.deltaTime);
+            _currentSpeed = Mathf.Lerp(_currentSpeed, targetSpeed, Time.deltaTime * 10f);
 
             _characterMovingController.RealMovingSpeed = _currentSpeed;
         }
