@@ -247,7 +247,6 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             foreach (RagdollComponent ragdollComponent in _ragdollComponents)
             {
                 ragdollComponent.IsKinematikBone(!activate);
-                ragdollComponent.Collider.enabled = activate;
 
                 if (!activate)
                 {

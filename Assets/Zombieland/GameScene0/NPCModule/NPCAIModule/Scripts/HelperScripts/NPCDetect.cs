@@ -40,7 +40,10 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
 
         private void UpdateDestenation()
         {
-            _navMeshAgent.SetDestination(_transformDestenation.position);
+            if (_navMeshAgent.enabled)
+            {
+                _navMeshAgent.SetDestination(_transformDestenation.position);
+            }
         }
 
         private void OnDisable()

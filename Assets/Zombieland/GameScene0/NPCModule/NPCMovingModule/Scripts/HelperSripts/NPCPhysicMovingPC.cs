@@ -36,6 +36,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
         {
             _unityCharacterController.enabled = isActive;
             _isActive = isActive;
+            _navMeshAgent.enabled = isActive;
         }
 
         public void Disable()
