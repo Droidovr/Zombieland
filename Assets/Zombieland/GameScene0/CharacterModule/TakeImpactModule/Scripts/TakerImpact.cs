@@ -32,6 +32,11 @@ namespace Zombieland.GameScene0.CharacterModule.TakeImpactModule
                     }
                 }
             }
+
+            if (_characterController.CharacterDataController.CharacterData.HP <= 0)
+            {
+                _characterController.CharacterDataController.CharacterData.IsDead = true;
+            }
         }
     }
 }

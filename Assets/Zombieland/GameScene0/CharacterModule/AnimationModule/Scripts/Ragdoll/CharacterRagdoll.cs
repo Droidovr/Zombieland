@@ -33,33 +33,35 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             {
                 Collider collider = component.Collider;
 
-                if (collider != null)
+                if (collider != null && collider.bounds.Contains(hitPosition))
                 {
-                    if (collider.bounds.Contains(hitPosition))
+                    if (_animator == null)
                     {
-                        _animationController.CharacterController.CharacterMovingController.ActivateMoving(false);
-                        _animator.enabled = false;
-
-                        ActivateRagdollParts(true);
-                        _ragdollState = RagdollState.Ragdolled;
-
-                        component.RigidBody.AddForceAtPosition(forceDirection, hitPosition, ForceMode.Impulse);
-
-                        if (_animationController.CharacterController.CharacterDataController.CharacterData.IsDead)
-                        {
-                            return;
-                        }
-
-                        await Task.Delay(RETURN_FROM_RAGDOLL_DELAY_TIME);
-
-                        foreach (RagdollComponent ragdollComponent in _ragdollComponents)
-                        {
-                            ragdollComponent.IsKinematikBone(true);
-                        }
-
-                        _animator.enabled = true;
-                        _animationController.CharacterController.CharacterMovingController.ActivateMoving(true);
+                        return;
                     }
+
+                    _animationController.CharacterController.CharacterMovingController.ActivateMoving(false);
+                    _animator.enabled = false;
+
+                    ActivateRagdollParts(true);
+                    _ragdollState = RagdollState.Ragdolled;
+
+                    component.RigidBody.AddForceAtPosition(forceDirection, hitPosition, ForceMode.Impulse);
+
+                    if (_animationController.CharacterController.CharacterDataController.CharacterData.IsDead)
+                    {
+                        return;
+                    }
+
+                    await Task.Delay(RETURN_FROM_RAGDOLL_DELAY_TIME);
+
+                    foreach (RagdollComponent ragdollComponent in _ragdollComponents)
+                    {
+                        ragdollComponent.IsKinematikBone(true);
+                    }
+
+                    _animator.enabled = true;
+                    _animationController.CharacterController.CharacterMovingController.ActivateMoving(true);
                 }
             }
         }
@@ -245,6 +247,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             foreach (RagdollComponent ragdollComponent in _ragdollComponents)
             {
                 ragdollComponent.IsKinematikBone(!activate);
+                ragdollComponent.Collider.enabled = activate;
 
                 if (!activate)
                 {

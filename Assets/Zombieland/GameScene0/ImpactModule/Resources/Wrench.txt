@@ -16,7 +16,7 @@
   },
   "Delivery": {
     "$type": "Zombieland.GameScene0.ImpactModule.ObjectInstantTeleport, Assembly-CSharp",
-    "Lifetime": 0.2
+    "Lifetime": 0.15
   },
   "InitialImpact": {
     "$type": "Wrench, Assembly-CSharp",
@@ -24,7 +24,7 @@
     "InitialImpactData": [
       {
         "Type": 0,
-        "AbsoluteValue": 2.0,
+        "AbsoluteValue": 10.0,
         "PercentageValue": 0.0
       }
     ],

@@ -24,7 +24,7 @@
     "InitialImpactData": [
       {
         "Type": 0,
-        "AbsoluteValue": 15.0,
+        "AbsoluteValue": 1.0,
         "PercentageValue": 0.0
       }
     ],

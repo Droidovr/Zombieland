@@ -33,6 +33,11 @@ namespace Zombieland.GameScene0.NPCModule.NPCTakeDamageModule
                     }
                 }
             }
+
+            if (_nPCController.NPCDataController.NPCData.CurrentHealth <= 0)
+            {
+                _nPCController.NPCDataController.NPCData.IsDead = true;
+            }
         }
     }
 }

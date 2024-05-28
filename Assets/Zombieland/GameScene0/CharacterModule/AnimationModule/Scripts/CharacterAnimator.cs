@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Zombieland.GameScene0.WeaponModule;
 
 namespace Zombieland.GameScene0.CharacterModule.AnimationModule
@@ -153,8 +152,6 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         {
             if (_firePermiser.CheckFirePermission(_weapon))
             {
-                //Debug.Log("From animation StartFirePermision:" + _animatorController.CharacterController.WeaponController.WeaponPointFire.position);
-
                 CancelInvoke("StartFirePermision");
                 _animator.SetBool("Attack", true);
             }
@@ -171,7 +168,6 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private void CreacteWeaponPrefabHandler()
         {
             OnAnimationCreateWeapon?.Invoke(_weapon.WeaponData.PrefabName);
-            Debug.Log("CreacteWeaponPrefabHandler");
         }
 
         private void DestroyWeaponPrefabHandler()
