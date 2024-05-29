@@ -8,7 +8,7 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
     {
         public event Action OnSound;
 
-        private const float VOLUME = 0.7f;
+        private const float VOLUME = 0.3f;
 
         private AudioSource _audioSource;
         private Dictionary<string, AudioClip> _sounds;

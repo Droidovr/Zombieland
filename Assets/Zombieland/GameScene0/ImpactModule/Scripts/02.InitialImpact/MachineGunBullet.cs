@@ -9,7 +9,7 @@ using Zombieland.GameScene0.NPCModule;
 public class MachineGunBullet : IInitialImpactCommand
 {
     [JsonIgnore] public IImpact Impact { get; set; }
-    public UpfrontRayDetector Detector { get; set; }
+    public TouchColliderDetector Detector { get; set; }
     public List<DirectImpactData> InitialImpactData { get; set; }
     public string TargetReachedEffectPrefabName { get; set; }
     public string NoTargetEffectPrefabName { get; set; }
@@ -17,7 +17,7 @@ public class MachineGunBullet : IInitialImpactCommand
 
     public void Execute()
     {
-        Detector.GetTargets(Impact.ImpactData.ImpactObject, out var targetsList, out var collisionPosition);
+        Detector.GetFirstTarget(Impact.ImpactData.ImpactObject, out var targetsList, out var collisionPosition);
         Impact.ImpactData.Targets = targetsList;
 
         if (targetsList == null || targetsList.Count <= 0)
