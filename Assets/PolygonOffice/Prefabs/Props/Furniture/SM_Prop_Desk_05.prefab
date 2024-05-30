@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 4874611385431948}
   - component: {fileID: 33019701568781740}
   - component: {fileID: 23270784974150688}
-  - component: {fileID: 3604136412580618684}
-  - component: {fileID: 484552683942375740}
+  - component: {fileID: 8888793109493083295}
   m_Layer: 0
   m_Name: SM_Prop_Desk_05
   m_TagString: Untagged
@@ -85,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3604136412580618684
-BoxCollider:
+--- !u!64 &8888793109493083295
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -103,27 +102,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.7423294, y: 0.75, z: 0.88802546}
-  m_Center: {x: -0.0000023841858, y: 0.375, z: -0.597787}
---- !u!65 &484552683942375740
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1807310532579766}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.89253235, y: 0.75, z: 2.0835977}
-  m_Center: {x: 0.92489624, y: 0.375, z: 0}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: fd2f9a293a6a3594785aa306bd92e319, type: 3}
