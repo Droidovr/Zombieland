@@ -10,11 +10,13 @@ namespace Zombieland.GameScene0.NPCModule.NPCSoundModule
         public INPCController NPCController { get; private set; }
 
         private SoundBurst _soundBurst;
+        private Dictionary<string, float> _volumeValues;
 
 
         public NPCSoundController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             NPCController = parentController as INPCController;
+            _volumeValues = new Dictionary<string, float>();
         }
 
 
@@ -35,17 +37,17 @@ namespace Zombieland.GameScene0.NPCModule.NPCSoundModule
 
         private void PlayWeaponSound(Weapon weapon)
         {
-            _soundBurst.PlaySound(weapon.WeaponData.SoundName, 0.3f);
+            _soundBurst.PlaySound(weapon.WeaponData.SoundName, _volumeValues["effect"]);
         }
 
         private void PlayOnStepSound()
         {
-            _soundBurst.PlaySound("Walk", 0.7f);
+            _soundBurst.PlaySound("Walk", _volumeValues["effect"]);
         }
 
         private void PlayImpactSound(Vector3 vector1, Vector3 vector2)
         {
-            _soundBurst.PlaySound("Hit", 0.7f);
+            _soundBurst.PlaySound("Hit", _volumeValues["effect"]);
         }
     }
 }

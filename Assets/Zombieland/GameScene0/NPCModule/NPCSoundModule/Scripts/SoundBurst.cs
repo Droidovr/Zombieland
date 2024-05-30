@@ -5,8 +5,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCSoundModule
 {
     public class SoundBurst
     {
-        private const float TARGET_VOLUME = 0.2f;
-
         private INPCSoundController _nPCSoundController;
         private AudioSource _audioSource;
         private Dictionary<string, AudioClip> _sounds;
@@ -39,7 +37,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCSoundModule
                 if (!Physics.Linecast(npcPosition, playerPosition, _wallLayer))
                 {
                     AudioClip clip = _sounds[soundName];
-                    float adjustedVolume = AdjustVolume(clip, TARGET_VOLUME);
+                    float adjustedVolume = AdjustVolume(clip, volume);
                     _audioSource.PlayOneShot(clip, adjustedVolume);
                 }
             }
