@@ -14,6 +14,13 @@ namespace Zombieland.GameScene0.GlobalSoundModule
             RootController = parentController as IRootController;
         }
 
+        public override void Disable()
+        {
+            _globalAudiosource.Destroy();
+
+            base.Disable();
+        }
+
         protected override void CreateHelpersScripts()
         {
             _globalAudiosource = new GlobalAudiosource();

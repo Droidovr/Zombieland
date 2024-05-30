@@ -19,7 +19,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCSoundModule
             _sounds = new Dictionary<string, AudioClip>();
         }
 
-        public void PlaySound(string soundName, float volume)
+        public void PlaySound(string soundName)
         {
             if (!_sounds.ContainsKey(soundName))
             {
@@ -37,7 +37,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCSoundModule
                 if (!Physics.Linecast(npcPosition, playerPosition, _wallLayer))
                 {
                     AudioClip clip = _sounds[soundName];
-                    float adjustedVolume = AdjustVolume(clip, volume);
+                    float adjustedVolume = AdjustVolume(clip, 1f);
                     _audioSource.PlayOneShot(clip, adjustedVolume);
                 }
             }

@@ -8,8 +8,6 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
     {
         public event Action OnSound;
 
-        private const float TARGET_VOLUME = 0.2f;
-
         private AudioSource _audioSource;
         private Dictionary<string, AudioClip> _sounds;
 
@@ -29,7 +27,7 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
             }
 
             AudioClip clip = _sounds[soundName];
-            float adjustedVolume = AdjustVolume(clip, TARGET_VOLUME);
+            float adjustedVolume = AdjustVolume(clip, 1f);
             _audioSource.PlayOneShot(clip, adjustedVolume);
 
             OnSound?.Invoke();
