@@ -15,7 +15,7 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
 
         public SoundBurst(ISoundBurstController soundBurstController)
         {
-            _audioSource = soundBurstController.CharacterController.VisualBodyController.CharacterInScene.AddComponent<AudioSource>();
+            _audioSource = soundBurstController.CharacterController.VisualBodyController.CharacterInScene.GetComponent<AudioSource>();
 
             _sounds = new Dictionary<string, AudioClip>();
         }
