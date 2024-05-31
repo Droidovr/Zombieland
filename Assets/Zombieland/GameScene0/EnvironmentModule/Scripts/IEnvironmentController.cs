@@ -8,5 +8,6 @@ namespace Zombieland.GameScene0.EnvironmentModule
         event Action OnSceneLoaded;
 
         string CurrentLevelName { get; }
+        GameobjectInScene GameobjectInScene { get; }
     }
 }

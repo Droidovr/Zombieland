@@ -14,7 +14,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCSoundModule
         public SoundBurst(INPCSoundController nPCSoundController)
         {
             _nPCSoundController = nPCSoundController;
-
             _audioSource = _nPCSoundController.NPCController.NPCVisualBodyController.NPCInScene.GetComponent<AudioSource>();
             _sounds = new Dictionary<string, AudioClip>();
         }
@@ -37,7 +36,9 @@ namespace Zombieland.GameScene0.NPCModule.NPCSoundModule
                 if (!Physics.Linecast(npcPosition, playerPosition, _wallLayer))
                 {
                     AudioClip clip = _sounds[soundName];
-                    float adjustedVolume = AdjustVolume(clip, 1f);
+                    float mixerEffectsVolume;
+                    _nPCSoundController.NPCController.NPCManagerController.RootController.GlobalSoundController.MainAudioMixer.GetFloat("EffectsVolume", out mixerEffectsVolume);
+                    float adjustedVolume = AdjustVolume(clip, mixerEffectsVolume);
                     _audioSource.PlayOneShot(clip, adjustedVolume);
                 }
             }
@@ -57,7 +58,14 @@ namespace Zombieland.GameScene0.NPCModule.NPCSoundModule
                 }
             }
 
-            return targetVolume / maxSample;
+            float targetVolumeRemap = Remap(targetVolume, -80f, 0f, 0f, 1f);
+
+            return targetVolumeRemap / maxSample;
+        }
+
+        float Remap(float value, float min1, float max1, float min2, float max2)
+        {
+            return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 using Zombieland.GameScene0.RootModule;
 
 
@@ -10,6 +11,7 @@ namespace Zombieland.GameScene0.EnvironmentModule
         public event Action OnSceneLoaded;
 
         public string CurrentLevelName { get; private set; }
+        public GameobjectInScene GameobjectInScene { get; private set; }
 
         private IRootController _rootController;
 
@@ -49,6 +51,8 @@ namespace Zombieland.GameScene0.EnvironmentModule
 
         private void SceneLoadedHandler()
         {
+            GameobjectInScene = GameObject.Find("AllLevel").GetComponent<GameobjectInScene>();
+
             OnSceneLoaded?.Invoke();
         }
     }
