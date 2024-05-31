@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static Unity.Burst.Intrinsics.X86.Avx;
 
 namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
 {
@@ -8,11 +9,14 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
     {
         public event Action OnSound;
 
+        private ISoundBurstController _soundBurstController;
         private AudioSource _audioSource;
         private Dictionary<string, AudioClip> _sounds;
 
         public SoundBurst(ISoundBurstController soundBurstController)
         {
+            _soundBurstController = soundBurstController;
+
             _audioSource = soundBurstController.CharacterController.VisualBodyController.CharacterInScene.GetComponent<AudioSource>();
 
             _sounds = new Dictionary<string, AudioClip>();
@@ -27,7 +31,9 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
             }
 
             AudioClip clip = _sounds[soundName];
-            float adjustedVolume = AdjustVolume(clip, 1f);
+            float mixerEffectsVolume;
+            _soundBurstController.CharacterController.RootController.GlobalSoundController.MainAudioMixer.GetFloat("EffectsVolume", out mixerEffectsVolume);
+            float adjustedVolume = AdjustVolume(clip, mixerEffectsVolume);
             _audioSource.PlayOneShot(clip, adjustedVolume);
 
             OnSound?.Invoke();
@@ -47,7 +53,14 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
                 }
             }
 
-            return targetVolume / maxSample;
+            float targetVolumeRemap = Remap(targetVolume, -80f, 0f, 0f, 1f);
+
+            return targetVolumeRemap / maxSample;
+        }
+
+        float Remap(float value, float min1, float max1, float min2, float max2)
+        {
+            return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
         }
     }
 }
