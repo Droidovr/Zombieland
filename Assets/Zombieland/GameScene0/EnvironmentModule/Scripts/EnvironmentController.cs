@@ -8,10 +8,9 @@ namespace Zombieland.GameScene0.EnvironmentModule
 {
     public class EnvironmentController : Controller, IEnvironmentController
     {
-        public event Action OnSceneLoaded;
+        public event Action<List<AudioSourceObject>> OnLoadedSoundGameobjects;
 
         public string CurrentLevelName { get; private set; }
-        public GameobjectInScene GameobjectInScene { get; private set; }
 
         private IRootController _rootController;
 
@@ -51,9 +50,9 @@ namespace Zombieland.GameScene0.EnvironmentModule
 
         private void SceneLoadedHandler()
         {
-            GameobjectInScene = GameObject.Find("AllLevel").GetComponent<GameobjectInScene>();
+            List<AudioSourceObject> AudioSourceObjects = GameObject.Find("AllLevel").GetComponent<AudioGameobjectInScene>().AudioSourceObjects;
 
-            OnSceneLoaded?.Invoke();
+            OnLoadedSoundGameobjects?.Invoke(AudioSourceObjects);
         }
     }
 }

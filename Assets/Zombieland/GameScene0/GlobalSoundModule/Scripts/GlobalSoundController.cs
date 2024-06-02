@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using Zombieland.GameScene0.EnvironmentModule;
 using Zombieland.GameScene0.RootModule;
 
 namespace Zombieland.GameScene0.GlobalSoundModule
@@ -9,6 +11,7 @@ namespace Zombieland.GameScene0.GlobalSoundModule
     {
         public IRootController RootController { get; private set; }
         public AudioMixer MainAudioMixer { get; private set; }
+        public List<AudioSourceObject> AudioSourceObjects { get; private set; }
 
         private GlobalAudiosource _globalAudiosource;
 
@@ -29,11 +32,26 @@ namespace Zombieland.GameScene0.GlobalSoundModule
         {
             _globalAudiosource = new GlobalAudiosource();
             _globalAudiosource.CreateGlobalAudioSource();
+
+            RootController.EnvironmentController.OnLoadedSoundGameobjects += SceneLoadedHandler;
         }
+
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
             // This controller doesn’t have any subsystems at the moment.
+        }
+
+
+
+        private void SceneLoadedHandler(List<AudioSourceObject> audioSourceObjects)
+        {
+            AudioSourceObjects = audioSourceObjects;
+            foreach (var controller in AudioSourceObjects) 
+            {
+                AudioDistanceController audioDistanceController = controller.AudioSourceObjectInScene.AddComponent<AudioDistanceController>();
+                audioDistanceController.Init(this, controller);
+            }
         }
     }
 }

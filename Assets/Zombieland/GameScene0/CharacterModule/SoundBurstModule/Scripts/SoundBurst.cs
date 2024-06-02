@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static Unity.Burst.Intrinsics.X86.Avx;
+
 
 namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
 {
@@ -56,7 +56,7 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
             return targetVolumeRemap / maxSample;
         }
 
-        float Remap(float value, float min1, float max1, float min2, float max2)
+        private float Remap(float value, float min1, float max1, float min2, float max2)
         {
             return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
         }
