@@ -1,3 +1,4 @@
+using SteamAudio;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,10 +48,27 @@ namespace Zombieland.GameScene0.GlobalSoundModule
         private void SceneLoadedHandler(List<AudioSourceObject> audioSourceObjects)
         {
             AudioSourceObjects = audioSourceObjects;
-            foreach (var controller in AudioSourceObjects) 
+            foreach (var audioSourceObject in AudioSourceObjects) 
             {
-                AudioDistanceController audioDistanceController = controller.AudioSourceObjectInScene.AddComponent<AudioDistanceController>();
-                audioDistanceController.Init(this, controller);
+                SteamAudioSource steamAudioSource = audioSourceObject.AudioSourceObjectInScene.AddComponent<SteamAudioSource>();
+                steamAudioSource.directBinaural = true;
+                steamAudioSource.distanceAttenuation = true;
+                steamAudioSource.distanceAttenuationInput = DistanceAttenuationInput.PhysicsBased;
+                steamAudioSource.airAbsorption = true;
+                steamAudioSource.airAbsorptionInput = AirAbsorptionInput.SimulationDefined;
+                steamAudioSource.occlusion = true;
+                steamAudioSource.occlusionInput = OcclusionInput.SimulationDefined;
+                steamAudioSource.occlusionType = OcclusionType.Raycast;
+                steamAudioSource.transmission = true;
+                steamAudioSource.transmissionType = TransmissionType.FrequencyIndependent;
+                steamAudioSource.transmissionInput = TransmissionInput.SimulationDefined;
+                steamAudioSource.reflections = true;
+                steamAudioSource.reflectionsType = ReflectionsType.Realtime;
+                steamAudioSource.reflectionsMixLevel = 1.5f;
+
+
+                AudioDistanceController audioDistanceController = audioSourceObject.AudioSourceObjectInScene.AddComponent<AudioDistanceController>();
+                audioDistanceController.Init(this, audioSourceObject);
             }
         }
     }
