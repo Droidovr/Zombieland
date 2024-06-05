@@ -16,7 +16,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
         private Transform _characterTransform;
         private Transform _nPCTransform;
         private NavMeshAgent _navMeshAgent;
-        private bool _isFire;
+        public bool _isFire;
 
 
         public void Init(INPCAIController nPCAIController)
@@ -26,11 +26,11 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
             _nPCTransform = nPCAIController.NPCController.NPCVisualBodyController.NPCInScene.transform;
             _navMeshAgent = GetComponent<NavMeshAgent>();
 
-            InvokeRepeating(nameof(CheckAttack), 0f, INVOKE_REPEATING_TIME);
+            //InvokeRepeating(nameof(CheckAttack), 0f, INVOKE_REPEATING_TIME);
         }
 
 
-        public void CheckAttack()
+        private void Update()
         {
             Vector3 directionToCharacter = (_characterTransform.position - _nPCTransform.position).normalized;
             float distanceToCharacter = Vector3.Distance(_characterTransform.position, _nPCTransform.position);
@@ -53,6 +53,11 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
                     {
                         OnFire?.Invoke(false);
                         _isFire = false;
+                    }
+                    if (!_nPCAIController.NPCController.NPCManagerController.RootController.CharacterController.StealthController.IsStealth)
+                    {
+                        Quaternion rotationTowardsCharacter = Quaternion.LookRotation(directionToCharacter);
+                        _nPCTransform.rotation = Quaternion.Slerp(_nPCTransform.rotation, rotationTowardsCharacter, Time.deltaTime * 5f);
                     }
                 }
             }

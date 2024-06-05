@@ -56,6 +56,9 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule
 
         private void DetectCharacterHandler(IController controller, bool isDetect)
         {
+            if (!isDetect && (NPCHearingController.IsHearingDetect || NPCVisualController.IsVisualDetect))
+                return;
+
             OnDetectCharacter?.Invoke(controller, isDetect);
         }
     }

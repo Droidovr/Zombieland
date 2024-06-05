@@ -9,7 +9,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
 
         [SerializeField] private Light _visualSensorLight;
 
-        private float VIEW_ANGLE = 60f;
+        private float VIEW_ANGLE = 90f;
         private float RANGE = 10f;
         private const float EXIT_DETECTION_TIMEOUT = 2f;
         private const float INVOKE_REPEATING_TIME = 0.1f;
