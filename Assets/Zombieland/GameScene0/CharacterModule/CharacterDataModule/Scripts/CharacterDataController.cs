@@ -31,6 +31,11 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterDataModule
 
             CharacterData.DesignMovingSpeed = CharacterData.MaxMovingSpeed;
             CharacterData.DesignRotationSpeed = CharacterData.MaxRotationSpeed;
+
+            if (CharacterData.HP <= 0)
+            {
+                CharacterData.HP = CharacterData.HPDefault;
+            }
         }
     }
 }

@@ -57,10 +57,21 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         {
             _animator.SetFloat("RealMovingSpeed", _animatorController.CharacterController.CharacterMovingController.RealMovingSpeed);
 
-            Vector2 moveDirection = transform.InverseTransformDirection(_animatorController.CharacterController.CharacterMovingController.DirectionWalk);
+            //Vector2 moveDirection = transform.InverseTransformDirection(_animatorController.CharacterController.CharacterMovingController.DirectionWalk);
+            //_animator.SetFloat("DirectionX", Mathf.Round(moveDirection.x));
+            //_animator.SetFloat("DirectionY", Mathf.Round(moveDirection.y));
 
-            _animator.SetFloat("DirectionX", Mathf.Round(moveDirection.x));
-            _animator.SetFloat("DirectionY", Mathf.Round(moveDirection.y));
+            Vector2 inputVector = _animatorController.CharacterController.CharacterMovingController.DirectionWalk;
+
+            if (inputVector.magnitude > 1)
+            {
+                inputVector = inputVector.normalized;
+            }
+
+            inputVector = transform.InverseTransformDirection(inputVector);
+
+            _animator.SetFloat("DirectionX", Mathf.Round(inputVector.x) * _animatorController.CharacterController.CharacterMovingController.RealMovingSpeed);
+            _animator.SetFloat("DirectionY", Mathf.Round(inputVector.y) * _animatorController.CharacterController.CharacterMovingController.RealMovingSpeed);
         }
 
 
@@ -72,6 +83,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
             _animator.SetBool("IsPistol", false);
             _animator.SetBool("IsShotgun", false);
             _animator.SetBool("IsAK", false);
+            _animator.SetBool("IsWeapon", true);
 
             if (!_isWeaponAnimation)
             {
@@ -140,8 +152,6 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         {
             if (_firePermiser.CheckFirePermission(_weapon))
             {
-                //Debug.Log("From animation StartFirePermision:" + _animatorController.CharacterController.WeaponController.WeaponPointFire.position);
-
                 CancelInvoke("StartFirePermision");
                 _animator.SetBool("Attack", true);
             }
@@ -158,7 +168,6 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private void CreacteWeaponPrefabHandler()
         {
             OnAnimationCreateWeapon?.Invoke(_weapon.WeaponData.PrefabName);
-            Debug.Log("CreacteWeaponPrefabHandler");
         }
 
         private void DestroyWeaponPrefabHandler()

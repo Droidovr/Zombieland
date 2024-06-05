@@ -18,6 +18,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisualBodyModule
         private CreateNPCPrefab _createNPCGameobject;
         private CreateWeaponPrefab _createWeaponPrefab;
         private Transform _nPCWeaponPoint;
+        private NPCHealthBar _nPCHealthBar;
 
         public NPCVisualBodyController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
@@ -33,6 +34,9 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisualBodyModule
 
             NPCController.NPCAnimationController.OnAnimationCreateWeapon += AnimationCreateWeaponHandler;
             NPCController.NPCAnimationController.OnAnimationDestroyWeapon += AnimationDestroyWeaponHandler;
+
+            _nPCHealthBar = NPCInScene.GetComponent<NPCHealthBar>();
+            _nPCHealthBar.Init(this);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -43,6 +47,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisualBodyModule
         private void CreateNPCGameobject()
         {
             NPCInScene = _createNPCGameobject.CreateNPC(Vector3.zero, Quaternion.identity);
+            _nPCWeaponPoint = NPCInScene.GetComponent<NPCWeaponPoint>().WeaponPoint;
             NPCInScene.SetActive(false);
         }
 

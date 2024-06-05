@@ -16,7 +16,7 @@ public class Wrench : IInitialImpactCommand
 
     public void Execute()
     {
-        Detector.GetTargets(Impact.ImpactData.ImpactObject, out var targetsList, out var collisionPosition);
+        Detector.GetFirstTarget(Impact.ImpactData.ImpactObject, out var targetsList, out var collisionPosition);
         Impact.ImpactData.Targets = targetsList;
             
         if (targetsList == null || targetsList.Count <= 0)

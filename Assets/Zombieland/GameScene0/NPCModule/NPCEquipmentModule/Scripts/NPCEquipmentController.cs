@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Zombieland.GameScene0.WeaponModule;
 
@@ -36,10 +35,10 @@ namespace Zombieland.GameScene0.NPCModule.NPCEquipmentModule
 
         public override void Disable()
         {
-            NPCController.NPCAIController.SlotNumber1 -= Number1Handler;
-            NPCController.NPCAIController.SlotNumber2 -= Number2Handler;
-            NPCController.NPCAIController.SlotNumber3 -= Number3Handler;
-            NPCController.NPCAIController.SlotNumber4 -= Number4Handler;
+            NPCController.NPCAIController.OnSlotNumber1 -= Number1Handler;
+            NPCController.NPCAIController.OnSlotNumber2 -= Number2Handler;
+            NPCController.NPCAIController.OnSlotNumber3 -= Number3Handler;
+            NPCController.NPCAIController.OnSlotNumber4 -= Number4Handler;
 
             base.Disable();
         }
@@ -66,17 +65,15 @@ namespace Zombieland.GameScene0.NPCModule.NPCEquipmentModule
 
         protected override void CreateHelpersScripts()
         {
-            NPCController.NPCAIController.SlotNumber1 += Number1Handler;
-            NPCController.NPCAIController.SlotNumber2 += Number2Handler;
-            NPCController.NPCAIController.SlotNumber3 += Number3Handler;
-            NPCController.NPCAIController.SlotNumber4 += Number4Handler;
+            NPCController.NPCAIController.OnSlotNumber1 += Number1Handler;
+            NPCController.NPCAIController.OnSlotNumber2 += Number2Handler;
+            NPCController.NPCAIController.OnSlotNumber3 += Number3Handler;
+            NPCController.NPCAIController.OnSlotNumber4 += Number4Handler;
 
             foreach (NPCEquipmentSlotData slotData in NPCController.NPCDataController.NPCData.NPCEquipmentSlotDatas)
             {
                 FillSlot(slotData.WeaponJSONName, slotData.SlotNumber, slotData.DefaultImpactIndexInList);
             }
-
-            Number1Handler();
         }
 
         #region PROTECTED

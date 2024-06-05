@@ -48,17 +48,20 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
 
         private void CheckDestination() 
         {
-            if (!_navMeshAgent.pathPending && _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
+            if (_navMeshAgent.enabled)
             {
-                if (isGoingToPositionSpawn)
+                if (!_navMeshAgent.pathPending && _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
                 {
-                    isGoingToPositionSpawn = false;
-                    _navMeshAgent.SetDestination(_positionPatrol);
-                }
-                else
-                {
-                    isGoingToPositionSpawn = true;
-                    _navMeshAgent.SetDestination(_positionSpawn);
+                    if (isGoingToPositionSpawn)
+                    {
+                        isGoingToPositionSpawn = false;
+                        _navMeshAgent.SetDestination(_positionPatrol);
+                    }
+                    else
+                    {
+                        isGoingToPositionSpawn = true;
+                        _navMeshAgent.SetDestination(_positionSpawn);
+                    }
                 }
             }
         }

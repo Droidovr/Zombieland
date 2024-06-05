@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 using Zombieland.GameScene0.BuffDebuffModule;
 
 
@@ -31,6 +32,13 @@ namespace Zombieland.GameScene0.CharacterModule.TakeImpactModule
                         _characterController.CharacterDataController.CharacterData.HP -= _characterController.CharacterDataController.CharacterData.HP / 100 * damageTakenBuffDebuff.PercentageValue;
                     }
                 }
+            }
+
+            Debug.Log("HP Character: " + _characterController.CharacterDataController.CharacterData.HP);
+
+            if (_characterController.CharacterDataController.CharacterData.HP <= 0)
+            {
+                _characterController.CharacterDataController.CharacterData.IsDead = true;
             }
         }
     }
