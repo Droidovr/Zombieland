@@ -9,8 +9,10 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
     {
         public event Action<bool> OnFire;
 
+        private const float INVOKE_REPEATING_TIME = 0.1f;
         private const float FIELD_OF_VIEW = 60f;
 
+        private INPCAIController _nPCAIController;
         private Transform _characterTransform;
         private Transform _nPCTransform;
         private NavMeshAgent _navMeshAgent;
@@ -19,18 +21,23 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
 
         public void Init(INPCAIController nPCAIController)
         {
+            _nPCAIController = nPCAIController;
             _characterTransform = nPCAIController.NPCController.NPCManagerController.RootController.CharacterController.VisualBodyController.CharacterInScene.transform;
             _nPCTransform = nPCAIController.NPCController.NPCVisualBodyController.NPCInScene.transform;
             _navMeshAgent = GetComponent<NavMeshAgent>();
+
+            InvokeRepeating(nameof(CheckAttack), 0f, INVOKE_REPEATING_TIME);
         }
 
 
-        private void Update()
+        public void CheckAttack()
         {
             Vector3 directionToCharacter = (_characterTransform.position - _nPCTransform.position).normalized;
             float distanceToCharacter = Vector3.Distance(_characterTransform.position, _nPCTransform.position);
 
-            if (distanceToCharacter <= _navMeshAgent.stoppingDistance + 0.3f)
+            bool isDeadCharacter = _nPCAIController.NPCController.NPCManagerController.RootController.CharacterController.CharacterDataController.CharacterData.IsDead;
+
+            if (distanceToCharacter <= _navMeshAgent.stoppingDistance + 0.3f && !isDeadCharacter)
             {
                 float dotProduct = Vector3.Dot(_nPCTransform.forward, directionToCharacter);
                 float angleToCharacter = Mathf.Acos(dotProduct) * Mathf.Rad2Deg;
