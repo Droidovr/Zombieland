@@ -48,6 +48,12 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
 
         private void VisualDetect()
         {
+            if (_nPCVisualController.NPCAwarenessController.NPCController.NPCManagerController.RootController.CharacterController.CharacterDataController.CharacterData.IsDead)
+            {
+                ExitZonaDetect();
+                return;
+            }
+
             RaycastHit hit;
             Vector3 rayDirection = transform.forward;
 
