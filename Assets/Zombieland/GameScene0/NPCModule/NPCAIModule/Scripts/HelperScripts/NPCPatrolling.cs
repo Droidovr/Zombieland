@@ -56,11 +56,13 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
                     {
                         isGoingToPositionSpawn = false;
                         _navMeshAgent.SetDestination(_positionPatrol);
+                        Debug.Log(_nPCAIController.NPCController.NPCDataController.NPCData.ID + " _positionPatrol: " + _positionPatrol);
                     }
                     else
                     {
                         isGoingToPositionSpawn = true;
                         _navMeshAgent.SetDestination(_positionSpawn);
+                        Debug.Log(_nPCAIController.NPCController.NPCDataController.NPCData.ID + " _positionSpawn: " + _positionSpawn);
                     }
                 }
             }

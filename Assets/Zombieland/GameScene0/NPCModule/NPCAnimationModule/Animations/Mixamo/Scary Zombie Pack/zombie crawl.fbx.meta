@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 3fd4e2425cb7a854ab66bcacfd46adfe
+guid: e14486cba3b7c2348b5ac6e86da59005
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: BloodDecal
-    second: {fileID: 2100000, guid: 2edb66fe757c39246bc66fc935304cbf, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
