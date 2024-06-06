@@ -32,9 +32,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCVisualModule
 
         private void VisualDetectHandler(IController controller, bool isVisible)
         {
-            OnVisualDetectCharacter?.Invoke(controller, isVisible);
-
             IsVisualDetect = isVisible;
+            OnVisualDetectCharacter?.Invoke(controller, isVisible);
         }
     }
 }

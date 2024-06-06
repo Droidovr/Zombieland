@@ -30,29 +30,39 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
         }
 
 
-        private void Update()
+        public void Update()
         {
+            bool isDeadCharacter = _nPCAIController.NPCController.NPCManagerController.RootController.CharacterController.CharacterDataController.CharacterData.IsDead;
+            if (isDeadCharacter) 
+            {
+                if (_isFire)
+                {
+                    Fire(false);
+                }
+
+                return;
+            }
+
             Vector3 directionToCharacter = (_characterTransform.position - _nPCTransform.position).normalized;
             float distanceToCharacter = Vector3.Distance(_characterTransform.position, _nPCTransform.position);
 
-            bool isDeadCharacter = _nPCAIController.NPCController.NPCManagerController.RootController.CharacterController.CharacterDataController.CharacterData.IsDead;
-
-            if (distanceToCharacter <= _navMeshAgent.stoppingDistance + 0.3f && !isDeadCharacter)
+            if (distanceToCharacter <= _navMeshAgent.stoppingDistance + 0.3f)
             {
                 float dotProduct = Vector3.Dot(_nPCTransform.forward, directionToCharacter);
                 float angleToCharacter = Mathf.Acos(dotProduct) * Mathf.Rad2Deg;
 
                 if (angleToCharacter <= FIELD_OF_VIEW / 2)
                 {
-                    OnFire?.Invoke(true);
-                    _isFire = true;
+                    if (!_isFire)
+                    {
+                        Fire(true);
+                    }
                 }
                 else
                 {
                     if (_isFire)
                     {
-                        OnFire?.Invoke(false);
-                        _isFire = false;
+                        Fire(false);
                     }
                     if (!_nPCAIController.NPCController.NPCManagerController.RootController.CharacterController.StealthController.IsStealth)
                     {
@@ -65,10 +75,17 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
             {
                 if (_isFire)
                 {
-                    OnFire?.Invoke(false);
-                    _isFire = false;
+                    Fire(false);
                 }
             }
+        }
+
+        private void Fire(bool isFire)
+        {
+            OnFire?.Invoke(isFire);
+            _isFire = isFire;
+
+            Debug.Log("isFire: " + isFire);
         }
     }
 }
