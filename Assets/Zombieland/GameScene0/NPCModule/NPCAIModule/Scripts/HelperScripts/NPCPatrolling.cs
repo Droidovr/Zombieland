@@ -22,7 +22,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCAIModule
             _navMeshAgent = _nPCAIController.NPCController.NPCVisualBodyController.NPCInScene.GetComponent<NavMeshAgent>();
 
             System.Numerics.Vector3 positionSpawn = _nPCAIController.NPCController.NPCDataController.NPCData.NPCSpawnData.SpawnPosition;
-            _positionSpawn = new Vector3(positionSpawn.Z, positionSpawn.Y, positionSpawn.Z);
+            _positionSpawn = new Vector3(positionSpawn.X, positionSpawn.Y, positionSpawn.Z);
 
             System.Numerics.Vector3 positionPatrol = _nPCAIController.NPCController.NPCDataController.NPCData.NPCSpawnData.PatrolPoint;
             _positionPatrol = new Vector3(positionPatrol.X, positionPatrol.Y, positionPatrol.Z);

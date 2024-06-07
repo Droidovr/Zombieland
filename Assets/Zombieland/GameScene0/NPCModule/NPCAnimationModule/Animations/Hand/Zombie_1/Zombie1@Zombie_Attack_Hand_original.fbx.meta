@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4d0947be10d74e24f82d73ced00baf39
+guid: 2918c7c9bb1943044a64a48ff9d0ea40
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -34,10 +34,10 @@ ModelImporter:
     clipAnimations:
     - serializedVersion: 16
       name: Zombie_Attack_Hand
-      takeName: Scene
-      internalID: -623603649343465320
-      firstFrame: 1
-      lastFrame: 140
+      takeName: mixamo.com
+      internalID: -203655887218126122
+      firstFrame: 0
+      lastFrame: 139
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -57,7 +57,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.24479167
+      - time: 0.27960527
         functionName: AttackHandler
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -67,7 +67,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0.9
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
