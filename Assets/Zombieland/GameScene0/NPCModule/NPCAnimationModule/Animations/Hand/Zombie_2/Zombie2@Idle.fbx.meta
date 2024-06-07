@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ca7ff7162d3a3de438bd67d0f133f32d
+guid: 5891afa509314c64b8c490b91ef513aa
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -19,7 +19,10 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'Scene' has import animation warnings that might
+      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
+      retargeting quality.\n\t'RightShoulder' has translation animation that will
+      be discarded.\n\t'LeftShoulder' has translation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -33,7 +36,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walking
+      name: Idle
       takeName: Scene
       internalID: -623603649343465320
       firstFrame: 1

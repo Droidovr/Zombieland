@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ca7ff7162d3a3de438bd67d0f133f32d
+guid: bc71fcbbd0468214e83d1c0b4878ccfc
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -19,7 +19,13 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'Scene' has import animation warnings that might
+      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
+      retargeting quality.\n\t'RightShoulder' has translation animation that will
+      be discarded.\n\t'RightHandMiddle1' has translation animation that will be
+      discarded.\n\t'RightHandIndex1' has translation animation that will be discarded.\n\t'RightHandIndex2'
+      has translation animation that will be discarded.\n\t'LeftShoulder' has translation
+      animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -33,11 +39,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walking
+      name: Attack
       takeName: Scene
       internalID: -623603649343465320
       firstFrame: 1
-      lastFrame: 155
+      lastFrame: 32
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -56,7 +62,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.3017544
+        functionName: AttackHandler
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
