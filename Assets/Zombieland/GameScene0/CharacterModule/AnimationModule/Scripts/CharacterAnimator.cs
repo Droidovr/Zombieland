@@ -63,15 +63,15 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
             Vector2 inputVector = _animatorController.CharacterController.CharacterMovingController.DirectionWalk;
 
-            if (inputVector.magnitude > 1)
+            /*if (inputVector.magnitude > 1)
             {
                 inputVector = inputVector.normalized;
-            }
+            }*/
 
-            inputVector = transform.InverseTransformDirection(inputVector);
+            //inputVector = transform.InverseTransformDirection(inputVector);
 
-            _animator.SetFloat("DirectionX", Mathf.Round(inputVector.x));
-            _animator.SetFloat("DirectionY", Mathf.Round(inputVector.y));
+            _animator.SetFloat("DirectionX", inputVector.x);
+            _animator.SetFloat("DirectionY", inputVector.y);
         }
 
 

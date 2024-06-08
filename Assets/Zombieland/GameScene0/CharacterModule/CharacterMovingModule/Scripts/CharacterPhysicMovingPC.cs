@@ -23,6 +23,11 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private float _currentSpeed;
 
+        private Vector2 actualInputVector;
+        private Vector2 currentInputVector;
+        private Vector2 smoothInputVelocity;
+
+        private float smoothDampSpeed = .2f;
 
         #region PUBLIC
         public void Disable()
@@ -59,6 +64,12 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         #endregion PUBLIC
 
         #region MONOBEHAVIOUR
+        private void Update()
+        {
+            currentInputVector = Vector2.SmoothDamp(currentInputVector, actualInputVector, ref smoothInputVelocity, smoothDampSpeed);
+            _characterMovingController.DirectionWalk = currentInputVector;
+        }
+
         private void FixedUpdate()
         {
             if (!_isActive)
@@ -87,6 +98,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void MovedHandler(Vector2 joystickPosition)
         {
+            actualInputVector = joystickPosition;
             int x = Mathf.RoundToInt(joystickPosition.x);
             int y = Mathf.RoundToInt(joystickPosition.y);
 
@@ -97,7 +109,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             //    vectorMove.y = 0f;
             //}
 
-            _characterMovingController.DirectionWalk = vectorMove;
+            //_characterMovingController.DirectionWalk = vectorMove;
         }
 
         private void MovedMouseHandler(Vector2 mousePosition)
@@ -124,7 +136,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             float targetSpeed = Mathf.Clamp01(_characterMovingController.DirectionWalk.magnitude) *
                                 _characterMovingController.CharacterController.CharacterDataController.CharacterData.DesignMovingSpeed * _speedMultiplier;
 
-            _currentSpeed = Mathf.Lerp(_currentSpeed, targetSpeed, Time.deltaTime * 10f);
+            _currentSpeed = Mathf.Lerp(_currentSpeed, targetSpeed, Time.deltaTime * 5f);
 
             _characterMovingController.RealMovingSpeed = _currentSpeed;
         }
