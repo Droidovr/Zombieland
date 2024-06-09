@@ -11,6 +11,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         private const float MIN_VECTORMOVE_MAGITUDE = 0.1f;
         private const float DEFAULT_SPEED_MULTIPLIER = 1f;
         private const float FAST_SPEED_MULTIPLIER = 3f;
+        private const float DESIRED_ROTATION_THRESHOLD = 20f;
 
         private Vector2 _vectorMousePosition;
         private float _verticalSpeed;
@@ -26,8 +27,13 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         private Vector2 actualInputVector;
         private Vector2 currentInputVector;
         private Vector2 smoothInputVelocity;
-
         private float smoothDampSpeed = .2f;
+
+        private float desiredRotationAngle;
+        private float currentRotationAngle;
+        private float smoothRotationVelocity;
+
+        private float deltaRotation = 0f;
 
         #region PUBLIC
         public void Disable()
@@ -68,6 +74,23 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         {
             currentInputVector = Vector2.SmoothDamp(currentInputVector, actualInputVector, ref smoothInputVelocity, smoothDampSpeed);
             _characterMovingController.DirectionWalk = currentInputVector;
+            
+            /*if (Mathf.Abs(actualRotationDelta) - Mathf.Abs(currentRotationDelta) < .5f)
+            {
+                currentRotationDelta = 0f;
+                actualRotationDelta = 0f;
+            }
+            else
+            {
+                currentRotationDelta = Mathf.SmoothDamp(currentRotationDelta, actualRotationDelta, ref smoothRotationVelocity, smoothDampSpeed);
+                _characterMovingController.RotationAngle = currentRotationDelta;
+            }*/
+                currentRotationAngle = Mathf.SmoothDamp(currentRotationAngle, desiredRotationAngle, ref smoothRotationVelocity, smoothDampSpeed);
+                _characterMovingController.RotationAngle = currentRotationAngle;
+                if (Mathf.Abs(Mathf.Abs(currentRotationAngle) - Mathf.Abs(desiredRotationAngle)) < 1f)
+                {
+                    desiredRotationAngle = 0f;
+                }   
         }
 
         private void FixedUpdate()
@@ -149,6 +172,21 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             float angle = Mathf.Atan2(offset.x, offset.y) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(0f, angle, 0f);
             transform.rotation = targetRotation;
+
+            if (Mathf.Abs(Mathf.Abs(deltaRotation) - Mathf.Abs(angle)) < DESIRED_ROTATION_THRESHOLD)
+            {
+                return;
+            }
+            if (angle < deltaRotation)
+            {
+                desiredRotationAngle = Mathf.Abs(Mathf.Abs(deltaRotation) - Mathf.Abs(angle)) * -1f;
+                deltaRotation = angle;
+            }
+            else
+            {
+                desiredRotationAngle = Mathf.Abs(Mathf.Abs(deltaRotation) - Mathf.Abs(angle));
+                deltaRotation = angle;
+            }
         }
 
         private void StealthHandler(bool isStealth)

@@ -56,7 +56,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private void Update()
         {
             _animator.SetFloat("RealMovingSpeed", _animatorController.CharacterController.CharacterMovingController.RealMovingSpeed);
-
+            _animator.SetFloat("RotationAngle", _animatorController.CharacterController.CharacterMovingController.RotationAngle);
             //Vector2 moveDirection = transform.InverseTransformDirection(_animatorController.CharacterController.CharacterMovingController.DirectionWalk);
             //_animator.SetFloat("DirectionX", Mathf.Round(moveDirection.x));
             //_animator.SetFloat("DirectionY", Mathf.Round(moveDirection.y));
