@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 
 namespace Zombieland.GameScene0.CameraModule
@@ -6,6 +7,7 @@ namespace Zombieland.GameScene0.CameraModule
     {
         private const string PREFAB_NAME = "CameraContainer";
         public Camera MainCamera { get; private set; }
+        public CinemachineVirtualCamera CinemachineVirtualCamera { get; private set; }
         public void Init(CameraData cameraData, Transform characterTransform)
         {
             GameObject prefab = Resources.Load<GameObject>(PREFAB_NAME);

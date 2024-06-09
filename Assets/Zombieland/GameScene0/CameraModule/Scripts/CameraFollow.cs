@@ -16,7 +16,7 @@ public class CameraFollow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CameraPivot0.position = Vector3.Lerp(CameraPivot0.position, _characterTransform.position, _cameraSmoothSpeed);
+        //CameraPivot0.position = Vector3.Lerp(CameraPivot0.position, _characterTransform.position, _cameraSmoothSpeed);
     }
 
 
