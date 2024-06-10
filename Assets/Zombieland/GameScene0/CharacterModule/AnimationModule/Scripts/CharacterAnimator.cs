@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using Zombieland.GameScene0.WeaponModule;
 
 namespace Zombieland.GameScene0.CharacterModule.AnimationModule
@@ -22,10 +23,12 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private bool _isWeaponAnimation = false;
         private Weapon _weapon;
         private FirePermiser _firePermiser;
+        private Rig _multiAimConstraintForBody;
 
         public void Init(IAnimationController animatorController)
         {
             _animator = GetComponent<Animator>();
+            _multiAimConstraintForBody = GetComponentInChildren<Rig>();
 
 #if UNITY_STANDALONE || UNITY_EDITOR
             _animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(PC_ANIMATOR);
@@ -76,7 +79,8 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
 
         private void WeaponChangeHandler(Weapon weapon)
-        { 
+        {
+            Debug.Log("Weapon Changed Handler is called");
             _weapon = weapon;
 
             _animator.SetBool("IsWrench", false);
@@ -87,22 +91,26 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
             if (!_isWeaponAnimation)
             {
+                Debug.Log($"is weapon animation = {_isWeaponAnimation} ");
                 ChangeWeaponAnimation();
             }
         }
 
         private void ChangeWeaponAnimation()
-        {            
+        {
+            Debug.Log("Received weapon  chenge command");
             switch (_weapon.WeaponData.Name)
             {
                 case "Wrench":
                     _animator.SetBool("IsWrench", true);
                     _isWeaponAnimation = true;
+                    _multiAimConstraintForBody.weight = 0f;
                     break;
 
                 case "Pistol":
                     _animator.SetBool("IsPistol", true);
                     _isWeaponAnimation = true;
+                    _multiAimConstraintForBody.weight = 1f;
                     break;
 
                 case "Shotgun":
@@ -113,11 +121,13 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
                 case "AK":
                     _animator.SetBool("IsAK", true);
                     _isWeaponAnimation = true;
+                    _multiAimConstraintForBody.weight = 1f;
                     break;
 
                 default:
                     _isWeaponAnimation = false;
                     _weapon = null;
+                    //_multiAimConstraintForBody.weight = 0f;
                     break;
             }
         }

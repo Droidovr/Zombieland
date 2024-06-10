@@ -17,7 +17,6 @@ namespace Zombieland.GameScene0.CharacterModule.AimingModule
         {
             _aimingController = aimingController;
             _aimingController.CharacterController.RootController.UIController.OnMouseMoved += MouseMoveHandler;
-            Cursor.lockState = CursorLockMode.Locked;
         }
         
         public void Disable()
