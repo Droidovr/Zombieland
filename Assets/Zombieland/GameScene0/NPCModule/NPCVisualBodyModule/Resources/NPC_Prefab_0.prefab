@@ -302,6 +302,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &4212382788147348520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9068117707744081846}
+  m_Layer: 9
+  m_Name: WeaponPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9068117707744081846
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4212382788147348520}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.132}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2335930480540675394}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5433415159157901211
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,6 +369,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &6709119470121952671
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7275945290377604379}
+  m_Layer: 9
+  m_Name: WeaponPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7275945290377604379
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6709119470121952671}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1872180118720221079}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7609731333721544519
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,6 +1033,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4203101951382538112}
+    - targetCorrespondingSourceObject: {fileID: 5606733912033780601, guid: c0a42dbde15814041906fd714b283e92,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7275945290377604379}
+    - targetCorrespondingSourceObject: {fileID: 8385327893941879212, guid: c0a42dbde15814041906fd714b283e92,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9068117707744081846}
     - targetCorrespondingSourceObject: {fileID: 8504309617613441659, guid: c0a42dbde15814041906fd714b283e92,
         type: 3}
       insertIndex: -1
@@ -1624,6 +1694,12 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.11845916, y: 0.29279202, z: 0.11845916}
   m_Center: {x: -0.012335281, y: 0.11100056, z: 0.014430923}
+--- !u!4 &1872180118720221079 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5606733912033780601, guid: c0a42dbde15814041906fd714b283e92,
+    type: 3}
+  m_PrefabInstance: {fileID: 6067561663861026030}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2191096321519418973 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5358185493486015155, guid: c0a42dbde15814041906fd714b283e92,
@@ -1745,6 +1821,12 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.14471164, y: 0.2919774, z: 0.14471164}
   m_Center: {x: -0.0018702355, y: 0.10865486, z: 0.028314136}
+--- !u!4 &2335930480540675394 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8385327893941879212, guid: c0a42dbde15814041906fd714b283e92,
+    type: 3}
+  m_PrefabInstance: {fileID: 6067561663861026030}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2463802859062257301 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8504309617613441659, guid: c0a42dbde15814041906fd714b283e92,
@@ -3026,7 +3108,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43d85160df03e954d9658d3640b5572d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponPoint: {fileID: 1941444110093342289}
+  LeftHandWeaponPoint: {fileID: 7275945290377604379}
+  RightHandWeaponPoint: {fileID: 1941444110093342289}
+  TeethWeaponPoint: {fileID: 9068117707744081846}
 --- !u!114 &2372892525540044807
 MonoBehaviour:
   m_ObjectHideFlags: 0

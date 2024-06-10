@@ -291,6 +291,37 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &3826572177477205079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5888550736745922929}
+  m_Layer: 0
+  m_Name: WeaponPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5888550736745922929
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3826572177477205079}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.021, z: 0.107}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7396545685039144682}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3946270411007907714
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,6 +593,37 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &7275155960083917705
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1905984897468536021}
+  m_Layer: 0
+  m_Name: WeaponPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1905984897468536021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7275155960083917705}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6860242959649520703}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1367797234013331270
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -666,6 +728,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4072910139818030228}
+    - targetCorrespondingSourceObject: {fileID: 5606733912033780601, guid: 91c82a72fc2517b4ba0405b6761cffbf,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1905984897468536021}
+    - targetCorrespondingSourceObject: {fileID: 8385327893941879212, guid: 91c82a72fc2517b4ba0405b6761cffbf,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5888550736745922929}
     - targetCorrespondingSourceObject: {fileID: 8504309617613441659, guid: 91c82a72fc2517b4ba0405b6761cffbf,
         type: 3}
       insertIndex: -1
@@ -1124,7 +1194,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43d85160df03e954d9658d3640b5572d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponPoint: {fileID: 2396582276186094035}
+  LeftHandWeaponPoint: {fileID: 1905984897468536021}
+  RightHandWeaponPoint: {fileID: 2396582276186094035}
+  TeethWeaponPoint: {fileID: 5888550736745922929}
 --- !u!114 &1766031649627240699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1139,9 +1211,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 4507083815442223927}
   _slider: {fileID: 7710181749957976398}
+--- !u!4 &6860242959649520703 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5606733912033780601, guid: 91c82a72fc2517b4ba0405b6761cffbf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1367797234013331270}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7277259392895538493 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8504309617613441659, guid: 91c82a72fc2517b4ba0405b6761cffbf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1367797234013331270}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7396545685039144682 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8385327893941879212, guid: 91c82a72fc2517b4ba0405b6761cffbf,
     type: 3}
   m_PrefabInstance: {fileID: 1367797234013331270}
   m_PrefabAsset: {fileID: 0}

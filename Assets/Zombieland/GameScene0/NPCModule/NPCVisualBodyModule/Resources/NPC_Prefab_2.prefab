@@ -110,6 +110,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2389075184101266982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6714976989997636120}
+  m_Layer: 9
+  m_Name: WeaponPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6714976989997636120
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2389075184101266982}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6910901794747572200}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2455493169680579540
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,6 +502,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7215341452353124074}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8517736486058904384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3244182240029157979}
+  m_Layer: 9
+  m_Name: WeaponPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3244182240029157979
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8517736486058904384}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.041, z: 0.128}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7384145348630265149}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8535857508676039861
 GameObject:
@@ -926,6 +988,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7837626560707559329}
+    - targetCorrespondingSourceObject: {fileID: 5606733912033780601, guid: 94207856198ec7249bf1d521447b63ec,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6714976989997636120}
+    - targetCorrespondingSourceObject: {fileID: 8385327893941879212, guid: 94207856198ec7249bf1d521447b63ec,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3244182240029157979}
     - targetCorrespondingSourceObject: {fileID: 8504309617613441659, guid: 94207856198ec7249bf1d521447b63ec,
         type: 3}
       insertIndex: -1
@@ -1384,7 +1454,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43d85160df03e954d9658d3640b5572d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponPoint: {fileID: 4167151918438932755}
+  LeftHandWeaponPoint: {fileID: 6714976989997636120}
+  RightHandWeaponPoint: {fileID: 4167151918438932755}
+  TeethWeaponPoint: {fileID: 3244182240029157979}
 --- !u!114 &5100531029274503904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1399,9 +1471,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 2195098602936206452}
   _slider: {fileID: 7921830649054652372}
+--- !u!4 &6910901794747572200 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5606733912033780601, guid: 94207856198ec7249bf1d521447b63ec,
+    type: 3}
+  m_PrefabInstance: {fileID: 1308131145403153553}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7215341452353124074 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8504309617613441659, guid: 94207856198ec7249bf1d521447b63ec,
+    type: 3}
+  m_PrefabInstance: {fileID: 1308131145403153553}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7384145348630265149 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8385327893941879212, guid: 94207856198ec7249bf1d521447b63ec,
     type: 3}
   m_PrefabInstance: {fileID: 1308131145403153553}
   m_PrefabAsset: {fileID: 0}

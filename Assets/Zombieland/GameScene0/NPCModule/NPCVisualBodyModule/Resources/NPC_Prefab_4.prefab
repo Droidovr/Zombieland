@@ -192,6 +192,37 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &4018350058646849065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5361431394651241905}
+  m_Layer: 0
+  m_Name: WeaponPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5361431394651241905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4018350058646849065}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3564715272379504390}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4649353176066499932
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,6 +475,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &7824262680886002523
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7626615845524138081}
+  m_Layer: 0
+  m_Name: WeaponPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7626615845524138081
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7824262680886002523}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 642286469270697427}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8752764651318562023
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,6 +728,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5671971897740085941}
+    - targetCorrespondingSourceObject: {fileID: 5606733912033780601, guid: 874d5765e3cd62d48b02d0c8279174e7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5361431394651241905}
+    - targetCorrespondingSourceObject: {fileID: 8385327893941879212, guid: 874d5765e3cd62d48b02d0c8279174e7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7626615845524138081}
     - targetCorrespondingSourceObject: {fileID: 8504309617613441659, guid: 874d5765e3cd62d48b02d0c8279174e7,
         type: 3}
       insertIndex: -1
@@ -712,9 +782,21 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8506057427242368443}
   m_SourcePrefab: {fileID: 100100000, guid: 874d5765e3cd62d48b02d0c8279174e7, type: 3}
+--- !u!4 &642286469270697427 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8385327893941879212, guid: 874d5765e3cd62d48b02d0c8279174e7,
+    type: 3}
+  m_PrefabInstance: {fileID: 8986782899118273663}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &770704757990260228 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8504309617613441659, guid: 874d5765e3cd62d48b02d0c8279174e7,
+    type: 3}
+  m_PrefabInstance: {fileID: 8986782899118273663}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3564715272379504390 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5606733912033780601, guid: 874d5765e3cd62d48b02d0c8279174e7,
     type: 3}
   m_PrefabInstance: {fileID: 8986782899118273663}
   m_PrefabAsset: {fileID: 0}
@@ -1099,7 +1181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8dd82e811f498c41b3aacd931f6a2a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visualSensorLight: {fileID: 0}
+  _visualSensorLight: {fileID: 4100340407361483119}
 --- !u!114 &8667075033977413484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1124,7 +1206,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43d85160df03e954d9658d3640b5572d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponPoint: {fileID: 8769442670675405722}
+  LeftHandWeaponPoint: {fileID: 5361431394651241905}
+  RightHandWeaponPoint: {fileID: 8769442670675405722}
+  TeethWeaponPoint: {fileID: 7626615845524138081}
 --- !u!114 &8506057427242368443
 MonoBehaviour:
   m_ObjectHideFlags: 0

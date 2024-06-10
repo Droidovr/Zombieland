@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8ae400e7a3cfe434ea10138af365a1c2
+guid: d9dc9d0d4592aae428aa2c0bcdc1d825
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: mixamo.com
+      name: Scary Clown Start Walking
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 20
+      lastFrame: 49
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -61,7 +61,7 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
@@ -432,18 +432,13 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: Zombie3(Clone)
+    - name: Zombie6(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Zombie_Bride_Female_01
-      parentName: Zombie3(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-      scale: {x: 1, y: 1, z: 1}
     - name: Armature
-      parentName: Zombie3(Clone)
+      parentName: Zombie6(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
       scale: {x: 1, y: 1, z: 1}
@@ -454,7 +449,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Spine
       parentName: Hips
-      position: {x: 2.2204418e-16, y: 0.11353296, z: 3.5527145e-15}
+      position: {x: 2.2204376e-16, y: 0.11353296, z: 1.776358e-15}
       rotation: {x: -0.052137434, y: -2.842171e-14, z: 0.000000012430526, w: 0.99863994}
       scale: {x: 1, y: 1, z: 1}
     - name: Spine1
@@ -692,6 +687,11 @@ ModelImporter:
       position: {x: 0.000000015201294, y: 0.08127283, z: 1.7462298e-10}
       rotation: {x: -0.000040769573, y: 0.00000029522923, z: -0.0022186355, w: 0.9999976}
       scale: {x: 1.0000011, y: 1.0000005, z: 1.0000005}
+    - name: Zombie_RiotCop_Male_01
+      parentName: Zombie6(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -704,7 +704,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 91c82a72fc2517b4ba0405b6761cffbf,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 18812edcb12707b4395729a3e50f5fb6,
     type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3

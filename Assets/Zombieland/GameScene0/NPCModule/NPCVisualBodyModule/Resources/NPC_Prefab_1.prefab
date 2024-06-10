@@ -90,6 +90,37 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1225720157561000873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2302400298140026810}
+  m_Layer: 9
+  m_Name: WeaponPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2302400298140026810
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225720157561000873}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2587992815502540630}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2882519570610992101
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,6 +518,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &7084484154861498376
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2063518271991327635}
+  m_Layer: 9
+  m_Name: WeaponPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2063518271991327635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7084484154861498376}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -0, z: 0.121}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908347850118847875}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8130488433116571910
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,6 +978,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4902199137321629780}
+    - targetCorrespondingSourceObject: {fileID: 5606733912033780601, guid: 3fd4e2425cb7a854ab66bcacfd46adfe,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2302400298140026810}
+    - targetCorrespondingSourceObject: {fileID: 8385327893941879212, guid: 3fd4e2425cb7a854ab66bcacfd46adfe,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2063518271991327635}
     - targetCorrespondingSourceObject: {fileID: 8504309617613441659, guid: 3fd4e2425cb7a854ab66bcacfd46adfe,
         type: 3}
       insertIndex: -1
@@ -969,6 +1039,18 @@ PrefabInstance:
 --- !u!4 &1738419703747696212 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8504309617613441659, guid: 3fd4e2425cb7a854ab66bcacfd46adfe,
+    type: 3}
+  m_PrefabInstance: {fileID: 7936885194909441071}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1908347850118847875 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8385327893941879212, guid: 3fd4e2425cb7a854ab66bcacfd46adfe,
+    type: 3}
+  m_PrefabInstance: {fileID: 7936885194909441071}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2587992815502540630 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5606733912033780601, guid: 3fd4e2425cb7a854ab66bcacfd46adfe,
     type: 3}
   m_PrefabInstance: {fileID: 7936885194909441071}
   m_PrefabAsset: {fileID: 0}
@@ -1399,7 +1481,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43d85160df03e954d9658d3640b5572d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponPoint: {fileID: 4156234472570150272}
+  LeftHandWeaponPoint: {fileID: 2302400298140026810}
+  RightHandWeaponPoint: {fileID: 4156234472570150272}
+  TeethWeaponPoint: {fileID: 2063518271991327635}
 --- !u!114 &8830848638698700127
 MonoBehaviour:
   m_ObjectHideFlags: 0
