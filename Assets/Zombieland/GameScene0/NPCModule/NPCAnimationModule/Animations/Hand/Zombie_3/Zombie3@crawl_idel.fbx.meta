@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 457dc8a0d1df89445ad834c7fc224058
+guid: 9540be3dc22240e40b8de5ac2e50fccf
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -19,7 +19,12 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'Scene' has import animation warnings that might
+      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
+      retargeting quality.\n\t'Spine2' has translation animation that will be discarded.\n\t'RightShoulder'
+      has translation animation that will be discarded.\n\t'RightHandIndex2' has
+      translation animation that will be discarded.\n\t'LeftShoulder' has translation
+      animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -33,7 +38,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: crawl_idel
+      name: crawl_idle2
       takeName: Scene
       internalID: -623603649343465320
       firstFrame: 1

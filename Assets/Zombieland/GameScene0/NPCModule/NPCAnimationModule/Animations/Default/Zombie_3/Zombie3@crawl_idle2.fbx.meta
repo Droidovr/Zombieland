@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5521a7b94af8f6d41beac98192646791
+guid: 93964237b8581df439f5317fa85b4eb5
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -21,9 +21,10 @@ ModelImporter:
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Scene' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'RightShoulder' has translation animation that will
-      be discarded.\n\t'RightHandIndex2' has translation animation that will be discarded.\n\t'LeftShoulder'
-      has translation animation that will be discarded.\n"
+      retargeting quality.\n\t'Spine2' has translation animation that will be discarded.\n\t'RightShoulder'
+      has translation animation that will be discarded.\n\t'RightHandIndex2' has
+      translation animation that will be discarded.\n\t'LeftShoulder' has translation
+      animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -64,7 +65,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1
+      additiveReferencePoseFrame: 0.9
     isReadable: 1
   meshes:
     lODScreenPercentages: []
