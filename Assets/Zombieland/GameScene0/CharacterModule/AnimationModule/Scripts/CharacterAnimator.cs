@@ -182,6 +182,10 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         private void DestroyWeaponPrefabHandler()
         {
+            _animator.SetBool("IsWrench", false);
+            _animator.SetBool("IsPistol", false);
+            _animator.SetBool("IsShotgun", false);
+            _animator.SetBool("IsAK", false);
             OnAnimationDestroyWeapon?.Invoke();
         }
 
