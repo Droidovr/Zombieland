@@ -27,9 +27,10 @@ namespace Zombieland.GameScene0.RobotsManagerModule
             ActiveRobotControllers.Remove(robotController);
         }
 
+
         protected override void CreateHelpersScripts()
         {
-
+            // This controller doesn’t have any helpers scripts at the moment.
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)

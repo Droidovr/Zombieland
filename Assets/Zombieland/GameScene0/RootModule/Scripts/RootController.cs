@@ -5,6 +5,7 @@ using Zombieland.GameScene0.EnvironmentModule;
 using Zombieland.GameScene0.GameDataModule;
 using Zombieland.GameScene0.GlobalSoundModule;
 using Zombieland.GameScene0.NPCManagerModule;
+using Zombieland.GameScene0.RobotsManagerModule;
 using Zombieland.GameScene0.UIModule;
 
 namespace Zombieland.GameScene0.RootModule
@@ -18,6 +19,7 @@ namespace Zombieland.GameScene0.RootModule
         public ICameraController CameraController { get; private set; }
         public INPCManagerController NPCManagerController { get; private set; }
         public IGlobalSoundController GlobalSoundController { get; private set; }
+        public IRobotsManagerController RobotsManagerController { get; private set; }
 
         public RootController(IController parentController, List<IController> requiredControllers) : base(
             parentController, requiredControllers)
@@ -39,14 +41,16 @@ namespace Zombieland.GameScene0.RootModule
             CameraController = new CameraController(this, new List<IController> {(IController)CharacterController});
             NPCManagerController = new NPCManagerController(this, new List<IController> { (IController)EnvironmentController });
             GlobalSoundController = new GlobalSoundController(this, new List<IController> { (IController)EnvironmentController, (IController)CharacterController, (IController)NPCManagerController });
+            RobotsManagerController = new RobotsManagerController(this, new List<IController> { (IController)EnvironmentController });
 
             subsystemsControllers.Add((IController) CharacterController);
             subsystemsControllers.Add((IController) GameDataController);
             subsystemsControllers.Add((IController) EnvironmentController);
             subsystemsControllers.Add((IController) UIController);
             subsystemsControllers.Add((IController) CameraController);
-            subsystemsControllers.Add ((IController) NPCManagerController);
-            subsystemsControllers.Add((IController)GlobalSoundController);
+            subsystemsControllers.Add((IController) NPCManagerController);
+            subsystemsControllers.Add((IController) GlobalSoundController);
+            subsystemsControllers.Add((IController) RobotsManagerController);
         }
     }
 }

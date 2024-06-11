@@ -5,6 +5,7 @@ using Zombieland.GameScene0.GameDataModule;
 using Zombieland.GameScene0.UIModule;
 using Zombieland.GameScene0.NPCManagerModule;
 using Zombieland.GameScene0.GlobalSoundModule;
+using Zombieland.GameScene0.RobotsManagerModule;
 
 namespace Zombieland.GameScene0.RootModule
 {
@@ -18,5 +19,6 @@ namespace Zombieland.GameScene0.RootModule
         ICameraController CameraController { get; }
         INPCManagerController NPCManagerController { get; }
         IGlobalSoundController GlobalSoundController { get; }
+        IRobotsManagerController RobotsManagerController { get; }
     }
 }
