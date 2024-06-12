@@ -34,6 +34,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         private float smoothRotationVelocity;
 
         private float deltaRotation = 0f;
+        private Vector3 initialCameraDirection;
 
         #region PUBLIC
         public void Disable()
@@ -70,6 +71,12 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         #endregion PUBLIC
 
         #region MONOBEHAVIOUR
+        private void Start()
+        {
+            initialCameraDirection = _characterMovingController.CharacterController.RootController.CameraController.PlayerCamera.transform.forward;
+            initialCameraDirection.y = 0;
+        }
+
         private void Update()
         {
             currentInputVector = Vector2.SmoothDamp(currentInputVector, actualInputVector, ref smoothInputVelocity, smoothDampSpeed);
@@ -167,11 +174,13 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void CalculeteRotation()
         {
-            Vector2 centerScreen = new Vector2(Screen.width / 2f, Screen.height / 2f);
+            /*Vector2 centerScreen = new Vector2(Screen.width / 2f, Screen.height / 2f);
             Vector2 offset = _vectorMousePosition - centerScreen;
-            float angle = Mathf.Atan2(offset.x, offset.y) * Mathf.Rad2Deg;
-            Quaternion targetRotation = Quaternion.Euler(0f, angle, 0f);
-            transform.rotation = targetRotation;
+            float angle = Mathf.Atan2(offset.x, offset.y) * Mathf.Rad2Deg;*/
+            float angle = Vector3.Angle(initialCameraDirection, transform.forward);
+            Vector3 cameraForward = _characterMovingController.CharacterController.RootController.CameraController.PlayerCamera.transform.forward;
+            cameraForward.y = 0;
+            transform.rotation = Quaternion.LookRotation(cameraForward);
 
             if (Mathf.Abs(Mathf.Abs(deltaRotation) - Mathf.Abs(angle)) < DESIRED_ROTATION_THRESHOLD)
             {

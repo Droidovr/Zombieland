@@ -10,6 +10,7 @@ namespace Zombieland.GameScene0.VisualBodyModule
         event Action OnWeaponInSceneReady;
 
         GameObject CharacterInScene { get; }
+        Transform CharacterCameraFollow { get; }
         GameObject WeaponInScene { get; }
         List<GameObject> SensorTriggersGameobject { get; }
         ICharacterController CharacterController { get; }

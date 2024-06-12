@@ -10,6 +10,7 @@ namespace Zombieland.GameScene0.VisualBodyModule
         public event Action OnWeaponInSceneReady;
 
         public GameObject CharacterInScene { get; private set; }
+        public Transform CharacterCameraFollow { get; private set; }
         public GameObject WeaponInScene { get; private set; }
         public List<GameObject> SensorTriggersGameobject { get; private set; }
         public ICharacterController CharacterController {  get; private set; }
@@ -57,6 +58,7 @@ namespace Zombieland.GameScene0.VisualBodyModule
         {
             CharacterInScene = _createCharacterGameobject.CreateCharacter(Vector3.zero, Quaternion.identity);
             _characterWeaponPoint = GameObject.Find("CharacterWeaponPoint").transform;
+            CharacterCameraFollow = GameObject.Find("CameraFollowPoint").transform;
             
             CharacterInScene.SetActive(false);
         }

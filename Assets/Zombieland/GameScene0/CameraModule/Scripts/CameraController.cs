@@ -12,7 +12,7 @@ namespace Zombieland.GameScene0.CameraModule
         private InitializerCamera _initializerCamera;
 
         public Camera PlayerCamera { get; private set; }
-        public CinemachineVirtualCamera CinemachineVirtualCamera { get; private set; }
+        public CinemachineFreeLook CinemachineVirtualCamera { get; private set; }
 
         public CameraController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
@@ -21,7 +21,7 @@ namespace Zombieland.GameScene0.CameraModule
 
         protected override void CreateHelpersScripts()
         {
-            CreateCameraObject(_rootController.CharacterController.VisualBodyController.CharacterInScene.transform);
+            CreateCameraObject(_rootController.CharacterController.VisualBodyController.CharacterCameraFollow);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
@@ -29,11 +29,11 @@ namespace Zombieland.GameScene0.CameraModule
             // This controller doesn’t have any subsystems at the moment.
         }
 
-        private void CreateCameraObject(Transform characterTransform)
+        private void CreateCameraObject(Transform cameraFollow)
         {
             _initializerCamera = new InitializerCamera();
             var cameraData = _rootController.GameDataController.GetData<CameraData>("CameraData");
-            _initializerCamera.Init(cameraData, characterTransform);
+            _initializerCamera.Init(cameraData, cameraFollow);
             PlayerCamera = _initializerCamera.MainCamera;
         }
 
