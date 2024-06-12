@@ -90,7 +90,7 @@
         "Z": 175.0
     }
   },
-    {
+  {
     "NpcJsonFileName": "NPC_JSON_6",
     "SpawnPosition": {
       "X": -34.0,
@@ -101,6 +101,19 @@
         "X":-0.0,
         "Y": 0.0,
         "Z": 140.0
+    }
+  },
+  {
+    "NpcJsonFileName": "NPC_JSON_7",
+    "SpawnPosition": {
+      "X": 13.0,
+      "Y": 0.0,
+      "Z": 30.0
+    },
+    "PatrolPoint": {
+        "X": 33.0,
+        "Y": 0.0,
+        "Z": 70.0
     }
   }
 ]
