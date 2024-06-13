@@ -43,6 +43,9 @@ namespace Zombieland
 
             - 6  Для создания регдола - можно использовать плагин Ragdoll Helper.
             Для открытия окна настройки Ragdoll Helper - открываем в меню Windows -> BzSoft -> Ragdoll Helper
+
+            - 7 Объемный 3D звук - https://valvesoftware.github.io/steam-audio/#learn-more
+            Как пользовать - видеоурок на ютубе - https://www.youtube.com/watch?v=10WhZdLK7zA
             */
     }
 }

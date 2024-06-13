@@ -9,6 +9,9 @@
     "Speed":2.0,
     "StopDistance":1.0,
     "HearingDistance":5.0,
+    "VisualAngle":90.0,
+    "VisualDistance":10.0,
+    "WeaponPoint":"RightHand",
     "NPCEquipmentSlotDatas":
     [
         {

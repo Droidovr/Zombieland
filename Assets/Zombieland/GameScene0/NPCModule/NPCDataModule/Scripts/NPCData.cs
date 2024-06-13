@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Zombieland.GameScene0.NPCManagerModule;
 using Zombieland.GameScene0.NPCModule.NPCEquipmentModule;
+using Zombieland.GameScene0.NPCModule.NPCVisualBodyModule;
 
 namespace Zombieland.GameScene0.NPCModule.NPCDataModule
 {
@@ -20,8 +21,10 @@ namespace Zombieland.GameScene0.NPCModule.NPCDataModule
 
         public float Speed { get; set; }
         public float StopDistance { get; set; }
-
         public float HearingDistance { get; set; }
+        public float VisualAngle { get; set; }
+        public float VisualDistance { get; set; }
+        public WeaponPoint WeaponPoint { get; set; }
 
         public List<NPCEquipmentSlotData> NPCEquipmentSlotDatas { get; set; }
         public int DefaultSlotNumber { get; set; }

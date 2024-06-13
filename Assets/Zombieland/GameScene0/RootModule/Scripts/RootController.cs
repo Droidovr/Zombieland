@@ -3,6 +3,7 @@ using Zombieland.GameScene0.CameraModule;
 using Zombieland.GameScene0.CharacterModule;
 using Zombieland.GameScene0.EnvironmentModule;
 using Zombieland.GameScene0.GameDataModule;
+using Zombieland.GameScene0.GlobalSoundModule;
 using Zombieland.GameScene0.NPCManagerModule;
 using Zombieland.GameScene0.UIModule;
 
@@ -16,6 +17,7 @@ namespace Zombieland.GameScene0.RootModule
         public IUIController UIController { get; private set; }
         public ICameraController CameraController { get; private set; }
         public INPCManagerController NPCManagerController { get; private set; }
+        public IGlobalSoundController GlobalSoundController { get; private set; }
 
         public RootController(IController parentController, List<IController> requiredControllers) : base(
             parentController, requiredControllers)
@@ -36,6 +38,7 @@ namespace Zombieland.GameScene0.RootModule
             UIController = new UIController(this, null);
             CameraController = new CameraController(this, new List<IController> {(IController)CharacterController});
             NPCManagerController = new NPCManagerController(this, new List<IController> { (IController)EnvironmentController });
+            GlobalSoundController = new GlobalSoundController(this, new List<IController> { (IController)EnvironmentController, (IController)CharacterController, (IController)NPCManagerController });
 
             subsystemsControllers.Add((IController) CharacterController);
             subsystemsControllers.Add((IController) GameDataController);
@@ -43,6 +46,7 @@ namespace Zombieland.GameScene0.RootModule
             subsystemsControllers.Add((IController) UIController);
             subsystemsControllers.Add((IController) CameraController);
             subsystemsControllers.Add ((IController) NPCManagerController);
+            subsystemsControllers.Add((IController)GlobalSoundController);
         }
     }
 }
