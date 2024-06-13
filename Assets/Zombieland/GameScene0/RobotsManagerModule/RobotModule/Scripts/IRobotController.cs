@@ -1,4 +1,5 @@
 using Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotDataModule;
+using Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotVisualBodyModule;
 
 namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule
 {
@@ -7,5 +8,6 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule
         IRobotsManagerController RobotsManagerController { get; }
         RobotSpawnData RobotSpawnData { get; }
         IRobotDataController RobotDataController { get; }
+        IRobotVisualBodyController RobotVisualBodyController { get; }
     }
 }

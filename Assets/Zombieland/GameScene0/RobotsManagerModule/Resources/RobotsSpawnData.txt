@@ -1,15 +1,15 @@
 [
   {
-    "NpcJsonFileName": "ROBOT_JSON_0",
+    "RobotJsonFileName": "ROBOT_JSON_0",
     "SpawnPosition": {
-      "X": 23.0,
+      "X": 9.5,
       "Y": 0.0,
-      "Z": 43.0
+      "Z": -3.5
     },
     "PatrolPoint": {
-        "X": 60.0,
+        "X": 10.0,
         "Y": 0.0,
-        "Z": 95.0
+        "Z": 22.5
     }
   }
 ]

@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using UnityEngine;
+using Zombieland.GameScene0.NPCManagerModule;
+using Zombieland.GameScene0.NPCModule;
 using Zombieland.GameScene0.RobotsManagerModule.RobotModule;
 using Zombieland.GameScene0.RootModule;
 
@@ -35,8 +38,9 @@ namespace Zombieland.GameScene0.RobotsManagerModule
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
-            var robotsSpawnDataList = RootController.GameDataController.GetData<List<RobotSpawnData>>("RobotsSpawnData");
-            foreach (var robotSpawnData in robotsSpawnDataList)
+            List<RobotSpawnData> robotsSpawnDataList = RootController.GameDataController.GetData<List<RobotSpawnData>>("RobotsSpawnData");
+            
+            foreach (RobotSpawnData robotSpawnData in robotsSpawnDataList)
             {
                 IRobotController robotController = new RobotController(this, null, robotSpawnData);
                 subsystemsControllers.Add((IController)robotController);

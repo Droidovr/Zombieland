@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotDataModule;
+using Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotVisualBodyModule;
 
 
 namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule
@@ -9,6 +10,7 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule
         public IRobotsManagerController RobotsManagerController { get; private set; }
         public RobotSpawnData RobotSpawnData { get; private set; }
         public IRobotDataController RobotDataController { get; private set; }
+        public IRobotVisualBodyController RobotVisualBodyController { get; private set; }
 
         public RobotController(IController parentController, List<IController> requiredControllers, RobotSpawnData robotSpawnData) : base(parentController, requiredControllers)
         {
@@ -25,6 +27,9 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule
         {
             RobotDataController = new RobotDataController(this, null);
             subsystemsControllers.Add((IController)RobotDataController);
+
+            RobotVisualBodyController = new RobotVisualBodyController(this, new List<IController> { (IController)RobotsManagerController.RootController.EnvironmentController });
+            subsystemsControllers.Add( (IController)RobotVisualBodyController);
         }
     }
 }

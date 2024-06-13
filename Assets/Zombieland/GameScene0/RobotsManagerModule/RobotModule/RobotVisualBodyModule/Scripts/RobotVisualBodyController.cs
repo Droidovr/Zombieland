@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Zombieland.GameScene0.NPCModule.NPCVisualBodyModule;
 
 
 
@@ -18,6 +17,7 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotVisualBodyM
 
 
         private CreateRobotPrefab _createRobotPrefab;
+        private RobotHealthBar _robotHealthBar;
 
         public RobotVisualBodyController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
@@ -29,6 +29,8 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotVisualBodyM
         {
             CreateRobotGameobject();
 
+            _robotHealthBar = RobotInScene.GetComponent<RobotHealthBar>();
+            _robotHealthBar.Init(this);
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
