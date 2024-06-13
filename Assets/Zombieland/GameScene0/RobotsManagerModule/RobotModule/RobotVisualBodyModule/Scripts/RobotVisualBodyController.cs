@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
 namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotVisualBodyModule
 {
     public class RobotVisualBodyController : Controller, IRobotVisualBodyController
@@ -28,6 +27,7 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotVisualBodyM
         protected override void CreateHelpersScripts()
         {
             CreateRobotGameobject();
+            SetTriggersOnRobot();
 
             _robotHealthBar = RobotInScene.GetComponent<RobotHealthBar>();
             _robotHealthBar.Init(this);
@@ -43,6 +43,12 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotVisualBodyM
         {
             RobotInScene = _createRobotPrefab.CreateRobot(this, Vector3.zero, Quaternion.identity);
             RobotInScene.SetActive(false);
+        }
+
+        private void SetTriggersOnRobot()
+        {
+            GertterTriggers gertterTriggers = new GertterTriggers(this);
+            SensorTriggersGameobject = gertterTriggers.GetSensorTriggers();
         }
     }
 }

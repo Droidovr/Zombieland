@@ -48,7 +48,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
         private void MovingHandler(float speed, bool isMove)
         {
             _animator.SetBool("IsMove", isMove);
-            //_animator.SetFloat("Speed", speed);
         }
 
         private void WeaponChangeHandler(Weapon weapon)
@@ -101,7 +100,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCAnimationModule
             if (_nPCAnimatorController.NPCController.NPCVisualBodyController.WeaponInScene != null)
             {
                 _animator.SetBool("IsAttack", isFire);
-                //OnAnimationAttack?.Invoke(isFire);
             }
         }
 

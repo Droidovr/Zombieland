@@ -2,7 +2,7 @@
     "Name":"Robot",
     "ID":"Robot0",
     "PrefabName":"Graber_Prefab",
-    "NameAnimatorControllerPC":"",
+    "NameAnimatorControllerPC":"GraberAnimator",
     "NameAnimatorControllerMobile":"",
     "MaxHealth":100.0,
     "CurrentHealth":100.0,

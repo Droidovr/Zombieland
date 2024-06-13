@@ -14,7 +14,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
         private UnityEngine.CharacterController _unityCharacterController;
         private NavMeshAgent _navMeshAgent;
         private INPCMovingController _nPCMovingController;
-        public bool _isActive;
+        private bool _isActive;
         private Vector2 _velocity;
         private Vector2 _smoothDeltaPosition;
 
