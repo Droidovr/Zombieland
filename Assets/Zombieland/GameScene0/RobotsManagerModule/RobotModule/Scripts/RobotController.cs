@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAIModule;
 using Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAnimationModule;
 using Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotBuffDebuffModule;
 using Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotDataModule;
@@ -23,6 +24,7 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule
         public IRobotTakeDamageController RobotTakeDamageController { get; private set; }
         public IRobotBuffDebuffController RobotBuffDebuffController { get; private set; }
         public IRobotImpactableSensorController RobotImpactableSensorController { get; private set; }
+        public IRobotAIController RobotAIController { get; private set; }
 
         public RobotController(IController parentController, List<IController> requiredControllers, RobotSpawnData robotSpawnData) : base(parentController, requiredControllers)
         {
@@ -41,7 +43,7 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule
             subsystemsControllers.Add((IController)RobotDataController);
 
             RobotVisualBodyController = new RobotVisualBodyController(this, new List<IController> { (IController)RobotsManagerController.RootController.EnvironmentController });
-            subsystemsControllers.Add( (IController)RobotVisualBodyController);
+            subsystemsControllers.Add((IController)RobotVisualBodyController);
 
             RobotSpawnController = new RobotSpawnController(this, new List<IController> { (IController)RobotDataController, (IController)RobotVisualBodyController });
             subsystemsControllers.Add((IController)RobotSpawnController);
@@ -60,6 +62,9 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule
 
             RobotImpactableSensorController = new RobotImpactableSensorController(this, new List<IController> { (IController)RobotVisualBodyController });
             subsystemsControllers.Add((IController)RobotImpactableSensorController);
+
+            RobotAIController = new RobotAIController(this, new List<IController> { (IController)RobotVisualBodyController, (IController)RobotMovingController });
+            subsystemsControllers.Add((IController)RobotAIController);
         }
     }
 }

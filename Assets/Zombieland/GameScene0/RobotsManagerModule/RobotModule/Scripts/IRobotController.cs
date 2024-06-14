@@ -1,3 +1,4 @@
+using Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAIModule;
 using Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAnimationModule;
 using Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotBuffDebuffModule;
 using Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotDataModule;
@@ -21,5 +22,6 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule
         IRobotTakeDamageController RobotTakeDamageController { get; }
         IRobotBuffDebuffController RobotBuffDebuffController { get; }
         IRobotImpactableSensorController RobotImpactableSensorController { get; }
+        IRobotAIController RobotAIController { get; }
     }
 }
