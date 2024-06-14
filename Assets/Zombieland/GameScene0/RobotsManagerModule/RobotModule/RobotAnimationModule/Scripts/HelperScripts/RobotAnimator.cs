@@ -32,13 +32,14 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAnimationMo
             // _nPCAnimatorController.NPCController.NPCAIController.OnFire += AIFireHandler;
 
             // Test
-            Vector3 patrolPoint = new Vector3
-                (
-                    _robotAnimationController.RobotController.RobotSpawnData.PatrolPoint.X,
-                    _robotAnimationController.RobotController.RobotSpawnData.PatrolPoint.Y,
-                    _robotAnimationController.RobotController.RobotSpawnData.PatrolPoint.Z
-                );
-            GetComponent<NavMeshAgent>().SetDestination(patrolPoint);
+            //Vector3 patrolPoint = new Vector3
+            //    (
+            //        _robotAnimationController.RobotController.RobotSpawnData.PatrolPoint.X,
+            //        _robotAnimationController.RobotController.RobotSpawnData.PatrolPoint.Y,
+            //        _robotAnimationController.RobotController.RobotSpawnData.PatrolPoint.Z
+            //    );
+            //GetComponent<NavMeshAgent>().SetDestination(patrolPoint);
+            //GetComponent<NavMeshAgent>().SetDestination(new Vector3(9.5f, 0f, -3.5f));
         }
 
         public void Disable()

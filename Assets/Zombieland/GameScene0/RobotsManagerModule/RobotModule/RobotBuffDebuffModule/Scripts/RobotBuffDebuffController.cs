@@ -18,6 +18,9 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotBuffDebuffM
         public RobotBuffDebuffController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             RobotController = parentController as IRobotController;
+
+            Buffs = new Dictionary<string, IBuffDebuffCommand>();
+            Debuffs = new Dictionary<string, IBuffDebuffCommand>();
         }
 
         public override void Disable()

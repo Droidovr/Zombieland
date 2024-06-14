@@ -26,7 +26,7 @@ public class RobotPhysicMovingPC : MonoBehaviour, IRobotPhysicMoving
         _navMeshAgent.updateRotation = true;
 
         _robotMovingController = robotMovingController;
-        // _nPCMovingController.NPCController.NPCAnimationController.OnAnimatorMoveEvent += OnAnimatorMoveHandler;
+        _robotMovingController.RobotController.RobotAnimationController.OnAnimatorMoveEvent += OnAnimatorMoveHandler;
 
         _isActive = true;
     }
@@ -40,7 +40,7 @@ public class RobotPhysicMovingPC : MonoBehaviour, IRobotPhysicMoving
 
     public void Disable()
     {
-        // _nPCMovingController.NPCController.NPCAnimationController.OnAnimatorMoveEvent -= OnAnimatorMoveHandler;
+        _robotMovingController.RobotController.RobotAnimationController.OnAnimatorMoveEvent -= OnAnimatorMoveHandler;
     }
 
 
@@ -80,6 +80,17 @@ public class RobotPhysicMovingPC : MonoBehaviour, IRobotPhysicMoving
         if (deltaMagnitude > _navMeshAgent.radius / 2f)
         {
             _unityCharacterController.Move(_velocity * Time.deltaTime);
+        }
+    }
+
+    private void OnAnimatorMoveHandler(Vector3 animatorRootPosition)
+    {
+        if (_unityCharacterController.enabled)
+        {
+            Vector3 rootPosition = animatorRootPosition;
+            rootPosition.y = _navMeshAgent.nextPosition.y;
+            transform.position = rootPosition;
+            _navMeshAgent.nextPosition = rootPosition;
         }
     }
 
