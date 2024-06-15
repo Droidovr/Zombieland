@@ -113,6 +113,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             {
                 CalculeteRotation();
             }
+            
         }
         #endregion
 
@@ -181,6 +182,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             Vector3 cameraForward = _characterMovingController.CharacterController.RootController.CameraController.PlayerCamera.transform.forward;
             cameraForward.y = 0;
             transform.rotation = Quaternion.LookRotation(cameraForward);
+            //_characterMovingController.CharacterController.VisualBodyController.CharacterCameraFollow.rotation = Quaternion.LookRotation(cameraForward);
 
             if (Mathf.Abs(Mathf.Abs(deltaRotation) - Mathf.Abs(angle)) < DESIRED_ROTATION_THRESHOLD)
             {

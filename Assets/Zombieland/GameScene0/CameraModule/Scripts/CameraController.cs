@@ -12,7 +12,7 @@ namespace Zombieland.GameScene0.CameraModule
         private InitializerCamera _initializerCamera;
 
         public Camera PlayerCamera { get; private set; }
-        public CinemachineFreeLook CinemachineVirtualCamera { get; private set; }
+        public CinemachineVirtualCamera CinemachineVirtualCamera { get; private set; }
 
         public CameraController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {

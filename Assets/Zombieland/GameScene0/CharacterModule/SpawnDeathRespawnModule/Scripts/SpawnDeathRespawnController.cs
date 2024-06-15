@@ -47,6 +47,7 @@ namespace Zombieland.GameScene0.CharacterModule.SpawnDeathRespawnModule
             OnSpawn?.Invoke(spawnPosition, spawnQuaternion);
             CharacterController.VisualBodyController.CharacterInScene.transform.position = spawnPosition;
             CharacterController.VisualBodyController.CharacterInScene.transform.rotation = spawnQuaternion;
+            //CharacterController.VisualBodyController.CharacterCameraFollow.parent = null;
             CharacterController.VisualBodyController.CharacterInScene.SetActive(true);
         }
     }

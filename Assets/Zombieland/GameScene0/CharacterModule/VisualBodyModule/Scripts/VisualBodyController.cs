@@ -58,8 +58,8 @@ namespace Zombieland.GameScene0.VisualBodyModule
         {
             CharacterInScene = _createCharacterGameobject.CreateCharacter(Vector3.zero, Quaternion.identity);
             _characterWeaponPoint = GameObject.Find("CharacterWeaponPoint").transform;
-            CharacterCameraFollow = GameObject.Find("CameraFollowPoint").transform;
-            
+            CharacterCameraFollow = GameObject.Find("CameraTarget").transform;
+            //CharacterCameraFollow = GameObject.Instantiate(new GameObject("CameraFollow"), cameraFollow).transform;
             CharacterInScene.SetActive(false);
         }
 

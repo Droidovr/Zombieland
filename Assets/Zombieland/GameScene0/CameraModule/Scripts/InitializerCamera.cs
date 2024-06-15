@@ -7,12 +7,12 @@ namespace Zombieland.GameScene0.CameraModule
     {
         private const string PREFAB_NAME = "CameraCinemachine";
         public Camera MainCamera { get; private set; }
-        public CinemachineFreeLook CinemachineVirtualCamera { get; private set; }
+        public CinemachineVirtualCamera CinemachineVirtualCamera { get; private set; }
         public void Init(CameraData cameraData, Transform characterFollowTransform)
         {
             GameObject prefab = Resources.Load<GameObject>(PREFAB_NAME);
             GameObject cameraGO = GameObject.Instantiate(prefab);
-            CinemachineVirtualCamera = cameraGO.GetComponentInChildren<CinemachineFreeLook>();
+            CinemachineVirtualCamera = cameraGO.GetComponentInChildren<CinemachineVirtualCamera>();
             MainCamera = cameraGO.GetComponentInChildren<Camera>();
 
             CinemachineVirtualCamera.Follow = characterFollowTransform;
