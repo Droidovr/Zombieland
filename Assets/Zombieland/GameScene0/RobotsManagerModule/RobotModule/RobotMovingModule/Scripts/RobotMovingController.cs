@@ -9,8 +9,7 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotMovingModul
         public event Action<float, bool> OnMoving;
 
         public IRobotController RobotController { get; private set; }
-
-        private IRobotPhysicMoving _robotPhysicMoving;
+        public IRobotPhysicMoving RobotPhysicMoving { get; private set; }
 
 
         public RobotMovingController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
@@ -20,20 +19,20 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotMovingModul
 
         public void ActivateMoving(bool isActive)
         {
-            _robotPhysicMoving.ActivateMoving(isActive);
+            RobotPhysicMoving.ActivateMoving(isActive);
         }
 
 
         protected override void CreateHelpersScripts()
         {
 #if UNITY_STANDALONE// || UNITY_EDITOR
-            _robotPhysicMoving = RobotController.RobotVisualBodyController.RobotInScene.AddComponent<RobotPhysicMovingPC>();
+            RobotPhysicMoving = RobotController.RobotVisualBodyController.RobotInScene.AddComponent<RobotPhysicMovingPC>();
 #else
-            _robotPhysicMoving = RobotController.RobotVisualBodyController.RobotInScene.AddComponent<RobotPhysicMovingMobile>();
+            RobotPhysicMoving = RobotController.RobotVisualBodyController.RobotInScene.AddComponent<RobotPhysicMovingMobile>();
 #endif
 
-            _robotPhysicMoving.Init(this);
-            _robotPhysicMoving.OnMoving += MovingHandler;
+            RobotPhysicMoving.Init(this);
+            RobotPhysicMoving.OnMoving += MovingHandler;
         }
 
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)

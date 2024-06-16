@@ -8,6 +8,7 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotMovingModul
         event Action<float, bool> OnMoving;
 
         IRobotController RobotController { get; }
+        IRobotPhysicMoving RobotPhysicMoving { get; }
         void ActivateMoving(bool isActive);
     }
 }

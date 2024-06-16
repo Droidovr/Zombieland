@@ -1,4 +1,6 @@
 using System;
+using UnityEngine;
+
 
 
 namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotMovingModule
@@ -10,5 +12,6 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotMovingModul
         void Disable();
         void Init(IRobotMovingController robotMovingController);
         void ActivateMoving(bool isActive);
+        void Move(Vector3 animatorRootPosition);
     }
 }

@@ -44,7 +44,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
             _nPCMovingController.NPCController.NPCAnimationController.OnAnimatorMoveEvent -= OnAnimatorMoveHandler;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (!_isActive)
                 return;

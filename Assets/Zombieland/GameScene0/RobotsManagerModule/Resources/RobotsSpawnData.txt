@@ -2,9 +2,9 @@
   {
     "RobotJsonFileName": "ROBOT_JSON_0",
     "SpawnPosition": {
-      "X": 9.5,
+      "X": -14,
       "Y": 0.0,
-      "Z": -3.5
+      "Z": 110
     },
     "PatrolPoint": {
         "X": 10.0,

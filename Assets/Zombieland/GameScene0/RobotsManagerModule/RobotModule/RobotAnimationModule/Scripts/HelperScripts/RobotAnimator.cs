@@ -8,18 +8,20 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAnimationMo
 {
     public class RobotAnimator : MonoBehaviour
     {
-        public event Action<Vector3> OnAnimatorMoveEvent;
+        //public event Action<Vector3> OnAnimatorMoveEvent;
         public event Action<bool> OnAnimationAttack;
 
         private IRobotAnimationController _robotAnimationController;
         private Animator _animator;
         private bool _isWeaponAnimation = false;
         private Weapon _weapon;
+        private NavMeshAgent _navMeshAgent;
 
 
         public void Init(IRobotAnimationController robotAnimationController)
         {
             _animator = GetComponent<Animator>();
+            _navMeshAgent = GetComponent<NavMeshAgent>();
 
 #if UNITY_STANDALONE || UNITY_EDITOR
             _animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(robotAnimationController.RobotController.RobotDataController.RobotData.NameAnimatorControllerPC);
@@ -41,7 +43,10 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAnimationMo
 
         private void MovingHandler(float speed, bool isMove)
         {
-            _animator.SetBool("IsMove", isMove);
+            if (_animator.GetBool("IsMove") != isMove)
+            {
+                _animator.SetBool("IsMove", isMove);
+            }
         }
 
         private void AttackHandler()
@@ -62,7 +67,7 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAnimationMo
         {
             if (_animator.enabled)
             {
-                OnAnimatorMoveEvent?.Invoke(_animator.rootPosition);
+                _robotAnimationController.RobotController.RobotMovingController.RobotPhysicMoving.Move(_animator.rootPosition);
             }
         }
     }

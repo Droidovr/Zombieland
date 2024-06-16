@@ -12,7 +12,7 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAIModule
         private NavMeshAgent _navMeshAgent;
         private Vector3 _positionSpawn;
         private Vector3 _positionPatrol;
-        private bool isGoingToPositionSpawn = false;
+        private bool _isGoingToPositionSpawn = false;
         private bool _isInvokeStart;
 
 
@@ -53,14 +53,14 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAIModule
             {
                 if (!_navMeshAgent.pathPending && _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
                 {
-                    if (isGoingToPositionSpawn)
+                    if (_isGoingToPositionSpawn)
                     {
-                        isGoingToPositionSpawn = false;
+                        _isGoingToPositionSpawn = false;
                         _navMeshAgent.SetDestination(_positionPatrol);
                     }
                     else
                     {
-                        isGoingToPositionSpawn = true;
+                        _isGoingToPositionSpawn = true;
                         _navMeshAgent.SetDestination(_positionSpawn);
                     }
                 }
