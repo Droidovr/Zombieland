@@ -419,7 +419,7 @@ BlendTree:
   m_Name: BlendTree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: d261758b2c283b145b03f16ce0bbb159,
+    m_Motion: {fileID: -203655887218126122, guid: 42785c1201964324ab0d6732a389de90,
       type: 3}
     m_Threshold: 0.7
     m_Position: {x: 0, y: 0}
@@ -428,7 +428,7 @@ BlendTree:
     m_DirectBlendParameter: RealMovingSpeed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: d8481bc51bc79564188521142213655b,
+    m_Motion: {fileID: -203655887218126122, guid: 1c92291520f8d034392a0991b392c077,
       type: 3}
     m_Threshold: 2.1
     m_Position: {x: 0, y: 0}
@@ -1630,7 +1630,7 @@ BlendTree:
     m_DirectBlendParameter: RealMovingSpeed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 388253383ad988541b7046445128b154,
+    m_Motion: {fileID: -203655887218126122, guid: 97abddc5d802e1249b56d08a76b2bccd,
       type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
@@ -2289,7 +2289,7 @@ BlendTree:
   m_Name: BlendTree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: d6d13311e4e67f94da4846781dd83899,
+    m_Motion: {fileID: -203655887218126122, guid: 0c40e2e5319cda548a41e9b74679d246,
       type: 3}
     m_Threshold: 0.7
     m_Position: {x: 0, y: 0}
@@ -2298,7 +2298,7 @@ BlendTree:
     m_DirectBlendParameter: RealMovingSpeed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 6c7c6830f79808e49bf373532c3bd96f,
+    m_Motion: {fileID: -203655887218126122, guid: 1123d57c106657b48a8579347951c935,
       type: 3}
     m_Threshold: 2.1
     m_Position: {x: 0, y: 0}
@@ -2655,6 +2655,12 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   - m_Name: Attack
     m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: Footstep
+    m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0

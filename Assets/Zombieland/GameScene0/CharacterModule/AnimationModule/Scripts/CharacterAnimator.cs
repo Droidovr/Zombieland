@@ -25,6 +25,8 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private FirePermiser _firePermiser;
         private Rig _multiAimConstraintForBody;
 
+        private float _lastFootstep;
+
         public void Init(IAnimationController animatorController)
         {
             _animator = GetComponent<Animator>();
@@ -75,6 +77,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
             _animator.SetFloat("DirectionX", inputVector.x);
             _animator.SetFloat("DirectionY", inputVector.y);
+            StepHandler();
         }
 
 
@@ -191,7 +194,12 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         private void StepHandler()
         {
-            OnStep?.Invoke();
+            float footstep = _animator.GetFloat("Footstep");
+            if ((footstep > 0 && _lastFootstep <0) || (footstep < 0 && _lastFootstep > 0))
+            {
+                OnStep?.Invoke();
+            }
+            _lastFootstep = footstep;
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
 using Zombieland.GameScene0.UIModule;
@@ -35,6 +36,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private float deltaRotation = 0f;
         private Vector3 initialCameraDirection;
+        private int RAYCAST_LAYER_MASKS = Convert.ToInt32("0000001001111", 2);
 
         #region PUBLIC
         public void Disable()
@@ -112,6 +114,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             if (_vectorMousePosition.magnitude > MIN_VECTORMOVE_MAGITUDE)
             {
                 CalculeteRotation();
+                CalculateAimTarget();
             }
             
         }
@@ -197,6 +200,16 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             {
                 desiredRotationAngle = Mathf.Abs(Mathf.Abs(deltaRotation) - Mathf.Abs(angle));
                 deltaRotation = angle;
+            }
+        }
+
+        private void CalculateAimTarget()
+        {
+            Vector2 screenCentrePoint = new Vector2(Screen.width/2f, Screen.height/2f);
+            Ray ray = _characterMovingController.CharacterController.RootController.CameraController.PlayerCamera.ScreenPointToRay(screenCentrePoint);
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, 999f, RAYCAST_LAYER_MASKS))
+            {
+                _characterMovingController.CharacterController.VisualBodyController.CharacterAimTarget.position = hitInfo.point;
             }
         }
 
