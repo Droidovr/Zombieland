@@ -46,8 +46,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisualBodyModule
 
         private void CreateNPCGameobject()
         {
-            NPCInScene = _createNPCGameobject.CreateNPC(Vector3.zero, Quaternion.identity);
-            _nPCWeaponPoint = NPCInScene.GetComponent<NPCWeaponPoint>().WeaponPoint;
+            NPCInScene = _createNPCGameobject.CreateNPC(this, Vector3.zero, Quaternion.identity);
+            _nPCWeaponPoint = NPCInScene.GetComponent<NPCWeaponPoint>().GetWeaponPoint(this);
             NPCInScene.SetActive(false);
         }
 

@@ -47,10 +47,16 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCHearingModule
         private void CharacterSoundReactionHandler(IController controller)
         {
             if (!isActive)
-            { 
+            {
                 return;
             }
-            
+
+            if (_nPCHearingController.NPCAwarenessController.NPCController.NPCManagerController.RootController.CharacterController.CharacterDataController.CharacterData.IsDead)
+            {
+                ExitZonaDetect();
+                return;
+            }
+
             if (controller is ICharacterController characterController)
             {
                 float distance = Vector3.Distance
@@ -90,12 +96,6 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCHearingModule
             }
         }
 
-        private void ExitZonaDetect()
-        {
-            OnHearingDetect?.Invoke(_cashController, false);
-            _cashController = null;
-        }
-
         private void DrawCirclehandler(float arg1, bool arg2)
         {
             if (isActive)
@@ -121,5 +121,10 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCHearingModule
             _lineRenderer.SetPosition(_vertexCount, _lineRenderer.GetPosition(0));
         }
 
+        private void ExitZonaDetect()
+        {
+            OnHearingDetect?.Invoke(_cashController, false);
+            _cashController = null;
+        }
     }
 }

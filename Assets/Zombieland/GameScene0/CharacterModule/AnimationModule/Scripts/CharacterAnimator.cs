@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using Zombieland.GameScene0.WeaponModule;
 
 namespace Zombieland.GameScene0.CharacterModule.AnimationModule
@@ -22,10 +23,16 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private bool _isWeaponAnimation = false;
         private Weapon _weapon;
         private FirePermiser _firePermiser;
+        private Rig _multiAimConstraintForBody;
+
+        private GameObject _currentWeaponAimTarget;
+
+        private float _lastFootstep;
 
         public void Init(IAnimationController animatorController)
         {
             _animator = GetComponent<Animator>();
+            _multiAimConstraintForBody = GetComponentInChildren<Rig>();
 
 #if UNITY_STANDALONE || UNITY_EDITOR
             _animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(PC_ANIMATOR);
@@ -56,27 +63,30 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private void Update()
         {
             _animator.SetFloat("RealMovingSpeed", _animatorController.CharacterController.CharacterMovingController.RealMovingSpeed);
-
+            _animator.SetFloat("RotationAngle", _animatorController.CharacterController.CharacterMovingController.RotationAngle);
             //Vector2 moveDirection = transform.InverseTransformDirection(_animatorController.CharacterController.CharacterMovingController.DirectionWalk);
             //_animator.SetFloat("DirectionX", Mathf.Round(moveDirection.x));
             //_animator.SetFloat("DirectionY", Mathf.Round(moveDirection.y));
 
             Vector2 inputVector = _animatorController.CharacterController.CharacterMovingController.DirectionWalk;
 
-            if (inputVector.magnitude > 1)
+            /*if (inputVector.magnitude > 1)
             {
                 inputVector = inputVector.normalized;
-            }
+            }*/
 
-            inputVector = transform.InverseTransformDirection(inputVector);
+            //inputVector = transform.InverseTransformDirection(inputVector);
 
-            _animator.SetFloat("DirectionX", Mathf.Round(inputVector.x) * _animatorController.CharacterController.CharacterMovingController.RealMovingSpeed);
-            _animator.SetFloat("DirectionY", Mathf.Round(inputVector.y) * _animatorController.CharacterController.CharacterMovingController.RealMovingSpeed);
+            _animator.SetFloat("DirectionX", inputVector.x);
+            _animator.SetFloat("DirectionY", inputVector.y);
+            StepHandler();
         }
 
 
         private void WeaponChangeHandler(Weapon weapon)
-        { 
+        {
+            //_multiAimConstraintForBody.weight = 0;
+            Debug.Log("Weapon Changed Handler is called");
             _weapon = weapon;
 
             _animator.SetBool("IsWrench", false);
@@ -87,22 +97,26 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
             if (!_isWeaponAnimation)
             {
+                Debug.Log($"is weapon animation = {_isWeaponAnimation} ");
                 ChangeWeaponAnimation();
             }
         }
 
         private void ChangeWeaponAnimation()
-        {            
+        {
+            Debug.Log("Received weapon  chenge command");
             switch (_weapon.WeaponData.Name)
             {
                 case "Wrench":
                     _animator.SetBool("IsWrench", true);
                     _isWeaponAnimation = true;
+                    _multiAimConstraintForBody.weight = 0f;
                     break;
 
                 case "Pistol":
                     _animator.SetBool("IsPistol", true);
                     _isWeaponAnimation = true;
+                    _multiAimConstraintForBody.weight = 1f;
                     break;
 
                 case "Shotgun":
@@ -113,11 +127,13 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
                 case "AK":
                     _animator.SetBool("IsAK", true);
                     _isWeaponAnimation = true;
+                    _multiAimConstraintForBody.weight = 1f;
                     break;
 
                 default:
                     _isWeaponAnimation = false;
                     _weapon = null;
+                    //_multiAimConstraintForBody.weight = 0f;
                     break;
             }
         }
@@ -168,16 +184,31 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private void CreacteWeaponPrefabHandler()
         {
             OnAnimationCreateWeapon?.Invoke(_weapon.WeaponData.PrefabName);
+ /*           GameObject aim = transform.Find($"LeftHandTargetIK{_weapon.WeaponData.Name}").gameObject;
+            if (aim != null)
+            {
+                aim.SetActive(true);
+            }*/
         }
 
         private void DestroyWeaponPrefabHandler()
         {
+            _animator.SetBool("IsWrench", false);
+            _animator.SetBool("IsPistol", false);
+            _animator.SetBool("IsShotgun", false);
+            _animator.SetBool("IsAK", false);
             OnAnimationDestroyWeapon?.Invoke();
         }
 
         private void StepHandler()
         {
-            OnStep?.Invoke();
+            float footstep = _animator.GetFloat("Footstep");
+            if (Mathf.Abs(footstep) < .0001f) footstep = 0f;
+            if ((footstep > 0 && _lastFootstep <0) || (footstep < 0 && _lastFootstep > 0))
+            {
+                OnStep?.Invoke();
+            }
+            _lastFootstep = footstep;
         }
     }
 }

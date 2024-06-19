@@ -41,9 +41,8 @@ namespace Zombieland.GameScene0.NPCModule.NPCAwarenessModule.NPCHearingModule
 
         private void HearingDetectHandler(IController controller, bool isHearing)
         {
-            OnHearingDetectCharacter?.Invoke(controller, isHearing);
-
             IsHearingDetect = isHearing;
+            OnHearingDetectCharacter?.Invoke(controller, isHearing);
         }
     }
 }

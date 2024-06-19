@@ -48,7 +48,7 @@ MonoBehaviour:
   <CameraPivot0>k__BackingField: {fileID: 2221338316937860436}
   <CameraPivot1>k__BackingField: {fileID: 2076431605479839251}
   <MainCamera>k__BackingField: {fileID: 6749218387190233717}
-  _cameraSmoothSpeed: 0.125
+  _cameraSmoothSpeed: 0.2
 --- !u!1 &6803417498736509346
 GameObject:
   m_ObjectHideFlags: 0

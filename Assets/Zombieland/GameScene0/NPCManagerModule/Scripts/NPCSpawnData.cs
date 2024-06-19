@@ -9,6 +9,6 @@ namespace Zombieland.GameScene0.NPCManagerModule
     {
         public string NPCJsonFileName { get; set; } // Used for Load NpcData JSON
         public Vector3 SpawnPosition { get; set; }
-        public Vector3 PatrolPoint { get; set; }
+        public Vector3 PatrolPoint { get; set; } 
     }
 }

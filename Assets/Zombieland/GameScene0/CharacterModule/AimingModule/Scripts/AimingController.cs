@@ -14,6 +14,7 @@ namespace Zombieland.GameScene0.CharacterModule.AimingModule
         public AimingController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
             CharacterController = parentController as ICharacterController;
+            Cursor.lockState = CursorLockMode.Locked;
         }
         public Transform GetTarget()
         {

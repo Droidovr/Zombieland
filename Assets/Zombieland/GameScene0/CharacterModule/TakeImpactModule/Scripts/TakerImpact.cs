@@ -34,12 +34,14 @@ namespace Zombieland.GameScene0.CharacterModule.TakeImpactModule
                 }
             }
 
-            Debug.Log("HP Character: " + _characterController.CharacterDataController.CharacterData.HP);
+            //Debug.Log("HP Character: " + _characterController.CharacterDataController.CharacterData.HP);
 
-            //if (_characterController.CharacterDataController.CharacterData.HP <= 0)
-            //{
-            //    _characterController.CharacterDataController.CharacterData.IsDead = true;
-            //}
+            if (_characterController.CharacterDataController.CharacterData.HP < 0)
+            {
+                _characterController.CharacterDataController.CharacterData.IsDead = true;
+            }
+
+            //Debug.Log("IsDead Character: " + _characterController.CharacterDataController.CharacterData.IsDead);
         }
     }
 }

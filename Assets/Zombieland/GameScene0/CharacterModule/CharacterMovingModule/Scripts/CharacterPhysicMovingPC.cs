@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Zombieland.GameScene0.CharacterModule.CharacterDataModule;
 using Zombieland.GameScene0.UIModule;
@@ -11,6 +12,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         private const float MIN_VECTORMOVE_MAGITUDE = 0.1f;
         private const float DEFAULT_SPEED_MULTIPLIER = 1f;
         private const float FAST_SPEED_MULTIPLIER = 3f;
+        private const float DESIRED_ROTATION_THRESHOLD = 20f;
 
         private Vector2 _vectorMousePosition;
         private float _verticalSpeed;
@@ -23,6 +25,18 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private float _currentSpeed;
 
+        private Vector2 actualInputVector;
+        private Vector2 currentInputVector;
+        private Vector2 smoothInputVelocity;
+        private float smoothDampSpeed = .2f;
+
+        private float desiredRotationAngle;
+        private float currentRotationAngle;
+        private float smoothRotationVelocity;
+
+        private float deltaRotation = 0f;
+        private Vector3 initialCameraDirection;
+        private int RAYCAST_LAYER_MASKS = Convert.ToInt32("0000001001111", 2);
 
         #region PUBLIC
         public void Disable()
@@ -59,6 +73,35 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         #endregion PUBLIC
 
         #region MONOBEHAVIOUR
+        private void Start()
+        {
+            initialCameraDirection = _characterMovingController.CharacterController.RootController.CameraController.PlayerCamera.transform.forward;
+            initialCameraDirection.y = 0;
+        }
+
+        private void Update()
+        {
+            currentInputVector = Vector2.SmoothDamp(currentInputVector, actualInputVector, ref smoothInputVelocity, smoothDampSpeed);
+            _characterMovingController.DirectionWalk = currentInputVector;
+            
+            /*if (Mathf.Abs(actualRotationDelta) - Mathf.Abs(currentRotationDelta) < .5f)
+            {
+                currentRotationDelta = 0f;
+                actualRotationDelta = 0f;
+            }
+            else
+            {
+                currentRotationDelta = Mathf.SmoothDamp(currentRotationDelta, actualRotationDelta, ref smoothRotationVelocity, smoothDampSpeed);
+                _characterMovingController.RotationAngle = currentRotationDelta;
+            }*/
+                currentRotationAngle = Mathf.SmoothDamp(currentRotationAngle, desiredRotationAngle, ref smoothRotationVelocity, smoothDampSpeed);
+                _characterMovingController.RotationAngle = currentRotationAngle;
+                if (Mathf.Abs(Mathf.Abs(currentRotationAngle) - Mathf.Abs(desiredRotationAngle)) < 1f)
+                {
+                    desiredRotationAngle = 0f;
+                }   
+        }
+
         private void FixedUpdate()
         {
             if (!_isActive)
@@ -71,7 +114,9 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             if (_vectorMousePosition.magnitude > MIN_VECTORMOVE_MAGITUDE)
             {
                 CalculeteRotation();
+                CalculateAimTarget();
             }
+            
         }
         #endregion
 
@@ -87,17 +132,18 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void MovedHandler(Vector2 joystickPosition)
         {
+            actualInputVector = joystickPosition;
             int x = Mathf.RoundToInt(joystickPosition.x);
             int y = Mathf.RoundToInt(joystickPosition.y);
 
             Vector2 vectorMove = new Vector2(x, y);
 
-            if (Mathf.Abs(vectorMove.x) != 0f)
-            {
-                vectorMove.y = 0f;
-            }
+            //if (Mathf.Abs(vectorMove.x) != 0f)
+            //{
+            //    vectorMove.y = 0f;
+            //}
 
-            _characterMovingController.DirectionWalk = vectorMove;
+            //_characterMovingController.DirectionWalk = vectorMove;
         }
 
         private void MovedMouseHandler(Vector2 mousePosition)
@@ -124,7 +170,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
             float targetSpeed = Mathf.Clamp01(_characterMovingController.DirectionWalk.magnitude) *
                                 _characterMovingController.CharacterController.CharacterDataController.CharacterData.DesignMovingSpeed * _speedMultiplier;
 
-            _currentSpeed = Mathf.Lerp(_currentSpeed, targetSpeed, Time.deltaTime);
+            _currentSpeed = Mathf.Lerp(_currentSpeed, targetSpeed, Time.deltaTime * 5f);
 
             _characterMovingController.RealMovingSpeed = _currentSpeed;
         }
@@ -132,11 +178,39 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void CalculeteRotation()
         {
-            Vector2 centerScreen = new Vector2(Screen.width / 2f, Screen.height / 2f);
+            /*Vector2 centerScreen = new Vector2(Screen.width / 2f, Screen.height / 2f);
             Vector2 offset = _vectorMousePosition - centerScreen;
-            float angle = Mathf.Atan2(offset.x, offset.y) * Mathf.Rad2Deg;
-            Quaternion targetRotation = Quaternion.Euler(0f, angle, 0f);
-            transform.rotation = targetRotation;
+            float angle = Mathf.Atan2(offset.x, offset.y) * Mathf.Rad2Deg;*/
+            float angle = Vector3.Angle(initialCameraDirection, transform.forward);
+            Vector3 cameraForward = _characterMovingController.CharacterController.RootController.CameraController.PlayerCamera.transform.forward;
+            cameraForward.y = 0;
+            transform.rotation = Quaternion.LookRotation(cameraForward);
+            //_characterMovingController.CharacterController.VisualBodyController.CharacterCameraFollow.rotation = Quaternion.LookRotation(cameraForward);
+
+            if (Mathf.Abs(Mathf.Abs(deltaRotation) - Mathf.Abs(angle)) < DESIRED_ROTATION_THRESHOLD)
+            {
+                return;
+            }
+            if (angle < deltaRotation)
+            {
+                desiredRotationAngle = Mathf.Abs(Mathf.Abs(deltaRotation) - Mathf.Abs(angle)) * -1f;
+                deltaRotation = angle;
+            }
+            else
+            {
+                desiredRotationAngle = Mathf.Abs(Mathf.Abs(deltaRotation) - Mathf.Abs(angle));
+                deltaRotation = angle;
+            }
+        }
+
+        private void CalculateAimTarget()
+        {
+            Vector2 screenCentrePoint = new Vector2(Screen.width/2f, Screen.height/2f);
+            Ray ray = _characterMovingController.CharacterController.RootController.CameraController.PlayerCamera.ScreenPointToRay(screenCentrePoint);
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, 999f, RAYCAST_LAYER_MASKS))
+            {
+                _characterMovingController.CharacterController.VisualBodyController.CharacterAimTarget.position = hitInfo.point;
+            }
         }
 
         private void StealthHandler(bool isStealth)

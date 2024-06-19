@@ -3,12 +3,10 @@ using UnityEngine;
 namespace Zombieland.GameScene0.NPCModule.NPCVisualBodyModule
 {
     public class CreateNPCPrefab
-    {
-        private const string CHARACTER_PREFAB_NAME = "NPC_Prefab_0";
-
-        public GameObject CreateNPC(Vector3 spawnPosition, Quaternion spawnRotation)
+    { 
+        public GameObject CreateNPC(INPCVisualBodyController nPCVisualBodyController, Vector3 spawnPosition, Quaternion spawnRotation)
         {
-            GameObject prefab = Resources.Load<GameObject>(CHARACTER_PREFAB_NAME);
+            GameObject prefab = Resources.Load<GameObject>(nPCVisualBodyController.NPCController.NPCDataController.NPCData.PrefabName);
 
             return GameObject.Instantiate(prefab, spawnPosition, spawnRotation);
         }

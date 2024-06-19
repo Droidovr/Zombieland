@@ -32,7 +32,9 @@ namespace Zombieland.GameScene0.CharacterModule.SoundBurstModule.Scripts
             float mixerEffectsVolume;
             _soundBurstController.CharacterController.RootController.GlobalSoundController.MainAudioMixer.GetFloat("EffectsVolume", out mixerEffectsVolume);
             float adjustedVolume = AdjustVolume(clip, mixerEffectsVolume);
+            _audioSource.pitch = UnityEngine.Random.Range(.87f, 1.07f);
             _audioSource.PlayOneShot(clip, adjustedVolume);
+            
 
             OnSound?.Invoke();
         }
