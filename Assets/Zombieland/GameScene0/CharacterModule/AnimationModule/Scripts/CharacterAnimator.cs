@@ -195,6 +195,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private void StepHandler()
         {
             float footstep = _animator.GetFloat("Footstep");
+            if (Mathf.Abs(footstep) < .0001f) footstep = 0f;
             if ((footstep > 0 && _lastFootstep <0) || (footstep < 0 && _lastFootstep > 0))
             {
                 OnStep?.Invoke();
