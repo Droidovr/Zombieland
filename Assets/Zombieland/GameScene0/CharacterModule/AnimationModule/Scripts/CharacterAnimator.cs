@@ -25,6 +25,8 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private FirePermiser _firePermiser;
         private Rig _multiAimConstraintForBody;
 
+        private GameObject _currentWeaponAimTarget;
+
         private float _lastFootstep;
 
         public void Init(IAnimationController animatorController)
@@ -83,6 +85,7 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
 
         private void WeaponChangeHandler(Weapon weapon)
         {
+            //_multiAimConstraintForBody.weight = 0;
             Debug.Log("Weapon Changed Handler is called");
             _weapon = weapon;
 
@@ -181,6 +184,11 @@ namespace Zombieland.GameScene0.CharacterModule.AnimationModule
         private void CreacteWeaponPrefabHandler()
         {
             OnAnimationCreateWeapon?.Invoke(_weapon.WeaponData.PrefabName);
+ /*           GameObject aim = transform.Find($"LeftHandTargetIK{_weapon.WeaponData.Name}").gameObject;
+            if (aim != null)
+            {
+                aim.SetActive(true);
+            }*/
         }
 
         private void DestroyWeaponPrefabHandler()

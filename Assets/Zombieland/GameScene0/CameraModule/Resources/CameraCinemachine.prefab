@@ -1057,22 +1057,47 @@ PrefabInstance:
     - target: {fileID: 2260597837644790229, guid: 8ca05c48ba1af45419c460d006482047,
         type: 3}
       propertyPath: m_XDamping
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2260597837644790229, guid: 8ca05c48ba1af45419c460d006482047,
         type: 3}
       propertyPath: m_YDamping
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2260597837644790229, guid: 8ca05c48ba1af45419c460d006482047,
         type: 3}
       propertyPath: m_ZDamping
-      value: 0.5
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2260597837644790229, guid: 8ca05c48ba1af45419c460d006482047,
+        type: 3}
+      propertyPath: m_LookaheadSmoothing
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 2260597837644790229, guid: 8ca05c48ba1af45419c460d006482047,
         type: 3}
       propertyPath: m_TrackedObjectOffset.x
       value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2903718362068460805, guid: 8ca05c48ba1af45419c460d006482047,
+        type: 3}
+      propertyPath: m_Damping
+      value: 0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 2903718362068460805, guid: 8ca05c48ba1af45419c460d006482047,
+        type: 3}
+      propertyPath: m_Strategy
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2903718362068460805, guid: 8ca05c48ba1af45419c460d006482047,
+        type: 3}
+      propertyPath: m_SmoothingTime
+      value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2903718362068460805, guid: 8ca05c48ba1af45419c460d006482047,
+        type: 3}
+      propertyPath: m_CollideAgainst.m_Bits
+      value: 6144
       objectReference: {fileID: 0}
     - target: {fileID: 3245603521703332943, guid: 8ca05c48ba1af45419c460d006482047,
         type: 3}

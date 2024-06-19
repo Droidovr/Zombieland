@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &941425959371647585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7808037668446597312}
+  m_Layer: 0
+  m_Name: LeftHandTargetIKAK
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7808037668446597312
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941425959371647585}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.009141818, y: -0.9841096, z: -0.12771337, w: -0.123021245}
+  m_LocalPosition: {x: 0.035, y: -0.029, z: 0.111}
+  m_LocalScale: {x: 0.666667, y: 0.66666704, z: 0.66666687}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6413489101361493476}
+  m_LocalEulerAnglesHint: {x: -14.425, y: 165.379, z: 2.925}
 --- !u!1 &1129071548308613839
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +128,7 @@ GameObject:
   - component: {fileID: 8879274239722898233}
   - component: {fileID: 33388566484947076}
   m_Layer: 0
-  m_Name: LeftHandIKSecond
+  m_Name: LeftHandIKSecondPistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -370,13 +401,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3458296382738833157}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.449, y: 1.6, z: -0.191}
+  m_LocalRotation: {x: -0, y: -0.14840023, z: -0, w: 0.9889274}
+  m_LocalPosition: {x: 0.469, y: 1.6, z: -0.118}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2922435579147278452}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -17.068, z: 0}
 --- !u!1 &5077172670371357541
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,7 +418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3222846501210555372}
   m_Layer: 0
-  m_Name: LeftHandTargetIK
+  m_Name: LeftHandTargetIKPistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -401,13 +432,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5077172670371357541}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.009141818, y: -0.9841096, z: -0.12771337, w: -0.123021245}
-  m_LocalPosition: {x: 0.035, y: -0.029, z: 0.111}
+  m_LocalRotation: {x: 0.19146918, y: -0.8749143, z: -0.046868123, w: 0.44234374}
+  m_LocalPosition: {x: 0.078, y: 0.255, z: 0.02}
   m_LocalScale: {x: 0.666667, y: 0.66666704, z: 0.66666687}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6413489101361493476}
-  m_LocalEulerAnglesHint: {x: -14.425, y: 165.379, z: 2.925}
+  m_LocalEulerAnglesHint: {x: 5.013, y: 232.657, z: -22.207}
 --- !u!1 &5198403133852157230
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,6 +506,7 @@ Transform:
   - {fileID: 6451992961578199112}
   - {fileID: 8933636020473427568}
   - {fileID: 8879274239722898233}
+  - {fileID: 2616390203377558400}
   - {fileID: 2307632496030849533}
   - {fileID: 4176595038059457373}
   m_Father: {fileID: 2922435579147278452}
@@ -501,6 +533,63 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0}
     m_Visible: 1
+--- !u!1 &6006091376571784975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2616390203377558400}
+  - component: {fileID: 434103862687873409}
+  m_Layer: 0
+  m_Name: LeftHandIKSecondAK
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2616390203377558400
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6006091376571784975}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.000000119209275, y: 0.000000044703533, z: 0.000000014901165,
+    w: 1}
+  m_LocalPosition: {x: -0.43198693, y: 1.5789932, z: 2.461954}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6297140340234894880}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &434103862687873409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6006091376571784975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeda7bfbf984f2a4da5ab4b8967b115d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Weight: 1
+  m_Data:
+    m_Root: {fileID: 4335608737295937598}
+    m_Mid: {fileID: 1716803357579929876}
+    m_Tip: {fileID: 7118840914081799398}
+    m_Target: {fileID: 7808037668446597312}
+    m_Hint: {fileID: 7808037668446597312}
+    m_TargetPositionWeight: 1
+    m_TargetRotationWeight: 1
+    m_HintWeight: 1
+    m_MaintainTargetPositionOffset: 0
+    m_MaintainTargetRotationOffset: 0
 --- !u!1 &8401349933114833231
 GameObject:
   m_ObjectHideFlags: 0
@@ -1072,6 +1161,10 @@ PrefabInstance:
         type: 3}
       insertIndex: 0
       addedObject: {fileID: 3222846501210555372}
+    - targetCorrespondingSourceObject: {fileID: 8504309617613441659, guid: 3f1b035a29160e54abee8535986fcd7a,
+        type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 7808037668446597312}
     - targetCorrespondingSourceObject: {fileID: 8504309617613441659, guid: 3f1b035a29160e54abee8535986fcd7a,
         type: 3}
       insertIndex: -1
