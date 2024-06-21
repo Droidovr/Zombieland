@@ -1,6 +1,7 @@
 {
     "Name":"Robot",
     "ID":"Robot0",
+    "RobotType":"Graber",
     "PrefabName":"Graber_Prefab",
     "NameAnimatorControllerPC":"GraberAnimator",
     "NameAnimatorControllerMobile":"",

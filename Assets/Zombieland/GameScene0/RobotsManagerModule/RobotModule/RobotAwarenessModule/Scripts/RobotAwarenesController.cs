@@ -1,18 +1,29 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAwarenesBodyModule.RobotDeadBodySensorModule;
 
-public class RobotAwarenesController : MonoBehaviour
+
+namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAwarenesBodyModule
 {
-    // Start is called before the first frame update
-    void Start()
+    public class RobotAwarenesController : Controller, IRobotAwarenesController
     {
-        
-    }
+        public IRobotController RobotController { get; private set; }
+        public IRobotDeadBodySensorController RobotDeadBodySensorController { get; private set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+        public RobotAwarenesController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
+        {
+            RobotController = parentController as IRobotController;
+        }
+
+        protected override void CreateHelpersScripts()
+        {
+            // This controller doesn’t have any helpers scripts at the moment.
+        }
+
+        protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
+        {
+            RobotDeadBodySensorController = new RobotDeadBodySensorController(this, new List<IController> { (IController)RobotController.RobotVisualBodyController});
+            subsystemsControllers.Add((IController)RobotDeadBodySensorController);
+        }
     }
 }

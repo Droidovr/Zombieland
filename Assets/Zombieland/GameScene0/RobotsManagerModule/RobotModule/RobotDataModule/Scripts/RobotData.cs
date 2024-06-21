@@ -7,6 +7,7 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotDataModule
     {
         public string Name { get; set; }
         public string ID { get; set; }
+        public RobotType RobotType { get; set; }
         public string PrefabName { get; set; }
         public string NameAnimatorControllerPC { get; set; }
         public string NameAnimatorControllerMobile { get; set; }

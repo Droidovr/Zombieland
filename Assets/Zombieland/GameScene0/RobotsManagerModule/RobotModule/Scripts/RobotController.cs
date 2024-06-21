@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAIModule;
 using Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAnimationModule;
+using Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAwarenesBodyModule;
 using Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotBuffDebuffModule;
 using Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotDataModule;
 using Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotImpactableSensorModule;
@@ -25,6 +26,7 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule
         public IRobotBuffDebuffController RobotBuffDebuffController { get; private set; }
         public IRobotImpactableSensorController RobotImpactableSensorController { get; private set; }
         public IRobotAIController RobotAIController { get; private set; }
+        public IRobotAwarenesController RobotAwarenesController { get; private set; }
 
         public RobotController(IController parentController, List<IController> requiredControllers, RobotSpawnData robotSpawnData) : base(parentController, requiredControllers)
         {
@@ -65,6 +67,9 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule
 
             RobotAIController = new RobotAIController(this, new List<IController> { (IController)RobotVisualBodyController, (IController)RobotMovingController });
             subsystemsControllers.Add((IController)RobotAIController);
+
+            RobotAwarenesController = new RobotAwarenesController(this, new List<IController> { (IController)RobotVisualBodyController });
+            subsystemsControllers.Add((IController)RobotAwarenesController);
         }
     }
 }
