@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c64b473549319504ca99c3eddd312429
+guid: 5c00faab67cc28d4caae206e9305ab8a
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,7 +33,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Zombie_Create_Hand
+      name: Idle
       takeName: Scene
       internalID: -623603649343465320
       firstFrame: 1
@@ -44,8 +44,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0
@@ -57,7 +57,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.43450478
+      - time: 0.29850745
         functionName: CreacteWeaponPrefabHandler
         data: 
         objectReferenceParameter: {instanceID: 0}

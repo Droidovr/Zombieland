@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1ed675df79538e740aa2cef5ab598932
+guid: 1bd73b0fcd008d3458b479a5ea4927ef
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,7 +33,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Zombie_Create_Hand_Finish
+      name: Idle
       takeName: Scene
       internalID: -623603649343465320
       firstFrame: 1
@@ -44,8 +44,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0
