@@ -10,7 +10,7 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAwarenesBod
         public event Action<IController> OnDeadBodyDetected;
 
         private const float DETECTION_RANGE = 10.0f;
-        private const float CHECK_INTERVAL = 1.0f;
+        private const float CHECK_INTERVAL = 0.2f;
 
 
         public void Init()
@@ -20,21 +20,26 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAwarenesBod
 
         private void DetectDeadBody()
         {
-            if (!Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, DETECTION_RANGE))
-                return;
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, DETECTION_RANGE);
 
-            Impactable impactable = hit.collider.GetComponentInChildren<Impactable>();
-            if (impactable == null)
-                return;
+            foreach (var hitCollider in hitColliders)
+            {
+                // Проверяем наличие всех компонентов Impactable на объекте или его дочерних элементах
+                Impactable[] impactables = hitCollider.GetComponentsInChildren<Impactable>();
+                if (impactables == null || impactables.Length == 0)
+                    continue;
 
-            NPCController controller = impactable.Controller as NPCController;
-            Debug.Log("Detected object with controller: " + controller.NPCDataController.NPCData.Name);
-            
-            if (controller == null || !controller.NPCDataController.NPCData.IsDead)
-                return;
-
-            OnDeadBodyDetected?.Invoke(impactable.Controller);
-            Debug.Log("Detected object with controller: " + controller.NPCDataController.NPCData.Name);
+                foreach (var impactable in impactables)
+                {
+                    NPCController controller = impactable.Controller as NPCController;
+                    if (controller != null && controller.NPCDataController.NPCData.IsDead)
+                    {
+                        OnDeadBodyDetected?.Invoke(impactable.Controller);
+                        Debug.Log("Detected object with controller: " + impactable.Controller);
+                        return; // Если нужно вызвать событие только для первого найденного мертвого NPC
+                    }
+                }
+            }
         }
     }
 }

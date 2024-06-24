@@ -8,6 +8,8 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAwarenesBod
     {
         public IRobotAwarenesController RobotAwarenesController { get; private set; }
 
+        private RobotDeadBodySensor _robotDeadBodySensor;
+
 
         public RobotDeadBodySensorController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
@@ -19,7 +21,8 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAwarenesBod
             switch (RobotAwarenesController.RobotController.RobotDataController.RobotData.RobotType)
             {
                 case RobotType.Graber:
-                    RobotAwarenesController.RobotController.RobotVisualBodyController.RobotInScene.AddComponent<RobotDeadBodySensor>();
+                    _robotDeadBodySensor = RobotAwarenesController.RobotController.RobotVisualBodyController.RobotInScene.AddComponent<RobotDeadBodySensor>();
+                    _robotDeadBodySensor.Init();
                     break;
 
                 default:
