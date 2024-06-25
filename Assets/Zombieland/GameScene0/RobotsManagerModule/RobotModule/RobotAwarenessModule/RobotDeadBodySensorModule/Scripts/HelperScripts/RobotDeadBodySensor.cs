@@ -24,7 +24,6 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAwarenesBod
 
             foreach (var hitCollider in hitColliders)
             {
-                // Проверяем наличие всех компонентов Impactable на объекте или его дочерних элементах
                 Impactable[] impactables = hitCollider.GetComponentsInChildren<Impactable>();
                 if (impactables == null || impactables.Length == 0)
                     continue;
@@ -35,8 +34,7 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAwarenesBod
                     if (controller != null && controller.NPCDataController.NPCData.IsDead)
                     {
                         OnDeadBodyDetected?.Invoke(impactable.Controller);
-                        Debug.Log("Detected object with controller: " + impactable.Controller);
-                        return; // Если нужно вызвать событие только для первого найденного мертвого NPC
+                        return;
                     }
                 }
             }

@@ -12,6 +12,7 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAIModule
         public bool IsPatrolling { get; private set; }
 
         private RobotPatrolling _robotPatrolling;
+        private RobotDeadBodySnatching _robotDeadBodySnatching;
 
         public RobotAIController(IController parentController, List<IController> requiredControllers) : base(parentController, requiredControllers)
         {
@@ -35,6 +36,7 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAIModule
             _robotPatrolling = RobotController.RobotVisualBodyController.RobotInScene.AddComponent<RobotPatrolling>();
             _robotPatrolling.Init(this);
             _robotPatrolling.StartPatrolling();
+
 
             //_nPCDetect = NPCController.NPCVisualBodyController.NPCInScene.AddComponent<NPCDetect>();
             //_nPCDetect.Init(this);

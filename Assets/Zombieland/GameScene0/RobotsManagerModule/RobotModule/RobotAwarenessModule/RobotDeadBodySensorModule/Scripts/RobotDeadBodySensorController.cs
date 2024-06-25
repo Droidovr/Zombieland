@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotDataModule;
 
@@ -6,6 +7,8 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAwarenesBod
 {
     public class RobotDeadBodySensorController : Controller, IRobotDeadBodySensorController
     {
+        public event Action<IController> OnDeadBodyDetected;
+
         public IRobotAwarenesController RobotAwarenesController { get; private set; }
 
         private RobotDeadBodySensor _robotDeadBodySensor;
@@ -23,6 +26,7 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAwarenesBod
                 case RobotType.Graber:
                     _robotDeadBodySensor = RobotAwarenesController.RobotController.RobotVisualBodyController.RobotInScene.AddComponent<RobotDeadBodySensor>();
                     _robotDeadBodySensor.Init();
+                    _robotDeadBodySensor.OnDeadBodyDetected += DeadBodyDetected;
                     break;
 
                 default:
@@ -33,6 +37,12 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAwarenesBod
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
             // This controller doesn’t have any subsystems at the moment.
+        }
+
+
+        private void DeadBodyDetected(IController controller)
+        {
+            OnDeadBodyDetected.Invoke(controller);
         }
     }
 }
