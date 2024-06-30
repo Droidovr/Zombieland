@@ -12,7 +12,7 @@ namespace Zombieland.GameScene0.EnvironmentModule
         {
             SceneManager.sceneLoaded += SceneLoadedHandler;
             SceneManager.LoadScene(environmentData.CurrentLevelName, LoadSceneMode.Additive);
-            Application.targetFrameRate = 60;
+            //Application.targetFrameRate = 60;
         }
 
         public void Disable()
