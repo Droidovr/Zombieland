@@ -95,7 +95,7 @@ public class RobotPhysicMovingPC : MonoBehaviour, IRobotPhysicMoving
 
     private void CalculateGravity()
     {
-        if (_unityCharacterController.enabled)
+        if (_unityCharacterController.enabled && !_unityCharacterController.isGrounded)
         {
             _verticalSpeed -= _unityCharacterController.isGrounded ? _verticalSpeed : GRAVITY * Time.deltaTime;
             _unityCharacterController.Move(Vector3.up * _verticalSpeed * Time.deltaTime);

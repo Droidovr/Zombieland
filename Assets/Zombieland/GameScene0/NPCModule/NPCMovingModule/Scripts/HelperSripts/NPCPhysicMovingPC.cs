@@ -17,6 +17,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
         private bool _isActive;
         private Vector2 _velocity;
         private Vector2 _smoothDeltaPosition;
+        private float _halfNavMeshRadius;
 
 
         public void Init(INPCMovingController nPCMovingController)
@@ -30,6 +31,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
             _nPCMovingController.NPCController.NPCAnimationController.OnAnimatorMoveEvent += OnAnimatorMoveHandler;
 
             _isActive = true;
+            _halfNavMeshRadius = _navMeshAgent.radius / 2f;
         }
 
         public void ActivateMoving(bool isActive)
@@ -77,7 +79,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
             OnMoving?.Invoke(_velocity.magnitude, shouldMove);
 
             float deltaMagnitude = worldDeltaPosition.magnitude;
-            if (deltaMagnitude > _navMeshAgent.radius / 2f)
+            if (deltaMagnitude > _halfNavMeshRadius)
             {
                 _unityCharacterController.Move(_velocity * Time.deltaTime);
             }
@@ -96,7 +98,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCMovingModule
 
         private void CalculateGravity()
         {
-            if (_unityCharacterController.enabled)
+            if (_unityCharacterController.enabled && !_unityCharacterController.isGrounded)
             {
                 _verticalSpeed -= _unityCharacterController.isGrounded ? _verticalSpeed : GRAVITY * Time.deltaTime;
                 _unityCharacterController.Move(Vector3.up * _verticalSpeed * Time.deltaTime);

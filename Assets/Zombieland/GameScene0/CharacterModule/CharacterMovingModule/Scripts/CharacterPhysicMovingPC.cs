@@ -83,7 +83,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
         {
             currentInputVector = Vector2.SmoothDamp(currentInputVector, actualInputVector, ref smoothInputVelocity, smoothDampSpeed);
             _characterMovingController.DirectionWalk = currentInputVector;
-            
+
             /*if (Mathf.Abs(actualRotationDelta) - Mathf.Abs(currentRotationDelta) < .5f)
             {
                 currentRotationDelta = 0f;
@@ -94,12 +94,12 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
                 currentRotationDelta = Mathf.SmoothDamp(currentRotationDelta, actualRotationDelta, ref smoothRotationVelocity, smoothDampSpeed);
                 _characterMovingController.RotationAngle = currentRotationDelta;
             }*/
-                currentRotationAngle = Mathf.SmoothDamp(currentRotationAngle, desiredRotationAngle, ref smoothRotationVelocity, smoothDampSpeed);
-                _characterMovingController.RotationAngle = currentRotationAngle;
-                if (Mathf.Abs(Mathf.Abs(currentRotationAngle) - Mathf.Abs(desiredRotationAngle)) < 1f)
-                {
-                    desiredRotationAngle = 0f;
-                }   
+            currentRotationAngle = Mathf.SmoothDamp(currentRotationAngle, desiredRotationAngle, ref smoothRotationVelocity, smoothDampSpeed);
+            _characterMovingController.RotationAngle = currentRotationAngle;
+            if (Mathf.Abs(Mathf.Abs(currentRotationAngle) - Mathf.Abs(desiredRotationAngle)) < 1f)
+            {
+                desiredRotationAngle = 0f;
+            }
         }
 
         private void FixedUpdate()
@@ -116,7 +116,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
                 CalculeteRotation();
                 CalculateAimTarget();
             }
-            
+
         }
         #endregion
 
@@ -153,7 +153,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void CalculateGravity()
         {
-            if (_unityCharacterController.enabled)
+            if (_unityCharacterController.enabled && !_unityCharacterController.isGrounded)
             {
                 _verticalSpeed -= _unityCharacterController.isGrounded ? _verticalSpeed : GRAVITY * Time.deltaTime;
                 _unityCharacterController.Move(Vector3.up * _verticalSpeed * Time.deltaTime);
@@ -205,7 +205,7 @@ namespace Zombieland.GameScene0.CharacterModule.CharacterMovingModule
 
         private void CalculateAimTarget()
         {
-            Vector2 screenCentrePoint = new Vector2(Screen.width/2f, Screen.height/2f);
+            Vector2 screenCentrePoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
             Ray ray = _characterMovingController.CharacterController.RootController.CameraController.PlayerCamera.ScreenPointToRay(screenCentrePoint);
             if (Physics.Raycast(ray, out RaycastHit hitInfo, 999f, RAYCAST_LAYER_MASKS))
             {
