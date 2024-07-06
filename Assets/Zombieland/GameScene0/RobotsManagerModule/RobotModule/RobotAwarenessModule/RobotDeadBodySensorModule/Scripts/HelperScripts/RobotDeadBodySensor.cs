@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using Zombieland.GameScene0.NPCModule;
 
@@ -21,19 +22,22 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAwarenesBod
         private void DetectDeadBody()
         {
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, DETECTION_RANGE);
+            hitColliders = hitColliders.Where(hitCollider => hitCollider.GetComponentInChildren<Impactable>() != null).ToArray();
+
+            if (hitColliders.Length == 0)
+                return;
 
             foreach (var hitCollider in hitColliders)
             {
                 Impactable[] impactables = hitCollider.GetComponentsInChildren<Impactable>();
-                if (impactables == null || impactables.Length == 0)
-                    continue;
 
                 foreach (var impactable in impactables)
                 {
                     NPCController controller = impactable.Controller as NPCController;
-                    if (controller != null && controller.NPCDataController.NPCData.IsDead)
+                    if (controller != null && controller.NPCDataController.NPCData.IsDead && impactable.Controller != null)
                     {
                         OnDeadBodyDetected?.Invoke(impactable.Controller);
+                        Debug.Log("OnDeadBodyDetected?.Invoke: " + impactable.Controller);
                         return;
                     }
                 }

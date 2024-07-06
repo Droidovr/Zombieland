@@ -42,7 +42,7 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAwarenesBod
 
         private void DeadBodyDetected(IController controller)
         {
-            OnDeadBodyDetected.Invoke(controller);
+            OnDeadBodyDetected?.Invoke(controller);
         }
     }
 }

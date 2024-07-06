@@ -26,7 +26,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisualBodyModule
         {
             _slider.value = CalculateHealthProcent();
 
-            if (_nPCVisualBodyController.NPCController.NPCDataController.NPCData.CurrentHealth < 0)
+            if (_nPCVisualBodyController.NPCController.NPCDataController.NPCData.CurrentHealth < 0 || _nPCVisualBodyController.NPCController.NPCDataController.NPCData.IsDead)
             {
                 _canvas.gameObject.SetActive(false);
             }
