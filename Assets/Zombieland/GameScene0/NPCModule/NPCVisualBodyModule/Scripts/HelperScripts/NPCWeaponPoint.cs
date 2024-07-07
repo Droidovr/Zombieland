@@ -8,6 +8,7 @@ namespace Zombieland.GameScene0.NPCModule.NPCVisualBodyModule
         public Transform LeftHandWeaponPoint;
         public Transform RightHandWeaponPoint;
         public Transform TeethWeaponPoint;
+        public Transform LeftFoot;
 
         public Transform GetWeaponPoint(NPCVisualBodyController nPCVisualBodyController)
         {

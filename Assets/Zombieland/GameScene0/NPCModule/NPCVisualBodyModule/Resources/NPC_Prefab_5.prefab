@@ -1427,6 +1427,7 @@ MonoBehaviour:
   LeftHandWeaponPoint: {fileID: 7721220696621877784}
   RightHandWeaponPoint: {fileID: 3621606033881179849}
   TeethWeaponPoint: {fileID: 7012594093828089620}
+  LeftFoot: {fileID: 6528126308382247438}
 --- !u!114 &8667255837825419036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2641,6 +2642,12 @@ CapsuleCollider:
   m_Height: 0.3974022
   m_Direction: 1
   m_Center: {x: 0.0000000018626382, y: 0.1987011, z: 0.0000000052386895}
+--- !u!4 &6528126308382247438 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3013317397218381484, guid: e39d1f1027b29954cac9a11f653b455a,
+    type: 3}
+  m_PrefabInstance: {fileID: 915949814599564122}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7431862108353945215 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1471167762765847259, guid: e39d1f1027b29954cac9a11f653b455a,

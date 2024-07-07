@@ -1448,6 +1448,12 @@ CapsuleCollider:
   m_Height: 0.3974022
   m_Direction: 1
   m_Center: {x: 0.0000000055879146, y: 0.1987011, z: 0.000000005122274}
+--- !u!4 &151650026445987258 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3013317397218381484, guid: c0a42dbde15814041906fd714b283e92,
+    type: 3}
+  m_PrefabInstance: {fileID: 6067561663861026030}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &587306982091667000 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2588787237552858410, guid: c0a42dbde15814041906fd714b283e92,
@@ -3111,6 +3117,7 @@ MonoBehaviour:
   LeftHandWeaponPoint: {fileID: 7275945290377604379}
   RightHandWeaponPoint: {fileID: 1941444110093342289}
   TeethWeaponPoint: {fileID: 9068117707744081846}
+  LeftFoot: {fileID: 151650026445987258}
 --- !u!114 &2372892525540044807
 MonoBehaviour:
   m_ObjectHideFlags: 0

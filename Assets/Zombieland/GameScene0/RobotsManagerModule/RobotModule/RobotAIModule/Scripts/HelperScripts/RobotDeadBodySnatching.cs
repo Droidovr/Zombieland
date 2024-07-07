@@ -29,6 +29,12 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAIModule
             InvokeRepeating(nameof(CheckReachedTarget), 0f, CHECK_INTERVAL);
         }
 
+        public void OnDisable()
+        {
+            CancelInvoke(nameof(CheckReachedTarget));
+        }
+
+
         private void CheckReachedTarget()
         {
             if (_isMovingToTarget && !_navMeshAgent.pathPending)
@@ -52,12 +58,6 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAIModule
         {
             Debug.Log("Выполняем действие после достижения цели");
             // Здесь опишите действия, которые нужно выполнить после достижения цели
-        }
-
-        private void OnDisable()
-        {
-            // Убедимся, что Invoke отменен при отключении объекта
-            CancelInvoke(nameof(CheckReachedTarget));
         }
     }
 }

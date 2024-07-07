@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
+using Zombieland.GameScene0.NPCModule;
+using Zombieland.GameScene0.NPCModule.NPCVisualBodyModule;
 
 
 namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAIModule
@@ -37,6 +40,11 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAIModule
             _robotPatrolling.Init(this);
             _robotPatrolling.StartPatrolling();
 
+            _robotDeadBodySnatching = RobotController.RobotVisualBodyController.RobotInScene.AddComponent<RobotDeadBodySnatching>();
+            _robotDeadBodySnatching.Init(this);
+
+            RobotController.RobotAwarenesController.OnDeadBodyDetected += DeadBodyDetected;
+
 
             //_nPCDetect = NPCController.NPCVisualBodyController.NPCInScene.AddComponent<NPCDetect>();
             //_nPCDetect.Init(this);
@@ -58,6 +66,15 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAIModule
         protected override void CreateSubsystems(ref List<IController> subsystemsControllers)
         {
             // This controller doesn’t have any subsystems at the moment.
+        }
+
+        private void DeadBodyDetected(IController controller)
+        {
+            _robotPatrolling.StopPatrolling();
+
+            INPCController nPCController = controller as INPCController;
+            Transform leftFoot = nPCController.NPCVisualBodyController.NPCInScene.GetComponent<NPCWeaponPoint>().LeftFoot;
+            _robotDeadBodySnatching.Snatching(leftFoot);
         }
     }
 }

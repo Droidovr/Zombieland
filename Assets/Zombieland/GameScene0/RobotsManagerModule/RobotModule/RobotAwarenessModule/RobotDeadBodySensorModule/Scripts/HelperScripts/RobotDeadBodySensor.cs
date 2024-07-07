@@ -37,7 +37,6 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAwarenesBod
                     if (controller != null && controller.NPCDataController.NPCData.IsDead && impactable.Controller != null)
                     {
                         OnDeadBodyDetected?.Invoke(impactable.Controller);
-                        Debug.Log("OnDeadBodyDetected?.Invoke: " + impactable.Controller);
                         return;
                     }
                 }
