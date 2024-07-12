@@ -14,9 +14,14 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAwarenesBod
         private const float CHECK_INTERVAL = 0.2f;
 
 
-        public void Init()
+        public void StartSensor()
         {
             InvokeRepeating(nameof(DetectDeadBody), 0, CHECK_INTERVAL);
+        }
+
+        public void StopSensor()
+        {
+            CancelInvoke(nameof(DetectDeadBody));
         }
 
         private void DetectDeadBody()

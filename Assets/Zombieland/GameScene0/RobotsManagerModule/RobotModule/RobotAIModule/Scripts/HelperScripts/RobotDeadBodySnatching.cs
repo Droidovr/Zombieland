@@ -43,6 +43,7 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAIModule
                 {
                     _isMovingToTarget = false;
                     CancelInvoke(nameof(CheckReachedTarget));
+                    _robotAIController.RobotController.RobotAwarenesController.RobotDeadBodySensorController.StopRobotDeadBodySensor();
                     OnReachedTarget();
                 }
             }

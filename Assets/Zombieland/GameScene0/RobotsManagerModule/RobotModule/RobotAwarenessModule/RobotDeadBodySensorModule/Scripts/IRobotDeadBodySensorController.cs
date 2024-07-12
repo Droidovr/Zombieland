@@ -7,5 +7,8 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAwarenesBod
         event Action<IController> OnDeadBodyDetected;
 
         IRobotAwarenesController RobotAwarenesController { get; }
+
+        void StartRobotDeadBodySensor();
+        void StopRobotDeadBodySensor();
     }
 }

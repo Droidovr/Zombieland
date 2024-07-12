@@ -19,13 +19,22 @@ namespace Zombieland.GameScene0.RobotsManagerModule.RobotModule.RobotAwarenesBod
             RobotAwarenesController = parentController as IRobotAwarenesController;
         }
 
+        public void StartRobotDeadBodySensor()
+        {
+            _robotDeadBodySensor.StartSensor();
+        }
+        public void StopRobotDeadBodySensor()
+        {
+            _robotDeadBodySensor.StopSensor();
+        }
+
         protected override void CreateHelpersScripts()
         {
             switch (RobotAwarenesController.RobotController.RobotDataController.RobotData.RobotType)
             {
                 case RobotType.Graber:
                     _robotDeadBodySensor = RobotAwarenesController.RobotController.RobotVisualBodyController.RobotInScene.AddComponent<RobotDeadBodySensor>();
-                    _robotDeadBodySensor.Init();
+                    _robotDeadBodySensor.StartSensor();
                     _robotDeadBodySensor.OnDeadBodyDetected += DeadBodyDetected;
                     break;
 
